@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeasurementStudio", "MeasurementStudio\MeasurementStudio.csproj", "{625C7D6C-587E-4CD8-9E5C-0C1B54175481}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstrumentAbstractionModel", "InstrumentAbstractionModel\InstrumentAbstractionModel.csproj", "{381FF1AC-6EA2-4B29-A8FB-566CDD4692DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExperimentAbstractionModel", "ExperimentAbstractionModel\ExperimentAbstractionModel.csproj", "{1DCF5E5D-18A2-43CD-B329-AAB144298002}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{381FF1AC-6EA2-4B29-A8FB-566CDD4692DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{381FF1AC-6EA2-4B29-A8FB-566CDD4692DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{381FF1AC-6EA2-4B29-A8FB-566CDD4692DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{381FF1AC-6EA2-4B29-A8FB-566CDD4692DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DCF5E5D-18A2-43CD-B329-AAB144298002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DCF5E5D-18A2-43CD-B329-AAB144298002}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DCF5E5D-18A2-43CD-B329-AAB144298002}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DCF5E5D-18A2-43CD-B329-AAB144298002}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
