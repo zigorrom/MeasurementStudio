@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace InstrumentAbstractionModel
 {
-    public class Class1
+    public enum InstrumentState
     {
+        None,
+        Busy,
+        Idle        
     }
 }
