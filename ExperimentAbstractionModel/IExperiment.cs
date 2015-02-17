@@ -11,6 +11,7 @@ namespace ExperimentAbstractionModel
     {
         void InitializeExperiment();
         void InitializeInstruments();
+        void ReleaseInstruments();
         void Start();
         int ReportProgress();
         void Abort();

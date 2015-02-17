@@ -10,7 +10,7 @@ namespace IVExperiment
     public class IVExperiment:AbstractExperiment
     {
         private const string ExperimentName = "IV_MEASUREMENT";
-
+        private readonly string[] Devices = {};
         public IVExperiment():base(ExperimentName)
         {
             InitializeInstruments();
@@ -24,9 +24,13 @@ namespace IVExperiment
 
         public override void InitializeInstruments()
         {
-            
+            throw new NotImplementedException();
         }
 
+        public override void ReleaseInstruments()
+        {
+            throw new NotImplementedException();
+        }
         public override void Start()
         {
             throw new NotImplementedException();

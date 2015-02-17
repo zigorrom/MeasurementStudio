@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstrumentHandler", "InstrumentHandler\InstrumentHandler.csproj", "{15B48C7D-CF22-45C8-8796-57C468B8496B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{C6FE10AE-EF5A-4094-8A07-DC221947C448}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{15B48C7D-CF22-45C8-8796-57C468B8496B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15B48C7D-CF22-45C8-8796-57C468B8496B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15B48C7D-CF22-45C8-8796-57C468B8496B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6FE10AE-EF5A-4094-8A07-DC221947C448}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6FE10AE-EF5A-4094-8A07-DC221947C448}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6FE10AE-EF5A-4094-8A07-DC221947C448}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6FE10AE-EF5A-4094-8A07-DC221947C448}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
