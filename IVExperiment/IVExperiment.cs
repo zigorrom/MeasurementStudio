@@ -14,6 +14,7 @@ namespace IVExperiment
         private readonly AvailableInstrumentsEmuneration NecessaryInstruments = AvailableInstrumentsEmuneration.SMU_Keithley2400 | AvailableInstrumentsEmuneration.SMU_Keithley2430;
         public IVExperiment():base(ExperimentName)
         {
+            
             InitializeInstruments();
             InitializeExperiment();
         }
@@ -25,7 +26,7 @@ namespace IVExperiment
 
         public override void InitializeInstruments()
         {
-            throw new NotImplementedException();
+            
         }
 
         public override void ReleaseInstruments()

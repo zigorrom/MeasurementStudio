@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CCE29408-FE31-4F24-81CC-1EEB8B861B38}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{11DFFA80-C9E6-4684-B9D4-592C4D7A0A44}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IVExperiment</RootNamespace>
-    <AssemblyName>IVExperiment</AssemblyName>
+    <RootNamespace>test</RootNamespace>
+    <AssemblyName>test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -39,22 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IVExperiment.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExperimentAbstractionModel\ExperimentAbstractionModel.csproj">
-      <Project>{bcbb6a0e-61e7-4103-b225-6dc39b3cc9b4}</Project>
-      <Name>ExperimentAbstractionModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\InstrumentAbstractionModel\InstrumentAbstractionModel.csproj">
-      <Project>{381ff1ac-6ea2-4b29-a8fb-566cdd4692db}</Project>
-      <Name>InstrumentAbstractionModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\InstrumentHandler\InstrumentHandler.csproj">
-      <Project>{8374c54f-4d38-47ba-b0f8-66408ac9b9c0}</Project>
-      <Name>InstrumentHandler</Name>
-    </ProjectReference>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

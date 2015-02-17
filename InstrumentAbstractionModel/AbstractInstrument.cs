@@ -13,7 +13,6 @@ namespace InstrumentAbstractionModel
             m_name = Name;
             m_alias = Alias;
             m_resourceName = ResourceName;
-
         }
 
         private string m_name;
@@ -54,9 +53,7 @@ namespace InstrumentAbstractionModel
             set { m_instrumentState = value; }
         }
 
-        public void DetectInstrument()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void DetectInstrument();
+        
     }
 }
