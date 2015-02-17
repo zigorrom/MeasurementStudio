@@ -93,12 +93,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\InstrumentHandler\InstrumentHandler.csproj">
-      <Project>{15b48c7d-cf22-45c8-8796-57c468b8496b}</Project>
-      <Name>InstrumentHandler</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
