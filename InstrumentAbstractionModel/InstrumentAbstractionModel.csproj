@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="IInstrument.cs" />
     <Compile Include="IInstrumentOwner.cs" />
+    <Compile Include="InstrumentsHandler.cs" />
     <Compile Include="InstrumentState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
