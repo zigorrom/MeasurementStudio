@@ -7,6 +7,6 @@ namespace InstrumentAbstractionModel
 {
     public interface IInstrumentOwner
     {
-        string Name { get; set; }
+        string Name { get; }
     }
 }

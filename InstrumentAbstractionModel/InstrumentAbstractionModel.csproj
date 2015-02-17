@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Devices, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Devices.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,7 +45,6 @@
   <ItemGroup>
     <Compile Include="IInstrument.cs" />
     <Compile Include="IInstrumentOwner.cs" />
-    <Compile Include="InstrumentsHandler.cs" />
     <Compile Include="InstrumentState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstrumentAbstractionModel"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExperimentAbstractionModel", "ExperimentAbstractionModel\ExperimentAbstractionModel.csproj", "{BCBB6A0E-61E7-4103-B225-6DC39B3CC9B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IVExperiment", "IVExperiment\IVExperiment.csproj", "{CCE29408-FE31-4F24-81CC-1EEB8B861B38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BCBB6A0E-61E7-4103-B225-6DC39B3CC9B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCBB6A0E-61E7-4103-B225-6DC39B3CC9B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCBB6A0E-61E7-4103-B225-6DC39B3CC9B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCE29408-FE31-4F24-81CC-1EEB8B861B38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCE29408-FE31-4F24-81CC-1EEB8B861B38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCE29408-FE31-4F24-81CC-1EEB8B861B38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCE29408-FE31-4F24-81CC-1EEB8B861B38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

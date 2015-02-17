@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BCBB6A0E-61E7-4103-B225-6DC39B3CC9B4}</ProjectGuid>
+    <ProjectGuid>{CCE29408-FE31-4F24-81CC-1EEB8B861B38}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExperimentAbstractionModel</RootNamespace>
-    <AssemblyName>ExperimentAbstractionModel</AssemblyName>
+    <RootNamespace>IVExperiment</RootNamespace>
+    <AssemblyName>IVExperiment</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,14 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractExperiment.cs" />
-    <Compile Include="IExperiment.cs" />
+    <Compile Include="IVExperiment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InstrumentAbstractionModel\InstrumentAbstractionModel.csproj">
-      <Project>{381ff1ac-6ea2-4b29-a8fb-566cdd4692db}</Project>
-      <Name>InstrumentAbstractionModel</Name>
+    <ProjectReference Include="..\ExperimentAbstractionModel\ExperimentAbstractionModel.csproj">
+      <Project>{bcbb6a0e-61e7-4103-b225-6dc39b3cc9b4}</Project>
+      <Name>ExperimentAbstractionModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
