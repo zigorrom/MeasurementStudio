@@ -8,9 +8,9 @@ namespace InstrumentAbstractionModel
 {
     public interface IInstrument
     {
-        string Name { get; set; }
-        string Alias { get; set; }
-        string ResourceName { get; set; }
+        string Name { get;  }
+        string Alias { get; }
+        string ResourceName { get;  }
         IInstrumentOwner InstrumentOwner { get; set; }
         InstrumentState State { get; set; }
         void DetectInstrument();
