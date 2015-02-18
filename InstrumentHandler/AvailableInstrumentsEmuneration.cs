@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace InstrumentHandler
+namespace InstrumentHandlerNamespace
 {
     public enum AvailableInstrumentsEmuneration
     {

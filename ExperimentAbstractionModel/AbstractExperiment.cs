@@ -22,6 +22,8 @@ namespace ExperimentAbstractionModel
 
         public abstract void InitializeInstruments();
 
+        public abstract void ReleaseInstruments();
+
         public abstract void Start();
 
         public abstract int ReportProgress();
