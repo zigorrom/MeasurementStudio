@@ -42,7 +42,10 @@
     <Compile Include="AbstractInstrument.cs" />
     <Compile Include="IInstrument.cs" />
     <Compile Include="IInstrumentOwner.cs" />
+    <Compile Include="ILockInAmplifier.cs" />
+    <Compile Include="IMultimeter.cs" />
     <Compile Include="InstrumentState.cs" />
+    <Compile Include="ISourceMeasurementUnit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

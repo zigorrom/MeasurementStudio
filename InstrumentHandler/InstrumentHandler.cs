@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,17 +31,25 @@ namespace InstrumentHandlerNamespace
 
         #endregion
 
+        //
+        //Write here device addresses statically.
+        //
+
 
         private void DiscoverInstruments()
         {
-
+            
+            
         }
 
-        private bool TryGetDevice(AvailableInstrumentsEmuneration InstrumentName, out IInstrument Instrument)
+        public bool TryGetDevice(IInstrumentOwner Owner, AvailableInstrumentsEmuneration InstrumentName, out IInstrument Instrument)
         {
             throw new NotImplementedException();
         }
                 
-
+        public bool TryGetDevices(IInstrumentOwner Owner, AvailableInstrumentsEmuneration InstrumentNames, out IInstrument[] Instruments)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

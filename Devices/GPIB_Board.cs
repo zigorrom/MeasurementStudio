@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using NationalInstruments.NI4882;
+
 namespace Devices
 {
    public  class GPIB_Board
@@ -13,9 +13,8 @@ namespace Devices
         private int BoardNumber;
         private bool Board_Connected_and_Operatable;
         private Dictionary<string , Address> AliveDevicesWithIDN;
-       
+      
         public GPIB_Board(int Board_address=1)
-       
         {
             try
             {
