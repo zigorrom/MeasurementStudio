@@ -17,7 +17,7 @@ namespace ExperimentAbstractionModel
             m_Name = ExperimentName;
             m_Instruments = new Dictionary<string, IInstrument>();
         }
-
+        
         public abstract void InitializeExperiment();
 
         public abstract void InitializeInstruments();

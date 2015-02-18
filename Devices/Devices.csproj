@@ -89,16 +89,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IExperimentalDevice.cs" />
-    <Compile Include="Abstract\I_SMU.cs" />
     <Compile Include="COM_Device.cs" />
-    <Compile Include="Configurations\SMU_Configuration.cs" />
+    <Compile Include="GPIB_Board.cs" />
     <Compile Include="GPIB_Device.cs" />
-    <Compile Include="LAN_Device.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\CheckValue.cs" />
-    <Compile Include="USB_Device.cs" />
+    <Compile Include="AgilentUSB_Device.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

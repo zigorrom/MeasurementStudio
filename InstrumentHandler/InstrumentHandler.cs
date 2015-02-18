@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InstrumentAbstractionModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,11 @@ namespace InstrumentHandlerNamespace
 {
     public sealed class InstrumentHandler
     {
+        #region SingletoneStuff
         private static volatile InstrumentHandler m_Handler;
         private static object syncRoot = new object();
         private InstrumentHandler() { }
+        
 
         public static InstrumentHandler Instance
         {
@@ -25,7 +28,19 @@ namespace InstrumentHandlerNamespace
             }
         }
 
-        
+        #endregion
+
+
+        private void DiscoverInstruments()
+        {
+
+        }
+
+        private bool TryGetDevice(AvailableInstrumentsEmuneration InstrumentName, out IInstrument Instrument)
+        {
+            throw new NotImplementedException();
+        }
+                
 
     }
 }

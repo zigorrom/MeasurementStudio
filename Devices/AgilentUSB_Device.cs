@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
+using Devices;
 
 using NationalInstruments;
 using NationalInstruments.NI4882;
@@ -11,9 +11,9 @@ using NationalInstruments.NI4882;
 using Ivi.Visa.Interop;
 using System.Threading;
 
-namespace Devices
+namespace Agilent_U2542A
 {
-    public class USB_Device : IExperimentalDevice, IDisposable
+    public class AgilentUSB_Device : IExperimentalDevice, IDisposable
     {
         #region AgilentUSB_Device settings
 
@@ -55,13 +55,13 @@ namespace Devices
 
         #region Singleton pattern implementation
 
-        private static USB_Device _Instance;
-        public static USB_Device Instance
+        private static AgilentUSB_Device _Instance;
+        public static AgilentUSB_Device Instance
         {
             get
             {
                 if (_Instance == null)
-                    _Instance = new USB_Device();
+                    _Instance = new AgilentUSB_Device();
 
                 return _Instance;
             }
@@ -71,7 +71,7 @@ namespace Devices
 
         #region Constructor / destructor
 
-        public USB_Device()
+        public AgilentUSB_Device()
         {
             _Id = "USB0::0x0957::0x1718::TW52524501::INSTR";
             _rMgr = new ResourceManager();
@@ -80,7 +80,7 @@ namespace Devices
             _IsBusy = false;
         }
 
-        ~USB_Device()
+        ~AgilentUSB_Device()
         {
             this.Dispose();
         }

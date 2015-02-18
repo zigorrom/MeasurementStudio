@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Devices
+namespace Agilent_U2542A
 {
     static class CheckValue
     {

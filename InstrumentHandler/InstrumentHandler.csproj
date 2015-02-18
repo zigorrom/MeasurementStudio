@@ -43,6 +43,12 @@
     <Compile Include="InstrumentHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InstrumentAbstractionModel\InstrumentAbstractionModel.csproj">
+      <Project>{381ff1ac-6ea2-4b29-a8fb-566cdd4692db}</Project>
+      <Name>InstrumentAbstractionModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

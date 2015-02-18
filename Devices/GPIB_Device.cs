@@ -44,9 +44,11 @@ namespace Devices
             set { _TimeDelay = value; }
         }
 
+        public bool isAlive;
+
         #endregion
 
-        #region Constructor / Destructor
+        #region Constructor / destructor
 
         public GPIB_Device(byte primaryAddress, byte secondaryAddress, byte boardNumber)
         {
@@ -54,8 +56,38 @@ namespace Devices
             this._SecondaryAddress = secondaryAddress;
             this._BoardNumber = boardNumber;
 
+            try
+            {
+                _GPIB_Address = new Address(_PrimaryAddress, _SecondaryAddress);
+                _GPIB_Device = new Device(_BoardNumber, _GPIB_Address);
+                isAlive = true;
+            }
+            catch
+            {
+                isAlive = false ;
+            }
+
             InitDevice();
         }
+
+        public GPIB_Device(string IDN, int deviceOrder=0, byte boardNumber=0)
+        {
+            isAlive = false;
+            try
+            {
+                GPIB_Board Board = new GPIB_Board(boardNumber);
+                _GPIB_Device = Board.Open(IDN, deviceOrder);
+                if(_GPIB_Device!=null) 
+                    isAlive=true;
+            }
+            catch
+            {
+                isAlive = false;
+            }
+            if (isAlive) _GPIB_Address = new Address(_GPIB_Device.PrimaryAddress, _GPIB_Device.SecondaryAddress);
+            InitDevice();
+        }
+
 
         ~GPIB_Device()
         {
@@ -68,17 +100,7 @@ namespace Devices
 
         public virtual bool InitDevice()
         {
-            try
-            {
-                _GPIB_Address = new Address(_PrimaryAddress, _SecondaryAddress);
-                _GPIB_Device = new Device(_BoardNumber, _GPIB_Address);
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return isAlive;
         }
 
         /// <summary>
@@ -119,6 +141,7 @@ namespace Devices
         public string RequestQuery(string Query)
         {
             SendCommandRequest(Query);
+            Thread.Sleep(200);
             return ReceiveDeviceAnswer();
         }
 
