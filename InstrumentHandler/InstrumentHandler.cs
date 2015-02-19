@@ -1,4 +1,5 @@
 ﻿using InstrumentAbstractionModel;
+using NationalInstruments.VisaNS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,12 @@ namespace InstrumentHandlerNamespace
         #region SingletoneStuff
         private static volatile InstrumentHandler m_Handler;
         private static object syncRoot = new object();
-        private InstrumentHandler() { }
+        private InstrumentHandler()
+        {
+            InitializeHandler();
+        }
+
+        
         
 
         public static InstrumentHandler Instance
@@ -31,14 +37,35 @@ namespace InstrumentHandlerNamespace
 
         #endregion
 
+        private void InitializeHandler()
+        {
+            throw new NotImplementedException();
+        }
         //
         //Write here device addresses statically.
         //
 
-
+        private const string ResourceFilter = "GPIB|USB?*INSTR";
         private void DiscoverInstruments()
         {
-            
+            try
+            {
+                var LocalResourceManager = ResourceManager.GetLocalManager();
+                var resources = LocalResourceManager.FindResources(ResourceFilter);
+                foreach (var resource in resources)
+                {
+                    
+                }
+            }
+            catch (VisaException)
+            {
+                
+                throw;
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
             
         }
 
