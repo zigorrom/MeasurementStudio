@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AvailableInstrumentsEmuneration.cs" />
+    <Compile Include="ExperimentsRegistry.cs" />
     <Compile Include="InstrumentHandler.cs" />
     <Compile Include="InstrumentHandlerControl.xaml.cs">
       <DependentUpon>InstrumentHandlerControl.xaml</DependentUpon>
