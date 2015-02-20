@@ -103,7 +103,7 @@ namespace InstrumentHandlerNamespace
         //Write here device addresses statically.
         //
 
-        private const string ResourceFilter = "GPIB|USB?*INSTR";
+        private const string ResourceFilter = "(GPIB)|(USB)?*INSTR";
         public void DiscoverInstruments()
         {
             try
