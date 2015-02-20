@@ -22,13 +22,9 @@ namespace InstrumentHandlerNamespace
         private static volatile InstrumentHandler m_Handler;
         private static object syncRoot = new object();
         
-
-        [DataMember]
-        private Dictionary<IInstrumentOwner, List<IInstrument>> list;
-
         private InstrumentHandler()
         {
-            list = new Dictionary<IInstrumentOwner, List<IInstrument>>();
+            
             
             
         }
@@ -47,7 +43,6 @@ namespace InstrumentHandlerNamespace
            
         }
 
-
         public static InstrumentHandler Instance
         {
             get
@@ -60,7 +55,6 @@ namespace InstrumentHandlerNamespace
                 return m_Handler;
             }
         }
-
 
         private const string SerializationFileName = "Devices.xml";
         private static InstrumentHandler DeserializeOrNew()
@@ -86,7 +80,6 @@ namespace InstrumentHandlerNamespace
             return handler;
         }
         
-
         private void InitializeHandler()
         {
             DiscoverInstruments();
