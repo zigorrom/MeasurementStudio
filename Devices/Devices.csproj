@@ -69,22 +69,22 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ivi.Visa.Interop, Version=5.3.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=x86">
+    <Reference Include="Ivi.Visa.Interop, Version=5.3.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>.\Ivi.Visa.Interop.dll</HintPath>
+      <HintPath>..\ThirdPartyLibs\Ivi.Visa.Interop.dll</HintPath>
     </Reference>
     <Reference Include="NationalInstruments.Common, Version=13.0.40.190, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\NationalInstruments.Common.dll</HintPath>
+      <HintPath>..\ThirdPartyLibs\NationalInstruments.Common.dll</HintPath>
     </Reference>
     <Reference Include="NationalInstruments.NI4882, Version=13.0.45.159, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\NationalInstruments.NI4882.dll</HintPath>
+      <HintPath>..\ThirdPartyLibs\NationalInstruments.NI4882.dll</HintPath>
     </Reference>
     <Reference Include="NationalInstruments.VisaNS, Version=13.0.45.167, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\NationalInstruments.VisaNS.dll</HintPath>
+      <HintPath>..\ThirdPartyLibs\NationalInstruments.VisaNS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ExperimentAbstractionModel
 {
-    public enum AvailableExperimentsEnumeration
-    {
-        IVMeasurement = 1
-    }
+    //public enum AvailableExperimentsEnumeration
+    //{
+    //    IVMeasurement = 1
+    //}
 }

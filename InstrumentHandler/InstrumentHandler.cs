@@ -21,8 +21,7 @@ namespace InstrumentHandlerNamespace
 
         private static volatile InstrumentHandler m_Handler;
         private static object syncRoot = new object();
-        [DataMember]
-        private string Name = "Vasya";
+        
 
         [DataMember]
         private Dictionary<IInstrumentOwner, List<IInstrument>> list;
@@ -31,7 +30,7 @@ namespace InstrumentHandlerNamespace
         {
             list = new Dictionary<IInstrumentOwner, List<IInstrument>>();
             
-            //InitializeHandler();
+            
         }
 
         ~InstrumentHandler()
@@ -39,13 +38,13 @@ namespace InstrumentHandlerNamespace
             //if(NeedSerialization)
             var dir = Directory.GetCurrentDirectory();
             DataContractSerializer serializer = new DataContractSerializer(typeof(InstrumentHandler));
-            //XmlSerializer xmlSerializer = new XmlSerializer(typeof(InstrumentHandler));
+            
             using (Stream stream = new FileStream(String.Format("{0}\\{1}", dir, SerializationFileName), FileMode.Create, FileAccess.Write, FileShare.None))
             {
                 serializer.WriteObject(stream, this);
                 stream.Close();
             }
-            //Serialization here.
+           
         }
 
 
@@ -56,8 +55,7 @@ namespace InstrumentHandlerNamespace
                 lock (syncRoot)
                 {
                     if (m_Handler == null)
-                        //deserialize or create new object
-                        m_Handler = DeserializeOrNew();//new InstrumentHandler();
+                        m_Handler = DeserializeOrNew();
                 }
                 return m_Handler;
             }
@@ -75,7 +73,7 @@ namespace InstrumentHandlerNamespace
                 
                 using (Stream stream = new FileStream(String.Format("{0}\\{1}", dir, SerializationFileName), FileMode.Open, FileAccess.Read, FileShare.None))
                 {
-                    handler = (InstrumentHandler)serializer.ReadObject(stream);//xmlSerializer.Deserialize(stream);
+                    handler = (InstrumentHandler)serializer.ReadObject(stream);
                 }
             }
             catch (Exception ex)
@@ -87,22 +85,13 @@ namespace InstrumentHandlerNamespace
             
             return handler;
         }
-        //private Dictionary<IInstrumentOwner, List<IInstrument>> m_InstrumentDictionary;
-
-
-        //private void AddInstrument(IInstrument instrument)
-        //{
-
-        //}
+        
 
         private void InitializeHandler()
         {
             DiscoverInstruments();
         }
-        //
-        //Write here device addresses statically.
-        //
-
+        
         private const string ResourceFilter = "(GPIB)|(USB)?*INSTR";
         public void DiscoverInstruments()
         {
