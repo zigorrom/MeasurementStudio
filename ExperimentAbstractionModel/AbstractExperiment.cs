@@ -42,5 +42,16 @@ namespace ExperimentAbstractionModel
                 m_Name = value;
             }
         }
+
+        public bool Equals(IInstrumentOwner other)
+        {
+            if (other.Name == m_Name)
+                return true;
+            return false;
+        }
+        public override int GetHashCode()
+        {
+            return m_Name.GetHashCode();
+        }
     }
 }

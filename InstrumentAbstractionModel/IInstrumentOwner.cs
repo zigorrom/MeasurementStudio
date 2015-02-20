@@ -5,7 +5,7 @@ using System.Text;
 
 namespace InstrumentAbstractionModel
 {
-    public interface IInstrumentOwner
+    public interface IInstrumentOwner:IEquatable<IInstrumentOwner>
     {
         string Name { get; }
     }

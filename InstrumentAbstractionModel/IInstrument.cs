@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace InstrumentAbstractionModel
 {
-    public interface IInstrument
+    
+    public interface IInstrument:IEquatable<IInstrument>
     {
         string Name { get;  }
         string Alias { get; }

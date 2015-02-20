@@ -54,6 +54,21 @@ namespace InstrumentAbstractionModel
         }
 
         public abstract void DetectInstrument();
-        
+
+
+        public bool Equals(IInstrument other)
+        {
+            if (other.Alias == Alias)
+                if (other.Name == Name)
+                    if (other.ResourceName == ResourceName)
+                        if (other.State == State)
+                            if (other.InstrumentOwner.Name == InstrumentOwner.Name)
+                                return true;
+            return false;
+        }
+        public override int GetHashCode()
+        {
+            return String.Format("{0},{1},{2},{3},{4}", Alias, Name, ResourceName, State, InstrumentOwner.Name).GetHashCode();
+        }
     }
 }
