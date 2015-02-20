@@ -49,6 +49,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\InstrumentAbstractionModel\InstrumentAbstractionModel.csproj">
+      <Project>{381ff1ac-6ea2-4b29-a8fb-566cdd4692db}</Project>
+      <Name>InstrumentAbstractionModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InstrumentHandler\InstrumentHandler.csproj">
       <Project>{8374c54f-4d38-47ba-b0f8-66408ac9b9c0}</Project>
       <Name>InstrumentHandler</Name>

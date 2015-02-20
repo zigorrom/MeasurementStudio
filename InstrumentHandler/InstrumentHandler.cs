@@ -116,11 +116,17 @@ namespace InstrumentHandlerNamespace
                 }
                 foreach (var resource in resources)
                 {
-                    //NationalInstruments.NI4882.Device dev= new NationalInstruments.NI4882.Device(0)   
+                    //NationalInstruments.NI4882.Device dev= new NationalInstruments.NI4882.Device(0)  
+                    Console.WriteLine("New Instrument");
+
                     var s = (MessageBasedSession)LocalResourceManager.Open(resource);
+                    Console.WriteLine(resource);
                     s.Write("*IDN?");
                     var idn = s.ReadString();
                     Console.WriteLine(idn);
+                    s.Dispose();
+
+                    Console.WriteLine("***************\n\r");
                     //NationalInstruments.NI4882.Device dev = new NationalInstruments.NI4882.Device()
                 }
             }
@@ -136,6 +142,11 @@ namespace InstrumentHandlerNamespace
         }
 
         public bool TryGetDevice(IInstrumentOwner Owner, AvailableInstrumentsEmuneration InstrumentName, out IInstrument Instrument)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryGetDevice<T>(IInstrumentOwner Owner,AvailableInstrumentsEmuneration InstrumentName,out T Instrument) where T:IInstrument
         {
             throw new NotImplementedException();
         }
