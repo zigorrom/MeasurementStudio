@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devices", "Devices\Devices.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InstrumentsFolder", "InstrumentsFolder", "{F6677B9B-0F7A-45ED-9399-0ED6D80B05E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogSystem", "LogSystem\LogSystem.csproj", "{A19331DC-A402-46E7-B634-32A15AD4B926}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -119,6 +121,14 @@ Global
 		{AE52526E-D660-426E-A2EC-1A475B02AA9E}.Release|x64.Build.0 = Release|x64
 		{AE52526E-D660-426E-A2EC-1A475B02AA9E}.Release|x86.ActiveCfg = Release|x86
 		{AE52526E-D660-426E-A2EC-1A475B02AA9E}.Release|x86.Build.0 = Release|x86
+		{A19331DC-A402-46E7-B634-32A15AD4B926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A19331DC-A402-46E7-B634-32A15AD4B926}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A19331DC-A402-46E7-B634-32A15AD4B926}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A19331DC-A402-46E7-B634-32A15AD4B926}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A19331DC-A402-46E7-B634-32A15AD4B926}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A19331DC-A402-46E7-B634-32A15AD4B926}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A19331DC-A402-46E7-B634-32A15AD4B926}.Release|x64.ActiveCfg = Release|Any CPU
+		{A19331DC-A402-46E7-B634-32A15AD4B926}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
