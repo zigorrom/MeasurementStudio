@@ -13,7 +13,7 @@ namespace test
         
         {
             var handler = InstrumentHandlerNamespace.InstrumentHandler.Instance;
-            
+            handler.DiscoverInstruments();
         }
     
     }

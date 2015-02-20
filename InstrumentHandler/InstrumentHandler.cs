@@ -84,6 +84,7 @@ namespace InstrumentHandlerNamespace
             }
             if (null == handler)
                 handler = new InstrumentHandler();
+            
             return handler;
         }
         //private Dictionary<IInstrumentOwner, List<IInstrument>> m_InstrumentDictionary;
@@ -102,25 +103,29 @@ namespace InstrumentHandlerNamespace
         //Write here device addresses statically.
         //
 
-        private const string ResourceFilter = "?*";//"GPIB|USB?*INSTR";
-        private void DiscoverInstruments()
+        private const string ResourceFilter = "GPIB|USB?*INSTR";
+        public void DiscoverInstruments()
         {
             try
             {
                 var LocalResourceManager = ResourceManager.GetLocalManager();
                 var resources = LocalResourceManager.FindResources(ResourceFilter);
+                if(resources.Length==0)
+                {
+                    throw new Exception("No instruments found");
+                }
                 foreach (var resource in resources)
                 {
                     //NationalInstruments.NI4882.Device dev= new NationalInstruments.NI4882.Device(0)   
                     var s = (MessageBasedSession)LocalResourceManager.Open(resource);
                     s.Write("*IDN?");
                     var idn = s.ReadString();
+                    Console.WriteLine(idn);
                     //NationalInstruments.NI4882.Device dev = new NationalInstruments.NI4882.Device()
                 }
             }
             catch (VisaException)
             {
-
                 throw;
             }
             catch (Exception ex)
