@@ -40,11 +40,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractExperiment.cs" />
+    <Compile Include="AbstractExperimentViewModel.cs" />
     <Compile Include="AvailableExperimentsEnumeration.cs" />
     <Compile Include="IExperiment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Helper\Helper.csproj">
+      <Project>{5216ba05-f05d-447a-965f-b1357dcb4990}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InstrumentAbstractionModel\InstrumentAbstractionModel.csproj">
       <Project>{381ff1ac-6ea2-4b29-a8fb-566cdd4692db}</Project>
       <Name>InstrumentAbstractionModel</Name>

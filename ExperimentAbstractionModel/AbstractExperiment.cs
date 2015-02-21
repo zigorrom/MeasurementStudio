@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ExperimentAbstractionModel
 {
-    public abstract class AbstractExperiment:IExperiment
+    public abstract partial class AbstractExperiment:IExperiment
     {
         private string m_Name;
         protected Dictionary<string, IInstrument> m_Instruments;

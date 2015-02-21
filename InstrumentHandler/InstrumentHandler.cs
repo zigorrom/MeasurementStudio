@@ -25,50 +25,50 @@ namespace InstrumentHandlerNamespace
         private const string SerializationFileName = "Devices.xml";
         private const string ResourceFilter = "(GPIB)|(USB)?*INSTR";
 
-        private Dictionary<IInstrumentOwner, List<IInstrument>> m_InstrumentsRegistry;
-        private IInstrumentOwner m_CurrentOwner;
-        private CollectionViewSource m_ViewSource;
-        public IInstrumentOwner CurrentOwner
-        {
-            get { return m_CurrentOwner; }
-            set
-            {
-                if (m_CurrentOwner == value) return;
-                m_CurrentOwner = value;
-                OnPropertyChanged("CurrentOwner");
-            }
+        //private Dictionary<IInstrumentOwner, List<IInstrument>> m_InstrumentsRegistry;
+        //private IInstrumentOwner m_CurrentOwner;
+        //private CollectionViewSource m_ViewSource;
+        //public IInstrumentOwner CurrentOwner
+        //{
+        //    get { return m_CurrentOwner; }
+        //    set
+        //    {
+        //        if (m_CurrentOwner == value) return;
+        //        m_CurrentOwner = value;
+        //        OnPropertyChanged("CurrentOwner");
+        //    }
 
-        }
-        public CollectionView CurrentInstruments
-        {
-            get
-            {
-                m_ViewSource.Source = m_InstrumentsRegistry[CurrentOwner];
-                return (CollectionView)m_ViewSource.View;
-            }
-        }
+        //}
+        //public CollectionView CurrentInstruments
+        //{
+        //    get
+        //    {
+        //        m_ViewSource.Source = m_InstrumentsRegistry[CurrentOwner];
+        //        return (CollectionView)m_ViewSource.View;
+        //    }
+        //}
 
-        public CollectionView InstrumentRegistry
-        {
-            get
-            {
+        //public CollectionView InstrumentRegistry
+        //{
+        //    get
+        //    {
                 
-                m_ViewSource.Source = m_InstrumentsRegistry;
-                return (CollectionView)m_ViewSource.View;
-            }
-        }
+        //        m_ViewSource.Source = m_InstrumentsRegistry;
+        //        return (CollectionView)m_ViewSource.View;
+        //    }
+        //}
         private void InitializeHandler()
-        {
-            m_InstrumentsRegistry = new Dictionary<IInstrumentOwner, List<IInstrument>>();
-            m_ViewSource = new CollectionViewSource();
-            var exp1 = new IVExperiment();
+        {  
+            //m_InstrumentsRegistry = new Dictionary<IInstrumentOwner, List<IInstrument>>();
+            //m_ViewSource = new CollectionViewSource();
+            //var exp1 = new IVExperiment();
 
-            var lst1 = new List<IInstrument>();
-            var instr = new SomeInstrument("instr1", "1", "12938");
-            instr.InstrumentOwner = exp1;
-            lst1.Add(instr);
-            //lst1.Add(new SomeInstrument("instr2", "2", "34234"));
-            m_InstrumentsRegistry[exp1] = lst1;
+            //var lst1 = new List<IInstrument>();
+            //var instr = new SomeInstrument("instr1", "1", "12938");
+            //instr.InstrumentOwner = exp1;
+            //lst1.Add(instr);
+            ////lst1.Add(new SomeInstrument("instr2", "2", "34234"));
+            //m_InstrumentsRegistry[exp1] = lst1;
             
             //List<object> lst = new List<object>();
             //CollectionViewSource src = new CollectionViewSource();
