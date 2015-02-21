@@ -8,6 +8,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Helper;
+using System.Windows.Data;
 
 
 namespace InstrumentHandlerNamespace
@@ -16,15 +18,15 @@ namespace InstrumentHandlerNamespace
     // FOR GOOD SERIALIZATION DEFINE EMPTY CONSTRUCTOR
     //
     [DataContract]
-    public sealed class InstrumentHandler
+    public sealed class InstrumentHandler:NotifyPropertyChanged
     {
-
         private static volatile InstrumentHandler m_Handler;
         private static object syncRoot = new object();
+        private const string SerializationFileName = "Devices.xml";
+        private const string ResourceFilter = "(GPIB)|(USB)?*INSTR";
         
         private InstrumentHandler()
         {
-            
             
             
         }
@@ -55,8 +57,7 @@ namespace InstrumentHandlerNamespace
                 return m_Handler;
             }
         }
-
-        private const string SerializationFileName = "Devices.xml";
+                
         private static InstrumentHandler DeserializeOrNew()
         {
             InstrumentHandler handler;
@@ -76,16 +77,20 @@ namespace InstrumentHandlerNamespace
             }
             if (null == handler)
                 handler = new InstrumentHandler();
-            
+
+            handler.InitializeHandler();
             return handler;
         }
         
         private void InitializeHandler()
         {
-            DiscoverInstruments();
+            List<object> lst = new List<object>();
+            CollectionViewSource src = new CollectionViewSource();
+            src.Source = lst;
+            var view = src.View;
+            //DiscoverInstruments();
         }
         
-        private const string ResourceFilter = "(GPIB)|(USB)?*INSTR";
         public void DiscoverInstruments()
         {
             try

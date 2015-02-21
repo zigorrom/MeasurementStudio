@@ -41,7 +41,6 @@
   <ItemGroup>
     <Compile Include="AbstractExperiment.cs" />
     <Compile Include="AvailableExperimentsEnumeration.cs" />
-    <Compile Include="ExperimentsRegistry.cs" />
     <Compile Include="IExperiment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

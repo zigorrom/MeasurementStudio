@@ -9,7 +9,6 @@ namespace InstrumentAbstractionModel
     
     public interface IInstrumentOwner:IEquatable<IInstrumentOwner>
     {
-        
         string Name { get; }
     }
 }
