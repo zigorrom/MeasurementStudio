@@ -10,10 +10,10 @@
         
     </UserControl.Resources>
     <Grid>
-    	<Grid.RowDefinitions>
-    		<RowDefinition Height="77*"/>
-    		<RowDefinition Height="349*"/>
-    	</Grid.RowDefinitions>
+        <ComboBox ItemsSource="{Binding Path=InstrumentRegistry}"
+                  DisplayMemberPath="Key"
+                  SelectedValuePath="Key"
+                  SelectedValue="{Binding Path=CurrentOwner}"/>
             
     </Grid>
 </UserControl>

@@ -26,7 +26,7 @@ namespace IVExperiment
 
         public override void InitializeInstruments()
         {
-            
+            throw new NotImplementedException();
         }
 
         public override void ReleaseInstruments()

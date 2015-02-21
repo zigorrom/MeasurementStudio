@@ -23,6 +23,7 @@ namespace MeasurementStudio
         public MainWindow()
         {
             InitializeComponent();
+
         }
     }
 }

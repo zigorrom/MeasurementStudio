@@ -23,6 +23,7 @@ namespace InstrumentHandlerNamespace
         public InstrumentHandlerControl()
         {
             InitializeComponent();
+            DataContext = InstrumentHandler.Instance;
         }
     }
 }

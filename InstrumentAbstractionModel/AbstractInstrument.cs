@@ -8,11 +8,11 @@ namespace InstrumentAbstractionModel
 {
     public abstract class AbstractInstrument:IInstrument
     {
-        public AbstractInstrument(string Name, string Alias)//, string ResourceName)
+        public AbstractInstrument(string Name, string Alias, string ResourceName)
         {
             m_name = Name;
             m_alias = Alias;
-            //m_resourceName = ResourceName;
+            m_resourceName = ResourceName;
         }
 
         private string m_name;
@@ -31,12 +31,12 @@ namespace InstrumentAbstractionModel
             
         }
 
-        //private string m_resourceName;
-        public abstract string ResourceName { get; }
-        //{
-        //    get { return m_resourceName; }
-        //    protected set { m_resourceName = value; }
-        //}
+        private string m_resourceName;
+        public string ResourceName //{ get; }
+        {
+            get { return m_resourceName; }
+            protected set { m_resourceName = value; }
+        }
 
         private IInstrumentOwner m_instrumentOwner;
         public IInstrumentOwner InstrumentOwner
