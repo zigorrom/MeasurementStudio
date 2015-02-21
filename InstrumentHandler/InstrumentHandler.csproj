@@ -57,12 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AvailableInstrumentsEmuneration.cs" />
-    <Compile Include="InstrumentOwnerEntry.cs" />
     <Compile Include="ExperimentsRegistry.cs" />
     <Compile Include="InstrumentHandler.cs" />
     <Compile Include="InstrumentHandlerControl.xaml.cs">
       <DependentUpon>InstrumentHandlerControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InstrumentPermission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SomeInstrument.cs" />
   </ItemGroup>
