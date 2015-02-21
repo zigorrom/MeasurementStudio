@@ -9,7 +9,13 @@ namespace InstrumentHandlerNamespace
     public sealed class InstrumentPermission
     {
         public InstrumentPermission()
-        { CanUse = false; }
+        { 
+            CanUse = false; 
+        }
+        public InstrumentPermission(bool CanUse)
+        {
+            this.CanUse = CanUse;
+        }
         //private bool m_CanUse;
         public bool CanUse { get; set; }
     }

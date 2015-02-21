@@ -1,4 +1,5 @@
 ﻿using ExperimentAbstractionModel;
+using InstrumentAbstractionModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace InstrumentHandlerNamespace
 
         private ExperimentsRegistry()
         {
-
+            m_ExperimentList = new List<IExperiment>();
         }
         public static ExperimentsRegistry Instance
         {
@@ -40,11 +41,26 @@ namespace InstrumentHandlerNamespace
             ///
             /// Here add code to create all custom experiments to ExperimentsList
             ///
+            m_ExperimentList.Add(new IVExperiment());
+            m_ExperimentList.Add(new IVExperiment());
         }
 
         public List<IExperiment> ExperimentsList
         {
             get { return m_ExperimentList; }
+        }
+
+        public List<IInstrumentOwner> OwnersList
+        {
+            get
+            {
+                var list = new List<IInstrumentOwner>();
+                foreach (var item in ExperimentsList)
+                {
+                    list.Add(item as IInstrumentOwner);
+                }
+                return list;
+            }
         }
     }
 }

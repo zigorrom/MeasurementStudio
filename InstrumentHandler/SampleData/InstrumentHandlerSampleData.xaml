@@ -1,0 +1,13 @@
+﻿<InstrumentHandlerNamespace:InstrumentHandler xmlns:InstrumentHandlerNamespace="clr-namespace:InstrumentHandlerNamespace">
+	<InstrumentHandlerNamespace:InstrumentHandler.Instance>
+		<InstrumentHandlerNamespace:InstrumentHandler>
+			<InstrumentHandlerNamespace:InstrumentHandler.Instance>
+				<InstrumentHandlerNamespace:InstrumentHandler>
+					<InstrumentHandlerNamespace:InstrumentHandler.Instance>
+						<InstrumentHandlerNamespace:InstrumentHandler/>
+					</InstrumentHandlerNamespace:InstrumentHandler.Instance>
+				</InstrumentHandlerNamespace:InstrumentHandler>
+			</InstrumentHandlerNamespace:InstrumentHandler.Instance>
+		</InstrumentHandlerNamespace:InstrumentHandler>
+	</InstrumentHandlerNamespace:InstrumentHandler.Instance>
+</InstrumentHandlerNamespace:InstrumentHandler>

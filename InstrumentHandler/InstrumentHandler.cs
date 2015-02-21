@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Helper;
 using System.Windows.Data;
+using System.Collections.ObjectModel;
 
 
 namespace InstrumentHandlerNamespace
@@ -25,26 +26,27 @@ namespace InstrumentHandlerNamespace
         private const string SerializationFileName = "Devices.xml";
         private const string ResourceFilter = "(GPIB)|(USB)?*INSTR";
 
-        
-        private void InitializeHandler()
-        {  
-            //m_InstrumentsRegistry = new Dictionary<IInstrumentOwner, List<IInstrument>>();
-            //m_ViewSource = new CollectionViewSource();
-            //var exp1 = new IVExperiment();
+        private List<IInstrument> m_InstrumentList;
+        public List<IInstrument> InstrumentList
+        {
+            get { return m_InstrumentList; }
+        }
 
-            //var lst1 = new List<IInstrument>();
-            //var instr = new SomeInstrument("instr1", "1", "12938");
-            //instr.InstrumentOwner = exp1;
-            //lst1.Add(instr);
-            ////lst1.Add(new SomeInstrument("instr2", "2", "34234"));
-            //m_InstrumentsRegistry[exp1] = lst1;
+        private void InitializeHandler()
+        {
+            if (m_InstrumentList != null)
+                CheckInstrumentsConnectivity();
+            else m_InstrumentList = new List<IInstrument>();
+            DiscoverInstruments();
             
-            //List<object> lst = new List<object>();
-            //CollectionViewSource src = new CollectionViewSource();
-            //src.Source = lst;
-            //var view = src.View;
+            
             //DiscoverInstruments();
         }
+        private void CheckInstrumentsConnectivity()
+        {
+            // Check if all instruments is alive;
+        }
+
 
         // For serialization default constructor necessary
         private InstrumentHandler()
@@ -103,9 +105,32 @@ namespace InstrumentHandlerNamespace
             handler.InitializeHandler();
             return handler;
         }
-        
-        public void DiscoverInstruments()
+        private void RefreshPermissionTable()
         {
+
+        }
+        private void DiscoverInstruments()
+        {
+            // refresh m_InstrumentPermissionTable with new instruments
+            var exp1 = ExperimentsRegistry.Instance.ExperimentsList[0];
+            var exp2 = ExperimentsRegistry.Instance.ExperimentsList[1];
+            
+            var instr1 = new SomeInstrument("1", "a1", "123");
+            var instr2 = new SomeInstrument("2", "a2", "asf");
+
+            m_InstrumentList.Add(instr1);
+            m_InstrumentList.Add(instr2);
+
+            m_InstrumentPermissionTable = new Dictionary<IInstrumentOwner, Dictionary<IInstrument, InstrumentPermission>>();
+            m_InstrumentPermissionTable[exp1] = new Dictionary<IInstrument, InstrumentPermission>();
+            var dictPerm = m_InstrumentPermissionTable[exp1];
+            dictPerm.Add(instr1, new InstrumentPermission());
+            dictPerm.Add(instr2, new InstrumentPermission(true));
+
+            CurrentOwner = exp1;
+            
+            //m_InstrumentPermissionTable
+            /*
             try
             {
                 var LocalResourceManager = ResourceManager.GetLocalManager();
@@ -132,13 +157,13 @@ namespace InstrumentHandlerNamespace
             }
             catch (VisaException)
             {
-                throw;
+                //throw;
             }
             catch (Exception ex)
             {
-                throw;
+                //throw;
             }
-
+            */
         }
 
         public bool TryGetDevice(string InstrumentName, out IInstrument Instrument, IInstrumentOwner Owner)

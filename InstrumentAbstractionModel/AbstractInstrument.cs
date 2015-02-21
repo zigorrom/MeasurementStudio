@@ -13,6 +13,8 @@ namespace InstrumentAbstractionModel
             m_name = Name;
             m_alias = Alias;
             m_resourceName = ResourceName;
+            m_instrumentState = InstrumentState.Idle;
+            m_instrumentOwner = null;
         }
 
         private string m_name;
@@ -62,13 +64,13 @@ namespace InstrumentAbstractionModel
                 if (other.Name == Name)
                     if (other.ResourceName == ResourceName)
                         if (other.State == State)
-                            if (other.InstrumentOwner.Name == InstrumentOwner.Name)
+                            //if (other.InstrumentOwner.Name == InstrumentOwner.Name)
                                 return true;
             return false;
         }
         public override int GetHashCode()
         {
-            return String.Format("{0},{1},{2},{3},{4}", Alias, Name, ResourceName, State, InstrumentOwner.Name).GetHashCode();
+            return String.Format("{0},{1},{2},{3}", Alias, Name, ResourceName, State/*, InstrumentOwner.Name*/).GetHashCode();
         }
     }
 }
