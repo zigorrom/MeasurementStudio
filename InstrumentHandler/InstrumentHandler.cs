@@ -26,21 +26,15 @@ namespace InstrumentHandlerNamespace
         private const string SerializationFileName = "Devices.xml";
         private const string ResourceFilter = "(GPIB)|(USB)?*INSTR";
 
-        private List<IInstrument> m_InstrumentList;
-        public List<IInstrument> InstrumentList
-        {
-            get { return m_InstrumentList; }
-        }
-
+        private Dictionary<string,IInstrument> m_InstrumentList;
+        
         private void InitializeHandler()
         {
             if (m_InstrumentList != null)
                 CheckInstrumentsConnectivity();
-            else m_InstrumentList = new List<IInstrument>();
+            else m_InstrumentList = new Dictionary<string, IInstrument>();
             DiscoverInstruments();
-            
-            
-            //DiscoverInstruments();
+           
         }
         private void CheckInstrumentsConnectivity()
         {
@@ -111,26 +105,7 @@ namespace InstrumentHandlerNamespace
         }
         private void DiscoverInstruments()
         {
-            // refresh m_InstrumentPermissionTable with new instruments
-            var exp1 = ExperimentsRegistry.Instance.ExperimentsList[0];
-            var exp2 = ExperimentsRegistry.Instance.ExperimentsList[1];
             
-            var instr1 = new SomeInstrument("1", "a1", "123");
-            var instr2 = new SomeInstrument("2", "a2", "asf");
-
-            m_InstrumentList.Add(instr1);
-            m_InstrumentList.Add(instr2);
-
-            m_InstrumentPermissionTable = new Dictionary<IInstrumentOwner, Dictionary<IInstrument, InstrumentPermission>>();
-            m_InstrumentPermissionTable[exp1] = new Dictionary<IInstrument, InstrumentPermission>();
-            var dictPerm = m_InstrumentPermissionTable[exp1];
-            dictPerm.Add(instr1, new InstrumentPermission());
-            dictPerm.Add(instr2, new InstrumentPermission(true));
-
-            CurrentOwner = exp1;
-            
-            //m_InstrumentPermissionTable
-            /*
             try
             {
                 var LocalResourceManager = ResourceManager.GetLocalManager();
@@ -163,7 +138,7 @@ namespace InstrumentHandlerNamespace
             {
                 //throw;
             }
-            */
+           
         }
 
         public bool TryGetDevice(string InstrumentName, out IInstrument Instrument, IInstrumentOwner Owner)

@@ -24,10 +24,11 @@ namespace InstrumentHandlerNamespace
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-       
 
+        private PermissionTable m_PermissionTable;
+       
         
-        private Dictionary<IInstrumentOwner, Dictionary<IInstrument, InstrumentPermission>> m_InstrumentPermissionTable;
+        
         //private Dictionary<IInstrumentOwner,ObservableCollection<KeyValuePair<IInstrument,InstrumentPermission>>>
 
 
@@ -44,18 +45,6 @@ namespace InstrumentHandlerNamespace
             }
         }
 
-        public Dictionary<IInstrument, InstrumentPermission> CurrentPermissionList
-        {
-            get { return m_InstrumentPermissionTable[CurrentOwner]; }
-        }
-
-        public List<IExperiment> Owners
-        {
-            get
-            {
-                return ExperimentsRegistry.Instance.ExperimentsList;
-            }
-        }
        
 
 
