@@ -18,45 +18,14 @@ namespace InstrumentHandlerNamespace
     // FOR GOOD SERIALIZATION DEFINE EMPTY CONSTRUCTOR
     //
     [DataContract]
-    public sealed class InstrumentHandler:NotifyPropertyChanged
+    public sealed partial class InstrumentHandler//:NotifyPropertyChanged
     {
         private static volatile InstrumentHandler m_Handler;
         private static object syncRoot = new object();
         private const string SerializationFileName = "Devices.xml";
         private const string ResourceFilter = "(GPIB)|(USB)?*INSTR";
 
-        //private Dictionary<IInstrumentOwner, List<IInstrument>> m_InstrumentsRegistry;
-        //private IInstrumentOwner m_CurrentOwner;
-        //private CollectionViewSource m_ViewSource;
-        //public IInstrumentOwner CurrentOwner
-        //{
-        //    get { return m_CurrentOwner; }
-        //    set
-        //    {
-        //        if (m_CurrentOwner == value) return;
-        //        m_CurrentOwner = value;
-        //        OnPropertyChanged("CurrentOwner");
-        //    }
-
-        //}
-        //public CollectionView CurrentInstruments
-        //{
-        //    get
-        //    {
-        //        m_ViewSource.Source = m_InstrumentsRegistry[CurrentOwner];
-        //        return (CollectionView)m_ViewSource.View;
-        //    }
-        //}
-
-        //public CollectionView InstrumentRegistry
-        //{
-        //    get
-        //    {
-                
-        //        m_ViewSource.Source = m_InstrumentsRegistry;
-        //        return (CollectionView)m_ViewSource.View;
-        //    }
-        //}
+        
         private void InitializeHandler()
         {  
             //m_InstrumentsRegistry = new Dictionary<IInstrumentOwner, List<IInstrument>>();
@@ -76,6 +45,8 @@ namespace InstrumentHandlerNamespace
             //var view = src.View;
             //DiscoverInstruments();
         }
+
+        // For serialization default constructor necessary
         private InstrumentHandler()
         {
             
@@ -133,8 +104,6 @@ namespace InstrumentHandlerNamespace
             return handler;
         }
         
-        
-        
         public void DiscoverInstruments()
         {
             try
@@ -172,17 +141,17 @@ namespace InstrumentHandlerNamespace
 
         }
 
-        public bool TryGetDevice(IInstrumentOwner Owner, AvailableInstrumentsEmuneration InstrumentName, out IInstrument Instrument)
+        public bool TryGetDevice(string InstrumentName, out IInstrument Instrument, IInstrumentOwner Owner)
         {
             throw new NotImplementedException();
         }
 
-        public bool TryGetDevice<T>(IInstrumentOwner Owner,AvailableInstrumentsEmuneration InstrumentName,out T Instrument) where T:IInstrument
+        public bool TryGetDevice<T>(string InstrumentName,out T Instrument, IInstrumentOwner Owner) where T:IInstrument
         {
             throw new NotImplementedException();
         }
 
-        public bool TryGetDevices(IInstrumentOwner Owner, AvailableInstrumentsEmuneration InstrumentNames, out IInstrument[] Instruments)
+        public bool TryGetDevices(string InstrumentNames, out IInstrument[] Instruments, IInstrumentOwner Owner)
         {
             throw new NotImplementedException();
         }
