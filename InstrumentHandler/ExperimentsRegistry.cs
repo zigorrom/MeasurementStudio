@@ -50,6 +50,16 @@ namespace InstrumentHandlerNamespace
             get { return m_ExperimentList; }
         }
 
+        public IEnumerable<IInstrumentOwner> OwnerEnumeration
+        {
+            get {
+                foreach (var exp in m_ExperimentList)
+                {
+                    yield return (IInstrumentOwner)exp;
+                }
+            }
+        }
+
         public List<IInstrumentOwner> OwnersList
         {
             get

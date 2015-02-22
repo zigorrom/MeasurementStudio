@@ -26,14 +26,10 @@ namespace InstrumentHandlerNamespace
 
 
         private PermissionTable m_PermissionTable;
-       
         
         
-        //private Dictionary<IInstrumentOwner,ObservableCollection<KeyValuePair<IInstrument,InstrumentPermission>>>
-
-
-        private IExperiment m_CurrentOwner;
-        public IExperiment CurrentOwner
+        private IInstrumentOwner m_CurrentOwner;
+        public IInstrumentOwner CurrentOwner
         {
             get { return m_CurrentOwner; }
             set
@@ -45,9 +41,25 @@ namespace InstrumentHandlerNamespace
             }
         }
 
-       
+        public ICollectionView OwnersCollection
+        {
+            get
+            {
+                var s = new CollectionViewSource();
+                s.Source = ExperimentsRegistry.Instance.OwnerEnumeration;
+                return s.View;
+            }
+        }
 
-
+        public ICollectionView InstrumentRuleCollection
+        {
+            get
+            {
+                var s = new CollectionViewSource();
+                s.Source = m_PermissionTable[CurrentOwner];
+                return s.View;
+            }
+        }
 
 
 

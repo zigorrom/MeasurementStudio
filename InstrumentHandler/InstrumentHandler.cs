@@ -24,7 +24,7 @@ namespace InstrumentHandlerNamespace
         private static volatile InstrumentHandler m_Handler;
         private static object syncRoot = new object();
         private const string SerializationFileName = "Devices.xml";
-        private const string ResourceFilter = "(GPIB)|(USB)?*INSTR";
+        private const string ResourceFilter = "(GPIB)|(USB)|(COM)?*INSTR";
 
         private Dictionary<string,IInstrument> m_InstrumentList;
         
@@ -34,7 +34,7 @@ namespace InstrumentHandlerNamespace
                 CheckInstrumentsConnectivity();
             else m_InstrumentList = new Dictionary<string, IInstrument>();
             DiscoverInstruments();
-           
+            RefreshPermissionTable();
         }
         private void CheckInstrumentsConnectivity()
         {
@@ -101,7 +101,15 @@ namespace InstrumentHandlerNamespace
         }
         private void RefreshPermissionTable()
         {
-
+            if (m_PermissionTable == null)
+                m_PermissionTable = new PermissionTable();
+            var exps = ExperimentsRegistry.Instance.ExperimentsList;
+            var Instr1 = new SomeInstrument("instr1", "1", "asdsa");
+            var Instr2 = new SomeInstrument("instr2", "1", "fdgsfaf");
+            m_PermissionTable.AddPermission(exps[0], Instr1);
+            m_PermissionTable.AddPermission(exps[0], Instr2);
+            m_PermissionTable.AddPermission(exps[1], Instr1);
+            //m_PermissionTable
         }
         private void DiscoverInstruments()
         {
