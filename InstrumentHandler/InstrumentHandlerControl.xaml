@@ -14,7 +14,7 @@
             <RowDefinition Height="65*"/>
             <RowDefinition Height="148*"/>
         </Grid.RowDefinitions>
-        <ComboBox ItemsSource="{Binding Owners}"
+        <ComboBox ItemsSource="{Binding OwnersCollection}"
                   DisplayMemberPath="{Binding /Name}"
                   SelectedValue="{Binding CurrentOwner}" SelectedValuePath="{Binding /Name}"/>
         <ListBox Grid.Row="1" Margin="3" ItemsSource="{Binding InstrumentList}" ItemTemplate="{DynamicResource ListItemTemplate}">

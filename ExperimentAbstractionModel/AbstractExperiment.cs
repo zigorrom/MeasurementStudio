@@ -46,7 +46,8 @@ namespace ExperimentAbstractionModel
         public bool Equals(IInstrumentOwner other)
         {
             if (other.Name == m_Name)
-                return true;
+                if (Object.ReferenceEquals(this, other))
+                    return true;
             return false;
         }
         public override int GetHashCode()

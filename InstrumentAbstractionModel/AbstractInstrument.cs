@@ -64,7 +64,8 @@ namespace InstrumentAbstractionModel
                 if (other.Name == Name)
                     if (other.ResourceName == ResourceName)
                         if (other.State == State)
-                            //if (other.InstrumentOwner.Name == InstrumentOwner.Name)
+                            if (Object.ReferenceEquals(this, other))
+                                //if (other.InstrumentOwner.Name == InstrumentOwner.Name)
                                 return true;
             return false;
         }
