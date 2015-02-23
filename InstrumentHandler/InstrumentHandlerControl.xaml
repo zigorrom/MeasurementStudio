@@ -13,7 +13,7 @@
 			<RowDefinition Height="65*"/>
 			<RowDefinition Height="148*"/>
 		</Grid.RowDefinitions>
-		<ComboBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ItemsSource="{Binding OwnersCollection}" SelectedValue="{Binding CurrentOwner}" SelectedValuePath="{Binding /Name}" ItemTemplate="{DynamicResource DataTemplate1}">
+		<ComboBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ItemsSource="{Binding OwnersCollection}" SelectedValue="{Binding CurrentOwner}" SelectedValuePath="{Binding /Name}" ItemTemplate="{DynamicResource DataTemplate1}" Margin="3">
 			<ComboBox.Resources>
 				<DataTemplate x:Key="DataTemplate1">
 					<Grid d:DesignWidth="415" d:DesignHeight="103">

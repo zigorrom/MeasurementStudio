@@ -15,7 +15,7 @@ namespace test
         
         {
             var handler = InstrumentHandlerNamespace.InstrumentHandler.Instance;
-            //handler.DiscoverInstruments();
+            handler.DiscoverInstruments();
             Console.ReadKey();
         }
     
