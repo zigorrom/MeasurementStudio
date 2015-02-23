@@ -112,7 +112,7 @@ namespace InstrumentHandlerNamespace
             m_CurrentOwner = exps[0];
             //m_PermissionTable
         }
-        public void DiscoverInstruments()
+        private void DiscoverInstruments()
         {
             
             try
