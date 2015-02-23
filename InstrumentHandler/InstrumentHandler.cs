@@ -109,6 +109,7 @@ namespace InstrumentHandlerNamespace
             m_PermissionTable.AddPermission(exps[0], Instr1);
             m_PermissionTable.AddPermission(exps[0], Instr2);
             m_PermissionTable.AddPermission(exps[1], Instr1);
+            m_CurrentOwner = exps[0];
             //m_PermissionTable
         }
         private void DiscoverInstruments()

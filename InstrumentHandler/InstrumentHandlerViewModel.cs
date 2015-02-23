@@ -37,31 +37,29 @@ namespace InstrumentHandlerNamespace
                 if (m_CurrentOwner == value) return;
                 m_CurrentOwner = value;
                 OnPropertyChanged("CurrentOwner");
-                
+                OnPropertyChanged("InstrumentRuleCollection");
             }
         }
 
-        public ICollectionView OwnersCollection
+        public ObservableCollection<IInstrumentOwner> OwnersCollection
         {
             get
             {
-                var s = new CollectionViewSource();
-                s.Source = ExperimentsRegistry.Instance.OwnerEnumeration;
-                return s.View;
+                return new ObservableCollection<IInstrumentOwner>(ExperimentsRegistry.Instance.OwnerEnumeration);
             }
         }
 
-        public ICollectionView InstrumentRuleCollection
+        
+
+        public ObservableCollection<KeyValuePair<IInstrument,InstrumentPermission>> InstrumentRuleCollection
         {
             get
             {
-                var s = new CollectionViewSource();
-                s.Source = m_PermissionTable[CurrentOwner];
-                return s.View;
+                var col = m_PermissionTable[CurrentOwner];
+                var returnCol = new ObservableCollection<KeyValuePair<IInstrument, InstrumentPermission>>(col);
+                return returnCol;
             }
         }
-
-
 
 
         
