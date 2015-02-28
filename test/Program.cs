@@ -41,7 +41,7 @@ namespace test
                 });
 
             var manager = ResourceManager.GetLocalManager();
-            var resources = manager.FindResources("(GPIB)|(USB)|(COM)?*");
+            var resources = manager.FindResources("(GPIB)|(USB)|(COM)?*INSTR");
             foreach (var type in types)
             {
                 foreach (var resource in resources)
