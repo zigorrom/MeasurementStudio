@@ -1,6 +1,7 @@
 ﻿using ExperimentAbstractionModel;
 using Helper;
-using InstrumentAbstractionModel;
+
+using Instruments;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

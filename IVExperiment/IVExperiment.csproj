@@ -51,13 +51,13 @@
       <Project>{5216ba05-f05d-447a-965f-b1357dcb4990}</Project>
       <Name>Helper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\InstrumentAbstractionModel\InstrumentAbstractionModel.csproj">
-      <Project>{381ff1ac-6ea2-4b29-a8fb-566cdd4692db}</Project>
-      <Name>InstrumentAbstractionModel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\InstrumentHandler\InstrumentHandler.csproj">
       <Project>{8374c54f-4d38-47ba-b0f8-66408ac9b9c0}</Project>
       <Name>InstrumentHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Instruments\Instruments.csproj">
+      <Project>{32c95514-22a6-4985-84df-e6e12274f9d2}</Project>
+      <Name>Instruments</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

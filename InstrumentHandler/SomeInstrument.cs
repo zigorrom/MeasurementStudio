@@ -7,19 +7,7 @@ using System.Threading.Tasks;
 
 namespace InstrumentHandlerNamespace
 {
-    public class SomeInstrument:InstrumentAbstractionModel.AbstractInstrument
-    {
-        public SomeInstrument(string Name,string Alias,string ResourceName):base(Name,Alias,ResourceName)
-        {
-
-        }
-        
-
-        public override void DetectInstrument()
-        {
-            throw new NotImplementedException();
-        }
-    }
+   
     public class IVExperiment : AbstractExperiment
     {
         private const string ExperimentName = "IV_MEASUREMENT";

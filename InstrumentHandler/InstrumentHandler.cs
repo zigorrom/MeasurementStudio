@@ -1,4 +1,4 @@
-﻿using InstrumentAbstractionModel;
+﻿
 using NationalInstruments.VisaNS;
 using System;
 using System.Collections.Generic;
@@ -11,6 +11,7 @@ using System.Runtime.Serialization;
 using Helper;
 using System.Windows.Data;
 using System.Collections.ObjectModel;
+using Instruments;
 
 
 namespace InstrumentHandlerNamespace
