@@ -46,7 +46,7 @@ namespace test
             {
                 foreach (var resource in resources)
                 {
-                    
+                    //dafasf
                 }
             }
 
