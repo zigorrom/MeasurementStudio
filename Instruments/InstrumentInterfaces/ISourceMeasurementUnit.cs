@@ -8,6 +8,7 @@ namespace Instruments
 {
     public interface ISourceMeasurementUnit
     {
-        void InitDevice();
+        bool TryReadVoltage(out double Voltage);
+        bool TrySetVoltage(double Voltage);
     }
 }

@@ -8,7 +8,6 @@ namespace Instruments
 {
     public interface ILockInAmplifier
     {
-        void InitDevice();
         bool ReadSignal(out double Signal);
     }
 }

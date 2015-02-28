@@ -8,7 +8,6 @@ namespace Instruments
 {
     public interface IMultimeter
     {
-        void InitDevice();
         bool TryReadVoltage(out double Voltage);
     }
 }

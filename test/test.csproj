@@ -61,6 +61,10 @@
       <Project>{8374c54f-4d38-47ba-b0f8-66408ac9b9c0}</Project>
       <Name>InstrumentHandler</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Instruments\Instruments.csproj">
+      <Project>{32c95514-22a6-4985-84df-e6e12274f9d2}</Project>
+      <Name>Instruments</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
