@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstrumentAbstractionModel
+namespace Instruments
 {
-    public interface IMultimeter
+    public interface ISourceMeasurementUnit
     {
         void InitDevice();
-        bool TryReadVoltage(out double Voltage);
     }
 }

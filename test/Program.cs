@@ -18,12 +18,12 @@ namespace test
             var handler = InstrumentHandlerNamespace.InstrumentHandler.Instance;
             //handler.DiscoverInstruments();
 
-            var a = Assembly.GetAssembly(typeof(int));
-            var types = a.GetTypes();
-            foreach (var type in types)
-            {
-                Console.WriteLine(type.IsAssignableFrom(typeof(InstrumentAbstractionModel.IInstrument)));
-            }
+            //var a = Assembly.GetAssembly(typeof(int));
+            //var types = a.GetTypes();
+            //foreach (var type in types)
+            //{
+            //    Console.WriteLine(type.IsAssignableFrom(typeof(InstrumentAbstractionModel.IInstrument)));
+            //}
             Console.ReadKey();
         }
     
