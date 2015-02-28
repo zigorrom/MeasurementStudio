@@ -114,7 +114,9 @@ namespace InstrumentHandlerNamespace
         }
         private void DiscoverInstruments()
         {
-            
+            ///
+            /// CREATE ATTRIBUTES THAT ALLOWS TO DETERMINE WHICH CLASS CAN BE SUITABLE TO USE INSTRUMENT
+            ///
             try
             {
                 var LocalResourceManager = ResourceManager.GetLocalManager();
