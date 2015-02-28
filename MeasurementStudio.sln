@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeithleyOldMultimeter", "In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StanfordLockInSR830", "InstrumentsFolder\StanfordLockInSR830\StanfordLockInSR830.csproj", "{24D76C2B-998D-4FE6-8F47-AD6D49C01C70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instruments", "Instruments\Instruments.csproj", "{32C95514-22A6-4985-84DF-E6E12274F9D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -183,6 +185,14 @@ Global
 		{24D76C2B-998D-4FE6-8F47-AD6D49C01C70}.Release|Any CPU.Build.0 = Release|Any CPU
 		{24D76C2B-998D-4FE6-8F47-AD6D49C01C70}.Release|x64.ActiveCfg = Release|Any CPU
 		{24D76C2B-998D-4FE6-8F47-AD6D49C01C70}.Release|x86.ActiveCfg = Release|Any CPU
+		{32C95514-22A6-4985-84DF-E6E12274F9D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32C95514-22A6-4985-84DF-E6E12274F9D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32C95514-22A6-4985-84DF-E6E12274F9D2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{32C95514-22A6-4985-84DF-E6E12274F9D2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{32C95514-22A6-4985-84DF-E6E12274F9D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32C95514-22A6-4985-84DF-E6E12274F9D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32C95514-22A6-4985-84DF-E6E12274F9D2}.Release|x64.ActiveCfg = Release|Any CPU
+		{32C95514-22A6-4985-84DF-E6E12274F9D2}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
