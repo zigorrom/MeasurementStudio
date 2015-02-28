@@ -46,7 +46,10 @@ namespace test
             {
                 foreach (var resource in resources)
                 {
-                    //dafasf
+                    var session = (MessageBasedSession)manager.Open(resource);
+                    var idn = session.Query("*IDN?");
+                    var attr = (InstrumentAttribute)type.GetCustomAttribute(typeof(InstrumentAttribute));
+                    Console.WriteLine("Resource: {0}, type: {1}, Fit result: {2}",resource,type.Name,attr.FitsToIDN(idn));
                 }
             }
 
