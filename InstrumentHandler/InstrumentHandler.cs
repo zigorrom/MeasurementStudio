@@ -24,7 +24,7 @@ namespace InstrumentHandlerNamespace
         private static volatile InstrumentHandler m_Handler;
         private static object syncRoot = new object();
         private const string SerializationFileName = "Devices.xml";
-        private const string ResourceFilter = "(GPIB)|(USB)|(COM)?*INSTR";
+        private const string ResourceFilter = "(GPIB)|(USB)|(COM)?*";
 
         private Dictionary<string,IInstrument> m_InstrumentList;
         
