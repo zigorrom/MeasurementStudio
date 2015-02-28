@@ -101,15 +101,15 @@ namespace InstrumentHandlerNamespace
         }
         private void RefreshPermissionTable()
         {
-            if (m_PermissionTable == null)
-                m_PermissionTable = new PermissionTable();
-            var exps = ExperimentsRegistry.Instance.ExperimentsList;
-            var Instr1 = new SomeInstrument("instr1", "1", "asdsa");
-            var Instr2 = new SomeInstrument("instr2", "1", "fdgsfaf");
-            m_PermissionTable.AddPermission(exps[0], Instr1);
-            m_PermissionTable.AddPermission(exps[0], Instr2);
-            m_PermissionTable.AddPermission(exps[1], Instr1);
-            m_CurrentOwner = exps[0];
+            //if (m_PermissionTable == null)
+            //    m_PermissionTable = new PermissionTable();
+            //var exps = ExperimentsRegistry.Instance.ExperimentsList;
+            //var Instr1 = new SomeInstrument("instr1", "1", "asdsa");
+            //var Instr2 = new SomeInstrument("instr2", "1", "fdgsfaf");
+            //m_PermissionTable.AddPermission(exps[0], Instr1);
+            //m_PermissionTable.AddPermission(exps[0], Instr2);
+            //m_PermissionTable.AddPermission(exps[1], Instr1);
+            //m_CurrentOwner = exps[0];
             //m_PermissionTable
         }
         private void DiscoverInstruments()
