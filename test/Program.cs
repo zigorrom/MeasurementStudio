@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Instruments;
+using NationalInstruments.VisaNS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -26,14 +28,34 @@ namespace test
     class Program
     {
         static void Main(string[] args)
-        
         {
-            B b = new B();
-            var attrs = b.GetType().GetCustomAttributes(typeof(A1), false);
-            foreach (A1 attr in attrs)
+            //var types = Assembly.GetAssembly(typeof(IInstrument)).GetTypes().Where(x => (x.IsAssignableFrom(typeof(IInstrument)))).ToList();
+
+            var assembly = Assembly.GetAssembly(typeof(IInstrument));
+            var types = assembly.GetTypes().Where(
+                x=>{
+                    if (x.GetCustomAttribute(typeof(InstrumentAttribute)) != null)
+                        return true;
+                    return false;
+
+                });
+
+            var manager = ResourceManager.GetLocalManager();
+            var resources = manager.FindResources("(GPIB)|(USB)|(COM)?*");
+            foreach (var type in types)
             {
-                Console.WriteLine(attr.FitsToStr("123"));
+                foreach (var resource in resources)
+                {
+                    
+                }
             }
+
+            //B b = new B();
+            //var attrs = b.GetType().GetCustomAttributes(typeof(A1), false);
+            //foreach (A1 attr in attrs)
+            //{
+            //    Console.WriteLine(attr.FitsToStr("123"));
+            //}
             //var handler = InstrumentHandlerNamespace.InstrumentHandler.Instance;
             //handler.DiscoverInstruments();
 
