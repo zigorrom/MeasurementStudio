@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Instruments
 {
-    [InstrumentAttribute("HEWLET-PACKARD","34401A")]
+    [InstrumentAttribute("HEWLETT-PACKARD","34401A")]
     public class HP34401A:AbstractMessageBasedInstrument, IMultimeter
     {
         public HP34401A(string Name,string Alias, string ResourceName):base(Name,Alias,ResourceName)
