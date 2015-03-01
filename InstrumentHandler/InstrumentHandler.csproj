@@ -75,10 +75,6 @@
       <Project>{ae52526e-d660-426e-a2ec-1a475b02aa9e}</Project>
       <Name>Devices</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ExperimentAbstractionModel\ExperimentAbstractionModel.csproj">
-      <Project>{bcbb6a0e-61e7-4103-b225-6dc39b3cc9b4}</Project>
-      <Name>ExperimentAbstractionModel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Helper\Helper.csproj">
       <Project>{5216ba05-f05d-447a-965f-b1357dcb4990}</Project>
       <Name>Helper</Name>
