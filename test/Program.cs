@@ -24,35 +24,47 @@ namespace test
     [A1,A1]
     class B
     { }
-
+    class C : B
+    {
+ 
+    }
     class Program
     {
         static void Main(string[] args)
         {
             //var types = Assembly.GetAssembly(typeof(IInstrument)).GetTypes().Where(x => (x.IsAssignableFrom(typeof(IInstrument)))).ToList();
 
-            var assembly = Assembly.GetAssembly(typeof(IInstrument));
-            var types = assembly.GetTypes().Where(
-                x=>{
-                    if (x.GetCustomAttribute(typeof(InstrumentAttribute)) != null)
-                        return true;
-                    return false;
+            //var assembly = Assembly.GetAssembly(typeof(IInstrument));
+            //var types = assembly.GetTypes().Where(
+            //    x=>{
+            //        if (x.GetCustomAttribute(typeof(InstrumentAttribute)) != null)
+            //            return true;
+            //        return false;
 
-                });
+            //    });
 
-            var manager = ResourceManager.GetLocalManager();
-            var resources = manager.FindResources("(GPIB)|(USB)|(COM)?*INSTR");
-            foreach (var type in types)
+            //var manager = ResourceManager.GetLocalManager();
+            //var resources = manager.FindResources("(GPIB)|(USB)|(COM)?*INSTR");
+            //foreach (var type in types)
+            //{
+            //    foreach (var resource in resources)
+            //    {
+            //        var session = (MessageBasedSession)manager.Open(resource);
+            //        var idn = session.Query("*IDN?");
+            //        var attr = (InstrumentAttribute)type.GetCustomAttribute(typeof(InstrumentAttribute));
+            //        Console.WriteLine("Resource: {0}, type: {1}, Fit result: {2}",resource,type.Name,attr.FitsToIDN(idn));
+            //    }
+            //}
+
+            var b = new B();
+            var c = new C();
+            if(b is B)
+                Console.WriteLine(true);
+            var p = b.GetType().GetProperties(BindingFlags.GetProperty);
+            foreach (var pr in p)
             {
-                foreach (var resource in resources)
-                {
-                    var session = (MessageBasedSession)manager.Open(resource);
-                    var idn = session.Query("*IDN?");
-                    var attr = (InstrumentAttribute)type.GetCustomAttribute(typeof(InstrumentAttribute));
-                    Console.WriteLine("Resource: {0}, type: {1}, Fit result: {2}",resource,type.Name,attr.FitsToIDN(idn));
-                }
+                
             }
-
             //B b = new B();
             //var attrs = b.GetType().GetCustomAttributes(typeof(A1), false);
             //foreach (A1 attr in attrs)

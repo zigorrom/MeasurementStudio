@@ -156,11 +156,20 @@ namespace Instruments
         {
             get
             {
-                var idn = Query("*IDN?");
-                if (String.IsNullOrEmpty(idn))
+                if (m_session == null)
                     return false;
                 return true;
+                //var idn = Query("*IDN?");
+                //if (String.IsNullOrEmpty(idn))
+                //    return false;
+                //return true;
             }
+        }
+
+        public void Dispose()
+        {
+            m_session.Dispose();
+            m_session = null;
         }
     }
 }
