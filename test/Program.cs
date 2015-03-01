@@ -84,7 +84,10 @@ namespace test
             var prop = c.GetType().GetProperties();
             foreach (var p in prop)
             {
-                Console.WriteLine("property type: {0}\n\rnessecary type: {1}\n\rfits{2}", p.PropertyType, typeof(interf), typeof(interf).IsAssignableFrom(p.PropertyType));//p.PropertyType.IsAssignableFrom(typeof(interf)));
+                var cond = typeof(interf).IsAssignableFrom(p.PropertyType);
+                Console.WriteLine("property type: {0}\n\rnessecary type: {1}\n\rfits{2}", p.PropertyType, typeof(interf), cond);//p.PropertyType.IsAssignableFrom(typeof(interf)));
+                if (cond)
+                    p.SetValue(c, new A("sdasd"));
             }
             //var types = Assembly.GetAssembly(typeof(IInstrument)).GetTypes().Where(x => (x.IsAssignableFrom(typeof(IInstrument)))).ToList();
 
