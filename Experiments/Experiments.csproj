@@ -50,7 +50,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ActualExperiments\" />
+    <Folder Include="ActualExperiments\IVExperiment\" />
+    <Folder Include="ActualExperiments\NoiseMeasurement\" />
+    <Folder Include="ActualExperiments\Oscilloscope\" />
+    <Folder Include="ActualExperiments\TransconductanceMap\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

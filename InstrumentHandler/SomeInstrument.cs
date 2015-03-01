@@ -49,5 +49,10 @@ namespace InstrumentHandlerNamespace
         {
             throw new NotImplementedException();
         }
+
+        public override void OwnInstruments()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
