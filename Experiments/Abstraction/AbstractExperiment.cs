@@ -11,12 +11,12 @@ namespace Experiments
     public abstract class AbstractExperiment:IExperiment
     {
         private string m_Name;
-        protected Dictionary<string, IInstrument> m_Instruments;
+        //protected Dictionary<string, IInstrument> m_Instruments;
 
         public AbstractExperiment(string ExperimentName)
         {
             m_Name = ExperimentName;
-            m_Instruments = new Dictionary<string, IInstrument>();
+          //  m_Instruments = new Dictionary<string, IInstrument>();
         }
         
         public abstract void InitializeExperiment();
@@ -55,5 +55,8 @@ namespace Experiments
         {
             return m_Name.GetHashCode();
         }
+
+
+        public abstract void OwnInstruments();
     }
 }

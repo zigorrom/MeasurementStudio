@@ -12,6 +12,7 @@ namespace Experiments
     {
         void InitializeExperiment();
         void InitializeInstruments();
+        void OwnInstruments();
         void ReleaseInstruments();
         void Start();
         int ReportProgress();
