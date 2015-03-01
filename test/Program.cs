@@ -10,28 +10,82 @@ using System.Threading.Tasks;
 namespace test
 {
     
-    [AttributeUsage(AttributeTargets.Class,AllowMultiple=true,Inherited=true)]
-    class A1:Attribute
+    interface interf
     {
-        public bool FitsToStr(string a)
+        string Name { get; set; }
+    }
+    class A:interf
+    {
+        public A(string Name)
         {
-            if (a == "123")
-                return true;
-            return false;
+            m_name = Name;
+        }
+        private string m_name;
+        public string Name
+        {
+            get
+            {
+                return m_name;
+            }
+            set
+            {
+                m_name = value;
+            }
+        }
+    }
+    class B : interf
+    {
+        public B(string Name)
+        {
+            m_name = Name;
+        }
+        private string m_name;
+        public string Name
+        {
+            get
+            {
+                return m_name;
+            }
+            set
+            {
+                m_name = value;
+            }
         }
     }
 
-    [A1,A1]
-    class B
-    { }
-    class C : B
+    class C
     {
- 
+        private A m_a;
+        private B m_b;
+        private int m_int;
+        public A Aprop
+        {
+            get { return m_a; }
+            set { m_a = value; }
+        }
+        public B Bprop
+        {
+            get { return m_b; }
+            set { m_b = value; }
+        }
+        public int MINT
+        {
+            get { return m_int; }
+            set { m_int = value; }
+        }
     }
     class Program
     {
         static void Main(string[] args)
         {
+
+
+            var c = new C();
+            var prop = c.GetType().GetProperties();
+            foreach (var p in prop)
+            {
+                Console.WriteLine("property type: {0}\n\rnessecary type: {1}\n\rfits{2}", p.PropertyType, typeof(interf), typeof(interf).IsAssignableFrom(p.PropertyType));//p.PropertyType.IsAssignableFrom(typeof(interf)));
+            }
             //var types = Assembly.GetAssembly(typeof(IInstrument)).GetTypes().Where(x => (x.IsAssignableFrom(typeof(IInstrument)))).ToList();
 
             //var assembly = Assembly.GetAssembly(typeof(IInstrument));
@@ -56,15 +110,15 @@ namespace test
             //    }
             //}
 
-            var b = new B();
-            var c = new C();
-            if(b is B)
-                Console.WriteLine(true);
-            var p = b.GetType().GetProperties(BindingFlags.GetProperty);
-            foreach (var pr in p)
-            {
+            //var b = new B();
+            //var c = new C();
+            //if(b is B)
+            //    Console.WriteLine(true);
+            //var p = b.GetType().GetProperties(BindingFlags.GetProperty);
+            //foreach (var pr in p)
+            //{
                 
-            }
+            //}
             //B b = new B();
             //var attrs = b.GetType().GetCustomAttributes(typeof(A1), false);
             //foreach (A1 attr in attrs)
