@@ -26,7 +26,7 @@ namespace InstrumentHandlerNamespace
         }
 
 
-        private PermissionTable m_PermissionTable;
+        
         
         
         private IInstrumentOwner m_CurrentOwner;
@@ -52,13 +52,7 @@ namespace InstrumentHandlerNamespace
 
         
 
-        public ObservableCollection<KeyValuePair<IInstrument,InstrumentPermission>> InstrumentRuleCollection
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        
 
 
         
