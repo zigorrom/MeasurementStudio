@@ -170,7 +170,7 @@ namespace InstrumentHandlerNamespace
                     foreach (var item in types)
                     {
                         if (!item.Key.FitsToIDN(idn))
-                            break;
+                            continue;
                         m_Instruments.Add((IInstrument)item.Value);
                         //var instr = (IInstrument)item.Value;
                         //instr.
