@@ -12,6 +12,7 @@ using Helper;
 using System.Windows.Data;
 using System.Collections.ObjectModel;
 using Instruments;
+using System.Reflection;
 
 
 namespace InstrumentHandlerNamespace
@@ -27,14 +28,23 @@ namespace InstrumentHandlerNamespace
         private const string SerializationFileName = "Devices.xml";
         private const string ResourceFilter = "(GPIB)|(USB)|(COM)?*";
 
-        private Dictionary<string,IInstrument> m_InstrumentList;
-        
+        //private Dictionary<string,IInstrument> m_InstrumentList;
+        private List<IInstrument> m_Instruments;
+
+
         private void InitializeHandler()
         {
-            if (m_InstrumentList != null)
-                CheckInstrumentsConnectivity();
-            else m_InstrumentList = new Dictionary<string, IInstrument>();
+            //if (m_InstrumentList != null)
+            //    CheckInstrumentsConnectivity();
+            //else m_InstrumentList = new Dictionary<string, IInstrument>();
+            //if (m_Instruments != null)
+            //    CheckInstrumentsConnectivity();
+            //else m_Instruments = new List<IInstrument>();
+            if (m_Instruments == null)
+                m_Instruments = new List<IInstrument>();
+            
             DiscoverInstruments();
+            CheckInstrumentsConnectivity();
             RefreshPermissionTable();
         }
         private void CheckInstrumentsConnectivity()
@@ -120,10 +130,26 @@ namespace InstrumentHandlerNamespace
             ///
             try
             {
+                var assembly = Assembly.GetAssembly(typeof(IInstrument));
+                var IInstrumentType = typeof(IInstrument);
+                var types = assembly.GetTypes()
+                    .Where(x =>
+                    {
+
+                        if (x.IsAbstract || x.IsInterface)
+                            return false;
+                        if (IInstrumentType.IsAssignableFrom(x))
+                            return true;
+                        return false;
+                    })
+                    .Select(x => new { Key = (InstrumentAttribute)x.GetCustomAttribute(typeof(InstrumentAttribute)), Value = Activator.CreateInstance(x,"","","") })
+                    .ToDictionary(x => x.Key, x => x.Value);
+
                 var LocalResourceManager = ResourceManager.GetLocalManager();
                 var resources = LocalResourceManager.FindResources(ResourceFilter);
                 if(resources.Length==0)
                 {
+                    //resources = 
                     throw new Exception("No instruments found");
                 }
                 foreach (var resource in resources)
@@ -134,10 +160,16 @@ namespace InstrumentHandlerNamespace
                     var s = (MessageBasedSession)LocalResourceManager.Open(resource);
                     Console.WriteLine(resource);
                     s.Write("*IDN?");
-                    var idn = s.ReadString();
+                    var idn = "dsfsdf";// s.ReadString();
                     Console.WriteLine(idn);
                     s.Dispose();
-
+                    foreach (var item in types)
+                    {
+                        if (!item.Key.FitsToIDN(idn))
+                            continue;
+                        var instr = item.Value;
+                            
+                    }
                     Console.WriteLine("***************\n\r");
                     //NationalInstruments.NI4882.Device dev = new NationalInstruments.NI4882.Device()
                 }

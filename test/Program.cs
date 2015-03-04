@@ -1,4 +1,5 @@
-﻿using Instruments;
+﻿using InstrumentHandlerNamespace;
+using Instruments;
 using NationalInstruments.VisaNS;
 using System;
 using System.Collections.Generic;
@@ -79,16 +80,16 @@ namespace test
         static void Main(string[] args)
         {
 
-
-            var c = new C();
-            var prop = c.GetType().GetProperties();
-            foreach (var p in prop)
-            {
-                var cond = typeof(interf).IsAssignableFrom(p.PropertyType);
-                Console.WriteLine("property type: {0}\n\rnessecary type: {1}\n\rfits{2}", p.PropertyType, typeof(interf), cond);//p.PropertyType.IsAssignableFrom(typeof(interf)));
-                if (cond)
-                    p.SetValue(c, new A("sdasd"));
-            }
+            var a = InstrumentHandler.Instance;
+            //var c = new C();
+            //var prop = c.GetType().GetProperties();
+            //foreach (var p in prop)
+            //{
+            //    var cond = typeof(interf).IsAssignableFrom(p.PropertyType);
+            //    Console.WriteLine("property type: {0}\n\rnessecary type: {1}\n\rfits{2}", p.PropertyType, typeof(interf), cond);//p.PropertyType.IsAssignableFrom(typeof(interf)));
+            //    if (cond)
+            //        p.SetValue(c, new A("sdasd"));
+            //}
             //var types = Assembly.GetAssembly(typeof(IInstrument)).GetTypes().Where(x => (x.IsAssignableFrom(typeof(IInstrument)))).ToList();
 
             //var assembly = Assembly.GetAssembly(typeof(IInstrument));
