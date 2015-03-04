@@ -1,4 +1,4 @@
-﻿using ExperimentAbstractionModel;
+﻿
 using Helper;
 
 using Instruments;
@@ -46,7 +46,7 @@ namespace InstrumentHandlerNamespace
         {
             get
             {
-                return new ObservableCollection<IInstrumentOwner>(ExperimentsRegistry.Instance.OwnerEnumeration);
+                throw new NotImplementedException();
             }
         }
 
@@ -56,9 +56,7 @@ namespace InstrumentHandlerNamespace
         {
             get
             {
-                var col = m_PermissionTable[CurrentOwner];
-                var returnCol = new ObservableCollection<KeyValuePair<IInstrument, InstrumentPermission>>(col);
-                return returnCol;
+                throw new NotImplementedException();
             }
         }
 

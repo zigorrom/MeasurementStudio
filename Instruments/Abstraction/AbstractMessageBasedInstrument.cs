@@ -1,6 +1,7 @@
 ﻿using NationalInstruments.VisaNS;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -156,11 +157,29 @@ namespace Instruments
         {
             get
             {
-                var idn = Query("*IDN?");
-                if (String.IsNullOrEmpty(idn))
+                if (m_session == null)
                     return false;
                 return true;
+                //var idn = Query("*IDN?");
+                //if (String.IsNullOrEmpty(idn))
+                //    return false;
+                //return true;
             }
+        }
+
+        protected bool TryConvert(string s, out double Value)
+        {
+            Value = 0;
+            var numForm = new NumberFormatInfo() { NumberDecimalSeparator = ".", NumberGroupSeparator = "" };
+            if (double.TryParse(s, NumberStyles.Float, numForm, out Value))
+                return true;
+            return false;
+        }
+
+        public void Dispose()
+        {
+            m_session.Dispose();
+            m_session = null;
         }
     }
 }

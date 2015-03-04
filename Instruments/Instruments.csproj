@@ -69,6 +69,7 @@
     <Compile Include="ActualInstruments\Keithley24xx.cs" />
     <Compile Include="ActualInstruments\Keithley2602A.cs" />
     <Compile Include="ActualInstruments\KeithleyMultimeter.cs" />
+    <Compile Include="ActualInstruments\MeasurementSpeed.cs" />
     <Compile Include="ActualInstruments\NoiseBox.cs" />
     <Compile Include="ActualInstruments\StanfordSR830.cs" />
     <Compile Include="InstrumentInterfaces\IDAQ.cs" />

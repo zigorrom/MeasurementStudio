@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Instruments
 {
-    interface IMessageBasedInstrument
+    interface IMessageBasedInstrument:IDisposable
     {
         bool InitializeDevice();
         bool SendCommand(string Command);

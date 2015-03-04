@@ -1,4 +1,5 @@
-﻿using ExperimentAbstractionModel;
+﻿
+using Experiments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,11 @@ namespace InstrumentHandlerNamespace
         }
 
         public override void Abort()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void OwnInstruments()
         {
             throw new NotImplementedException();
         }

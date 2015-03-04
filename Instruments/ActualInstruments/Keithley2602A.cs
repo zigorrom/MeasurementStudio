@@ -18,5 +18,11 @@ namespace Instruments
         {
             throw new NotImplementedException();
         }
+
+
+        public bool MeasureAll(out double Voltage, out double Current, out double Resistance)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

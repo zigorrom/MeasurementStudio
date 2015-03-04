@@ -10,5 +10,6 @@ namespace Instruments
     {
         bool TryReadVoltage(out double Voltage);
         bool TrySetVoltage(double Voltage);
+        bool MeasureAll(out double Voltage, out double Current, out double Resistance);
     }
 }
