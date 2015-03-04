@@ -25,6 +25,8 @@ namespace InstrumentHandlerNamespace
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
+        //private ObservableCollection<IInstrumentOwner> m_Owners
+
         private void InitializeViewModel()
         {
             //throw new NotImplementedException();

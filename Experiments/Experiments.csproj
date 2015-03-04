@@ -42,6 +42,7 @@
     <Compile Include="Abstraction\AbstractExperiment.cs" />
     <Compile Include="Abstraction\IExperiment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Singleton\ExperimentRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Instruments\Instruments.csproj">
