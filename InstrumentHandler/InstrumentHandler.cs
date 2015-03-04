@@ -26,7 +26,7 @@ namespace InstrumentHandlerNamespace
         private static volatile InstrumentHandler m_Handler;
         private static object syncRoot = new object();
         private const string SerializationFileName = "Devices.xml";
-        private const string ResourceFilter = "(GPIB)|(USB)|(COM)?*";
+        private const string ResourceFilter = "(GPIB)|(USB)|(COM)?*INSTR";
 
         //private Dictionary<string,IInstrument> m_InstrumentList;
         private List<IInstrument> m_Instruments;
@@ -166,7 +166,7 @@ namespace InstrumentHandlerNamespace
                     foreach (var item in types)
                     {
                         if (!item.Key.FitsToIDN(idn))
-                            continue;
+                            break;
                         var instr = item.Value;
                             
                     }
