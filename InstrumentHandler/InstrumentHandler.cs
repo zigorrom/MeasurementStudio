@@ -135,7 +135,6 @@ namespace InstrumentHandlerNamespace
                 var types = assembly.GetTypes()
                     .Where(x =>
                     {
-
                         if (x.IsAbstract || x.IsInterface)
                             return false;
                         if (IInstrumentType.IsAssignableFrom(x))
@@ -143,9 +142,10 @@ namespace InstrumentHandlerNamespace
                         return false;
                     })
                     .Select(x => {
-                        var Attr = (InstrumentAttribute)x.GetCustomAttribute(typeof(InstrumentAttribute));
-                        var InstrumentInstance = Activator.CreateInstance(x, String.Format("Manufacturer:{0},Model:{1}", Attr.Manufacturer, Attr.Model), "", "");
-                        return new { Key = Attr, Value = InstrumentInstance };
+                        //var Attr = (InstrumentAttribute)x.GetCustomAttribute(typeof(InstrumentAttribute));
+                        //var ObjectCreationMethod = (name,alias,resource)=>{}
+                        //var InstrumentInstance = Activator.CreateInstance(x, String.Format("Manufacturer:{0},Model:{1}", Attr.Manufacturer, Attr.Model), "", "");
+                        return new { Key = (InstrumentAttribute)x.GetCustomAttribute(typeof(InstrumentAttribute)), Value = x };//InstrumentInstance };
                     })//new { Key = (InstrumentAttribute)x.GetCustomAttribute(typeof(InstrumentAttribute)), Value = Activator.CreateInstance(x,"","","") })
                     .ToDictionary(x => x.Key, x => x.Value);
 
@@ -171,7 +171,9 @@ namespace InstrumentHandlerNamespace
                     {
                         if (!item.Key.FitsToIDN(idn))
                             continue;
-                        m_Instruments.Add((IInstrument)item.Value);
+                        var instr = (IInstrument)Activator.CreateInstance(item.Value, String.Format("Manufacturer:{0},Model:{1}", item.Key.Manufacturer, item.Key.Model), "", resource);
+                        m_Instruments.Add(instr);
+                        //m_Instruments.Add((IInstrument)item.Value);
                         //var instr = (IInstrument)item.Value;
                         //instr.
                             
