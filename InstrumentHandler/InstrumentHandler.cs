@@ -159,13 +159,13 @@ namespace InstrumentHandlerNamespace
                 foreach (var resource in resources)
                 {
                     //NationalInstruments.NI4882.Device dev= new NationalInstruments.NI4882.Device(0)  
-                    Console.WriteLine("New Instrument");
+                    //Console.WriteLine("New Instrument");
 
                     var s = (MessageBasedSession)LocalResourceManager.Open(resource);
-                    Console.WriteLine(resource);
+                    //Console.WriteLine(resource);
                     s.Write("*IDN?");
                     var idn = s.ReadString();
-                    Console.WriteLine(idn);
+                    //Console.WriteLine(idn);
                     s.Dispose();
                     foreach (var item in types)
                     {
@@ -178,7 +178,7 @@ namespace InstrumentHandlerNamespace
                         //instr.
                             
                     }
-                    Console.WriteLine("***************\n\r");
+                    //Console.WriteLine("***************\n\r");
                     //NationalInstruments.NI4882.Device dev = new NationalInstruments.NI4882.Device()
                 }
             }
