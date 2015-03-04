@@ -1,6 +1,7 @@
 ﻿using NationalInstruments.VisaNS;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -164,6 +165,15 @@ namespace Instruments
                 //    return false;
                 //return true;
             }
+        }
+
+        protected bool TryConvert(string s, out double Value)
+        {
+            Value = 0;
+            var numForm = new NumberFormatInfo() { NumberDecimalSeparator = ".", NumberGroupSeparator = "" };
+            if (double.TryParse(s, NumberStyles.Float, numForm, out Value))
+                return true;
+            return false;
         }
 
         public void Dispose()

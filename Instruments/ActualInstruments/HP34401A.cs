@@ -38,12 +38,13 @@ namespace Instruments
             Voltage = 0;
             SendCommand("*SRE 32");
             var result = Query("MEAS:VOLT:DC?");
-            if (string.IsNullOrEmpty(result))
+            if (String.IsNullOrEmpty(result))
                 return false;
-            if (double.TryParse(result, System.Globalization.NumberStyles.Float, new NumberFormatInfo() { NumberDecimalSeparator = ".", NumberGroupSeparator = "" }, out Voltage))
+            if (TryConvert(result, out Voltage))
                 return true;
-            return false;
 
+
+            return false;
         }
 
         public override void DetectInstrument()
