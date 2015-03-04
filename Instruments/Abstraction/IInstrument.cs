@@ -10,7 +10,7 @@ namespace Instruments
     public interface IInstrument:IEquatable<IInstrument>
     {
         string Name { get;  }
-        string Alias { get; }
+        string Alias { get;  }
         string ResourceName { get;  }
         IInstrumentOwner InstrumentOwner { get; set; }
         InstrumentState State { get; set; }

@@ -142,7 +142,11 @@ namespace InstrumentHandlerNamespace
                             return true;
                         return false;
                     })
-                    .Select(x => new { Key = (InstrumentAttribute)x.GetCustomAttribute(typeof(InstrumentAttribute)), Value = Activator.CreateInstance(x,"","","") })
+                    .Select(x => {
+                        var Attr = (InstrumentAttribute)x.GetCustomAttribute(typeof(InstrumentAttribute));
+                        var InstrumentInstance = Activator.CreateInstance(x, String.Format("Manufacturer:{0},Model:{1}", Attr.Manufacturer, Attr.Model), "", "");
+                        return new { Key = Attr, Value = InstrumentInstance };
+                    })//new { Key = (InstrumentAttribute)x.GetCustomAttribute(typeof(InstrumentAttribute)), Value = Activator.CreateInstance(x,"","","") })
                     .ToDictionary(x => x.Key, x => x.Value);
 
                 var LocalResourceManager = ResourceManager.GetLocalManager();
@@ -167,7 +171,9 @@ namespace InstrumentHandlerNamespace
                     {
                         if (!item.Key.FitsToIDN(idn))
                             break;
-                        var instr = item.Value;
+                        m_Instruments.Add((IInstrument)item.Value);
+                        //var instr = (IInstrument)item.Value;
+                        //instr.
                             
                     }
                     Console.WriteLine("***************\n\r");
