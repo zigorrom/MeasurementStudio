@@ -160,7 +160,7 @@ namespace InstrumentHandlerNamespace
                     var s = (MessageBasedSession)LocalResourceManager.Open(resource);
                     Console.WriteLine(resource);
                     s.Write("*IDN?");
-                    var idn = "dsfsdf";// s.ReadString();
+                    var idn = s.ReadString();
                     Console.WriteLine(idn);
                     s.Dispose();
                     foreach (var item in types)
