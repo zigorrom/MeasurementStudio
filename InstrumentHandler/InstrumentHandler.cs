@@ -13,6 +13,7 @@ using System.Windows.Data;
 using System.Collections.ObjectModel;
 using Instruments;
 using System.Reflection;
+using System.Runtime.Serialization.Formatters.Binary;
 
 
 namespace InstrumentHandlerNamespace
@@ -20,12 +21,13 @@ namespace InstrumentHandlerNamespace
     //
     // FOR GOOD SERIALIZATION DEFINE EMPTY CONSTRUCTOR
     //
-    [DataContract]
+    
+    [Serializable]
     public sealed partial class InstrumentHandler//:NotifyPropertyChanged
     {
         private static volatile InstrumentHandler m_Handler;
         private static object syncRoot = new object();
-        private const string SerializationFileName = "Devices.xml";
+        private const string SerializationFileName = "Devices.ser";
         private const string ResourceFilter = "(GPIB)|(USB)|(COM)?*INSTR";
 
         //private Dictionary<string,IInstrument> m_InstrumentList;
@@ -46,7 +48,10 @@ namespace InstrumentHandlerNamespace
             DiscoverInstruments();
             CheckInstrumentsConnectivity();
             RefreshPermissionTable();
+            InitializeViewModel();
         }
+
+        
         private void CheckInstrumentsConnectivity()
         {
             // Check if all instruments is alive;
@@ -64,11 +69,12 @@ namespace InstrumentHandlerNamespace
         {
             //if(NeedSerialization)
             var dir = Directory.GetCurrentDirectory();
-            DataContractSerializer serializer = new DataContractSerializer(typeof(InstrumentHandler));
-            
+            //DataContractSerializer serializer = new DataContractSerializer(typeof(InstrumentHandler));
+            var binFormatter = new BinaryFormatter();
             using (Stream stream = new FileStream(String.Format("{0}\\{1}", dir, SerializationFileName), FileMode.Create, FileAccess.Write, FileShare.None))
             {
-                serializer.WriteObject(stream, this);
+                binFormatter.Serialize(stream, this);
+                //serializer.WriteObject(stream, this);
                 stream.Close();
             }
            
@@ -93,11 +99,13 @@ namespace InstrumentHandlerNamespace
             try
             {
                 var dir = Directory.GetCurrentDirectory();
-                DataContractSerializer serializer = new DataContractSerializer(typeof(InstrumentHandler));
-                
+                //DataContractSerializer serializer = new DataContractSerializer(typeof(InstrumentHandler));
+                var binFormatter = new BinaryFormatter();
                 using (Stream stream = new FileStream(String.Format("{0}\\{1}", dir, SerializationFileName), FileMode.Open, FileAccess.Read, FileShare.None))
                 {
-                    handler = (InstrumentHandler)serializer.ReadObject(stream);
+                    //handler = (InstrumentHandler)serializer.ReadObject(stream);
+                    handler = (InstrumentHandler)binFormatter.Deserialize(stream);
+                    stream.Close();
                 }
             }
             catch (Exception ex)

@@ -25,10 +25,12 @@ namespace InstrumentHandlerNamespace
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
+        private void InitializeViewModel()
+        {
+            //throw new NotImplementedException();
+        }
 
-        
-        
-        
+
         private IInstrumentOwner m_CurrentOwner;
         public IInstrumentOwner CurrentOwner
         {
@@ -42,13 +44,7 @@ namespace InstrumentHandlerNamespace
             }
         }
 
-        public ObservableCollection<IInstrumentOwner> OwnersCollection
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        
 
         
 
