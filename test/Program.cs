@@ -44,14 +44,24 @@ namespace test
             var resources = manager.FindResources("(GPIB)|(USB)|(COM)?*INSTR");
             foreach (var type in types)
             {
+                Console.WriteLine("*********************");
+                Console.WriteLine("Type: {0}",type.Name);
                 foreach (var resource in resources)
                 {
                     var session = (MessageBasedSession)manager.Open(resource);
                     var idn = session.Query("*IDN?");
                     var attr = (InstrumentAttribute)type.GetCustomAttribute(typeof(InstrumentAttribute));
-                    Console.WriteLine("Resource: {0}, type: {1}, Fit result: {2}",resource,type.Name,attr.FitsToIDN(idn));
+                    Console.WriteLine("Resource: {0}\n\rIDN: {1}\n\rFit result: {2}\n\r",resource,idn,attr.FitsToIDN(idn));
                 }
+                Console.WriteLine("*********************");
+                Console.WriteLine();
             }
+
+            var hp = new HP34401A("HP", "1", "GPIB0::23::INSTR");
+            var volt  = 0.0;
+            if (hp.IsAlive)
+                hp.TryReadVoltage(out volt);
+            Console.WriteLine("Volt:{0}",volt);
 
             //B b = new B();
             //var attrs = b.GetType().GetCustomAttributes(typeof(A1), false);
@@ -67,7 +77,7 @@ namespace test
             //foreach (var type in types)
             //{
             //    Console.WriteLine(type.IsAssignableFrom(typeof(InstrumentAbstractionModel.IInstrument)));
-            //}
+            //} 
             Console.ReadKey();
         }
     
