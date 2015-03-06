@@ -93,7 +93,7 @@ namespace Instruments
 
         private void AssertSession()
         {
-            if (m_session == null)
+            if(!IsAlive(false))
                 throw new ArgumentNullException("Message session is not initialized!");
         }
 
