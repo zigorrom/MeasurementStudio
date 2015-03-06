@@ -149,13 +149,14 @@ namespace InstrumentHandlerNamespace
                             return true;
                         return false;
                     })
-                    .Select(x => {
+                    .Select(x =>
+                    {
                         //var Attr = (InstrumentAttribute)x.GetCustomAttribute(typeof(InstrumentAttribute));
                         //var ObjectCreationMethod = (name,alias,resource)=>{}
                         //var InstrumentInstance = Activator.CreateInstance(x, String.Format("Manufacturer:{0},Model:{1}", Attr.Manufacturer, Attr.Model), "", "");
                         return new { Key = (InstrumentAttribute)x.GetCustomAttribute(typeof(InstrumentAttribute)), Value = x };//InstrumentInstance };
-                    })//new { Key = (InstrumentAttribute)x.GetCustomAttribute(typeof(InstrumentAttribute)), Value = Activator.CreateInstance(x,"","","") })
-                    .ToDictionary(x => x.Key, x => x.Value);
+                    });//new { Key = (InstrumentAttribute)x.GetCustomAttribute(typeof(InstrumentAttribute)), Value = Activator.CreateInstance(x,"","","") })
+                    //.ToDictionary(x => x.Key, x => x.Value);
 
                 var LocalResourceManager = ResourceManager.GetLocalManager();
                 var resources = LocalResourceManager.FindResources(ResourceFilter);
