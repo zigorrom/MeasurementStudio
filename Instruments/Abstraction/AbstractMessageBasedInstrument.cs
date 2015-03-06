@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Instruments
 {
-    public abstract class AbstractMessageBasedInstrument:IInstrument,IMessageBasedInstrument//,IOwnedInstrument
+    public abstract class AbstractMessageBasedInstrument:IInstrument,IMessageBasedInstrument,IDisposable//,IOwnedInstrument
     {
         public AbstractMessageBasedInstrument(string Name, string Alias, string ResourceName)
         {
@@ -97,6 +97,11 @@ namespace Instruments
                 throw new ArgumentNullException("Message session is not initialized!");
         }
 
+        public bool CheckErrors()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool SendCommand(string Command)
         {
             try
@@ -153,19 +158,19 @@ namespace Instruments
             return resp;
         }
 
-        public bool IsAlive
-        {
-            get
-            {
-                if (m_session == null)
-                    return false;
-                return true;
-                //var idn = Query("*IDN?");
-                //if (String.IsNullOrEmpty(idn))
-                //    return false;
-                //return true;
-            }
-        }
+        //public bool IsAlive
+        //{
+        //    get
+        //    {
+        //        if (m_session == null)
+        //            return false;
+        //        return true;
+        //        //var idn = Query("*IDN?");
+        //        //if (String.IsNullOrEmpty(idn))
+        //        //    return false;
+        //        //return true;
+        //    }
+        //}
 
         protected bool TryConvert(string s, out double Value)
         {
@@ -180,6 +185,17 @@ namespace Instruments
         {
             m_session.Dispose();
             m_session = null;
+        }
+
+
+        public bool IsAlive(bool SendIDN)
+        {
+            if (m_session == null)
+                return false;
+            if (SendIDN)
+                if (String.IsNullOrEmpty(Query("*IDN?")))
+                    return false;
+            return true;
         }
     }
 }

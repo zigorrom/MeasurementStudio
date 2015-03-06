@@ -14,6 +14,7 @@ namespace Instruments
         string ResourceName { get;  }
         IInstrumentOwner InstrumentOwner { get; set; }
         InstrumentState State { get; set; }
+        bool IsAlive(bool SendIDN);
         void DetectInstrument();
     }
 }

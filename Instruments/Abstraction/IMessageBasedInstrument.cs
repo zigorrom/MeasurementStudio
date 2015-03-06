@@ -12,6 +12,8 @@ namespace Instruments
         bool SendCommand(string Command);
         string GetResponce();
         string Query(string Command);
-        bool IsAlive { get; }
+        bool IsAlive(bool SendIDN);
+        //        bool IsAlive { get; }
+        bool CheckErrors();
     }
 }
