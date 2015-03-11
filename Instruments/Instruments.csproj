@@ -65,6 +65,7 @@
     <Compile Include="Abstraction\IOwnedInstrument.cs" />
     <Compile Include="Abstraction\IResourceInstrument.cs" />
     <Compile Include="ActualInstruments\AgilentU2442A\AgilentU2542A.cs" />
+    <Compile Include="ActualInstruments\AgilentU2442A\AgilentU2542ACommandBuilder.cs" />
     <Compile Include="ActualInstruments\HP34401A\HP34401A.cs" />
     <Compile Include="ActualInstruments\Keithley24xx\Keithley24xx.cs" />
     <Compile Include="ActualInstruments\Keithley2602A\Keithley2602A.cs" />

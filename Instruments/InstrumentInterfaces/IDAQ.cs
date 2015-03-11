@@ -10,6 +10,10 @@ namespace Instruments
     {
         void Initialize();
 
+        bool AnalogRead(string ChannelName, out double Value);
+        bool AnalogWrite(string ChannelName, double Value);
+
+        
 
     }
 }

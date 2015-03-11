@@ -79,8 +79,10 @@ namespace test
     {
         static void Main(string[] args)
         {
-
-            var a = InstrumentHandler.Instance;
+            Instruments.ActualInstruments.AgilentU2442A.AgilentU2542A a = new Instruments.ActualInstruments.AgilentU2442A.AgilentU2542A("asd", "fsdf", "dsafsd");
+            Console.WriteLine(a.APPLyQuery("201"));
+            Console.WriteLine(a.APPLyQuery("201","202"));
+            //var a = InstrumentHandler.Instance;
             //var c = new C();
             //var prop = c.GetType().GetProperties();
             //foreach (var p in prop)
