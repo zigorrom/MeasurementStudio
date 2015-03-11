@@ -8,5 +8,8 @@ namespace Instruments
 {
     public interface IDAQ
     {
+        void Initialize();
+
+
     }
 }
