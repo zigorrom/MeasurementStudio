@@ -461,6 +461,136 @@ namespace Instruments.ActualInstruments.AgilentU2442A
                 throw new ArgumentException(">0x7fffffff");
             return String.Format(CommandFormat, value);
         }
+
+        public enum AnalogTriggerSourceEnum
+        {
+            CH101,
+            CH102,
+            CH103,
+            CH104,
+            EXTAP
+        }
+        private string OUTPutTRIGgerATRiGgerSOURce(AnalogTriggerSourceEnum mode)
+        {
+            const string CommandFormat = "OUTP:TRIG:ATRG:SOUR {0}\n";
+            string Mode = String.Empty;
+            switch (mode)
+            {
+                case AnalogTriggerSourceEnum.CH101:
+                    Mode = "CH101";
+                    break;
+                case AnalogTriggerSourceEnum.CH102:
+                    Mode = "CH102";
+                    break;
+                case AnalogTriggerSourceEnum.CH103:
+                    Mode = "CH103";
+                    break;
+                case AnalogTriggerSourceEnum.CH104:
+                    Mode = "CH104";
+                    break;
+                case AnalogTriggerSourceEnum.EXTAP:
+                default:
+                    Mode = "EXTAP";
+                    break;
+            }
+            return String.Format(CommandFormat, Mode);
+        }
+
+        private  string OUTPutTRIGgerATRiGgerSOURceQuery()
+        {
+            return "OUTP:TRIG:ATRG:SOUR?\n";
+        }
+
+
+        public enum TrigerConditionEnum
+        {
+            AHID,
+            WIND,
+            BLOW
+        }
+        private string OUTPutTRIGgerATRiGgetCONDition(TrigerConditionEnum mode)
+        {
+            const string CommandFormat = "OUTP:TRIG:ATRG:COND {0}\n";
+            string Mode = "";
+            switch (mode)
+            {
+                case TrigerConditionEnum.AHID:
+                    Mode = "AHID";
+                    break;
+                case TrigerConditionEnum.WIND:
+                    Mode = "WIND";
+                    break;
+                case TrigerConditionEnum.BLOW:
+                    
+                default:
+                    Mode = "BLOW";
+                    break;
+            }
+            return String.Format(CommandFormat, Mode);
+        }
+
+        private string OUTPutTRIGgerATRiGgetCONDitionQuery()
+        {
+            return "OUTP:TRIG:ATRG:COND?\n";
+        }
+
+        private string OUTPutTRIGgerATRiGgerHTHReshold(double Value)
+        {
+            const string CommandFormat = "OUTP:TRIG:ATRG:HTHR {0}\n";
+            if (Value < -10)
+                throw new ArgumentException("<-10");
+            if (Value > 10)
+                throw new ArgumentException(">10");
+            return String.Format(CommandFormat, Value);
+        }
+
+        private string OUTPutTRIGgerATRiGgerHTHResholdQuery ()
+        {
+            return "OUTP:TRIG:ATRG:HTHR?\n";
+        }
+
+        private string OUTPutTRIGgerATRiGgerLTHReshold(double Value)
+        {
+            const string CommandFormat = "OUTP:TRIG:ATRG:LTHR {0}\n";
+            if (Value < -10)
+                throw new ArgumentException("<-10");
+            if (Value > 10)
+                throw new ArgumentException(">10");
+            return String.Format(CommandFormat, Value);
+        }
+
+        private string OUTPutTRIGgerATRiGgerLTHResholdQuery()
+        {
+            return "OUTP:TRIG:ATRG:LTHR?\n";
+        }
+
+        public enum PolarityEnum
+        {
+            NEG,
+            POS
+        }
+        private string OUTPutTRIGgerDTRiGgerPOLarity(PolarityEnum polarity)
+        {
+            const string CommandFormat = "OUTP:TRIG:DTRG:POL {0}\n";
+            string Mode = "";
+            switch (polarity)
+            {
+                case PolarityEnum.NEG:
+                    Mode = "NEG";
+                    break;
+                case PolarityEnum.POS:
+                default:
+                    Mode = "POS";
+                    break;
+            }
+            return String.Format(CommandFormat, Mode);
+        }
+        private string OUTPutTRIGgerDTRiGgerPOLarityQuery()
+        {
+            return "OUTP:TRIG:DTRG:POL?\n";
+        }
+
+
         #endregion
 
     }
