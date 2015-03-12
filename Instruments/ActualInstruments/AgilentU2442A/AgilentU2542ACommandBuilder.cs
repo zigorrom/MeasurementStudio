@@ -275,10 +275,63 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, ChannelList);
         }
 
-        private string MEASureCOUNTerDATA(params string[] Channels)
+        private string MEASureCOUNterDATAQuery(params string[] Channels)
         {
-
+            const string CommandFormat = "MEAS:COUN:DATA? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
         }
+
+        private string MEASureCOUNterFREQency(params string[] Channels)
+        {
+            const string CommandFormat = "MEAS:COUN:FREQ? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        private string MEASureCOUNterPERiodQuery(params string[] Channels)
+        {
+            const string CommandFormat = "MEAS:COUN:PER? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        private string MEASureCOUNterPWIDthQuery(params string[] Channels)
+        {
+            const string CommandFormat = "MEAS:COUN:PWID? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        private string MEASureCOUNterTOTalizeQuery(params string[] Channels)
+        {
+            const string CommandFormat = "MEAS:COUN:TOT? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        private string MEASureDIGitalQuery(params string[]Channels)
+        {
+            const string CommandFormat = "MEAS:DIG? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        private string MEASureDIGitalBIT(int BitNumber, params string[] Channels )
+        {
+            const string CommandFormat = "MEAS:DIG:BIT? {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            if (BitNumber < 0)
+                throw new ArgumentException("<0");
+            if (BitNumber > 7)
+                throw new ArgumentException(">7");
+            return String.Format(CommandFormat, BitNumber, ChannelList);
+        }
+        #endregion
+
+        #region OUTPut region
+
+
         #endregion
 
     }
