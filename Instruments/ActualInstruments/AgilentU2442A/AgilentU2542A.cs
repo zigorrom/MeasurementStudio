@@ -11,7 +11,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
     {
         public AgilentU2542A(string Name,string Alias,string ResourceName):base(Name,Alias,ResourceName)
         {
-
+             
         }
 
         public override void DetectInstrument()
