@@ -187,7 +187,99 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, Channels);
         }
 
-        
+        public enum ClockSourceEnum
+        {
+            Internal,
+            External
+        }
+        private string CONFigureTIMEbaseSOURce(ClockSourceEnum source)
+        {
+            string ClockSource = String.Empty;
+            const string CommandFormat = "CONF:TIME:SOUR {0}\n";
+            switch (source)
+            {
+                case ClockSourceEnum.External:
+                    ClockSource = "EXT";
+                    break;
+                case ClockSourceEnum.Internal:
+                default:
+                    ClockSource = "INT";
+                    break;
+            }
+            return String.Format(CommandFormat, ClockSource);
+        }
+
+        private string CONFigureTIMEbaseSOURceQuery()
+        {
+            return "CONF:TIME:SOUR?\n";
+        }
+
+        private string CONFigureTIMEbaseECLocK(int ClockFrequency = 10000)
+        {
+            const string CommandFormat = "CONF:TIME:ECLK {0}\n";
+            const int MinVal  = 10000;
+            const int MaxVal =48000;
+            var val = ClockFrequency;
+            if (val < MinVal)
+                throw new ArgumentException("Less than min");
+            if(val >MaxVal)
+                throw new ArgumentException("Greater than max");
+            return String.Format(CommandFormat, val);
+        }
+
+        private string CONFigureTIMEbaseECLocKQuery()
+        {
+            return "CONF:TIME:ECLK?\n";
+        }
+
+        public enum SSIMode
+        {
+            None,
+            Master,
+            Slave
+        }
+
+        private string CONFigureSSI(SSIMode mode)
+        {
+            const string CommandFormat = "CONF:SSI {0}\n";
+            string ModeStr = String.Empty;
+            switch (mode)
+            {
+                case SSIMode.Master:
+                    ModeStr = "MAST";
+                    break;
+                case SSIMode.Slave:
+                    ModeStr = "SLAV";
+                    break;
+                case SSIMode.None:
+                default:
+                    ModeStr = "NONE";
+                    break;
+            }
+            return String.Format(CommandFormat, ModeStr);
+        }
+
+        private string CONFigureSSIQuery()
+        {
+            return "CONF:SSI?\n";
+        }
+
         #endregion
+
+        #region MEASure region
+
+        private string MEASureVOLTageDCQuery(params string[] Channels)
+        {
+            const string CommandFormat = "MEAS? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        private string MEASureCOUNTerDATA(params string[] Channels)
+        {
+
+        }
+        #endregion
+
     }
 }
