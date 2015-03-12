@@ -331,7 +331,136 @@ namespace Instruments.ActualInstruments.AgilentU2442A
 
         #region OUTPut region
 
+        public enum OutputStateEnum
+        {
+            On,
+            Off
+        }
 
+        private string OUTPut(OutputStateEnum state)
+        {
+            const string CommandFormat = "OUTP {0}\n";
+            string State = String.Empty;
+            switch (state)
+            {
+                case OutputStateEnum.On:
+                    State = "ON";
+                    break;
+                case OutputStateEnum.Off:
+                default:
+                    State = "OFF";
+                    break;
+            }
+            return String.Format(CommandFormat, State);
+        }
+
+        private string OUTPutQuery()
+        {
+            return "OUTP?\n";
+
+        }
+
+        private string OUTPutWAVeformITERate(int Value=0)
+        {
+            const string CommandFormat = "OUTP:WAV:ITER {0}\n";
+            if (Value < 0)
+                throw new ArgumentException("<0");
+            if (Value > 0xffffff)
+                throw new ArgumentException(">0xffffff");
+            return String.Format(CommandFormat, Value);
+        }
+
+        private string OUTPutWAVeformITERateQuery()
+        {
+            return "OUTP:WAV:ITER?\n";
+        }
+
+        private string OUTPutWAVeformSRATe(int SampleRate)
+        {
+            const string CommandFormat = "OUTP:WAV:STAT {0}\n";
+            if (SampleRate > 1000000)
+                throw new ArgumentException(">1000000");
+            if (SampleRate < 0)
+                throw new ArgumentException("<0");
+            return String.Format(CommandFormat, SampleRate);
+        }
+
+        private string OUTPutWAVeformFREQuency(int Frequency = 4000)
+        {
+            const string CommandFormat = "OUTP:WAV:FREQ {0}\n";
+            if (Frequency < 10)
+                throw new ArgumentException("<10");
+            if (Frequency > 10000)
+                throw new ArgumentException(">10000");
+            return String.Format(CommandFormat, Frequency);
+        }
+
+        public enum TriggerSourceEnum
+        {
+            None,
+            EXTD_AO_TRIG,
+            EXTA_TRIG,
+            STRG
+        }
+        private string OUTPutTRIGgerSOURce(TriggerSourceEnum mode)
+        {
+            const string CommandFormat = "OUTP:TRIG:SOUR {0}\n";
+            string Trig = String.Empty;
+            switch (mode)
+            {
+                case TriggerSourceEnum.EXTD_AO_TRIG:
+                    Trig = "EXTD";
+                    break;
+                case TriggerSourceEnum.EXTA_TRIG:
+                    Trig = "EXTA";
+                    break;
+                case TriggerSourceEnum.STRG:
+                    Trig = "STRG";
+                    break;
+                case TriggerSourceEnum.None:
+                default:
+                    Trig = "NONE";
+                    break;
+            }
+            return String.Format(CommandFormat, Trig);
+        }
+        private string OUTPutTRIGgerSOURceQuery()
+        {
+            return "OUTP:TRIG:SOUR?\n";
+        }
+
+        public enum TriggerTypeEnum
+        {
+            Post,
+            Delay
+        }
+
+        private string OUTPutTRIGgerTYPe(TriggerTypeEnum type)
+        {
+            const string Commandformat = "OUTP:TRIG:TYP {0}\n";
+            string Type = String.Empty;
+            switch (type)
+            {
+                case TriggerTypeEnum.Delay:
+                    Type = "POST";
+                    break;
+                case TriggerTypeEnum.Post:
+                default:
+                    Type = "DEL";
+                    break;
+            }
+            return String.Format(Commandformat, Type);
+        }
+
+        private string OUTPutTRIGgerDCouNT(int value=0)
+        {
+            const string CommandFormat = "OUTP:TRIG:DCNT {0}\n";
+            if (value < 0)
+                throw new ArgumentException("<0");
+            if (value > 0x7fffffff)
+                throw new ArgumentException(">0x7fffffff");
+            return String.Format(CommandFormat, value);
+        }
         #endregion
 
     }
