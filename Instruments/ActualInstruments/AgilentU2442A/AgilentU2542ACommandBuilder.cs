@@ -187,8 +187,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, Channels);
         }
 
-        private void A()
-        { }
+        
         #endregion
     }
 }
