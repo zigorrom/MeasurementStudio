@@ -676,6 +676,9 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             Internal
         }
         private string ROUTeCHANnelRSouRCe()
+        {
+
+        }
 
         #endregion
     }
