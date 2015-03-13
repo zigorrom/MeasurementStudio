@@ -915,6 +915,68 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, ChannelList);
         }
 
+        public enum GatePolarity
+        {
+            AHI,
+            ALO
+        }
+
+        private string COUNterGATEPOLarity(GatePolarity mode, params string[] Channels)
+        {
+            const string CommanfFormat = "COUNT:GATE:POL {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            string Mode = "";
+            switch (mode)
+            {
+                case GatePolarity.ALO:
+                    Mode = "ALO";
+                    break;
+                case GatePolarity.AHI:
+                default:
+                    Mode = "AHI";
+                    break;
+            }
+            return String.Format(CommanfFormat, Mode, ChannelList);
+        }
+
+        private string COUNterGATEPOLarityQuery(params string[] Channels)
+        {
+            const string CommanfFormat = "COUNT:GATE:POL? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommanfFormat, ChannelList);
+        }
+
+        public enum EnableGateEnum
+        {
+            Enable,
+            Disable
+        }
+
+        private string COUNterGATECONTrol(EnableGateEnum mode , params string[]Channels)
+        {
+            const string CommandFormat = "COUN:GATE:CONT {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            string Mode = "";
+            switch (mode)
+            {
+                case EnableGateEnum.Enable:
+                    Mode = "ENAB";
+                    break;
+                case EnableGateEnum.Disable:
+                default:
+                    Mode = "DIS";
+                    break;
+            }
+            return String.Format(CommandFormat, Mode, ChannelList);
+        }
+
+        private string COUNterGATECONTrolQuery(params string[] Channels)
+        {
+            const string CommandFormat = "COUN:GATE:CONT? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
 
 
         #endregion
