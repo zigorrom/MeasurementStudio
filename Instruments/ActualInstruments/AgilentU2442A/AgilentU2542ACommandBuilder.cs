@@ -593,7 +593,6 @@ namespace Instruments.ActualInstruments.AgilentU2442A
 
         #endregion
 
-
         #region ROUTe region
         public enum AIRangesEnum
         {
@@ -709,6 +708,45 @@ namespace Instruments.ActualInstruments.AgilentU2442A
                 throw new ArgumentException(">10");
             return String.Format(CommandFormat, Value);
         }
+        private string ROUTeCHANnelRVOLtageQuery()
+        {
+            return "ROUT:CHAN:RVOL?\n";
+        }
+
+
+        public enum ChannelOutputEnableEnum
+        {
+            Enabled,
+            Disabled
+        }
+        private string ROUTeENABle(ChannelOutputEnableEnum mode, params string[]Channels)
+        {
+            const string CommandFormat = "ROUT:ENAB {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            string Mode = "";
+            switch (mode)
+            {
+                case ChannelOutputEnableEnum.Enabled:
+                    Mode = "ON";
+                    break;
+                case ChannelOutputEnableEnum.Disabled:
+                default:
+                    Mode = "OFF";
+                    break;
+            }
+            return String.Format(CommandFormat, Mode, ChannelList);
+        }
+
+        private string ROUTeENABleQuery(params string[]Channels)
+        {
+            const string CommandFormat = "ROUT:ENAB? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+
         #endregion
+
+
     }
 }
