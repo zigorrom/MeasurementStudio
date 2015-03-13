@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Instruments
+namespace Instruments.ActualInstruments.KeithleyMultimeter
 {
     [InstrumentAttribute("NDCV","")]
     public class KeithleyMultimeter:AbstractMessageBasedInstrument, IMultimeter

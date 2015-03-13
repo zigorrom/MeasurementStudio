@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Instruments
+namespace Instruments.ActualInstruments.HP34401A
 {
     [InstrumentAttribute("HEWLETT-PACKARD","34401A")]
     public class HP34401A:AbstractMessageBasedInstrument, IMultimeter

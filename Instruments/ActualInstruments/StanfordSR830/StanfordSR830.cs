@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Instruments
+namespace Instruments.ActualInstruments.StanfordSR830
 {
     [InstrumentAttribute("Stanford","SR830")]
     public class StanfordSR830:AbstractMessageBasedInstrument, ILockInAmplifier

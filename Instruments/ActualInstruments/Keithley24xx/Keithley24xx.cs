@@ -7,7 +7,7 @@ using Instruments;
 using System.Globalization;
 using System.Threading;
 
-namespace Instruments
+namespace Instruments.ActualInstruments.Keithley24XX
 {
     [InstrumentAttribute("KEITHLEY","24")]//24 - BECAUSE 2400,2430 FITS
     public class Keithley24xx:AbstractMessageBasedInstrument, ISourceMeasurementUnit

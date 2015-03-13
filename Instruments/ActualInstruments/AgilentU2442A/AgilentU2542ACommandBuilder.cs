@@ -838,6 +838,85 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return "VOLT:AVER?\n";
         }
 
+        public enum CounterFunctionEnum
+        {
+            FREQuency,
+            PERiod,
+            PWIDth,
+            TOTalize
+        }
+
+        private string COUTerFUNCtion(CounterFunctionEnum mode, params string[] Channels)
+        {
+            const string CommandFormat = "COUN:FUNC {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            string Mode = "";
+            switch (mode)
+            {
+                case CounterFunctionEnum.FREQuency:
+                    Mode = "FREQ";
+                    break;
+                case CounterFunctionEnum.PERiod:
+                    Mode = "PER";
+                    break;
+                case CounterFunctionEnum.PWIDth:
+                    Mode = "PWID";
+                    break;
+                case CounterFunctionEnum.TOTalize:
+                default:
+                    Mode = "TOT";
+                    break;
+            }
+            return String.Format(CommandFormat, Mode, ChannelList);
+        }
+
+        private string COUTerFUNCtionQuery(params string[] Channels)
+        {
+            const string CommandFormat = "COUN:FUNC? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        private string COUNterABORt(params string[] Channels)
+        {
+            const string CommandFormat = "COUN:ABOR {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        public enum GateSourceEnum
+        {
+            External,
+            Internal
+        }
+
+        private string COUNterGATESOURce(GateSourceEnum mode, params string[] Channels)
+        {
+            const string CommandFormat = "COUN:GATE:SOUR {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            string Mode = "";
+            switch (mode)
+            {
+                case GateSourceEnum.External:
+                    Mode = "EXT";
+                    break;
+                case GateSourceEnum.Internal:
+                default:
+                    Mode = "INT";
+                    break;
+            }
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        private string COUNterGATESOURceQuery(params string[] Channels)
+        {
+            const string CommandFormat = "COUN:GATE:SOUR? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+
+
         #endregion
     }
 }

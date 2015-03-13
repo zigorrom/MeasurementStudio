@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Instruments
+namespace Instruments.ActualInstruments.Keithley2602A
 {
     [InstrumentAttribute("KEITHLEY","2602A")]
     public class Keithley2602A:ISourceMeasurementUnit
