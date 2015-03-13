@@ -593,5 +593,56 @@ namespace Instruments.ActualInstruments.AgilentU2442A
 
         #endregion
 
+
+        #region ROUTe region
+        public enum AIRangesEnum
+        {
+            Range1_25,
+            Range2_5,
+            Range5,
+            Range10
+        }
+
+
+        private string ROUTeCHANnelRANGe(AIRangesEnum range, params string[]Channels)
+        {
+            const string CommandFormat = "ROUT:CHAN:RANG {0}, {1}\n";
+            var RangeStr = "";
+            switch (range)
+            {
+                case AIRangesEnum.Range1_25:
+                    RangeStr = "1.25";
+                    break;
+                case AIRangesEnum.Range2_5:
+                    RangeStr = "2.5";
+                    break;
+                case AIRangesEnum.Range5:
+                    RangeStr = "5";
+                    break;
+                case AIRangesEnum.Range10:
+                default:
+                    RangeStr = "10";
+                    break;
+            }
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, RangeStr, ChannelList);
+        }
+        private string ROUTeCHANnelRANGeQuery(params string[] Channels)
+        {
+            return String.Format("ROUT:CHAN:RANG? {1}\n", GetChannelListString(Channels));
+        }
+
+        public enum PolarityEnum
+        {
+            Unipolar,
+            Bipolar
+        }
+
+        private string ROUTeCHANnelPOLarity(PolarityEnum mode, params string[]Channels)
+        {
+            const string CommandFormat = "ROUT:CHAN:POL {0}, {1}\n";
+        }
+
+        #endregion
     }
 }
