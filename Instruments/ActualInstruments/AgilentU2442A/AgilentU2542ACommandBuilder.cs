@@ -663,7 +663,15 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, ChannelList);
         }
 
+        private string ROUTeCHANnelSTYPeQuery(params string[] Channels)
+        {
+            const string CommandFormat = "ROUT:CHAN:STYP? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
 
+        public enum ReferenceVoltageEnum
+        private string ROUTeCHANnelRSouRCe()
 
         #endregion
     }
