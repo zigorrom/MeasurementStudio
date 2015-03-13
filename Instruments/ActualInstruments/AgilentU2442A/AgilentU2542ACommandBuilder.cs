@@ -675,11 +675,40 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             External,
             Internal
         }
-        private string ROUTeCHANnelRSouRCe()
+        private string ROUTeCHANnelRSouRCe(ReferenceVoltageEnum mode, params string[] Channels)
         {
-
+            const string CommandFormat = "ROUT:CHAN:RCRC {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            string Mode = "";
+            switch (mode)
+            {
+                case ReferenceVoltageEnum.External:
+                    Mode = "EXT";
+                    break;
+                case ReferenceVoltageEnum.Internal:
+                default:
+                    Mode = "INT";
+                    break;
+            }
+            return String.Format(CommandFormat,Mode, ChannelList);
         }
 
+        private string ROUTeCHANnelRSouRCe(params string[] Channels)
+        {
+            const string CommandFormat = "ROUT:CHAN:RCRC? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        private string ROUTeCHANnelRVOLtage(double Value)
+        {
+            const string CommandFormat = "ROUT:CHAN:RVOL {0}\n";
+            if (Value < 0)
+                throw new ArgumentException("<0");
+            if (Value > 10)
+                throw new ArgumentException(">10");
+            return String.Format(CommandFormat, Value);
+        }
         #endregion
     }
 }
