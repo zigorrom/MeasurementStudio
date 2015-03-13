@@ -671,6 +671,10 @@ namespace Instruments.ActualInstruments.AgilentU2442A
         }
 
         public enum ReferenceVoltageEnum
+        {
+            External,
+            Internal
+        }
         private string ROUTeCHANnelRSouRCe()
 
         #endregion
