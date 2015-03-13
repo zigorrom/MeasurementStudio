@@ -632,16 +632,38 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format("ROUT:CHAN:RANG? {1}\n", GetChannelListString(Channels));
         }
 
-        public enum PolarityEnum
+        public enum ChannelPolarityEnum
         {
             Unipolar,
             Bipolar
         }
 
-        private string ROUTeCHANnelPOLarity(PolarityEnum mode, params string[]Channels)
+        private string ROUTeCHANnelPOLarity(ChannelPolarityEnum mode, params string[] Channels)
         {
             const string CommandFormat = "ROUT:CHAN:POL {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            string Mode = "";
+            switch (mode)
+            {
+                case ChannelPolarityEnum.Unipolar:
+                    Mode = "UNIP";
+                    break;
+                case ChannelPolarityEnum.Bipolar:
+                default:
+                    Mode = "BIP";
+                    break;
+            }
+            return String.Format(CommandFormat, Mode, ChannelList);
+
         }
+        private string ROUTeCHANnelPOLarityQuery(params string[] Channels)
+        {
+            const string CommandFormat = "ROUT:CHAN:POL? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+
 
         #endregion
     }
