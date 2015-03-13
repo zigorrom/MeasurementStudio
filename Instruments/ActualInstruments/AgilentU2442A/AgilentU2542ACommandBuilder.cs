@@ -564,21 +564,21 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return "OUTP:TRIG:ATRG:LTHR?\n";
         }
 
-        public enum PolarityEnum
+        public enum TriggerPolarityEnum
         {
             NEG,
             POS
         }
-        private string OUTPutTRIGgerDTRiGgerPOLarity(PolarityEnum polarity)
+        private string OUTPutTRIGgerDTRiGgerPOLarity(TriggerPolarityEnum polarity)
         {
             const string CommandFormat = "OUTP:TRIG:DTRG:POL {0}\n";
             string Mode = "";
             switch (polarity)
             {
-                case PolarityEnum.NEG:
+                case TriggerPolarityEnum.NEG:
                     Mode = "NEG";
                     break;
-                case PolarityEnum.POS:
+                case TriggerPolarityEnum.POS:
                 default:
                     Mode = "POS";
                     break;
@@ -631,23 +631,23 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format("ROUT:CHAN:RANG? {1}\n", GetChannelListString(Channels));
         }
 
-        public enum ChannelPolarityEnum
+        public enum PolarityEnum
         {
             Unipolar,
             Bipolar
         }
 
-        private string ROUTeCHANnelPOLarity(ChannelPolarityEnum mode, params string[] Channels)
+        private string ROUTeCHANnelPOLarity(PolarityEnum mode, params string[] Channels)
         {
             const string CommandFormat = "ROUT:CHAN:POL {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
             string Mode = "";
             switch (mode)
             {
-                case ChannelPolarityEnum.Unipolar:
+                case PolarityEnum.Unipolar:
                     Mode = "UNIP";
                     break;
-                case ChannelPolarityEnum.Bipolar:
+                case PolarityEnum.Bipolar:
                 default:
                     Mode = "BIP";
                     break;
@@ -747,6 +747,97 @@ namespace Instruments.ActualInstruments.AgilentU2442A
 
         #endregion
 
+        #region SENSe region
+        public enum VoltageRangeEnum
+        {
+            V10,
+            V5,
+            V2_5,
+            V1_25,
+            AUTO
 
+        }
+        private string VOLTageRANGe(VoltageRangeEnum mode, params string[] Channels)
+        {
+            const string CommandFormat = "VOLT:RANG {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            string Mode = "";
+            switch (mode)
+            {
+                case VoltageRangeEnum.V10:
+                    Mode = "10";
+                    break;
+                case VoltageRangeEnum.V5:
+                    Mode = "5";
+                    break;
+                case VoltageRangeEnum.V2_5:
+                    Mode = "2.5";
+                    break;
+                case VoltageRangeEnum.V1_25:
+                    Mode = "1.25";
+                    break;
+                case VoltageRangeEnum.AUTO:
+                default:
+                    Mode = "AUTO";
+                    break;
+            }
+            return String.Format(CommandFormat, Mode, ChannelList);
+        }
+
+        private string VOLTageRANGeQuery(params string[] Channels)
+        {
+            const string CommandFormat = "VOLT:RANG? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        private string VOLTagePOLarity(PolarityEnum mode, params string[] Channels)
+        {
+            const string CommandFormat = "VOLT:POL {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            string Mode = "";
+            switch (mode)
+            {
+                case PolarityEnum.Unipolar:
+                    Mode = "UNIP";
+                    break;
+                case PolarityEnum.Bipolar:
+                default:
+                    Mode = "BIP";
+                    break;
+            }
+            return String.Format(CommandFormat, Mode, ChannelList);
+        }
+
+        private string VOLTagePOLarityQuery(params string[] Channels)
+        {
+            const string CommandFormat = "VOLT:POL? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        private string VOLTageSTYPeQuery(params string[] Channels)
+        {
+            const string CommandFormat = "VOLT:STYP? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        private string VOLTageAVERage(int value)
+        {
+            const string CommandFormat = "VOLT:AVER {0}\n";
+            if (value < 1)
+                throw new ArgumentException("<1");
+            if (value > 1000)
+                throw new ArgumentException(">1000");
+            return String.Format(CommandFormat, value);
+        }
+
+        private string VOLTageAVERageQuery()
+        {
+            return "VOLT:AVER?\n";
+        }
+
+        #endregion
     }
 }
