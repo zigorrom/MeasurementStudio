@@ -977,8 +977,30 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, ChannelList);
         }
 
+        private string COUNterCLocKSOURce(ClockSourceEnum mode, params string[]Channels)
+        {
+            const string CommandFormat = "COUNT:CLK:SOUR {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            string Mode = "";
+            switch (mode)
+            {
+                case ClockSourceEnum.External:
+                    Mode = "EXT";
+                    break;
+                case ClockSourceEnum.Internal:
+                default:
+                    Mode = "INT";
+                    break;
+            }
+            return String.Format(CommandFormat, Mode, ChannelList);
+        }
 
-
+        private string COUNterCLocKSOURceQuery(params string[] Channels)
+        {
+            const string CommandFormat = "COUNT:CLK:SOUR? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
         #endregion
     }
 }
