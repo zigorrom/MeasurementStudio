@@ -96,6 +96,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Helper\Helper.csproj">
+      <Project>{5216BA05-F05D-447A-965F-B1357DCB4990}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InstrumentHandler\InstrumentHandler.csproj">
       <Project>{8374C54F-4D38-47BA-B0F8-66408AC9B9C0}</Project>
       <Name>InstrumentHandler</Name>
