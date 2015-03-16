@@ -1,10 +1,10 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:InstrumentHandlerNamespace="clr-namespace:InstrumentHandlerNamespace;assembly=InstrumentHandler" xmlns:Ranges="clr-namespace:Helper.Ranges;assembly=Helper" x:Class="MeasurementStudio.MainWindow"
+        xmlns:InstrumentHandlerNamespace="clr-namespace:InstrumentHandlerNamespace;assembly=InstrumentHandler" xmlns:Ranges="clr-namespace:Helper.Ranges;assembly=Helper" xmlns:Helper="clr-namespace:Helper;assembly=Helper" x:Class="MeasurementStudio.MainWindow"
         Title="MainWindow" Height="857.52" Width="857.117">
-    <Grid>
-        <InstrumentHandlerNamespace:InstrumentHandlerControl HorizontalAlignment="Left" Margin="27.4,10,0,0" VerticalAlignment="Top" Height="425.56" Width="458.6"/>
-        <Ranges:RangeControl HorizontalAlignment="Left" Margin="604,233,0,0" VerticalAlignment="Top" Height="203" Width="180"/>
-    </Grid>
+	<Grid>
+		<InstrumentHandlerNamespace:InstrumentHandlerControl HorizontalAlignment="Left" Margin="27.4,10,0,0" VerticalAlignment="Top" Height="425.56" Width="458.6"/>
+		<Ranges:RangeControl HorizontalAlignment="Left" Margin="604,233,0,0" VerticalAlignment="Top" Height="203" Width="180"/>
+	</Grid>
 </Window>
