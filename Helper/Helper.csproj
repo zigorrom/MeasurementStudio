@@ -47,9 +47,19 @@
   <ItemGroup>
     <Compile Include="NotifyPropertyChanged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ranges\CountingModeEnum.cs" />
     <Compile Include="Ranges\DoubleRangeBase.cs" />
     <Compile Include="Ranges\DoubleValuesRangeBase.cs" />
+    <Compile Include="Ranges\DoubleValuesRangeControl.xaml.cs">
+      <DependentUpon>DoubleValuesRangeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ranges\VoltageRange.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Ranges\DoubleValuesRangeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
