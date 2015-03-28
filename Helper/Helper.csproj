@@ -48,23 +48,8 @@
     <Compile Include="NotifyPropertyChanged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ranges\DoubleRangeBase.cs" />
-    <Compile Include="Ranges\InputTextBox.xaml.cs">
-      <DependentUpon>InputTextBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Ranges\RangeControl.xaml.cs">
-      <DependentUpon>RangeControl.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Ranges\DoubleValuesRangeBase.cs" />
     <Compile Include="Ranges\VoltageRange.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Ranges\InputTextBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Ranges\RangeControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

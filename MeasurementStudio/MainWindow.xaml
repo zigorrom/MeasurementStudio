@@ -5,6 +5,6 @@
         Title="MainWindow" Height="857.52" Width="857.117">
 	<Grid>
 		<InstrumentHandlerNamespace:InstrumentHandlerControl HorizontalAlignment="Left" Margin="27.4,10,0,0" VerticalAlignment="Top" Height="425.56" Width="458.6"/>
-		<Ranges:RangeControl HorizontalAlignment="Left" Margin="604,233,0,0" VerticalAlignment="Top" Height="203" Width="180"/>
+		
 	</Grid>
 </Window>
