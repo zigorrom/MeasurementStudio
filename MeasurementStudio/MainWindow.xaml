@@ -4,7 +4,6 @@
         xmlns:InstrumentHandlerNamespace="clr-namespace:InstrumentHandlerNamespace;assembly=InstrumentHandler" xmlns:Ranges="clr-namespace:Helper.Ranges;assembly=Helper" xmlns:Helper="clr-namespace:Helper;assembly=Helper" x:Class="MeasurementStudio.MainWindow"
         Title="MainWindow" Height="857.52" Width="857.117">
 	<Grid>
-		<InstrumentHandlerNamespace:InstrumentHandlerControl HorizontalAlignment="Left" Margin="27.4,10,0,0" VerticalAlignment="Top" Height="425.56" Width="458.6"/>
-		
-	</Grid>
+        <Ranges:DoubleValuesRangeControl/>
+    </Grid>
 </Window>

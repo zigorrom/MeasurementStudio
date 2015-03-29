@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -174,24 +175,63 @@ namespace Helper.Ranges
             }
         }
 
-
+        
 
         public IEnumerator<double> GetEnumerator()
         {
             m_EnumerationInProgress = true;
-            int counter;
-            double value;
-            int CurrentCountDirection;
-            
-            for (counter=0,value=RangeStartValue,CurrentCountDirection = CountDirection;(counter<TotalPointsCount)&&m_EnumerationInProgress;++counter,value+=CurrentCountDirection*StepValue)
+            int counter =0;
+            double value = RangeStartValue;
+            int CurrentCountDirection = CountDirection;
+            int mode = (int)CountingMode*3; // to make possible distinguish between modes + count direction
+
+            var IncrementFuncArray = new Action[6]{
+                new Action(()=>{    // Repeat and -1   -- variant 0
+                    if(value<=RangeEndValue)
+                    {
+                        value = RangeStartValue;
+                    }
+                    else
+                        value+=CurrentCountDirection*StepValue;
+                }), 
+                new Action(()=>{     // Repeat and 0   -- variant 1
+                    
+                }),
+                new Action(()=>{     // Repeat and 1   -- variant 2
+                    if (value >= RangeEndValue)
+                    {
+                        value = RangeStartValue;
+                    }
+                    else
+                        value += CurrentCountDirection * StepValue;
+                }),
+                new Action(()=>{     // Cont and -1   -- variant 3
+                    if(value<=RangeEndValue)
+                    {
+                        CurrentCountDirection = -CurrentCountDirection;
+                    }
+                    value += CurrentCountDirection * StepValue;
+                }),
+                new Action(()=>{     // Cont and 0   -- variant 4
+
+                }),
+                new Action(()=>{      // Cont and 1   -- variant 5
+                    if(value>=RangeEndValue)
+                    {
+                        CurrentCountDirection = -CurrentCountDirection;
+                    }
+                    value += CurrentCountDirection * StepValue;
+                })
+            };
+
+            for (; counter<TotalPointsCount&&m_EnumerationInProgress; IncrementFuncArray[CurrentCountDirection+mode+1]())
             {
-                
-                yield return 0;
+                yield return value;
             }
 
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
