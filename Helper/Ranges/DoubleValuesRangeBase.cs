@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Helper.Ranges
 {
-    public class DoubleValuesRangeBase:INotifyPropertyChanged
+    public class DoubleValuesRangeBase:IEnumerable<double>,INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged(string PropertyName)
@@ -31,20 +31,24 @@ namespace Helper.Ranges
             m_RangeEndValue = 0;
             m_StepValue = 0;
             m_RangeWidth = 0;
-            m_PointsCount = 0;
+            m_RangePointsCount = 0;
 
             m_CountDirection = 1;
             m_CountingMode = CountingModeEnum.Repetitive;
             m_CyclesNumber = 0;
+            m_EnumerationInProgress = false;
         }
 
-        private void RefreshValues()
-        {
-
-        }
 
         //create value checker which will firstly obtain value check its valid and if it is - send to property
         // if not - make textbox red and write error...
+
+        public void AbortEnumeration()
+        {
+            m_EnumerationInProgress = false;
+        }
+
+        private bool m_EnumerationInProgress;
 
         private double m_RangeStartValue;
 
@@ -54,7 +58,12 @@ namespace Helper.Ranges
             set {
                if(SetField(ref m_RangeStartValue,value,"RangeStart"))
                {
-
+                   CountDirection = Math.Sign(RangeEndValue - RangeStartValue);
+                   RangeWidth = Math.Abs(RangeEndValue - RangeStartValue);
+                   if (StepValue != 0)
+                       RangePointsCount = (int)(RangeWidth / StepValue) + 1;
+                   else
+                       RangePointsCount = 1;
                }
             }
         }
@@ -67,7 +76,12 @@ namespace Helper.Ranges
             set {
                 if (SetField(ref m_RangeEndValue, value, "RangeEndValue"))
                 {
-
+                    CountDirection = Math.Sign(RangeEndValue - RangeStartValue);
+                    RangeWidth = Math.Abs(RangeEndValue - RangeStartValue);
+                    if (StepValue != 0)
+                        RangePointsCount = (int)(RangeWidth / StepValue) + 1;
+                    else
+                        RangePointsCount = 1;
                 }
             }
         }
@@ -80,7 +94,10 @@ namespace Helper.Ranges
             set {
                 if(SetField(ref m_StepValue,value,"StepValue"))
                 {
-
+                    if (StepValue != 0)
+                        RangePointsCount = (int)(RangeWidth / StepValue) + 1;
+                    else
+                        RangePointsCount = 1;
                 }
             }
         }
@@ -91,25 +108,37 @@ namespace Helper.Ranges
         {
             get { return m_RangeWidth; }
             private set {
-                if(SetField(ref m_RangeWidth, value, "RangeWidth"))
-                {
-
-                }
+                SetField(ref m_RangeWidth, value, "RangeWidth");
             }
         }
 
-        private int m_PointsCount;
+        private int m_RangePointsCount;
 
-        public int PointsCount
+        public int RangePointsCount
         {
-            get { return m_PointsCount; }
+            get { return m_RangePointsCount; }
             set {
-                if (SetField(ref m_PointsCount, value, "PointsCount"))
+                if (SetField(ref m_RangePointsCount, value, "PointsCount"))
                 {
-
+                    if (RangePointsCount > 1)
+                        StepValue = RangeWidth / (RangePointsCount - 1);
+                    else
+                        StepValue = 0;
+                    TotalPointsCount = RangePointsCount * CyclesNumber;
                 }
             }
         }
+
+        private int m_TotalPointsCount;
+
+        public int TotalPointsCount
+        {
+            get { return m_TotalPointsCount; }
+            private set {
+                SetField(ref m_TotalPointsCount, value, "TotalPointsCount");
+            }
+        }
+
 
         private int m_CountDirection;
 
@@ -117,10 +146,7 @@ namespace Helper.Ranges
         {
             get { return m_CountDirection; }
             private set {
-                if(SetField(ref m_CountDirection, value,"CountDirection"))
-                {
-
-                }
+                SetField(ref m_CountDirection, value, "CountDirection");
             }
         }
 
@@ -132,8 +158,9 @@ namespace Helper.Ranges
             set {
                 if(SetField(ref m_CyclesNumber, value, "CyclesNumber"))
                 {
-
+                    TotalPointsCount = RangePointsCount * CyclesNumber;
                 }
+                
             }
         }
 
@@ -143,13 +170,30 @@ namespace Helper.Ranges
         {
             get { return m_CountingMode; }
             set {
-                if(SetField(ref m_CountingMode, value, "CountingMode"))
-                {
-
-                }
+                SetField(ref m_CountingMode, value, "CountingMode");
             }
         }
 
-       
+
+
+        public IEnumerator<double> GetEnumerator()
+        {
+            m_EnumerationInProgress = true;
+            int counter;
+            double value;
+            int CurrentCountDirection;
+            
+            for (counter=0,value=RangeStartValue,CurrentCountDirection = CountDirection;(counter<TotalPointsCount)&&m_EnumerationInProgress;++counter,value+=CurrentCountDirection*StepValue)
+            {
+                
+                yield return 0;
+            }
+
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }
