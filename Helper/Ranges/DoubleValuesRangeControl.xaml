@@ -7,10 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="719.496" d:DesignWidth="425.373">
     <Grid>
-
-        <Helper:DataInputControl VerticalAlignment="Top" Margin="0,0,-0.4,0" Height="64" InputName="asdsad">
-            
-        </Helper:DataInputControl>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="500*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="146*"/>
+            <ColumnDefinition Width="279*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="From" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox Grid.Column="1" TextWrapping="Wrap" Text="TextBox" VerticalContentAlignment="Center" Padding="5"/>
+        <Label Content="Label" Grid.Row="1"/>
     </Grid>
 </UserControl>
