@@ -16,6 +16,15 @@ namespace Helper.Ranges
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
+        public bool SetField<T> (ref T VarToSet, T Value, string PropertyName)
+        {
+            if (!EqualityComparer<T>.Default.Equals(VarToSet, Value))
+                return false;
+            VarToSet = Value;
+            OnPropertyChanged(PropertyName);
+            return true;
+        }
+
         public DoubleValuesRangeBase()
         {
             m_RangeStartValue = 0;
@@ -43,11 +52,10 @@ namespace Helper.Ranges
         {
             get { return m_RangeStartValue; }
             set {
-                if (m_RangeStartValue == value)
-                    return;
+               if(SetField(ref m_RangeStartValue,value,"RangeStart"))
+               {
 
-                m_RangeStartValue = value;
-                OnPropertyChanged("RangeStartValue");
+               }
             }
         }
 
@@ -57,11 +65,10 @@ namespace Helper.Ranges
         {
             get { return m_RangeEndValue; }
             set {
-                if (m_RangeEndValue == value)
-                    return;
+                if (SetField(ref m_RangeEndValue, value, "RangeEndValue"))
+                {
 
-                m_RangeEndValue = value;
-                OnPropertyChanged("RangeEndValue");
+                }
             }
         }
 
@@ -71,10 +78,10 @@ namespace Helper.Ranges
         {
             get { return m_StepValue; }
             set {
-                if (m_StepValue == value)
-                    return;
-                m_StepValue = value;
-                OnPropertyChanged("StepValue");
+                if(SetField(ref m_StepValue,value,"StepValue"))
+                {
+
+                }
             }
         }
 
@@ -84,10 +91,10 @@ namespace Helper.Ranges
         {
             get { return m_RangeWidth; }
             private set {
-                if (m_RangeWidth == value)
-                    return;
-                m_RangeWidth = value;
-                OnPropertyChanged("RangeWidth");
+                if(SetField(ref m_RangeWidth, value, "RangeWidth"))
+                {
+
+                }
             }
         }
 
@@ -97,10 +104,10 @@ namespace Helper.Ranges
         {
             get { return m_PointsCount; }
             set {
-                if (m_PointsCount == value)
-                    return;
-                m_PointsCount = value;
-                OnPropertyChanged("PointsCount");
+                if (SetField(ref m_PointsCount, value, "PointsCount"))
+                {
+
+                }
             }
         }
 
@@ -110,10 +117,10 @@ namespace Helper.Ranges
         {
             get { return m_CountDirection; }
             private set {
-                if (m_CountDirection == value)
-                    return;
-                m_CountDirection = value;
-                OnPropertyChanged("CountDirection");
+                if(SetField(ref m_CountDirection, value,"CountDirection"))
+                {
+
+                }
             }
         }
 
@@ -123,11 +130,10 @@ namespace Helper.Ranges
         {
             get { return m_CyclesNumber; }
             set {
-                if (m_CyclesNumber == value)
-                    return;
-                
-                m_CyclesNumber = value;
-                OnPropertyChanged("CyclesNumber");
+                if(SetField(ref m_CyclesNumber, value, "CyclesNumber"))
+                {
+
+                }
             }
         }
 
@@ -137,10 +143,10 @@ namespace Helper.Ranges
         {
             get { return m_CountingMode; }
             set {
-                if (m_CountingMode == value)
-                    return;
-                m_CountingMode = value;
-                OnPropertyChanged("CountingMode");
+                if(SetField(ref m_CountingMode, value, "CountingMode"))
+                {
+
+                }
             }
         }
 
