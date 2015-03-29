@@ -79,7 +79,7 @@ namespace test
     {
         static void Main(string[] args)
         {
-
+            //Console.WriteLine(Convert.ToString(3-1,2));
             //Console.WriteLine(Instruments.ActualInstruments.AgilentU2442A.AgilentU2542A.CounterFunctionEnum.Frequency);
             //Instruments.ActualInstruments.AgilentU2442A.AgilentU2542A a = new Instruments.ActualInstruments.AgilentU2442A.AgilentU2542A("asd", "fsdf", "dsafsd");
             //Console.WriteLine(a.APPLyQuery("201"));
