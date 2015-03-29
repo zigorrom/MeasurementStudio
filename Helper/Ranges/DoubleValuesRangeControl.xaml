@@ -1,11 +1,16 @@
-﻿<UserControl x:Class="Helper.Ranges.DoubleValuesRangeControl"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Helper="clr-namespace:Helper" x:Class="Helper.Ranges.DoubleValuesRangeControl" 
              mc:Ignorable="d" 
              d:DesignHeight="719.496" d:DesignWidth="425.373">
-    <Grid Margin="0,0,36,27">
+    <Grid>
+
+        <Helper:DataInputControl VerticalAlignment="Top" Margin="0,0,-0.4,0" Height="64" InputName="asdsad">
+            
+        </Helper:DataInputControl>
 
     </Grid>
 </UserControl>
