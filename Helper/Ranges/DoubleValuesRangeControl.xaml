@@ -366,17 +366,65 @@
 		</Grid.ColumnDefinitions>
 		<Label Content="Range start" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <TextBox Grid.Column="1" TextWrapping="Wrap" VerticalContentAlignment="Center" Padding="5" 
-                 Style="{DynamicResource InputTextBoxStyle}" FocusVisualStyle="{DynamicResource InputTextBoxFocusStule}" Grid.ColumnSpan="2" Text="{Binding RangeStartValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                 Style="{DynamicResource InputTextBoxStyle}" FocusVisualStyle="{DynamicResource InputTextBoxFocusStule}" Grid.ColumnSpan="2">
+            <TextBox.Text>
+                <Binding Path="RangeStartValue" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+						<local:DoubleValueValudationRule/>
+					</Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 		<Label Content="Range end" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-		<TextBox Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="adad" VerticalContentAlignment="Center" Padding="5" Style="{DynamicResource InputTextBoxStyle}" FocusVisualStyle="{DynamicResource InputTextBoxFocusStule}" Height="40" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+        <TextBox Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" VerticalContentAlignment="Center" Padding="5" Style="{DynamicResource InputTextBoxStyle}" FocusVisualStyle="{DynamicResource InputTextBoxFocusStule}" Height="40" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
+            <TextBox.Text>
+                <Binding Path="RangeEndValue" Mode="TwoWay" UpdateSourceTrigger ="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:DoubleValueValudationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 		<Label Content="Range step" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-		<TextBox Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" Style="{DynamicResource InputTextBoxStyle}" Grid.ColumnSpan="2"/>
+        <TextBox Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" Style="{DynamicResource InputTextBoxStyle}" Grid.ColumnSpan="2">
+            <TextBox.Text>
+                <Binding Path="StepValue" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:DoubleValueValudationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 		<Label Content="Points number" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-		<TextBox Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" Text="TextBox" Style="{DynamicResource InputTextBoxStyle}"/>
-		<TextBox Grid.Column="2" Grid.Row="3" TextWrapping="Wrap" Text="TextBox" VerticalContentAlignment="Center" Margin="4,2" Style="{DynamicResource InputTextBoxStyle}" IsEnabled="False"/>
+        <TextBox Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" Style="{DynamicResource InputTextBoxStyle}">
+            <TextBox.Text>
+                <Binding Path="RangePointsCount" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:DoubleValueValudationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Grid.Column="2" Grid.Row="3" TextWrapping="Wrap" VerticalContentAlignment="Center" Margin="4,2" Style="{DynamicResource InputTextBoxStyle}" IsEnabled="False">
+            <TextBox.Text>
+                <Binding Path="TotalPointsCount" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:DoubleValueValudationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 		<Label Content="Cycles number" Grid.Row="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-		<TextBox Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap" Text="TextBox" Style="{DynamicResource InputTextBoxStyle}"/>
-		<Label Content="Count mode" Grid.Row="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap" Style="{DynamicResource InputTextBoxStyle}">
+            <TextBox.Text>
+                <Binding Path="CyclesNumber" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:DoubleValueValudationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label Content="Count mode" Grid.Row="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 		<ComboBox Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="5" Style="{DynamicResource InputComboBoxStyle}" SelectedIndex="0" VerticalContentAlignment="Center">
 			<ComboBoxItem Content="Repetitive"/>
 			<ComboBoxItem Content="BackAndForth"/>

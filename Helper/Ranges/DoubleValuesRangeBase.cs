@@ -19,7 +19,7 @@ namespace Helper.Ranges
 
         public bool SetField<T> (ref T VarToSet, T Value, string PropertyName)
         {
-            if (!EqualityComparer<T>.Default.Equals(VarToSet, Value))
+            if (EqualityComparer<T>.Default.Equals(VarToSet, Value))
                 return false;
             VarToSet = Value;
             OnPropertyChanged(PropertyName);
@@ -36,7 +36,7 @@ namespace Helper.Ranges
 
             m_CountDirection = 1;
             m_CountingMode = CountingModeEnum.Repetitive;
-            m_CyclesNumber = 0;
+            m_CyclesNumber = 1;
             m_EnumerationInProgress = false;
         }
 
@@ -119,7 +119,7 @@ namespace Helper.Ranges
         {
             get { return m_RangePointsCount; }
             set {
-                if (SetField(ref m_RangePointsCount, value, "PointsCount"))
+                if (SetField(ref m_RangePointsCount, value, "RangePointsCount"))
                 {
                     if (RangePointsCount > 1)
                         StepValue = RangeWidth / (RangePointsCount - 1);
@@ -187,7 +187,7 @@ namespace Helper.Ranges
 
             var IncrementFuncArray = new Action[6]{
                 new Action(()=>{    // Repeat and -1   -- variant 0
-                    if(value<=RangeEndValue)
+                    if (value + CurrentCountDirection * StepValue < RangeEndValue)
                     {
                         value = RangeStartValue;
                     }
@@ -198,7 +198,7 @@ namespace Helper.Ranges
                     
                 }),
                 new Action(()=>{     // Repeat and 1   -- variant 2
-                    if (value >= RangeEndValue)
+                    if (value+CurrentCountDirection * StepValue > RangeEndValue)
                     {
                         value = RangeStartValue;
                     }
@@ -206,7 +206,7 @@ namespace Helper.Ranges
                         value += CurrentCountDirection * StepValue;
                 }),
                 new Action(()=>{     // Cont and -1   -- variant 3
-                    if(value<=RangeEndValue)
+                    if (value+CurrentCountDirection * StepValue < RangeEndValue)
                     {
                         CurrentCountDirection = -CurrentCountDirection;
                     }
@@ -216,7 +216,7 @@ namespace Helper.Ranges
 
                 }),
                 new Action(()=>{      // Cont and 1   -- variant 5
-                    if(value>=RangeEndValue)
+                    if (value+CurrentCountDirection * StepValue > RangeEndValue)
                     {
                         CurrentCountDirection = -CurrentCountDirection;
                     }

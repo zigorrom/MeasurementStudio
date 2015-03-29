@@ -15,7 +15,7 @@ namespace Helper.Ranges
 
         }
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
-        {
+       {
             //throw new NotImplementedException();
             double result = 0;
             try
