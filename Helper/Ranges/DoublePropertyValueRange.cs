@@ -21,7 +21,7 @@ namespace Helper.Ranges
         public virtual void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (PropertyChanged != null)
-                PropertyChanged(sender, e);
+                PropertyChanged(this, e);
         }
         
         #endregion
@@ -75,7 +75,7 @@ namespace Helper.Ranges
                 m_RangeStartValue.SetValue(value, () =>
                 {
                     CountDirection = Math.Sign(RangeEndValue - RangeStartValue);
-                    RangeWidth = Math.Abs(RangeEndValue = RangeStartValue);
+                    RangeWidth = Math.Abs(RangeEndValue - RangeStartValue);
                     if (RangeStepValue != 0)
                         RangePointsCount = (int)(RangeWidth / RangeStepValue) + 1;
                     else
@@ -171,7 +171,7 @@ namespace Helper.Ranges
 
 
         private IntProperty m_CyclesNumber;
-        public IntProperty CyclesNumber
+        public int CyclesNumber
         {
             get { return m_CyclesNumber; }
             set
