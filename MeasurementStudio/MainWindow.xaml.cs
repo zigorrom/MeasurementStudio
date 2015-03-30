@@ -24,7 +24,7 @@ namespace MeasurementStudio
         public MainWindow()
         {
             InitializeComponent();
-            var range = new DoubleValuesRangeBase();
+            var range = new DoublePropertyValueRange();
             Range.DataContext = range;
         }
     }

@@ -49,12 +49,17 @@
     <Compile Include="NotifyPropertyChanged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ranges\CountingModeEnum.cs" />
+    <Compile Include="Ranges\DoublePropertyValueRange.cs" />
     <Compile Include="Ranges\DoubleRangeBase.cs" />
     <Compile Include="Ranges\DoubleValuesRangeBase.cs" />
     <Compile Include="Ranges\DoubleValuesRangeControl.xaml.cs">
       <DependentUpon>DoubleValuesRangeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ranges\DoubleValueValudationRule.cs" />
+    <Compile Include="Ranges\Properties\CountingModeProperty.cs" />
+    <Compile Include="Ranges\Properties\DoubleProperty.cs" />
+    <Compile Include="Ranges\Properties\IntProperty.cs" />
+    <Compile Include="Ranges\Properties\Property.cs" />
     <Compile Include="Ranges\VoltageRange.cs" />
   </ItemGroup>
   <ItemGroup>

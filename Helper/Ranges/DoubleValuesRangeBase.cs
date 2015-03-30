@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Helper.Ranges
 {
+    [Obsolete("use DoublePropertyValueRange instead",true)]
     public class DoubleValuesRangeBase:IEnumerable<double>,INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

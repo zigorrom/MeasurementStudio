@@ -388,7 +388,7 @@
 		<Label Content="Range step" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <TextBox Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" Style="{DynamicResource InputTextBoxStyle}" Grid.ColumnSpan="2">
             <TextBox.Text>
-                <Binding Path="StepValue" UpdateSourceTrigger="PropertyChanged">
+                <Binding Path="RangeStepValue" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <local:DoubleValueValudationRule/>
                     </Binding.ValidationRules>
