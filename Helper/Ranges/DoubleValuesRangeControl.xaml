@@ -425,9 +425,17 @@
             </TextBox.Text>
         </TextBox>
         <Label Content="Count mode" Grid.Row="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-		<ComboBox Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="5" Style="{DynamicResource InputComboBoxStyle}" SelectedIndex="0" VerticalContentAlignment="Center">
+		<ComboBox Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="5" Style="{DynamicResource InputComboBoxStyle}"  VerticalContentAlignment="Center">
 			<ComboBoxItem Content="Repetitive"/>
 			<ComboBoxItem Content="BackAndForth"/>
+            <ComboBox.SelectedValue>
+                <Binding Path="CountingMode" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.Converter>
+                        <local:CountingModeConverter/>
+                    </Binding.Converter>
+                </Binding>
+            </ComboBox.SelectedValue>
+            
 		</ComboBox>
 	</Grid>
 </UserControl>

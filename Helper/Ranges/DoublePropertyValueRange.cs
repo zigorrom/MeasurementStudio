@@ -204,7 +204,7 @@ namespace Helper.Ranges
 
             var IncrementFuncArray = new Action[6]{
                 new Action(()=>{    // Repeat and -1   -- variant 0
-                    if (value + CurrentCountDirection * RangeStepValue < RangeEndValue)
+                    if (value + CurrentCountDirection * RangeStepValue < RangeStartValue)
                     {
                         value = RangeStartValue;
                     }
@@ -223,7 +223,7 @@ namespace Helper.Ranges
                         value += CurrentCountDirection * RangeStepValue;
                 }),
                 new Action(()=>{     // Cont and -1   -- variant 3
-                    if (value+CurrentCountDirection * RangeStepValue < RangeEndValue)
+                    if (value+CurrentCountDirection * RangeStepValue < RangeStartValue)
                     {
                         CurrentCountDirection = -CurrentCountDirection;
                     }
@@ -241,7 +241,7 @@ namespace Helper.Ranges
                 })
             };
 
-            for (; counter < TotalPointsCount && EnumerationInProgress; IncrementFuncArray[CurrentCountDirection + mode + 1]())
+            for (; counter < TotalPointsCount && EnumerationInProgress; IncrementFuncArray[CurrentCountDirection + mode + 1](),++counter)
             {
                 yield return value;
             }
