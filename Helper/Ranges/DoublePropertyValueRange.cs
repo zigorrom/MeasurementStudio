@@ -193,58 +193,35 @@ namespace Helper.Ranges
                 m_CountingMode.SetValue(value);
             }
         }
+        private IEnumerator<double> GetRepetativeEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        private IEnumerator<double> GetBackAndForthEnumerator()
+        {
+            var val = RangeStartValue;
+            var dir = CountDirection;
+            for (int count = 0; count < TotalPointsCount; count++)
+            {
+                if()
+            }
+
+            throw new NotImplementedException();
+        }
 
         public IEnumerator<double> GetEnumerator()
         {
-            EnumerationInProgress = true;
-            int counter = 0;
-            double value = RangeStartValue;
-            int CurrentCountDirection = CountDirection;
-            int mode = (int)CountingMode * 3; // to make possible distinguish between modes + count direction
-
-            var IncrementFuncArray = new Action[6]{
-                new Action(()=>{    // Repeat and -1   -- variant 0
-                    if (value + CurrentCountDirection * RangeStepValue < RangeStartValue)
-                    {
-                        value = RangeStartValue;
-                    }
-                    else
-                        value+=CurrentCountDirection*RangeStepValue;
-                }), 
-                new Action(()=>{     // Repeat and 0   -- variant 1
-                    
-                }),
-                new Action(()=>{     // Repeat and 1   -- variant 2
-                    if (value+CurrentCountDirection * RangeStepValue > RangeEndValue)
-                    {
-                        value = RangeStartValue;
-                    }
-                    else
-                        value += CurrentCountDirection * RangeStepValue;
-                }),
-                new Action(()=>{     // Cont and -1   -- variant 3
-                    if (value+CurrentCountDirection * RangeStepValue < RangeStartValue)
-                    {
-                        CurrentCountDirection = -CurrentCountDirection;
-                    }
-                    value += CurrentCountDirection * RangeStepValue;
-                }),
-                new Action(()=>{     // Cont and 0   -- variant 4
-
-                }),
-                new Action(()=>{      // Cont and 1   -- variant 5
-                    if (value+CurrentCountDirection * RangeStepValue > RangeEndValue)
-                    {
-                        CurrentCountDirection = -CurrentCountDirection;
-                    }
-                    value += CurrentCountDirection * RangeStepValue;
-                })
-            };
-
-            for (; counter < TotalPointsCount && EnumerationInProgress; IncrementFuncArray[CurrentCountDirection + mode + 1](),++counter)
+            switch (CountingMode)
             {
-                yield return value;
+                case CountingModeEnum.Repetitive:
+                    return GetRepetativeEnumerator();
+                case CountingModeEnum.BackAndForth:
+                    return GetBackAndForthEnumerator();
+                default:
+                    throw new ArgumentException("Wrong value");
             }
+            
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
