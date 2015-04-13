@@ -204,7 +204,7 @@ namespace Helper.Ranges
             var dir = CountDirection;
             for (int count = 0; count < TotalPointsCount; count++)
             {
-                if()
+                //if()
             }
 
             throw new NotImplementedException();
