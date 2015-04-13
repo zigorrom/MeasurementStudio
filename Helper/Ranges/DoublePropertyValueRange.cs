@@ -193,10 +193,19 @@ namespace Helper.Ranges
                 m_CountingMode.SetValue(value);
             }
         }
+
+
+
         private IEnumerator<double> GetRepetativeEnumerator()
         {
+            for (int count = 0; count < TotalPointsCount; count++)
+            {
+                
+            }
             throw new NotImplementedException();
         }
+
+        
 
         private IEnumerator<double> GetBackAndForthEnumerator()
         {

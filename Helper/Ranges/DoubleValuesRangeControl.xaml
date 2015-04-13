@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 
              xmlns:Helper="clr-namespace:Helper" xmlns:local="clr-namespace:Helper.Ranges" xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="Helper.Ranges.DoubleValuesRangeControl" 
-             mc:Ignorable="d" 
-             d:DesignHeight="719.496" d:DesignWidth="425.373" d:DataContext="{d:DesignInstance {x:Type local:DoubleValuesRangeBase}}">
+             mc:Ignorable="d" d:DesignWidth="425.373" d:DataContext="{d:DesignInstance {x:Type local:DoubleValuesRangeBase}}" Height="249.877">
              
     <UserControl.Resources>
     	<local:DoubleValuesRangeBase x:Key="DoubleValuesRangeBaseDataSource" d:IsDataSource="True"/>
@@ -312,7 +311,7 @@
             </TextBox.Text>
         </TextBox>
         <Label Content="Count mode" Grid.Row="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-		<ComboBox Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="5"   VerticalContentAlignment="Center">
+		<ComboBox Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="5" SelectedIndex="0"  VerticalContentAlignment="Center">
 			<ComboBoxItem Content="Repetitive"/>
 			<ComboBoxItem Content="BackAndForth"/>
             <ComboBox.SelectedValue>
