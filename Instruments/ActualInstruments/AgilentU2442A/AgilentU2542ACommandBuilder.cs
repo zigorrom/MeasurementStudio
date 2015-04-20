@@ -1260,8 +1260,61 @@ namespace Instruments.ActualInstruments.AgilentU2442A
 
         #region SYSTem region
 
+        public string SYSTemCDEScriptionQuery()
+        {
+            return "SYST:CDES?\n";
+        }
 
+        public string SYSTemERRorQuery()
+        {
+            return "SYST:ERR?\n";
+        }
+        #endregion
 
+        #region TRIGger region
+        public string TRIGgerSOURce(TriggerSourceEnum mode)
+        {
+            const string CommandFormat = "TRIG:SOUR {0}\n";
+            var value = "";
+            switch (mode)
+            {
+                case TriggerSourceEnum.EXTD_AO_TRIG:
+                    value = "EXTD";
+                    break;
+                case TriggerSourceEnum.EXTA_TRIG:
+                    value = "EXTA";
+                    break;
+                case TriggerSourceEnum.STRG:
+                    value = "STRG";
+                    break;
+                case TriggerSourceEnum.None:
+                default:
+                    value = "NONE";
+                    break;
+            }
+            return String.Format(CommandFormat, value);
+        }
+
+        public string TRIGgerSOURceQuery()
+        {
+            const string CommandFormat = "TRIG:SOUR?\n";
+            return CommandFormat;
+        }
+
+        public string TRIGgerTYPe(TriggerTypeEnum mode)
+        {
+            const string CommandFormat = "TRIGger:TYPe {0}\n";
+            var value = "";
+            switch (mode)
+            {
+                case TriggerTypeEnum.Post:
+                    break;
+                case TriggerTypeEnum.Delay:
+                    break;
+                default:
+                    break;
+            }
+        }
         #endregion
     }
 }
