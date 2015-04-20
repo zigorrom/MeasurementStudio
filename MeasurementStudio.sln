@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InstrumentFolder", "Instrum
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgilentU2442A", "AgilentU2442A\AgilentU2442A.csproj", "{63C41453-1D5A-4C9D-AE0A-D4A08FEEFCA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstrumentAbstraction", "InstrumentAbstraction\InstrumentAbstraction.csproj", "{3C57F76B-BE47-4DE4-8466-3FD0B124D134}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,11 +127,20 @@ Global
 		{63C41453-1D5A-4C9D-AE0A-D4A08FEEFCA3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{63C41453-1D5A-4C9D-AE0A-D4A08FEEFCA3}.Release|x64.ActiveCfg = Release|Any CPU
 		{63C41453-1D5A-4C9D-AE0A-D4A08FEEFCA3}.Release|x86.ActiveCfg = Release|Any CPU
+		{3C57F76B-BE47-4DE4-8466-3FD0B124D134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C57F76B-BE47-4DE4-8466-3FD0B124D134}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C57F76B-BE47-4DE4-8466-3FD0B124D134}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3C57F76B-BE47-4DE4-8466-3FD0B124D134}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3C57F76B-BE47-4DE4-8466-3FD0B124D134}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C57F76B-BE47-4DE4-8466-3FD0B124D134}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C57F76B-BE47-4DE4-8466-3FD0B124D134}.Release|x64.ActiveCfg = Release|Any CPU
+		{3C57F76B-BE47-4DE4-8466-3FD0B124D134}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{63C41453-1D5A-4C9D-AE0A-D4A08FEEFCA3} = {4B5E9D3B-D204-4890-9E20-D4BD8760382E}
+		{3C57F76B-BE47-4DE4-8466-3FD0B124D134} = {4B5E9D3B-D204-4890-9E20-D4BD8760382E}
 	EndGlobalSection
 EndGlobal

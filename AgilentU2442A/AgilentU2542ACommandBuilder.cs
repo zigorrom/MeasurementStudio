@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Instruments.ActualInstruments.AgilentU2442A
+namespace AgilentU2442A
 {
     public class AgilentU2542ACommandClass
     {

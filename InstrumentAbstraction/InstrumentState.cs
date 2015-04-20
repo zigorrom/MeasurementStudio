@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgilentU2442A
+namespace Instruments
 {
-    public class Class1
+    public enum InstrumentState
     {
+        None,
+        Busy,
+        Idle
     }
 }
