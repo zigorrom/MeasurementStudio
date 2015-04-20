@@ -42,7 +42,10 @@
     <Compile Include="AbstractChannel.cs" />
     <Compile Include="AgilentU2542A.cs" />
     <Compile Include="AgilentU2542ACommandBuilder.cs" />
+    <Compile Include="AnalogInputChannel.cs" />
+    <Compile Include="AnalogOutputChannel.cs" />
     <Compile Include="ChannelsEnum.cs" />
+    <Compile Include="DigitalChannel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
