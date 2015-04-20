@@ -39,8 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractChannel.cs" />
     <Compile Include="AgilentU2542A.cs" />
     <Compile Include="AgilentU2542ACommandBuilder.cs" />
+    <Compile Include="ChannelsEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
