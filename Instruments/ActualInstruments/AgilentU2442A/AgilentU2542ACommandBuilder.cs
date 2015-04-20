@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Instruments.ActualInstruments.AgilentU2442A
 {
-    public class AgilentU2542ACommandBuilder
+    public class AgilentU2542ACommandClass
     {
         public string GetChannelListString(params string[] Channels)
         {
@@ -1080,6 +1080,68 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, ChannelList);
         }
+
+
+
+        public string COUNterTOTalizeUDOWnSOURce(ClockSourceEnum mode, params string[] Channels)
+        {
+            const string CommandFormat = "COUN:TOT:UDOW:SOUR {0}, {1}\n";
+            string ChannelList = GetChannelListString(Channels);
+            var Value = "";
+            switch (mode)
+            {
+                case ClockSourceEnum.External:
+                    Value = "EXT";
+                    break;
+                case ClockSourceEnum.Internal:
+                default:
+                    Value = "INT";
+                    break;
+            }
+            return String.Format(CommandFormat, Value, ChannelList);
+        }
+
+        public string COUNterTOTalizeUDOWnSOURceQuery(params string[] Channels)
+        {
+            const string CommandFormat = "COUN:TOT:UDOW:SOUR? {0}\n";
+            string ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        public enum CountingDirection
+        {
+            DOWN,
+            UP
+        }
+        public string COUNterTOTalizeUDOWnDIRection(CountingDirection mode, params string[] Channels)
+        {
+            const string CommandFormat = "COUN:TOT:UDOW:DIR {0}, {1}\n";
+            string ChannelList = GetChannelListString(Channels);
+            string Value = "";
+            switch (mode)
+            {
+                case CountingDirection.DOWN:
+                    Value = "DOWN";
+                    break;
+                case CountingDirection.UP:
+                default:
+                    Value = "UP";
+                    break;
+            }
+            return String.Format(CommandFormat, Value, ChannelList);
+        }
+
+        public string COUNterTOTalizeUDOWnDIRectionQuery(params string[] Channels)
+        {
+            const string CommandFormat = "COUN:TOT:UDOW:DIR? {0}\n";
+            string ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+
+        #endregion
+
+        #region SOURce region
 
 
 
