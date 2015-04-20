@@ -1143,6 +1143,91 @@ namespace Instruments.ActualInstruments.AgilentU2442A
 
         #region SOURce region
 
+        public string SOURceVOLTage(int Value, params string[] Channels)
+        {
+            const string CommandFormat = "SOUR:VOLT {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            if (Value < -10)
+                throw new ArgumentException("Value is < -10");
+            if (Value > 10)
+                throw new ArgumentException("Value is > 10");
+            return String.Format(CommandFormat, Value, ChannelList);
+        }
+
+        public string SOURceVOLTageQuery(params string[] Channels)
+        {
+            const string CommandFormat = "SOUR:VOLT? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        public string SOURceVOLTagePOLarity(PolarityEnum mode, params string[] Channels)
+        {
+            const string CommandFormat = "SOUR:VOLT:POL {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            var Value = "";
+            switch (mode)
+            {
+                case PolarityEnum.Bipolar:
+                    Value = "BIP";
+                    break;
+                case PolarityEnum.Unipolar:
+                default:
+                    Value = "UNIP";
+                    break;
+            }
+            return String.Format(CommandFormat, Value, ChannelList);
+        }
+
+        public string SOURceVOLTagePOLarityQuery(params string[] Channels)
+        {
+            const string CommandFormat = "SOUR:VOLT:POL? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        public string SOURceVOLTageRCouRCe(ReferenceVoltageEnum mode, params string[] Channels)
+        {
+            const string CommandFormat = "SOUR:VOLT:RSRC {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            var Value = "";
+            switch (mode)
+            {
+                case ReferenceVoltageEnum.External:
+                    Value = "EXT";
+                    break;
+                case ReferenceVoltageEnum.Internal:
+                default:
+                    Value = "INT";
+                    break;
+            }
+            return String.Format(CommandFormat, Value, ChannelList);
+        }
+
+        public string SOURceVOLTageRCouRCeQuery(params string[] Channels)
+        {
+            const string CommandFormat = "SOUR:VOLT:RSRC? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        public string SOURceVOLTageRVOLtage(int Value)
+        {
+            const string CommandFormat = "SOUR:VOLT:RVOL {0}\n";
+            if (Value < 0)
+                throw new ArgumentException("Value < 0");
+            if(Value > 10)
+                throw new ArgumentException("Value > 10");
+
+            return String.Format(CommandFormat, Value);
+        }
+
+        public string SOURceVOLTageRVOLtageQuery()
+        {
+            const string CommandFormat = "SOUR:VOLT:RVOL?\n";
+            return CommandFormat;
+        }
+
 
 
         #endregion
