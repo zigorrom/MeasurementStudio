@@ -12,5 +12,20 @@ namespace AgilentU2442A
         {
 
         }
+
+        public double AnalogRead()
+        {
+            return 0;   
+        }
+
+        public void StartAcquisition()
+        {
+
+        }
+
+        public void StopAcquisition()
+        {
+
+        }
     }
 }
