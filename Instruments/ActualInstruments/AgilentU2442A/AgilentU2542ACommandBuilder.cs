@@ -432,7 +432,9 @@ namespace Instruments.ActualInstruments.AgilentU2442A
         public enum TriggerTypeEnum
         {
             Post,
-            Delay
+            Delay,
+            Pre,
+            Mid
         }
 
         public string OUTPutTRIGgerTYPe(TriggerTypeEnum type)
@@ -504,7 +506,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
 
         public enum TrigerConditionEnum
         {
-            AHID,
+            AHIG,
             WIND,
             BLOW
         }
@@ -514,8 +516,8 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             string Mode = "";
             switch (mode)
             {
-                case TrigerConditionEnum.AHID:
-                    Mode = "AHID";
+                case TrigerConditionEnum.AHIG:
+                    Mode = "AHIG";
                     break;
                 case TrigerConditionEnum.WIND:
                     Mode = "WIND";
@@ -1303,18 +1305,272 @@ namespace Instruments.ActualInstruments.AgilentU2442A
 
         public string TRIGgerTYPe(TriggerTypeEnum mode)
         {
-            const string CommandFormat = "TRIGger:TYPe {0}\n";
+            const string CommandFormat = "TRIG:TYP {0}\n";
             var value = "";
             switch (mode)
             {
-                case TriggerTypeEnum.Post:
-                    break;
                 case TriggerTypeEnum.Delay:
+                    value = "DEL";
                     break;
+                case TriggerTypeEnum.Pre:
+                    value = "PRE";
+                    break;
+                case TriggerTypeEnum.Mid:
+                    value = "MID";
+                    break;
+                case TriggerTypeEnum.Post:
                 default:
+                    value = "POST";
                     break;
             }
+            return String.Format(CommandFormat, value);
+        }
+
+        public string TRIGgerTYPeQuery()
+        {
+            const string CommandFormat = "TRIG:TYP?\n";
+            return CommandFormat;
+        }
+
+        public string TRIGgerDCouNT(int value)
+        {
+            const string CommandFormat = "TRIG:DCNT {0}\n";
+            if (value < 0)
+                throw new ArgumentException("value<0");
+            return String.Format(CommandFormat, value);
+        }
+
+        public string TRIGgerDCouNTQuery()
+        {
+            const string CommandFormat = "TRIG:DCNT?\n";
+            return CommandFormat;
+        }
+
+        public string TRIGgerATRiGgerSOURce(string param = "EXTAP")
+        {
+            const string CommandFormat = "TRIG:ATRG:SOUR {0}\n";
+            return String.Format(CommandFormat, param);
+        }
+
+        public string TRIGgerATRiGgerSOURceQuery()
+        {
+            return "TRIG:ATRG:SOUR?\n";
+        }
+
+        public string TRIGgerATRiGgerCONDition(TrigerConditionEnum mode)
+        {
+            const string CommandFormat = "TRIG:ATRG:COND {0}\n";
+            var value = "";
+            switch (mode)
+            {
+                case TrigerConditionEnum.AHIG:
+                    value = "AHIG";
+                    break;
+                case TrigerConditionEnum.WIND:
+                    value = "WIND";
+                    break;
+                case TrigerConditionEnum.BLOW:
+                default:
+                    value = "BLOW";
+                    break;
+            }
+            return String.Format(CommandFormat, value);
+        }
+
+        public string TRIGgerATRiGgerCONDitionQuery()
+        {
+            const string CommandFormat = "TRIG:ATRG:COND?\n";
+            return CommandFormat;
+        }
+
+        public string TRIGgerATRiGgerHTHReshold(double value)
+        {
+            const string CommandFormat = "TRIG:ATRG:HTHR {0}\n";
+            if (value < -10)
+                throw new ArgumentException("value < -10");
+            if (value > 10)
+                throw new ArgumentException("value > 10");
+            
+            return String.Format(CommandFormat, value);
+        }
+
+        public string TRIGgerATRiGgerHTHResholdQuery()
+        {
+            const string CommandFormat = "TRIG:ATRG:HTHR?\n";
+            return CommandFormat;
+        }
+
+        public string TRIGgerATRiGgerLTHReshold(double value)
+        {
+            const string CommandFormat = "TRIG:ATRG:LTHR {0}\n";
+            if (value < -10)
+                throw new ArgumentException("value < -10");
+            if (value > 10)
+                throw new ArgumentException("value > 10");
+
+            return String.Format(CommandFormat, value);
+        }
+
+        public string TRIGgerATRiGgerLTHResholdQuery()
+        {
+            const string CommandFormat = "TRIG:ATRG:LTHR?\n";
+            return CommandFormat;
+        }
+
+        public string TRIGgerDTRiGgerPOLarity(TriggerPolarityEnum mode)
+        {
+            const string CommandFormat = "TRIG:DTRG:POL {0}\n";
+            var value = "";
+            switch (mode)
+            {
+                case TriggerPolarityEnum.NEG:
+                    value = "NEG";
+                    break;
+                case TriggerPolarityEnum.POS:
+                default:
+                    value = "POS";
+                    break;
+            }
+            return String.Format(CommandFormat, value);
+        }
+
+        public string TRIGgerDTRiGgerPOLarityQuery()
+        {
+            const string CommandFormat = "TRIG:DTRG:POL?\n";
+            return CommandFormat;
         }
         #endregion
+
+        #region WAVeform region
+
+        public string WAVeformDATAQuery()
+        {
+            const string CommandFormat = "WAV:DATA?\n";
+            return CommandFormat;
+        }
+
+        public string WAVeformPOINts(int value)
+        {
+            const string CommandFormat = "WAV:POIN {0}\n";
+            if (value < 0)
+                throw new ArgumentException("value <0");
+            if (value > 4000000)
+                throw new ArgumentException("value > 4Msa");
+            return String.Format(CommandFormat, value);
+        }
+        public string WAVeformPOINtsQuery()
+        {
+            const string CommandFormat = "WAV:POIN?\n";
+            return CommandFormat;
+        }
+
+        public string WAVeformSTATusQuery()
+        {
+            return "WAV:STAT?\n";
+        }
+
+        public string WAVeformCOMPleteQuery()
+        {
+            return "WAV:COMP?\n";
+        }
+
+        #endregion
+
+        #region Root region
+
+        public string DIGitize()
+        {
+            return "DIG\n";
+        }
+
+        public string RUN()
+        {
+            return "RUN\n";
+        }
+
+        public string STOP()
+        {
+            return "STOP\n";
+        }
+
+        public string MODelQuery()
+        {
+            return "MOD?\n";
+        }
+
+        public string SERialQuery()
+        {
+            return "SER?\n";
+        }
+
+        public string DATA()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region CommonCommands region
+
+        public string CLS()
+        {
+            return "*CLS\n";
+        }
+
+        public string ESE(int value)
+        {
+            const string CommandFormat = "*ESE {0}\n";
+            return String.Format(CommandFormat, value);
+        }
+
+        public string ESEQuery()
+        {
+            return "*ESE?\n";
+        }
+
+        public string ESRQuery()
+        {
+            return "*ESR?\n";
+        }
+
+        public string IDNQuery()
+        {
+            return "*IDN?\n";
+        }
+
+        public string OPC()
+        {
+            return "*OPC\n";
+        }
+
+
+        public string OPCQuery()
+        {
+            return "*OPC?\n";
+        }
+
+        public string RCL(int value)
+        {
+            const string CommandFormat = "*RCL {0}\n";
+            if (value != 1 && value != 2)
+                throw new ArgumentException();
+            return String.Format(CommandFormat, value);
+        }
+
+        public string RST()
+        {
+            return "*RST\n";
+        }
+
+        public string SAV(int state)
+        {
+            const string CommandFormat = "*SAV {0}\n";
+            if (state != 1 && state != 2)
+                throw new ArgumentException();
+            return String.Format(CommandFormat, state);
+        }
+
+        #endregion
+
     }
 }
