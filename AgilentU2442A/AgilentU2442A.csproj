@@ -49,6 +49,7 @@
     <Compile Include="ChannelsEnum.cs" />
     <Compile Include="DigitalChannel.cs" />
     <Compile Include="DigitalChannels.cs" />
+    <Compile Include="IAnalogInputChannel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
