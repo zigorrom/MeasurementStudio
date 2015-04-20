@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instruments", "Instruments\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Experiments", "Experiments\Experiments.csproj", "{5CBFE7F1-14C5-4051-8C53-11E97B65DD6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotter", "Spotter\Spotter.csproj", "{7F131DC9-C03D-4F1E-9051-9AD2BA502FCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,14 @@ Global
 		{5CBFE7F1-14C5-4051-8C53-11E97B65DD6F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5CBFE7F1-14C5-4051-8C53-11E97B65DD6F}.Release|x64.ActiveCfg = Release|Any CPU
 		{5CBFE7F1-14C5-4051-8C53-11E97B65DD6F}.Release|x86.ActiveCfg = Release|Any CPU
+		{7F131DC9-C03D-4F1E-9051-9AD2BA502FCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F131DC9-C03D-4F1E-9051-9AD2BA502FCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F131DC9-C03D-4F1E-9051-9AD2BA502FCC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7F131DC9-C03D-4F1E-9051-9AD2BA502FCC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7F131DC9-C03D-4F1E-9051-9AD2BA502FCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F131DC9-C03D-4F1E-9051-9AD2BA502FCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F131DC9-C03D-4F1E-9051-9AD2BA502FCC}.Release|x64.ActiveCfg = Release|Any CPU
+		{7F131DC9-C03D-4F1E-9051-9AD2BA502FCC}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

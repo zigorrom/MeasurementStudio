@@ -1,8 +1,5 @@
-﻿using Helper.Ranges;
-using NationalInstruments.VisaNS;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MeasurementStudio
+namespace Spotter
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -26,18 +23,20 @@ namespace MeasurementStudio
         public MainWindow()
         {
             InitializeComponent();
-            //range = new DoublePropertyValueRange();
-            //Range.DataContext = range;
-        }
-        //DoublePropertyValueRange range;
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ResourceManager mngr = ResourceManager.GetLocalManager();
-            var res = mngr.FindResources("?*");
-            //foreach (var item in range)
-            //{
-            //    Debug.WriteLine(item);
-            //}
+            foreach (var item in COMDevice.GetPortNames())
+            {
+                MessageBox.Show(item);
+                try
+                {
+                    COMDevice dev = new COMDevice(item);
+                }
+                catch (Exception e)
+                {
+
+                    throw;
+                }
+            }
+            
         }
     }
 }

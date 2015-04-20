@@ -91,7 +91,7 @@ namespace Instruments
             return true;
         }
 
-        private void AssertSession()
+        public virtual void AssertSession()
         {
             if(!IsAlive(false))
                 throw new ArgumentNullException("Message session is not initialized!");
@@ -102,7 +102,7 @@ namespace Instruments
             throw new NotImplementedException();
         }
 
-        public bool SendCommand(string Command)
+        public virtual bool SendCommand(string Command)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace Instruments
             return true;
         }
 
-        public string GetResponce()
+        public virtual string GetResponce()
         {
             var responce = "";
             try
@@ -139,7 +139,7 @@ namespace Instruments
             return responce;
         }
 
-        public string Query(string Command)
+        public virtual string Query(string Command)
         {
             AssertSession();
             var resp = "";
@@ -181,14 +181,14 @@ namespace Instruments
             return false;
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             m_session.Dispose();
             m_session = null;
         }
 
 
-        public bool IsAlive(bool SendIDN)
+        public virtual bool IsAlive(bool SendIDN)
         {
             if (m_session == null)
                 return false;
