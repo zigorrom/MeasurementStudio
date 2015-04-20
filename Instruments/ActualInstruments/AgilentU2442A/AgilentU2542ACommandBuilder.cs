@@ -1228,6 +1228,38 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return CommandFormat;
         }
 
+        public string SOURceDIGitalDATA(int value, params string[] Channels)
+        {
+            const string CommandFormat = "SOUR:DIG:DATA {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, value, ChannelList);
+        }
+
+        public string SOURceDIGitalDATAQuery(params string[] Channels)
+        {
+            const string CommandFormat = "SOUR:DIG:DATA? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        public string SOURceDIGitalDATABIT(int Value, int BitNumber, params string[] Channels)
+        {
+            const string CommandFormat = "SOUR:DIG:DATA:BIT {0}, {1}, {2}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, Value, BitNumber, ChannelList);
+        }
+
+        public string SOURceDIGitalDATABITQuery(int BitNumber, params string[] Channels)
+        {
+            const string CommandFormat = "SOUR:DIG:DATA:BIT? {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, BitNumber, ChannelList);
+        }
+
+        #endregion
+
+        #region SYSTem region
+
 
 
         #endregion
