@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Instruments.ActualInstruments.AgilentU2442A
 {
     [InstrumentAttribute("Agilent","U2542A")]
-    public partial class AgilentU2542A:AbstractMessageBasedInstrument//,IDAQ
+    public class AgilentU2542A:AbstractMessageBasedInstrument//,IDAQ
     {
         public AgilentU2542A(string Name,string Alias,string ResourceName):base(Name,Alias,ResourceName)
         {

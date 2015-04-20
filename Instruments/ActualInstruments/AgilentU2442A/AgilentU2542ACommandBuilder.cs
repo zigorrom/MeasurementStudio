@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Instruments.ActualInstruments.AgilentU2442A
 {
-    public partial class AgilentU2542A
+    public class AgilentU2542ACommandBuilder
     {
-        private string GetChannelListString(params string[] Channels)
+        public string GetChannelListString(params string[] Channels)
         {
             if (Channels.Length == 0)
                 throw new ArgumentNullException();
@@ -26,7 +26,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
         /// • U2542A: 3 Hz to 500000 (500 kHz) 
         /// Default 1000 Hz</param>
         /// <returns></returns>
-        private string ACQuireSRATe(int SampleRate = 1000)
+        public string ACQuireSRATe(int SampleRate = 1000)
         {
             const int MinVal = 3;
             const int MaxVal = 500000;
@@ -44,7 +44,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
         /// This query returns a numeric value that represents the instrument sampling rate. The value returned is expressed in hertz (Hz).
         /// </summary>
         /// <returns></returns>
-        private string ACQuireSRATeQuery()
+        public string ACQuireSRATeQuery()
         {
             return "ACQ:SRAT?\n";
         }
@@ -68,7 +68,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
         /// Default: 500
         /// </param>
         /// <returns></returns>
-        private string ACQuirePOINts(int NumberOfPoints = 500)
+        public string ACQuirePOINts(int NumberOfPoints = 500)
         {
             const int MaxVal = 8000000;
             const string CommandFormat = "ACQuire:POINts {0}\n";
@@ -86,7 +86,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
         /// This query returns a numeric value that represents the number of acquisition points set for the single- shot acquisition process
         /// </summary>
         /// <returns></returns>
-        private string ACQuirePOINtsQuery()
+        public string ACQuirePOINtsQuery()
         {
             return "ACQuire:POINts?\n";
         }
@@ -102,7 +102,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, GetChannelListString(Channels));
         }
 
-        private string APPLyParamString(double Amplitude, double Offset, params string [] Channels)
+        public string APPLyParamString(double Amplitude, double Offset, params string [] Channels)
         {
             if (Amplitude < 0)
                 throw new ArgumentException("Amplitude is less than 0");
@@ -116,37 +116,37 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(ParamsFormat, Amplitude, Offset, ChannelList);
         }
 
-        private string APPLySINusoid(double Amplitude, double Offset, params string[] Channels)
+        public string APPLySINusoid(double Amplitude, double Offset, params string[] Channels)
         {
             const string CommandFormat = "APPL:SIN {0}\n";
             return String.Format(CommandFormat, APPLyParamString(Amplitude, Offset, Channels));
         }
 
-        private string APPLySQUare(double Amplitude, double Offset, params string[] Channels)
+        public string APPLySQUare(double Amplitude, double Offset, params string[] Channels)
         {
             const string CommandFormat = "APPL:SQU {0}\n";
             return String.Format(CommandFormat, APPLyParamString(Amplitude, Offset, Channels));
         }
 
-        private string APPLySAWTooth(double Amplitude, double Offset, params string[] Channels)
+        public string APPLySAWTooth(double Amplitude, double Offset, params string[] Channels)
         {
             const string CommandFormat = "APPL:SAW {0}\n";
             return String.Format(CommandFormat, APPLyParamString(Amplitude, Offset, Channels));
         }
 
-        private string APPLyTRIangle(double Amplitude, double Offset, params string[] Channels)
+        public string APPLyTRIangle(double Amplitude, double Offset, params string[] Channels)
         {
             const string CommandFormat = "APPL:TRI {0}\n";
             return String.Format(CommandFormat, APPLyParamString(Amplitude, Offset, Channels));
         }
 
-        private string APPLyNOISe(double Amplitude, double Offset, params string[] Channels)
+        public string APPLyNOISe(double Amplitude, double Offset, params string[] Channels)
         {
             const string CommandFormat = "APPL:NOIS {0}\n";
             return String.Format(CommandFormat, APPLyParamString(Amplitude, Offset, Channels));
         }
         
-        private string APPLyUSER(params string[] Channels)
+        public string APPLyUSER(params string[] Channels)
         {
             //if (Channels.Length == 0)
             //    throw new ArgumentException();
@@ -158,7 +158,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
 #endregion
 
         #region Calibration region
-        private string CALibrationBEGin()
+        public string CALibrationBEGin()
         {
             return "CAL:BEG\n"; 
 
@@ -168,7 +168,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
         #region CONFigure region
 
 
-        private string CONFigureDIGitalDIRection(bool IsInput,params string[] Channels)
+        public string CONFigureDIGitalDIRection(bool IsInput,params string[] Channels)
         {
             const string CommandFormat = "CONF:DIG:DIR {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -180,7 +180,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return string.Format(CommandFormat, Direction, ChannelList);
         }
 
-        private string CONFigureDIGitalDIRectionQuery(params string[] Channels)
+        public string CONFigureDIGitalDIRectionQuery(params string[] Channels)
         {
             const string CommandFormat = "CONF:DIG:DIR? {0}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -192,7 +192,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             Internal,
             External
         }
-        private string CONFigureTIMEbaseSOURce(ClockSourceEnum source)
+        public string CONFigureTIMEbaseSOURce(ClockSourceEnum source)
         {
             string ClockSource = String.Empty;
             const string CommandFormat = "CONF:TIME:SOUR {0}\n";
@@ -209,12 +209,12 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, ClockSource);
         }
 
-        private string CONFigureTIMEbaseSOURceQuery()
+        public string CONFigureTIMEbaseSOURceQuery()
         {
             return "CONF:TIME:SOUR?\n";
         }
 
-        private string CONFigureTIMEbaseECLocK(int ClockFrequency = 10000)
+        public string CONFigureTIMEbaseECLocK(int ClockFrequency = 10000)
         {
             const string CommandFormat = "CONF:TIME:ECLK {0}\n";
             const int MinVal  = 10000;
@@ -227,7 +227,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, val);
         }
 
-        private string CONFigureTIMEbaseECLocKQuery()
+        public string CONFigureTIMEbaseECLocKQuery()
         {
             return "CONF:TIME:ECLK?\n";
         }
@@ -239,7 +239,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             Slave
         }
 
-        private string CONFigureSSI(SSIMode mode)
+        public string CONFigureSSI(SSIMode mode)
         {
             const string CommandFormat = "CONF:SSI {0}\n";
             string ModeStr = String.Empty;
@@ -259,7 +259,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, ModeStr);
         }
 
-        private string CONFigureSSIQuery()
+        public string CONFigureSSIQuery()
         {
             return "CONF:SSI?\n";
         }
@@ -268,56 +268,56 @@ namespace Instruments.ActualInstruments.AgilentU2442A
 
         #region MEASure region
 
-        private string MEASureVOLTageDCQuery(params string[] Channels)
+        public string MEASureVOLTageDCQuery(params string[] Channels)
         {
             const string CommandFormat = "MEAS? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, ChannelList);
         }
 
-        private string MEASureCOUNterDATAQuery(params string[] Channels)
+        public string MEASureCOUNterDATAQuery(params string[] Channels)
         {
             const string CommandFormat = "MEAS:COUN:DATA? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, ChannelList);
         }
 
-        private string MEASureCOUNterFREQency(params string[] Channels)
+        public string MEASureCOUNterFREQency(params string[] Channels)
         {
             const string CommandFormat = "MEAS:COUN:FREQ? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, ChannelList);
         }
 
-        private string MEASureCOUNterPERiodQuery(params string[] Channels)
+        public string MEASureCOUNterPERiodQuery(params string[] Channels)
         {
             const string CommandFormat = "MEAS:COUN:PER? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, ChannelList);
         }
 
-        private string MEASureCOUNterPWIDthQuery(params string[] Channels)
+        public string MEASureCOUNterPWIDthQuery(params string[] Channels)
         {
             const string CommandFormat = "MEAS:COUN:PWID? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, ChannelList);
         }
 
-        private string MEASureCOUNterTOTalizeQuery(params string[] Channels)
+        public string MEASureCOUNterTOTalizeQuery(params string[] Channels)
         {
             const string CommandFormat = "MEAS:COUN:TOT? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, ChannelList);
         }
 
-        private string MEASureDIGitalQuery(params string[]Channels)
+        public string MEASureDIGitalQuery(params string[]Channels)
         {
             const string CommandFormat = "MEAS:DIG? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, ChannelList);
         }
 
-        private string MEASureDIGitalBIT(int BitNumber, params string[] Channels )
+        public string MEASureDIGitalBIT(int BitNumber, params string[] Channels )
         {
             const string CommandFormat = "MEAS:DIG:BIT? {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -337,7 +337,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             Off
         }
 
-        private string OUTPut(OutputStateEnum state)
+        public string OUTPut(OutputStateEnum state)
         {
             const string CommandFormat = "OUTP {0}\n";
             string State = String.Empty;
@@ -354,13 +354,13 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, State);
         }
 
-        private string OUTPutQuery()
+        public string OUTPutQuery()
         {
             return "OUTP?\n";
 
         }
 
-        private string OUTPutWAVeformITERate(int Value=0)
+        public string OUTPutWAVeformITERate(int Value=0)
         {
             const string CommandFormat = "OUTP:WAV:ITER {0}\n";
             if (Value < 0)
@@ -370,12 +370,12 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, Value);
         }
 
-        private string OUTPutWAVeformITERateQuery()
+        public string OUTPutWAVeformITERateQuery()
         {
             return "OUTP:WAV:ITER?\n";
         }
 
-        private string OUTPutWAVeformSRATe(int SampleRate)
+        public string OUTPutWAVeformSRATe(int SampleRate)
         {
             const string CommandFormat = "OUTP:WAV:STAT {0}\n";
             if (SampleRate > 1000000)
@@ -385,7 +385,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, SampleRate);
         }
 
-        private string OUTPutWAVeformFREQuency(int Frequency = 4000)
+        public string OUTPutWAVeformFREQuency(int Frequency = 4000)
         {
             const string CommandFormat = "OUTP:WAV:FREQ {0}\n";
             if (Frequency < 10)
@@ -402,7 +402,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             EXTA_TRIG,
             STRG
         }
-        private string OUTPutTRIGgerSOURce(TriggerSourceEnum mode)
+        public string OUTPutTRIGgerSOURce(TriggerSourceEnum mode)
         {
             const string CommandFormat = "OUTP:TRIG:SOUR {0}\n";
             string Trig = String.Empty;
@@ -424,7 +424,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             }
             return String.Format(CommandFormat, Trig);
         }
-        private string OUTPutTRIGgerSOURceQuery()
+        public string OUTPutTRIGgerSOURceQuery()
         {
             return "OUTP:TRIG:SOUR?\n";
         }
@@ -435,7 +435,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             Delay
         }
 
-        private string OUTPutTRIGgerTYPe(TriggerTypeEnum type)
+        public string OUTPutTRIGgerTYPe(TriggerTypeEnum type)
         {
             const string Commandformat = "OUTP:TRIG:TYP {0}\n";
             string Type = String.Empty;
@@ -452,7 +452,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(Commandformat, Type);
         }
 
-        private string OUTPutTRIGgerDCouNT(int value=0)
+        public string OUTPutTRIGgerDCouNT(int value=0)
         {
             const string CommandFormat = "OUTP:TRIG:DCNT {0}\n";
             if (value < 0)
@@ -470,7 +470,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             CH104,
             EXTAP
         }
-        private string OUTPutTRIGgerATRiGgerSOURce(AnalogTriggerSourceEnum mode)
+        public string OUTPutTRIGgerATRiGgerSOURce(AnalogTriggerSourceEnum mode)
         {
             const string CommandFormat = "OUTP:TRIG:ATRG:SOUR {0}\n";
             string Mode = String.Empty;
@@ -496,7 +496,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, Mode);
         }
 
-        private  string OUTPutTRIGgerATRiGgerSOURceQuery()
+        public  string OUTPutTRIGgerATRiGgerSOURceQuery()
         {
             return "OUTP:TRIG:ATRG:SOUR?\n";
         }
@@ -508,7 +508,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             WIND,
             BLOW
         }
-        private string OUTPutTRIGgerATRiGgetCONDition(TrigerConditionEnum mode)
+        public string OUTPutTRIGgerATRiGgetCONDition(TrigerConditionEnum mode)
         {
             const string CommandFormat = "OUTP:TRIG:ATRG:COND {0}\n";
             string Mode = "";
@@ -529,12 +529,12 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, Mode);
         }
 
-        private string OUTPutTRIGgerATRiGgetCONDitionQuery()
+        public string OUTPutTRIGgerATRiGgetCONDitionQuery()
         {
             return "OUTP:TRIG:ATRG:COND?\n";
         }
 
-        private string OUTPutTRIGgerATRiGgerHTHReshold(double Value)
+        public string OUTPutTRIGgerATRiGgerHTHReshold(double Value)
         {
             const string CommandFormat = "OUTP:TRIG:ATRG:HTHR {0}\n";
             if (Value < -10)
@@ -544,12 +544,12 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, Value);
         }
 
-        private string OUTPutTRIGgerATRiGgerHTHResholdQuery ()
+        public string OUTPutTRIGgerATRiGgerHTHResholdQuery ()
         {
             return "OUTP:TRIG:ATRG:HTHR?\n";
         }
 
-        private string OUTPutTRIGgerATRiGgerLTHReshold(double Value)
+        public string OUTPutTRIGgerATRiGgerLTHReshold(double Value)
         {
             const string CommandFormat = "OUTP:TRIG:ATRG:LTHR {0}\n";
             if (Value < -10)
@@ -559,7 +559,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, Value);
         }
 
-        private string OUTPutTRIGgerATRiGgerLTHResholdQuery()
+        public string OUTPutTRIGgerATRiGgerLTHResholdQuery()
         {
             return "OUTP:TRIG:ATRG:LTHR?\n";
         }
@@ -569,7 +569,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             NEG,
             POS
         }
-        private string OUTPutTRIGgerDTRiGgerPOLarity(TriggerPolarityEnum polarity)
+        public string OUTPutTRIGgerDTRiGgerPOLarity(TriggerPolarityEnum polarity)
         {
             const string CommandFormat = "OUTP:TRIG:DTRG:POL {0}\n";
             string Mode = "";
@@ -585,7 +585,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             }
             return String.Format(CommandFormat, Mode);
         }
-        private string OUTPutTRIGgerDTRiGgerPOLarityQuery()
+        public string OUTPutTRIGgerDTRiGgerPOLarityQuery()
         {
             return "OUTP:TRIG:DTRG:POL?\n";
         }
@@ -603,7 +603,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
         }
 
 
-        private string ROUTeCHANnelRANGe(AIRangesEnum range, params string[]Channels)
+        public string ROUTeCHANnelRANGe(AIRangesEnum range, params string[]Channels)
         {
             const string CommandFormat = "ROUT:CHAN:RANG {0}, {1}\n";
             var RangeStr = "";
@@ -626,7 +626,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, RangeStr, ChannelList);
         }
-        private string ROUTeCHANnelRANGeQuery(params string[] Channels)
+        public string ROUTeCHANnelRANGeQuery(params string[] Channels)
         {
             return String.Format("ROUT:CHAN:RANG? {1}\n", GetChannelListString(Channels));
         }
@@ -637,7 +637,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             Bipolar
         }
 
-        private string ROUTeCHANnelPOLarity(PolarityEnum mode, params string[] Channels)
+        public string ROUTeCHANnelPOLarity(PolarityEnum mode, params string[] Channels)
         {
             const string CommandFormat = "ROUT:CHAN:POL {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -655,14 +655,14 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, Mode, ChannelList);
 
         }
-        private string ROUTeCHANnelPOLarityQuery(params string[] Channels)
+        public string ROUTeCHANnelPOLarityQuery(params string[] Channels)
         {
             const string CommandFormat = "ROUT:CHAN:POL? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, ChannelList);
         }
 
-        private string ROUTeCHANnelSTYPeQuery(params string[] Channels)
+        public string ROUTeCHANnelSTYPeQuery(params string[] Channels)
         {
             const string CommandFormat = "ROUT:CHAN:STYP? {0}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -674,7 +674,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             External,
             Internal
         }
-        private string ROUTeCHANnelRSouRCe(ReferenceVoltageEnum mode, params string[] Channels)
+        public string ROUTeCHANnelRSouRCe(ReferenceVoltageEnum mode, params string[] Channels)
         {
             const string CommandFormat = "ROUT:CHAN:RCRC {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -692,14 +692,14 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat,Mode, ChannelList);
         }
 
-        private string ROUTeCHANnelRSouRCe(params string[] Channels)
+        public string ROUTeCHANnelRSouRCe(params string[] Channels)
         {
             const string CommandFormat = "ROUT:CHAN:RCRC? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, ChannelList);
         }
 
-        private string ROUTeCHANnelRVOLtage(double Value)
+        public string ROUTeCHANnelRVOLtage(double Value)
         {
             const string CommandFormat = "ROUT:CHAN:RVOL {0}\n";
             if (Value < 0)
@@ -708,7 +708,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
                 throw new ArgumentException(">10");
             return String.Format(CommandFormat, Value);
         }
-        private string ROUTeCHANnelRVOLtageQuery()
+        public string ROUTeCHANnelRVOLtageQuery()
         {
             return "ROUT:CHAN:RVOL?\n";
         }
@@ -719,7 +719,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             Enabled,
             Disabled
         }
-        private string ROUTeENABle(ChannelOutputEnableEnum mode, params string[]Channels)
+        public string ROUTeENABle(ChannelOutputEnableEnum mode, params string[]Channels)
         {
             const string CommandFormat = "ROUT:ENAB {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -737,7 +737,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, Mode, ChannelList);
         }
 
-        private string ROUTeENABleQuery(params string[]Channels)
+        public string ROUTeENABleQuery(params string[]Channels)
         {
             const string CommandFormat = "ROUT:ENAB? {0}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -757,7 +757,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             AUTO
 
         }
-        private string VOLTageRANGe(VoltageRangeEnum mode, params string[] Channels)
+        public string VOLTageRANGe(VoltageRangeEnum mode, params string[] Channels)
         {
             const string CommandFormat = "VOLT:RANG {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -784,14 +784,14 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, Mode, ChannelList);
         }
 
-        private string VOLTageRANGeQuery(params string[] Channels)
+        public string VOLTageRANGeQuery(params string[] Channels)
         {
             const string CommandFormat = "VOLT:RANG? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, ChannelList);
         }
 
-        private string VOLTagePOLarity(PolarityEnum mode, params string[] Channels)
+        public string VOLTagePOLarity(PolarityEnum mode, params string[] Channels)
         {
             const string CommandFormat = "VOLT:POL {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -809,21 +809,21 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, Mode, ChannelList);
         }
 
-        private string VOLTagePOLarityQuery(params string[] Channels)
+        public string VOLTagePOLarityQuery(params string[] Channels)
         {
             const string CommandFormat = "VOLT:POL? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, ChannelList);
         }
 
-        private string VOLTageSTYPeQuery(params string[] Channels)
+        public string VOLTageSTYPeQuery(params string[] Channels)
         {
             const string CommandFormat = "VOLT:STYP? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, ChannelList);
         }
 
-        private string VOLTageAVERage(int value)
+        public string VOLTageAVERage(int value)
         {
             const string CommandFormat = "VOLT:AVER {0}\n";
             if (value < 1)
@@ -833,7 +833,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, value);
         }
 
-        private string VOLTageAVERageQuery()
+        public string VOLTageAVERageQuery()
         {
             return "VOLT:AVER?\n";
         }
@@ -846,7 +846,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             TOTalize
         }
 
-        private string COUTerFUNCtion(CounterFunctionEnum mode, params string[] Channels)
+        public string COUTerFUNCtion(CounterFunctionEnum mode, params string[] Channels)
         {
             const string CommandFormat = "COUN:FUNC {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -870,14 +870,14 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, Mode, ChannelList);
         }
 
-        private string COUTerFUNCtionQuery(params string[] Channels)
+        public string COUTerFUNCtionQuery(params string[] Channels)
         {
             const string CommandFormat = "COUN:FUNC? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, ChannelList);
         }
 
-        private string COUNterABORt(params string[] Channels)
+        public string COUNterABORt(params string[] Channels)
         {
             const string CommandFormat = "COUN:ABOR {0}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -890,7 +890,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             Internal
         }
 
-        private string COUNterGATESOURce(GateSourceEnum mode, params string[] Channels)
+        public string COUNterGATESOURce(GateSourceEnum mode, params string[] Channels)
         {
             const string CommandFormat = "COUN:GATE:SOUR {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -908,7 +908,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, ChannelList);
         }
 
-        private string COUNterGATESOURceQuery(params string[] Channels)
+        public string COUNterGATESOURceQuery(params string[] Channels)
         {
             const string CommandFormat = "COUN:GATE:SOUR? {0}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -921,7 +921,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             ALO
         }
 
-        private string COUNterGATEPOLarity(GatePolarity mode, params string[] Channels)
+        public string COUNterGATEPOLarity(GatePolarity mode, params string[] Channels)
         {
             const string CommanfFormat = "COUNT:GATE:POL {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -939,7 +939,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommanfFormat, Mode, ChannelList);
         }
 
-        private string COUNterGATEPOLarityQuery(params string[] Channels)
+        public string COUNterGATEPOLarityQuery(params string[] Channels)
         {
             const string CommanfFormat = "COUNT:GATE:POL? {0}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -952,7 +952,7 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             Disable
         }
 
-        private string COUNterGATECONTrol(EnableGateEnum mode , params string[]Channels)
+        public string COUNterGATECONTrol(EnableGateEnum mode , params string[]Channels)
         {
             const string CommandFormat = "COUN:GATE:CONT {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -970,14 +970,14 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, Mode, ChannelList);
         }
 
-        private string COUNterGATECONTrolQuery(params string[] Channels)
+        public string COUNterGATECONTrolQuery(params string[] Channels)
         {
             const string CommandFormat = "COUN:GATE:CONT? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, ChannelList);
         }
 
-        private string COUNterCLocKSOURce(ClockSourceEnum mode, params string[]Channels)
+        public string COUNterCLocKSOURce(ClockSourceEnum mode, params string[]Channels)
         {
             const string CommandFormat = "COUNT:CLK:SOUR {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -995,12 +995,94 @@ namespace Instruments.ActualInstruments.AgilentU2442A
             return String.Format(CommandFormat, Mode, ChannelList);
         }
 
-        private string COUNterCLocKSOURceQuery(params string[] Channels)
+        public string COUNterCLocKSOURceQuery(params string[] Channels)
         {
             const string CommandFormat = "COUNT:CLK:SOUR? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return String.Format(CommandFormat, ChannelList);
         }
+
+        public string COUNterCLocKINTernalQuery()
+        {
+            const string CommandFormat = "COUN:CLK:INT?\n";
+            return CommandFormat;
+        }
+
+        public string COUNterCLocKEXTernal(int value, params string[] Channels)
+        {
+            const string CommandFormat = "COUN:CLK:EXT {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            if(value < 1000)
+                throw new ArgumentException("<1000");
+            if(value>10000)
+                throw new ArgumentException(">10000");
+            return String.Format(CommandFormat, value, ChannelList);
+        }
+
+        public string COUNterCLocKEXTernalQuery(params string[] Channels)
+        {
+            const string CommandFormat = "COUN:CLK:EXT? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        public string COUNterCLocKPOLarity(GatePolarity mode, params string[] Channels)
+        {
+            const string CommandFormat = "COUN:CLK:POL {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            string Value = "";
+            switch (mode)
+            {
+                case GatePolarity.AHI:
+                    Value = "AHI";
+                    break;
+                case GatePolarity.ALO:
+                default:
+                    Value = "ALO";
+                    break;
+            }
+            return String.Format(CommandFormat, Value, ChannelList);
+        }
+        
+        public string COUNterCLocKPOLarityQuery(params string[] Channels)
+        {
+            const string CommandFormat = "COUN:CLK:POL? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        public string COUNterTOTalizeIVALue(int value, params string[] Channels)
+        {
+            const string CommandFormat = "COUN:TOT:IVAL {0}, {1}\n";
+            var ChannelList = GetChannelListString(Channels);
+            if (value < 0)
+                throw new ArgumentException("<0");
+            return String.Format(CommandFormat, value, ChannelList);
+        }
+
+        public string COUNterTOTalizeIVALueQuery(params string[] Channels)
+        {
+            const string CommandFormat = "COUN:TOT:IVAL? {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        public string COUNterTOTalizeINITiate(params string[] Channels)
+        {
+            const string CommandFormat = "COUN:TOT:INIT {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+        public string COUNterTOTalizeCLEar(params string[] Channels)
+        {
+            const string CommandFormat = "COUN:TOT:CLE {0}\n";
+            var ChannelList = GetChannelListString(Channels);
+            return String.Format(CommandFormat, ChannelList);
+        }
+
+
+
         #endregion
     }
 }
