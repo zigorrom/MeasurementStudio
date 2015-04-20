@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace AgilentU2442A
 {
-    public class AnalogInputChannel:AbstractChannel, AgilentU2442A.IAnalogInputChannel
+    public class AnalogInputChannel:AbstractChannel, IAnalogInputChannel
     {
         public AnalogInputChannel(string NativeChannelName, string AliasChannelName, AgilentU2542A ParentDevice):base(NativeChannelName,AliasChannelName,ParentDevice)
         {
 
         }
+        public AnalogInputChannel(AnalogInputChannel AI1, AnalogInputChannel AI2):base("","",AI1.ParentDevice)
+        {
+            throw new NotImplementedException();
+        }
+
+        
 
         public double AnalogRead()
         {

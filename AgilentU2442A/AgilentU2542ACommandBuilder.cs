@@ -16,14 +16,14 @@ namespace AgilentU2442A
             m_currentInfo = CultureInfo.CreateSpecificCulture("en-US");
             m_currentInfo.NumberFormat = new NumberFormatInfo() { NumberDecimalSeparator = ".", NumberGroupSeparator = "" };
         }
-        private string GetChannelListString(params string[] Channels)
+        public static string GetChannelListString(params string[] Channels)
         {
             if (Channels.Length == 0)
                 throw new ArgumentNullException();
-            return StringFormat("(@{0})",String.Join(",", Channels));
+            return String.Format("(@{0})",String.Join(",", Channels));
         }
 
-       
+        
 
         private string StringFormat(string CommandFormat, params object[] Parameters)
         {

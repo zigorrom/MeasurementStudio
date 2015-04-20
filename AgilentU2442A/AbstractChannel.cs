@@ -30,6 +30,11 @@ namespace AgilentU2442A
             get { return m_AliasChannelName; }
         }
 
+        public AgilentU2542A ParentDevice
+        {
+            get { return m_ParentDevice; }
+        }
+
         protected AgilentU2542ACommandClass CommandSet
         {
             get { return m_ParentDevice.CommandSet; }
