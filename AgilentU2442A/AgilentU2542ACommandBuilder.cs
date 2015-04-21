@@ -573,26 +573,45 @@ namespace AgilentU2442A
         
 
 
-        public string ROUTeCHANnelRANGe(AIRangesEnum range, params string[]Channels)
+        public string ROUTeCHANnelRANGe(VoltageRangeEnum range, params string[] Channels)//AIRangesEnum range, params string[]Channels)
         {
             const string CommandFormat = "ROUT:CHAN:RANG {0}, {1}\n";
             var RangeStr = "";
             switch (range)
             {
-                case AIRangesEnum.Range1_25:
-                    RangeStr = "1.25";
-                    break;
-                case AIRangesEnum.Range2_5:
-                    RangeStr = "2.5";
-                    break;
-                case AIRangesEnum.Range5:
+                case VoltageRangeEnum.V5:
                     RangeStr = "5";
                     break;
-                case AIRangesEnum.Range10:
+                case VoltageRangeEnum.V2_5:
+                    RangeStr = "2.5";
+                    break;
+                case VoltageRangeEnum.V1_25:
+                    RangeStr = "1.25";
+                    break;
+                case VoltageRangeEnum.AUTO:
+                    RangeStr = "AUTO";
+                    break;
+                case VoltageRangeEnum.V10:
                 default:
                     RangeStr = "10";
                     break;
             }
+            //switch (range)
+            //{
+            //    case AIRangesEnum.Range1_25:
+            //        RangeStr = "1.25";
+            //        break;
+            //    case AIRangesEnum.Range2_5:
+            //        RangeStr = "2.5";
+            //        break;
+            //    case AIRangesEnum.Range5:
+            //        RangeStr = "5";
+            //        break;
+            //    case AIRangesEnum.Range10:
+            //    default:
+            //        RangeStr = "10";
+            //        break;
+            //}
             var ChannelList = GetChannelListString(Channels);
             return StringFormat(CommandFormat, RangeStr, ChannelList);
         }

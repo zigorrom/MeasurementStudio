@@ -63,13 +63,13 @@ namespace AgilentU2442A
         POS
     }
 
-    public enum AIRangesEnum
-    {
-        Range1_25,
-        Range2_5,
-        Range5,
-        Range10
-    }
+    //public enum AIRangesEnum
+    //{
+    //    Range1_25,
+    //    Range2_5,
+    //    Range5,
+    //    Range10
+    //}
 
     public enum PolarityEnum
     {

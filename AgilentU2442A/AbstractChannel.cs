@@ -26,7 +26,7 @@ namespace AgilentU2442A
             m_NativeChannelName = NativeChannelName;
             m_AliasChannelName = AliasChannelName;
             m_ParentDevice = ParentDevice;
-        
+            InitializeChannel();
         }
 
         public string NativeChannelName
