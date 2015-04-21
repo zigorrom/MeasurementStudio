@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace AgilentU2442A
 {
-    public class AnalogInputContinuousMode
+    class AIAquisitionParameters
     {
-
     }
 }
