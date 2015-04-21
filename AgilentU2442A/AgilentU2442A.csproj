@@ -42,8 +42,10 @@
     <Compile Include="AbstractChannel.cs" />
     <Compile Include="AgilentU2542A.cs" />
     <Compile Include="AgilentU2542ACommandBuilder.cs" />
+    <Compile Include="AnalogInputChannel\AnalogInputContinuousMode.cs" />
     <Compile Include="AnalogInputChannel\AnalogInputChannel.cs" />
     <Compile Include="AnalogInputChannel\AnalogInputChannels.cs" />
+    <Compile Include="AnalogInputChannel\AnalogInputPollingMode.cs" />
     <Compile Include="AnalogOutputChannel\AnalogOutputChannel.cs" />
     <Compile Include="AnalogOutputChannel\AnalogOutputChannels.cs" />
     <Compile Include="ChannelsEnum.cs" />
