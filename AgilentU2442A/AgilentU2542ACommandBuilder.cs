@@ -202,11 +202,7 @@ namespace AgilentU2442A
             return StringFormat(CommandFormat, Channels);
         }
 
-        public enum ClockSourceEnum
-        {
-            Internal,
-            External
-        }
+       
         public string CONFigureTIMEbaseSOURce(ClockSourceEnum source)
         {
             string ClockSource = String.Empty;
@@ -247,12 +243,7 @@ namespace AgilentU2442A
             return "CONF:TIME:ECLK?\n";
         }
 
-        public enum SSIMode
-        {
-            None,
-            Master,
-            Slave
-        }
+        
 
         public string CONFigureSSI(SSIMode mode)
         {
@@ -346,11 +337,7 @@ namespace AgilentU2442A
 
         #region OUTPut region
 
-        public enum OutputStateEnum
-        {
-            On,
-            Off
-        }
+        
 
         public string OUTPut(OutputStateEnum state)
         {
@@ -410,13 +397,7 @@ namespace AgilentU2442A
             return StringFormat(CommandFormat, Frequency);
         }
 
-        public enum TriggerSourceEnum
-        {
-            None,
-            EXTD_AO_TRIG,
-            EXTA_TRIG,
-            STRG
-        }
+       
         public string OUTPutTRIGgerSOURce(TriggerSourceEnum mode)
         {
             const string CommandFormat = "OUTP:TRIG:SOUR {0}\n";
@@ -444,13 +425,7 @@ namespace AgilentU2442A
             return "OUTP:TRIG:SOUR?\n";
         }
 
-        public enum TriggerTypeEnum
-        {
-            Post,
-            Delay,
-            Pre,
-            Mid
-        }
+        
 
         public string OUTPutTRIGgerTYPe(TriggerTypeEnum type)
         {
@@ -479,14 +454,7 @@ namespace AgilentU2442A
             return StringFormat(CommandFormat, value);
         }
 
-        public enum AnalogTriggerSourceEnum
-        {
-            CH101,
-            CH102,
-            CH103,
-            CH104,
-            EXTAP
-        }
+       
         public string OUTPutTRIGgerATRiGgerSOURce(AnalogTriggerSourceEnum mode)
         {
             const string CommandFormat = "OUTP:TRIG:ATRG:SOUR {0}\n";
@@ -519,12 +487,7 @@ namespace AgilentU2442A
         }
 
 
-        public enum TrigerConditionEnum
-        {
-            AHIG,
-            WIND,
-            BLOW
-        }
+        
         public string OUTPutTRIGgerATRiGgetCONDition(TrigerConditionEnum mode)
         {
             const string CommandFormat = "OUTP:TRIG:ATRG:COND {0}\n";
@@ -581,11 +544,7 @@ namespace AgilentU2442A
             return "OUTP:TRIG:ATRG:LTHR?\n";
         }
 
-        public enum TriggerPolarityEnum
-        {
-            NEG,
-            POS
-        }
+        
         public string OUTPutTRIGgerDTRiGgerPOLarity(TriggerPolarityEnum polarity)
         {
             const string CommandFormat = "OUTP:TRIG:DTRG:POL {0}\n";
@@ -611,13 +570,7 @@ namespace AgilentU2442A
         #endregion
 
         #region ROUTe region
-        public enum AIRangesEnum
-        {
-            Range1_25,
-            Range2_5,
-            Range5,
-            Range10
-        }
+        
 
 
         public string ROUTeCHANnelRANGe(AIRangesEnum range, params string[]Channels)
@@ -648,11 +601,7 @@ namespace AgilentU2442A
             return StringFormat("ROUT:CHAN:RANG? {1}\n", GetChannelListString(Channels));
         }
 
-        public enum PolarityEnum
-        {
-            Unipolar,
-            Bipolar
-        }
+        
 
         public string ROUTeCHANnelPOLarity(PolarityEnum mode, params string[] Channels)
         {
@@ -686,11 +635,7 @@ namespace AgilentU2442A
             return StringFormat(CommandFormat, ChannelList);
         }
 
-        public enum ReferenceVoltageEnum
-        {
-            External,
-            Internal
-        }
+        
         public string ROUTeCHANnelRSouRCe(ReferenceVoltageEnum mode, params string[] Channels)
         {
             const string CommandFormat = "ROUT:CHAN:RCRC {0}, {1}\n";
@@ -731,11 +676,7 @@ namespace AgilentU2442A
         }
 
 
-        public enum ChannelOutputEnableEnum
-        {
-            Enabled,
-            Disabled
-        }
+        
         public string ROUTeENABle(ChannelOutputEnableEnum mode, params string[]Channels)
         {
             const string CommandFormat = "ROUT:ENAB {0}, {1}\n";
@@ -765,15 +706,7 @@ namespace AgilentU2442A
         #endregion
 
         #region SENSe region
-        public enum VoltageRangeEnum
-        {
-            V10,
-            V5,
-            V2_5,
-            V1_25,
-            AUTO
-
-        }
+        
         public string VOLTageRANGe(VoltageRangeEnum mode, params string[] Channels)
         {
             const string CommandFormat = "VOLT:RANG {0}, {1}\n";
@@ -855,13 +788,7 @@ namespace AgilentU2442A
             return "VOLT:AVER?\n";
         }
 
-        public enum CounterFunctionEnum
-        {
-            FREQuency,
-            PERiod,
-            PWIDth,
-            TOTalize
-        }
+        
 
         public string COUTerFUNCtion(CounterFunctionEnum mode, params string[] Channels)
         {
@@ -901,11 +828,7 @@ namespace AgilentU2442A
             return StringFormat(CommandFormat, ChannelList);
         }
 
-        public enum GateSourceEnum
-        {
-            External,
-            Internal
-        }
+       
 
         public string COUNterGATESOURce(GateSourceEnum mode, params string[] Channels)
         {
@@ -932,11 +855,7 @@ namespace AgilentU2442A
             return StringFormat(CommandFormat, ChannelList);
         }
 
-        public enum GatePolarity
-        {
-            AHI,
-            ALO
-        }
+        
 
         public string COUNterGATEPOLarity(GatePolarity mode, params string[] Channels)
         {
@@ -963,11 +882,7 @@ namespace AgilentU2442A
             return StringFormat(CommanfFormat, ChannelList);
         }
 
-        public enum EnableGateEnum
-        {
-            Enable,
-            Disable
-        }
+        
 
         public string COUNterGATECONTrol(EnableGateEnum mode , params string[]Channels)
         {
@@ -1125,11 +1040,7 @@ namespace AgilentU2442A
             return StringFormat(CommandFormat, ChannelList);
         }
 
-        public enum CountingDirection
-        {
-            DOWN,
-            UP
-        }
+       
         public string COUNterTOTalizeUDOWnDIRection(CountingDirection mode, params string[] Channels)
         {
             const string CommandFormat = "COUN:TOT:UDOW:DIR {0}, {1}\n";

@@ -8,19 +8,22 @@ namespace AgilentU2442A
 {
     public class AnalogInputChannel:AbstractChannel, IAnalogInputChannel
     {
+        
+
         public AnalogInputChannel(string NativeChannelName, string AliasChannelName, AgilentU2542A ParentDevice):base(NativeChannelName,AliasChannelName,ParentDevice)
         {
 
         }
-        public AnalogInputChannel(AnalogInputChannel AI1, AnalogInputChannel AI2):base("","",AI1.ParentDevice)
+
+
+        public void InitializeAnalogInput()
         {
             throw new NotImplementedException();
         }
 
-        
-
         public double AnalogRead()
         {
+            
             return 0;   
         }
 
@@ -36,7 +39,9 @@ namespace AgilentU2442A
 
         public static AnalogInputChannels operator +(AnalogInputChannel AI1, AnalogInputChannel AI2)
         {
-            return new AnalogInputChannels(AI1, AI2);
+            throw new NotImplementedException();
         }
+
+        
     }
 }

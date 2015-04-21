@@ -47,6 +47,7 @@
     <Compile Include="AnalogOutputChannel\AnalogOutputChannel.cs" />
     <Compile Include="AnalogOutputChannel\AnalogOutputChannels.cs" />
     <Compile Include="ChannelsEnum.cs" />
+    <Compile Include="CommonEnums.cs" />
     <Compile Include="DigitalChannel\DigitalChannel.cs" />
     <Compile Include="DigitalChannel\DigitalChannels.cs" />
     <Compile Include="AnalogInputChannel\IAnalogInputChannel.cs" />
