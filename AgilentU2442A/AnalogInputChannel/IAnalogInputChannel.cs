@@ -1,9 +1,9 @@
 ﻿using System;
 namespace AgilentU2442A
 {
-    interface IAnalogInputChannel
+    public interface IAnalogInputChannel
     {
-        void InitializeAnalogInput();
+       // void InitializeAnalogInput();
         double AnalogRead();
         void StartAcquisition();
         void StopAcquisition();

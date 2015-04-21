@@ -8,18 +8,30 @@ namespace AgilentU2442A
 {
     public class AnalogInputChannel:AbstractChannel, IAnalogInputChannel
     {
-        
+        private VoltageRangeEnum m_VoltageRange;
+        private PolarityEnum m_VoltagePolarity;
+        private int m_AverageNumber;
 
         public AnalogInputChannel(string NativeChannelName, string AliasChannelName, AgilentU2542A ParentDevice):base(NativeChannelName,AliasChannelName,ParentDevice)
         {
+            InitializeChannel();
+
 
         }
 
+        //public 
 
-        public void InitializeAnalogInput()
+        protected override void InitializeChannel()
         {
-            throw new NotImplementedException();
+            var query = CommandSet.VOLTageRANGeQuery(NativeChannelName);
+            var responce = QueryCommand(query);
+
+            //INIT values here from 
+            //m_VoltageRange = 
+            //m_VoltagePolarity = 
+            //m_AverageNumber = 
         }
+        
 
         public double AnalogRead()
         {
@@ -41,6 +53,8 @@ namespace AgilentU2442A
         {
             throw new NotImplementedException();
         }
+
+
 
         
     }

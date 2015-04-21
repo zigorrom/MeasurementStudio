@@ -13,5 +13,10 @@ namespace AgilentU2442A
         {
 
         }
+
+        protected override void InitializeChannel()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
