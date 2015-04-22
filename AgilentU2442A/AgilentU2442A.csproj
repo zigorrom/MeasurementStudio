@@ -44,6 +44,7 @@
     <Compile Include="AgilentU2542ACommandBuilder.cs" />
     <Compile Include="AnalogInputChannel\AnalogInputChannel.cs" />
     <Compile Include="AnalogInputChannel\AnalogInputChannels.cs" />
+    <Compile Include="AnalogInputChannel\InputModeParameters\AbstractNotifyPropertyChanged.cs" />
     <Compile Include="AnalogInputChannel\InputModeParameters\AIAquisitionParameters.cs" />
     <Compile Include="AnalogInputChannel\InputModeParameters\AIPollingModeParameters.cs" />
     <Compile Include="AnalogOutputChannel\AnalogOutputChannel.cs" />
