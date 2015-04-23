@@ -20,7 +20,7 @@ namespace AgilentU2442A
             get { return m_PollingParameters; }
         }
 
-        private Queue<double> m_AquiredDataQueue;
+        private Queue<double[]> m_AquiredDataQueue;
         
 
         public AnalogInputChannel(string NativeChannelName, string AliasChannelName, AgilentU2542A ParentDevice):base(NativeChannelName,AliasChannelName,ParentDevice)
