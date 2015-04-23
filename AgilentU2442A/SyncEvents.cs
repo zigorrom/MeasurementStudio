@@ -18,7 +18,7 @@ namespace AgilentU2442A
             m_newItemEvent = new AutoResetEvent(false);
             m_exitThreadEvent = new ManualResetEvent(false);
             m_eventArray = new WaitHandle[2];
-            m_eventArray[0] = m_newItemEvent;
+            m_eventArray[0] = m_newItemEvent; ;
             m_eventArray[1] = m_exitThreadEvent;
         }
 
