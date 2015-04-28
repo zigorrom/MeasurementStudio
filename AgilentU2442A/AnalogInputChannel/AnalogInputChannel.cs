@@ -28,8 +28,6 @@ namespace AgilentU2442A
             m_PollingParameters = new AIPollingModeParameters();
             m_AcquisitionParameters.PropertyChanged += m_AcquisitionParameters_PropertyChanged;
             m_PollingParameters.PropertyChanged += m_PollingParameters_PropertyChanged;
-        
-        
         }
 
 
@@ -71,6 +69,7 @@ namespace AgilentU2442A
 
         protected override void InitializeChannel()
         {
+
             ///var query = CommandSet.VOLTageRANGeQuery(NativeChannelName);
             //var responce = QueryCommand(query);
 
