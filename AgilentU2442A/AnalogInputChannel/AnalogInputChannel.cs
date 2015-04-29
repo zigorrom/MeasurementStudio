@@ -24,39 +24,15 @@ namespace AgilentU2442A
 
         public AnalogInputChannel(string NativeChannelName, string AliasChannelName, AgilentU2542A ParentDevice):base(NativeChannelName,AliasChannelName,ParentDevice)
         {
-            m_AcquisitionParameters = new AIAquisitionParameters();
+            m_AcquisitionParameters = new AIAquisitionParameters(ParentDevice);
             m_PollingParameters = new AIPollingModeParameters();
-            m_AcquisitionParameters.PropertyChanged += m_AcquisitionParameters_PropertyChanged;
-            m_PollingParameters.PropertyChanged += m_PollingParameters_PropertyChanged;
+            //m_AcquisitionParameters.PropertyChanged += m_AcquisitionParameters_PropertyChanged;
+            //m_PollingParameters.PropertyChanged += m_PollingParameters_PropertyChanged;
         }
 
 
 
-        void m_PollingParameters_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case "VoltageRange": break;
-                case "VoltagePolarity": break;
-                case "AveragingNumber": break;
-                default:
-                    break;
-            }
-        }
-
-        void m_AcquisitionParameters_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case "VoltageRange": break;
-                case "VoltagePolarity": break;
-                case "OutputEnable": break;
-                case "PointsPerShot": break;
-                case "SampleRate": break;
-                default:
-                    break;
-            }
-        }
+      
 
         public void InitializeAcquisitionMode()
         {

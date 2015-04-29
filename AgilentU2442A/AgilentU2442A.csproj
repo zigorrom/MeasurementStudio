@@ -49,6 +49,7 @@
     <Compile Include="AnalogInputChannel\InputModeParameters\AIPollingModeParameters.cs" />
     <Compile Include="AnalogOutputChannel\AnalogOutputChannel.cs" />
     <Compile Include="AnalogOutputChannel\AnalogOutputChannels.cs" />
+    <Compile Include="ChannelName.cs" />
     <Compile Include="ChannelsEnum.cs" />
     <Compile Include="CommonEnums.cs" />
     <Compile Include="DigitalChannel\DigitalChannel.cs" />

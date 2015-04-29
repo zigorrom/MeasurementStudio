@@ -9,6 +9,7 @@ namespace AgilentU2442A
 {
     public abstract class AbstractChannel:INotifyPropertyChanged
     {
+        private ChannelName m_Name;
         private string m_NativeChannelName;
         private string m_AliasChannelName;
         private AgilentU2542A m_ParentDevice;
