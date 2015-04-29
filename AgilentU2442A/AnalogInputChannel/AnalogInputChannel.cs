@@ -22,12 +22,11 @@ namespace AgilentU2442A
 
         
 
-        public AnalogInputChannel(string NativeChannelName, string AliasChannelName, AgilentU2542A ParentDevice):base(NativeChannelName,AliasChannelName,ParentDevice)
+        public AnalogInputChannel(string NativeChannelName, AgilentU2542A ParentDevice):base(NativeChannelName,ParentDevice)
         {
             m_AcquisitionParameters = new AIAquisitionParameters(ParentDevice);
             m_PollingParameters = new AIPollingModeParameters();
-            //m_AcquisitionParameters.PropertyChanged += m_AcquisitionParameters_PropertyChanged;
-            //m_PollingParameters.PropertyChanged += m_PollingParameters_PropertyChanged;
+            
         }
 
 

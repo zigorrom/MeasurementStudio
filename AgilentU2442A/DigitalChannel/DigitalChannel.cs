@@ -8,8 +8,8 @@ namespace AgilentU2442A
 {
     public class DigitalChannel:AbstractChannel
     {
-        public DigitalChannel(string NativeChannelName, string AliasChannelName, AgilentU2542A ParentDevice)
-            :base(NativeChannelName,AliasChannelName,ParentDevice)
+        public DigitalChannel(string NativeChannelName, AgilentU2542A ParentDevice)
+            :base(NativeChannelName,ParentDevice)
         {
 
         }

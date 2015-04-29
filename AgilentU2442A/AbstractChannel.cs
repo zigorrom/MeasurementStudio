@@ -11,7 +11,7 @@ namespace AgilentU2442A
     {
         private ChannelName m_Name;
         private string m_NativeChannelName;
-        private string m_AliasChannelName;
+        //private string m_AliasChannelName;
         private AgilentU2542A m_ParentDevice;
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string PropertyName)
@@ -22,10 +22,10 @@ namespace AgilentU2442A
         }
 
 
-        public AbstractChannel(string NativeChannelName, string AliasChannelName, AgilentU2542A ParentDevice)
+        public AbstractChannel(string NativeChannelName,AgilentU2542A ParentDevice)// string AliasChannelName, )
         {
             m_NativeChannelName = NativeChannelName;
-            m_AliasChannelName = AliasChannelName;
+          //  m_AliasChannelName = AliasChannelName;
             m_ParentDevice = ParentDevice;
             InitializeChannel();
         }
@@ -35,10 +35,10 @@ namespace AgilentU2442A
             get { return m_NativeChannelName; }
         }
 
-        public string AliasChannelName
-        {
-            get { return m_AliasChannelName; }
-        }
+        //public string AliasChannelName
+        //{
+        //    get { return m_AliasChannelName; }
+        //}
 
         public AgilentU2542A ParentDevice
         {

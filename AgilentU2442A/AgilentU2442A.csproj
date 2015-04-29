@@ -55,6 +55,7 @@
     <Compile Include="DigitalChannel\DigitalChannel.cs" />
     <Compile Include="DigitalChannel\DigitalChannels.cs" />
     <Compile Include="AnalogInputChannel\IAnalogInputChannel.cs" />
+    <Compile Include="IChannelName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SyncEvents.cs" />
   </ItemGroup>
