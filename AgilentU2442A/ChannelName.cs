@@ -20,13 +20,6 @@ namespace AgilentU2442A
             set { m_NativeName = value; }
         }
 
-        //private string m_Alias;
-        //public string Alias
-        //{
-        //    get { return m_Alias; }
-        //    set { m_Alias = value; }
-        //}
-
         public override string ToString()
         {
             return NativeName;
