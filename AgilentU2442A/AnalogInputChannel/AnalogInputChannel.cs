@@ -37,8 +37,8 @@ namespace AgilentU2442A
         {
             m_AcquisitionParameters = new AIAquisitionParameters(ParentDevice);
             m_PollingParameters = new AIPollingModeParameters();
-            ///var query = CommandSet.VOLTageRANGeQuery(NativeChannelName);
-            //var responce = QueryCommand(query);
+            InitializeAcquisitionMode();
+            InitializePollingMode();
 
         }
 
@@ -47,16 +47,19 @@ namespace AgilentU2442A
         public void InitializeAcquisitionMode()
         {
             //read data from device
-            //AquisitionParameters.OutputEnable
-            //m_AcquisitionParameters.PointsPerShot
-            //m_AcquisitionParameters.SampleRate  
-            //m_AcquisitionParameters.VoltagePolarity
-            //m_AcquisitionParameters.VoltageRange
-            AquisitionParameters.OutputEnable = CommandSet.ROUTeENABle()
+            AquisitionParameters.OutputEnable = CommandSet.ROUTeENABleQueryParse(QueryCommand(CommandSet.ROUTeENABleQuery(ChannelName)));
+            AquisitionParameters.PointsPerShot = CommandSet.ACQuirePOINtsQueryParse(QueryCommand(CommandSet.ACQuirePOINtsQuery()));
+            AquisitionParameters.SampleRate = CommandSet.ACQuireSRATeQueryParse(QueryCommand(CommandSet.ACQuireSRATeQuery()));
+            AquisitionParameters.VoltagePolarity = CommandSet.ROUTeCHANnelPOLarityQueryParse(QueryCommand(CommandSet.ROUTeCHANnelPOLarityQuery(ChannelName)));
+            AquisitionParameters.VoltageRange = CommandSet.ROUTeCHANnelRANGeQueryParse(QueryCommand(CommandSet.ROUTeCHANnelRANGeQuery(ChannelName)));
         }
         public void InitializePollingMode()
         {
             //read data from device
+
+            PollingParameters.AveragingNumber = CommandSet.VOLTageAVERageQueryParse(QueryCommand(CommandSet.VOLTageAVERageQuery()));
+            PollingParameters.VoltagePolarity = CommandSet.VOLTagePOLarityQueryParse(QueryCommand(CommandSet.VOLTagePOLarityQuery(ChannelName)));
+            PollingParameters.VoltageRange = CommandSet.VOLTageRANGeQueryParse(QueryCommand(CommandSet.VOLTageRANGeQuery()));
         }
 
         

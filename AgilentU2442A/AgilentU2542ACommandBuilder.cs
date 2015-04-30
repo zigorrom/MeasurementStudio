@@ -23,12 +23,42 @@ namespace AgilentU2442A
             return String.Format("(@{0})",String.Join(",", Channels));
         }
 
-        
+        private const string ResponceNotFitExceptionMessage = "The responce doesn`t fit to any on cases.";
 
         private string StringFormat(string CommandFormat, params object[] Parameters)
         {
             return String.Format(m_currentInfo, CommandFormat, Parameters);
         }
+
+        private int StringToInt(string str)
+        {
+            int val = 0;
+            try
+            {
+                val = int.Parse(str, m_currentInfo);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+            return val;
+        }
+
+        private double StringToDouble(string str)
+        {
+            double val = 0;
+            try
+            {
+                val = double.Parse(str, m_currentInfo);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+            return val;
+        }
+
+        
 
         #region ACQuire
         /// <summary>
@@ -64,6 +94,19 @@ namespace AgilentU2442A
             return "ACQ:SRAT?\n";
         }
 
+        public int ACQuireSRATeQueryParse(string responce)
+        {
+            var retVal = 0;
+            try
+            {
+                retVal = StringToInt(responce);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+            return retVal;
+        }
         /// <summary>
         /// This command is used to set the number of acquisition points for the
         /// single- shot acquisition process
@@ -97,6 +140,7 @@ namespace AgilentU2442A
             return StringFormat(CommandFormat, val);
         }
 
+       
         /// <summary>
         /// This query returns a numeric value that represents the number of acquisition points set for the single- shot acquisition process
         /// </summary>
@@ -104,6 +148,20 @@ namespace AgilentU2442A
         public string ACQuirePOINtsQuery()
         {
             return "ACQuire:POINts?\n";
+        }
+
+        public int ACQuirePOINtsQueryParse(string responce)
+        {
+            int Points = 0;
+            try
+            {
+                Points = StringToInt(responce);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+            return Points;
         }
         #endregion
 
@@ -620,7 +678,37 @@ namespace AgilentU2442A
             return StringFormat("ROUT:CHAN:RANG? {1}\n", GetChannelListString(Channels));
         }
 
-        
+        public VoltageRangeEnum ROUTeCHANnelRANGeQueryParse(string responce)
+        {
+            VoltageRangeEnum range = VoltageRangeEnum.AUTO;
+            switch (responce)
+            {
+                case "5": range = VoltageRangeEnum.V5;
+                    break;
+                case "2.5": range = VoltageRangeEnum.V2_5;
+                    break;
+                case "1.25": range = VoltageRangeEnum.V1_25;
+                    break;
+                case "AUTO": range = VoltageRangeEnum.AUTO;
+                    break;
+                case "10": range = VoltageRangeEnum.V10;
+                    break;
+                default:
+                    throw new ArgumentException(ResponceNotFitExceptionMessage);
+            }
+            return range;
+        }
+
+        public VoltageRangeEnum[] ROUTeCHANnelRANGeQueryParseArray(string responce)
+        {
+            var values = responce.Split(new char[1] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            VoltageRangeEnum[] retValues = new VoltageRangeEnum[values.Length];
+            for (int i = 0; i < values.Length; i++)
+            {
+                retValues[i] = ROUTeCHANnelRANGeQueryParse(values[i]);
+            }
+            return retValues;
+        }
 
         public string ROUTeCHANnelPOLarity(PolarityEnum mode, params string[] Channels)
         {
@@ -645,6 +733,31 @@ namespace AgilentU2442A
             const string CommandFormat = "ROUT:CHAN:POL? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return StringFormat(CommandFormat, ChannelList);
+        }
+
+        public PolarityEnum ROUTeCHANnelPOLarityQueryParse(string responce)
+        {
+            PolarityEnum polarity = PolarityEnum.Bipolar;
+            switch (responce)
+            {
+                case "UNIP": polarity = PolarityEnum.Unipolar; break;
+                case "BIP": polarity = PolarityEnum.Bipolar; break;
+                default:
+                    throw new ArgumentException(ResponceNotFitExceptionMessage);
+
+            }
+            return polarity;
+        }
+
+        public PolarityEnum[] ROUTeCHANnelPOLarityQueryParseArray(string responce)
+        {
+            var values = responce.Split(new char[1] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            PolarityEnum[] returnValues = new PolarityEnum[values.Length];
+            for (int i = 0; i < values.Length; i++)
+            {
+                returnValues[i] = ROUTeCHANnelPOLarityQueryParse(values[i]);
+            }
+            return returnValues;
         }
 
         public string ROUTeCHANnelSTYPeQuery(params string[] Channels)
@@ -723,9 +836,33 @@ namespace AgilentU2442A
 
         public ChannelOutputEnableEnum ROUTeENABleQueryParse(string responce)
         {
-
+            var OEvalue = ChannelOutputEnableEnum.Disabled;
+            switch (responce)
+            {
+                case "0": OEvalue = ChannelOutputEnableEnum.Disabled; break;
+                case "1": OEvalue = ChannelOutputEnableEnum.Enabled; break;
+                default: throw new ArgumentException(ResponceNotFitExceptionMessage);
+            }
+            return OEvalue;
         }
 
+        public ChannelOutputEnableEnum[] ROUTeENABleQueryParseArray(string responce)
+        {
+            var values = responce.Split(new char[1]{','}, StringSplitOptions.RemoveEmptyEntries);
+            ChannelOutputEnableEnum[] val = new ChannelOutputEnableEnum[values.Length];
+            for (int i = 0; i < values.Length; i++)
+            {
+                try
+                {
+                    val[i] = ROUTeENABleQueryParse(values[i]);
+                }
+                catch (Exception e)
+                {
+                    throw;
+                }
+            }
+            return val;
+        }
         #endregion
 
         #region SENSe region
@@ -764,6 +901,18 @@ namespace AgilentU2442A
             return StringFormat(CommandFormat, ChannelList);
         }
 
+        public VoltageRangeEnum VOLTageRANGeQueryParse(string responce)
+        {
+            return ROUTeCHANnelRANGeQueryParse(responce);
+        }
+
+        public VoltageRangeEnum[] VOLTageRANGeQueryParseArray(string responce)
+        {
+            return ROUTeCHANnelRANGeQueryParseArray(responce);
+        }
+
+
+
         public string VOLTagePOLarity(PolarityEnum mode, params string[] Channels)
         {
             const string CommandFormat = "VOLT:POL {0}, {1}\n";
@@ -789,6 +938,37 @@ namespace AgilentU2442A
             return StringFormat(CommandFormat, ChannelList);
         }
 
+        public PolarityEnum VOLTagePOLarityQueryParse(string response)
+        {
+            PolarityEnum val = PolarityEnum.Bipolar;
+            try
+            {
+                switch (response)
+                {
+                    case "UNIP": val = PolarityEnum.Unipolar; break;
+                    case "BIP": val = PolarityEnum.Bipolar; break;
+                    default:
+                        throw new ArgumentException(ResponceNotFitExceptionMessage);
+                }
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+            return val;
+        }
+
+        public PolarityEnum[] VOLTagePOLarityQueryParseArray(string response)
+        {
+            var values = response.Split(new char[1] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            PolarityEnum[] retVals = new PolarityEnum[values.Length];
+            for (int i = 0; i < values.Length; i++)
+            {
+                retVals[i] = VOLTagePOLarityQueryParse(values[i]);
+            }
+            return retVals;
+        }
+
         public string VOLTageSTYPeQuery(params string[] Channels)
         {
             const string CommandFormat = "VOLT:STYP? {0}\n";
@@ -811,7 +991,19 @@ namespace AgilentU2442A
             return "VOLT:AVER?\n";
         }
 
-        
+        public int VOLTageAVERageQueryParse(string responce)
+        {
+            int val = 0;
+            try
+            {
+                val = StringToInt(responce);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+            return val;
+        }
 
         public string COUTerFUNCtion(CounterFunctionEnum mode, params string[] Channels)
         {

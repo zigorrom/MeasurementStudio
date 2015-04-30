@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AgilentU2442A
 {
-    public class ChannelName : IChannelName
+    public class ChannelName : IChannelName, IEquatable<ChannelName>
     {
         public ChannelName(string Name, ChannelEnum ChannelIdentifier)
         {
@@ -26,6 +26,11 @@ namespace AgilentU2442A
         {
             return NativeName;
         }
+        public static implicit operator string(ChannelName Name)
+        {
+            return Name.NativeName;
+        }
+
         public static implicit operator ChannelName(string Name)
         {
             try
@@ -46,7 +51,7 @@ namespace AgilentU2442A
                 var Name = ((int)ChannelIdentifier).ToString();
                 return new ChannelName(Name, ChannelIdentifier);
             }
-            catch(Exception e )
+            catch (Exception e)
             {
                 throw;
             }
@@ -58,6 +63,19 @@ namespace AgilentU2442A
             private set { m_ChannelIdentifier = value; }
         }
 
-        
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as ChannelName);
+        }
+
+        public bool Equals(ChannelName obj)
+        {
+            return obj != null && obj.NativeName == this.NativeName;
+        }
+
+        public override int GetHashCode()
+        {
+            return NativeName.GetHashCode();
+        }
     }
 }

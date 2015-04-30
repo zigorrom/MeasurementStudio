@@ -16,9 +16,17 @@ namespace AgilentU2442A
             get { return m_commandSet; }
         }
 
+        private Dictionary<ChannelName, AnalogInputChannel> m_AnalogInputChannels;
+
         public AgilentU2542A(string Name,string Alias,string ResourceName):base(Name,Alias,ResourceName)
         {
             m_commandSet = new AgilentU2542ACommandClass();
+            m_AnalogInputChannels = new Dictionary<ChannelName, AnalogInputChannel>();
+            m_AnalogInputChannels.Add(ChannelEnum.AI_CH101, new AnalogInputChannel(ChannelEnum.AI_CH101, this));
+            m_AnalogInputChannels.Add(ChannelEnum.AI_CH102, new AnalogInputChannel(ChannelEnum.AI_CH102, this));
+            m_AnalogInputChannels.Add(ChannelEnum.AI_CH103, new AnalogInputChannel(ChannelEnum.AI_CH103, this));
+            m_AnalogInputChannels.Add(ChannelEnum.AI_CH104, new AnalogInputChannel(ChannelEnum.AI_CH104, this));
+
         }
 
 
