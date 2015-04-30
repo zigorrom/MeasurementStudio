@@ -12,6 +12,7 @@ namespace AgilentTest
         static void Main(string[] args)
         {
             AgilentU2542A ag = new AgilentU2542A("Agilent", "asrdasd","USB0::0x0957::0x1718::TW52524501::0::INSTR");
+            
         }
     }
 }

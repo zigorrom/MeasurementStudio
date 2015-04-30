@@ -675,7 +675,7 @@ namespace AgilentU2442A
         }
         public string ROUTeCHANnelRANGeQuery(params string[] Channels)
         {
-            return StringFormat("ROUT:CHAN:RANG? {1}\n", GetChannelListString(Channels));
+            return StringFormat("ROUT:CHAN:RANG? {0}\n", GetChannelListString(Channels));
         }
 
         public VoltageRangeEnum ROUTeCHANnelRANGeQueryParse(string responce)
@@ -683,15 +683,15 @@ namespace AgilentU2442A
             VoltageRangeEnum range = VoltageRangeEnum.AUTO;
             switch (responce)
             {
-                case "5": range = VoltageRangeEnum.V5;
+                case "5\n": range = VoltageRangeEnum.V5;
                     break;
-                case "2.5": range = VoltageRangeEnum.V2_5;
+                case "2.5\n": range = VoltageRangeEnum.V2_5;
                     break;
-                case "1.25": range = VoltageRangeEnum.V1_25;
+                case "1.25\n": range = VoltageRangeEnum.V1_25;
                     break;
-                case "AUTO": range = VoltageRangeEnum.AUTO;
+                case "AUTO\n": range = VoltageRangeEnum.AUTO;
                     break;
-                case "10": range = VoltageRangeEnum.V10;
+                case "10\n": range = VoltageRangeEnum.V10;
                     break;
                 default:
                     throw new ArgumentException(ResponceNotFitExceptionMessage);
@@ -740,8 +740,8 @@ namespace AgilentU2442A
             PolarityEnum polarity = PolarityEnum.Bipolar;
             switch (responce)
             {
-                case "UNIP": polarity = PolarityEnum.Unipolar; break;
-                case "BIP": polarity = PolarityEnum.Bipolar; break;
+                case "UNIP\n": polarity = PolarityEnum.Unipolar; break;
+                case "BIP\n": polarity = PolarityEnum.Bipolar; break;
                 default:
                     throw new ArgumentException(ResponceNotFitExceptionMessage);
 
@@ -839,8 +839,8 @@ namespace AgilentU2442A
             var OEvalue = ChannelOutputEnableEnum.Disabled;
             switch (responce)
             {
-                case "0": OEvalue = ChannelOutputEnableEnum.Disabled; break;
-                case "1": OEvalue = ChannelOutputEnableEnum.Enabled; break;
+                case "0\n": OEvalue = ChannelOutputEnableEnum.Disabled; break;
+                case "1\n": OEvalue = ChannelOutputEnableEnum.Enabled; break;
                 default: throw new ArgumentException(ResponceNotFitExceptionMessage);
             }
             return OEvalue;
@@ -945,8 +945,8 @@ namespace AgilentU2442A
             {
                 switch (response)
                 {
-                    case "UNIP": val = PolarityEnum.Unipolar; break;
-                    case "BIP": val = PolarityEnum.Bipolar; break;
+                    case "UNIP\n": val = PolarityEnum.Unipolar; break;
+                    case "BIP\n": val = PolarityEnum.Bipolar; break;
                     default:
                         throw new ArgumentException(ResponceNotFitExceptionMessage);
                 }

@@ -52,6 +52,10 @@
       <Project>{63c41453-1d5a-4c9d-ae0a-d4a08feefca3}</Project>
       <Name>AgilentU2442A</Name>
     </ProjectReference>
+    <ProjectReference Include="..\InstrumentAbstraction\InstrumentAbstraction.csproj">
+      <Project>{3c57f76b-be47-4de4-8466-3fd0b124d134}</Project>
+      <Name>InstrumentAbstraction</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
