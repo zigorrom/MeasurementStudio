@@ -27,6 +27,8 @@ namespace AgilentU2442A
                     return;
                 m_OutputEnable = value;
                 //m_ParentDevice.SendCommand()
+                Send command to Device
+
                 OnPropertyChanged("OutputEnable");
             }
         }
