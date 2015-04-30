@@ -24,31 +24,42 @@ namespace AgilentU2442A
 
         public AnalogInputChannel(string NativeChannelName, AgilentU2542A ParentDevice):base(NativeChannelName,ParentDevice)
         {
-            m_AcquisitionParameters = new AIAquisitionParameters(ParentDevice);
-            m_PollingParameters = new AIPollingModeParameters();
+            
             
         }
 
+        public AnalogInputChannel(ChannelEnum ChannelIdentifier, AgilentU2542A ParentDevice):base(ChannelIdentifier, ParentDevice)
+        {
 
+        }
+
+        protected override void InitializeChannel()
+        {
+            m_AcquisitionParameters = new AIAquisitionParameters(ParentDevice);
+            m_PollingParameters = new AIPollingModeParameters();
+            ///var query = CommandSet.VOLTageRANGeQuery(NativeChannelName);
+            //var responce = QueryCommand(query);
+
+        }
 
       
 
         public void InitializeAcquisitionMode()
         {
             //read data from device
+            //AquisitionParameters.OutputEnable
+            //m_AcquisitionParameters.PointsPerShot
+            //m_AcquisitionParameters.SampleRate  
+            //m_AcquisitionParameters.VoltagePolarity
+            //m_AcquisitionParameters.VoltageRange
+            AquisitionParameters.OutputEnable = CommandSet.ROUTeENABle()
         }
         public void InitializePollingMode()
         {
             //read data from device
         }
 
-        protected override void InitializeChannel()
-        {
-
-            ///var query = CommandSet.VOLTageRANGeQuery(NativeChannelName);
-            //var responce = QueryCommand(query);
-
-        }
+        
 
         
         

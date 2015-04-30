@@ -9,8 +9,8 @@ namespace AgilentU2442A
 {
     public abstract class AbstractChannel:INotifyPropertyChanged
     {
-        private ChannelName m_Name;
-        private string m_NativeChannelName;
+        private ChannelName m_ChannelName;
+        //private string m_NativeChannelName;
         //private string m_AliasChannelName;
         private AgilentU2542A m_ParentDevice;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -24,17 +24,29 @@ namespace AgilentU2442A
 
         public AbstractChannel(string NativeChannelName,AgilentU2542A ParentDevice)// string AliasChannelName, )
         {
-            m_NativeChannelName = NativeChannelName;
+            m_ChannelName = NativeChannelName;
+            //m_NativeChannelName = NativeChannelName;
           //  m_AliasChannelName = AliasChannelName;
+            m_ParentDevice = ParentDevice;
+            InitializeChannel();
+        }
+
+        public AbstractChannel(ChannelEnum ChannelIdentifier, AgilentU2542A ParentDevice)
+        {
+            m_ChannelName = ChannelIdentifier;
             m_ParentDevice = ParentDevice;
             InitializeChannel();
         }
 
         public string NativeChannelName
         {
-            get { return m_NativeChannelName; }
+            get { return m_ChannelName.ToString(); }
         }
 
+        public ChannelName ChannelName
+        {
+            get { return m_ChannelName; }
+        }
         //public string AliasChannelName
         //{
         //    get { return m_AliasChannelName; }

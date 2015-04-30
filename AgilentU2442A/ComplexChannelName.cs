@@ -13,42 +13,44 @@ namespace AgilentU2442A
         {
             get
             {
-                throw new NotImplementedException();
+                return m_NativeName;
             }
-            set
+            private set
             {
-                throw new NotImplementedException();
+                m_NativeName = value;
             }
         }
-        private List<ChannelName> m_ChannelNameList;
-
-        public ComplexChannelName(ChannelName Ch1, ChannelName Ch2)
+        private ChannelEnum m_ChannelsIdentifier;
+        public ChannelEnum ChannelIdentifier
         {
-
+            get
+            {
+                return m_ChannelsIdentifier;
+            }
+            private set
+            {
+                m_ChannelsIdentifier = value;
+            }
         }
-        public ComplexChannelName(ChannelName Ch1, ChannelName Ch2)
+
+        private LinkedList<ChannelName> m_ChannelNameList;
+
+        public ComplexChannelName(ChannelName Ch1, params ChannelName[] Channels)
         {
-
+            Init();
+            CreateCommonName(Ch1, Channels);
         }
-        public ComplexChannelName(ChannelName Ch1, ChannelName Ch2)
+
+        private void CreateCommonName(ChannelName Ch1,params ChannelName[] Channels)
         {
-
+            throw new NotImplementedException();
         }
-        public ComplexChannelName(ChannelName Ch1, ChannelName Ch2)
+
+        private void Init()
         {
-
+            m_ChannelNameList = new LinkedList<ChannelName>();
         }
-        public ComplexChannelName(ChannelName Ch1, ChannelName Ch2)
-        {
 
-        }
-        public ComplexChannelName(ChannelName Ch1, ChannelName Ch2)
-        {
-
-        }
-        public ComplexChannelName(ChannelName Ch1, ChannelName Ch2)
-        {
-
-        }
+        
     }
 }

@@ -6,26 +6,18 @@ using System.Threading.Tasks;
 
 namespace AgilentU2442A
 {
-    public enum AnalogInputChannelsEnum
+    public enum ChannelEnum
     {
-        CH101,
-        CH102,
-        CH103,
-        CH104
-    }
-
-    public enum AnalogOutputChannelsEnum
-    {
-        CH201,
-        CH202,
-    }
-
-    public enum DigitalChannelsEnum
-    {
-        CH501,
-        CH502,
-        CH503,
-        CH504,
+        AI_CH101 = 101,
+        AI_CH102,
+        AI_CH103,
+        AI_CH104,
+        AO_CH201 = 201,
+        AO_CH202,
+        DIG_CH501=501,
+        DIG_CH502,
+        DIG_CH503,
+        DIG_CH504,
     }
 
 }

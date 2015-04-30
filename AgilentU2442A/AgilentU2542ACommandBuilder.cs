@@ -721,6 +721,10 @@ namespace AgilentU2442A
             return StringFormat(CommandFormat, ChannelList);
         }
 
+        public ChannelOutputEnableEnum ROUTeENABleQueryParse(string responce)
+        {
+
+        }
 
         #endregion
 
