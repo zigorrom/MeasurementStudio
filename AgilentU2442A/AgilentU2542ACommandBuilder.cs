@@ -30,7 +30,7 @@ namespace AgilentU2442A
             return String.Format(m_currentInfo, CommandFormat, Parameters);
         }
 
-        private int StringToInt(string str)
+        public int StringToInt(string str)
         {
             int val = 0;
             try
@@ -44,7 +44,7 @@ namespace AgilentU2442A
             return val;
         }
 
-        private double StringToDouble(string str)
+        public double StringToDouble(string str)
         {
             double val = 0;
             try
@@ -680,23 +680,23 @@ namespace AgilentU2442A
 
         public VoltageRangeEnum ROUTeCHANnelRANGeQueryParse(string responce)
         {
-            VoltageRangeEnum range = VoltageRangeEnum.AUTO;
+            //VoltageRangeEnum range = VoltageRangeEnum.AUTO;
             switch (responce)
             {
-                case "5\n": range = VoltageRangeEnum.V5;
-                    break;
-                case "2.5\n": range = VoltageRangeEnum.V2_5;
-                    break;
-                case "1.25\n": range = VoltageRangeEnum.V1_25;
-                    break;
-                case "AUTO\n": range = VoltageRangeEnum.AUTO;
-                    break;
-                case "10\n": range = VoltageRangeEnum.V10;
-                    break;
+                case "5": return VoltageRangeEnum.V5;
+
+                case "2.5": return VoltageRangeEnum.V2_5;
+
+                case "1.25": return VoltageRangeEnum.V1_25;
+
+                case "AUTO": return VoltageRangeEnum.AUTO;
+
+                case "10": return VoltageRangeEnum.V10;
+
                 default:
                     throw new ArgumentException(ResponceNotFitExceptionMessage);
             }
-            return range;
+            
         }
 
         public VoltageRangeEnum[] ROUTeCHANnelRANGeQueryParseArray(string responce)
@@ -737,16 +737,13 @@ namespace AgilentU2442A
 
         public PolarityEnum ROUTeCHANnelPOLarityQueryParse(string responce)
         {
-            PolarityEnum polarity = PolarityEnum.Bipolar;
             switch (responce)
             {
-                case "UNIP\n": polarity = PolarityEnum.Unipolar; break;
-                case "BIP\n": polarity = PolarityEnum.Bipolar; break;
+                case "UNIP": return PolarityEnum.Unipolar; 
+                case "BIP":return PolarityEnum.Bipolar;
                 default:
                     throw new ArgumentException(ResponceNotFitExceptionMessage);
-
             }
-            return polarity;
         }
 
         public PolarityEnum[] ROUTeCHANnelPOLarityQueryParseArray(string responce)
@@ -836,14 +833,12 @@ namespace AgilentU2442A
 
         public ChannelOutputEnableEnum ROUTeENABleQueryParse(string responce)
         {
-            var OEvalue = ChannelOutputEnableEnum.Disabled;
             switch (responce)
             {
-                case "0\n": OEvalue = ChannelOutputEnableEnum.Disabled; break;
-                case "1\n": OEvalue = ChannelOutputEnableEnum.Enabled; break;
+                case "0": return ChannelOutputEnableEnum.Disabled;
+                case "1": return ChannelOutputEnableEnum.Enabled;
                 default: throw new ArgumentException(ResponceNotFitExceptionMessage);
             }
-            return OEvalue;
         }
 
         public ChannelOutputEnableEnum[] ROUTeENABleQueryParseArray(string responce)
@@ -940,22 +935,13 @@ namespace AgilentU2442A
 
         public PolarityEnum VOLTagePOLarityQueryParse(string response)
         {
-            PolarityEnum val = PolarityEnum.Bipolar;
-            try
-            {
                 switch (response)
                 {
-                    case "UNIP\n": val = PolarityEnum.Unipolar; break;
-                    case "BIP\n": val = PolarityEnum.Bipolar; break;
+                    case "UNIP": return PolarityEnum.Unipolar; 
+                    case "BIP": return PolarityEnum.Bipolar; 
                     default:
                         throw new ArgumentException(ResponceNotFitExceptionMessage);
                 }
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
-            return val;
         }
 
         public PolarityEnum[] VOLTagePOLarityQueryParseArray(string response)
@@ -1060,7 +1046,7 @@ namespace AgilentU2442A
                     Mode = "INT";
                     break;
             }
-            return StringFormat(CommandFormat, ChannelList);
+            return StringFormat(CommandFormat, Mode, ChannelList);
         }
 
         public string COUNterGATESOURceQuery(params string[] Channels)
@@ -1610,11 +1596,34 @@ namespace AgilentU2442A
             return "WAV:STAT?\n";
         }
 
+        public WaveformStatus WAVeformSTATusQueryParse(string responce)
+        {
+            switch (responce)
+            {
+                case "EPTY": return WaveformStatus.EMPTY;
+                case "FRAG": return WaveformStatus.FRAG;
+                case "DATA": return WaveformStatus.DATA;
+                case "OVER": return WaveformStatus.OVER;
+                default:
+                    throw new ArgumentException(ResponceNotFitExceptionMessage);
+            }
+        }
+
         public string WAVeformCOMPleteQuery()
         {
             return "WAV:COMP?\n";
         }
 
+        public WaveformComplete WAVeformCOMPleteQueryParse(string response)
+        {
+            switch (response)
+            {
+                case "YES": return WaveformComplete.YES;
+                case "NO": return WaveformComplete.NO;
+                default:
+                    throw new ArgumentException(ResponceNotFitExceptionMessage);
+            }
+        }
         #endregion
 
         #region Root region

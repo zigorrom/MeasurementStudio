@@ -131,9 +131,19 @@ namespace AgilentU2442A
         UP
     }
 
+    public enum WaveformStatus
+    {
+        EMPTY,
+        FRAG,
+        DATA,
+        OVER
+    }
 
-
-
+    public enum WaveformComplete
+    {
+        YES,
+        NO
+    }
 
 
 }

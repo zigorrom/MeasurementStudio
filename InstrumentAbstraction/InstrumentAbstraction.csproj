@@ -57,17 +57,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractMessageBasedInstrument.cs" />
-    <Compile Include="IDAQ.cs" />
     <Compile Include="IInstrument.cs" />
     <Compile Include="IInstrumentOwner.cs" />
-    <Compile Include="ILockInAmplifier.cs" />
     <Compile Include="IMessageBasedInstrument.cs" />
     <Compile Include="IMultimeter.cs" />
     <Compile Include="InstrumentAttribute.cs" />
     <Compile Include="InstrumentState.cs" />
     <Compile Include="IOwnedInstrument.cs" />
     <Compile Include="IResourceInstrument.cs" />
-    <Compile Include="ISourceMeasurementUnit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

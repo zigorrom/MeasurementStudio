@@ -19,6 +19,11 @@ namespace Instruments
             m_instrumentOwner = null;
             InitializeDevice();
         }
+        ~AbstractMessageBasedInstrument()
+        {
+            this.Dispose();
+        }
+
 
         private string m_name;
         public string Name
@@ -158,20 +163,7 @@ namespace Instruments
             return resp;
         }
 
-        //public bool IsAlive
-        //{
-        //    get
-        //    {
-        //        if (m_session == null)
-        //            return false;
-        //        return true;
-        //        //var idn = Query("*IDN?");
-        //        //if (String.IsNullOrEmpty(idn))
-        //        //    return false;
-        //        //return true;
-        //    }
-        //}
-
+        
         protected bool TryConvert(string s, out double Value)
         {
             Value = 0;

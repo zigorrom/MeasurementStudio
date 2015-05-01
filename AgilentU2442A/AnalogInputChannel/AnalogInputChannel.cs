@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
+//using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using AgilentU2442A;
 
 namespace AgilentU2442A
 {
@@ -109,7 +112,7 @@ namespace AgilentU2442A
             {
                 if (m_PointsPerShot == value)
                     return;
-                if (!SendCommand(CommandSet.ACQuirePOINts(value)))
+                if (!(SendCommand(CommandSet.ACQuirePOINts(value))&&SendCommand(CommandSet.WAVeformPOINts(value))))
                     throw new MemberAccessException(MemberAccessExceptionMessage);
                 m_PointsPerShot = value;
                 OnPropertyChanged("PointsPerShot");
@@ -137,80 +140,124 @@ namespace AgilentU2442A
 
         public AnalogInputChannel(string NativeChannelName, AgilentU2542A ParentDevice):base(NativeChannelName,ParentDevice)
         {
-            
-            
+            //base constructor automatically runs InitializeChannel() method
         }
 
         public AnalogInputChannel(ChannelEnum ChannelIdentifier, AgilentU2542A ParentDevice):base(ChannelIdentifier, ParentDevice)
         {
-
+            //base constructor automatically runs InitializeChannel() method
         }
 
         protected override void InitializeChannel()
         {
-            //m_AcquisitionParameters = new AIAquisitionParameters();
-            //m_PollingParameters = new AIPollingModeParameters();
-            //AquisitionParameters.PropertyChanged+=
-            InitializeAcquisitionMode();
-            InitializePollingMode();
-
+            InitializeAcquisitionModeParameters();
+            InitializePollingModeParameters();
+            m_DataAquireThread = new Thread(new ParameterizedThreadStart(DataAquireThreadCycle));
+            m_DataTransformThread = new Thread(new ParameterizedThreadStart(DataTransformThreadCycle));
+            m_AquiredDataQueue = new ConcurrentQueue<string>();
+            m_ProcessedDataQueue = new ConcurrentQueue<double[]>();
+            m_state = new AquisitionState();
         }
 
-      
-
-        public void InitializeAcquisitionMode()
+        private void InitializeAcquisitionModeParameters()
         {
             //read data from device
-            m_OutputEnable = CommandSet.ROUTeENABleQueryParse(QueryCommand(CommandSet.ROUTeENABleQuery(ChannelName)));
-            m_PointsPerShot = CommandSet.ACQuirePOINtsQueryParse(QueryCommand(CommandSet.ACQuirePOINtsQuery()));
-            m_SampleRate = CommandSet.ACQuireSRATeQueryParse(QueryCommand(CommandSet.ACQuireSRATeQuery()));
-            m_AquisitionVoltagePolarity = CommandSet.ROUTeCHANnelPOLarityQueryParse(QueryCommand(CommandSet.ROUTeCHANnelPOLarityQuery(ChannelName)));
-            m_AquisitionVoltageRange = CommandSet.ROUTeCHANnelRANGeQueryParse(QueryCommand(CommandSet.ROUTeCHANnelRANGeQuery(ChannelName)));
+            OutputEnable = CommandSet.ROUTeENABleQueryParse(QueryCommand(CommandSet.ROUTeENABleQuery(ChannelName)));
+            PointsPerShot = CommandSet.ACQuirePOINtsQueryParse(QueryCommand(CommandSet.ACQuirePOINtsQuery()));
+            SampleRate = CommandSet.ACQuireSRATeQueryParse(QueryCommand(CommandSet.ACQuireSRATeQuery()));
+            AquisitionVoltagePolarity= CommandSet.ROUTeCHANnelPOLarityQueryParse(QueryCommand(CommandSet.ROUTeCHANnelPOLarityQuery(ChannelName)));
+            AquisitionVoltageRange = CommandSet.ROUTeCHANnelRANGeQueryParse(QueryCommand(CommandSet.ROUTeCHANnelRANGeQuery(ChannelName)));
         }
-        public void InitializePollingMode()
+        private void InitializePollingModeParameters()
         {
             //read data from device
-            m_AveragingNumber = CommandSet.VOLTageAVERageQueryParse(QueryCommand(CommandSet.VOLTageAVERageQuery()));
-            m_VoltagePolarity = CommandSet.VOLTagePOLarityQueryParse(QueryCommand(CommandSet.VOLTagePOLarityQuery(ChannelName)));
-            m_VoltageRange = CommandSet.VOLTageRANGeQueryParse(QueryCommand(CommandSet.VOLTageRANGeQuery(ChannelName)));
+            AveragingNumber = CommandSet.VOLTageAVERageQueryParse(QueryCommand(CommandSet.VOLTageAVERageQuery()));
+            VoltagePolarity = CommandSet.VOLTagePOLarityQueryParse(QueryCommand(CommandSet.VOLTagePOLarityQuery(ChannelName)));
+            VoltageRange = CommandSet.VOLTageRANGeQueryParse(QueryCommand(CommandSet.VOLTageRANGeQuery(ChannelName)));
         }
 
-        
-
-        
-        
-
-        
-        public virtual double AnalogRead()
+        public double AnalogRead()
         {
             double value = 0;
-            try
-            {
-                SendCommand(CommandSet.MEASureVOLTageDCQuery(NativeChannelName));
-                var strVal = GetResponce();
-                value = Convert.ToDouble(strVal);
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
+            if (!SendCommand(CommandSet.MEASureVOLTageDCQuery(NativeChannelName)))
+                throw new MemberAccessException(MemberAccessExceptionMessage);
+            var strVal = GetResponce();
+            value = CommandSet.StringToDouble(strVal);
             return value;
         }
 
-        public void SingleShotAquicition()
+        public double AnalogRead(int NumberOfAverages)
         {
-
+            AveragingNumber = NumberOfAverages;
+            return AnalogRead();
         }
+
+        public string SingleShotAquicition()
+        {
+            OutputEnable = ChannelOutputEnableEnum.Enabled;
+            SendCommand(CommandSet.DIGitize());
+            while (CommandSet.WAVeformCOMPleteQueryParse(QueryCommand(CommandSet.WAVeformCOMPleteQuery())) != WaveformComplete.YES) ;
+            return QueryCommand(CommandSet.WAVeformDATAQuery());
+        }
+
 
         public void StartAcquisition()
         {
-
+            OutputEnable = ChannelOutputEnableEnum.Enabled;
+            m_state.AquisitionInProcess = true;
+            m_DataAquireThread.Start(m_state);
+            SendCommand(CommandSet.RUN());
         }
 
         public void StopAcquisition()
         {
+            SendCommand(CommandSet.STOP());
+            OutputEnable = ChannelOutputEnableEnum.Disabled;
+            m_state.AquisitionInProcess = false;
+            m_DataAquireThread.Join();
+        }
+
+        Thread m_DataAquireThread;
+        Thread m_DataTransformThread;
+        ConcurrentQueue<string> m_AquiredDataQueue;
+        ConcurrentQueue<double[]> m_ProcessedDataQueue;
+        AquisitionState m_state;
+
+        private void DataAquireThreadCycle(object obj)
+        {
+            var State = obj as AquisitionState;
+            WaveformStatus resp;
+            while(State.AquisitionInProcess)
+            {
+                resp = CommandSet.WAVeformSTATusQueryParse(QueryCommand(CommandSet.WAVeformSTATusQuery()));
+                switch (resp)
+                {
+                    case WaveformStatus.EMPTY:
+                        continue;
+                    case WaveformStatus.FRAG:
+                        continue;
+                    case WaveformStatus.DATA:
+                        {
+                            m_AquiredDataQueue.Enqueue(QueryCommand(CommandSet.WAVeformDATAQuery()));
+                        }
+                        continue;
+                    case WaveformStatus.OVER:
+                        //State.Overload.Set();
+                        break;
+                    default:
+                        break;
+                }
+            }
 
         }
+
+        private void DataTransformThreadCycle(object obj)
+        {
+
+        }
+
+
+       
 
         public static AnalogInputChannels operator +(AnalogInputChannel AI1, AnalogInputChannel AI2)
         {

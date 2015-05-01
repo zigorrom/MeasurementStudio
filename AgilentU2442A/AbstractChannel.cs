@@ -69,12 +69,12 @@ namespace AgilentU2442A
 
         protected string GetResponce()
         {
-            return m_ParentDevice.GetResponce();
+            return m_ParentDevice.GetResponce().TrimEnd('\n');
         }
 
         protected string QueryCommand(string Command)
         {
-            return m_ParentDevice.Query(Command);
+            return m_ParentDevice.Query(Command).TrimEnd('\n');
         }
 
         protected abstract void InitializeChannel();

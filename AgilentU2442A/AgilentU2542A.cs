@@ -16,20 +16,12 @@ namespace AgilentU2442A
             get { return m_commandSet; }
         }
 
-        private Dictionary<ChannelName, AnalogInputChannel> m_AnalogInputChannels;
+        private Dictionary<ChannelName, AbstractChannel> m_DeviceChannels;
 
         public AgilentU2542A(string Name,string Alias,string ResourceName):base(Name,Alias,ResourceName)
         {
-            m_commandSet = new AgilentU2542ACommandClass();
-            m_AnalogInputChannels = new Dictionary<ChannelName, AnalogInputChannel>();
-            m_AnalogInputChannels.Add(ChannelEnum.AI_CH101, new AnalogInputChannel(ChannelEnum.AI_CH101, this));
-            m_AnalogInputChannels.Add(ChannelEnum.AI_CH102, new AnalogInputChannel(ChannelEnum.AI_CH102, this));
-            m_AnalogInputChannels.Add(ChannelEnum.AI_CH103, new AnalogInputChannel(ChannelEnum.AI_CH103, this));
-            m_AnalogInputChannels.Add(ChannelEnum.AI_CH104, new AnalogInputChannel(ChannelEnum.AI_CH104, this));
-
+            Initialize();
         }
-
-
 
         public override void DetectInstrument()
         {
@@ -38,7 +30,46 @@ namespace AgilentU2442A
 
         public void Initialize()
         {
-            throw new NotImplementedException();
+            if (!IsAlive(true))
+                throw new SystemException("Device was not initialized.");
+            m_commandSet = new AgilentU2542ACommandClass();
+            m_DeviceChannels = new Dictionary<ChannelName,AbstractChannel>();
+            m_DeviceChannels.Add(ChannelEnum.AI_CH101, new AnalogInputChannel(ChannelEnum.AI_CH101, this));
+            m_DeviceChannels.Add(ChannelEnum.AI_CH102, new AnalogInputChannel(ChannelEnum.AI_CH102, this));
+            m_DeviceChannels.Add(ChannelEnum.AI_CH103, new AnalogInputChannel(ChannelEnum.AI_CH103, this));
+            m_DeviceChannels.Add(ChannelEnum.AI_CH104, new AnalogInputChannel(ChannelEnum.AI_CH104, this));
+        }
+
+
+
+        public AbstractChannel this[ChannelEnum ChannelIdentifier]
+        {
+            get
+            {
+                return m_DeviceChannels[ChannelIdentifier];
+
+            }
+        }
+
+        public AnalogInputChannel GetAnalogInputChannel(ChannelEnum ChannelIdentifier)
+        {
+            if (ChannelIdentifier < ChannelEnum.AI_CH101 || ChannelIdentifier > ChannelEnum.AI_CH104)
+                throw new ArgumentException("Given channel identifier doesn`t correspond to AnalogIn channel set");
+            return m_DeviceChannels[ChannelIdentifier] as AnalogInputChannel;
+        }
+
+        public AnalogOutputChannel GetAnalogOutputChannel(ChannelEnum ChannelIdentifier)
+        {
+            if (ChannelIdentifier < ChannelEnum.AO_CH201 || ChannelIdentifier > ChannelEnum.AO_CH202)
+                throw new ArgumentException("Given channel identifier doesn`t correspond to AnalogOut channel set");
+            return m_DeviceChannels[ChannelIdentifier] as AnalogOutputChannel;
+        }
+
+        public DigitalChannel GetDigitalChannel(ChannelEnum ChannelIdentifier)
+        {
+            if (ChannelIdentifier < ChannelEnum.DIG_CH501 || ChannelIdentifier > ChannelEnum.DIG_CH504)
+                throw new ArgumentException("Given channel identifier doesn`t correspond to Digital channel set");
+            return m_DeviceChannels[ChannelIdentifier] as DigitalChannel;
         }
     }
 }
