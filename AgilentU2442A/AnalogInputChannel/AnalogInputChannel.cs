@@ -227,26 +227,26 @@ namespace AgilentU2442A
         {
             var State = obj as AquisitionState;
             WaveformStatus resp;
-            while(State.AquisitionInProcess)
+            while(CommandSet.WAVeformCOMPleteQueryParse(QueryCommand(CommandSet.WAVeformCOMPleteQuery()))!= WaveformComplete.YES)
             {
                 resp = CommandSet.WAVeformSTATusQueryParse(QueryCommand(CommandSet.WAVeformSTATusQuery()));
-                switch (resp)
-                {
-                    case WaveformStatus.EMPTY:
-                        continue;
-                    case WaveformStatus.FRAG:
-                        continue;
-                    case WaveformStatus.DATA:
-                        {
-                            m_AquiredDataQueue.Enqueue(QueryCommand(CommandSet.WAVeformDATAQuery()));
-                        }
-                        continue;
-                    case WaveformStatus.OVER:
-                        //State.Overload.Set();
-                        break;
-                    default:
-                        break;
-                }
+                //switch (resp)
+                //{
+                //    case WaveformStatus.EMPTY:
+                //        continue;
+                //    case WaveformStatus.FRAG:
+                //        continue;
+                //    case WaveformStatus.DATA:
+                //        {
+                //            m_AquiredDataQueue.Enqueue(QueryCommand(CommandSet.WAVeformDATAQuery()));
+                //        }
+                //        continue;
+                //    case WaveformStatus.OVER:
+                //        //State.Overload.Set();
+                //        break;
+                //    default:
+                //        break;
+                //}
             }
 
         }
