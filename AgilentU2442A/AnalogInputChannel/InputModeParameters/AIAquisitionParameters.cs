@@ -8,12 +8,12 @@ namespace AgilentU2442A
 {
     public class AIAquisitionParameters:AbstractNotifyPropertyChanged
     {
-        private AgilentU2542A m_ParentDevice;
-        private AgilentU2542ACommandClass m_commandSet;
-        public AIAquisitionParameters(AgilentU2542A ParentDevice)
+        //private AgilentU2542A m_ParentDevice;
+        //private AgilentU2542ACommandClass m_commandSet;
+        public AIAquisitionParameters()//AgilentU2542A ParentDevice)
         {
-            m_ParentDevice = ParentDevice;
-            m_commandSet = m_ParentDevice.CommandSet;
+            //m_ParentDevice = ParentDevice;
+            //m_commandSet = m_ParentDevice.CommandSet;
         }
 
 
@@ -28,7 +28,6 @@ namespace AgilentU2442A
                 m_OutputEnable = value;
                 //m_ParentDevice.SendCommand()
                 //Send command to Device
-
                 OnPropertyChanged("OutputEnable");
             }
         }
