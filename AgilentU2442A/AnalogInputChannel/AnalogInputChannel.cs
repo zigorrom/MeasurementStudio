@@ -204,6 +204,7 @@ namespace AgilentU2442A
 
         public void StartAcquisition()
         {
+            m_state = new AquisitionState();
             ChannelEnable = ChannelEnableEnum.Enabled;
             //m_state.AquisitionInProcess = true;
             m_DataAquireThread.Start(m_state);
@@ -217,8 +218,8 @@ namespace AgilentU2442A
             //m_DataTransformThread.Join();
             ChannelEnable = ChannelEnableEnum.Disabled;
             //m_state.AquisitionInProcess = false;
-            
-            
+
+
         }
 
         Thread m_DataAquireThread;
@@ -249,16 +250,18 @@ namespace AgilentU2442A
             }
         }
 
+        private WaveformStatus m_DataBufferStatus;
+
         private void DataAquireThreadCycle(object obj)
         {
             var State = obj as AquisitionState;
             SendCommand(CommandSet.RUN());
 
-            WaveformStatus dataStatus = WaveformStatus.EMPTY;
+            m_DataBufferStatus = WaveformStatus.EMPTY;
             while(!State.AquisitionStopEvent.WaitOne(0,false))
             {
-                dataStatus = CommandSet.WAVeformSTATusQueryParse(QueryCommand(CommandSet.WAVeformSTATusQuery()));
-                switch (dataStatus)
+                m_DataBufferStatus = CommandSet.WAVeformSTATusQueryParse(QueryCommand(CommandSet.WAVeformSTATusQuery()));
+                switch (m_DataBufferStatus)
                 {
                     case WaveformStatus.EMPTY:
                     case WaveformStatus.FRAG:
@@ -274,30 +277,10 @@ namespace AgilentU2442A
                         break;
                 }
             }
-            //WaveformStatus resp;
-            //while(CommandSet.WAVeformCOMPleteQueryParse(QueryCommand(CommandSet.WAVeformCOMPleteQuery()))!= WaveformComplete.YES)
-            //{
-            //   // resp = CommandSet.WAVeformSTATusQueryParse(QueryCommand(CommandSet.WAVeformSTATusQuery()));
-            //    //switch (resp)
-            //    //{
-            //    //    case WaveformStatus.EMPTY:
-            //    //        continue;
-            //    //    case WaveformStatus.FRAG:
-            //    //        continue;
-            //    //    case WaveformStatus.DATA:
-            //    //        {
-            //    //            m_AquiredDataQueue.Enqueue(QueryCommand(CommandSet.WAVeformDATAQuery()));
-            //    //        }
-            //    //        continue;
-            //    //    case WaveformStatus.OVER:
-            //    //        //State.Overload.Set();
-            //    //        break;
-            //    //    default:
-            //    //        break;
-            //    //}
-            //}
             SendCommand(CommandSet.STOP());
+            
         }
+
 
         private void DataTransformThreadCycle(object obj)
         {
