@@ -213,12 +213,12 @@ namespace AgilentU2442A
 
         public void StopAcquisition()
         {
+            SendCommand(CommandSet.STOP());
             m_state.AquisitionStopEvent.Set();
             m_DataAquireThread.Join();
             //m_DataTransformThread.Join();
             ChannelEnable = ChannelEnableEnum.Disabled;
             //m_state.AquisitionInProcess = false;
-
 
         }
 
@@ -250,35 +250,40 @@ namespace AgilentU2442A
             }
         }
 
+        private void CheckDeviceBuffer(object StateObj)
+        {
+            var State = StateObj as AquisitionState;
+            m_DataBufferStatus = CommandSet.WAVeformSTATusQueryParse(QueryCommand(CommandSet.WAVeformSTATusQuery()));
+            switch (m_DataBufferStatus)
+            {
+                case WaveformStatus.EMPTY:
+                case WaveformStatus.FRAG:
+                    return;
+                case WaveformStatus.DATA:
+                    PopDataFromDeviceToQueue();
+                    State.NewDataSetAquiredEvent.Set();
+                    break;
+                case WaveformStatus.OVER:
+                    PopDataFromDeviceToQueue();
+                    SendCommand(CommandSet.RUN());
+                    State.NewDataSetAquiredEvent.Set();
+                    break;
+            }
+        }
+
         private WaveformStatus m_DataBufferStatus;
 
-        private void DataAquireThreadCycle(object obj)
+        private void DataAquireThreadCycle(object StateObj)
         {
-            var State = obj as AquisitionState;
-            SendCommand(CommandSet.RUN());
-
+            var State = StateObj as AquisitionState;
             m_DataBufferStatus = WaveformStatus.EMPTY;
+            SendCommand(CommandSet.RUN());
             while(!State.AquisitionStopEvent.WaitOne(0,false))
             {
-                m_DataBufferStatus = CommandSet.WAVeformSTATusQueryParse(QueryCommand(CommandSet.WAVeformSTATusQuery()));
-                switch (m_DataBufferStatus)
-                {
-                    case WaveformStatus.EMPTY:
-                    case WaveformStatus.FRAG:
-                        continue;
-                    case WaveformStatus.DATA:
-                        PopDataFromDeviceToQueue();
-                        State.NewDataSetAquiredEvent.Set();
-                        break;
-                    case WaveformStatus.OVER:
-                        PopDataFromDeviceToQueue();
-                        SendCommand(CommandSet.RUN());
-                        State.NewDataSetAquiredEvent.Set();
-                        break;
-                }
+                CheckDeviceBuffer(StateObj);
             }
-            SendCommand(CommandSet.STOP());
-            
+            //SendCommand(CommandSet.STOP());
+            CheckDeviceBuffer(StateObj);
         }
 
 

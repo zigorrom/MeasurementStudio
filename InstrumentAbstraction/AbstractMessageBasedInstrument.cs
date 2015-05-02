@@ -182,11 +182,13 @@ namespace Instruments
 
         private void OnVisaException(VisaException e)
         {
-            InitializeDevice();
-            Reset();
-            if (!IsAlive(true))
-                throw new Exception("Device doesn`t respond after reset");
-            throw new Exception("System reset happened");
+            this.Dispose();
+            throw new Exception("Device doesn`t respond");
+            //InitializeDevice();
+            //Reset();
+            //if (!IsAlive(true))
+            //    throw new Exception("Device doesn`t respond after reset");
+            //throw new Exception("System reset happened");
         }
         
         protected bool TryConvert(string s, out double Value)
