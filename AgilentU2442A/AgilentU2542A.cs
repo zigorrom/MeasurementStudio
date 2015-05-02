@@ -39,7 +39,13 @@ namespace AgilentU2442A
             m_DeviceChannels.Add(ChannelEnum.AI_CH103, new AnalogInputChannel(ChannelEnum.AI_CH103, this));
             m_DeviceChannels.Add(ChannelEnum.AI_CH104, new AnalogInputChannel(ChannelEnum.AI_CH104, this));
         }
-
+        
+        
+        public override void Reset()
+        {
+            SendCommand(CommandSet.CLS());
+            SendCommand(CommandSet.RST());
+        }
 
 
         public AbstractChannel this[ChannelEnum ChannelIdentifier]
@@ -47,7 +53,6 @@ namespace AgilentU2442A
             get
             {
                 return m_DeviceChannels[ChannelIdentifier];
-
             }
         }
 
@@ -71,5 +76,7 @@ namespace AgilentU2442A
                 throw new ArgumentException("Given channel identifier doesn`t correspond to Digital channel set");
             return m_DeviceChannels[ChannelIdentifier] as DigitalChannel;
         }
+
+       
     }
 }

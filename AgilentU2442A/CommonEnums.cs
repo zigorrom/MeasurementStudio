@@ -83,7 +83,7 @@ namespace AgilentU2442A
         Internal
     }
 
-    public enum ChannelOutputEnableEnum
+    public enum ChannelEnableEnum
     {
         Enabled,
         Disabled

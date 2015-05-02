@@ -89,7 +89,11 @@ namespace Instruments
             {
                 m_session = new MessageBasedSession(m_resourceName, AccessModes.ExclusiveLock, 10000);
             }
-            catch(Exception e)
+            catch (VisaException e)
+            {
+                OnVisaException(e);
+            }
+            catch (Exception e)
             {
                 return false;
             }
@@ -111,8 +115,12 @@ namespace Instruments
         {
             try
             {
-                AssertSession();
+               // AssertSession();
                 m_session.Write(Command);
+            }
+            catch (VisaException e)
+            {
+                OnVisaException(e);
             }
             catch (ArgumentNullException e)
             {
@@ -130,8 +138,12 @@ namespace Instruments
             var responce = "";
             try
             {
-                AssertSession();
+                //AssertSession();
                 responce = m_session.ReadString();
+            }
+            catch (VisaException e)
+            {
+                OnVisaException(e);
             }
             catch (ArgumentNullException e)
             {
@@ -146,23 +158,36 @@ namespace Instruments
 
         public virtual string Query(string Command)
         {
-            AssertSession();
+            //AssertSession();
             var resp = "";
             try
             {
                 resp = m_session.Query(Command);
             }
-            catch (ArgumentNullException e)
+            //catch (ArgumentNullException e)
+            //{
+            //    return string.Empty;
+            //}
+            catch (VisaException e)
             {
-                return string.Empty;
+                OnVisaException(e);
             }
             catch (Exception e)
             {
-                return string.Empty;
+                throw;
+                //return string.Empty;
             }
             return resp;
         }
 
+        private void OnVisaException(VisaException e)
+        {
+            InitializeDevice();
+            Reset();
+            if (!IsAlive(true))
+                throw new Exception("Device doesn`t respond after reset");
+            throw new Exception("System reset happened");
+        }
         
         protected bool TryConvert(string s, out double Value)
         {
@@ -189,5 +214,9 @@ namespace Instruments
                     return false;
             return true;
         }
+
+
+        public abstract void Reset();
+        
     }
 }

@@ -62,19 +62,30 @@ namespace AgilentU2442A
             get { return m_ParentDevice.CommandSet; }
         }
 
+        private object lockObj = new object();
+
         protected bool SendCommand(string Command)
         {
-            return m_ParentDevice.SendCommand(Command);
+            lock (lockObj)
+            {
+                return m_ParentDevice.SendCommand(Command);
+            }
         }
 
         protected string GetResponce()
         {
-            return m_ParentDevice.GetResponce().TrimEnd('\n');
+            lock (lockObj)
+            {
+                return m_ParentDevice.GetResponce().TrimEnd('\n');
+            }
         }
 
         protected string QueryCommand(string Command)
         {
-            return m_ParentDevice.Query(Command).TrimEnd('\n');
+            lock (lockObj)
+            {
+                return m_ParentDevice.Query(Command).TrimEnd('\n');
+            }
         }
 
         protected abstract void InitializeChannel();

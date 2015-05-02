@@ -806,17 +806,17 @@ namespace AgilentU2442A
 
 
         
-        public string ROUTeENABle(ChannelOutputEnableEnum mode, params string[]Channels)
+        public string ROUTeENABle(ChannelEnableEnum mode, params string[]Channels)
         {
             const string CommandFormat = "ROUT:ENAB {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
             string Mode = "";
             switch (mode)
             {
-                case ChannelOutputEnableEnum.Enabled:
+                case ChannelEnableEnum.Enabled:
                     Mode = "ON";
                     break;
-                case ChannelOutputEnableEnum.Disabled:
+                case ChannelEnableEnum.Disabled:
                 default:
                     Mode = "OFF";
                     break;
@@ -831,20 +831,20 @@ namespace AgilentU2442A
             return StringFormat(CommandFormat, ChannelList);
         }
 
-        public ChannelOutputEnableEnum ROUTeENABleQueryParse(string responce)
+        public ChannelEnableEnum ROUTeENABleQueryParse(string responce)
         {
             switch (responce)
             {
-                case "0": return ChannelOutputEnableEnum.Disabled;
-                case "1": return ChannelOutputEnableEnum.Enabled;
+                case "0": return ChannelEnableEnum.Disabled;
+                case "1": return ChannelEnableEnum.Enabled;
                 default: throw new ArgumentException(ResponceNotFitExceptionMessage);
             }
         }
 
-        public ChannelOutputEnableEnum[] ROUTeENABleQueryParseArray(string responce)
+        public ChannelEnableEnum[] ROUTeENABleQueryParseArray(string responce)
         {
             var values = responce.Split(new char[1]{','}, StringSplitOptions.RemoveEmptyEntries);
-            ChannelOutputEnableEnum[] val = new ChannelOutputEnableEnum[values.Length];
+            ChannelEnableEnum[] val = new ChannelEnableEnum[values.Length];
             for (int i = 0; i < values.Length; i++)
             {
                 try

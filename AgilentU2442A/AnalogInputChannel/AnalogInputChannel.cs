@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AgilentU2442A;
+using System.Collections;
 
 namespace AgilentU2442A
 {
@@ -14,17 +15,17 @@ namespace AgilentU2442A
     {
         private const string MemberAccessExceptionMessage = "Value was not set on the device. Please check connectivity";
 
-        private ChannelOutputEnableEnum m_OutputEnable;
-        public ChannelOutputEnableEnum OutputEnable
+        private ChannelEnableEnum m_ChannelEnable;
+        public ChannelEnableEnum ChannelEnable
         {
-            get { return m_OutputEnable; }
+            get { return m_ChannelEnable; }
             set
             {
-                if (m_OutputEnable == value)
+                if (m_ChannelEnable == value)
                     return;
                 if (!SendCommand(CommandSet.ROUTeENABle(value, ChannelName)))
                     throw new MemberAccessException(MemberAccessExceptionMessage);
-                m_OutputEnable = value;
+                m_ChannelEnable = value;
                 OnPropertyChanged("OutputEnable");
             }
         }
@@ -154,15 +155,15 @@ namespace AgilentU2442A
             InitializePollingModeParameters();
             m_DataAquireThread = new Thread(new ParameterizedThreadStart(DataAquireThreadCycle));
             m_DataTransformThread = new Thread(new ParameterizedThreadStart(DataTransformThreadCycle));
-            m_AquiredDataQueue = new ConcurrentQueue<string>();
-            m_ProcessedDataQueue = new ConcurrentQueue<double[]>();
+            m_AquiredDataQueue = new Queue<string>();
+            m_ProcessedDataQueue = new Queue<double[]>();
             m_state = new AquisitionState();
         }
 
         private void InitializeAcquisitionModeParameters()
         {
             //read data from device
-            OutputEnable = CommandSet.ROUTeENABleQueryParse(QueryCommand(CommandSet.ROUTeENABleQuery(ChannelName)));
+            ChannelEnable = CommandSet.ROUTeENABleQueryParse(QueryCommand(CommandSet.ROUTeENABleQuery(ChannelName)));
             PointsPerShot = CommandSet.ACQuirePOINtsQueryParse(QueryCommand(CommandSet.ACQuirePOINtsQuery()));
             SampleRate = CommandSet.ACQuireSRATeQueryParse(QueryCommand(CommandSet.ACQuireSRATeQuery()));
             AquisitionVoltagePolarity= CommandSet.ROUTeCHANnelPOLarityQueryParse(QueryCommand(CommandSet.ROUTeCHANnelPOLarityQuery(ChannelName)));
@@ -194,7 +195,7 @@ namespace AgilentU2442A
 
         public string SingleShotAquicition()
         {
-            OutputEnable = ChannelOutputEnableEnum.Enabled;
+            ChannelEnable = ChannelEnableEnum.Enabled;
             SendCommand(CommandSet.DIGitize());
             while (CommandSet.WAVeformCOMPleteQueryParse(QueryCommand(CommandSet.WAVeformCOMPleteQuery())) != WaveformComplete.YES) ;
             return QueryCommand(CommandSet.WAVeformDATAQuery());
@@ -203,52 +204,99 @@ namespace AgilentU2442A
 
         public void StartAcquisition()
         {
-            OutputEnable = ChannelOutputEnableEnum.Enabled;
-            m_state.AquisitionInProcess = true;
+            ChannelEnable = ChannelEnableEnum.Enabled;
+            //m_state.AquisitionInProcess = true;
             m_DataAquireThread.Start(m_state);
-            SendCommand(CommandSet.RUN());
+            //m_DataTransformThread.Start(m_state);
         }
 
         public void StopAcquisition()
         {
-            SendCommand(CommandSet.STOP());
-            OutputEnable = ChannelOutputEnableEnum.Disabled;
-            m_state.AquisitionInProcess = false;
+            m_state.AquisitionStopEvent.Set();
             m_DataAquireThread.Join();
+            //m_DataTransformThread.Join();
+            ChannelEnable = ChannelEnableEnum.Disabled;
+            //m_state.AquisitionInProcess = false;
+            
+            
         }
 
         Thread m_DataAquireThread;
         Thread m_DataTransformThread;
-        ConcurrentQueue<string> m_AquiredDataQueue;
-        ConcurrentQueue<double[]> m_ProcessedDataQueue;
+        Queue<string> m_AquiredDataQueue;
+        Queue<double[]> m_ProcessedDataQueue;
         AquisitionState m_state;
+        
+        public Queue<double[]> DataQueue
+        {
+            get { return m_ProcessedDataQueue; }
+        }
+
+        public event EventHandler DataSetReady;
+        private void OnDataSetReady()
+        {
+            var handler = DataSetReady;
+            if(handler != null)
+                handler(this, new EventArgs());
+        }
+
+        private void PopDataFromDeviceToQueue()
+        {
+            lock (((ICollection)m_AquiredDataQueue).SyncRoot)
+            {
+                var data = QueryCommand(CommandSet.WAVeformDATAQuery());
+                m_AquiredDataQueue.Enqueue(data);
+            }
+        }
 
         private void DataAquireThreadCycle(object obj)
         {
             var State = obj as AquisitionState;
-            WaveformStatus resp;
-            while(CommandSet.WAVeformCOMPleteQueryParse(QueryCommand(CommandSet.WAVeformCOMPleteQuery()))!= WaveformComplete.YES)
-            {
-                resp = CommandSet.WAVeformSTATusQueryParse(QueryCommand(CommandSet.WAVeformSTATusQuery()));
-                //switch (resp)
-                //{
-                //    case WaveformStatus.EMPTY:
-                //        continue;
-                //    case WaveformStatus.FRAG:
-                //        continue;
-                //    case WaveformStatus.DATA:
-                //        {
-                //            m_AquiredDataQueue.Enqueue(QueryCommand(CommandSet.WAVeformDATAQuery()));
-                //        }
-                //        continue;
-                //    case WaveformStatus.OVER:
-                //        //State.Overload.Set();
-                //        break;
-                //    default:
-                //        break;
-                //}
-            }
+            SendCommand(CommandSet.RUN());
 
+            WaveformStatus dataStatus = WaveformStatus.EMPTY;
+            while(!State.AquisitionStopEvent.WaitOne(0,false))
+            {
+                dataStatus = CommandSet.WAVeformSTATusQueryParse(QueryCommand(CommandSet.WAVeformSTATusQuery()));
+                switch (dataStatus)
+                {
+                    case WaveformStatus.EMPTY:
+                    case WaveformStatus.FRAG:
+                        continue;
+                    case WaveformStatus.DATA:
+                        PopDataFromDeviceToQueue();
+                        State.NewDataSetAquiredEvent.Set();
+                        break;
+                    case WaveformStatus.OVER:
+                        PopDataFromDeviceToQueue();
+                        SendCommand(CommandSet.RUN());
+                        State.NewDataSetAquiredEvent.Set();
+                        break;
+                }
+            }
+            //WaveformStatus resp;
+            //while(CommandSet.WAVeformCOMPleteQueryParse(QueryCommand(CommandSet.WAVeformCOMPleteQuery()))!= WaveformComplete.YES)
+            //{
+            //   // resp = CommandSet.WAVeformSTATusQueryParse(QueryCommand(CommandSet.WAVeformSTATusQuery()));
+            //    //switch (resp)
+            //    //{
+            //    //    case WaveformStatus.EMPTY:
+            //    //        continue;
+            //    //    case WaveformStatus.FRAG:
+            //    //        continue;
+            //    //    case WaveformStatus.DATA:
+            //    //        {
+            //    //            m_AquiredDataQueue.Enqueue(QueryCommand(CommandSet.WAVeformDATAQuery()));
+            //    //        }
+            //    //        continue;
+            //    //    case WaveformStatus.OVER:
+            //    //        //State.Overload.Set();
+            //    //        break;
+            //    //    default:
+            //    //        break;
+            //    //}
+            //}
+            SendCommand(CommandSet.STOP());
         }
 
         private void DataTransformThreadCycle(object obj)
