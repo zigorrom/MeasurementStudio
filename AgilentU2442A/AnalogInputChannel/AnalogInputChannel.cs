@@ -213,7 +213,7 @@ namespace AgilentU2442A
 
         public void StopAcquisition()
         {
-            SendCommand(CommandSet.STOP());
+            //SendCommand(CommandSet.STOP());
             m_state.AquisitionStopEvent.Set();
             m_DataAquireThread.Join();
             //m_DataTransformThread.Join();
@@ -282,7 +282,7 @@ namespace AgilentU2442A
             {
                 CheckDeviceBuffer(StateObj);
             }
-            //SendCommand(CommandSet.STOP());
+            SendCommand(CommandSet.STOP());
             CheckDeviceBuffer(StateObj);
         }
 
