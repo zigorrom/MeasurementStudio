@@ -91,9 +91,9 @@ namespace AgilentU2442A
 
     public enum VoltageRangeEnum
     {
-        V10,
-        V5,
-        V2_5,
+        V10 ,
+        V5 ,
+        V2_5 ,
         V1_25,
         AUTO
 

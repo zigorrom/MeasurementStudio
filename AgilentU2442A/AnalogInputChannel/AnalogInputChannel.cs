@@ -302,25 +302,82 @@ namespace AgilentU2442A
             State.ProcessingStopEvent.Set();
         }
 
+        private const int HeaderLength = 10;
+        private int ParseLengthAndRemoveHeader(ref string StrArr)
+        {
+            if (StrArr.Length < HeaderLength)
+                return 0;
+            var header = StrArr.Substring(0, HeaderLength);
+            StrArr = StrArr.Substring(HeaderLength);
+            if (!header.StartsWith("#8"))
+                return 0;
+            var len = 0;
+            if (!int.TryParse(header.Substring(2), out len))
+                return 0;
+            if (len % 2 != 0)
+                return 0;
+            return len;
+        }
 
+        private void ParseStringToDoubleArray(ref string StrArr, out double[] data, Func<int,double> PolarityRangeDependentTransformFunction)
+        {
+            var len = ParseLengthAndRemoveHeader(ref StrArr)/2;
+            data = new double[len];
+            if (len == 0)
+                return;
+            for (int i = 0,j=1; i < len; i++,j+=2)
+            {
+                int IntValue = ((int)StrArr[j] << 8) | (int)StrArr[j - 1];
+                data[i] = PolarityRangeDependentTransformFunction(IntValue);
+            }
+        }
 
+        private double InitRangeValue()
+        {
+            switch (AquisitionVoltageRange)
+            {
+                case VoltageRangeEnum.V10: return 10;
+                case VoltageRangeEnum.V5: return 5;
+                case VoltageRangeEnum.V2_5: return 2.5;
+                case VoltageRangeEnum.V1_25: return 1.25;
+                default: return 10;
+            }
+        }
+
+        private const int Divider = 65536;
+        private const int HalfDivider = 32768;
+
+        private Func<int,double> InitConversionFunction()
+        {
+            double range = InitRangeValue();
+            switch (AquisitionVoltagePolarity)
+            {
+                case PolarityEnum.Unipolar:
+                    return new Func<int,double>((x)=>(x/Divider+0.5)*range);
+                case PolarityEnum.Bipolar:
+                default:
+                    return new Func<int, double>((x) => (x / HalfDivider) * range);
+            }
+        }
 
         private void DataTransformThreadCycle(object StateObj)
         {
             var State = StateObj as AquisitionState;
+            var dataStr = String.Empty;
+            double[] data;
+            var ConversionFunction = InitConversionFunction();
+            //var PolarityRangeDependentTransformFunction = new Func<int,double>()
             while((WaitHandle.WaitAny(State.ProcessingEventArray)!=1))
             {
                 Debug.WriteLine("in the processing cycle");
                 lock(((ICollection)m_AquiredDataQueue).SyncRoot)
                 {
                     if (m_AquiredDataQueue.Count > 0)
-                    {
-                        Debug.WriteLine(m_AquiredDataQueue.Dequeue().Substring(0, 10));
-                        m_ProcessedDataQueue.Enqueue(new double[1]);
-                        Thread.Sleep(1000);
-                    }
-
+                        dataStr = m_AquiredDataQueue.Dequeue();
                 }
+                data = new double[1];
+                //ParseStringToDoubleArray(ref dataStr, out data, ConversionFunction);
+                m_ProcessedDataQueue.Enqueue(data);
             }
             Debug.WriteLine("processing cycle finished");
         }
