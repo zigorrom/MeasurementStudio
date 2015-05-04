@@ -297,6 +297,7 @@ namespace AgilentU2442A
             SendCommand(CommandSet.STOP());
             Debug.WriteLine(sw.ElapsedMilliseconds);
             CheckDeviceBuffer(StateObj);
+            State.ProcessingStopEvent.Set();
         }
 
 
@@ -305,12 +306,16 @@ namespace AgilentU2442A
         private void DataTransformThreadCycle(object StateObj)
         {
             var State = StateObj as AquisitionState;
-            while((WaitHandle.WaitAny(State.EventArray)!=1)&&(m_AquiredDataQueue.Count!=0))
+            while((WaitHandle.WaitAny(State.ProcessingEventArray)!=1))
             {
                 Debug.WriteLine("in the processing cycle");
                 lock(((ICollection)m_AquiredDataQueue).SyncRoot)
                 {
-                    Debug.WriteLine(m_AquiredDataQueue.Dequeue().Substring(0, 10));
+                    if (m_AquiredDataQueue.Count > 0)
+                    {
+                        Debug.WriteLine(m_AquiredDataQueue.Dequeue().Substring(0, 10));
+                        m_ProcessedDataQueue.Enqueue(new double[1]);
+                    }
 
                 }
             }
