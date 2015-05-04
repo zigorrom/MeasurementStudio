@@ -117,7 +117,7 @@ namespace AgilentU2442A
                 if (!(SendCommand(CommandSet.ACQuirePOINts(value))&&SendCommand(CommandSet.WAVeformPOINts(value))))
                     throw new MemberAccessException(MemberAccessExceptionMessage);
                 m_PointsPerShot = value;
-                ParentDevice.SetBufferSize(m_PointsPerShot + 11); // including 10 starting characters and \n in the end;
+                //ParentDevice.SetBufferSize(m_PointsPerShot + 11); // including 10 starting characters and \n in the end;
                 OnPropertyChanged("PointsPerShot");
             }
         }
@@ -199,6 +199,7 @@ namespace AgilentU2442A
 
         public string SingleShotAquicition()
         {
+            ParentDevice.SetBufferSize(m_PointsPerShot + 11); // including 10 starting characters and \n in the end;
             ChannelEnable = ChannelEnableEnum.Enabled;
             SendCommand(CommandSet.DIGitize());
             while (CommandSet.WAVeformCOMPleteQueryParse(QueryCommand(CommandSet.WAVeformCOMPleteQuery())) != WaveformComplete.YES) ;
@@ -208,6 +209,7 @@ namespace AgilentU2442A
 
         public void StartAcquisition()
         {
+            ParentDevice.SetBufferSize(m_PointsPerShot + 11); // including 10 starting characters and \n in the end;
             m_AquisitionStateObj = new AquisitionState();
             ChannelEnable = ChannelEnableEnum.Enabled;
             //m_state.AquisitionInProcess = true;
