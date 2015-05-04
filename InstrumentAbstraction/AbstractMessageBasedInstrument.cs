@@ -182,7 +182,7 @@ namespace Instruments
 
         private void OnVisaException(VisaException e)
         {
-            this.Dispose();
+            //this.Dispose();
             throw new Exception("Device doesn`t respond");
             //InitializeDevice();
             //Reset();

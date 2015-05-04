@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,6 +69,7 @@ namespace AgilentU2442A
         {
             lock (lockObj)
             {
+                Debug.WriteLine(Command);
                 return m_ParentDevice.SendCommand(Command);
             }
         }
@@ -84,6 +86,7 @@ namespace AgilentU2442A
         {
             lock (lockObj)
             {
+                Debug.WriteLine(Command);
                 return m_ParentDevice.Query(Command).TrimEnd('\n');
             }
         }

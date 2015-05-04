@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AgilentU2442A;
 using System.Collections;
+using System.Diagnostics;
 
 namespace AgilentU2442A
 {
@@ -157,7 +158,7 @@ namespace AgilentU2442A
             m_DataTransformThread = new Thread(new ParameterizedThreadStart(DataTransformThreadCycle));
             m_AquiredDataQueue = new Queue<string>();
             m_ProcessedDataQueue = new Queue<double[]>();
-            m_state = new AquisitionState();
+            m_AquisitionStateObj = new AquisitionState();
         }
 
         private void InitializeAcquisitionModeParameters()
@@ -204,19 +205,19 @@ namespace AgilentU2442A
 
         public void StartAcquisition()
         {
-            m_state = new AquisitionState();
+            m_AquisitionStateObj = new AquisitionState();
             ChannelEnable = ChannelEnableEnum.Enabled;
             //m_state.AquisitionInProcess = true;
-            m_DataAquireThread.Start(m_state);
-            //m_DataTransformThread.Start(m_state);
+            m_DataAquireThread.Start(m_AquisitionStateObj);
+            m_DataTransformThread.Start(m_AquisitionStateObj);
         }
 
         public void StopAcquisition()
         {
             //SendCommand(CommandSet.STOP());
-            m_state.AquisitionStopEvent.Set();
+            m_AquisitionStateObj.AquisitionStopEvent.Set();
             m_DataAquireThread.Join();
-            //m_DataTransformThread.Join();
+            m_DataTransformThread.Join();
             ChannelEnable = ChannelEnableEnum.Disabled;
             //m_state.AquisitionInProcess = false;
 
@@ -226,7 +227,7 @@ namespace AgilentU2442A
         Thread m_DataTransformThread;
         Queue<string> m_AquiredDataQueue;
         Queue<double[]> m_ProcessedDataQueue;
-        AquisitionState m_state;
+        AquisitionState m_AquisitionStateObj;
         
         public Queue<double[]> DataQueue
         {
@@ -254,19 +255,25 @@ namespace AgilentU2442A
         {
             var State = StateObj as AquisitionState;
             m_DataBufferStatus = CommandSet.WAVeformSTATusQueryParse(QueryCommand(CommandSet.WAVeformSTATusQuery()));
+            Debug.WriteLine(m_DataBufferStatus);
             switch (m_DataBufferStatus)
             {
                 case WaveformStatus.EMPTY:
                 case WaveformStatus.FRAG:
                     return;
                 case WaveformStatus.DATA:
-                    PopDataFromDeviceToQueue();
-                    State.NewDataSetAquiredEvent.Set();
+                    {
+                        PopDataFromDeviceToQueue();
+                        State.NewDataSetAquiredEvent.Set();
+                    }
                     break;
                 case WaveformStatus.OVER:
-                    PopDataFromDeviceToQueue();
-                    SendCommand(CommandSet.RUN());
-                    State.NewDataSetAquiredEvent.Set();
+                    {
+                        PopDataFromDeviceToQueue();
+                        State.NewDataSetAquiredEvent.Set();
+                        SendCommand(CommandSet.RUN());
+
+                    }
                     break;
             }
         }
@@ -277,19 +284,37 @@ namespace AgilentU2442A
         {
             var State = StateObj as AquisitionState;
             m_DataBufferStatus = WaveformStatus.EMPTY;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             SendCommand(CommandSet.RUN());
-            while(!State.AquisitionStopEvent.WaitOne(0,false))
+            while (!State.AquisitionStopEvent.WaitOne(0, false))
             {
                 CheckDeviceBuffer(StateObj);
+                Debug.WriteLine(sw.ElapsedMilliseconds);
             }
+            Debug.WriteLine("End aquisition cycle");
+            Debug.WriteLine(sw.ElapsedMilliseconds);
             SendCommand(CommandSet.STOP());
+            Debug.WriteLine(sw.ElapsedMilliseconds);
             CheckDeviceBuffer(StateObj);
         }
 
 
-        private void DataTransformThreadCycle(object obj)
-        {
 
+
+        private void DataTransformThreadCycle(object StateObj)
+        {
+            var State = StateObj as AquisitionState;
+            while((WaitHandle.WaitAny(State.EventArray)!=1)&&(m_AquiredDataQueue.Count!=0))
+            {
+                Debug.WriteLine("in the processing cycle");
+                lock(((ICollection)m_AquiredDataQueue).SyncRoot)
+                {
+                    Debug.WriteLine(m_AquiredDataQueue.Dequeue().Substring(0, 10));
+
+                }
+            }
+            Debug.WriteLine("processing cycle finished");
         }
 
 
