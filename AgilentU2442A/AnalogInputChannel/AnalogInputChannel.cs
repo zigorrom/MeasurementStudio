@@ -155,7 +155,9 @@ namespace AgilentU2442A
             InitializeAcquisitionModeParameters();
             InitializePollingModeParameters();
             m_DataAquireThread = new Thread(new ParameterizedThreadStart(DataAquireThreadCycle));
+            m_DataAquireThread.Priority = ThreadPriority.AboveNormal;
             m_DataTransformThread = new Thread(new ParameterizedThreadStart(DataTransformThreadCycle));
+            m_DataTransformThread.Priority = ThreadPriority.AboveNormal;
             m_AquiredDataQueue = new Queue<string>();
             m_ProcessedDataQueue = new Queue<double[]>();
             m_AquisitionStateObj = new AquisitionState();
@@ -315,6 +317,7 @@ namespace AgilentU2442A
                     {
                         Debug.WriteLine(m_AquiredDataQueue.Dequeue().Substring(0, 10));
                         m_ProcessedDataQueue.Enqueue(new double[1]);
+                        Thread.Sleep(1000);
                     }
 
                 }
