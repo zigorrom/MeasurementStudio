@@ -117,6 +117,7 @@ namespace AgilentU2442A
                 if (!(SendCommand(CommandSet.ACQuirePOINts(value))&&SendCommand(CommandSet.WAVeformPOINts(value))))
                     throw new MemberAccessException(MemberAccessExceptionMessage);
                 m_PointsPerShot = value;
+                ParentDevice.SetBufferSize(m_PointsPerShot + 11); // including 10 starting characters and \n in the end;
                 OnPropertyChanged("PointsPerShot");
             }
         }
@@ -325,11 +326,13 @@ namespace AgilentU2442A
             data = new double[len];
             if (len == 0)
                 return;
-            for (int i = 0,j=1; i < len; i++,j+=2)
-            {
-                int IntValue = ((int)StrArr[j] << 8) | (int)StrArr[j - 1];
-                data[i] = PolarityRangeDependentTransformFunction(IntValue);
-            }
+
+            //var bytes = Encoding.Default.GetBytes(StrArr);
+            //for (int i = 0,j=1; i < len; i++,j+=2)
+            //{
+            //    int IntValue = ((int)StrArr[j] << 8) | (int)StrArr[j - 1];
+            //    data[i] = PolarityRangeDependentTransformFunction(IntValue);
+            //}
         }
 
         private double InitRangeValue()
@@ -375,8 +378,8 @@ namespace AgilentU2442A
                     if (m_AquiredDataQueue.Count > 0)
                         dataStr = m_AquiredDataQueue.Dequeue();
                 }
-                data = new double[1];
-                //ParseStringToDoubleArray(ref dataStr, out data, ConversionFunction);
+                //data = new double[1];
+                ParseStringToDoubleArray(ref dataStr, out data, ConversionFunction);
                 m_ProcessedDataQueue.Enqueue(data);
             }
             Debug.WriteLine("processing cycle finished");

@@ -39,8 +39,12 @@ namespace AgilentU2442A
             m_DeviceChannels.Add(ChannelEnum.AI_CH103, new AnalogInputChannel(ChannelEnum.AI_CH103, this));
             m_DeviceChannels.Add(ChannelEnum.AI_CH104, new AnalogInputChannel(ChannelEnum.AI_CH104, this));
         }
-        
-        
+
+        public override void SetBufferSize(int Size)
+        {
+            base.SetBufferSize(Size);
+        }
+
         public override void Reset()
         {
             SendCommand(CommandSet.CLS());

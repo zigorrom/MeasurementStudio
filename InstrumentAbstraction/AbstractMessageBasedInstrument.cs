@@ -82,12 +82,18 @@ namespace Instruments
             return String.Format("{0},{1},{2},{3}", Alias, Name, ResourceName, State/*, InstrumentOwner.Name*/).GetHashCode();
         }
 
+        public virtual void SetBufferSize(int Size)
+        {
+            if (IsAlive(false))
+                m_session.DefaultBufferSize = Size;
+        }
         private MessageBasedSession m_session;
         public virtual bool InitializeDevice()
         {
             try
             {
                 m_session = new MessageBasedSession(m_resourceName, AccessModes.ExclusiveLock, 10000);
+                
             }
             catch (VisaException e)
             {

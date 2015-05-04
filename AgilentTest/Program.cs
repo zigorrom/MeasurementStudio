@@ -28,7 +28,7 @@ namespace AgilentTest
             sw.Start();
             a.StartAcquisition();
 
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(10000);
             a.StopAcquisition();
             sw.Stop();
             Console.WriteLine(sw.ElapsedMilliseconds);
