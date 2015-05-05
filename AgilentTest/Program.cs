@@ -16,6 +16,11 @@ namespace AgilentTest
             var a = ag.GetAnalogInputChannel(ChannelEnum.AI_CH101);
             a.SampleRate = 500000;
             a.PointsPerShot = 500000;
+            a.AquisitionVoltageRange = VoltageRangeEnum.V10;
+            a.AquisitionVoltagePolarity = PolarityEnum.Bipolar;
+            //a.AquisitionVoltageRange = VoltageRangeEnum.V1_25;
+            a.VoltageRange = VoltageRangeEnum.V10;
+            a.VoltagePolarity = PolarityEnum.Bipolar;
             Console.WriteLine(a.AnalogRead(1000));
             //char lsb = (char)0xe0;
             //char msb = (char)0x31;
@@ -32,7 +37,7 @@ namespace AgilentTest
             a.StopAcquisition();
             sw.Stop();
             Console.WriteLine(sw.ElapsedMilliseconds);
-            Console.ReadKey();
+            //Console.ReadKey();
         }
     }
 }

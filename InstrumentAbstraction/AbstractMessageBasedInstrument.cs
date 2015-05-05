@@ -82,6 +82,8 @@ namespace Instruments
             return String.Format("{0},{1},{2},{3}", Alias, Name, ResourceName, State/*, InstrumentOwner.Name*/).GetHashCode();
         }
 
+
+
         public virtual void SetBufferSize(int Size)
         {
             if (IsAlive(false))
@@ -225,6 +227,12 @@ namespace Instruments
 
 
         public abstract void Reset();
-        
+
+
+        public virtual void SetTimeout(int p)
+        {
+            if (IsAlive(false))
+                m_session.Timeout = p;
+        }
     }
 }

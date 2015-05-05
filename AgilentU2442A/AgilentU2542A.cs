@@ -81,6 +81,11 @@ namespace AgilentU2442A
             return m_DeviceChannels[ChannelIdentifier] as DigitalChannel;
         }
 
-       
+
+
+        public override void SetTimeout(int p)
+        {
+            base.SetTimeout(p);
+        }
     }
 }

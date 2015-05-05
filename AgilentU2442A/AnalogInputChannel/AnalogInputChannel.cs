@@ -117,7 +117,7 @@ namespace AgilentU2442A
                 if (!(SendCommand(CommandSet.ACQuirePOINts(value))&&SendCommand(CommandSet.WAVeformPOINts(value))))
                     throw new MemberAccessException(MemberAccessExceptionMessage);
                 m_PointsPerShot = value;
-                ParentDevice.SetBufferSize(m_PointsPerShot + 11); // including 10 starting characters and \n in the end;
+                ParentDevice.SetBufferSize(m_PointsPerShot + 1000); // including 10 starting characters and \n in the end;
                 OnPropertyChanged("PointsPerShot");
             }
         }
@@ -156,12 +156,13 @@ namespace AgilentU2442A
             InitializeAcquisitionModeParameters();
             InitializePollingModeParameters();
             m_DataAquireThread = new Thread(new ParameterizedThreadStart(DataAquireThreadCycle));
-            m_DataAquireThread.Priority = ThreadPriority.AboveNormal;
+            //m_DataAquireThread.Priority = ThreadPriority.AboveNormal;
             m_DataTransformThread = new Thread(new ParameterizedThreadStart(DataTransformThreadCycle));
-            m_DataTransformThread.Priority = ThreadPriority.AboveNormal;
+            //m_DataTransformThread.Priority = ThreadPriority.AboveNormal;
             m_AquiredDataQueue = new Queue<string>();
             m_ProcessedDataQueue = new Queue<double[]>();
             m_AquisitionStateObj = new AquisitionState();
+            ParentDevice.SetTimeout(3000);
         }
 
         private void InitializeAcquisitionModeParameters()
@@ -249,7 +250,9 @@ namespace AgilentU2442A
         {
             lock (((ICollection)m_AquiredDataQueue).SyncRoot)
             {
-                var data = QueryCommand(CommandSet.WAVeformDATAQuery());
+                SendCommand(CommandSet.WAVeformDATAQuery());
+                //var data = QueryCommand(CommandSet.WAVeformDATAQuery());
+                var data = GetResponce();
                 m_AquiredDataQueue.Enqueue(data);
             }
         }
@@ -326,13 +329,20 @@ namespace AgilentU2442A
             data = new double[len];
             if (len == 0)
                 return;
-
             //var bytes = Encoding.Default.GetBytes(StrArr);
-            //for (int i = 0,j=1; i < len; i++,j+=2)
-            //{
-            //    int IntValue = ((int)StrArr[j] << 8) | (int)StrArr[j - 1];
-            //    data[i] = PolarityRangeDependentTransformFunction(IntValue);
-            //}
+            int IntValue = 0;
+            int LSByte = 0;
+            int MSByte = 0;
+            int temp = 0;
+            //char is 2 byte value
+            for (int i = 0; i < len; i++)
+            {
+                temp = (int)StrArr[i];
+                LSByte =  0xff&temp>> 8;
+                MSByte = temp<< 8;
+                IntValue = ( MSByte| LSByte);
+                data[i] = PolarityRangeDependentTransformFunction(IntValue);
+            }
         }
 
         private double InitRangeValue()
@@ -356,10 +366,10 @@ namespace AgilentU2442A
             switch (AquisitionVoltagePolarity)
             {
                 case PolarityEnum.Unipolar:
-                    return new Func<int,double>((x)=>(x/Divider+0.5)*range);
+                    return new Func<int,double>((x)=>(x*1.0/Divider+0.5)*range);
                 case PolarityEnum.Bipolar:
                 default:
-                    return new Func<int, double>((x) => (x / HalfDivider) * range);
+                    return new Func<int, double>((x) => (x*range / HalfDivider));
             }
         }
 
@@ -369,7 +379,7 @@ namespace AgilentU2442A
             var dataStr = String.Empty;
             double[] data;
             var ConversionFunction = InitConversionFunction();
-            //var PolarityRangeDependentTransformFunction = new Func<int,double>()
+            
             while((WaitHandle.WaitAny(State.ProcessingEventArray)!=1))
             {
                 Debug.WriteLine("in the processing cycle");
