@@ -265,6 +265,10 @@ namespace AgilentU2442A
             return StringFormat(CommandFormat, Channels);
         }
 
+        public DigitalDirectionEnum CONFigureDIGitalDIRectionQueryParse(string response)
+        {
+
+        }
        
         public string CONFigureTIMEbaseSOURce(ClockSourceEnum source)
         {
