@@ -12,6 +12,12 @@ namespace AgilentU2442A
         External
     }
 
+    public enum DigitalDirectionEnum
+    {
+        Input,
+        Output
+    }
+
     public enum SSIMode
     {
         None,

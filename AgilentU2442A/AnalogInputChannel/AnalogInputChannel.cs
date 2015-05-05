@@ -14,7 +14,7 @@ namespace AgilentU2442A
 {
     public class AnalogInputChannel:AbstractChannel, IAnalogInputChannel
     {
-        private const string MemberAccessExceptionMessage = "Value was not set on the device. Please check connectivity";
+        
 
         private ChannelEnableEnum m_ChannelEnable;
         public ChannelEnableEnum ChannelEnable

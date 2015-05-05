@@ -241,15 +241,20 @@ namespace AgilentU2442A
         #region CONFigure region
 
 
-        public string CONFigureDIGitalDIRection(bool IsInput,params string[] Channels)
+        public string CONFigureDIGitalDIRection(DigitalDirectionEnum DigitalDirection ,params string[] Channels)
         {
             const string CommandFormat = "CONF:DIG:DIR {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
             string Direction = String.Empty;
-            if (IsInput)
-                Direction = "INP";
-            else
-                Direction = "OUTP";
+            switch (DigitalDirection)
+            {
+                case DigitalDirectionEnum.Input:
+                    Direction = "INP";
+                    break;
+                case DigitalDirectionEnum.Output:
+                    Direction = "OUTP";
+                    break;
+            }
             return StringFormat(CommandFormat, Direction, ChannelList);
         }
 
@@ -1369,6 +1374,18 @@ namespace AgilentU2442A
             const string CommandFormat = "SOUR:DIG:DATA? {0}\n";
             var ChannelList = GetChannelListString(Channels);
             return StringFormat(CommandFormat, ChannelList);
+        }
+
+        public int SOURceDIGitalDATAQueryParse(string responce)
+        {
+            try
+            {
+                return int.Parse(responce);
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentException(ResponceNotFitExceptionMessage);
+            }
         }
 
         public string SOURceDIGitalDATABIT(int Value, int BitNumber, params string[] Channels)
