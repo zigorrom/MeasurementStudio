@@ -140,8 +140,9 @@ namespace AgilentU2442A
 
         }
 
-
-        public AnalogInputChannel(string NativeChannelName, AgilentU2542A ParentDevice):base(NativeChannelName,ParentDevice)
+        [Obsolete("Use [public AnalogInputChannel(ChannelEnum ChannelIdentifier, AgilentU2542A ParentDevice):base(ChannelIdentifier, ParentDevice)] constructor instead")]
+        public AnalogInputChannel(string NativeChannelName, AgilentU2542A ParentDevice)
+            : base(NativeChannelName, ParentDevice)
         {
             //base constructor automatically runs InitializeChannel() method
         }
@@ -206,6 +207,13 @@ namespace AgilentU2442A
             return QueryCommand(CommandSet.WAVeformDATAQuery());
         }
 
+        public void SingleShotAquicition(out double[] data)
+        {
+            var StrArr = SingleShotAquicition();
+            var ConversionFunction = InitConversionFunction();
+            ParseStringToDoubleArray(ref StrArr, out data, ConversionFunction);
+        }
+        
 
         public void StartAcquisition()
         {
@@ -237,6 +245,17 @@ namespace AgilentU2442A
         {
             get { return m_ProcessedDataQueue; }
         }
+
+        public void DequeueData(out double[] data)
+        {
+            data = null;
+            lock(((ICollection)m_ProcessedDataQueue).SyncRoot)
+            {
+                if (m_ProcessedDataQueue.Count > 0)
+                    data = m_ProcessedDataQueue.Dequeue();
+            }
+        }
+
 
         public event EventHandler DataSetReady;
         private void OnDataSetReady()
@@ -391,6 +410,7 @@ namespace AgilentU2442A
                 //data = new double[1];
                 ParseStringToDoubleArray(ref dataStr, out data, ConversionFunction);
                 m_ProcessedDataQueue.Enqueue(data);
+                OnDataSetReady();
             }
             Debug.WriteLine("processing cycle finished");
         }

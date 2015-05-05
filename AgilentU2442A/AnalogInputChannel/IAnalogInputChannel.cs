@@ -3,9 +3,11 @@ namespace AgilentU2442A
 {
     public interface IAnalogInputChannel
     {
-        //void InitializePollingAnalogInput(VoltageRangeEnum VoltageRange, PolarityEnum VoltagePolarity, int AverageNumber);
-        //void InitializeContinuousAnalogInput(VoltageRangeEnum VoltageRange, PolarityEnum VoltagePolarity, int AverageNumber);
+        event EventHandler DataSetReady;
         double AnalogRead();
+        double AnalogRead(int NumberOfAverages);
+        string SingleShotAquicition();
+        void SingleShotAquicition(out double[] data);
         void StartAcquisition();
         void StopAcquisition();
     }

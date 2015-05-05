@@ -21,23 +21,26 @@ namespace AgilentTest
             //a.AquisitionVoltageRange = VoltageRangeEnum.V1_25;
             a.VoltageRange = VoltageRangeEnum.V10;
             a.VoltagePolarity = PolarityEnum.Bipolar;
+            a.DataSetReady += a_DataSetReady;
             Console.WriteLine(a.AnalogRead(1000));
-            //char lsb = (char)0xe0;
-            //char msb = (char)0x31;
-            //Console.WriteLine(lsb);
-            //Console.WriteLine((int)lsb);
-            //Console.WriteLine(msb);
-            //Console.WriteLine((int)msb);
-            //Console.WriteLine(((int)msb << 8) | (int)lsb);
+            
             Stopwatch sw = new Stopwatch();
             sw.Start();
             a.StartAcquisition();
 
-            System.Threading.Thread.Sleep(10000);
+            System.Threading.Thread.Sleep(120000);
             a.StopAcquisition();
             sw.Stop();
             Console.WriteLine(sw.ElapsedMilliseconds);
             //Console.ReadKey();
+        }
+
+        static void a_DataSetReady(object sender, EventArgs e)
+        {
+            var channel = (AnalogInputChannel)sender;
+            double[] data;
+            channel.DequeueData(out data);
+            Console.WriteLine(data.Length);
         }
     }
 }
