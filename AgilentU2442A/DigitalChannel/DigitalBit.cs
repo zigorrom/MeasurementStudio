@@ -25,18 +25,19 @@ namespace AgilentU2442A
                 if (m_value == value)
                     return;
                 m_digitalChannel.DigitalWriteBit(value, m_BitNumber);
+                
             }
         }
 
 
         public void Set()
         {
-           
+            Value = true;
         }
 
         public void Reset()
         {
-
+            Value = false;
         }
     
     }

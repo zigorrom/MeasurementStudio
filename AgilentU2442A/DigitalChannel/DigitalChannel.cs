@@ -13,7 +13,6 @@ namespace AgilentU2442A
         public DigitalChannel(ChannelEnum ChannelIdentifier, AgilentU2542A ParentDevice)
             : base(ChannelIdentifier, ParentDevice)
         {
-
             int ChannelSizeInt = GetChannelSize(ChannelIdentifier);
             m_BitArray = new DigitalBit[ChannelSizeInt];
             for (int i = 0; i < ChannelSizeInt; i++)
@@ -36,11 +35,7 @@ namespace AgilentU2442A
                     return 0;
             }
         }
-        //public DigitalChannel(string NativeChannelName, AgilentU2542A ParentDevice, DigitalChannelSizeEnum ChannelSize)
-        //    :base(NativeChannelName,ParentDevice)
-        //{
-            
-        //}
+        
 
         private DigitalBit[] m_BitArray;
         public DigitalBit this[int bitNumber]
@@ -51,12 +46,17 @@ namespace AgilentU2442A
                 return m_BitArray[bitNumber];
             }
         }
+        public int BitNumber
+        {
+            get { return m_BitArray.Length; }
+        }
+
 
         private int m_value;
         public int Value
         {
             get { return m_value; }
-            set {
+            private set {
                 if (m_value == value)
                     return;
                 if (!SendCommand(CommandSet.SOURceDIGitalDATA(value, ChannelName)))
@@ -95,7 +95,9 @@ namespace AgilentU2442A
 
         public void DigitalWriteBit(bool value, int bit)
         {
-           
+           if(DigitalDirection == DigitalDirectionEnum.Input)
+               throw new Exception("DigitalDirection is set to input");
+
         }
 
         public int DigitalRead()
