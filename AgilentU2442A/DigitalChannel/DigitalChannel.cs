@@ -45,8 +45,8 @@ namespace AgilentU2442A
 
         protected override void InitializeChannel()
         {
-           //DigitalDirection = CommandSet.CONFigureDIGitalDIRectionQuery
-
+            DigitalDirection = CommandSet.CONFigureDIGitalDIRectionQueryParse(QueryCommand(CommandSet.CONFigureDIGitalDIRectionQuery(ChannelName)));
+            Value = CommandSet.SOURceDIGitalDATAQueryParse(QueryCommand(CommandSet.SOURceDIGitalDATAQuery(ChannelName)));
         }
 
         public void DigitalWrite(int value)
