@@ -9,7 +9,7 @@ namespace AgilentU2442A
 {
     public class DigitalChannel:AbstractChannel, IDigitalChannel
     {
-        public DigitalChannel(string NativeChannelName, AgilentU2542A ParentDevice)
+        public DigitalChannel(string NativeChannelName, AgilentU2542A ParentDevice, DigitalChannelSizeEnum ChannelSize)
             :base(NativeChannelName,ParentDevice)
         {
 

@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace AgilentU2442A
 {
+    public enum DigitalChannelSizeEnum
+    {
+        Ch_4_BIT,
+        Ch_8_BIT
+    }
+
     public enum ClockSourceEnum
     {
         Internal,
