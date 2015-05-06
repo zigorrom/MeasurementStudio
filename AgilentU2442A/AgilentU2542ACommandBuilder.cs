@@ -267,7 +267,7 @@ namespace AgilentU2442A
 
         public DigitalDirectionEnum CONFigureDIGitalDIRectionQueryParse(string response)
         {
-
+            throw new NotImplementedException();
         }
        
         public string CONFigureTIMEbaseSOURce(ClockSourceEnum source)
