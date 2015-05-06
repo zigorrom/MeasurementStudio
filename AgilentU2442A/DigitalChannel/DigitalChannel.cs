@@ -51,7 +51,9 @@ namespace AgilentU2442A
 
         public void DigitalWrite(int value)
         {
-            
+            if (DigitalDirection == DigitalDirectionEnum.Input)
+                throw new Exception("DigitalDirection is set to input");
+            Value = value;
         }
 
         public void DigitalWriteBit(bool value, int bit)
