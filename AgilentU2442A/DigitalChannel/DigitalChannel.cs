@@ -97,7 +97,7 @@ namespace AgilentU2442A
         {
            if(DigitalDirection == DigitalDirectionEnum.Input)
                throw new Exception("DigitalDirection is set to input");
-
+           
         }
 
         public int DigitalRead()
