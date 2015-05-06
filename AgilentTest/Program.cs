@@ -10,6 +10,7 @@ namespace AgilentTest
 {
     class Program
     {
+    
         static void Main(string[] args)
         {
             AgilentU2542A ag = new AgilentU2542A("Agilent", "asrdasd", "USB0::0x0957::0x1718::TW52524501::0::INSTR");
@@ -23,7 +24,7 @@ namespace AgilentTest
             a.VoltagePolarity = PolarityEnum.Bipolar;
             a.DataSetReady += a_DataSetReady;
             Console.WriteLine(a.AnalogRead(1000));
-            
+
             Stopwatch sw = new Stopwatch();
             sw.Start();
             a.StartAcquisition();
@@ -32,7 +33,7 @@ namespace AgilentTest
             a.StopAcquisition();
             sw.Stop();
             Console.WriteLine(sw.ElapsedMilliseconds);
-            //Console.ReadKey();
+            Console.ReadKey();
         }
 
         static void a_DataSetReady(object sender, EventArgs e)

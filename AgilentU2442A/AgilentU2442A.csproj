@@ -51,6 +51,7 @@
     <Compile Include="ChannelsEnum.cs" />
     <Compile Include="CommonEnums.cs" />
     <Compile Include="ComplexChannelName.cs" />
+    <Compile Include="DigitalChannel\DigitalBit.cs" />
     <Compile Include="DigitalChannel\DigitalChannel.cs" />
     <Compile Include="DigitalChannel\DigitalChannels.cs" />
     <Compile Include="AnalogInputChannel\IAnalogInputChannel.cs" />

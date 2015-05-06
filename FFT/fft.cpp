@@ -18,24 +18,24 @@ void fft::complex_mul(ShortComplex *z, const ShortComplex *z1, const Complex *z2
 
 void fft::createWstore(unsigned int Nmax)
 {
-	unsigned int N, Skew, Skew2;
-	ShortComplex *Warray, *WstoreEnd;
-	Complex WN, *pWN;
+	//unsigned int N, Skew, Skew2;
+	//ShortComplex *Warray, *WstoreEnd;
+	//Complex WN, *pWN;
 
-	Skew2 = Nmax >> 1;
-	Wstore = new ShortComplex[Skew2];
-	WstoreEnd = Wstore + Skew2;
-	Wstore[0].re = 1.0;
-	Wstore[0].im = 0.0;
+	//Skew2 = Nmax >> 1;
+	//Wstore = new ShortComplex[Skew2];
+	//WstoreEnd = Wstore + Skew2;
+	//Wstore[0].re = 1.0;
+	//Wstore[0].im = 0.0;
 
-	for (N = 4, pWN = W2n + 1, Skew = Skew2 >> 1; N <= Nmax; N += N, pWN++, Skew2 = Skew, Skew >>= 1)
-	{
-		//WN = W(1, N) = exp(-2*pi*j/N)
-		WN = *pWN;
-		for (Warray = Wstore; Warray < WstoreEnd; Warray += Skew2)
-			complex_mul(Warray + Skew, Warray, &WN);
-	}
-	
+	//for (N = 4, pWN = W2n + 1, Skew = Skew2 >> 1; N <= Nmax; N += N, pWN++, Skew2 = Skew, Skew >>= 1)
+	//{
+	//	//WN = W(1, N) = exp(-2*pi*j/N)
+	//	WN = *pWN;
+	//	for (Warray = Wstore; Warray < WstoreEnd; Warray += Skew2)
+	//		complex_mul(Warray + Skew, Warray, &WN);
+	//}
+	//
 }
 
 

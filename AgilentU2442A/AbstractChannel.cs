@@ -23,6 +23,7 @@ namespace AgilentU2442A
         }
 
         protected const string MemberAccessExceptionMessage = "Value was not set on the device. Please check connectivity";
+        [Obsolete("Use constructor with ChannelIdentifier",true)]
         public AbstractChannel(string NativeChannelName,AgilentU2542A ParentDevice)// string AliasChannelName, )
         {
             m_ChannelName = NativeChannelName;

@@ -5,14 +5,51 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+
 namespace AgilentU2442A
 {
     public class DigitalChannel:AbstractChannel, IDigitalChannel
     {
-        public DigitalChannel(string NativeChannelName, AgilentU2542A ParentDevice, DigitalChannelSizeEnum ChannelSize)
-            :base(NativeChannelName,ParentDevice)
+        public DigitalChannel(ChannelEnum ChannelIdentifier, AgilentU2542A ParentDevice)
+            : base(ChannelIdentifier, ParentDevice)
         {
 
+            int ChannelSizeInt = GetChannelSize(ChannelIdentifier);
+            m_BitArray = new DigitalBit[ChannelSizeInt];
+            for (int i = 0; i < ChannelSizeInt; i++)
+            {
+                m_BitArray[i] = new DigitalBit(this, i);
+            }
+        }
+
+        private int GetChannelSize(ChannelEnum ChannelIdentifier)
+        {
+            switch (ChannelIdentifier)
+            {
+                case ChannelEnum.DIG_CH501:
+                case ChannelEnum.DIG_CH502:
+                    return 8;
+                case ChannelEnum.DIG_CH503:
+                case ChannelEnum.DIG_CH504:
+                    return 4;
+                default:
+                    return 0;
+            }
+        }
+        //public DigitalChannel(string NativeChannelName, AgilentU2542A ParentDevice, DigitalChannelSizeEnum ChannelSize)
+        //    :base(NativeChannelName,ParentDevice)
+        //{
+            
+        //}
+
+        private DigitalBit[] m_BitArray;
+        public DigitalBit this[int bitNumber]
+        {
+            get {
+                if (bitNumber >= m_BitArray.Length)
+                    throw new OutOfMemoryException("Bit is out of range");
+                return m_BitArray[bitNumber];
+            }
         }
 
         private int m_value;

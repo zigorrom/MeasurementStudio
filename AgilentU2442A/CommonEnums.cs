@@ -8,8 +8,8 @@ namespace AgilentU2442A
 {
     public enum DigitalChannelSizeEnum
     {
-        Ch_4_BIT,
-        Ch_8_BIT
+        Ch_4_BIT = 4,
+        Ch_8_BIT = 8
     }
 
     public enum ClockSourceEnum
