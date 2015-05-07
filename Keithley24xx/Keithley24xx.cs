@@ -165,8 +165,6 @@ namespace Keithley24XX
             return false;
         }
 
-        
-
         public override void DetectInstrument()
         {
             throw new NotImplementedException();
