@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Research.DynamicDataDisplay;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
 
 namespace DataVisualization
 {
@@ -23,6 +25,32 @@ namespace DataVisualization
         public DataPlotter()
         {
             InitializeComponent();
+            
         }
+
+        private IDataViewModel m_viewModel;
+
+        public void SetDataContext(IDataViewModel ViewModel)
+        {
+            m_viewModel = ViewModel;
+            DataContext = m_viewModel;
+        }
+
+        public void AddLineGraph(IPointDataSource Source, Color LineColor)
+        {
+            throw new NotImplementedException();
+            //var line = ChartControl.AddLineGraph();
+        }
+
+
+
+       
+
+        
+        //public object DataContext
+        //{
+        //    get { return null; }
+        //}
+
     }
 }

@@ -1,0 +1,10 @@
+﻿<Window x:Class="VizualizationTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="clr-namespace:DataVisualization;assembly=DataVisualization"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <v:DataPlotter HorizontalAlignment="Left" Margin="352,116,0,-70.2" VerticalAlignment="Top" Width="100" Height="275"/>
+
+    </Grid>
+</Window>

@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
+             mc:Ignorable="d" d:DesignWidth="482.707" Height="274.906">
     <Grid>
+        <d3:ChartPlotter Name="ChartControl" LegendVisible="True">
             
+        </d3:ChartPlotter>
     </Grid>
 </UserControl>
