@@ -8,8 +8,9 @@
             <ColumnDefinition Width="373*"/>
             <ColumnDefinition Width="144*"/>
         </Grid.ColumnDefinitions>
-        <v:DataPlotter Name="Plotter" HorizontalAlignment="Left" VerticalAlignment="Top" Width="373" Height="320"/>
         <Slider Grid.Column="1" HorizontalAlignment="Left" Height="33" Margin="39,83,0,0" VerticalAlignment="Top" Width="84" ValueChanged="Slider_ValueChanged"/>
+        <v:DataPlotter Name="Plotter" Height="Auto"/>
+        <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="23,167,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
 
     </Grid>
 </Window>

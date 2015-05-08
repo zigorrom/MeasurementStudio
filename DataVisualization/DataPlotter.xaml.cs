@@ -44,13 +44,14 @@ namespace DataVisualization
         public void AddLineGraph(IPointDataSource Source, Color LineColor)
         {
             var line = ChartControl.AddLineGraph(Source, LineColor);
-           
+
 
             Binding bind = new Binding("LineThickness");
             bind.Source = m_viewModel.LineThickness;
             bind.Mode = BindingMode.TwoWay;
             bind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-            line.SetBinding(Line.StrokeThicknessProperty, bind);
+            BindingOperations.SetBinding(line, Line.StrokeThicknessProperty, bind);
+            //line.SetBinding(Line.StrokeThicknessProperty, bind);
         }
     }
 }
