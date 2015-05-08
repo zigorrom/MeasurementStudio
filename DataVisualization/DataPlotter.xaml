@@ -6,8 +6,10 @@
              xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
              mc:Ignorable="d" d:DesignWidth="482.707" Height="274.906">
     <Grid>
-        <d3:ChartPlotter Name="ChartControl" LegendVisible="True">
-            
+        <d3:ChartPlotter Name="ChartControl">
+            <d3:Legend Name="LegendVisibility" Visibility="{Binding Path=LegendVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <d3:VerticalAxisTitle Name="VerticalAxisLabel" Content="{Binding Path=VerticalAxisLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <d3:HorizontalAxisTitle Name="HorizontalAxisLabel" Content="{Binding Path=HorizontalAxisLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </d3:ChartPlotter>
     </Grid>
 </UserControl>

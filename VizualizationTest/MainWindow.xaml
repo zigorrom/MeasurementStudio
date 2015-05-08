@@ -4,7 +4,12 @@
         xmlns:v="clr-namespace:DataVisualization;assembly=DataVisualization"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <v:DataPlotter HorizontalAlignment="Left" Margin="352,116,0,-70.2" VerticalAlignment="Top" Width="100" Height="275"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="373*"/>
+            <ColumnDefinition Width="144*"/>
+        </Grid.ColumnDefinitions>
+        <v:DataPlotter Name="Plotter" HorizontalAlignment="Left" VerticalAlignment="Top" Width="373" Height="320"/>
+        <Slider Grid.Column="1" HorizontalAlignment="Left" Height="33" Margin="39,83,0,0" VerticalAlignment="Top" Width="84" ValueChanged="Slider_ValueChanged"/>
 
     </Grid>
 </Window>

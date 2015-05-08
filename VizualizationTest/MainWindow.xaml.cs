@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Research.DynamicDataDisplay;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
 
 namespace VizualizationTest
 {
@@ -23,6 +25,19 @@ namespace VizualizationTest
         public MainWindow()
         {
             InitializeComponent();
+            model = new DataVisualization.VisualizationViewModel();
+            Plotter.SetDataContext(model);
+            var data = new ObservableDataSource<Point>();
+            data.SetXYMapping(p => p);
+            data.Collection.Add(new Point(1, 1));
+            data.Collection.Add(new Point(2, 2));
+            Plotter.AddLineGraph(data, Colors.Red);
+
+        }
+        private DataVisualization.VisualizationViewModel model;
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            model.LineThickness = e.NewValue;
         }
     }
 }

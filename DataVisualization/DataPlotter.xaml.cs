@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 
+
 namespace DataVisualization
 {
     /// <summary>
@@ -25,32 +26,31 @@ namespace DataVisualization
         public DataPlotter()
         {
             InitializeComponent();
-            
         }
 
-        private IDataViewModel m_viewModel;
+        
+        private IVisualizationViewModel m_viewModel;
 
-        public void SetDataContext(IDataViewModel ViewModel)
+        public void SetDataContext(IVisualizationViewModel ViewModel)
         {
             m_viewModel = ViewModel;
             DataContext = m_viewModel;
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="Source">ObservableDataSource</param>
+        /// <param name="LineColor"></param>
         public void AddLineGraph(IPointDataSource Source, Color LineColor)
         {
-            throw new NotImplementedException();
-            //var line = ChartControl.AddLineGraph();
+            var line = ChartControl.AddLineGraph(Source, LineColor);
+           
+
+            Binding bind = new Binding("LineThickness");
+            bind.Source = m_viewModel.LineThickness;
+            bind.Mode = BindingMode.TwoWay;
+            bind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            line.SetBinding(Line.StrokeThicknessProperty, bind);
         }
-
-
-
-       
-
-        
-        //public object DataContext
-        //{
-        //    get { return null; }
-        //}
-
     }
 }
