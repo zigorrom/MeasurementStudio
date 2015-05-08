@@ -396,7 +396,13 @@ namespace AgilentU2442A
             return StringFormat(CommandFormat, ChannelList);
         }
 
-        public string MEASureDIGitalBIT(int BitNumber, params string[] Channels )
+        public int MEASureDIGitalQueryParse(string response)
+        {
+            var data = StringToInt(response);
+            return data;
+        }
+
+        public string MEASureDIGitalBITQuery(int BitNumber, params string[] Channels )
         {
             const string CommandFormat = "MEAS:DIG:BIT? {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -405,6 +411,16 @@ namespace AgilentU2442A
             if (BitNumber > 7)
                 throw new ArgumentException(">7");
             return StringFormat(CommandFormat, BitNumber, ChannelList);
+        }
+
+        public bool MEASureDIGitalBITQueryParse(string response)
+        {
+            switch(response)
+            {
+                case "1": return true;
+                case "0": return false;
+                default: throw new ArgumentException(ResponceNotFitExceptionMessage);
+            }
         }
         #endregion
 

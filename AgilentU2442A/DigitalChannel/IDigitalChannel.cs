@@ -15,7 +15,7 @@ namespace AgilentU2442A
 
         int DigitalRead();
 
-        int DigitalReadBit(int bit);
+        bool DigitalReadBit(int bit);
 
     }
 }

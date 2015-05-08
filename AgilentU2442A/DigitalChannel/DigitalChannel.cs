@@ -111,12 +111,19 @@ namespace AgilentU2442A
 
         public int DigitalRead()
         {
-            throw new NotImplementedException();
+            if (DigitalDirection == DigitalDirectionEnum.Output)
+                throw new Exception("DigitalDirection is set to output");
+            var val = CommandSet.MEASureDIGitalQueryParse(QueryCommand(CommandSet.MEASureDIGitalQuery(ChannelName)));
+            return val;
+            //if(QueryCommand(CommandSet.MEASureDIGitalQuery(ChannelName))
         }
 
-        public int DigitalReadBit(int bit)
+        public bool DigitalReadBit(int bit)
         {
-            throw new NotImplementedException();
+            if (DigitalDirection == DigitalDirectionEnum.Output)
+                throw new Exception("DigitalDirection is set to output");
+            var val = CommandSet.MEASureDIGitalBITQueryParse(QueryCommand(CommandSet.MEASureDIGitalBITQuery(bit, ChannelName)));
+            return val;
         }
     }
 }
