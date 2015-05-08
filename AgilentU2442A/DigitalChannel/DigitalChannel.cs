@@ -46,6 +46,7 @@ namespace AgilentU2442A
                 return m_BitArray[bitNumber];
             }
         }
+
         public int BitNumber
         {
             get { return m_BitArray.Length; }
@@ -59,8 +60,8 @@ namespace AgilentU2442A
             private set {
                 if (m_value == value)
                     return;
-                if (!SendCommand(CommandSet.SOURceDIGitalDATA(value, ChannelName)))
-                    throw new MemberAccessException(MemberAccessExceptionMessage);
+                //if (!SendCommand(CommandSet.SOURceDIGitalDATA(value, ChannelName)))
+                //    throw new MemberAccessException(MemberAccessExceptionMessage);
                 m_value = value;
                 OnPropertyChanged("Value");
             }
@@ -82,22 +83,30 @@ namespace AgilentU2442A
 
         protected override void InitializeChannel()
         {
-            DigitalDirection = CommandSet.CONFigureDIGitalDIRectionQueryParse(QueryCommand(CommandSet.CONFigureDIGitalDIRectionQuery(ChannelName)));
+            m_DigitalDirection = CommandSet.CONFigureDIGitalDIRectionQueryParse(QueryCommand(CommandSet.CONFigureDIGitalDIRectionQuery(ChannelName)));
+            OnPropertyChanged("DigitalDirection");
             Value = CommandSet.SOURceDIGitalDATAQueryParse(QueryCommand(CommandSet.SOURceDIGitalDATAQuery(ChannelName)));
+            //OnPropertyChanged("Value");
         }
+
+        
 
         public void DigitalWrite(int value)
         {
             if (DigitalDirection == DigitalDirectionEnum.Input)
                 throw new Exception("DigitalDirection is set to input");
+            if (!SendCommand(CommandSet.SOURceDIGitalDATA(value, ChannelName)))
+                throw new MemberAccessException(MemberAccessExceptionMessage);
             Value = value;
         }
+
 
         public void DigitalWriteBit(bool value, int bit)
         {
            if(DigitalDirection == DigitalDirectionEnum.Input)
                throw new Exception("DigitalDirection is set to input");
-           
+           if (!SendCommand(CommandSet.SOURceDIGitalDATABIT(value, bit, ChannelName)))
+               throw new MemberAccessException(MemberAccessExceptionMessage);
         }
 
         public int DigitalRead()

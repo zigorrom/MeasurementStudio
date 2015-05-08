@@ -1398,11 +1398,14 @@ namespace AgilentU2442A
             }
         }
 
-        public string SOURceDIGitalDATABIT(int Value, int BitNumber, params string[] Channels)
+        public string SOURceDIGitalDATABIT(bool Value, int BitNumber, params string[] Channels)
         {
             const string CommandFormat = "SOUR:DIG:DATA:BIT {0}, {1}, {2}\n";
             var ChannelList = GetChannelListString(Channels);
-            return StringFormat(CommandFormat, Value, BitNumber, ChannelList);
+            var val = 0;
+            if (Value) val = 1;
+            else val = 0;
+            return StringFormat(CommandFormat, val, BitNumber, ChannelList);
         }
 
         public string SOURceDIGitalDATABITQuery(int BitNumber, params string[] Channels)
