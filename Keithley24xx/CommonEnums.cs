@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExperimentAbstraction.Singleton
+namespace Keithley24xx
 {
-    class ExperimentRegistry
+    public enum FunctionEnum
     {
+        None,
+        CURRent,
+        VOLTage,
+        RESistance
     }
 }

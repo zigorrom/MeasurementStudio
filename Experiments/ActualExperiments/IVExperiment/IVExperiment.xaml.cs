@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Experiments.ActualExperiments.IVExperiment
+namespace ExperimentAbstraction.ActualExperiments.IVExperiment
 {
     /// <summary>
     /// Interaction logic for IVExperiment.xaml
