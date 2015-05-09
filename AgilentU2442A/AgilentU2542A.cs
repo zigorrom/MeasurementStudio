@@ -10,8 +10,8 @@ namespace AgilentU2442A
     [InstrumentAttribute("Agilent","U2542A")]
     public class AgilentU2542A:AbstractMessageBasedInstrument//,IDAQ
     {
-        private AgilentU2542ACommandClass m_commandSet;
-        public AgilentU2542ACommandClass CommandSet
+        private AgilentU2542ACommandBuilder m_commandSet;
+        public AgilentU2542ACommandBuilder CommandSet
         {
             get { return m_commandSet; }
         }
@@ -32,7 +32,7 @@ namespace AgilentU2442A
         {
             if (!IsAlive(true))
                 throw new SystemException("Device was not initialized.");
-            m_commandSet = new AgilentU2542ACommandClass();
+            m_commandSet = new AgilentU2542ACommandBuilder();
             m_DeviceChannels = new Dictionary<ChannelName,AbstractChannel>();
             m_DeviceChannels.Add(ChannelEnum.AI_CH101, new AnalogInputChannel(ChannelEnum.AI_CH101, this));
             m_DeviceChannels.Add(ChannelEnum.AI_CH102, new AnalogInputChannel(ChannelEnum.AI_CH102, this));

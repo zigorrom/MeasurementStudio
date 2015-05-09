@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Instruments;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -7,14 +8,11 @@ using System.Threading.Tasks;
 
 namespace AgilentU2442A
 {
-    public class AgilentU2542ACommandClass
+    public class AgilentU2542ACommandBuilder:AbstractCommandBuilder
     {
-        private CultureInfo m_currentInfo;
-
-        public AgilentU2542ACommandClass()
+        public AgilentU2542ACommandBuilder():base()
         {
-            m_currentInfo = CultureInfo.CreateSpecificCulture("en-US");
-            m_currentInfo.NumberFormat = new NumberFormatInfo() { NumberDecimalSeparator = ".", NumberGroupSeparator = "" };
+            
         }
         public static string GetChannelListString(params string[] Channels)
         {
@@ -22,43 +20,6 @@ namespace AgilentU2442A
                 throw new ArgumentNullException();
             return String.Format("(@{0})",String.Join(",", Channels));
         }
-
-        private const string ResponceNotFitExceptionMessage = "The responce doesn`t fit to any on cases.";
-
-        private string StringFormat(string CommandFormat, params object[] Parameters)
-        {
-            return String.Format(m_currentInfo, CommandFormat, Parameters);
-        }
-
-        public int StringToInt(string str)
-        {
-            int val = 0;
-            try
-            {
-                val = int.Parse(str, m_currentInfo);
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
-            return val;
-        }
-
-        public double StringToDouble(string str)
-        {
-            double val = 0;
-            try
-            {
-                val = double.Parse(str, m_currentInfo);
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
-            return val;
-        }
-
-        
 
         #region ACQuire
         /// <summary>

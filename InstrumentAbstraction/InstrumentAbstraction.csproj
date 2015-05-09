@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractCommandBuilder.cs" />
     <Compile Include="AbstractMessageBasedInstrument.cs" />
     <Compile Include="IInstrument.cs" />
     <Compile Include="IInstrumentOwner.cs" />
