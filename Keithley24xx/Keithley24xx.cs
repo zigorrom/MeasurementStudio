@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.Threading;
 using Instruments;
+using Ke2400DotNetWrapper;
 
 namespace Keithley24XX
 {
@@ -14,8 +15,11 @@ namespace Keithley24XX
     {
         public Keithley24xx(string Name,string Alias, string ResourceName):base(Name,Alias,ResourceName)
         {
-
+            ke2400 ke = new ke2400(ResourceName, true, true);
+            
         }
+
+        
 
         public override bool InitializeDevice()
         {

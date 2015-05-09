@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ke2400.cs" />
     <Compile Include="Keithley24xx.cs" />
     <Compile Include="Keithley24xxCommandBuilder.cs" />
     <Compile Include="CommonEnums.cs" />
