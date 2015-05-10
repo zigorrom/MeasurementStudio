@@ -5,7 +5,7 @@
         Title="MainWindow" Height="857.52" Width="857.117">
     <Grid>
         <!--<Ranges:DoubleValuesRangeControl x:Name="Range" Margin="-10,0,533.5,577.643"/>-->
-        <Button Content="Button" HorizontalAlignment="Left" Height="106" Margin="149,331,0,0" VerticalAlignment="Top" Width="252" Click="Button_Click"/>
-        <IVCharacterization:IVMainView HorizontalAlignment="Left" Margin="392,5.546,0,0" VerticalAlignment="Top" Height="358.906" Width="405.252"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="106" Margin="63,479,0,0" VerticalAlignment="Top" Width="252" Click="Button_Click"/>
+        <IVCharacterization:IVMainView HorizontalAlignment="Left" Margin="0,6,0,0" VerticalAlignment="Top" Height="468" Width="797"/>
     </Grid>
 </Window>
