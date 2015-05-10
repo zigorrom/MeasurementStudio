@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeasurementStudio", "MeasurementStudio\MeasurementStudio.csproj", "{625C7D6C-587E-4CD8-9E5C-0C1B54175481}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExperimentDataModel", "ExperimentDataModel\ExperimentDataModel.csproj", "{F37C1293-015E-47EF-81FE-694857E4A303}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csproj", "{5216BA05-F05D-447A-965F-B1357DCB4990}"
@@ -68,20 +66,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Release|Any CPU.Build.0 = Release|Any CPU
-		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Release|Win32.ActiveCfg = Release|Any CPU
-		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Release|x64.ActiveCfg = Release|Any CPU
-		{625C7D6C-587E-4CD8-9E5C-0C1B54175481}.Release|x86.ActiveCfg = Release|Any CPU
 		{F37C1293-015E-47EF-81FE-694857E4A303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F37C1293-015E-47EF-81FE-694857E4A303}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F37C1293-015E-47EF-81FE-694857E4A303}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
