@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace IVCharacterization
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for IVMainView.xaml
     /// </summary>
     public partial class IVMainView : UserControl
     {

@@ -1,6 +1,4 @@
-﻿using Helper.Ranges;
-using NationalInstruments.VisaNS;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -32,9 +30,9 @@ namespace MeasurementStudio
         //DoublePropertyValueRange range;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ResourceManager mngr = ResourceManager.GetLocalManager();
-            var res = mngr.FindResources("?*");
-            //foreach (var item in range)
+            //ResourceManager mngr = ResourceManager.GetLocalManager();
+            //var res = mngr.FindResources("?*");
+            ////foreach (var item in range)
             //{
             //    Debug.WriteLine(item);
             //}
