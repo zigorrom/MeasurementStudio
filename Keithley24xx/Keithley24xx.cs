@@ -8,18 +8,18 @@ using System.Threading;
 using Instruments;
 using Ke2400DotNetWrapper;
 
-namespace Keithley24XX
+namespace Keithley24xx
 {
     [InstrumentAttribute("KEITHLEY","24")]//24 - BECAUSE 2400,2430 FITS
     public class Keithley24xx:AbstractMessageBasedInstrument//, ISourceMeasurementUnit
     {
         public Keithley24xx(string Name,string Alias, string ResourceName):base(Name,Alias,ResourceName)
         {
-            ke2400 ke = new ke2400(ResourceName, true, true);
-            
+           // ke2400 ke = new ke2400(ResourceName, true, true);
+            CommandSet = new Keithley24xxCommandBuilder();
         }
 
-        
+        private Keithley24xxCommandBuilder CommandSet;
 
         public override bool InitializeDevice()
         {
@@ -149,11 +149,10 @@ namespace Keithley24XX
             if (String.IsNullOrEmpty(result))
                 return false;
             string[] strValues = result.Split(',');
-            if (TryConvert(strValues[0], out Voltage))
-                if (TryConvert(strValues[1], out Current))
-                    if (TryConvert(strValues[2], out Resistance))
-                        return true;
-            return false;
+            Voltage = CommandSet.StringToDouble(strValues[0]);
+            Current = CommandSet.StringToDouble(strValues[1]);
+            Resistance = CommandSet.StringToDouble(strValues[2]);
+            return true;
         }
 
         public bool SwitchOn()
