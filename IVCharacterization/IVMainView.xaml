@@ -6,6 +6,7 @@
              xmlns:DataVisualization ="clr-namespace:DataVisualization;assembly=DataVisualization"
              mc:Ignorable="d" 
              d:DesignHeight="413" d:DesignWidth="615">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="171*"/>
@@ -14,56 +15,9 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" MinWidth="136"/>
         </Grid.ColumnDefinitions>
-
-        <Expander Grid.Column="1" IsExpanded="True" ExpandDirection="Left">
-            <Expander.Header>
-                <TextBlock Text="sdfgsdgkl">
-                    <TextBlock.RenderTransform>
-                        <TransformGroup>
-                            <RotateTransform Angle="90"/>
-                            <TranslateTransform X="30"/>
-                        </TransformGroup>
-                    </TextBlock.RenderTransform>
-                </TextBlock>
-            </Expander.Header>
-            <Grid Background="#FFE5E5E5" RenderTransformOrigin="0.5,0.5" Width="62" Margin="0,0,0,-2">
-                <Grid.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="-1"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Grid.RenderTransform>
-                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="190" Margin="10,32,0,0" Stroke="Black" VerticalAlignment="Top" Width="42"/>
-            </Grid>
-        </Expander>
         <DataVisualization:DataPlotter Grid.RowSpan="2"/>
-        <Expander Grid.Column="1" IsExpanded="True" ExpandDirection="Left" Grid.Row="1">
-            <Expander.Header>
-                <TextBlock Text="sdfgsdgkl">
-                    <TextBlock.RenderTransform>
-                        <TransformGroup>
-                            <RotateTransform Angle="90"/>
-                            <TranslateTransform X="30"/>
-                        </TransformGroup>
-                    </TextBlock.RenderTransform>
-                </TextBlock>
-            </Expander.Header>
-            <Grid Background="#FFE5E5E5" RenderTransformOrigin="0.5,0.5" Width="62" Margin="0,-2,0,-1">
-                <Grid.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="-1"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Grid.RenderTransform>
-                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="75" Margin="10,124,0,0" Stroke="Black" VerticalAlignment="Top" Width="43"/>
-            </Grid>
-        </Expander>
 
 
     </Grid>
