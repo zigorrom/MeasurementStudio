@@ -10,7 +10,8 @@ namespace Helper.Ranges.RangeHandlers
     {
         public NormalDoubleRangeHandler(DoubleRangeBase range):base(range)
         {
-            
+            BackAndForth = false;
+            StartFromZero = false;
         }
 
         public override IEnumerator<double> GetEnumerator()

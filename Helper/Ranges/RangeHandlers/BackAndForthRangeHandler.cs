@@ -10,7 +10,12 @@ namespace Helper.Ranges.RangeHandlers
     {
         public BackAndForthRangeHandler(DoubleRangeBase range):base(range)
         {
-
+            BackAndForth = true;
+            StartFromZero = false;
+            //m_range = range;
+            //m_BackAndForth = false;
+            //m_StartFromZero = false;
+            //m_RepeatCount = 1;
         }
         public override IEnumerator<double> GetEnumerator()
         {

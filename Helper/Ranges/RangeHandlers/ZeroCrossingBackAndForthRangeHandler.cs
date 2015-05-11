@@ -10,7 +10,8 @@ namespace Helper.Ranges.RangeHandlers
     {
         public ZeroCrossingBackAndForthRangeHandler(DoubleRangeBase range):base(range)
         {
-
+            BackAndForth = true;
+            StartFromZero = true;
         }
 
 

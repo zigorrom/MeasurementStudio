@@ -10,7 +10,8 @@ namespace Helper.Ranges.RangeHandlers
     {
         public ZeroCrossRangeHandler(DoubleRangeBase range):base(range)
         {
-
+            BackAndForth = false;
+            StartFromZero = true;
         }
 
         private IEnumerator<double> CurrentEnum()
