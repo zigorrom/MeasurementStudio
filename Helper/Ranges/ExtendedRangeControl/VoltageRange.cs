@@ -11,9 +11,9 @@ namespace Helper.Ranges
         public VoltageRange(double StartVoltage, double EndVoltage, double VoltageStep)
             : base(StartVoltage, EndVoltage, VoltageStep)
         { }
-        public VoltageRange(double StartVoltage, double EndVoltage, int PointsCount)
-            : base(StartVoltage, EndVoltage, PointsCount)
-        { }
+        //public VoltageRange(double StartVoltage, double EndVoltage, int PointsCount)
+        //    : base(StartVoltage, EndVoltage, PointsCount)
+        //{ }
 
     }
 }
