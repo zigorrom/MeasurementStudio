@@ -53,7 +53,10 @@
     <Compile Include="Ranges\ExtendedRangeControl\CountingModeEnum.cs" />
     <Compile Include="Ranges\ExtendedRangeControl\DoublePropertyValueRange.cs" />
     <Compile Include="Ranges\RangeHandlers\AbstractDoubleRangeHandler.cs" />
+    <Compile Include="Ranges\RangeHandlers\BackAndForthRangeHandler.cs" />
     <Compile Include="Ranges\RangeHandlers\NormalDoubleRangeHandler.cs" />
+    <Compile Include="Ranges\RangeHandlers\ZeroCrossingBackAndForthRangeHandler.cs" />
+    <Compile Include="Ranges\RangeHandlers\ZeroCrossRangeHandler.cs" />
     <Compile Include="Ranges\SimpleRangeControl\DoubleRangeBase.cs" />
     <Compile Include="Ranges\ExtendedRangeControl\DoubleValuesRangeBase.cs" />
     <Compile Include="Ranges\ExtendedRangeControl\DoubleValuesRangeControl.xaml.cs">

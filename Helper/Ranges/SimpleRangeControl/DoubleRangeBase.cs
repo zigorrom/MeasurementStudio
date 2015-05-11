@@ -44,6 +44,10 @@ namespace Helper.Ranges
             //else
             //    m_StepValue = m_RangeWidth / (m_PointsCount - 1);
         }
+        public bool CrossesZero
+        {
+            get { return m_CrossesZero; }
+        }
 
         private void CheckZeroCross()
         {
