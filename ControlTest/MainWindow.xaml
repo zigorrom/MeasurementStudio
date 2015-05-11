@@ -1,0 +1,13 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:IVCharacterization="clr-namespace:IVCharacterization;assembly=IVCharacterization" xmlns:Expander="clr-namespace:Helper.Expander;assembly=Helper" x:Class="ControlTest.MainWindow"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+
+        <!--<IVCharacterization:IVMainView/>-->
+
+        
+
+    </Grid>
+</Window>

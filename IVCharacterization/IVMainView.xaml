@@ -6,7 +6,7 @@
              xmlns:DataVisualization ="clr-namespace:DataVisualization;assembly=DataVisualization"
              mc:Ignorable="d" 
              d:DesignHeight="578" d:DesignWidth="946">
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="171*"/>
@@ -15,48 +15,10 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="Auto" MinWidth="475"/>
+            <ColumnDefinition Width="Auto" MinWidth="314"/>
         </Grid.ColumnDefinitions>
         <DataVisualization:DataPlotter Grid.RowSpan="2" Height="Auto"/>
-        <Expander Grid.Column="1" ExpandDirection="Left" Grid.RowSpan="2">
-            <Expander.Header>
-                <TextBlock Text="szfsf">
-                    <TextBlock.RenderTransform>
-                        <TransformGroup>
-                            <RotateTransform Angle="90"/>
-                            <TranslateTransform X="20"/>
-                        </TransformGroup>
-                    </TextBlock.RenderTransform>
-                </TextBlock>
-            </Expander.Header>
-            <Grid Background="#FFE5E5E5" Margin="0,0,0,-2">
-                <TabControl TabStripPlacement="Right">
-                    <TabControl.Resources>
-                        <Style TargetType="{x:Type TabItem}">
-                            <Setter Property="HeaderTemplate">
-                                <Setter.Value>
-                                    <DataTemplate>
-                                        <ContentPresenter Content="{TemplateBinding Content}">
-                                            <ContentPresenter.LayoutTransform>
-                                                <RotateTransform Angle="90" />
-                                            </ContentPresenter.LayoutTransform>
-                                        </ContentPresenter>
-                                    </DataTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Padding" Value="3" />
-                        </Style>
-                    </TabControl.Resources>
 
-                    <TabItem Header="TabItem" >
-                        <Grid Background="#FFE5E5E5"/>
-                    </TabItem>
-                    <TabItem Header="TabItem">
-                        <Grid Background="#FFE5E5E5"/>
-                    </TabItem>
-                </TabControl>
-            </Grid>
-        </Expander>
 
 
     </Grid>
