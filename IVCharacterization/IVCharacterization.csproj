@@ -47,9 +47,11 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IVCharacterizationExperiment.cs" />
     <Compile Include="IVMainView.xaml.cs">
       <DependentUpon>IVMainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IVMainViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -78,9 +80,17 @@
       <Project>{8A17EBB9-945B-42C8-83E1-41689D1001E6}</Project>
       <Name>DataVisualization</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExperimentAbstraction\ExperimentAbstraction.csproj">
+      <Project>{f9ff4a13-f344-4422-8908-99292fae27ee}</Project>
+      <Name>ExperimentAbstraction</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Helper\Helper.csproj">
       <Project>{5216ba05-f05d-447a-965f-b1357dcb4990}</Project>
       <Name>Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InstrumentAbstraction\InstrumentAbstraction.csproj">
+      <Project>{3c57f76b-be47-4de4-8466-3fd0b124d134}</Project>
+      <Name>InstrumentAbstraction</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
