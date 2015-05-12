@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,18 +23,6 @@ namespace MeasurementStudio
         public MainWindow()
         {
             InitializeComponent();
-            //range = new DoublePropertyValueRange();
-            //Range.DataContext = range;
-        }
-        //DoublePropertyValueRange range;
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //ResourceManager mngr = ResourceManager.GetLocalManager();
-            //var res = mngr.FindResources("?*");
-            ////foreach (var item in range)
-            //{
-            //    Debug.WriteLine(item);
-            //}
         }
     }
 }

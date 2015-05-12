@@ -13,16 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ControlTest
+namespace Helper.Ranges
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SimpleDoubleRangeControl.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SimpleVoltageRangeControl : UserControl
     {
-        public MainWindow()
+        public SimpleVoltageRangeControl()
         {
             InitializeComponent();
+        }
+
+        private void SetViewModel(DoubleRangeBase range)
+        {
+            this.DataContext = range;
         }
     }
 }

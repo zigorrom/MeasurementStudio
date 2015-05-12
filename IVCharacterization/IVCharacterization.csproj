@@ -78,6 +78,10 @@
       <Project>{8A17EBB9-945B-42C8-83E1-41689D1001E6}</Project>
       <Name>DataVisualization</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Helper\Helper.csproj">
+      <Project>{5216ba05-f05d-447a-965f-b1357dcb4990}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="IVMainView.xaml">

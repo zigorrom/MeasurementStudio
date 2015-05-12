@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{625C7D6C-587E-4CD8-9E5C-0C1B54175481}</ProjectGuid>
+    <ProjectGuid>{3381B9B8-6664-4DE5-B134-76A4287CD51A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MeasurementStudio</RootNamespace>
@@ -13,7 +13,6 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <ExpressionBlendVersion>12.0.41002.1</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -95,12 +94,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataVisualization\DataVisualization.csproj">
-      <Project>{8a17ebb9-945b-42c8-83e1-41689d1001e6}</Project>
-      <Name>DataVisualization</Name>
-    </ProjectReference>
     <ProjectReference Include="..\IVCharacterization\IVCharacterization.csproj">
-      <Project>{FA8149F8-BF54-4A46-9D0A-9980CEAD705B}</Project>
+      <Project>{fa8149f8-bf54-4a46-9d0a-9980cead705b}</Project>
       <Name>IVCharacterization</Name>
     </ProjectReference>
   </ItemGroup>

@@ -67,8 +67,8 @@
     <Compile Include="Ranges\Properties\DoubleProperty.cs" />
     <Compile Include="Ranges\Properties\IntProperty.cs" />
     <Compile Include="Ranges\Properties\Property.cs" />
-    <Compile Include="Ranges\SimpleRangeControl\SimpleDoubleRangeControl.xaml.cs">
-      <DependentUpon>SimpleDoubleRangeControl.xaml</DependentUpon>
+    <Compile Include="Ranges\SimpleRangeControl\SimpleVoltageRangeControl.xaml.cs">
+      <DependentUpon>SimpleVoltageRangeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ranges\ExtendedRangeControl\VoltageRange.cs" />
   </ItemGroup>
@@ -77,7 +77,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Ranges\SimpleRangeControl\SimpleDoubleRangeControl.xaml">
+    <Page Include="Ranges\SimpleRangeControl\SimpleVoltageRangeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
