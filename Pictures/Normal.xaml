@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="Normal" Width="640" Height="480" Clip="F1 M 0,0L 640,0L 640,480L 0,480L 0,0">
+	<Canvas x:Name="Layer_1" Width="640" Height="480" Canvas.Left="0" Canvas.Top="0">
+		<Path x:Name="Path" Width="593" Height="15" Canvas.Left="37.4001" Canvas.Top="216.8" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FF000000" Data="M 38.4001,224.903L 608.611,224.903M 629.4,224.3L 608.611,217.8L 608.611,230.8L 629.4,224.3 Z "/>
+		<Ellipse x:Name="Ellipse" Width="11" Height="10" Canvas.Left="316" Canvas.Top="220" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FF000000"/>
+		<Path x:Name="Path_0" Width="11" Height="9.99998" Canvas.Left="91.0333" Canvas.Top="218.333" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FF000000" Data="M 96.5333,219.333C 99.0186,219.333 101.033,221.124 101.033,223.333C 101.033,225.542 99.0186,227.333 96.5333,227.333C 94.048,227.333 92.0333,225.542 92.0333,223.333C 92.0333,221.124 94.048,219.333 96.5333,219.333 Z "/>
+		<Path x:Name="Path_1" Width="11" Height="9.99998" Canvas.Left="537.833" Canvas.Top="218.333" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FF000000" Data="M 543.333,219.333C 545.819,219.333 547.833,221.124 547.833,223.333C 547.833,225.542 545.819,227.333 543.333,227.333C 540.848,227.333 538.833,225.542 538.833,223.333C 538.833,221.124 540.848,219.333 543.333,219.333 Z "/>
+		<Path x:Name="Path_2" Width="421.668" Height="64.5894" Canvas.Left="101" Canvas.Top="155.411" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFF0000" Data="M 102,219C 174.049,188.667 246.098,158.333 314.431,156.5C 382.764,154.667 447.382,181.333 512,208M 521.668,213.047L 514.307,200.944L 507.643,215.039L 521.668,213.047 Z "/>
+		<Viewbox x:Name="Group" Width="52.32" Height="34.08" Canvas.Left="68.48" Canvas.Top="152.92">
+			<Canvas Width="52.32" Height="34.08">
+				<Path x:Name="Path_3" Width="28.8" Height="33.6" Canvas.Left="0" Canvas.Top="0.47998" Stretch="Fill" Fill="#FF000000" Data="F1 M 28.8,0.47998L 16.425,34.08L 12.12,34.08L 0,0.47998L 4.3875,0.47998L 13.6125,27.12C 13.9075,27.98 14.1325,28.9725 14.2875,30.0975L 14.3775,30.0975C 14.5025,29.1625 14.7575,28.155 15.1425,27.075L 24.555,0.47998L 28.8,0.47998 Z "/>
+				<Path x:Name="Path_4" Width="19.3875" Height="34.08" Canvas.Left="32.9325" Canvas.Top="0" Stretch="Fill" Fill="#FF000000" Data="F1 M 52.32,34.08L 33.12,34.08L 33.12,30.72L 40.8,30.72L 40.8,4.875L 32.9325,7.19998L 32.9325,3.53998L 44.64,0L 44.64,30.72L 52.32,30.72L 52.32,34.08 Z "/>
+			</Canvas>
+		</Viewbox>
+		<Viewbox x:Name="Group_5" Width="52.3199" Height="34.08" Canvas.Left="512.48" Canvas.Top="157.92">
+			<Canvas Width="52.3199" Height="34.08">
+				<Path x:Name="Path_6" Width="28.7999" Height="33.6" Canvas.Left="0" Canvas.Top="0.47998" Stretch="Fill" Fill="#FF000000" Data="F1 M 28.7999,0.47998L 16.4249,34.08L 12.12,34.08L 0,0.47998L 4.38745,0.47998L 13.6124,27.12C 13.9075,27.98 14.1324,28.9725 14.2875,30.0975L 14.3774,30.0975C 14.5024,29.1625 14.7574,28.155 15.1425,27.075L 24.5549,0.47998L 28.7999,0.47998 Z "/>
+				<Path x:Name="Path_7" Width="20.64" Height="34.08" Canvas.Left="31.6799" Canvas.Top="0" Stretch="Fill" Fill="#FF000000" Data="F1 M 51.84,34.08L 31.6799,34.08L 31.6799,30.8625L 41.5049,20.9775C 44.0099,18.4625 45.7987,16.3675 46.8712,14.6925C 47.9437,13.0175 48.4799,11.23 48.4799,9.32999C 48.4799,7.42999 47.9299,5.95999 46.83,4.91998C 45.7299,3.88 44.1674,3.35999 42.1425,3.35999C 39.1724,3.35999 36.325,4.63998 33.6,7.19998L 33.6,3.11249C 36.21,1.03748 39.2474,0 42.7124,0C 45.6974,0 48.0449,0.809998 49.7549,2.42999C 51.465,4.04999 52.3199,6.22498 52.3199,8.95499C 52.3199,11.125 51.7237,13.2437 50.5312,15.3112C 49.3387,17.3787 47.1949,19.945 44.1,23.01L 36.2999,30.72L 36.2999,30.81L 51.84,30.81L 51.84,34.08 Z "/>
+			</Canvas>
+		</Viewbox>
+	</Canvas>
+</Canvas>
