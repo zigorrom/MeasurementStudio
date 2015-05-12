@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C1D24AF3-FCA1-43A4-8569-9DB1DD715860}</ProjectGuid>
+    <ProjectGuid>{90E008B4-AC49-470C-9764-E3A31546CA25}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ControlTest</RootNamespace>
@@ -98,12 +98,8 @@
       <Project>{8a17ebb9-945b-42c8-83e1-41689d1001e6}</Project>
       <Name>DataVisualization</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Helper\Helper.csproj">
-      <Project>{5216BA05-F05D-447A-965F-B1357DCB4990}</Project>
-      <Name>Helper</Name>
-    </ProjectReference>
     <ProjectReference Include="..\IVCharacterization\IVCharacterization.csproj">
-      <Project>{FA8149F8-BF54-4A46-9D0A-9980CEAD705B}</Project>
+      <Project>{fa8149f8-bf54-4a46-9d0a-9980cead705b}</Project>
       <Name>IVCharacterization</Name>
     </ProjectReference>
   </ItemGroup>

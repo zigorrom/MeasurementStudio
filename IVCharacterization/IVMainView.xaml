@@ -15,9 +15,21 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="Auto" MinWidth="314"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <DataVisualization:DataPlotter Grid.RowSpan="2" Height="Auto"/>
+        <Expander Header="Settings" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Height="487" Grid.RowSpan="2" Width="314" ExpandDirection="Left" IsExpanded="True">
+            <Grid>
+                <TabControl>
+                    <TabItem Header="Range setup">
+                        <Grid Background="#FFE5E5E5"/>
+                    </TabItem>
+                    <TabItem Header="Settings">
+                        <Grid Background="#FFE5E5E5"/>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+        </Expander>
 
 
 
