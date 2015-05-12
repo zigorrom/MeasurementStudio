@@ -15,16 +15,16 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="519*"/>
+            <RowDefinition/>
 
-            <RowDefinition Height="59*"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" MinWidth="270.4"/>
         </Grid.ColumnDefinitions>
-        <DataVisualization:DataPlotter Height="Auto"/>
-        <Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" VerticalAlignment="Top" MinHeight="400" Height="485">
+        <DataVisualization:DataPlotter Height="Auto" Margin="0,0,9.2,0.4"/>
+        <Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" MinHeight="400">
             <Expander.Header>
                 <TextBlock Text="Settings" TextOptions.TextFormattingMode="Ideal">
                     <TextBlock.RenderTransform>

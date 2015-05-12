@@ -18,9 +18,10 @@
             <RowDefinition Height="{DynamicResource GridRowHeight}"/>
             <RowDefinition Height="{DynamicResource GridRowHeight}"/>
             <RowDefinition Height="{DynamicResource GridRowHeight}"/>
+            <RowDefinition Height="{DynamicResource GridRowHeight}"/>
         </Grid.RowDefinitions>
 
-        <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="3" Margin="3" Padding="3" >
+        <Border BorderBrush="Black" BorderThickness="1" Margin="3" Padding="3" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="{DynamicResource GridLabelWidth}"/>
@@ -65,6 +66,23 @@
             </Grid>
         </Border>
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" Margin="3" Padding="3">
+            <Grid Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{DynamicResource GridLabelWidth}"/>
+                    <ColumnDefinition Width="{DynamicResource GridValueWidth}"/>
+                    <ColumnDefinition Width="{DynamicResource GridUnitsWidth}"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Points" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="3"/>
+                <TextBox TextWrapping="Wrap" VerticalContentAlignment="Center" Grid.Column="1" Margin="3" Grid.ColumnSpan="2">
+                    <Binding Path="PointsCount" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:DoubleValueValudationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+            </Grid>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3" Margin="3" Padding="3">
             <Grid Margin="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="{DynamicResource GridLabelWidth}"/>

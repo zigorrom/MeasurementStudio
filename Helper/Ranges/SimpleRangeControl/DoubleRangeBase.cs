@@ -14,7 +14,7 @@ namespace Helper.Ranges
         private double m_StepValue;
         private double m_RangeWidth;
         private bool m_CrossesZero;
-        //private int m_PointsCount;
+        private int m_PointsCount;
         //private int m_Sign;
 
         public DoubleRangeBase(double start, double end, double step)
@@ -25,10 +25,10 @@ namespace Helper.Ranges
             m_RangeWidth = Math.Abs(end - start);
             m_StepValue = step;
             m_CrossesZero = (End * Start < 0);
-            //if (m_StepValue == 0)
-            //    m_PointsCount = 1;
-            //else
-            //    m_PointsCount = (int)(m_RangeWidth / m_StepValue) + 1;
+            if (m_StepValue == 0)
+                m_PointsCount = 1;
+            else
+                m_PointsCount = (int)(m_RangeWidth / m_StepValue) + 1;
         }
         [Obsolete("dont specify points number")]
         public DoubleRangeBase(double start, double end, int pointsCount)
@@ -38,11 +38,11 @@ namespace Helper.Ranges
             //m_Sign = (end > start) ? 1 : -1;
             m_RangeWidth = Math.Abs(end - start);
             CheckZeroCross();
-            //m_PointsCount = pointsCount;
-            //if (m_PointsCount <= 1)
-            //    m_StepValue = 0;
-            //else
-            //    m_StepValue = m_RangeWidth / (m_PointsCount - 1);
+            m_PointsCount = pointsCount;
+            if (m_PointsCount <= 1)
+                m_StepValue = 0;
+            else
+                m_StepValue = m_RangeWidth / (m_PointsCount - 1);
         }
         public bool CrossesZero
         {
@@ -64,10 +64,10 @@ namespace Helper.Ranges
                     //m_Sign = (End > Start) ? 1 : -1;
                     m_RangeWidth = Math.Abs(End - Start);
                     CheckZeroCross();
-                    //if (Step != 0)
-                    //    PointsCount = (int)(RangeWidth / Step) + 1;
-                    //else
-                    //    PointsCount = 1;
+                    if (Step != 0)
+                        PointsCount = (int)(RangeWidth / Step) + 1;
+                    else
+                        PointsCount = 1;
                 }
             }
         }
@@ -82,10 +82,10 @@ namespace Helper.Ranges
                     //m_Sign = (End > Start) ? 1 : -1;
                     m_RangeWidth = Math.Abs(End - Start);
                     CheckZeroCross();
-                    //if (Step != 0)
-                    //    PointsCount = (int)(RangeWidth / Step) + 1;
-                    //else
-                    //    PointsCount = 1;
+                    if (Step != 0)
+                        PointsCount = (int)(RangeWidth / Step) + 1;
+                    else
+                        PointsCount = 1;
                 }
 
             }
@@ -99,10 +99,10 @@ namespace Helper.Ranges
                 if (SetField<double>(ref m_StepValue, value, "Step"))
                 {
                     //CheckZeroCross();
-                    //if (Step != 0)
-                    //    PointsCount = (int)(RangeWidth / Step) + 1;
-                    //else
-                    //    PointsCount = 1;
+                    if (Step != 0)
+                        PointsCount = (int)(RangeWidth / Step) + 1;
+                    else
+                        PointsCount = 1;
                 }
             }
         }
@@ -112,20 +112,20 @@ namespace Helper.Ranges
             get { return m_RangeWidth; }
         }
 
-        //public int PointsCount
-        //{
-        //    get { return m_PointsCount; }
-        //    set
-        //    {
-        //        if (SetField<int>(ref m_PointsCount, value, "PointsCount"))
-        //        {
-        //            if (PointsCount > 1)
-        //                Step = RangeWidth / (PointsCount - 1);
-        //            else
-        //                Step = 0;
-        //        }
-        //    }
-        //}
+        public int PointsCount
+        {
+            get { return m_PointsCount; }
+            set
+            {
+                if (SetField<int>(ref m_PointsCount, value, "PointsCount"))
+                {
+                    if (PointsCount > 1)
+                        Step = RangeWidth / (PointsCount - 1);
+                    else
+                        Step = 0;
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

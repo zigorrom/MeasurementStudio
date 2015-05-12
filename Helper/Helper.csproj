@@ -71,6 +71,12 @@
       <DependentUpon>SimpleVoltageRangeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ranges\ExtendedRangeControl\VoltageRange.cs" />
+    <Compile Include="Ranges\SimpleRangeControl\SimpleValueRow.xaml.cs">
+      <DependentUpon>SimpleValueRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ranges\SimpleRangeControl\VoltageRange.xaml.cs">
+      <DependentUpon>VoltageRange.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Ranges\ExtendedRangeControl\DoubleValuesRangeControl.xaml">
@@ -78,6 +84,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ranges\SimpleRangeControl\SimpleVoltageRangeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ranges\SimpleRangeControl\SimpleValueRow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ranges\SimpleRangeControl\VoltageRange.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

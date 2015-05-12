@@ -1,0 +1,15 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Helper.Ranges.SimpleRangeControl" x:Class="Helper.Ranges.SimpleRangeControl.VoltageRange" 
+             mc:Ignorable="d" 
+             d:DesignHeight="197.369" d:DesignWidth="512.03" Height="200">
+    <StackPanel Margin="0">
+        <local:SimpleValueRow Margin="0"/>
+        <local:SimpleValueRow Height="Auto"/>
+        <local:SimpleValueRow d:LayoutOverrides="Height"/>
+        <local:SimpleValueRow d:LayoutOverrides="Height"/>
+    </StackPanel>
+</UserControl>
