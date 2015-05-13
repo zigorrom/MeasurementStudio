@@ -70,12 +70,12 @@
     <Compile Include="Ranges\SimpleRangeControl\SimplePointsNumberDisplay.xaml.cs">
       <DependentUpon>SimplePointsNumberDisplay.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ranges\SimpleRangeControl\SimpleVoltageRangeControl.xaml.cs">
-      <DependentUpon>SimpleVoltageRangeControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Ranges\ExtendedRangeControl\VoltageRange.cs" />
     <Compile Include="Ranges\SimpleRangeControl\SimpleValueRow.xaml.cs">
       <DependentUpon>SimpleValueRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ranges\SimpleRangeControl\SimpleVoltageRange.xaml.cs">
+      <DependentUpon>SimpleVoltageRange.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ranges\SimpleRangeControl\VoltageRange.xaml.cs">
       <DependentUpon>VoltageRange.xaml</DependentUpon>
@@ -90,11 +90,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Ranges\SimpleRangeControl\SimpleVoltageRangeControl.xaml">
+    <Page Include="Ranges\SimpleRangeControl\SimpleValueRow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Ranges\SimpleRangeControl\SimpleValueRow.xaml">
+    <Page Include="Ranges\SimpleRangeControl\SimpleVoltageRange.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -105,6 +105,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ranges\SimpleRangeControl\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <DesignData Include="SampleData\DoubleRangeBaseSampleData.xaml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

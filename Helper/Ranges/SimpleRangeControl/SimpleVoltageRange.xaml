@@ -1,0 +1,157 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" x:Class="Helper.Ranges.SimpleRangeControl.SimpleVoltageRange" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignData /SampleData/DoubleRangeBaseSampleData.xaml}">
+    <UserControl.Resources>
+        
+        <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Height" Value="Auto"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <GridLength x:Key="RowHeight">100*</GridLength>
+        <GridLength x:Key="LabelColWidth">50*</GridLength>
+        <GridLength x:Key="ValueColWidth">72*</GridLength>
+        <GridLength x:Key="UnitColWidth">35*</GridLength>
+        <Style x:Key="LabelStyle" TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Top"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Label}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true" VerticalAlignment="Stretch">
+                            <ContentPresenter RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <LinearGradientBrush x:Key="TextBoxBorder" StartPoint="0,0" MappingMode="Absolute" EndPoint="0,20">
+            <GradientStop Color="#ABADB3" Offset="0.05"/>
+            <GradientStop Color="#E2E3EA" Offset="0.07"/>
+            <GradientStop Color="#E3E9EF" Offset="1"/>
+        </LinearGradientBrush>
+        <Style x:Key="TextBoxStyle" BasedOn="{x:Null}" TargetType="{x:Type TextBox}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBoxBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Themes:ListBoxChrome x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderFocused="{TemplateBinding IsKeyboardFocusWithin}" SnapsToDevicePixels="true">
+                            <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="Center"/>
+                        </Themes:ListBoxChrome>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        <Thickness x:Key="ValueTextBoxMargin">3</Thickness>
+        <Thickness x:Key="LabelMargin">3</Thickness>
+        <Thickness x:Key="ComboMargin">3</Thickness>
+        <x:Array x:Key="Units" Type="sys:String" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+            <sys:String>V</sys:String>
+            <sys:String>mV</sys:String>
+            <sys:String>uV</sys:String>
+        </x:Array>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{DynamicResource LabelColWidth}"/>
+            <ColumnDefinition Width="{DynamicResource ValueColWidth}"/>
+            <ColumnDefinition Width="{DynamicResource UnitColWidth}"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{DynamicResource RowHeight}"/>
+            <RowDefinition Height="{DynamicResource RowHeight}"/>
+            <RowDefinition Height="{DynamicResource RowHeight}"/>
+            <RowDefinition Height="{DynamicResource RowHeight}"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" Grid.ColumnSpan="3" Style="{DynamicResource BorderStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{DynamicResource LabelColWidth}"/>
+                    <ColumnDefinition Width="{DynamicResource ValueColWidth}"/>
+                    <ColumnDefinition Width="{DynamicResource UnitColWidth}"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Start" Style="{DynamicResource LabelStyle}" Margin="{DynamicResource LabelMargin}"/>
+                <TextBox TextWrapping="Wrap" Text="{Binding Start, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Style="{DynamicResource TextBoxStyle}" VerticalContentAlignment="Center" Margin="{DynamicResource ValueTextBoxMargin}"/>
+                <ComboBox Grid.Column="2" Margin="{DynamicResource ComboMargin}" HorizontalContentAlignment="Center" ItemsSource="{DynamicResource Units}" SelectedIndex="0" VerticalContentAlignment="Center"/>
+            </Grid>
+        </Border>
+        <Border BorderBrush="Black" Grid.Row="1" Grid.ColumnSpan="3" Style="{DynamicResource BorderStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{DynamicResource LabelColWidth}"/>
+                    <ColumnDefinition Width="{DynamicResource ValueColWidth}"/>
+                    <ColumnDefinition Width="{DynamicResource UnitColWidth}"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="End" Style="{DynamicResource LabelStyle}" Margin="{DynamicResource LabelMargin}"/>
+                <TextBox TextWrapping="Wrap" Text="{Binding End, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Style="{DynamicResource TextBoxStyle}" VerticalContentAlignment="Center" Margin="{DynamicResource ValueTextBoxMargin}"/>
+                <ComboBox Grid.Column="2" Margin="{DynamicResource ComboMargin}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ItemsSource="{DynamicResource Units}" SelectedIndex="0"/>
+            </Grid>
+        </Border>
+        <Border BorderBrush="Black" Grid.Row="2" Grid.ColumnSpan="3" Style="{DynamicResource BorderStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{DynamicResource LabelColWidth}"/>
+                    <ColumnDefinition Width="{DynamicResource ValueColWidth}"/>
+                    <ColumnDefinition Width="{DynamicResource UnitColWidth}"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="PointsCount" Style="{DynamicResource LabelStyle}" Margin="{DynamicResource LabelMargin}"/>
+                <TextBox TextWrapping="Wrap" Text="{Binding PointsCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.ColumnSpan="2" Style="{DynamicResource TextBoxStyle}" VerticalContentAlignment="Center" Margin="{DynamicResource ValueTextBoxMargin}"/>
+            </Grid>
+        </Border>
+        <Border BorderBrush="Black" Grid.Row="3" Grid.ColumnSpan="3" Style="{DynamicResource BorderStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{DynamicResource LabelColWidth}"/>
+                    <ColumnDefinition Width="{DynamicResource ValueColWidth}"/>
+                    <ColumnDefinition Width="{DynamicResource UnitColWidth}"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Step" Style="{DynamicResource LabelStyle}" Margin="{DynamicResource LabelMargin}"/>
+                <TextBox TextWrapping="Wrap" Text="{Binding Step, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Style="{DynamicResource TextBoxStyle}" VerticalContentAlignment="Center" Margin="{DynamicResource ValueTextBoxMargin}"/>
+                <ComboBox Grid.Column="2" Margin="{DynamicResource ComboMargin}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0" ItemsSource="{DynamicResource Units}"/>
+            </Grid>
+        </Border>
+
+    </Grid>
+</UserControl>

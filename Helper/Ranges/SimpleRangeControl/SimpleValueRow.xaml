@@ -14,7 +14,11 @@
             </Grid.ColumnDefinitions>
             <Label x:Name="ValueName" Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="3"/>
             <TextBox x:Name="Value" Grid.Column="1" Margin="3" TextWrapping="Wrap" Text="TextBox" VerticalContentAlignment="Center"/>
-            <ComboBox x:Name="Unit" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <ComboBox x:Name="Unit" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectedIndex="0">
+                <ComboBoxItem Content="V"/>
+                <ComboBoxItem Content="mV"/>
+                <ComboBoxItem Content="uV"/>
+            </ComboBox>
 
         </Grid>
     </Border>
