@@ -13,7 +13,7 @@
                 <ColumnDefinition Width="121*"/>
             </Grid.ColumnDefinitions>
             <Label x:Name="ValueName" Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="3"/>
-            <TextBox x:Name="Value" Grid.Column="1" Margin="3" TextWrapping="Wrap" Text="TextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="Value" Grid.Column="1" Margin="3" TextWrapping="Wrap" Text="TextBox" VerticalContentAlignment="Center"/>
             <ComboBox x:Name="Unit" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
         </Grid>

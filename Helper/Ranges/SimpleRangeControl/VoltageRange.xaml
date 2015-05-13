@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Helper.Ranges.SimpleRangeControl" x:Class="Helper.Ranges.SimpleRangeControl.VoltageRange" 
+             xmlns:local="clr-namespace:Helper.Ranges.SimpleRangeControl" x:Name="RangeControl" x:Class="Helper.Ranges.SimpleRangeControl.VoltageRange" 
              mc:Ignorable="d" 
              d:DesignHeight="197.369" d:DesignWidth="512.03" Height="200">
     <StackPanel Margin="0">
-        <local:SimpleValueRow Margin="0"/>
-        <local:SimpleValueRow Height="Auto"/>
-        <local:SimpleValueRow d:LayoutOverrides="Height"/>
-        <local:SimpleValueRow d:LayoutOverrides="Height"/>
+        <local:SimpleValueRow x:Name="StartValueControl" Margin="0" Height="Auto"/>
+        <local:SimpleValueRow x:Name="StopValueControl" Height="Auto"/>
+        <local:SimplePointsNumberDisplay x:Name="PointsCountControl" Height="Auto"/>
+        <local:SimpleValueRow x:Name="StepValueControl" Height="Auto"/>
     </StackPanel>
 </UserControl>

@@ -6,7 +6,7 @@
              xmlns:DataVisualization ="clr-namespace:DataVisualization;assembly=DataVisualization"
              xmlns:Ranges ="clr-namespace:Helper.Ranges;assembly=Helper"
              mc:Ignorable="d" 
-             d:DesignHeight="578" d:DesignWidth="946" MinHeight="578" MinWidth="578">
+             d:DesignHeight="643" d:DesignWidth="946" MinHeight="578" MinWidth="578">
     <UserControl.Resources>
         <GridLength x:Key="RangeGroupHeight">205*</GridLength>
         <GridLength x:Key="RangeControlHeight">58*</GridLength>
