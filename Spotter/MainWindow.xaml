@@ -1,8 +1,11 @@
-﻿<Window x:Class="Spotter.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:SimpleRangeControl="clr-namespace:Helper.Ranges.SimpleRangeControl;assembly=Helper" x:Class="Spotter.MainWindow"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+
+        <SimpleRangeControl:SimpleValueRow x:Name="a" HorizontalAlignment="Left" Margin="195,133,0,0" VerticalAlignment="Top" Width="298"/>
+
     </Grid>
 </Window>

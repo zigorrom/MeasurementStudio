@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" x:Class="Helper.Ranges.SimpleRangeControl.SimpleVoltageRange" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignData /SampleData/DoubleRangeBaseSampleData.xaml}">
+             d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         
         <Style x:Key="BorderStyle" TargetType="{x:Type Border}">

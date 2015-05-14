@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Helper.Ranges.DoubleRange;
+using Helper.Ranges.Units;
 
 namespace Spotter
 {
@@ -22,20 +24,23 @@ namespace Spotter
     {
         public MainWindow()
         {
+          
             InitializeComponent();
-            foreach (var item in COMDevice.GetPortNames())
-            {
-                MessageBox.Show(item);
-                try
-                {
-                    COMDevice dev = new COMDevice(item);
-                }
-                catch (Exception e)
-                {
+            //var dnv = new DoubleNumericValue(new Volt());
+            //this.a.DataContext = dnv;
+            //foreach (var item in COMDevice.GetPortNames())
+            //{
+            //    MessageBox.Show(item);
+            //    try
+            //    {
+            //        COMDevice dev = new COMDevice(item);
+            //    }
+            //    catch (Exception e)
+            //    {
 
-                    throw;
-                }
-            }
+            //        throw;
+            //    }
+            //}
             
         }
     }

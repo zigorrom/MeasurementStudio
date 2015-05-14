@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace Helper.Ranges.Units
 {
-    public class Volt:AbstractUnit
+    public class VoltageUnitConverter:AbstractUnitConverter
     {
-        public Volt()
-            : base("V", new VoltageUnitConverter()) 
+        public VoltageUnitConverter():base("V")
         { }
-        
-        
+      
     }
 }

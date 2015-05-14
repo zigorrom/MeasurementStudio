@@ -4,6 +4,6 @@
         xmlns:IV="clr-namespace:IVCharacterization;assembly=IVCharacterization"
         Title="MainWindow" Height="600.904" Width="745.331">
     <Grid>
-        <IV:IVMainView/>
+        <IV:IVMainView Margin="0,0,0,83"/>
     </Grid>
 </Window>

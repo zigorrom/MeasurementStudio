@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Helper.Ranges.DoubleRange
 {
-    public class DoubleNumericValue:INotifyPropertyChanged
+    public abstract class DoubleNumericValue/*<T>*/:INotifyPropertyChanged// where T:IUnits, new()
     {
-        public DoubleNumericValue(IUnits units)
+        public DoubleNumericValue(IUnits units)//T units)
         {
             m_NumericValue = 0;
             m_Magnitude = 0;
@@ -59,9 +59,31 @@ namespace Helper.Ranges.DoubleRange
                 handler(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        public static implicit operator double(DoubleNumericValue d)
+        public static explicit operator double(DoubleNumericValue d)
         {
             return d.NumericValue;
+        }
+
+        public abstract DoubleNumericValue Add(DoubleNumericValue other);
+        public abstract DoubleNumericValue Subtruct(DoubleNumericValue other);
+        public abstract DoubleNumericValue Multiply(DoubleNumericValue other);
+        public abstract DoubleNumericValue Divide(DoubleNumericValue other);
+
+        public static DoubleNumericValue operator +(DoubleNumericValue value1, DoubleNumericValue value2)
+        {
+            return value1.Add(value2);
+        }
+        public static DoubleNumericValue operator -(DoubleNumericValue value1, DoubleNumericValue value2)
+        {
+            return value1.Subtruct(value2);
+        }
+        public static DoubleNumericValue operator *(DoubleNumericValue value1, DoubleNumericValue value2)
+        {
+            return value1.Multiply(value2);
+        }
+        public static DoubleNumericValue operator /(DoubleNumericValue value1, DoubleNumericValue value2)
+        {
+            return value1.Divide(value2);
         }
 
     }
