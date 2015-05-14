@@ -40,6 +40,11 @@ namespace Helper.Ranges.DoubleRange
             }
         }
 
+        public void CastToPrefix(UnitPrefixesEnum prefix)
+        {
+            Magnitude *= Math.Pow(10, (int)(Units.Prefix - prefix));
+            Units.Prefix = prefix;
+        }
         public double NumericValue
         {
             get { return m_NumericValue; }

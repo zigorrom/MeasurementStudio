@@ -13,7 +13,11 @@ namespace Helper.Ranges.DoubleRange
         { }
         public override DoubleNumericValue Add(DoubleNumericValue other)
         {
-            throw new NotImplementedException();
+            if (!Units.Equals(other.Units))
+                throw new ArgumentException("Value of other units");
+            if (Units.Prefix != other.Units.Prefix)
+                other.CastToPrefix(Units.Prefix);
+            
         }
 
         public override DoubleNumericValue Subtruct(DoubleNumericValue other)

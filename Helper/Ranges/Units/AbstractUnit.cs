@@ -31,22 +31,24 @@ namespace Helper.Ranges.Units
         }
         private void Initialize()
         {
-            CalculatePrefixVal();
+            m_prefixVal = CalculatePrefixVal((int)Prefix);
             Units = GenerateUnits(Prefix);
         }
 
             
 
         private string m_name;
+        public string Name { get { return m_name; } }
         private string UnitsFromPrefix(string prefix)
         {
             return prefix + m_name;
         }
 
         private double m_prefixVal;
-        private void CalculatePrefixVal()
+        private double CalculatePrefixVal(int PowerOfTen)
         {
-            m_prefixVal = Math.Pow(10, (int)m_prefix);
+            return Math.Pow(10, PowerOfTen);
+            //m_prefixVal = Math.Pow(10, PowerOfTen);//(int)m_prefix);
         }
 
         private string GenerateUnits(UnitPrefixesEnum prefix)
@@ -65,7 +67,7 @@ namespace Helper.Ranges.Units
             {
                 if (m_prefix == value) return;
                 m_prefix = value;
-                CalculatePrefixVal();
+                m_prefixVal = CalculatePrefixVal((int)Prefix);
                 Units = GenerateUnits(Prefix);
                 OnPropertyChanged("Prefix");
                 
@@ -108,6 +110,20 @@ namespace Helper.Ranges.Units
 
 
 
-        
+        public bool Equals(IUnits other)
+        {
+            if (Name == other.Name)
+                return true;
+            return false;
+        }
+
+
+        //public void CastToPrefix(UnitPrefixesEnum prefix)
+        //{
+        //    if (prefix == Prefix)
+        //        return;
+        //    var multiplier = CalculatePrefixVal((int)(Prefix - prefix));
+            
+        //}
     }
 }
