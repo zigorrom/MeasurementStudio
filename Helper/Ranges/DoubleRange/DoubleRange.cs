@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Helper.Ranges
+namespace Helper.Ranges.DoubleRange
 {
-    public enum CountingModeEnum
+    public class DoubleRange
     {
-        Repetitive,
-        BackAndForth
+
     }
 }
