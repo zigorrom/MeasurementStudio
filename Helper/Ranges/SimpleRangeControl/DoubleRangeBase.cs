@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Helper.Ranges.Units;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -144,24 +145,6 @@ namespace Helper.Ranges
             return true;
         }
 
-        //public void Foreach(Action<double> action)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public IEnumerator<double> GetEnumerator()
-        //{
-        //    int counter = 0;
-
-        //    for (double val = Start; (m_Sign >= 0 ? (val <= End) : (val >= End)) && (counter < PointsCount); val += m_Sign * Step, counter++)
-        //    {
-        //        yield return val;
-        //    }
-        //}
-
-        //System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        //{
-        //    return GetEnumerator();
-        //}
+      
     }
 }

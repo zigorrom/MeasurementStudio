@@ -11,6 +11,8 @@ namespace Helper.Ranges.Units
     {
         UnitPrefixesEnum Prefix { get; set; }
         string Units { get;  }
+        //string[] UnitSource { get; }
+        //Dictionary<String, UnitPrefixesEnum> UnitSource { get; }
         double GetNumericValue(double magnitude);
     }
 }

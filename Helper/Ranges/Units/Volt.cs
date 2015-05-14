@@ -9,8 +9,9 @@ namespace Helper.Ranges.Units
     public class Volt:AbstractUnit
     {
         public Volt()
-            : base("V")
+            : base("V") 
         { }
+        
         //public 
     }
 }

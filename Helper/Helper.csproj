@@ -99,6 +99,7 @@
     <Content Include="Ranges\SimpleRangeControl\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <DesignData Include="SampleData\DoubleNumericValueSampleData.xaml" />
     <DesignData Include="SampleData\DoubleRangeBaseSampleData.xaml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

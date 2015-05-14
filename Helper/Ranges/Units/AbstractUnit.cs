@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace Helper.Ranges.Units
 {
     public abstract class AbstractUnit : IUnits
-    {
+    { 
+      
         public AbstractUnit(string UnitName, UnitPrefixesEnum prefix = UnitPrefixesEnum.DEFAULT)
         {
             m_name = UnitName;
@@ -23,96 +24,97 @@ namespace Helper.Ranges.Units
             Prefix = UnitPrefixesEnum.DEFAULT;
             Initialize();
         }
-        private void Initialize()
+        private void Initialize(UnitPrefixesEnum MinPrefixParam =  UnitPrefixesEnum.YOCTO, UnitPrefixesEnum MaxPrefixParam = UnitPrefixesEnum.YOTTA)
         {
             CalculatePrefixVal();
-            GenerateUnits();
+            Units = GenerateUnits(Prefix);
+            MinPrefix = MinPrefixParam;
+            MaxPrefix = MaxPrefixParam;
+           // InitializeUnitSource();
+            //unitSource = new string[]
+            //m_unitSource = new Dictionary<string, UnitPrefixesEnum>();
+            //GenerateUnitSource();
         }
+
+            
+
         private string m_name;
+        private string UnitsFromPrefix(string prefix)
+        {
+            return prefix + m_name;
+        }
+
         private double m_prefixVal;
         private void CalculatePrefixVal()
         {
             m_prefixVal = Math.Pow(10, (int)m_prefix);
         }
 
-        private string UnitsFromPrefix(string prefix)
+        private string GenerateUnits(UnitPrefixesEnum prefix)
         {
-            return prefix + m_name;
-        }
-        private void GenerateUnits()
-        {
-            switch (Prefix)
+            switch (prefix)
             {
                 case UnitPrefixesEnum.YOTTA:
-                    Units = UnitsFromPrefix("Y");
-                    break;
+                    return UnitsFromPrefix("Y");
                 case UnitPrefixesEnum.ZETTA:
-                    Units = UnitsFromPrefix("Z");
-                    break;
+                    return UnitsFromPrefix("Z");
                 case UnitPrefixesEnum.EXA:
-                    Units = UnitsFromPrefix("E");
-                    break;
+                    return UnitsFromPrefix("E");
                 case UnitPrefixesEnum.PETA:
-                    Units = UnitsFromPrefix("P");
-                    break;
+                    return UnitsFromPrefix("P");
                 case UnitPrefixesEnum.TERA:
-                    Units = UnitsFromPrefix("T");
-                    break;
+                    return UnitsFromPrefix("T");
                 case UnitPrefixesEnum.GIGA:
-                    Units = UnitsFromPrefix("G");
-                    break;
+                    return UnitsFromPrefix("G");
                 case UnitPrefixesEnum.MEGA:
-                    Units = UnitsFromPrefix("M");
-                    break;
+                    return UnitsFromPrefix("M");
                 case UnitPrefixesEnum.KILO:
-                    Units = UnitsFromPrefix("k");
-                    break;
+                    return UnitsFromPrefix("k");
                 case UnitPrefixesEnum.HECTO:
-                    Units = UnitsFromPrefix("h");
-                    break;
+                    return UnitsFromPrefix("h");
                 case UnitPrefixesEnum.DECA:
-                    Units = UnitsFromPrefix("da");
-                    break;
+                    return UnitsFromPrefix("da");
                 case UnitPrefixesEnum.DEFAULT:
-                    Units = UnitsFromPrefix("");
-                    break;
+                    return UnitsFromPrefix("");
                 case UnitPrefixesEnum.DECI:
-                    Units = UnitsFromPrefix("d");
-                    break;
+                    return UnitsFromPrefix("d");
                 case UnitPrefixesEnum.CENTI:
-                    Units = UnitsFromPrefix("c");
-                    break;
+                    return UnitsFromPrefix("c");
                 case UnitPrefixesEnum.MILLI:
-                    Units = UnitsFromPrefix("m");
-                    break;
+                    return UnitsFromPrefix("m");
                 case UnitPrefixesEnum.MICRO:
-                    Units = UnitsFromPrefix("u");
-                    break;
+                    return UnitsFromPrefix("u");
                 case UnitPrefixesEnum.NANO:
-                    Units = UnitsFromPrefix("n");
-                    break;
+                    return UnitsFromPrefix("n");
                 case UnitPrefixesEnum.PICO:
-                    Units = UnitsFromPrefix("p");
-                    break;
+                    return UnitsFromPrefix("p");
                 case UnitPrefixesEnum.FEMTO:
-                    Units = UnitsFromPrefix("f");
-                    break;
+                    return UnitsFromPrefix("f");
                 case UnitPrefixesEnum.ATTO:
-                    Units = UnitsFromPrefix("a");
-                    break;
+                    return UnitsFromPrefix("a");
                 case UnitPrefixesEnum.ZEPTO:
-                    Units = UnitsFromPrefix("z");
-                    break;
+                    return UnitsFromPrefix("z");
                 case UnitPrefixesEnum.YOCTO:
-                    Units = UnitsFromPrefix("y");
-                    break;
+                    return UnitsFromPrefix("y");
                 default:
-                    Units = UnitsFromPrefix("");
-                    break;
+                    return UnitsFromPrefix("");
             }
         }
 
-        
+        private UnitPrefixesEnum m_MinPrefix;
+        public UnitPrefixesEnum MinPrefix
+        {
+            get { return m_MinPrefix; }
+            set { m_MinPrefix = value; }
+        }
+
+        private UnitPrefixesEnum m_MaxPrefix;
+        public UnitPrefixesEnum MaxPrefix
+        {
+            get { return m_MaxPrefix; }
+            set { m_MaxPrefix = value; }
+        }
+
         private UnitPrefixesEnum m_prefix;
         public UnitPrefixesEnum Prefix
         {
@@ -124,7 +126,8 @@ namespace Helper.Ranges.Units
             {
                 if (m_prefix == value) return;
                 m_prefix = value;
-                Initialize();
+                CalculatePrefixVal();
+                Units = GenerateUnits(Prefix);
                 OnPropertyChanged("Prefix");
                 
             }
@@ -133,14 +136,6 @@ namespace Helper.Ranges.Units
         public double GetNumericValue(double magnitude)
         {
             return m_prefixVal * magnitude;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string PropertyName)
-        {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(PropertyName));
         }
 
         private string m_units;
@@ -157,9 +152,23 @@ namespace Helper.Ranges.Units
                 OnPropertyChanged("Units");
             }
         }
+
+
         public override string ToString()
         {
             return m_name;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string PropertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(PropertyName));
+        }
+
+
+
+        
     }
 }
