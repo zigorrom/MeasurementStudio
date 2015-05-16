@@ -26,6 +26,8 @@ namespace Spotter
         {
           
             InitializeComponent();
+            var duv = new DoubleUnitValue("V");
+            DataContext = duv;
             //var dnv = new DoubleNumericValue(new Volt());
             //this.a.DataContext = dnv;
             //foreach (var item in COMDevice.GetPortNames())

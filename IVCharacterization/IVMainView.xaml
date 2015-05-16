@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:DataVisualization ="clr-namespace:DataVisualization;assembly=DataVisualization"
-             xmlns:Ranges ="clr-namespace:Helper.Ranges;assembly=Helper"
-             xmlns:SimpleRangeControl="clr-namespace:Helper.Ranges.SimpleRangeControl;assembly=Helper" x:Class="IVCharacterization.IVMainView"
+             x:Class="IVCharacterization.IVMainView"
              mc:Ignorable="d" 
              d:DesignHeight="643" d:DesignWidth="946" MinHeight="578" MinWidth="578">
     <UserControl.Resources>
@@ -59,7 +58,8 @@
                                         <RowDefinition Height="{DynamicResource AdditionalSettingsSpaceHeight}"/>
                                     </Grid.RowDefinitions>
                                     <!--<Ranges:SimpleVoltageRangeControl x:Name="Range1" DataContext="{Binding DSVoltageRange}"/>-->
-                                    <SimpleRangeControl:VoltageRange x:Name="DrainSourceVoltageRange" Height="Auto" Margin="0"/>
+                                    
+                                    <!--<SimpleRangeControl:RangeControl x:Name="DrainSourceVoltageRange" Height="Auto" Margin="0"/>-->
                                     <!--<Ranges:SimpleVoltageRangeControl x:Name="Range1" DataContext="{Binding DSVoltageRange}"/>-->
                                     <ComboBox Grid.Row="1" Margin="3" DataContext="{Binding DSVoltageRangeHandler}"/>
                                 </Grid>
@@ -72,7 +72,7 @@
                                     </Grid.RowDefinitions>
                                     <!--<Ranges:SimpleVoltageRangeControl x:Name="Range2" DataContext="{Binding GSVoltageRange}"/>-->
                                     <ComboBox Margin="3" Grid.Row="1" DataContext="{Binding GSVoltageRangeHandler}"/>
-                                    <SimpleRangeControl:VoltageRange x:Name="GateSourceVoltageRange"/>
+                                    <!--<SimpleRangeControl:RangeControl x:Name="GateSourceVoltageRange"/>-->
                                 </Grid>
                             </GroupBox>
 

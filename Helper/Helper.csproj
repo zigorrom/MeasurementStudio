@@ -57,6 +57,9 @@
     <Compile Include="Ranges\RangeHandlers\ZeroCrossingBackAndForthRangeHandler.cs" />
     <Compile Include="Ranges\RangeHandlers\ZeroCrossRangeHandler.cs" />
     <Compile Include="Ranges\DoubleRange\DoubleRangeBase.cs" />
+    <Compile Include="Ranges\SimpleRangeControl\RangeControl.xaml.cs">
+      <DependentUpon>RangeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ranges\SimpleRangeControl\SimplePointsNumberDisplay.xaml.cs">
       <DependentUpon>SimplePointsNumberDisplay.xaml</DependentUpon>
     </Compile>
@@ -66,14 +69,16 @@
     <Compile Include="Ranges\SimpleRangeControl\SimpleVoltageRange.xaml.cs">
       <DependentUpon>SimpleVoltageRange.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ranges\SimpleRangeControl\VoltageRange.xaml.cs">
-      <DependentUpon>VoltageRange.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Ranges\SimpleRangeControl\RangeViewModel.cs" />
     <Compile Include="Ranges\Units\AbstractUnitConverter.cs" />
     <Compile Include="Ranges\Units\UnitPrefixes.cs" />
     <Compile Include="Ranges\Units\VoltageUnitConverter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Ranges\SimpleRangeControl\RangeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ranges\SimpleRangeControl\SimplePointsNumberDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -86,16 +91,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Ranges\SimpleRangeControl\VoltageRange.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ranges\SimpleRangeControl\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="SampleData\" />
+    <DesignData Include="SampleData\DoubleUnitValueSampleData.xaml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

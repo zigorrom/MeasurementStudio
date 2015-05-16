@@ -4,8 +4,8 @@
         xmlns:SimpleRangeControl="clr-namespace:Helper.Ranges.SimpleRangeControl;assembly=Helper" x:Class="Spotter.MainWindow"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-
-        <SimpleRangeControl:SimpleValueRow x:Name="a" HorizontalAlignment="Left" Margin="195,133,0,0" VerticalAlignment="Top" Width="298"/>
+        
+        <!--<SimpleRangeControl:SimpleValueRow x:Name="a" HorizontalAlignment="Left" Margin="195,133,0,0" VerticalAlignment="Top" Width="298"/>-->
 
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:ranges="clr-namespace:Helper.Ranges.Units"
              mc:Ignorable="d" 
-             d:DesignHeight="51.2" d:DesignWidth="436" Height="50">
+             d:DesignHeight="51.2" d:DesignWidth="436" Height="50" d:DataContext="{d:DesignData /SampleData/DoubleUnitValueSampleData.xaml}">
 	<UserControl.Resources>
         <ranges:VoltageUnitConverter x:Key="VoltageConverter"/>
     </UserControl.Resources>
@@ -18,7 +18,7 @@
             </Grid.ColumnDefinitions>
             <Label x:Name="ValueName" Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="3"/>
             <TextBox x:Name="Value" Grid.Column="1" Margin="3" TextWrapping="Wrap" Text="{Binding Magnitude}" VerticalContentAlignment="Center"/>
-            <ComboBox x:Name="Unit" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectedIndex="0" DataContext="{Binding Units}" Text="{Binding Path=Prefix, Converter={StaticResource VoltageConverter}}">
+            <ComboBox x:Name="Unit" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectedIndex="0" Text="{Binding Path=Prefix, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource VoltageConverter}}">
                 <ComboBoxItem Content="V"/>
                 <ComboBoxItem Content="mV"/>
                 <ComboBoxItem Content="uV"/>

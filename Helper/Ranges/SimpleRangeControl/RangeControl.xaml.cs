@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Helper.Ranges.SimpleRangeControl
 {
     /// <summary>
-    /// Interaction logic for VoltageRange.xaml
+    /// Interaction logic for RangeControl.xaml
     /// </summary>
-    public partial class VoltageRange : UserControl
+    public partial class RangeControl : UserControl
     {
-        public VoltageRange()
+        public RangeControl()
         {
             InitializeComponent();
         }
