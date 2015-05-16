@@ -31,6 +31,31 @@ namespace Helper.Ranges.Units
         public const string YOCTO = "y";
     }
 
+    public struct UnitPrefixesValues
+    {
+        public const double YOTTA = 1000000000000000000000000.0;
+        public const double ZETTA = 1000000000000000000000.0;
+        public const double EXA =   1000000000000000000.0;
+        public const double PETA =  1000000000000000.0;
+        public const double TERA =  1000000000000.0;
+        public const double GIGA =  1000000000.0;
+        public const double MEGA =  1000000.0;
+        public const double KILO =  1000.0;
+        public const double HECTO = 100.0;
+        public const double DECA =  10.0;
+        public const double DEFAULT = 1.0;
+        public const double DECI =  0.1;
+        public const double CENTI = 0.01;
+        public const double MILLI = 0.001;
+        public const double MICRO = 0.000001;
+        public const double NANO =  0.000000001;
+        public const double PICO =  0.000000000001;
+        public const double FEMTO = 0.000000000000001;
+        public const double ATTO =  0.000000000000000001;
+        public const double ZEPTO = 0.000000000000000000001;
+        public const double YOCTO = 0.000000000000000000000001;
+    }
+
     public enum UnitPrefixesEnum
     {
         YOTTA = 24,

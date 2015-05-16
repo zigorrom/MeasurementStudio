@@ -49,8 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ranges\DoubleRange\DoubleNumericValue.cs" />
     <Compile Include="Ranges\DoubleRange\DoubleNumericValueRange.cs" />
+    <Compile Include="Ranges\DoubleRange\DoubleUnitValue.cs" />
     <Compile Include="Ranges\DoubleRange\Voltage.cs" />
     <Compile Include="Ranges\RangeHandlers\AbstractDoubleRangeHandler.cs" />
     <Compile Include="Ranges\RangeHandlers\BackAndForthRangeHandler.cs" />
@@ -70,11 +70,8 @@
     <Compile Include="Ranges\SimpleRangeControl\VoltageRange.xaml.cs">
       <DependentUpon>VoltageRange.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ranges\Units\AbstractUnit.cs" />
     <Compile Include="Ranges\Units\AbstractUnitConverter.cs" />
-    <Compile Include="Ranges\Units\IUnits.cs" />
     <Compile Include="Ranges\Units\UnitPrefixes.cs" />
-    <Compile Include="Ranges\Units\Volt.cs" />
     <Compile Include="Ranges\Units\VoltageUnitConverter.cs" />
   </ItemGroup>
   <ItemGroup>
