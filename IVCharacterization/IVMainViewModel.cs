@@ -1,5 +1,6 @@
 ﻿using DataVisualization;
 using Helper.Ranges;
+using Helper.Ranges.DoubleRange;
 using Helper.Ranges.RangeHandlers;
 using Instruments;
 using System;

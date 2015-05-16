@@ -84,7 +84,7 @@ namespace Helper.Ranges.DoubleRange
             {
                 if (m_UnitPrefix == value) return;
                 m_UnitPrefix = value;
-                m_PrefixValue = ConvertPrefixToDouble(m_UnitPrefix);
+                m_PrefixValue = UnitPrefixesValues.ConvertFromPrefixToDouble(m_UnitPrefix);// ConvertPrefixToDouble(m_UnitPrefix);
                 OnPropertyChanged("Prefix");
             }
         }
@@ -97,33 +97,6 @@ namespace Helper.Ranges.DoubleRange
             Magnitude = NumericValue / m_PrefixValue; //oldNumVal / m_PrefixValue;
         }
 
-        private double ConvertPrefixToDouble(UnitPrefixesEnum unitPrefix)
-        {
-            switch (unitPrefix)
-            {
-                case UnitPrefixesEnum.YOTTA: return UnitPrefixesValues.YOTTA;
-                case UnitPrefixesEnum.ZETTA: return UnitPrefixesValues.ZETTA;
-                case UnitPrefixesEnum.EXA: return UnitPrefixesValues.EXA;
-                case UnitPrefixesEnum.PETA: return UnitPrefixesValues.PETA;
-                case UnitPrefixesEnum.TERA: return UnitPrefixesValues.TERA;
-                case UnitPrefixesEnum.GIGA: return UnitPrefixesValues.GIGA;
-                case UnitPrefixesEnum.MEGA: return UnitPrefixesValues.MEGA;
-                case UnitPrefixesEnum.KILO: return UnitPrefixesValues.KILO;
-                case UnitPrefixesEnum.HECTO: return UnitPrefixesValues.HECTO;
-                case UnitPrefixesEnum.DECA: return UnitPrefixesValues.DECA;
-                case UnitPrefixesEnum.DEFAULT: return UnitPrefixesValues.DEFAULT;
-                case UnitPrefixesEnum.DECI: return UnitPrefixesValues.DECI;
-                case UnitPrefixesEnum.CENTI: return UnitPrefixesValues.CENTI;
-                case UnitPrefixesEnum.MILLI: return UnitPrefixesValues.MILLI;
-                case UnitPrefixesEnum.MICRO: return UnitPrefixesValues.MICRO;
-                case UnitPrefixesEnum.NANO: return UnitPrefixesValues.NANO;
-                case UnitPrefixesEnum.PICO: return UnitPrefixesValues.PICO;
-                case UnitPrefixesEnum.FEMTO: return UnitPrefixesValues.FEMTO;
-                case UnitPrefixesEnum.ATTO: return UnitPrefixesValues.ATTO;
-                case UnitPrefixesEnum.ZEPTO: return UnitPrefixesValues.ZEPTO;
-                case UnitPrefixesEnum.YOCTO: return UnitPrefixesValues.YOCTO;
-                default: return UnitPrefixesValues.DEFAULT;
-            }
-        }
+        
     }
 }

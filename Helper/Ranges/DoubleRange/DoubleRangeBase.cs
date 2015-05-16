@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Helper.Ranges
+namespace Helper.Ranges.DoubleRange
 {
     public class DoubleRangeBase :INotifyPropertyChanged// IEnumerable<double>, INotifyPropertyChanged
     {

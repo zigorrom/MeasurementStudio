@@ -54,7 +54,38 @@ namespace Helper.Ranges.Units
         public const double ATTO =  0.000000000000000001;
         public const double ZEPTO = 0.000000000000000000001;
         public const double YOCTO = 0.000000000000000000000001;
+
+        public static double ConvertFromPrefixToDouble(UnitPrefixesEnum prefix)
+        {
+            switch (prefix)
+            {
+                case UnitPrefixesEnum.YOTTA: return UnitPrefixesValues.YOTTA;
+                case UnitPrefixesEnum.ZETTA: return UnitPrefixesValues.ZETTA;
+                case UnitPrefixesEnum.EXA: return UnitPrefixesValues.EXA;
+                case UnitPrefixesEnum.PETA: return UnitPrefixesValues.PETA;
+                case UnitPrefixesEnum.TERA: return UnitPrefixesValues.TERA;
+                case UnitPrefixesEnum.GIGA: return UnitPrefixesValues.GIGA;
+                case UnitPrefixesEnum.MEGA: return UnitPrefixesValues.MEGA;
+                case UnitPrefixesEnum.KILO: return UnitPrefixesValues.KILO;
+                case UnitPrefixesEnum.HECTO: return UnitPrefixesValues.HECTO;
+                case UnitPrefixesEnum.DECA: return UnitPrefixesValues.DECA;
+                case UnitPrefixesEnum.DEFAULT: return UnitPrefixesValues.DEFAULT;
+                case UnitPrefixesEnum.DECI: return UnitPrefixesValues.DECI;
+                case UnitPrefixesEnum.CENTI: return UnitPrefixesValues.CENTI;
+                case UnitPrefixesEnum.MILLI: return UnitPrefixesValues.MILLI;
+                case UnitPrefixesEnum.MICRO: return UnitPrefixesValues.MICRO;
+                case UnitPrefixesEnum.NANO: return UnitPrefixesValues.NANO;
+                case UnitPrefixesEnum.PICO: return UnitPrefixesValues.PICO;
+                case UnitPrefixesEnum.FEMTO: return UnitPrefixesValues.FEMTO;
+                case UnitPrefixesEnum.ATTO: return UnitPrefixesValues.ATTO;
+                case UnitPrefixesEnum.ZEPTO: return UnitPrefixesValues.ZEPTO;
+                case UnitPrefixesEnum.YOCTO: return UnitPrefixesValues.YOCTO;
+                default: return UnitPrefixesValues.DEFAULT;
+            }
+        }
     }
+
+
 
     public enum UnitPrefixesEnum
     {
