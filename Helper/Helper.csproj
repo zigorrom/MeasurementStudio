@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ranges\DoubleRange\DoubleUnitValue.cs" />
+    <Compile Include="Ranges\DoubleRange\IntPointsCount.cs" />
     <Compile Include="Ranges\DoubleRange\Voltage.cs" />
     <Compile Include="Ranges\RangeHandlers\AbstractDoubleRangeHandler.cs" />
     <Compile Include="Ranges\RangeHandlers\BackAndForthRangeHandler.cs" />
@@ -65,9 +66,6 @@
     </Compile>
     <Compile Include="Ranges\SimpleRangeControl\SimpleValueRow.xaml.cs">
       <DependentUpon>SimpleValueRow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Ranges\SimpleRangeControl\SimpleVoltageRange.xaml.cs">
-      <DependentUpon>SimpleVoltageRange.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ranges\SimpleRangeControl\RangeViewModel.cs" />
     <Compile Include="Ranges\Units\AbstractUnitConverter.cs" />
@@ -87,16 +85,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Ranges\SimpleRangeControl\SimpleVoltageRange.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ranges\SimpleRangeControl\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <DesignData Include="SampleData\DoubleUnitValueSampleData.xaml" />
+    <Folder Include="SampleData\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

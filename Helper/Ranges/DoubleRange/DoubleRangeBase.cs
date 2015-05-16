@@ -5,10 +5,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Helper.Ranges.DoubleRange
 {
-    public class DoubleRangeBase :INotifyPropertyChanged// IEnumerable<double>, INotifyPropertyChanged
+    public class DoubleRangeBase :DependencyObject, INotifyPropertyChanged// IEnumerable<double>, INotifyPropertyChanged
     {
         private double m_StartValue;
         private double m_EndValue;
@@ -17,7 +18,7 @@ namespace Helper.Ranges.DoubleRange
         private bool m_CrossesZero;
         private int m_PointsCount;
         //private int m_Sign;
-
+        
         public DoubleRangeBase(double start, double end, double step)
         {
             m_StartValue = start;
@@ -72,6 +73,8 @@ namespace Helper.Ranges.DoubleRange
                 }
             }
         }
+        public static readonly DependencyProperty StartProperty = DependencyProperty.Register("Start", typeof(double), typeof(DoubleRangeBase), new PropertyMetadata(default(double)));
+
 
         public double End
         {
@@ -91,6 +94,8 @@ namespace Helper.Ranges.DoubleRange
 
             }
         }
+        public static readonly DependencyProperty EndProperty = DependencyProperty.Register("End", typeof(double), typeof(DoubleRangeBase), new PropertyMetadata(default(double)));
+
 
         public double Step
         {
@@ -107,6 +112,7 @@ namespace Helper.Ranges.DoubleRange
                 }
             }
         }
+        public static readonly DependencyProperty StepProperty = DependencyProperty.Register("Step", typeof(double), typeof(DoubleRangeBase), new PropertyMetadata(default(double)));
 
         public double RangeWidth
         {
@@ -127,6 +133,7 @@ namespace Helper.Ranges.DoubleRange
                 }
             }
         }
+        public static readonly DependencyProperty PointsCountProperty = DependencyProperty.Register("PointsCount", typeof(int), typeof(DoubleRangeBase), new PropertyMetadata(default(int)));
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

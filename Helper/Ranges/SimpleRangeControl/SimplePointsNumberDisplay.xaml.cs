@@ -24,5 +24,11 @@ namespace Helper.Ranges.SimpleRangeControl
         {
             InitializeComponent();
         }
+
+        public string ValueLabel
+        {
+            get { return (string)Label.Content; }
+            set { Label.Content = value; }
+        }
     }
 }

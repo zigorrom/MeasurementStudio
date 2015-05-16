@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Helper.Ranges.DoubleRange
 {
-    public class DoubleUnitValue:INotifyPropertyChanged
+    public abstract class DoubleUnitValue:INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string PropertyName)
@@ -18,13 +18,26 @@ namespace Helper.Ranges.DoubleRange
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
+        protected bool SetField<ST>(ref ST field, ST value, string propertyName)
+        {
+            if (EqualityComparer<ST>.Default.Equals(field, value))
+                return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+
 
         private string m_UnitName;
+        private const string UnitNamePropertyName = "UnitName";
         private double m_Magnitude;
+        private const string MagnitudePropertyName = "Magnitude";
         private UnitPrefixesEnum m_UnitPrefix;
+        private const string PrefixPropertyName = "Prefix";
         private double m_PrefixValue;
+       
         private double m_NumericValue;
-
+        private const string NumericValuePropertyName = "NumericValue";
         public DoubleUnitValue(string UnitName, double Magnitude, UnitPrefixesEnum Prefix)
         {
             Initialize(UnitName, Magnitude, Prefix);
@@ -54,13 +67,16 @@ namespace Helper.Ranges.DoubleRange
         public double NumericValue
         {
             get { return m_NumericValue; }
-            private set
+            set
             {
-                if (m_NumericValue == value)
-                    return;
-                m_NumericValue = value;
-                OnPropertyChanged("NumericValue");
+                if(SetField(ref m_NumericValue, value,NumericValuePropertyName))
+                {
+                    var magnitude = NumericValue / m_PrefixValue;
+                    SetField(ref m_Magnitude, magnitude, MagnitudePropertyName);
+                }
             }
+
+            
         }
 
 
@@ -69,11 +85,12 @@ namespace Helper.Ranges.DoubleRange
             get { return m_Magnitude; }
             set
             {
-                if(m_Magnitude == value)
-                    return;
-                m_Magnitude = value;
-                NumericValue = Magnitude * m_PrefixValue;
-                OnPropertyChanged("Magnitude");
+                if(SetField(ref m_Magnitude, value, MagnitudePropertyName))
+                {
+                    var numVal = Magnitude * m_PrefixValue;
+                    SetField(ref m_NumericValue, numVal, NumericValuePropertyName);
+                }
+
             }
         }
 
@@ -85,7 +102,7 @@ namespace Helper.Ranges.DoubleRange
                 if (m_UnitPrefix == value) return;
                 m_UnitPrefix = value;
                 m_PrefixValue = UnitPrefixesValues.ConvertFromPrefixToDouble(m_UnitPrefix);// ConvertPrefixToDouble(m_UnitPrefix);
-                OnPropertyChanged("Prefix");
+                OnPropertyChanged(PrefixPropertyName);
             }
         }
 
@@ -96,6 +113,7 @@ namespace Helper.Ranges.DoubleRange
             Prefix = prefix;
             Magnitude = NumericValue / m_PrefixValue; //oldNumVal / m_PrefixValue;
         }
+
 
         
     }

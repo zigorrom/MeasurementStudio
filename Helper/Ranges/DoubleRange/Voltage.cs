@@ -7,29 +7,15 @@ using System.Threading.Tasks;
 
 namespace Helper.Ranges.DoubleRange
 {
-    //public class Voltage : DoubleNumericValue
-    //{
-    //    public Voltage():base(new Volt())
-    //    { }
-    //    public override DoubleNumericValue Add(DoubleNumericValue other)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override DoubleNumericValue Subtruct(DoubleNumericValue other)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override DoubleNumericValue Multiply(DoubleNumericValue other)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override DoubleNumericValue Divide(DoubleNumericValue other)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
+    public class Voltage:DoubleUnitValue
+    {
+        public Voltage():base("V")
+        { }
+        public Voltage(double Magnitude):base("V",Magnitude)
+        { }
+        public Voltage(double Magnitude, UnitPrefixesEnum Prefix) : base("V", Magnitude, Prefix) 
+        { }
+    }
+    
 
 }

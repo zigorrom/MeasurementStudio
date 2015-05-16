@@ -5,16 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:ranges="clr-namespace:Helper.Ranges.Units"
              mc:Ignorable="d" 
-             d:DesignHeight="51.2" d:DesignWidth="436" Height="50" d:DataContext="{d:DesignData /SampleData/DoubleUnitValueSampleData.xaml}">
-	<UserControl.Resources>
+             d:DesignHeight="51.2" d:DesignWidth="513" Height="50" d:DataContext="{d:DesignData /SampleData/DoubleUnitValueSampleData.xaml}">
+    <UserControl.Resources>
         <ranges:VoltageUnitConverter x:Key="VoltageConverter"/>
+        <GridLength x:Key="LabelGridColumnWidth">60</GridLength>
+        <GridLength x:Key="ValueGridColumnWidth">20*</GridLength>
+        <GridLength x:Key="UnitGridColumnWidth">80</GridLength>
     </UserControl.Resources>
     <Border BorderBrush="Black" BorderThickness="1" Margin="3" Padding="3" DataContext="{Binding Mode=OneWay}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="70*"/>
-                <ColumnDefinition Width="231*"/>
-                <ColumnDefinition Width="121*"/>
+                <ColumnDefinition Width="{DynamicResource LabelGridColumnWidth}"/>
+                <ColumnDefinition Width="{DynamicResource ValueGridColumnWidth}"/>
+                <ColumnDefinition Width="{DynamicResource UnitGridColumnWidth}"/>
             </Grid.ColumnDefinitions>
             <Label x:Name="ValueName" Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="3"/>
             <TextBox x:Name="Value" Grid.Column="1" Margin="3" TextWrapping="Wrap" Text="{Binding Magnitude}" VerticalContentAlignment="Center"/>
