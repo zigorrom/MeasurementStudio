@@ -1,12 +1,15 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:SimpleRangeControl="clr-namespace:Helper.Ranges.SimpleRangeControl;assembly=Helper" x:Class="Spotter.MainWindow"
+        xmlns:SimpleRangeControl="clr-namespace:Helper.Ranges.SimpleRangeControl;assembly=Helper" xmlns:IVCharacterization="clr-namespace:IVCharacterization;assembly=IVCharacterization" x:Class="Spotter.MainWindow"
+    
         Title="MainWindow" Height="350" Width="556">
     <Grid>
-        <SimpleRangeControl:RangeControl x:Name="range" HorizontalAlignment="Left" Margin="92,63,0,0" VerticalAlignment="Top" Width="340"/>
+        <!--<SimpleRangeControl:RangeControl x:Name="range" HorizontalAlignment="Left" Margin="92,63,0,0" VerticalAlignment="Top" Width="340"/>-->
 
         <!--<SimpleRangeControl:SimpleValueRow x:Name="a" HorizontalAlignment="Left" Margin="195,133,0,0" VerticalAlignment="Top" Width="298"/>-->
+
+        <IVCharacterization:IVMainView/>
 
     </Grid>
 </Window>

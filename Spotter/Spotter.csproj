@@ -113,6 +113,10 @@
       <Project>{5216BA05-F05D-447A-965F-B1357DCB4990}</Project>
       <Name>Helper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IVCharacterization\IVCharacterization.csproj">
+      <Project>{FA8149F8-BF54-4A46-9D0A-9980CEAD705B}</Project>
+      <Name>IVCharacterization</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

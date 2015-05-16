@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:DataVisualization ="clr-namespace:DataVisualization;assembly=DataVisualization"
+             xmlns:Ranges ="clr-namespace:Helper.Ranges.SimpleRangeControl;assembly=Helper"
              x:Class="IVCharacterization.IVMainView"
              mc:Ignorable="d" 
-             d:DesignHeight="643" d:DesignWidth="946" MinHeight="578" MinWidth="578">
+             d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578">
     <UserControl.Resources>
         <GridLength x:Key="RangeGroupHeight">205*</GridLength>
         <GridLength x:Key="RangeControlHeight">58*</GridLength>
@@ -23,8 +24,17 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <DataVisualization:DataPlotter Height="Auto" Margin="0,0,9.2,0.4" DataContext="{Binding Visualization}"/>
-        <Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" MinHeight="400">
+        <DataVisualization:DataPlotter Height="Auto" Margin="0,0,8.2,0.2" DataContext="{Binding Visualization}" RenderTransformOrigin="0.5,0.5">
+            <DataVisualization:DataPlotter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.372"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataVisualization:DataPlotter.RenderTransform>
+        </DataVisualization:DataPlotter>
+        <Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" MinHeight="400" Margin="0.8,0,-0.4,0.2">
             <Expander.Header>
                 <TextBlock Text="Settings" TextOptions.TextFormattingMode="Ideal">
                     <TextBlock.RenderTransform>
@@ -36,43 +46,45 @@
                 </TextBlock>
             </Expander.Header>
             <Grid>
-                <TabControl>
+                <TabControl Width="300">
                     <TabItem Header="Range setup">
                         <Grid Background="#FFE5E5E5">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="37*"/>
-                                <RowDefinition Height="{DynamicResource RangeGroupHeight}"/>
+                                <RowDefinition Height="52*"/>
+                                <RowDefinition Height="288*"/>
                                 <!--<RowDefinition Height="50*"/>-->
-                                <RowDefinition Height="{DynamicResource RangeGroupHeight}"/>
+                                <RowDefinition Height="288*"/>
                                 <!--<RowDefinition Height="50*"/>-->
                             </Grid.RowDefinitions>
-                            <ComboBox Margin="3" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                            <ComboBox Margin="3,3,2.6,3" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                                 <ComboBoxItem Content="Output"/>
                                 <ComboBoxItem Content="Transfer"/>
                             </ComboBox>
 
-                            <GroupBox Header="Drain-Source Voltage Range" Grid.Row="1">
+                            <GroupBox Header="Drain-Source Voltage Range" Grid.Row="1" Margin="0,0,-0.4,0">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="{DynamicResource RangeControlHeight}"/>
                                         <RowDefinition Height="{DynamicResource AdditionalSettingsSpaceHeight}"/>
                                     </Grid.RowDefinitions>
                                     <!--<Ranges:SimpleVoltageRangeControl x:Name="Range1" DataContext="{Binding DSVoltageRange}"/>-->
-                                    
+                                    <Ranges:RangeControl DataContext="{Binding DSRangeViewModel}"/>
                                     <!--<SimpleRangeControl:RangeControl x:Name="DrainSourceVoltageRange" Height="Auto" Margin="0"/>-->
                                     <!--<Ranges:SimpleVoltageRangeControl x:Name="Range1" DataContext="{Binding DSVoltageRange}"/>-->
                                     <ComboBox Grid.Row="1" Margin="3" DataContext="{Binding DSVoltageRangeHandler}"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="Gate-Source Voltage Range" Grid.Row="2">
+                            <GroupBox Header="Gate-Source Voltage Range" Grid.Row="2" Margin="0,0,-0.4,0" Grid.RowSpan="2">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="{DynamicResource RangeControlHeight}"/>
                                         <RowDefinition Height="{DynamicResource AdditionalSettingsSpaceHeight}"/>
                                     </Grid.RowDefinitions>
-                                    <!--<Ranges:SimpleVoltageRangeControl x:Name="Range2" DataContext="{Binding GSVoltageRange}"/>-->
-                                    <ComboBox Margin="3" Grid.Row="1" DataContext="{Binding GSVoltageRangeHandler}"/>
-                                    <!--<SimpleRangeControl:RangeControl x:Name="GateSourceVoltageRange"/>-->
+                                    <!--<SimpleRangeControl:RangeControl x:Name="DrainSourceVoltageRange" Height="Auto" Margin="0"/>-->
+                                    <!--<Ranges:SimpleVoltageRangeControl x:Name="Range1" DataContext="{Binding DSVoltageRange}"/>-->
+                                    <Ranges:RangeControl DataContext="{Binding GSRangeViewModel}"/>
+                                    <!--<Ranges:SimpleVoltageRangeControl x:Name="Range1" DataContext="{Binding DSVoltageRange}"/>-->
+                                    <ComboBox Grid.Row="1" Margin="3" DataContext="{Binding DSVoltageRangeHandler}"/>
                                 </Grid>
                             </GroupBox>
 

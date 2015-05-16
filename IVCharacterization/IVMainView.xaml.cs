@@ -24,6 +24,7 @@ namespace IVCharacterization
         public IVMainView()
         {
             InitializeComponent();
+            var model = new IVMainViewModel();
         }
     }
 }

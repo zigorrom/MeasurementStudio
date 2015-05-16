@@ -27,11 +27,11 @@ namespace Spotter
         {
           
             InitializeComponent();
-            var s = new Voltage();
-            var e = new Voltage();
-            var st = new Voltage();
-            var a = new RangeViewModel(s, e, st);
-            range.DataContext = a;
+            //var s = new Voltage();
+            //var e = new Voltage();
+            //var st = new Voltage();
+            //var a = new RangeViewModel(s, e, st);
+            //range.DataContext = a;
             //var duv = new DoubleUnitValue("V");
             //DataContext = duv;
             ////var dnv = new DoubleNumericValue(new Volt());

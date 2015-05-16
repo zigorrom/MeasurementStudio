@@ -2,6 +2,7 @@
 using Helper.Ranges;
 using Helper.Ranges.DoubleRange;
 using Helper.Ranges.RangeHandlers;
+using Helper.Ranges.SimpleRangeControl;
 using Instruments;
 using System;
 using System.Collections.Generic;
@@ -102,6 +103,16 @@ namespace IVCharacterization
         }
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public RangeViewModel DSRangeViewModel { get; set; }
+
+        public RangeViewModel GSRangeViewModel { get; set; }
+
+
+        public IVMainViewModel()
+        {
+            DSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
+            GSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage()); 
+        }
+            public event PropertyChangedEventHandler PropertyChanged;
     }
 }
