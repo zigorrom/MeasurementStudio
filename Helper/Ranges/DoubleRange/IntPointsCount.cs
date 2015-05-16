@@ -4,10 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Helper.Ranges.DoubleRange
 {
-    public class IntPointsCount:INotifyPropertyChanged
+    public class IntPointsCount : DependencyObject// INotifyPropertyChanged
     {
         public IntPointsCount()
         {
@@ -18,26 +19,28 @@ namespace Helper.Ranges.DoubleRange
         {
             PointsCount = count;
         }
-        private int m_PointsCount;
+
+
+        public static readonly DependencyProperty PointsCountProperty = DependencyProperty.Register(
+            "PointsCount",
+            typeof(int),
+            typeof(IntPointsCount),
+            new PropertyMetadata(default(int))
+            );
+
         public int PointsCount
         {
-            get { return m_PointsCount; }
+            get
+            {
+                return (int)GetValue(PointsCountProperty);
+            }
             set
             {
-                if (m_PointsCount == value)
-                    return;
-                m_PointsCount = value;
-                OnPropertyChanged("PointsCount");
+                SetValue(PointsCountProperty, value);
+
             }
         }
 
-        private void OnPropertyChanged(string p)
-        {
-            var handler = PropertyChanged;
-            if (handler!= null)
-                PropertyChanged(this, new PropertyChangedEventArgs(p));
-        }
-        
-        public event PropertyChangedEventHandler PropertyChanged;
+
     }
 }

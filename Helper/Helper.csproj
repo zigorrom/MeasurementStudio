@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ranges\DoubleRange\DoubleUnitValue.cs" />
+    <Compile Include="Ranges\DoubleRange\DoubleUnitValueDependencyObject.cs" />
     <Compile Include="Ranges\DoubleRange\IntPointsCount.cs" />
     <Compile Include="Ranges\DoubleRange\Voltage.cs" />
     <Compile Include="Ranges\RangeHandlers\AbstractDoubleRangeHandler.cs" />

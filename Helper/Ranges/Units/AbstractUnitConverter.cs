@@ -69,8 +69,7 @@ namespace Helper.Ranges.Units
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var val = (UnitPrefixesEnum)value;
-            if (val == null)
-                return Binding.DoNothing;
+           
             switch (val)
             {
                 case UnitPrefixesEnum.YOTTA: return GetUnitName(UnitPrefixesNames.YOTTA);

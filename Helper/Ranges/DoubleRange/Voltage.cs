@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Helper.Ranges.DoubleRange
 {
-    public class Voltage:DoubleUnitValue
+    public class Voltage:DoubleUnitValueDependencyObject
     {
         public Voltage():base("V")
         { }

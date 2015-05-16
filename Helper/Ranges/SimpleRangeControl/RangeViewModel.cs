@@ -12,9 +12,9 @@ namespace Helper.Ranges.SimpleRangeControl
 {
     public class RangeViewModel:INotifyPropertyChanged
     {
-        private DoubleUnitValue m_Start;
-        private DoubleUnitValue m_End;
-        private DoubleUnitValue m_Step;
+        private DoubleUnitValueDependencyObject m_Start;
+        private DoubleUnitValueDependencyObject m_End;
+        private DoubleUnitValueDependencyObject m_Step;
         private IntPointsCount m_PointCount;
         private DoubleRangeBase m_doubleRange;
         
@@ -29,49 +29,43 @@ namespace Helper.Ranges.SimpleRangeControl
             if(handler!= null)
                 handler(this, new PropertyChangedEventArgs(PropertyName));
         }
-        
 
-        public RangeViewModel(DoubleUnitValue start, DoubleUnitValue end, DoubleUnitValue step)
+
+        public RangeViewModel(DoubleUnitValueDependencyObject start, DoubleUnitValueDependencyObject end, DoubleUnitValueDependencyObject step)
         {
-
-
             Start = start;
-            //Start.NumericValueChanged += Start_NumericValueChanged;
 
             End = end;
-            //End.NumericValueChanged += End_NumericValueChanged;
 
             Step = step;
-            //Step.NumericValueChanged += Step_NumericValueChanged;
 
             PointsCount = new IntPointsCount(0);
-            //PointsCount.CountChanged += PointsCount_CountChanged;
 
             m_doubleRange = new DoubleRangeBase(Start.NumericValue, End.NumericValue, Step.NumericValue);
 
-            //var StartBind = new Binding("NumericValue");
-            //StartBind.Source = Start;
-            //StartBind.Mode = BindingMode.TwoWay;
-            //StartBind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-            //BindingOperations.SetBinding(m_doubleRange, DoubleRangeBase.StartProperty, StartBind);
+            var StartBind = new Binding("Start");
+            StartBind.Source = m_doubleRange;//.Start;
+            StartBind.Mode = BindingMode.TwoWay;
+            StartBind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            BindingOperations.SetBinding(Start, DoubleUnitValueDependencyObject.NumericValueProperty, StartBind);
 
-            //var EndBind = new Binding("NumericValue");
-            //EndBind.Source = End;
-            //EndBind.Mode = BindingMode.TwoWay;
-            //EndBind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-            //BindingOperations.SetBinding(m_doubleRange, DoubleRangeBase.EndProperty, EndBind);
+            var EndBind = new Binding("End");
+            EndBind.Source = m_doubleRange;//.End;
+            EndBind.Mode = BindingMode.TwoWay;
+            EndBind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            BindingOperations.SetBinding(End, DoubleUnitValueDependencyObject.NumericValueProperty, EndBind);
 
-            //var StepBind = new Binding("NumericValue");
-            //StepBind.Source = Step;
-            //StepBind.Mode = BindingMode.TwoWay;
-            //StepBind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-            //BindingOperations.SetBinding(m_doubleRange, DoubleRangeBase.StepProperty, StepBind);
+            var StepBind = new Binding("Step");
+            StepBind.Source = m_doubleRange;//.Step;
+            StepBind.Mode = BindingMode.TwoWay;
+            StepBind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            BindingOperations.SetBinding(Step, DoubleUnitValueDependencyObject.NumericValueProperty, StepBind);
 
-            //var PointsCountBind = new Binding("PointsCount");
-            //PointsCountBind.Source = PointsCount;
-            //PointsCountBind.Mode = BindingMode.TwoWay;
-            //PointsCountBind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-            //BindingOperations.SetBinding(m_doubleRange, DoubleRangeBase.PointsCountProperty, PointsCountBind);
+            var PointsCountBind = new Binding("PointsCount");
+            PointsCountBind.Source = m_doubleRange;//.PointsCount;
+            PointsCountBind.Mode = BindingMode.TwoWay;
+            PointsCountBind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            BindingOperations.SetBinding(PointsCount,IntPointsCount.PointsCountProperty, PointsCountBind);
         }
 
 
@@ -88,7 +82,7 @@ namespace Helper.Ranges.SimpleRangeControl
             }
         }
 
-        public DoubleUnitValue Start
+        public DoubleUnitValueDependencyObject Start
         {
             get { return m_Start; }
             private set
@@ -100,7 +94,7 @@ namespace Helper.Ranges.SimpleRangeControl
             }
         }
 
-        public DoubleUnitValue End
+        public DoubleUnitValueDependencyObject End
         {
             get { return m_End; }
             private set
@@ -112,7 +106,7 @@ namespace Helper.Ranges.SimpleRangeControl
             }
         }
 
-        public DoubleUnitValue Step
+        public DoubleUnitValueDependencyObject Step
         {
             get { return m_Step; }
             private set

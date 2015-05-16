@@ -89,13 +89,13 @@ namespace Helper.Ranges.Units
 
     public enum UnitPrefixesEnum
     {
-        YOTTA = 24,
-        ZETTA = 21,
-        EXA = 18,
-        PETA = 15,
-        TERA = 12,
-        GIGA = 9,
-        MEGA = 6,
+        YOTTA = 10,
+        ZETTA = 9,
+        EXA = 8,
+        PETA = 7,
+        TERA = 6,
+        GIGA = 5,
+        MEGA = 4,
         KILO = 3,
         HECTO = 2,
         DECA = 1,
@@ -103,12 +103,12 @@ namespace Helper.Ranges.Units
         DECI = -1,
         CENTI = -2,
         MILLI = -3,
-        MICRO = -6,
-        NANO = -9,
-        PICO = -12,
-        FEMTO = -15,
-        ATTO = -18,
-        ZEPTO = -21,
-        YOCTO = -24
+        MICRO = -4,
+        NANO = -5,
+        PICO = -6,
+        FEMTO = -7,
+        ATTO = -8,
+        ZEPTO = -9,
+        YOCTO = -10
     }
 }

@@ -9,6 +9,7 @@ using System.Windows;
 
 namespace Helper.Ranges.DoubleRange
 {
+    [Obsolete("under development", true)]
     public abstract class DoubleUnitValue:DependencyObject, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -77,8 +78,6 @@ namespace Helper.Ranges.DoubleRange
                     SetField(ref m_Magnitude, magnitude, MagnitudePropertyName);
                 }
             }
-
-            
         }
 
 
