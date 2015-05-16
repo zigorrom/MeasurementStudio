@@ -9,11 +9,11 @@
 
     <!--xmlns:local="clr-namespace:Helper.Ranges.SimpleRangeControl" x:Name="RangeControl" x:Class="Helper.Ranges.SimpleRangeControl.RangeControl" 
              mc:Ignorable="d" d:DesignWidth="512.03" MinWidth="184"-->
-    <StackPanel Margin="0">
-        <RangeControls:SimpleValueRow Label="Start" x:Name="StartValueControl"/>
-        <RangeControls:SimpleValueRow Label="Stop" x:Name="EndValueControl"/>
-        <RangeControls:SimplePointsNumberDisplay ValueLabel="Counts" x:Name="PointsCount"/>
-        <RangeControls:SimpleValueRow Label="Step" x:Name="StepValueControl"/>
+    <StackPanel Margin="0" DataContext="{Binding Mode=OneWay}">
+        <RangeControls:SimpleValueRow Label="Start" x:Name="StartValueControl" DataContext="{Binding Start}"/>
+        <RangeControls:SimpleValueRow Label="Stop" x:Name="EndValueControl" DataContext="{Binding End}"/>
+        <RangeControls:SimplePointsNumberDisplay ValueLabel="Counts" x:Name="PointsCount" DataContext="{Binding PointsCount}"/>
+        <RangeControls:SimpleValueRow Label="Step" x:Name="StepValueControl" DataContext="{Binding Step}"/>
         
         <!--<local:SimpleValueRow x:Name="StartValueControl" Margin="0" Height="Auto"/>-->
         <!--<local:SimpleValueRow x:Name="StopValueControl" Height="Auto"/>-->

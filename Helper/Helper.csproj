@@ -90,7 +90,8 @@
     <Content Include="Ranges\SimpleRangeControl\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="SampleData\" />
+    <DesignData Include="SampleData\IntPointsCountSampleData.xaml" />
+    <DesignData Include="SampleData\RangeViewModelSampleData.xaml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

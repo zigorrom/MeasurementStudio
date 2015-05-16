@@ -5,10 +5,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Helper.Ranges.DoubleRange
 {
-    public abstract class DoubleUnitValue:INotifyPropertyChanged
+    public abstract class DoubleUnitValue:DependencyObject, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string PropertyName)
@@ -54,6 +55,7 @@ namespace Helper.Ranges.DoubleRange
         }
         private void Initialize(string UnitName, double Magnitude, UnitPrefixesEnum Prefix)
         {
+            this.m_PrefixValue = 1;
             this.m_UnitName = UnitName;
             this.Prefix = Prefix;
             this.Magnitude = Magnitude;
@@ -99,7 +101,8 @@ namespace Helper.Ranges.DoubleRange
             get { return m_UnitPrefix; }
             set
             {
-                if (m_UnitPrefix == value) return;
+                if (m_UnitPrefix == value) 
+                    return;
                 m_UnitPrefix = value;
                 m_PrefixValue = UnitPrefixesValues.ConvertFromPrefixToDouble(m_UnitPrefix);// ConvertPrefixToDouble(m_UnitPrefix);
                 OnPropertyChanged(PrefixPropertyName);

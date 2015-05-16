@@ -4,18 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="436" Height="50" Width="Auto">
+             d:DesignHeight="300" d:DesignWidth="436" Height="50" Width="Auto" d:DataContext="{d:DesignData /SampleData/IntPointsCountSampleData.xaml}">
     <UserControl.Resources>
         <GridLength x:Key="LabelGridColumnWidth">60</GridLength>
     </UserControl.Resources>
-    <Border BorderBrush="Black" BorderThickness="1" Margin="3" Padding="3">
+    <Border BorderBrush="Black" BorderThickness="1" Margin="3" Padding="3" DataContext="{Binding Mode=OneWay}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{DynamicResource LabelGridColumnWidth}"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label x:Name="Label" Content="Label" Margin="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="Value" TextWrapping="Wrap" Text="TextBox" Grid.Column="1" Margin="3" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="Value" TextWrapping="Wrap" Text="{Binding PointsCount}" Grid.Column="1" Margin="3" VerticalContentAlignment="Center"/>
 
         </Grid>
     </Border>

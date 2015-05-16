@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace Helper.Ranges.DoubleRange
 {
-    public class DoubleRangeBase :DependencyObject, INotifyPropertyChanged// IEnumerable<double>, INotifyPropertyChanged
+    public class DoubleRangeBase : INotifyPropertyChanged //:DependencyObject, INotifyPropertyChanged// IEnumerable<double>, INotifyPropertyChanged
     {
         private double m_StartValue;
         private double m_EndValue;
@@ -73,14 +73,14 @@ namespace Helper.Ranges.DoubleRange
                 }
             }
         }
-        public static readonly DependencyProperty StartProperty = DependencyProperty.Register("Start", typeof(double), typeof(DoubleRangeBase), new PropertyMetadata(default(double)));
+        //public static readonly DependencyProperty StartProperty = DependencyProperty.Register("Start", typeof(double), typeof(DoubleRangeBase), new PropertyMetadata(default(double)));
 
 
         public double End
         {
             get { return m_EndValue; }
             set
-            {
+            { 
                 if (SetField<double>(ref m_EndValue, value, "End"))
                 {
                     //m_Sign = (End > Start) ? 1 : -1;
@@ -94,7 +94,7 @@ namespace Helper.Ranges.DoubleRange
 
             }
         }
-        public static readonly DependencyProperty EndProperty = DependencyProperty.Register("End", typeof(double), typeof(DoubleRangeBase), new PropertyMetadata(default(double)));
+        //public static readonly DependencyProperty EndProperty = DependencyProperty.Register("End", typeof(double), typeof(DoubleRangeBase), new PropertyMetadata(default(double)));
 
 
         public double Step
@@ -112,7 +112,7 @@ namespace Helper.Ranges.DoubleRange
                 }
             }
         }
-        public static readonly DependencyProperty StepProperty = DependencyProperty.Register("Step", typeof(double), typeof(DoubleRangeBase), new PropertyMetadata(default(double)));
+        //public static readonly DependencyProperty StepProperty = DependencyProperty.Register("Step", typeof(double), typeof(DoubleRangeBase), new PropertyMetadata(default(double)));
 
         public double RangeWidth
         {
@@ -133,7 +133,7 @@ namespace Helper.Ranges.DoubleRange
                 }
             }
         }
-        public static readonly DependencyProperty PointsCountProperty = DependencyProperty.Register("PointsCount", typeof(int), typeof(DoubleRangeBase), new PropertyMetadata(default(int)));
+        //public static readonly DependencyProperty PointsCountProperty = DependencyProperty.Register("PointsCount", typeof(int), typeof(DoubleRangeBase), new PropertyMetadata(default(int)));
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

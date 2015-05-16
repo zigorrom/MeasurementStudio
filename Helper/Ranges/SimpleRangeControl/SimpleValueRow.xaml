@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:ranges="clr-namespace:Helper.Ranges.Units"
              mc:Ignorable="d" 
-             d:DesignHeight="51.2" d:DesignWidth="513" Height="50" d:DataContext="{d:DesignData /SampleData/DoubleUnitValueSampleData.xaml}">
+             d:DesignHeight="51.2" d:DesignWidth="513" Height="50">
     <UserControl.Resources>
         <ranges:VoltageUnitConverter x:Key="VoltageConverter"/>
         <GridLength x:Key="LabelGridColumnWidth">60</GridLength>

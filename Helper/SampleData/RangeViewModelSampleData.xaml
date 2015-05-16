@@ -1,0 +1,14 @@
+﻿<SimpleRangeControl:RangeViewModel xmlns:SimpleRangeControl="clr-namespace:Helper.Ranges.SimpleRangeControl" xmlns:DoubleRange="clr-namespace:Helper.Ranges.DoubleRange">
+	<SimpleRangeControl:RangeViewModel.End>
+		<DoubleRange:DoubleUnitValue Magnitude="248.69" NumericValue="919.36" Prefix="MILLI" UnitName="Adipiscing nam curabitur"/>
+	</SimpleRangeControl:RangeViewModel.End>
+	<SimpleRangeControl:RangeViewModel.PointsCount>
+		<DoubleRange:IntPointsCount PointsCount="58"/>
+	</SimpleRangeControl:RangeViewModel.PointsCount>
+	<SimpleRangeControl:RangeViewModel.Start>
+		<DoubleRange:DoubleUnitValue Magnitude="541.88" NumericValue="624.33" Prefix="CENTI" UnitName="Aliquam aenean vestibulum cras"/>
+	</SimpleRangeControl:RangeViewModel.Start>
+	<SimpleRangeControl:RangeViewModel.Step>
+		<DoubleRange:DoubleUnitValue Magnitude="168.91" NumericValue="977.2" Prefix="PICO" UnitName="Phasellus duis mauris nunc maecenas"/>
+	</SimpleRangeControl:RangeViewModel.Step>
+</SimpleRangeControl:RangeViewModel>
