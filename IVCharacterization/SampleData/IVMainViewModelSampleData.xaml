@@ -1,0 +1,57 @@
+﻿<IVCharacterization:IVMainViewModel xmlns:IVCharacterization="clr-namespace:IVCharacterization" xmlns:SimpleRangeControl="clr-namespace:Helper.Ranges.SimpleRangeControl;assembly=Helper" xmlns:DoubleRange="clr-namespace:Helper.Ranges.DoubleRange;assembly=Helper" xmlns:RangeHandlers="clr-namespace:Helper.Ranges.RangeHandlers;assembly=Helper" xmlns:DataVisualization="clr-namespace:DataVisualization;assembly=DataVisualization" IVCharacteristicType="Output">
+	<IVCharacterization:IVMainViewModel.DSRangeViewModel>
+		<SimpleRangeControl:RangeViewModel>
+			<SimpleRangeControl:RangeViewModel.End>
+				<DoubleRange:DoubleUnitValueDependencyObject Magnitude="540.25" NumericValue="264.82" Prefix="ZEPTO" UnitName="Vestibulum nam duis"/>
+			</SimpleRangeControl:RangeViewModel.End>
+			<SimpleRangeControl:RangeViewModel.PointsCount>
+				<DoubleRange:IntPointsCount PointsCount="61"/>
+			</SimpleRangeControl:RangeViewModel.PointsCount>
+			<SimpleRangeControl:RangeViewModel.Start>
+				<DoubleRange:DoubleUnitValueDependencyObject Magnitude="233.74" NumericValue="203.64" Prefix="HECTO" UnitName="Etiam aliquam aenean mauris"/>
+			</SimpleRangeControl:RangeViewModel.Start>
+			<SimpleRangeControl:RangeViewModel.Step>
+				<DoubleRange:DoubleUnitValueDependencyObject Magnitude="673.55" NumericValue="604.88" Prefix="NANO" UnitName="Adipiscing nullam aptent phasellus praesent"/>
+			</SimpleRangeControl:RangeViewModel.Step>
+		</SimpleRangeControl:RangeViewModel>
+	</IVCharacterization:IVMainViewModel.DSRangeViewModel>
+	<IVCharacterization:IVMainViewModel.DSVoltageRange>
+		<DoubleRange:DoubleRangeBase CrossesZero="True" End="820.77" PointsCount="92" RangeWidth="521.56" Start="924.06" Step="719.83"/>
+	</IVCharacterization:IVMainViewModel.DSVoltageRange>
+	<IVCharacterization:IVMainViewModel.DSVoltageRangeHandler>
+		<RangeHandlers:AbstractDoubleRangeHandler BackAndForth="False" RepeatCounts="52" StartFromZero="True">
+			<RangeHandlers:AbstractDoubleRangeHandler.Range>
+				<DoubleRange:DoubleRangeBase CrossesZero="True" End="144.1" PointsCount="71" RangeWidth="950.05" Start="211.02" Step="666.57"/>
+			</RangeHandlers:AbstractDoubleRangeHandler.Range>
+		</RangeHandlers:AbstractDoubleRangeHandler>
+	</IVCharacterization:IVMainViewModel.DSVoltageRangeHandler>
+	<IVCharacterization:IVMainViewModel.GSRangeViewModel>
+		<SimpleRangeControl:RangeViewModel>
+			<SimpleRangeControl:RangeViewModel.End>
+				<DoubleRange:DoubleUnitValueDependencyObject Magnitude="306.23" NumericValue="140.31" Prefix="YOTTA" UnitName="Nunc sed amet vestibulum"/>
+			</SimpleRangeControl:RangeViewModel.End>
+			<SimpleRangeControl:RangeViewModel.PointsCount>
+				<DoubleRange:IntPointsCount PointsCount="91"/>
+			</SimpleRangeControl:RangeViewModel.PointsCount>
+			<SimpleRangeControl:RangeViewModel.Start>
+				<DoubleRange:DoubleUnitValueDependencyObject Magnitude="774.56" NumericValue="506.87" Prefix="ZEPTO" UnitName="Accumsan parturient aliquet vestibulum consequat"/>
+			</SimpleRangeControl:RangeViewModel.Start>
+			<SimpleRangeControl:RangeViewModel.Step>
+				<DoubleRange:DoubleUnitValueDependencyObject Magnitude="803.44" NumericValue="729.47" Prefix="DECI" UnitName="Bibendum fusce convallis auctor dignissim"/>
+			</SimpleRangeControl:RangeViewModel.Step>
+		</SimpleRangeControl:RangeViewModel>
+	</IVCharacterization:IVMainViewModel.GSRangeViewModel>
+	<IVCharacterization:IVMainViewModel.GSVoltageRangeHandler>
+		<RangeHandlers:AbstractDoubleRangeHandler BackAndForth="True" RepeatCounts="77" StartFromZero="False">
+			<RangeHandlers:AbstractDoubleRangeHandler.Range>
+				<DoubleRange:DoubleRangeBase CrossesZero="False" End="153.96" PointsCount="83" RangeWidth="458.32" Start="432.23" Step="256.94"/>
+			</RangeHandlers:AbstractDoubleRangeHandler.Range>
+		</RangeHandlers:AbstractDoubleRangeHandler>
+	</IVCharacterization:IVMainViewModel.GSVoltageRangeHandler>
+	<IVCharacterization:IVMainViewModel.GSVoltageRange>
+		<DoubleRange:DoubleRangeBase CrossesZero="False" End="779.21" PointsCount="82" RangeWidth="916.36" Start="834.48" Step="612.7"/>
+	</IVCharacterization:IVMainViewModel.GSVoltageRange>
+	<IVCharacterization:IVMainViewModel.Visualization>
+		<DataVisualization:VisualizationViewModel HorizontalAxisLabel="Class curae aliquam integer donec" LegendVisibility="Visible" LineThickness="893.32" VertivalAxisLabel="Cras curabitur quisque vivamus maecenas"/>
+	</IVCharacterization:IVMainViewModel.Visualization>
+</IVCharacterization:IVMainViewModel>

@@ -7,7 +7,7 @@
              xmlns:Ranges ="clr-namespace:Helper.Ranges.SimpleRangeControl;assembly=Helper"
              x:Class="IVCharacterization.IVMainView"
              mc:Ignorable="d" 
-             d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578">
+             d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578" d:DataContext="{d:DesignData /SampleData/IVMainViewModelSampleData.xaml}">
     <UserControl.Resources>
         <GridLength x:Key="RangeGroupHeight">205*</GridLength>
         <GridLength x:Key="RangeControlHeight">58*</GridLength>
