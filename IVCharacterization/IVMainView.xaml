@@ -12,6 +12,8 @@
         <GridLength x:Key="RangeGroupHeight">205*</GridLength>
         <GridLength x:Key="RangeControlHeight">58*</GridLength>
         <GridLength x:Key="AdditionalSettingsSpaceHeight">15*</GridLength>
+        <GridLength x:Key="RangeGroupFerstCoulumnWidth">115*</GridLength>
+        <GridLength x:Key="RangeGroupSecondColumnWidth">163*</GridLength>
     </UserControl.Resources>
 
     <Grid>
@@ -63,28 +65,38 @@
 
                             <GroupBox Header="Drain-Source Voltage Range" Grid.Row="1" Margin="0,0,-0.4,0">
                                 <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="{DynamicResource RangeGroupFerstCoulumnWidth}"/>
+                                        <ColumnDefinition Width="{DynamicResource RangeGroupSecondColumnWidth}"/>
+                                    </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="{DynamicResource RangeControlHeight}"/>
                                         <RowDefinition Height="{DynamicResource AdditionalSettingsSpaceHeight}"/>
                                     </Grid.RowDefinitions>
                                     <!--<Ranges:SimpleVoltageRangeControl x:Name="Range1" DataContext="{Binding DSVoltageRange}"/>-->
-                                    <Ranges:RangeControl DataContext="{Binding DSRangeViewModel}"/>
+                                    <Ranges:RangeControl DataContext="{Binding DSRangeViewModel}" Grid.ColumnSpan="2"/>
                                     <!--<SimpleRangeControl:RangeControl x:Name="DrainSourceVoltageRange" Height="Auto" Margin="0"/>-->
                                     <!--<Ranges:SimpleVoltageRangeControl x:Name="Range1" DataContext="{Binding DSVoltageRange}"/>-->
-                                    <ComboBox Grid.Row="1" Margin="3" DataContext="{Binding DSVoltageRangeHandler}"/>
+                                    <ComboBox Grid.Row="1" Margin="3" DataContext="{Binding DSVoltageRangeHandler}" Grid.Column="1"/>
+                                    <CheckBox Content="Continuous" Margin="10,34,23,3" Grid.Row="1" VerticalContentAlignment="Center"/>
+                                    <TextBox HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="82" Margin="10,5,0,0" Grid.Row="1"/>
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="Gate-Source Voltage Range" Grid.Row="2" Margin="0,0,-0.4,0" Grid.RowSpan="2">
                                 <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="{DynamicResource RangeGroupFerstCoulumnWidth}"/>
+                                        <ColumnDefinition Width="{DynamicResource RangeGroupSecondColumnWidth}"/>
+                                    </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="{DynamicResource RangeControlHeight}"/>
                                         <RowDefinition Height="{DynamicResource AdditionalSettingsSpaceHeight}"/>
                                     </Grid.RowDefinitions>
                                     <!--<SimpleRangeControl:RangeControl x:Name="DrainSourceVoltageRange" Height="Auto" Margin="0"/>-->
                                     <!--<Ranges:SimpleVoltageRangeControl x:Name="Range1" DataContext="{Binding DSVoltageRange}"/>-->
-                                    <Ranges:RangeControl DataContext="{Binding GSRangeViewModel}"/>
+                                    <Ranges:RangeControl DataContext="{Binding GSRangeViewModel}" Grid.ColumnSpan="2"/>
                                     <!--<Ranges:SimpleVoltageRangeControl x:Name="Range1" DataContext="{Binding DSVoltageRange}"/>-->
-                                    <ComboBox Grid.Row="1" Margin="3" DataContext="{Binding DSVoltageRangeHandler}"/>
+                                    <ComboBox Grid.Row="1" Margin="3" DataContext="{Binding DSVoltageRangeHandler}" Grid.Column="1"/>
                                 </Grid>
                             </GroupBox>
 
