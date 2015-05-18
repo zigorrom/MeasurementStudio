@@ -83,8 +83,8 @@
         </Expander>
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="599*"/>
-                <ColumnDefinition Width="346*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="346.4"/>
             </Grid.ColumnDefinitions>
             <local:ControlButtonsPanel Grid.Column="1" Margin="3"/>
         </Grid>
