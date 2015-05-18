@@ -81,7 +81,7 @@
                 </TabControl>
             </Grid>
         </Expander>
-        <local:ExperimentController Grid.ColumnSpan="2" Grid.Row="1"/>
+         <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Height="40" Margin="25.6,10.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="85"/>
 
 
 
