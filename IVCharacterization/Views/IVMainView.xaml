@@ -6,6 +6,7 @@
              xmlns:DataVisualization ="clr-namespace:DataVisualization;assembly=DataVisualization"
              xmlns:Ranges ="clr-namespace:Helper.Ranges.SimpleRangeControl;assembly=Helper"
              xmlns:local="clr-namespace:IVCharacterization"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
              x:Class="IVCharacterization.IVMainView"
              mc:Ignorable="d" 
              d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578" d:DataContext="{d:DesignData /SampleData/IVMainViewModelSampleData.xaml}">
@@ -16,6 +17,7 @@
         <GridLength x:Key="AdditionalSettingsSpaceHeight">15*</GridLength>
         <GridLength x:Key="RangeGroupFerstCoulumnWidth">115*</GridLength>
         <GridLength x:Key="RangeGroupSecondColumnWidth">163*</GridLength>
+        <System:Double x:Key="RangeHandlerSelectorHeight">40</System:Double>
     </UserControl.Resources>
 
     <Grid>
@@ -51,7 +53,8 @@
                                 <RowDefinition Height="288*"/>
                                 <!--<RowDefinition Height="50*"/>-->
                             </Grid.RowDefinitions>
-                            <ComboBox Margin="3,3,2.6,3" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="ComboBox_SelectionChanged"> <!--Text="{Binding IVCharacteristicType, Converter={StaticResource CharacteristicTypeValueConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >-->
+                            <ComboBox Margin="3,3,2.6,3" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="ComboBox_SelectionChanged">
+                                <!--Text="{Binding IVCharacteristicType, Converter={StaticResource CharacteristicTypeValueConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >-->
                                 <ComboBoxItem Content="Output"/>
                                 <ComboBoxItem Content="Transfer"/>
                             </ComboBox>
@@ -60,14 +63,14 @@
 
                                 <StackPanel>
                                     <Ranges:RangeControl DataContext="{Binding DSRangeViewModel}" Grid.ColumnSpan="2"/>
-                                    <local:RangeHandlerControl Margin="3" Grid.Row="1" DataContext="{Binding DSRangeHandlerViewModel}"/>
+                                    <local:RangeHandlerControl Margin="3" Grid.Row="1" DataContext="{Binding DSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>
                                 </StackPanel>
 
                             </GroupBox>
                             <GroupBox Header="Gate-Source Voltage Range" Grid.Row="2" Margin="0" Grid.RowSpan="2">
                                 <StackPanel>
                                     <Ranges:RangeControl DataContext="{Binding GSRangeViewModel}" Grid.ColumnSpan="2"/>
-                                    <local:RangeHandlerControl Grid.Row="1" DataContext="{Binding GSRangeHandlerViewModel}"/>
+                                    <local:RangeHandlerControl Grid.Row="1" DataContext="{Binding GSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>
                                 </StackPanel>
                             </GroupBox>
                         </Grid>

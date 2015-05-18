@@ -89,6 +89,8 @@ namespace IVCharacterization
             Visualization = new VisualizationViewModel();
             Visualization.HorizontalAxisLabel = "Gate Voltage, Vg(V)";
             Visualization.VertivalAxisLabel = "Drain Current, Id(A)";
+            Visualization.HeaderLabel = "IV Characterization";
+            
         }
 
 

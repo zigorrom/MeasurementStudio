@@ -18,6 +18,15 @@ namespace DataVisualization
                 handler(this, new PropertyChangedEventArgs(PropertyName));
         }
 
+        protected bool SetField<ST>(ref ST field, ST value, string propertyName)
+        {
+            if (EqualityComparer<ST>.Default.Equals(field, value))
+                return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+
         private string m_HorizontalAxisLabel;
         public string HorizontalAxisLabel
         {
@@ -27,10 +36,7 @@ namespace DataVisualization
             }
             set
             {
-                if (m_HorizontalAxisLabel == value)
-                    return;
-                m_HorizontalAxisLabel = value;
-                OnPropertyChanged("HorizontalAxisLabel");
+                SetField(ref m_HorizontalAxisLabel, value, "HorizontalAxisLabel");
             }
         }
 
@@ -44,10 +50,7 @@ namespace DataVisualization
             }
             set
             {
-                if (m_VerticalAxisLabel == value)
-                    return;
-                m_VerticalAxisLabel = value;
-                OnPropertyChanged("VerticalAxisLabel");
+                SetField(ref m_VerticalAxisLabel, value,"VerticalAxisLabel");
             }
         }
 
@@ -61,10 +64,7 @@ namespace DataVisualization
             }
             set
             {
-                if (m_LineThickness == value)
-                    return;
-                m_LineThickness = value;
-                OnPropertyChanged("LineThickness");
+                SetField(ref m_LineThickness,value,"LineThickness");
             }
         }
 
@@ -78,13 +78,23 @@ namespace DataVisualization
             }
             set
             {
-                if (m_LegendVisibility == value)
-                    return;
-                m_LegendVisibility = value;
-                OnPropertyChanged("LegendVisibility");
+                SetField(ref m_LegendVisibility, value,"LegendVisibility");
             }
         }
 
-       
+
+
+        private string m_HeaderLabel;
+        public string HeaderLabel
+        {
+            get
+            {
+                return m_HeaderLabel;
+            }
+            set
+            {
+                SetField(ref m_HeaderLabel, value, "HeaderLabel");
+            }
+        }
     }
 }

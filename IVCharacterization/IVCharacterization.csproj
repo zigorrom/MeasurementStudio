@@ -49,14 +49,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacteristicTypeValueConverter.cs" />
-    <Compile Include="ExperimentController.xaml.cs">
+    <Compile Include="Views\ExperimentController.xaml.cs">
       <DependentUpon>ExperimentController.xaml</DependentUpon>
     </Compile>
     <Compile Include="IVCharacterizationExperiment.cs" />
-    <Compile Include="IVMainView.xaml.cs">
+    <Compile Include="Views\IVMainView.xaml.cs">
       <DependentUpon>IVMainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IVMainViewModel.cs" />
+    <Compile Include="ViewModels\IVMainViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -70,10 +70,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="RangeHandlerControl.xaml.cs">
+    <Compile Include="Views\RangeHandlerControl.xaml.cs">
       <DependentUpon>RangeHandlerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RangeHandlerViewModel.cs" />
+    <Compile Include="ViewModels\RangeHandlerViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -103,15 +103,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ExperimentController.xaml">
+    <Page Include="Views\ExperimentController.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="IVMainView.xaml">
+    <Page Include="Views\IVMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RangeHandlerControl.xaml">
+    <Page Include="Views\RangeHandlerControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

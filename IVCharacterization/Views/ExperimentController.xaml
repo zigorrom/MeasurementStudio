@@ -8,7 +8,5 @@
 	x:Name="UserControl"
 	d:DesignWidth="946" d:DesignHeight="60">
 
-	<Grid x:Name="LayoutRoot">
-		<Grid/>
-	</Grid>
+	<Grid x:Name="LayoutRoot"/>
 </UserControl>

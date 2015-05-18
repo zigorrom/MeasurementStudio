@@ -11,6 +11,8 @@ namespace DataVisualization
     {
         string HorizontalAxisLabel { get; set; }
         string VertivalAxisLabel { get; set; }
+
+        string HeaderLabel { get; set; }
         double LineThickness { get; set; }
         Visibility LegendVisibility { get; set; }
     }

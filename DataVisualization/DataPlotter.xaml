@@ -7,13 +7,11 @@
              mc:Ignorable="d" d:DesignWidth="482.707" d:DataContext="{d:DesignData /SampleData/VisualizationViewModelSampleData.xaml}">
     <Grid>
         <d3:ChartPlotter Name="ChartControl">
-			<d3:Header Name="Header" Content="Header"/>
+			<d3:Header Name="Header" Content="{Binding HeaderLabel}"/>
             <d3:VerticalAxisTitle Name="VerticalAxisLabel" Content="{Binding VertivalAxisLabel}"/>
             <d3:HorizontalAxisTitle Name="HorizontalAxisLabel" Content="{Binding HorizontalAxisLabel}" />
 			
         </d3:ChartPlotter>
-        <!--<d3:Legend Name="LegendVisibility" Visibility="{Binding Path=LegendVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <d3:VerticalAxisTitle Name="VerticalAxisLabel" Content="{Binding Path=VerticalAxisLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <d3:HorizontalAxisTitle Name="HorizontalAxisLabel" Content="{Binding Path=HorizontalAxisLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
+        
     </Grid>
 </UserControl>
