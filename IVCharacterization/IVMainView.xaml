@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:IVCharacterization"
              x:Class="IVCharacterization.IVMainView"
              mc:Ignorable="d" 
-             d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578">
+             d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578" d:DataContext="{d:DesignData /SampleData/IVMainViewModelSampleData.xaml}">
     <UserControl.Resources>
         <GridLength x:Key="RangeGroupHeight">205*</GridLength>
         <GridLength x:Key="RangeControlHeight">58*</GridLength>
@@ -27,7 +27,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <DataVisualization:DataPlotter DataContext="{Binding Visualization}" Margin="3"/>
+        <DataVisualization:DataPlotter DataContext="{Binding Visualization}" Margin="3" Height="Auto"/>
         <Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" MinHeight="400" Margin="0.8,0,-0.4,0.2" VerticalAlignment="Top">
             <Expander.Header>
                 <TextBlock Text="Settings" TextOptions.TextFormattingMode="Ideal">
@@ -55,18 +55,18 @@
                                 <ComboBoxItem Content="Transfer"/>
                             </ComboBox>
 
-                            <GroupBox Header="Drain-Source Voltage Range" Grid.Row="1" Margin="0,0,-0.4,0">
-                               
+                            <GroupBox Header="Drain-Source Voltage Range" Grid.Row="1" Margin="0">
+
                                 <StackPanel>
                                     <Ranges:RangeControl DataContext="{Binding DSRangeViewModel}" Grid.ColumnSpan="2"/>
-                                    <local:RangeHandlerControl Margin="3" Grid.Row="1" DataContext="{Binding DSVoltageRangeHandler}"/>
+                                    <local:RangeHandlerControl Margin="3" Grid.Row="1" DataContext="{Binding DSRangeHandlerViewModel}"/>
                                 </StackPanel>
-                               
+
                             </GroupBox>
-                            <GroupBox Header="Gate-Source Voltage Range" Grid.Row="2" Margin="0,0,-0.4,0" Grid.RowSpan="2">
+                            <GroupBox Header="Gate-Source Voltage Range" Grid.Row="2" Margin="0" Grid.RowSpan="2">
                                 <StackPanel>
                                     <Ranges:RangeControl DataContext="{Binding GSRangeViewModel}" Grid.ColumnSpan="2"/>
-                                    <local:RangeHandlerControl Grid.Row="1" DataContext="{Binding GSVoltageRangeHandler}"/>
+                                    <local:RangeHandlerControl Grid.Row="1" DataContext="{Binding GSRangeHandlerViewModel}"/>
                                 </StackPanel>
                             </GroupBox>
                         </Grid>
@@ -77,6 +77,7 @@
                 </TabControl>
             </Grid>
         </Expander>
+        <Grid Grid.ColumnSpan="2" Grid.Row="1"/>
 
 
 

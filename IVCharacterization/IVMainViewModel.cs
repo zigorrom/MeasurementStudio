@@ -21,7 +21,6 @@ namespace IVCharacterization
 
     public class IVMainViewModel : INotifyPropertyChanged
     {
-
         private IInstrument m_BackGateSMU;
         private IInstrument m_DrainSourseSMU;
 
@@ -38,30 +37,6 @@ namespace IVCharacterization
             }
         }
 
-        //private DoubleRangeBase m_DSVoltageRange;
-        //public DoubleRangeBase DSVoltageRange
-        //{
-        //    get { return m_DSVoltageRange; }
-        //    set
-        //    {
-        //        if (m_DSVoltageRange == value) return;
-        //        m_DSVoltageRange = value;
-        //        OnPropertyChanged("DSVoltageRange");
-        //    }
-        //}
-
-        //private AbstractDoubleRangeHandler m_DSVoltageRangeHandler;
-        //public AbstractDoubleRangeHandler DSVoltageRangeHandler
-        //{
-        //    get { return m_DSVoltageRangeHandler; }
-        //    set
-        //    {
-        //        if (m_DSVoltageRangeHandler == value) return;
-        //        m_DSVoltageRangeHandler = value;
-        //        OnPropertyChanged("DSVoltageRangeHandler");
-        //    }
-        //}
-
         private RangeHandlerViewModel m_DSRangeHandlerViewModel;
         public RangeHandlerViewModel DSRangeHandlerViewModel
         {
@@ -71,31 +46,6 @@ namespace IVCharacterization
                 SetField(ref m_DSRangeHandlerViewModel, value, "DSRangeHandlerViewModel");
             }
         }
-
-        //private DoubleRangeBase m_GSVoltageRange;
-        //public DoubleRangeBase GSVoltageRange
-        //{
-        //    get { return m_GSVoltageRange; }
-        //    set
-        //    {
-        //        if (m_GSVoltageRange == value)
-        //            return;
-        //        m_GSVoltageRange = value;
-        //        OnPropertyChanged("GSVoltageRange");
-        //    }
-        //}
-
-        //private AbstractDoubleRangeHandler m_GSVoltageRangeHandler;
-        //public AbstractDoubleRangeHandler GSVoltageRangeHandler
-        //{
-        //    get { return m_GSVoltageRangeHandler; }
-        //    set
-        //    {
-        //        if (m_GSVoltageRangeHandler == value) return;
-        //        m_GSVoltageRangeHandler = value;
-        //        OnPropertyChanged("GSVoltageRangeHandler");
-        //    }
-        //}
 
         private RangeHandlerViewModel m_GSRangeHandlerViewModel;
         public RangeHandlerViewModel GSRangeHandlerViewModel
@@ -129,9 +79,21 @@ namespace IVCharacterization
 
             DSRangeHandlerViewModel = new RangeHandlerViewModel();
             GSRangeHandlerViewModel = new RangeHandlerViewModel();
-            //Visualization = new VisualizationViewModel();
-            //Visualization.HorizontalAxisLabel = "aasdsda";
+            Visualization = new VisualizationViewModel();
+            Visualization.HorizontalAxisLabel = "Gate Voltage, Vg(V)";
+            Visualization.VertivalAxisLabel = "Drain Current, Id(A)";
         }
+
+
+
+        public event EventHandler<IVCharacteristicTypeEnum> ChangeIVCharacterizationViewModel;
+        private void OnChangeIVCharacterizationViewModel(IVCharacteristicTypeEnum CharacteristicType)
+        {
+            var handler = ChangeIVCharacterizationViewModel;
+            if (handler != null)
+                handler(this, CharacteristicType);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected bool SetField<ST>(ref ST field, ST value, string propertyName)
         {

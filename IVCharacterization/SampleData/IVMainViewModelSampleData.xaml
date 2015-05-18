@@ -1,0 +1,65 @@
+﻿<IVCharacterization:IVMainViewModel xmlns:IVCharacterization="clr-namespace:IVCharacterization" xmlns:SimpleRangeControl="clr-namespace:Helper.Ranges.SimpleRangeControl;assembly=Helper" xmlns:DoubleRange="clr-namespace:Helper.Ranges.DoubleRange;assembly=Helper" xmlns:RangeHandlers="clr-namespace:Helper.Ranges.RangeHandlers;assembly=Helper" xmlns:DataVisualization="clr-namespace:DataVisualization;assembly=DataVisualization" IVCharacteristicType="Transfer">
+	<IVCharacterization:IVMainViewModel.DSRangeViewModel>
+		<SimpleRangeControl:RangeViewModel>
+			<SimpleRangeControl:RangeViewModel.End>
+				<DoubleRange:DoubleUnitValueDependencyObject Magnitude="246.26" NumericValue="283.46" Prefix="ATTO" UnitName="Vivamus aptent auctor"/>
+			</SimpleRangeControl:RangeViewModel.End>
+			<SimpleRangeControl:RangeViewModel.PointsCount>
+				<DoubleRange:IntPointsCount PointsCount="38"/>
+			</SimpleRangeControl:RangeViewModel.PointsCount>
+			<SimpleRangeControl:RangeViewModel.Range>
+				<DoubleRange:DoubleRangeBase CrossesZero="True" End="317.68" PointsCount="60" RangeWidth="759.81" Start="627.22" Step="581.4"/>
+			</SimpleRangeControl:RangeViewModel.Range>
+			<SimpleRangeControl:RangeViewModel.Start>
+				<DoubleRange:DoubleUnitValueDependencyObject Magnitude="722.05" NumericValue="307.61" Prefix="ZEPTO" UnitName="Ante quisque praesent"/>
+			</SimpleRangeControl:RangeViewModel.Start>
+			<SimpleRangeControl:RangeViewModel.Step>
+				<DoubleRange:DoubleUnitValueDependencyObject Magnitude="877.04" NumericValue="531.79" Prefix="PICO" UnitName="Accumsan sed dis aliquam congue"/>
+			</SimpleRangeControl:RangeViewModel.Step>
+		</SimpleRangeControl:RangeViewModel>
+	</IVCharacterization:IVMainViewModel.DSRangeViewModel>
+	<IVCharacterization:IVMainViewModel.DSRangeHandlerViewModel>
+		<IVCharacterization:RangeHandlerViewModel RepeatCounts="69">
+			<IVCharacterization:RangeHandlerViewModel.RangeHandler>
+				<RangeHandlers:AbstractDoubleRangeHandler BackAndForth="False" HandlerName="Cras aliquam" RepeatCounts="36" StartFromZero="True">
+					<RangeHandlers:AbstractDoubleRangeHandler.Range>
+						<DoubleRange:DoubleRangeBase CrossesZero="True" End="574.78" PointsCount="31" RangeWidth="932.13" Start="265.53" Step="993.71"/>
+					</RangeHandlers:AbstractDoubleRangeHandler.Range>
+				</RangeHandlers:AbstractDoubleRangeHandler>
+			</IVCharacterization:RangeHandlerViewModel.RangeHandler>
+		</IVCharacterization:RangeHandlerViewModel>
+	</IVCharacterization:IVMainViewModel.DSRangeHandlerViewModel>
+	<IVCharacterization:IVMainViewModel.GSRangeViewModel>
+		<SimpleRangeControl:RangeViewModel>
+			<SimpleRangeControl:RangeViewModel.End>
+				<DoubleRange:DoubleUnitValueDependencyObject Magnitude="746.41" NumericValue="538.86" Prefix="CENTI" UnitName="Curae cursus arcu"/>
+			</SimpleRangeControl:RangeViewModel.End>
+			<SimpleRangeControl:RangeViewModel.PointsCount>
+				<DoubleRange:IntPointsCount PointsCount="43"/>
+			</SimpleRangeControl:RangeViewModel.PointsCount>
+			<SimpleRangeControl:RangeViewModel.Range>
+				<DoubleRange:DoubleRangeBase CrossesZero="False" End="457.52" PointsCount="87" RangeWidth="802.79" Start="576.41" Step="969.51"/>
+			</SimpleRangeControl:RangeViewModel.Range>
+			<SimpleRangeControl:RangeViewModel.Start>
+				<DoubleRange:DoubleUnitValueDependencyObject Magnitude="497.4" NumericValue="622.22" Prefix="YOTTA" UnitName="Parturient consequat"/>
+			</SimpleRangeControl:RangeViewModel.Start>
+			<SimpleRangeControl:RangeViewModel.Step>
+				<DoubleRange:DoubleUnitValueDependencyObject Magnitude="162.77" NumericValue="141.69" Prefix="FEMTO" UnitName="Aliquet bibendum"/>
+			</SimpleRangeControl:RangeViewModel.Step>
+		</SimpleRangeControl:RangeViewModel>
+	</IVCharacterization:IVMainViewModel.GSRangeViewModel>
+	<IVCharacterization:IVMainViewModel.GSRangeHandlerViewModel>
+		<IVCharacterization:RangeHandlerViewModel RepeatCounts="74">
+			<IVCharacterization:RangeHandlerViewModel.RangeHandler>
+				<RangeHandlers:AbstractDoubleRangeHandler BackAndForth="True" HandlerName="Vestibulum adipiscing class aenean" RepeatCounts="61" StartFromZero="False">
+					<RangeHandlers:AbstractDoubleRangeHandler.Range>
+						<DoubleRange:DoubleRangeBase CrossesZero="False" End="503.84" PointsCount="90" RangeWidth="159.1" Start="412.31" Step="783.85"/>
+					</RangeHandlers:AbstractDoubleRangeHandler.Range>
+				</RangeHandlers:AbstractDoubleRangeHandler>
+			</IVCharacterization:RangeHandlerViewModel.RangeHandler>
+		</IVCharacterization:RangeHandlerViewModel>
+	</IVCharacterization:IVMainViewModel.GSRangeHandlerViewModel>
+	<IVCharacterization:IVMainViewModel.Visualization>
+		<DataVisualization:VisualizationViewModel HorizontalAxisLabel="Curabitur nam mauris duis maecenas" LegendVisibility="Collapsed" LineThickness="546.93" VertivalAxisLabel="Nunc amet nullam phasellus integer"/>
+	</IVCharacterization:IVMainViewModel.Visualization>
+</IVCharacterization:IVMainViewModel>

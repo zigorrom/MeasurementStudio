@@ -4,10 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
-             mc:Ignorable="d" d:DesignWidth="482.707" Height="274.906" d:DataContext="{d:DesignData /SampleData/VisualizationViewModelSampleData.xaml}">
+             mc:Ignorable="d" d:DesignWidth="482.707" d:DataContext="{d:DesignData /SampleData/VisualizationViewModelSampleData.xaml}">
     <Grid>
         <d3:ChartPlotter Name="ChartControl">
-			<d3:Header Name="Header" Content="sdfsdaf"/>
+			<d3:Header Name="Header" Content="Header"/>
             <d3:VerticalAxisTitle Name="VerticalAxisLabel" Content="{Binding VertivalAxisLabel}"/>
             <d3:HorizontalAxisTitle Name="HorizontalAxisLabel" Content="{Binding HorizontalAxisLabel}" />
 			
