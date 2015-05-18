@@ -13,6 +13,12 @@ using System.Threading.Tasks;
 
 namespace IVCharacterization
 {
+    public struct IVCharacteristicNames
+    {
+        public const string OutputCharacteristic = "Output";
+        public const string TransferCharacteristic = "Transfer";
+    }
+
     public enum IVCharacteristicTypeEnum
     {
         Output,
@@ -32,8 +38,8 @@ namespace IVCharacterization
             {
                 if (m_IVCharacteristicType == value)
                     return;
-                m_IVCharacteristicType = value;
-                OnPropertyChanged("IVCharacteristicType");
+               // OnChangeIVCharacterizationViewModel(value);
+                //OnPropertyChanged("IVCharacteristicType");
             }
         }
 
@@ -72,8 +78,9 @@ namespace IVCharacterization
         public RangeViewModel DSRangeViewModel { get; set; }
         public RangeViewModel GSRangeViewModel { get; set; }
 
-        public IVMainViewModel()
+        public IVMainViewModel(IVCharacteristicTypeEnum characteristicType)
         {
+            m_IVCharacteristicType = characteristicType;
             DSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
             GSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
 

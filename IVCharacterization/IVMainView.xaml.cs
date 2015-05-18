@@ -23,9 +23,31 @@ namespace IVCharacterization
     {
         public IVMainView()
         {
+            model1 = new IVMainViewModel(IVCharacteristicTypeEnum.Output);
+            model2 = new IVMainViewModel(IVCharacteristicTypeEnum.Transfer);
             InitializeComponent();
-            var model = new IVMainViewModel();
-            DataContext = model;
+            //DataContextChanged += IVMainView_DataContextChanged;
+            
+            //model1.ChangeIVCharacterizationViewModel += ChangeIVCharacterizationViewModel;
+            //model2.ChangeIVCharacterizationViewModel += ChangeIVCharacterizationViewModel;
+            //DataContext = model1;
+            
         }
+
+        IVMainViewModel model1;
+        IVMainViewModel model2;
+
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var index = ((ComboBox)sender).SelectedIndex;
+            switch (index)
+            {
+                case 0: DataContext = model2; break;
+                case 1: DataContext = model1; break;
+            }
+        }
+
+        
     }
 }

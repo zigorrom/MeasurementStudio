@@ -48,6 +48,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacteristicTypeValueConverter.cs" />
+    <Compile Include="ExperimentController.xaml.cs">
+      <DependentUpon>ExperimentController.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IVCharacterizationExperiment.cs" />
     <Compile Include="IVMainView.xaml.cs">
       <DependentUpon>IVMainView.xaml</DependentUpon>
@@ -99,6 +103,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ExperimentController.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="IVMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

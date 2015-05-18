@@ -10,6 +10,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578" d:DataContext="{d:DesignData /SampleData/IVMainViewModelSampleData.xaml}">
     <UserControl.Resources>
+        <local:CharacteristicTypeValueConverter x:Key="CharacteristicTypeValueConverter"/>
         <GridLength x:Key="RangeGroupHeight">205*</GridLength>
         <GridLength x:Key="RangeControlHeight">58*</GridLength>
         <GridLength x:Key="AdditionalSettingsSpaceHeight">15*</GridLength>
@@ -50,7 +51,7 @@
                                 <RowDefinition Height="288*"/>
                                 <!--<RowDefinition Height="50*"/>-->
                             </Grid.RowDefinitions>
-                            <ComboBox Margin="3,3,2.6,3" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                            <ComboBox Margin="3,3,2.6,3" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="ComboBox_SelectionChanged"> <!--Text="{Binding IVCharacteristicType, Converter={StaticResource CharacteristicTypeValueConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >-->
                                 <ComboBoxItem Content="Output"/>
                                 <ComboBoxItem Content="Transfer"/>
                             </ComboBox>
@@ -77,7 +78,7 @@
                 </TabControl>
             </Grid>
         </Expander>
-        <Grid Grid.ColumnSpan="2" Grid.Row="1"/>
+        <local:ExperimentController Grid.ColumnSpan="2" Grid.Row="1"/>
 
 
 
