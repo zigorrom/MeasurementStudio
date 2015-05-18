@@ -49,7 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacteristicTypeValueConverter.cs" />
-    <Compile Include="ControlButtonsPanel.xaml.cs">
+    <Compile Include="Views\ControlButtonsPanel.xaml.cs">
       <DependentUpon>ControlButtonsPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="IVCharacterizationExperiment.cs" />
@@ -103,7 +103,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ControlButtonsPanel.xaml">
+    <Page Include="Views\ControlButtonsPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
