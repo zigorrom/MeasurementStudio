@@ -10,6 +10,12 @@ namespace Helper.Ranges.RangeHandlers
 {
     public abstract class AbstractDoubleRangeHandler:INotifyPropertyChanged, IEnumerable<double>
     {
+        public const string NormalRangeHandler = "Normal";
+        public  const string BackAndForthRangeHandler = "BackAndForth";
+        public  const string ZeroCrossingRangeHandler = "ZeroStart";
+        public  const string ZeroCrossingBackAndForthRangeHandler = "ZeroStartBackAndForth";
+
+
         private DoubleRangeBase m_range;
         public DoubleRangeBase Range { get { return m_range; }
             set
@@ -20,25 +26,29 @@ namespace Helper.Ranges.RangeHandlers
                 OnPropertyChanged("Range");
             }
         }
-        public AbstractDoubleRangeHandler(DoubleRangeBase range)
+        public AbstractDoubleRangeHandler(string HandlerName, bool BackAndForth, bool StartFromZero, DoubleRangeBase range)
         {
             m_range = range;
-            m_BackAndForth = false;
-            m_StartFromZero = false;
+            //Initialize(HandlerName, BackAndForth, StartFromZero);
+            Initialize(HandlerName, BackAndForth, StartFromZero);
+            //m_BackAndForth = false;
+            //m_StartFromZero = false;
             m_RepeatCount = 1;
         }
-        public AbstractDoubleRangeHandler()
+        public AbstractDoubleRangeHandler(string HandlerName, bool BackAndForth, bool StartFromZero)
         {
             m_range = null;
-            m_BackAndForth = false;
-            m_StartFromZero = false;
+            Initialize(HandlerName, BackAndForth, StartFromZero);
+            //m_BackAndForth = false;
+            //m_StartFromZero = false;
             m_RepeatCount = 1;
         }
 
-        protected void Initialize(bool BackAndForth, bool StartFromZero)
+        protected virtual void Initialize(string handlerName,bool backAndForth, bool startFromZero)
         {
-            m_BackAndForth = BackAndForth;
-            m_StartFromZero = StartFromZero;
+            HandlerName = HandlerName;
+            BackAndForth = BackAndForth;
+            StartFromZero = StartFromZero;
         }
 
         public event ProgressChangedEventHandler ProgressChanged;
@@ -59,6 +69,19 @@ namespace Helper.Ranges.RangeHandlers
         private bool m_BackAndForth;
         private bool m_StartFromZero;
         private int m_RepeatCount;
+        private string m_HandlerName;
+        public string HandlerName
+        {
+            get { return m_HandlerName; }
+            protected set
+            {
+                if (m_HandlerName == value)
+                    return;
+                m_HandlerName = value;
+            }
+        }
+            
+
         public bool BackAndForth { 
             get { return m_BackAndForth; }
             set

@@ -9,17 +9,13 @@ namespace Helper.Ranges.RangeHandlers
 {
     public class ZeroCrossRangeHandler:NormalDoubleRangeHandler
     {
-        public ZeroCrossRangeHandler(DoubleRangeBase range):base(range)
-        {
-            Initialize(false, true);
-            //BackAndForth = false;
-            //StartFromZero = true;
-        }
+        public ZeroCrossRangeHandler(DoubleRangeBase range)
+            : base(ZeroCrossingRangeHandler, true, range)
+        { }
 
-        public ZeroCrossRangeHandler():base()
-        {
-            Initialize(false, true);
-        }
+        public ZeroCrossRangeHandler()
+            : base(ZeroCrossingRangeHandler, true)
+        { }
 
         private IEnumerator<double> CurrentEnum()
         {

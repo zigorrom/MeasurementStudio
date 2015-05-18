@@ -3,26 +3,31 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:RangeHandlers="clr-namespace:Helper.Ranges.RangeHandlers;assembly=Helper"
 	mc:Ignorable="d"
 	x:Class="IVCharacterization.RangeHandlerControl"
 	x:Name="RangeHandlerSelector"
 	d:DesignWidth="272.4" d:DesignHeight="47.286">
+
+	<UserControl.Resources>
+		<RangeHandlers:RangeHandlerToStringConverter x:Key="RangeHandlerToStringConverter"/>
+	</UserControl.Resources>
 
 	<Grid x:Name="LayoutRoot">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="89*"/>
 			<ColumnDefinition Width="183*"/>
 		</Grid.ColumnDefinitions>
-		<ComboBox x:Name="HandlerComboBox" DataContext="{Binding DSVoltageRangeHandler}" Grid.Column="1" Margin="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0">
-            <ComboBoxItem Content="Normal" HorizontalAlignment="Left" Width="175"/>
-            <ComboBoxItem Content="BackAndForth" HorizontalAlignment="Left" Width="175"/>
-            <ComboBoxItem Content="ZeroStart" HorizontalAlignment="Left" Width="175"/>
-            <ComboBoxItem Content="ZeroStartBackAndForth" HorizontalAlignment="Left" Width="175"/>
+		<ComboBox x:Name="HandlerComboBox" Grid.Column="1" Margin="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0" Text="{Binding RangeHandler, Converter={StaticResource RangeHandlerToStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+			<ComboBoxItem Content="Normal" HorizontalAlignment="Left" Width="175"/>
+			<ComboBoxItem Content="BackAndForth" HorizontalAlignment="Left" Width="175"/>
+			<ComboBoxItem Content="ZeroStart" HorizontalAlignment="Left" Width="175"/>
+			<ComboBoxItem Content="ZeroStartBackAndForth" HorizontalAlignment="Left" Width="175"/>
 
-        </ComboBox>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+		</ComboBox>
+		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
 			<Label Content="#" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-			<TextBox x:Name="CountsRepeat" HorizontalAlignment="Center" Height="35" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="63" Margin="3" VerticalContentAlignment="Center"/>
+			<TextBox x:Name="CountsRepeat" HorizontalAlignment="Center" Height="35" TextWrapping="Wrap" Text="{Binding RepeatCounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="63" Margin="3" VerticalContentAlignment="Center"/>
 		</StackPanel>
 	</Grid>
 </UserControl>

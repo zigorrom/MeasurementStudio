@@ -10,20 +10,28 @@ namespace Helper.Ranges.RangeHandlers
     [ValueConversion(typeof(string),typeof(AbstractDoubleRangeHandler))]
     public class RangeHandlerToStringConverter:IValueConverter
     {
-        private const string NormalRangeHandler = "Normal";
-        private const string BackAndForthRangeHandler = "BackAndForth";
-        private const string ZeroCrossingRangeHandler = "ZeroStart";
-        private const string ZeroCrossingBackAndForthRangeHandler = "ZeroStartBackAndForth";
-
-
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            throw new NotImplementedException();
+            var handler = value as AbstractDoubleRangeHandler;
+            if (handler == null)
+                return Binding.DoNothing;
+            return handler.HandlerName;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            throw new NotImplementedException();
+            var val = value as string;
+            if (val == null)
+                return Binding.DoNothing;
+            switch (val)
+            {
+                case AbstractDoubleRangeHandler.BackAndForthRangeHandler: return new BackAndForthRangeHandler();
+                case AbstractDoubleRangeHandler.NormalRangeHandler: return new NormalDoubleRangeHandler();
+                case AbstractDoubleRangeHandler.ZeroCrossingBackAndForthRangeHandler: return new ZeroCrossingBackAndForthRangeHandler();
+                case AbstractDoubleRangeHandler.ZeroCrossingRangeHandler: return new ZeroCrossRangeHandler();
+                default:
+                    return Binding.DoNothing;
+            }
         }
     }
 }

@@ -9,18 +9,21 @@ namespace Helper.Ranges.RangeHandlers
 {
     public class NormalDoubleRangeHandler:AbstractDoubleRangeHandler
     {
-        public NormalDoubleRangeHandler(DoubleRangeBase range):base(range)
-        {
-            Initialize(false, false);
-            //BackAndForth = false;
-            //StartFromZero = false;
-        }
-        public NormalDoubleRangeHandler():base()
-        {
-            Initialize(false, false);
-            //BackAndForth = false;
-            //StartFromZero = false;
-        }
+        protected NormalDoubleRangeHandler(string HandlerName, bool ZeroCrossing, DoubleRangeBase range)
+            : base(HandlerName, false, ZeroCrossing, range)
+        { }
+
+        protected NormalDoubleRangeHandler(string HandlerName, bool ZeroCrossing)
+            : base(HandlerName, false, ZeroCrossing)
+        { }
+
+        public NormalDoubleRangeHandler(DoubleRangeBase range)
+            : base(NormalRangeHandler, false, false, range)
+        { }
+
+        public NormalDoubleRangeHandler()
+            : base(NormalRangeHandler, false, false)
+        { }
 
         public override IEnumerator<double> GetEnumerator()
         {

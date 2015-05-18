@@ -19,16 +19,12 @@ namespace IVCharacterization
         Transfer
     }
 
-    public class IVMainViewModel:INotifyPropertyChanged
+    public class IVMainViewModel : INotifyPropertyChanged
     {
-        private void OnPropertyChanged(string PropertyName)
-        {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(PropertyName));
-        }
+
         private IInstrument m_BackGateSMU;
         private IInstrument m_DrainSourseSMU;
+
         private IVCharacteristicTypeEnum m_IVCharacteristicType;
         public IVCharacteristicTypeEnum IVCharacteristicType
         {
@@ -42,51 +38,72 @@ namespace IVCharacterization
             }
         }
 
-        private DoubleRangeBase m_DSVoltageRange;
-        public DoubleRangeBase DSVoltageRange
+        //private DoubleRangeBase m_DSVoltageRange;
+        //public DoubleRangeBase DSVoltageRange
+        //{
+        //    get { return m_DSVoltageRange; }
+        //    set
+        //    {
+        //        if (m_DSVoltageRange == value) return;
+        //        m_DSVoltageRange = value;
+        //        OnPropertyChanged("DSVoltageRange");
+        //    }
+        //}
+
+        //private AbstractDoubleRangeHandler m_DSVoltageRangeHandler;
+        //public AbstractDoubleRangeHandler DSVoltageRangeHandler
+        //{
+        //    get { return m_DSVoltageRangeHandler; }
+        //    set
+        //    {
+        //        if (m_DSVoltageRangeHandler == value) return;
+        //        m_DSVoltageRangeHandler = value;
+        //        OnPropertyChanged("DSVoltageRangeHandler");
+        //    }
+        //}
+
+        private RangeHandlerViewModel m_DSRangeHandlerViewModel;
+        public RangeHandlerViewModel DSRangeHandlerViewModel
         {
-            get { return m_DSVoltageRange; }
-            set
+            get { return m_DSRangeHandlerViewModel; }
+            private set
             {
-                if (m_DSVoltageRange == value) return;
-                m_DSVoltageRange = value;
-                OnPropertyChanged("DSVoltageRange");
+                SetField(ref m_DSRangeHandlerViewModel, value, "DSRangeHandlerViewModel");
             }
         }
 
-        private DoubleRangeBase m_GSVoltageRange;
-        public DoubleRangeBase GSVoltageRange
-        {
-            get { return m_GSVoltageRange; }
-            set
-            {
-                if (m_GSVoltageRange == value)
-                    return;
-                m_GSVoltageRange = value;
-                OnPropertyChanged("GSVoltageRange");
-            }
-        }
+        //private DoubleRangeBase m_GSVoltageRange;
+        //public DoubleRangeBase GSVoltageRange
+        //{
+        //    get { return m_GSVoltageRange; }
+        //    set
+        //    {
+        //        if (m_GSVoltageRange == value)
+        //            return;
+        //        m_GSVoltageRange = value;
+        //        OnPropertyChanged("GSVoltageRange");
+        //    }
+        //}
 
-        private AbstractDoubleRangeHandler m_DSVoltageRangeHandler;
-        public AbstractDoubleRangeHandler DSVoltageRangeHandler
+        //private AbstractDoubleRangeHandler m_GSVoltageRangeHandler;
+        //public AbstractDoubleRangeHandler GSVoltageRangeHandler
+        //{
+        //    get { return m_GSVoltageRangeHandler; }
+        //    set
+        //    {
+        //        if (m_GSVoltageRangeHandler == value) return;
+        //        m_GSVoltageRangeHandler = value;
+        //        OnPropertyChanged("GSVoltageRangeHandler");
+        //    }
+        //}
+
+        private RangeHandlerViewModel m_GSRangeHandlerViewModel;
+        public RangeHandlerViewModel GSRangeHandlerViewModel
         {
-            get { return m_DSVoltageRangeHandler; }
-            set
+            get { return m_GSRangeHandlerViewModel; }
+            private set
             {
-                if (m_DSVoltageRangeHandler == value) return;
-                m_DSVoltageRangeHandler = value;
-                OnPropertyChanged("DSVoltageRangeHandler");
-            }
-        }
-        private AbstractDoubleRangeHandler m_GSVoltageRangeHandler;
-        public AbstractDoubleRangeHandler GSVoltageRangeHandler
-        {
-            get { return m_GSVoltageRangeHandler; }
-            set
-            {
-                if (m_GSVoltageRangeHandler == value) return;
-                m_GSVoltageRangeHandler = value;
-                OnPropertyChanged("GSVoltageRangeHandler");
+                SetField(ref m_GSRangeHandlerViewModel, value, "GSRangeHandlerViewModel");
             }
         }
 
@@ -102,17 +119,31 @@ namespace IVCharacterization
             }
         }
 
-
         public RangeViewModel DSRangeViewModel { get; set; }
-
         public RangeViewModel GSRangeViewModel { get; set; }
-
 
         public IVMainViewModel()
         {
             DSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
-            GSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage()); 
+            GSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
+
+            DSRangeHandlerViewModel = new RangeHandlerViewModel();
+            GSRangeHandlerViewModel = new RangeHandlerViewModel();
         }
-            public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected bool SetField<ST>(ref ST field, ST value, string propertyName)
+        {
+            if (EqualityComparer<ST>.Default.Equals(field, value))
+                return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+        private void OnPropertyChanged(string PropertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(PropertyName));
+        }
     }
 }

@@ -117,5 +117,10 @@ namespace Helper.Ranges.SimpleRangeControl
                 OnPropertyChanged("Step");
             }
         }
+
+        public DoubleRangeBase Range
+        {
+            get { return m_doubleRange; }
+        }
     }
 }

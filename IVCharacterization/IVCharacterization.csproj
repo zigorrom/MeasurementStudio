@@ -69,6 +69,7 @@
     <Compile Include="RangeHandlerControl.xaml.cs">
       <DependentUpon>RangeHandlerControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RangeHandlerViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -108,7 +109,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <DesignData Include="SampleData\IVMainViewModelSampleData.xaml" />
+    <Folder Include="SampleData\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

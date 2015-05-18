@@ -9,22 +9,23 @@ namespace Helper.Ranges.RangeHandlers
 {
     public class BackAndForthRangeHandler:AbstractDoubleRangeHandler
     {
-        public BackAndForthRangeHandler(DoubleRangeBase range):base(range)
-        {
-            Initialize(true, false);
-            //BackAndForth = true;
-            //StartFromZero = false;
-            //m_range = range;
-            //m_BackAndForth = false;
-            //m_StartFromZero = false;
-            //m_RepeatCount = 1;
-        }
-        public BackAndForthRangeHandler():base()
-        {
-            Initialize(true, false);
-            //BackAndForth = true;
-            //StartFromZero = false;
-        }
+
+        protected BackAndForthRangeHandler(string HandlerName, bool ZeroCrossing, DoubleRangeBase range)
+            : base(HandlerName, true, ZeroCrossing,range)
+        { }
+
+        protected BackAndForthRangeHandler(string HandlerName, bool ZeroCrossing)
+            : base(HandlerName, true, ZeroCrossing)
+        { }
+
+        public BackAndForthRangeHandler(DoubleRangeBase range)
+            : base(BackAndForthRangeHandler, true, false, range)
+        { }
+        public BackAndForthRangeHandler()
+            : base(BackAndForthRangeHandler, true, false)
+        { }
+            
+        
 
         public override IEnumerator<double> GetEnumerator()
         {
