@@ -11,14 +11,29 @@ namespace Helper.Ranges.RangeHandlers
     {
         public BackAndForthRangeHandler(DoubleRangeBase range):base(range)
         {
-            BackAndForth = true;
-            StartFromZero = false;
+            Initialize(true, false);
+            //BackAndForth = true;
+            //StartFromZero = false;
             //m_range = range;
             //m_BackAndForth = false;
             //m_StartFromZero = false;
             //m_RepeatCount = 1;
         }
+        public BackAndForthRangeHandler():base()
+        {
+            Initialize(true, false);
+            //BackAndForth = true;
+            //StartFromZero = false;
+        }
+
         public override IEnumerator<double> GetEnumerator()
+        {
+            if (AssertRangeNull())
+                return null;
+            return CurrentEnum();
+        }
+
+        private IEnumerator<double> CurrentEnum()
         {
             for (int i = 1; i < RepeatCounts; i++)
             {

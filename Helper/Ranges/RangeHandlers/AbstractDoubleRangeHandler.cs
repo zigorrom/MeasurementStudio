@@ -11,14 +11,34 @@ namespace Helper.Ranges.RangeHandlers
     public abstract class AbstractDoubleRangeHandler:INotifyPropertyChanged, IEnumerable<double>
     {
         private DoubleRangeBase m_range;
-        public DoubleRangeBase Range { get { return m_range; } }
+        public DoubleRangeBase Range { get { return m_range; }
+            set
+            {
+                if (m_range == value)
+                    return;
+                m_range = value;
+                OnPropertyChanged("Range");
+            }
+        }
         public AbstractDoubleRangeHandler(DoubleRangeBase range)
         {
             m_range = range;
             m_BackAndForth = false;
             m_StartFromZero = false;
             m_RepeatCount = 1;
-            
+        }
+        public AbstractDoubleRangeHandler()
+        {
+            m_range = null;
+            m_BackAndForth = false;
+            m_StartFromZero = false;
+            m_RepeatCount = 1;
+        }
+
+        protected void Initialize(bool BackAndForth, bool StartFromZero)
+        {
+            m_BackAndForth = BackAndForth;
+            m_StartFromZero = StartFromZero;
         }
 
         public event ProgressChangedEventHandler ProgressChanged;
@@ -73,6 +93,12 @@ namespace Helper.Ranges.RangeHandlers
         }
 
 
+        protected bool AssertRangeNull()
+        {
+            if (m_range == null)
+                return true;
+            return false;
+        }
 
         public abstract IEnumerator<double> GetEnumerator();
         

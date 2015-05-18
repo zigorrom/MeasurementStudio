@@ -11,8 +11,14 @@ namespace Helper.Ranges.RangeHandlers
     {
         public ZeroCrossRangeHandler(DoubleRangeBase range):base(range)
         {
-            BackAndForth = false;
-            StartFromZero = true;
+            Initialize(false, true);
+            //BackAndForth = false;
+            //StartFromZero = true;
+        }
+
+        public ZeroCrossRangeHandler():base()
+        {
+            Initialize(false, true);
         }
 
         private IEnumerator<double> CurrentEnum()
@@ -45,6 +51,8 @@ namespace Helper.Ranges.RangeHandlers
 
         public override IEnumerator<double> GetEnumerator()
         {
+            if (AssertRangeNull())
+                return null;
             if (!Range.CrossesZero)
                 return base.GetEnumerator();
             else

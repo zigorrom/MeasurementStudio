@@ -17,91 +17,93 @@
         <GridLength x:Key="RangeGroupSecondColumnWidth">163*</GridLength>
     </UserControl.Resources>
 
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
 
-			<RowDefinition Height="60"/>
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition/>
-			<ColumnDefinition Width="Auto"/>
-		</Grid.ColumnDefinitions>
-		<DataVisualization:DataPlotter Height="Auto" Margin="0,0,8.2,0.2" DataContext="{Binding Visualization}" RenderTransformOrigin="0.5,0.5">
-			<DataVisualization:DataPlotter.RenderTransform>
-				<TransformGroup>
-					<ScaleTransform/>
-					<SkewTransform/>
-					<RotateTransform Angle="-0.372"/>
-					<TranslateTransform/>
-				</TransformGroup>
-			</DataVisualization:DataPlotter.RenderTransform>
-		</DataVisualization:DataPlotter>
-		<Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" MinHeight="400" Margin="0.8,0,-0.4,0.2">
-			<Expander.Header>
-				<TextBlock Text="Settings" TextOptions.TextFormattingMode="Ideal">
-					<TextBlock.RenderTransform>
-						<TransformGroup>
-							<RotateTransform Angle="90"/>
-							<TranslateTransform X="30"/>
-						</TransformGroup>
-					</TextBlock.RenderTransform>
-				</TextBlock>
-			</Expander.Header>
-			<Grid>
-				<TabControl Width="300">
-					<TabItem Header="Range setup">
-						<Grid Background="#FFE5E5E5">
-							<Grid.RowDefinitions>
-								<RowDefinition Height="52*"/>
-								<RowDefinition Height="288*"/>
-								<!--<RowDefinition Height="50*"/>-->
-								<RowDefinition Height="288*"/>
-								<!--<RowDefinition Height="50*"/>-->
-							</Grid.RowDefinitions>
-							<ComboBox Margin="3,3,2.6,3" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-								<ComboBoxItem Content="Output"/>
-								<ComboBoxItem Content="Transfer"/>
-							</ComboBox>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <DataVisualization:DataPlotter Height="Auto" Margin="0,0,8.2,0.2" DataContext="{Binding Visualization}" RenderTransformOrigin="0.5,0.5">
+            <DataVisualization:DataPlotter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.372"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataVisualization:DataPlotter.RenderTransform>
+        </DataVisualization:DataPlotter>
+        <Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" MinHeight="400" Margin="0.8,0,-0.4,0.2" VerticalAlignment="Top">
+            <Expander.Header>
+                <TextBlock Text="Settings" TextOptions.TextFormattingMode="Ideal">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform X="30"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+            </Expander.Header>
+            <Grid>
+                <TabControl Width="300">
+                    <TabItem Header="Range setup">
+                        <Grid Background="#FFE5E5E5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="52*"/>
+                                <RowDefinition Height="288*"/>
+                                <!--<RowDefinition Height="50*"/>-->
+                                <RowDefinition Height="288*"/>
+                                <!--<RowDefinition Height="50*"/>-->
+                            </Grid.RowDefinitions>
+                            <ComboBox Margin="3,3,2.6,3" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                                <ComboBoxItem Content="Output"/>
+                                <ComboBoxItem Content="Transfer"/>
+                            </ComboBox>
 
-							<GroupBox Header="Drain-Source Voltage Range" Grid.Row="1" Margin="0,0,-0.4,0">
-								<Grid>
-									<Grid.RowDefinitions>
-										<RowDefinition Height="{DynamicResource RangeControlHeight}"/>
-										<RowDefinition Height="{DynamicResource AdditionalSettingsSpaceHeight}"/>
-									</Grid.RowDefinitions>
-									<!--<Ranges:SimpleVoltageRangeControl x:Name="Range1" DataContext="{Binding DSVoltageRange}"/>-->
-									<Ranges:RangeControl DataContext="{Binding DSRangeViewModel}" Grid.ColumnSpan="2"/>
-									<local:RangeHandlerControl Margin="3" Grid.Row="1"/>
-									<!--<SimpleRangeControl:RangeControl x:Name="DrainSourceVoltageRange" Height="Auto" Margin="0"/>-->
-								</Grid>
-							</GroupBox>
-							<GroupBox Header="Gate-Source Voltage Range" Grid.Row="2" Margin="0,0,-0.4,0" Grid.RowSpan="2">
-								<Grid>
-									<Grid.RowDefinitions>
-										<RowDefinition Height="{DynamicResource RangeControlHeight}"/>
-										<RowDefinition Height="{DynamicResource AdditionalSettingsSpaceHeight}"/>
-									</Grid.RowDefinitions>
-									<!--<SimpleRangeControl:RangeControl x:Name="DrainSourceVoltageRange" Height="Auto" Margin="0"/>-->
-									<!--<Ranges:SimpleVoltageRangeControl x:Name="Range1" DataContext="{Binding DSVoltageRange}"/>-->
-									<Ranges:RangeControl DataContext="{Binding GSRangeViewModel}" Grid.ColumnSpan="2"/>
-									<!--<Ranges:SimpleVoltageRangeControl x:Name="Range1" DataContext="{Binding DSVoltageRange}"/>-->
-									<ComboBox Grid.Row="1" Margin="3" DataContext="{Binding DSVoltageRangeHandler}" Grid.Column="1"/>
-								</Grid>
-							</GroupBox>
-
-							<!--<Ranges:SimpleDoubleRangeControl x:Name="FirstRange"/>-->
-							<!--<Ranges:SimpleDoubleRangeControl x:Name="SecondRange" Grid.Row="1"/>-->
-						</Grid>
-					</TabItem>
-					<TabItem Header="Settings">
-						<Grid Background="#FFE5E5E5"/>
-					</TabItem>
-				</TabControl>
-			</Grid>
-		</Expander>
+                            <GroupBox Header="Drain-Source Voltage Range" Grid.Row="1" Margin="0,0,-0.4,0">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="{DynamicResource RangeControlHeight}"/>
+                                        <RowDefinition Height="{DynamicResource AdditionalSettingsSpaceHeight}"/>
+                                    </Grid.RowDefinitions>
+                                    <!--<Ranges:SimpleVoltageRangeControl x:Name="Range1" DataContext="{Binding DSVoltageRange}"/>-->
+                                    <Ranges:RangeControl DataContext="{Binding DSRangeViewModel}" Grid.ColumnSpan="2"/>
+                                    <local:RangeHandlerControl Margin="3" Grid.Row="1"/>
 
 
+                                    <!--<SimpleRangeControl:RangeControl x:Name="DrainSourceVoltageRange" Height="Auto" Margin="0"/>-->
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="Gate-Source Voltage Range" Grid.Row="2" Margin="0,0,-0.4,0" Grid.RowSpan="2">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="{DynamicResource RangeControlHeight}"/>
+                                        <RowDefinition Height="{DynamicResource AdditionalSettingsSpaceHeight}"/>
+                                    </Grid.RowDefinitions>
+                                    <!--<SimpleRangeControl:RangeControl x:Name="DrainSourceVoltageRange" Height="Auto" Margin="0"/>-->
+                                    <!--<Ranges:SimpleVoltageRangeControl x:Name="Range1" DataContext="{Binding DSVoltageRange}"/>-->
+                                    <Ranges:RangeControl DataContext="{Binding GSRangeViewModel}" Grid.ColumnSpan="2"/>
+                                    <!--<Ranges:SimpleVoltageRangeControl x:Name="Range1" DataContext="{Binding DSVoltageRange}"/>-->
+                                    <local:RangeHandlerControl Grid.Row="1"/>
+                                </Grid>
+                            </GroupBox>
 
-	</Grid>
+                            <!--<Ranges:SimpleDoubleRangeControl x:Name="FirstRange"/>-->
+                            <!--<Ranges:SimpleDoubleRangeControl x:Name="SecondRange" Grid.Row="1"/>-->
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Settings">
+                        <Grid Background="#FFE5E5E5"/>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+        </Expander>
+
+
+
+    </Grid>
 </UserControl>

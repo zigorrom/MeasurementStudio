@@ -11,13 +11,20 @@ namespace Helper.Ranges.RangeHandlers
     {
         public ZeroCrossingBackAndForthRangeHandler(DoubleRangeBase range):base(range)
         {
-            BackAndForth = true;
-            StartFromZero = true;
+            Initialize(true, true);
+            //BackAndForth = true;
+            //StartFromZero = true;
         }
 
+        public ZeroCrossingBackAndForthRangeHandler():base()
+        {
+            Initialize(true, true);
+        }
 
         public override IEnumerator<double> GetEnumerator()
         {
+            if (AssertRangeNull())
+                return null;
             if (!Range.CrossesZero)
                 return base.GetEnumerator();
             else
