@@ -81,7 +81,13 @@
                 </TabControl>
             </Grid>
         </Expander>
-         <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Height="40" Margin="25.6,10.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="85"/>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="599*"/>
+                <ColumnDefinition Width="346*"/>
+            </Grid.ColumnDefinitions>
+            <local:ControlButtonsPanel Grid.Column="1" Margin="3"/>
+        </Grid>
 
 
 

@@ -49,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacteristicTypeValueConverter.cs" />
+    <Compile Include="ControlButtonsPanel.xaml.cs">
+      <DependentUpon>ControlButtonsPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IVCharacterizationExperiment.cs" />
     <Compile Include="Views\IVMainView.xaml.cs">
       <DependentUpon>IVMainView.xaml</DependentUpon>
@@ -100,6 +103,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ControlButtonsPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\IVMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
