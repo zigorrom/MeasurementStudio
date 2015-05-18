@@ -129,6 +129,8 @@ namespace IVCharacterization
 
             DSRangeHandlerViewModel = new RangeHandlerViewModel();
             GSRangeHandlerViewModel = new RangeHandlerViewModel();
+            //Visualization = new VisualizationViewModel();
+            //Visualization.HorizontalAxisLabel = "aasdsda";
         }
         public event PropertyChangedEventHandler PropertyChanged;
         protected bool SetField<ST>(ref ST field, ST value, string propertyName)
