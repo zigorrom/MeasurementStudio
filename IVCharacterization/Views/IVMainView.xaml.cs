@@ -26,11 +26,8 @@ namespace IVCharacterization
             model1 = new IVMainViewModel(IVCharacteristicTypeEnum.Output);
             model2 = new IVMainViewModel(IVCharacteristicTypeEnum.Transfer);
             InitializeComponent();
-            //DataContextChanged += IVMainView_DataContextChanged;
-            
-            //model1.ChangeIVCharacterizationViewModel += ChangeIVCharacterizationViewModel;
-            //model2.ChangeIVCharacterizationViewModel += ChangeIVCharacterizationViewModel;
-            //DataContext = model1;
+            ControlButtons.StartButtonPressed += (o, e) => { ProcessProgress.Visibility = System.Windows.Visibility.Visible; };
+            ControlButtons.StopButtonPressed += (o, e) => { ProcessProgress.Visibility = System.Windows.Visibility.Hidden; };
             
         }
 

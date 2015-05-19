@@ -86,7 +86,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="346.4"/>
             </Grid.ColumnDefinitions>
-            <local:ControlButtonsPanel Grid.Column="1" Margin="3"/>
+            <local:ControlButtonsPanel x:Name="ControlButtons" Grid.Column="1" Margin="3"/>
+            <ProgressBar x:Name="ProcessProgress" Margin="10" Visibility="Hidden"/>
         </Grid>
 
 
