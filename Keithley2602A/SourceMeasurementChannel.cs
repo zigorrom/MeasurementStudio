@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Keithley2602A
 {
-    public class Class1
+    public class SourceMeasurementChannel
     {
     }
 }
