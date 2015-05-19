@@ -21,6 +21,32 @@ namespace IVCharacterization
 		public ControlButtonsPanel()
 		{
 			this.InitializeComponent();
+            StartButton.Click += OnStartButtonPressed;
+            PauseButton.Click += OnPauseButtonPressed;
+            StopButton.Click += OnStopButtonPressed;
 		}
+        public event RoutedEventHandler StopButtonPressed;
+        void OnStopButtonPressed(object sender, RoutedEventArgs e)
+        {
+            var handler = StopButtonPressed;
+            if (handler != null)
+                handler(sender, e);
+        }
+        public event RoutedEventHandler PauseButtonPressed;
+        private void OnPauseButtonPressed(object sender, RoutedEventArgs e)
+        {
+            var handler = PauseButtonPressed;
+            if (handler != null)
+                handler(sender, e);
+        }
+
+        public event RoutedEventHandler StartButtonPressed;
+        public void OnStartButtonPressed(object sender, RoutedEventArgs e)
+        {
+            var handler = StartButtonPressed;
+            if (handler != null)
+                handler(sender, e);
+        }
+        
 	}
 }
