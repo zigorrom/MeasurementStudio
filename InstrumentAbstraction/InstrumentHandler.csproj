@@ -7,7 +7,7 @@
     <ProjectGuid>{3C57F76B-BE47-4DE4-8466-3FD0B124D134}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>InstrumentHandler</RootNamespace>
+    <RootNamespace>Instruments</RootNamespace>
     <AssemblyName>InstrumentHandler</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -47,6 +47,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ThirdPartyLibs\NationalInstruments.VisaNS.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,17 +57,21 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractCommandBuilder.cs" />
-    <Compile Include="AbstractMessageBasedInstrument.cs" />
-    <Compile Include="IInstrument.cs" />
-    <Compile Include="IInstrumentOwner.cs" />
-    <Compile Include="IMessageBasedInstrument.cs" />
+    <Compile Include="Abstract\AbstractCommandBuilder.cs" />
+    <Compile Include="Abstract\AbstractMessageBasedInstrument.cs" />
+    <Compile Include="Abstract\IInstrument.cs" />
+    <Compile Include="Abstract\IInstrumentOwner.cs" />
+    <Compile Include="Abstract\IMessageBasedInstrument.cs" />
+    <Compile Include="InstrumentHandler\AvailableInstrumentsEnumeration.cs" />
+    <Compile Include="InstrumentHandler\InstrumentHandler.cs" />
+    <Compile Include="InstrumentHandler\InstrumentHandlerViewModel.cs" />
     <Compile Include="InstrumentInterfaces\IMultimeter.cs" />
-    <Compile Include="InstrumentAttribute.cs" />
+    <Compile Include="Abstract\InstrumentAttribute.cs" />
     <Compile Include="InstrumentInterfaces\ISourceMeasurementUnit.cs" />
-    <Compile Include="InstrumentState.cs" />
+    <Compile Include="Abstract\InstrumentState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

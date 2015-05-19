@@ -1,5 +1,4 @@
-﻿using InstrumentHandlerNamespace;
-using Instruments;
+﻿
 using NationalInstruments.VisaNS;
 using System;
 using System.Collections.Generic;
