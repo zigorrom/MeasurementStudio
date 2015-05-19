@@ -7,8 +7,8 @@
     <ProjectGuid>{3C57F76B-BE47-4DE4-8466-3FD0B124D134}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>InstrumentAbstraction</RootNamespace>
-    <AssemblyName>InstrumentAbstraction</AssemblyName>
+    <RootNamespace>InstrumentHandler</RootNamespace>
+    <AssemblyName>InstrumentHandler</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -63,6 +63,7 @@
     <Compile Include="IMessageBasedInstrument.cs" />
     <Compile Include="InstrumentInterfaces\IMultimeter.cs" />
     <Compile Include="InstrumentAttribute.cs" />
+    <Compile Include="InstrumentInterfaces\ISourceMeasurementUnit.cs" />
     <Compile Include="InstrumentState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

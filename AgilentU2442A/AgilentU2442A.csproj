@@ -61,9 +61,9 @@
     <Compile Include="SyncEvents.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InstrumentAbstraction\InstrumentAbstraction.csproj">
+    <ProjectReference Include="..\InstrumentAbstraction\InstrumentHandler.csproj">
       <Project>{3c57f76b-be47-4de4-8466-3fd0b124d134}</Project>
-      <Name>InstrumentAbstraction</Name>
+      <Name>InstrumentHandler</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

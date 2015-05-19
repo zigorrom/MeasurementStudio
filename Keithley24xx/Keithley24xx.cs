@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.Threading;
 using Instruments;
-using Ke2400DotNetWrapper;
+
 
 namespace Keithley24xx
 {

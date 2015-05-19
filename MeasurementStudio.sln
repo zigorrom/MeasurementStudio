@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InstrumentFolder", "Instrum
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgilentU2442A", "AgilentU2442A\AgilentU2442A.csproj", "{63C41453-1D5A-4C9D-AE0A-D4A08FEEFCA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstrumentAbstraction", "InstrumentAbstraction\InstrumentAbstraction.csproj", "{3C57F76B-BE47-4DE4-8466-3FD0B124D134}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstrumentHandler", "InstrumentAbstraction\InstrumentHandler.csproj", "{3C57F76B-BE47-4DE4-8466-3FD0B124D134}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgilentTest", "AgilentTest\AgilentTest.csproj", "{711A5520-1DA3-47B1-9737-3F6CC8480A6A}"
 EndProject
