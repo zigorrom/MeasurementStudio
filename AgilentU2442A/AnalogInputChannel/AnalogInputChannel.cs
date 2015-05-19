@@ -140,7 +140,7 @@ namespace AgilentU2442A
 
         }
 
-        [Obsolete("Use [public AnalogInputChannel(ChannelEnum ChannelIdentifier, AgilentU2542A ParentDevice):base(ChannelIdentifier, ParentDevice)] constructor instead")]
+        //[Obsolete("Use [public AnalogInputChannel(ChannelEnum ChannelIdentifier, AgilentU2542A ParentDevice):base(ChannelIdentifier, ParentDevice)] constructor instead")]
         //public AnalogInputChannel(string NativeChannelName, AgilentU2542A ParentDevice)
         //    : base(NativeChannelName, ParentDevice)
         //{
