@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.Threading;
 using Instruments;
+using InstrumentAbstraction.InstrumentInterfaces;
 
 
 namespace Keithley24xx
 {
     [InstrumentAttribute("KEITHLEY","24")]//24 - BECAUSE 2400,2430 FITS
-    public class Keithley24xx:AbstractMessageBasedInstrument//, ISourceMeasurementUnit
+    public class Keithley24xx:AbstractMessageBasedInstrument//, ISourceMeasurementUnit//, ISourceMeasurementUnit
     {
         public Keithley24xx(string Name,string Alias, string ResourceName):base(Name,Alias,ResourceName)
         {
@@ -172,6 +173,8 @@ namespace Keithley24xx
         {
             throw new NotImplementedException();
         }
+
+
 
 
 
