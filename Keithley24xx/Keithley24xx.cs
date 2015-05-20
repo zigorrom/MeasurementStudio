@@ -12,7 +12,7 @@ using InstrumentAbstraction.InstrumentInterfaces;
 namespace Keithley24xx
 {
     [InstrumentAttribute("KEITHLEY","24")]//24 - BECAUSE 2400,2430 FITS
-    public class Keithley24xx:AbstractMessageBasedInstrument//, ISourceMeasurementUnit//, ISourceMeasurementUnit
+    public class Keithley24xx:AbstractMessageBasedInstrument, ISourceMeasurementUnit//, ISourceMeasurementUnit
     {
         public Keithley24xx(string Name,string Alias, string ResourceName):base(Name,Alias,ResourceName)
         {
@@ -108,12 +108,7 @@ namespace Keithley24xx
         {
             SendCommand("*RST");
         }
-        //public bool Reset()
-        //{
-        //    if (SendCommand("*RST"))
-        //        return true;
-        //    return false;
-        //}
+        
 
         public bool SourceVoltage(double Value)
         {
@@ -124,6 +119,12 @@ namespace Keithley24xx
             return false;
         }
 
+        public bool SetSourceVoltage(double Value)
+        {
+            throw new NotImplementedException();
+        }
+
+
         public bool SourceCurrent(double Value)
         {
             var CommandFormat = ":SOUR:CURR {0}";
@@ -131,6 +132,11 @@ namespace Keithley24xx
             if (SendCommand(String.Format(numForm, CommandFormat, Value)))
                 return true;
             return false;
+        }
+
+        public bool SetSourceCurrent(double Value)
+        {
+            throw new NotImplementedException();
         }
 
         public bool ShowText(string text)
@@ -161,18 +167,27 @@ namespace Keithley24xx
             return true;
         }
 
-        public bool SwitchOn()
+        public double MeasureVoltage(int NumberOfAverages, double TimeDelay)
         {
-            if (SendCommand(":OUTP:STAT ON"))
-                return true;
-            return false;
+            throw new NotImplementedException();
         }
-        public bool SwitchOff()
+
+        public double MeasureCurrent(int NumberOfAverages, double TimeDelay)
         {
-            if (SendCommand(":OUTP:STAT OFF"))
-                return true;
-            return false;
+            throw new NotImplementedException();
         }
+
+        public double MeasureResistance(double valueThroughTheStrusture, int NumberOfAverages, double TimeDelay, SourceMode sourceMode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public double MeasurePower(double valueThroughTheStrusture, int NumberOfAverages, double TimeDelay, SourceMode sourceMode)
+        {
+            throw new NotImplementedException();
+        }
+
+
 
         public override void DetectInstrument()
         {
@@ -180,11 +195,20 @@ namespace Keithley24xx
         }
 
 
+        public void SwitchOn()
+        {
+            SendCommand(":OUTP:STAT ON");
+        }
 
-
-
-
+        public void SwitchOff()
+        {
+            SendCommand(":OUTP:STAT OFF");
+        }
 
         
+
+      
+
+       
     }
 }
