@@ -8,5 +8,6 @@ namespace AssistedMeasurement
 {
     public class AssistedMeasurement
     {
+
     }
 }
