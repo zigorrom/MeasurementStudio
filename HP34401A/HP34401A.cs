@@ -62,5 +62,10 @@ namespace HP34401A
         //{
         //    get { throw new NotImplementedException(); }
         //}
+
+        //public override AbstractCommandBuilder CommandSet
+        //{
+        //    get { throw new NotImplementedException(); }
+        //}
     }
 }

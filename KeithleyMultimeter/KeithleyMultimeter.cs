@@ -36,5 +36,10 @@ namespace KeithleyMultimeter
         {
             throw new NotImplementedException();
         }
+
+        //public override AbstractCommandBuilder CommandSet
+        //{
+        //    get { throw new NotImplementedException(); }
+        //}
     }
 }

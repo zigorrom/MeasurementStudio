@@ -9,12 +9,24 @@ using System.Threading.Tasks;
 
 namespace test
 {
-    
+
+
+    class a
+    {
+
+    }
+    class b:a
+    {
+
+    }
 
     class Program
     {
         static void Main(string[] args)
         {
+            var asd = new b();
+            var t = asd.GetType();
+
             //Console.WriteLine(Convert.ToString(3-1,2));
             //Console.WriteLine(Instruments.ActualInstruments.AgilentU2442A.AgilentU2542A.CounterFunctionEnum.Frequency);
             //Instruments.ActualInstruments.AgilentU2442A.AgilentU2542A a = new Instruments.ActualInstruments.AgilentU2442A.AgilentU2542A("asd", "fsdf", "dsafsd");

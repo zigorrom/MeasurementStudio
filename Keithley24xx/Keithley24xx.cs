@@ -17,10 +17,15 @@ namespace Keithley24xx
         public Keithley24xx(string Name,string Alias, string ResourceName):base(Name,Alias,ResourceName)
         {
            // ke2400 ke = new ke2400(ResourceName, true, true);
-            CommandSet = new Keithley24xxCommandBuilder();
+            m_CommandSet = new Keithley24xxCommandBuilder();
         }
 
-        private Keithley24xxCommandBuilder CommandSet;
+        private Keithley24xxCommandBuilder m_CommandSet;
+        //public override AbstractCommandBuilder CommandSet
+        //{
+        //    get { return m_CommandSet; }
+        //}
+
 
         public override bool InitializeDevice()
         {
@@ -150,9 +155,9 @@ namespace Keithley24xx
             if (String.IsNullOrEmpty(result))
                 return false;
             string[] strValues = result.Split(',');
-            Voltage = CommandSet.StringToDouble(strValues[0]);
-            Current = CommandSet.StringToDouble(strValues[1]);
-            Resistance = CommandSet.StringToDouble(strValues[2]);
+            Voltage = m_CommandSet.StringToDouble(strValues[0]);
+            Current = m_CommandSet.StringToDouble(strValues[1]);
+            Resistance = m_CommandSet.StringToDouble(strValues[2]);
             return true;
         }
 
@@ -178,6 +183,8 @@ namespace Keithley24xx
 
 
 
-       
+
+
+        
     }
 }

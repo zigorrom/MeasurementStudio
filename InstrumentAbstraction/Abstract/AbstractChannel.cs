@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Instruments.Abstract
 {
-    [Obsolete("Under development", true)]
+    //[Obsolete("Under development", true)]
     public abstract class AbstractChannel : INotifyPropertyChanged
     {
-        private ChannelName m_ChannelName;
-        //private string m_NativeChannelName;
-        //private string m_AliasChannelName;
+        private IChannelName m_ChannelName;
+       
         private AbstractMessageBasedInstrument m_ParentDevice;
+        
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string PropertyName)
         {
@@ -24,10 +24,12 @@ namespace Instruments.Abstract
         }
 
         protected const string MemberAccessExceptionMessage = "Value was not set on the device. Please check connectivity";
-        
+
+        protected abstract void InitChannelName(out IChannelName channelName, Enum ChannelIdentifier);
+
         public AbstractChannel(Enum ChannelIdentifier, AbstractMessageBasedInstrument ParentDevice)
         {
-            
+            InitChannelName(out m_ChannelName, ChannelIdentifier);
             //m_ChannelName = ChannelIdentifier;
             m_ParentDevice = ParentDevice;
             InitializeChannel();
@@ -38,24 +40,15 @@ namespace Instruments.Abstract
             get { return m_ChannelName.ToString(); }
         }
 
-        //public ChannelName ChannelName
+        //public abstract Enum ChannelIdentifier { get; }
         //{
-        //    get { return m_ChannelName; }
-        //}
-        //public string AliasChannelName
-        //{
-        //    get { return m_AliasChannelName; }
+        //    get { return m_ChannelName.ChannelIdentifier; }
         //}
 
         public AbstractMessageBasedInstrument ParentDevice
         {
             get { return m_ParentDevice; }
         }
-
-        //protected AbstractCommandBuilder CommandSet
-        //{
-        //    get { return m_ParentDevice.CommandSet; }
-        //}
 
         private object lockObj = new object();
 

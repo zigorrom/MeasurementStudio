@@ -36,5 +36,10 @@ namespace StanfordSR830
         {
             throw new NotImplementedException();
         }
+
+        //public override AbstractCommandBuilder CommandSet
+        //{
+        //    get { throw new NotImplementedException(); }
+        //}
     }
 }

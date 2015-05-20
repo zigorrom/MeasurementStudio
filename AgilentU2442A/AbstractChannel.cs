@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Instruments;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -59,6 +60,10 @@ namespace AgilentU2442A
             get { return m_ParentDevice; }
         }
 
+        //protected AbstractCommandBuilder CommandSet
+        //{
+        //    get { return m_ParentDevice.CommandSet; }
+        //}
         protected AgilentU2542ACommandBuilder CommandSet
         {
             get { return m_ParentDevice.CommandSet; }

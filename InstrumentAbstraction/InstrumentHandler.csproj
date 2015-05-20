@@ -63,7 +63,8 @@
     <Compile Include="Abstract\AbstractChannel.cs" />
     <Compile Include="Abstract\AbstractCommandBuilder.cs" />
     <Compile Include="Abstract\AbstractMessageBasedInstrument.cs" />
-    <Compile Include="Abstract\ChannelName.cs" />
+    <Compile Include="Abstract\AbstractChannelName.cs" />
+    <Compile Include="Abstract\IChannelName.cs" />
     <Compile Include="Abstract\IInstrument.cs" />
     <Compile Include="Abstract\IInstrumentOwner.cs" />
     <Compile Include="Abstract\IMessageBasedInstrument.cs" />
