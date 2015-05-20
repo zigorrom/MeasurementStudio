@@ -15,6 +15,11 @@ namespace AgilentU2442A
         {
             get { return m_commandSet; }
         }
+        //public override AbstractCommandBuilder CommandSet
+        //{
+        //    get { return m_commandSet; }
+        //}
+        
 
         private Dictionary<ChannelName, AbstractChannel> m_DeviceChannels;
 
@@ -47,6 +52,7 @@ namespace AgilentU2442A
 
         public override void Reset()
         {
+            //var commandSet = ()
             SendCommand(CommandSet.CLS());
             SendCommand(CommandSet.RST());
         }

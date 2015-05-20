@@ -234,5 +234,7 @@ namespace Instruments
             if (IsAlive(false))
                 m_session.Timeout = p;
         }
+
+        //public abstract AbstractCommandBuilder CommandSet { get; }
     }
 }

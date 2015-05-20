@@ -10,70 +10,7 @@ using System.Threading.Tasks;
 namespace test
 {
     
-    interface interf
-    {
-        string Name { get; set; }
-    }
-    class A:interf
-    {
-        public A(string Name)
-        {
-            m_name = Name;
-        }
-        private string m_name;
-        public string Name
-        {
-            get
-            {
-                return m_name;
-            }
-            set
-            {
-                m_name = value;
-            }
-        }
-    }
-    class B : interf
-    {
-        public B(string Name)
-        {
-            m_name = Name;
-        }
-        private string m_name;
-        public string Name
-        {
-            get
-            {
-                return m_name;
-            }
-            set
-            {
-                m_name = value;
-            }
-        }
-    }
 
-    class C
-    {
-        private A m_a;
-        private B m_b;
-        private int m_int;
-        public A Aprop
-        {
-            get { return m_a; }
-            set { m_a = value; }
-        }
-        public B Bprop
-        {
-            get { return m_b; }
-            set { m_b = value; }
-        }
-        public int MINT
-        {
-            get { return m_int; }
-            set { m_int = value; }
-        }
-    }
     class Program
     {
         static void Main(string[] args)
@@ -141,6 +78,8 @@ namespace test
             //{
             //    Console.WriteLine(type.IsAssignableFrom(typeof(InstrumentAbstractionModel.IInstrument)));
             //}
+
+
             Console.ReadKey();
         }
     

@@ -1,4 +1,5 @@
-﻿using Instruments;
+﻿using InstrumentAbstraction.InstrumentInterfaces;
+using Instruments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace Keithley2602A
 {
     [InstrumentAttribute("Keithley", "2602A")]
-    public class Keithley2602A : AbstractMessageBasedInstrument
+    public class Keithley2602A : AbstractMessageBasedInstrument//, ISourceMeasurementUnit
     {
         public Keithley2602A(string Name, string Alias, string ResourceName)
             : base(Name,Alias,ResourceName)
