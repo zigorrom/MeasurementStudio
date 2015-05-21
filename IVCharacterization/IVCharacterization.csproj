@@ -49,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacteristicTypeValueConverter.cs" />
+    <Compile Include="DataModel\DataPropertyAttribute.cs" />
+    <Compile Include="DataModel\DrainSourceDataRow.cs" />
+    <Compile Include="DataModel\DataTypeGenerator.cs" />
     <Compile Include="Views\ControlButtonsPanel.xaml.cs">
       <DependentUpon>ControlButtonsPanel.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,9 @@
   </ItemGroup>
   <ItemGroup>
     <DesignData Include="SampleData\IVMainViewModelSampleData.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DataModel\ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
