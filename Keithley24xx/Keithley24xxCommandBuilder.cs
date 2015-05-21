@@ -67,9 +67,12 @@ namespace Keithley24xx
             }
         }
 
-        #region Calculate region
+        public string SourceVoltage(double Value)
+        {
+            const string CommandFormat = ":SOUR:VOLT {0}";
+            return StringFormat(CommandFormat, Value);
+        }
 
-        #endregion
 
     }
 }

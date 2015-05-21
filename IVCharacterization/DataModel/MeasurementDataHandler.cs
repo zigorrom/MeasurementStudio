@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace IVCharacterization.DataModel
 {
-    internal class DataTypeGenerator
+    internal class MeasurementDataHandler<InfoType,DataType>
     {
-
+        //public void 
     }
 }

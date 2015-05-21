@@ -110,18 +110,22 @@ namespace Keithley24xx
         }
         
 
-        public bool SourceVoltage(double Value)
+        //public bool SourceVoltage(double Value)
+        //{
+        //    var CommandFormat = ":SOUR:VOLT {0}";
+        //    var numForm = new NumberFormatInfo() { NumberDecimalSeparator = ".", NumberGroupSeparator = "" };
+        //    if (SendCommand(String.Format(numForm, CommandFormat, Value)))
+        //        return true;
+        //    return false;
+        //}
+
+        public bool SetSourceVoltage(double Value)
         {
             var CommandFormat = ":SOUR:VOLT {0}";
             var numForm = new NumberFormatInfo() { NumberDecimalSeparator = ".", NumberGroupSeparator = "" };
             if (SendCommand(String.Format(numForm, CommandFormat, Value)))
                 return true;
             return false;
-        }
-
-        public bool SetSourceVoltage(double Value)
-        {
-            throw new NotImplementedException();
         }
 
 

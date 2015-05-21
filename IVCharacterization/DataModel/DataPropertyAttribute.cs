@@ -8,6 +8,7 @@ namespace IVCharacterization.DataModel
 {
     public class DataPropertyAttribute:Attribute
     {
+        
         public DataPropertyAttribute(bool isIndependent, bool isValid, int lastCalculatedRow, string propertyName, string propertyUnits, string propertyComments)
         {
             IsIndependent = isIndependent;
