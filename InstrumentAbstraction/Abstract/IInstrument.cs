@@ -16,6 +16,6 @@ namespace Instruments
         InstrumentState State { get; set; }
         bool IsAlive(bool SendIDN);
         void Reset();
-        void DetectInstrument();
+        void DetectInstrument(object data);
     }
 }

@@ -13,4 +13,23 @@ namespace Keithley24xx
         VOLTage,
         RESistance
     }
+
+    public enum SourceCleAutoEnum
+    {
+        On,
+        Off
+    }
+
+    public enum SenseFuncConcurrentEnum
+    {
+        On,
+        Off
+    }
+
+    public enum TextStatusEnum
+    {
+        On,
+        Off
+    }
+
 }

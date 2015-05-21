@@ -27,7 +27,7 @@ namespace StanfordSR830
             return false;
         }
 
-        public override void DetectInstrument()
+        public override void DetectInstrument(object data)
         {
             throw new NotImplementedException();
         }

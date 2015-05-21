@@ -48,7 +48,7 @@ namespace HP34401A
             return false;
         }
 
-        public override void DetectInstrument()
+        public override void DetectInstrument(object data)
         {
             throw new NotImplementedException();
         }

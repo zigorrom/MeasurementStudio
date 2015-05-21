@@ -28,7 +28,7 @@ namespace AgilentU2442A
             Initialize();
         }
 
-        public override void DetectInstrument()
+        public override void DetectInstrument(object data)
         {
             throw new NotImplementedException();
         }

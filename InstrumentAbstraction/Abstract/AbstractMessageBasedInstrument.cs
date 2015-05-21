@@ -63,7 +63,7 @@ namespace Instruments
             set { m_instrumentState = value; }
         }
 
-        public abstract void DetectInstrument();
+        public abstract void DetectInstrument(object data);
 
 
         public bool Equals(IInstrument other)
