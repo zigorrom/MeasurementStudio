@@ -9,9 +9,9 @@ namespace IVCharacterization.DataModel
 {
     public struct GateSourceMeasurementInfoRow
     {
-        [DataPropertyAttribute(true, true, -1, "FileName", "", "")]
+        [DataPropertyAttribute("FileName", "", "")]//true, true, -1, "FileName", "", "")]
         public string FileName;
-        [DataPropertyAttribute(true, true, -1, "DrainSourceVoltage", "V", "")]
+        [DataPropertyAttribute("DrainSourceVoltage", "V", "")]//true, true, -1, "DrainSourceVoltage", "V", "")]
         public double DrainSourceVoltage;
 
         public GateSourceMeasurementInfoRow(string filename, double drainSourceVoltage)
