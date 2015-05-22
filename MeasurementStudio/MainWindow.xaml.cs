@@ -26,7 +26,8 @@ namespace MeasurementStudio
             InitializeComponent();
             recognizer = new SpeechRecognizer();
             Choices colors = new Choices();
-            colors.Add(new string[] { "red", "green", "blue" });
+            colors.Add(new string[] { "red" });
+            colors.Add("blue");
 
             // Create a GrammarBuilder object and append the Choices object.
             GrammarBuilder gb = new GrammarBuilder();
