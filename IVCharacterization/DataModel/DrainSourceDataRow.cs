@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExperimentDataModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace IVCharacterization.DataModel
 
         public override string ToString()
         {
-            return String.Format("{0}\t{1}\t{2}");
+            return String.Format("{0}\t{1}\t{2}", DrainSourceVoltage, DrainCurrent,GateCurrent);
         }
     }
 }

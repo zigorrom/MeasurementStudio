@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExperimentDataModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IVCharacterization.DataModel
 {
-    internal class GateSourceDataRow
+    internal struct GateSourceDataRow
     {
         [DataPropertyAttribute(true, true, -1, "V\\_DS", "GateSourceVoltage", "V")]
         public double GateSourceVoltage;
@@ -19,7 +20,7 @@ namespace IVCharacterization.DataModel
         {
             GateSourceVoltage = drainSourceVoltage;
             DrainCurrent = drainCurrent;
-            GateCurrent = gateCurrent;
+            GateCurrent = gateCurrent; 
         }
 
         public override string ToString()
