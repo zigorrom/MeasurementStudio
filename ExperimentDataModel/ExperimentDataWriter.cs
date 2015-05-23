@@ -9,7 +9,7 @@ namespace ExperimentDataModel
 {
     public class ExperimentDataWriter<DataT, InfoT>
         where DataT : IFormattable
-        where InfoT : IFormattable
+        where InfoT : IFormattable, IInfoDataRow
     {
         private StreamWriter m_InfoFileWriter;
         private DataWriter<DataT> m_DataFileWriter;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExperimentDataModel
 {
-    [AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = false)]
     public class DataPropertyAttribute : Attribute
     {
         public DataPropertyAttribute(string propertyName, string propertyUnits, string propertyComments)//bool isIndependent, bool isValid, int lastCalculatedRow, string propertyName, string propertyUnits, string propertyComments)

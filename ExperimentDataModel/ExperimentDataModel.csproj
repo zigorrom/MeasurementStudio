@@ -42,6 +42,7 @@
     <Compile Include="DataAttributeProperty.cs" />
     <Compile Include="DataWriter.cs" />
     <Compile Include="ExperimentDataWriter.cs" />
+    <Compile Include="IInfoDataRow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

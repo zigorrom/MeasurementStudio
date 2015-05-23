@@ -23,5 +23,10 @@ namespace ExperimentDataModel
         {
 
         }
+
+        public void WriteDataLineAsync(DataT data)
+        {
+            //await WriteLineAsync(data.ToString());
+        }
     }
 }

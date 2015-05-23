@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IVCharacterization.DataModel
 {
-    public struct GateSourceMeasurementInfoRow
+    public struct GateSourceMeasurementInfoRow:IInfoDataRow
     {
         [DataPropertyAttribute("FileName", "", "")]//true, true, -1, "FileName", "", "")]
         public string FileName;
