@@ -21,5 +21,17 @@ namespace IVCharacterization.DataModel
         
         }
 
+
+        public string Filename
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
