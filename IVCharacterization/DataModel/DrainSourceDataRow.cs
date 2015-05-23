@@ -1,13 +1,14 @@
 ﻿using ExperimentDataModel;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace IVCharacterization.DataModel
 {
-    internal struct DrainSourceDataRow
+    internal struct DrainSourceDataRow:IFormattable
     {
         [DataPropertyAttribute(true, true, -1, "V\\_DS", "DrainSourceVoltage", "V")]
         public double DrainSourceVoltage;
@@ -23,9 +24,16 @@ namespace IVCharacterization.DataModel
             GateCurrent = gateCurrent;
         }
 
+        const string RowFormat = "{0}\t{1}\t{2}";
+
         public override string ToString()
         {
-            return String.Format("{0}\t{1}\t{2}", DrainSourceVoltage, DrainCurrent,GateCurrent);
+            return ToString(RowFormat, CultureInfo.CurrentCulture);
+        }
+
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            return String.Format(formatProvider,RowFormat, DrainSourceVoltage, DrainCurrent, GateCurrent);
         }
     }
 }

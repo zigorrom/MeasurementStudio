@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace ExperimentDataModel
 {
-    public class ExperimentDataWriter<DataT,InfoT>
+    public class ExperimentDataWriter<DataT, InfoT>
+        where DataT : IFormattable
+        where InfoT : IFormattable
     {
         private StreamWriter m_InfoFileWriter;
-        private StreamWriter m_DataFileWriter;
+        private DataWriter<DataT> m_DataFileWriter;
 
         private string m_WorkingDirectory;
         public string WorkingDirectory
@@ -23,25 +25,39 @@ namespace ExperimentDataModel
         public string DataFileExtention { get; set; }
 
         private const string DefaultFileExtention = "dat";
-       
+        private const string DefaultInfoFilePostfix = "_Main";
+        private const string FileNameFormat = "{0}\\{1}.{2}";
 
         public ExperimentDataWriter(string workingDirectory)
         {
             WorkingDirectory = workingDirectory;
-            FileCounter = 1;
+            FileCounter = 0;
+            
         }
 
         private int FileCounter;
         //private 
 
-        public void Create(string ExperimentName)
+        public void CreateExperiment(string ExperimentName)
         {
-            FileCounter = 1;
-            var fileExtention = String.IsNullOrEmpty(DataFileExtention)?DefaultFileExtention: DataFileExtention;
-            var infoFileExtention = String.IsNullOrEmpty(InfoFileExtention)?DefaultFileExtention: InfoFileExtention;
+            FileCounter = 0;
+            var infoFileExtention = String.IsNullOrEmpty(InfoFileExtention) ? DefaultFileExtention : InfoFileExtention;
+            var InfoFileName = String.Format(FileNameFormat, WorkingDirectory, ExperimentName, infoFileExtention);
 
-            m_InfoFileWriter = new StreamWriter(String.Format("{0}\\{1}.{2}",WorkingDirectory, ExperimentName, InfoFileExtention));
-            m_DataFileWriter = new StreamWriter(String.Format("{0}\\{1}_{2}.{3}", WorkingDirectory, ExperimentName, FileCounter,InfoFileExtention));
+            if (File.Exists(InfoFileName))
+                throw new IOException("Experiment filename exist.");
+
+            m_InfoFileWriter = new StreamWriter(InfoFileName);
+            //m_InfoFileWriter = new StreamWriter(String.Format("{0}\\{1}.{2}",WorkingDirectory, ExperimentName, InfoFileExtention));
+            //m_DataFileWriter = new StreamWriter(String.Format("{0}\\{1}_{2}.{3}", WorkingDirectory, ExperimentName, FileCounter,InfoFileExtention));
+        }
+
+
+
+        public DataWriter<DataT> NewMeasurementStream(InfoT measurementInfo)
+        {
+            var fileExtention = String.IsNullOrEmpty(DataFileExtention) ? DefaultFileExtention : DataFileExtention;
+            throw new NotImplementedException();
         }
 
         public void CloseWriter()
