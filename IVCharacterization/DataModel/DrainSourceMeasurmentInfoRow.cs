@@ -12,11 +12,13 @@ namespace IVCharacterization.DataModel
         
         private string m_FileName;
         private double m_GateVoltage;
+        private string m_Comment;
 
-        public DrainSourceMeasurmentInfoRow(string filename, double gateVoltage)
+        public DrainSourceMeasurmentInfoRow(string filename, double gateVoltage,string comment)
         {
             m_FileName = filename;
             m_GateVoltage = gateVoltage;
+            m_Comment = comment;
         }
 
         private const string RowFormat = "{0}\t{1}";
@@ -43,7 +45,12 @@ namespace IVCharacterization.DataModel
             get { return m_GateVoltage; }
             set { m_GateVoltage = value; }
         }
-
+        [DataPropertyAttribute("Comment", "", "")]//true, true, -1, "GateVoltage", "V", "")]
+        public string Comment
+        {
+            get { return m_Comment; }
+            set { m_Comment = value; }
+        }
       
     }
 }
