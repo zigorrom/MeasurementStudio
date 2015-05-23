@@ -60,6 +60,15 @@ namespace Instruments
                 m_ChannelTypes = ChannelTypes;
             }
         }
+
+        public bool ContainsChannelOfType(Type t)
+        {
+            if (ChannelTypes == null)
+                return false;
+            if (ChannelTypes.Contains(t))
+                return true;
+            return false;
+        }
         public bool FitsToIDN(string IDNstring)
         {
             var IDNfields = IDNstring.Split(new char[1] { ',' });

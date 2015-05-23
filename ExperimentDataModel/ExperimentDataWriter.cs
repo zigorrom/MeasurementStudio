@@ -38,7 +38,7 @@ namespace ExperimentDataModel
         private int FileCounter;
         //private 
 
-        public void CreateExperiment(string ExperimentName)
+        public void NewExperiment(string ExperimentName)
         {
             FileCounter = 0;
             var infoFileExtention = String.IsNullOrEmpty(InfoFileExtention) ? DefaultFileExtention : InfoFileExtention;
