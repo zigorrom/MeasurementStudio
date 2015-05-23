@@ -26,9 +26,25 @@ namespace IVCharacterization
             model1 = new IVMainViewModel(IVCharacteristicTypeEnum.Output);
             model2 = new IVMainViewModel(IVCharacteristicTypeEnum.Transfer);
             InitializeComponent();
-            ControlButtons.StartButtonPressed += (o, e) => { ProcessProgress.Visibility = System.Windows.Visibility.Visible; };
-            ControlButtons.StopButtonPressed += (o, e) => { ProcessProgress.Visibility = System.Windows.Visibility.Hidden; };
+            ControlButtons.StartButtonPressed += (o, e) =>
+            {
+                ProcessProgress.Visibility = System.Windows.Visibility.Visible;
+                SetGlobalEnabled(false);
+            };
+            ControlButtons.StopButtonPressed += (o, e) => 
+            { 
+                ProcessProgress.Visibility = System.Windows.Visibility.Hidden;
+                SetGlobalEnabled(true);
+            };
             
+        }
+
+        private void SetGlobalEnabled(bool IsEnabled)
+        {
+            var context = DataContext as IVMainViewModel;
+            if (context == null)
+                return;
+            context.GlobalIsEnabled = IsEnabled;
         }
 
         IVMainViewModel model1;

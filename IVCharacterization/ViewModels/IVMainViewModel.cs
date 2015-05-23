@@ -75,6 +75,14 @@ namespace IVCharacterization
             }
         }
 
+        private bool m_globalIsEnabled;
+        public bool GlobalIsEnabled { get { return m_globalIsEnabled; }
+            set
+            {
+                SetField(ref m_globalIsEnabled, value, "GlobalIsEnabled");
+            }
+        }
+
         public RangeViewModel DSRangeViewModel { get; set; }
         public RangeViewModel GSRangeViewModel { get; set; }
 
@@ -90,7 +98,7 @@ namespace IVCharacterization
             Visualization.HorizontalAxisLabel = "Gate Voltage, Vg(V)";
             Visualization.VertivalAxisLabel = "Drain Current, Id(A)";
             Visualization.HeaderLabel = "IV Characterization";
-            
+            GlobalIsEnabled = true;
         }
 
 
