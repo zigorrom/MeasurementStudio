@@ -31,16 +31,16 @@ namespace ExperimentDataModel
         public ExperimentDataWriter(string workingDirectory)
         {
             WorkingDirectory = workingDirectory;
-            FileCounter = 0;
+            //FileCounter = 0;
             
         }
 
-        private int FileCounter;
+        //private int FileCounter;
         //private 
 
         public void NewExperiment(string ExperimentName)
         {
-            FileCounter = 0;
+            //FileCounter = 0;
             var infoFileExtention = String.IsNullOrEmpty(InfoFileExtention) ? DefaultFileExtention : InfoFileExtention;
             var InfoFileName = String.Format(FileNameFormat, WorkingDirectory, ExperimentName, infoFileExtention);
 
