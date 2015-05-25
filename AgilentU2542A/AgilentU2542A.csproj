@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79334CCE-6C21-489F-8762-AE357FEC3991}</ProjectGuid>
+    <ProjectGuid>{5EAA11F9-1DE7-4C15-9305-9E38F1985F5A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Keithley24xx</RootNamespace>
-    <AssemblyName>Keithley24xx</AssemblyName>
+    <RootNamespace>AgilentU2542A</RootNamespace>
+    <AssemblyName>AgilentU2542A</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,13 +39,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ke2400.cs" />
-    <Compile Include="Keithley24xx.cs" />
-    <Compile Include="Keithley24xxClass.cs" />
-    <Compile Include="Keithley24xxCommandBuilder.cs" />
-    <Compile Include="CommonEnums.cs" />
-    <Compile Include="MeasurementSpeed.cs" />
+    <Compile Include="AgilentU2542A.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AgilentU254xLib">
+      <Guid>{20876ED4-FF33-446F-960D-594ECE0D48E8}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="IviDriverLib">
+      <Guid>{47ED5120-A398-11D4-BA58-000064657374}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InstrumentAbstraction\InstrumentHandler.csproj">
