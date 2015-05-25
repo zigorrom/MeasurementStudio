@@ -26,6 +26,7 @@ namespace AgilentU2442A
         public AgilentU2542A(string Name,string Alias,string ResourceName):base(Name,Alias,ResourceName)
         {
             Initialize();
+            
         }
 
         public override void DetectInstrument(object data)

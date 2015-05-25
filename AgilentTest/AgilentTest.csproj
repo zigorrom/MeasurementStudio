@@ -48,9 +48,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgilentU2442A\AgilentU2442A.csproj">
-      <Project>{63c41453-1d5a-4c9d-ae0a-d4a08feefca3}</Project>
-      <Name>AgilentU2442A</Name>
+    <ProjectReference Include="..\AgilentU2542A\AgilentU2542A.csproj">
+      <Project>{dca90812-ae90-40df-b417-99805436762c}</Project>
+      <Name>AgilentU2542A</Name>
     </ProjectReference>
     <ProjectReference Include="..\InstrumentAbstraction\InstrumentHandler.csproj">
       <Project>{3c57f76b-be47-4de4-8466-3fd0b124d134}</Project>
