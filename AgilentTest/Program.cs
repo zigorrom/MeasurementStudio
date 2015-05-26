@@ -1,4 +1,4 @@
-﻿using Ke2400DotNetWrapper;
+﻿
 //using AgilentU2542A;
 //using AgilentU2442A;
 using System;
@@ -17,7 +17,7 @@ namespace AgilentTest
         static void Main(string[] args)
         {
 
-            var a = new Keithley24xx.Keithley24xx("asfas", "asd", "GPIB0::16::INSTR");
+            var a = new Keithley24xx("asfas", "asd", "GPIB0::16::INSTR");
             //a.ConfigureSourceDC(ke2400Constants.SourceFunctionModeVoltage, 0, 0, false, 0, ke2400Constants.StandbyHighImpedance);
             a.SwitchOn();
             

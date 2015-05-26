@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Threading;
 using Instruments;
 using InstrumentAbstraction.InstrumentInterfaces;
-using Ke2400DotNetWrapper;
+
 
 
 namespace Keithley24xx
@@ -20,7 +20,7 @@ namespace Keithley24xx
         public Keithley24xx(string Name, string Alias, string ResourceName)
             : base(Name, Alias, ResourceName)
         {
-            ke2400 ke = new ke2400("", false, false);
+            //ke2400 ke = new ke2400("", false, false);
 
             // ke2400 ke = new ke2400(ResourceName, true, true);
             m_CommandSet = new Keithley24xxCommandBuilder();
