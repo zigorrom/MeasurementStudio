@@ -99,7 +99,7 @@ namespace Keithley24xx
 
         public void SwitchOff()
         {
-            throw new NotImplementedException();
+            base.Disable();
         }
 
         public bool SetVoltageLimit(double Value)

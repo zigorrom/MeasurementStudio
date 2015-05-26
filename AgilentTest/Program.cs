@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AgilentTest
@@ -14,6 +15,11 @@ namespace AgilentTest
     
         static void Main(string[] args)
         {
+
+            var a = new Keithley24xx.Keithley24xx("asfas", "asd", "GPIB0::16::INSTR");
+            a.SwitchOn();
+            Thread.Sleep(3000);
+            a.SwitchOff();
             //Agilent2542A ag = new Agilent2542A("a","a","USB0::0x0957::0x1718::TW52524501::0::INSTR");
             
             //AgilentU2542A ag = new AgilentU2542A("Agilent", "asrdasd", "USB0::0x0957::0x1718::TW52524501::0::INSTR");

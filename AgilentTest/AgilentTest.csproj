@@ -52,6 +52,10 @@
       <Project>{3c57f76b-be47-4de4-8466-3fd0b124d134}</Project>
       <Name>InstrumentHandler</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Keithley24xx\Keithley24xx.csproj">
+      <Project>{79334cce-6c21-489f-8762-ae357fec3991}</Project>
+      <Name>Keithley24xx</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
