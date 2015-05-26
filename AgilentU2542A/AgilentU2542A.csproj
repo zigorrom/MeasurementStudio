@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DCA90812-AE90-40DF-B417-99805436762C}</ProjectGuid>
+    <ProjectGuid>{5EAA11F9-1DE7-4C15-9305-9E38F1985F5A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgilentU2542A</RootNamespace>

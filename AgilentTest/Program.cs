@@ -1,4 +1,4 @@
-﻿using AgilentU2542A;
+﻿//using AgilentU2542A;
 //using AgilentU2442A;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace AgilentTest
     
         static void Main(string[] args)
         {
-            Agilent2542A ag = new Agilent2542A("a","a","USB0::0x0957::0x1718::TW52524501::0::INSTR");
+            //Agilent2542A ag = new Agilent2542A("a","a","USB0::0x0957::0x1718::TW52524501::0::INSTR");
             
             //AgilentU2542A ag = new AgilentU2542A("Agilent", "asrdasd", "USB0::0x0957::0x1718::TW52524501::0::INSTR");
             //var a = ag.GetAnalogInputChannel(ChannelEnum.AI_CH101);

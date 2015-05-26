@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Ke2400.cs" />
     <Compile Include="Keithley24xx.cs" />
+    <Compile Include="Keithley24xxClass.cs" />
     <Compile Include="Keithley24xxCommandBuilder.cs" />
     <Compile Include="CommonEnums.cs" />
     <Compile Include="MeasurementSpeed.cs" />
