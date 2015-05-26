@@ -18,7 +18,7 @@ namespace AgilentTest
         {
 
             var a = new Keithley24xx.Keithley24xx("asfas", "asd", "GPIB0::16::INSTR");
-            a.ConfigureSourceDC(ke2400Constants.SourceFunctionModeVoltage, 3, 1050, false, 3, ke2400Constants.StandbyHighImpedance);
+            //a.ConfigureSourceDC(ke2400Constants.SourceFunctionModeVoltage, 0, 0, false, 0, ke2400Constants.StandbyHighImpedance);
             a.SwitchOn();
             
             Thread.Sleep(3000);
