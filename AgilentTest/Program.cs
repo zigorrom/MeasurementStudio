@@ -1,4 +1,5 @@
-﻿//using AgilentU2542A;
+﻿using Ke2400DotNetWrapper;
+//using AgilentU2542A;
 //using AgilentU2442A;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,9 @@ namespace AgilentTest
         {
 
             var a = new Keithley24xx.Keithley24xx("asfas", "asd", "GPIB0::16::INSTR");
+            a.ConfigureSourceDC(ke2400Constants.SourceFunctionModeVoltage, 3, 1050, false, 3, ke2400Constants.StandbyHighImpedance);
             a.SwitchOn();
+            
             Thread.Sleep(3000);
             a.SwitchOff();
             //Agilent2542A ag = new Agilent2542A("a","a","USB0::0x0957::0x1718::TW52524501::0::INSTR");

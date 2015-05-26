@@ -12,6 +12,7 @@ namespace Ke2400DotNetWrapper
 {
     using System;
     using System.Runtime.InteropServices;
+    using System.Text;
 
 
     public class ke2400 : object, System.IDisposable
