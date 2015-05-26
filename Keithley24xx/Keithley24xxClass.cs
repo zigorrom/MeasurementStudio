@@ -19,6 +19,7 @@ namespace Keithley24xx
 
 
         private string m_name;
+
         private string m_alias;
         private string m_resourceName;
         private IInstrumentOwner m_owner;
