@@ -23,7 +23,7 @@ namespace Keithley24xxNamespace
             //ke2400 ke = new ke2400("", false, false);
 
             // ke2400 ke = new ke2400(ResourceName, true, true);
-            m_CommandSet = new Keithley24xxCommandBuilder();
+            
         }
 
 
@@ -39,7 +39,7 @@ namespace Keithley24xxNamespace
         {
             if (base.InitializeDevice())
             {
-
+                m_CommandSet = new Keithley24xxCommandBuilder();
                 SendCommand(m_CommandSet.TrigerCount(1));
                 //set 1 measurement for read
                 SendCommand(m_CommandSet.SourceCleAuto(SourceCleAutoEnum.Off)); //    ":SOUR:CLE:AUTO OFF");
@@ -155,7 +155,7 @@ namespace Keithley24xxNamespace
             return false;
         }
 
-        private bool MeasureAll(out double Voltage, out double Current, out double Resistance)
+        public bool MeasureAll(out double Voltage, out double Current, out double Resistance)
         {
             Voltage = 0;
             Current = 0;
