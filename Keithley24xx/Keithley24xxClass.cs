@@ -93,7 +93,7 @@ namespace Keithley24xx
 
         public void SwitchOn()
         {
-            throw new NotImplementedException();
+            base.Initiate();
         }
 
         public void SwitchOff()
