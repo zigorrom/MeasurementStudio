@@ -10,7 +10,7 @@ using InstrumentAbstraction.InstrumentInterfaces;
 
 
 
-namespace Keithley24xx
+namespace Keithley24xxNamespace
 {
 
 

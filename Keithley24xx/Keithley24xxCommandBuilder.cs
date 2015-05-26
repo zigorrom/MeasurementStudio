@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Keithley24xx
+namespace Keithley24xxNamespace
 {
     public class Keithley24xxCommandBuilder:AbstractCommandBuilder
     {
