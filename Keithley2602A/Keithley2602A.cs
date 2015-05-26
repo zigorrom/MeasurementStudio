@@ -35,6 +35,7 @@ namespace Keithley2602A
         public override bool InitializeDevice()
         {
 
+
             if (base.InitializeDevice())
                 if (SendCommand(CommandSet.BeeperEnable()))
                     return true;
