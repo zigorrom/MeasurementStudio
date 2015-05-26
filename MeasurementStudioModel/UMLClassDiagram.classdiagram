@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="a6c36825-95eb-4e2d-9c4d-1273c9a58d22" name="UMLClassDiagram" linkedPackageId="82b06cfc-80fe-4253-bedd-e4b21e8cad6a" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="f56889c1-094a-42df-81fb-a373e2f17962">
+      <profileInstance Id="d8e87b91-5dcc-4c8a-b1f3-660e9750adba" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="8dbccd7a-2b62-4a0f-bfb4-48cde192eadd">
+      <profileInstance Id="30cb516e-3d7e-464a-b5fd-0481c60c1154" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="27deac16-60fb-44db-b438-bcf9b72d83f1">
+      <profileInstance Id="5dd7ae7e-c6ac-490e-b7dc-9fcf11e3effa" name="CSharpProfile">
+        <elementDefinition Id="4c231539-b7ba-45df-9c88-d52453fa2c12" />
+      </profileInstance>
+      <elementDefinition Id="c4dd445c-0ecd-4233-b05b-2198392097d3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <package Id="82b06cfc-80fe-4253-bedd-e4b21e8cad6a" name="MeasurementStudioModel">
+    <elementDefinition Id="6ee841af-6579-4752-87f5-988979b60951" />
+  </package>
+</logicalClassDesignerModel>

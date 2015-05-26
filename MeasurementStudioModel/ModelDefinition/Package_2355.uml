@@ -1,0 +1,2175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner"
+  dslVersion="1.0.0.0"
+  Id="289be67b-d5d1-4cd0-882d-e8b973353d49"
+  name="Keithley24xxNamespace"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="ec06c334-bd33-49fd-8bfb-628de1db7dd5"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DKeithley24xxNamespace"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="e572d8da-2bf7-432a-8188-a0da9eadad25"
+        name="Keithley24xx"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="eff3e512-eec8-4bf4-9fac-1f4d680799c5"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="0459c426-5195-4677-8f3e-ebc2644e1b30"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1a4cb812-57a0-4192-b4c3-0ed7edfac767">
+                <propertyInstance
+                  Id="97f8c33d-5522-4041-a6b0-d29097eb57f1"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2749a15a-3eb1-479d-b23a-bb55965cb50b">
+                <propertyInstance
+                  Id="17cd032a-ce4d-4414-85aa-9f6456fffed0"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="66efcd9c-dbd1-46bc-b904-88f8f4a3e27c">
+                <propertyInstance
+                  Id="a2325999-4255-41c7-8eb8-cfab2c5edf87"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b77190f9-3107-4532-b452-cce1a7fccdc6">
+                <propertyInstance
+                  Id="45a373ba-1095-4fed-950f-504a812f241e"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4f07700d-dfaa-4a24-9036-d63f14ddf888">
+                <propertyInstance
+                  Id="6c4d8fa8-f59e-4903-8bb7-a8aa7e79e2ae"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="c205f1b4-95ac-44ac-8629-e5dbee6d1622">
+            <interfaceMoniker
+              Id="15accea2-c8df-4560-ba63-6255d53a76d2"
+              LastKnownName="ISourceMeasurementUnit"
+              LastKnownLocation="Package3_2355.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="00249647-6eab-41ba-9612-58eb2080d589"
+            isSubstitutable="false">
+            <classMoniker
+              Id="495652ee-7b1d-4647-b7e6-34f2166883c8"
+              LastKnownName="AbstractMessageBasedInstrument"
+              LastKnownLocation="Package4_2355.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="5b85c6c5-b0f3-4519-8ec2-22a90ca5e895"
+            name="m_CommandSet"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="1aab635a-dab3-4d1d-ae02-191dd5d878b5"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3Dm_CommandSet"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="a1c9d5a7-9e56-4520-8707-396c78bdb011"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="73b5fef7-b1b0-41a7-a909-482fc62c30af">
+                    <propertyInstance
+                      Id="4d8f2cd4-44cc-4509-8b5c-27e484053050"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ac5ca437-7609-45bf-99c3-3834b3a6b416">
+                    <propertyInstance
+                      Id="ef5f4be5-1ca3-4ca8-bd4d-885e8c59f334"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ab7399a2-e38e-4742-9bda-db2d3f5a345e">
+                    <propertyInstance
+                      Id="ce95bb0b-7516-4c1b-87ab-dce38cde11f8"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c1831076-0647-488a-9dc9-81e43243f67e">
+                    <propertyInstance
+                      Id="a2735890-538e-422e-91a0-aab32f8e6e84"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="447adf32-e387-4e09-b665-2975c78412c8">
+                    <propertyInstance
+                      Id="6c4aadf8-aaf4-49bd-872d-9d5ba5348cd9"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="8305f225-d62f-48d2-9f51-926eaab08642"
+                LastKnownName="Keithley24xxCommandBuilder"
+                LastKnownLocation="Package_2355.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="fe6f95dd-7ca3-4ac4-8f2b-7ea05165bd7a"
+            name="Keithley24xx"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="1765be72-191d-4860-a006-22cc85b6d1ae"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="f543df7f-a2bd-4ca2-b230-a9e56d27aa61"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bb0a44a6-8b16-47de-b30d-11a0ca95cc02">
+                    <propertyInstance
+                      Id="c70cf040-52ce-4f6d-81de-c02758252431"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d0e8e382-34e5-404d-9f10-ce7143e6e900">
+                    <propertyInstance
+                      Id="8d8d4191-3961-4d89-b98e-62d43415035a"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3728cea0-fff3-447b-9287-746b5619bc5e">
+                    <propertyInstance
+                      Id="f6d200f0-c54c-4134-9d2f-872c044c2521"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1ff7bcda-ff3c-4ba4-ab6a-0b69e5deed0d">
+                    <propertyInstance
+                      Id="31ee59b9-7f84-4fe4-a519-4a3992c450fe"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6d7e3b76-0d29-483d-aaad-6ae76731d33e">
+                    <propertyInstance
+                      Id="6f3b08f6-d6a5-48b5-a705-1a01eefecb77"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5aac626c-0b75-472d-bc17-358c384f9b6d">
+                    <propertyInstance
+                      Id="82dbade5-f2ae-4183-80d1-732a9393ee75"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="7416f7c4-3121-453f-b99b-2a3b82d0294a"
+                  name="Name"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="60983f81-4085-4335-800c-63cbb3cd1e2c"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3DName"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f4d03d8e-5f24-4ee3-a4ff-116a6d22ab45"
+                  name="Alias"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="dd037c96-4cb3-456f-9517-e4f7f655afb7"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3DAlias"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="08b7d126-6307-4d0e-b6b3-77818552e307"
+                  name="ResourceName"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="667308f8-2c6c-48e0-a1a7-6cff27c8ce8b"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3DResourceName"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="34396c33-84e0-44d6-a455-8add89d9a475"
+            name="InitializeDevice"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="94a12a82-22ac-439b-9da4-10ecda0956e9"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3DInitializeDevice"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="b20dc3d6-1420-4688-a5db-7363396ef64d"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0fe65e3e-f642-4598-b2af-115f7d27783b">
+                    <propertyInstance
+                      Id="171b1e31-6e30-4bb0-95d0-a82407d7f676"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8941e4cd-44a2-4596-bf38-df86f4d75796">
+                    <propertyInstance
+                      Id="bbfb410f-e28a-4675-9ec4-1b457f65305c"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="87ca7559-2785-436e-b07d-db8f6cc4430a">
+                    <propertyInstance
+                      Id="f34ae10f-496a-49dd-bff6-d0e4cb9d4db9"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="40da07f1-b717-468c-963d-bdd20f94aea6">
+                    <propertyInstance
+                      Id="11b1f9bd-6320-4231-a004-58d079d989d8"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b295ce9d-b33e-49de-ac54-ce19aef6c4c0">
+                    <propertyInstance
+                      Id="b2cd6614-663c-4ea9-99fc-8f7dae5029c7"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="af4950f7-61bd-4c62-9f84-5541a76ec7c7">
+                    <propertyInstance
+                      Id="e3f06726-9aef-4e28-85a4-682a722b3189"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="965b925a-cae8-4058-b7ce-46427749b3d7"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="e5d196b1-d09f-462f-a1a7-3da76c1524b3"
+            name="SwitchOn"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="6876e4e9-cd55-4283-961f-7e78de3c012e"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3DSwitchOn"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="b471f79a-adb1-48dd-b126-2c9e3ba660fa"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="302f5e49-bf2f-4e85-8e3d-735c23996822">
+                    <propertyInstance
+                      Id="bac8a8a9-0bfd-4cab-9edb-896bce68cf2d"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="97b54fdf-93d5-469c-8d39-82f6b93cbd02">
+                    <propertyInstance
+                      Id="405b9210-30e4-4e86-b7a4-372c1124ce87"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d1e5bfe6-09b5-4382-a31d-dd7a5099eae3">
+                    <propertyInstance
+                      Id="4e40734e-740f-4841-b43b-4bbed1a63036"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ee7a3e8a-37f6-4189-8e39-d0544376db40">
+                    <propertyInstance
+                      Id="551560e9-0967-4c27-bfef-e3456f86b165"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="04cf5333-1886-4751-9987-da21262bac0b">
+                    <propertyInstance
+                      Id="691ad121-3ecd-4d0e-8895-6634eb86f737"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e557f2c5-66b1-4129-b951-2f1cd1808409">
+                    <propertyInstance
+                      Id="7cfcd785-4ebf-4fd8-83eb-1c0cf0129fc9"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="4c8292b5-1bea-41f3-8005-80169e5d4dd9"
+            name="SwitchOff"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="3640607c-3127-4479-974d-113976cd3580"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3DSwitchOff"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="36dc747a-45e2-465a-a726-5b67958a9d23"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="39da7dc6-63e1-4fb5-b8c0-ee3e9a905600">
+                    <propertyInstance
+                      Id="651303c0-6291-4f3a-84e2-f0cc421e4231"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="db68ebe1-e049-4f93-afb7-dcf6f1781795">
+                    <propertyInstance
+                      Id="0b90e714-edb6-4f0e-a40a-7e833e9c9073"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4524b819-0753-487a-8e40-85538a694842">
+                    <propertyInstance
+                      Id="e81e42a0-98c2-475a-a539-75f8ac498831"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4c3bdd4a-244b-487b-9299-33e54c49f87b">
+                    <propertyInstance
+                      Id="c0b23338-02b1-4966-bdd0-408c7767c82f"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="618dad3f-7f7b-4ae4-acda-ae18533fd1b9">
+                    <propertyInstance
+                      Id="f0da05af-1931-4c3d-b167-4b40a853438f"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b8c56ec9-5e7f-4957-8c45-2da151964969">
+                    <propertyInstance
+                      Id="42990128-b223-4bfc-8eea-aae3883ffca1"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="e8df7aa0-b16e-40fd-af8a-06c9310e6b6b"
+            name="SetSpeed"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="40bb4898-0984-4156-b84c-bd68029a7dfc"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DSetSpeed OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DMeasurementSpeed)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="f2926563-d16e-4e7e-ab81-24d5dc7af544"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="032bab9b-c4d2-44e4-80f5-43761841ad84">
+                    <propertyInstance
+                      Id="ff153e2b-8663-4280-a86e-6ccbe346b0ba"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="80d2380d-5350-4757-bdb9-b13bf8d28c77">
+                    <propertyInstance
+                      Id="73b38e03-781c-4063-a80a-b2ed20371387"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ff804715-650e-4ca7-b0b2-add42eea8c4d">
+                    <propertyInstance
+                      Id="8bbb8f7a-0de2-44d6-b440-e3b371bc8d8f"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2e96af02-1729-42c6-8e0a-58fadedb771d">
+                    <propertyInstance
+                      Id="ddb3f2f3-1991-4b13-8802-cb132ae08d4a"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="84518ff1-9bfd-48d4-b199-c1a39b3ec200">
+                    <propertyInstance
+                      Id="6bb40d39-8f40-46e0-8f26-194c20291ea1"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="06bc5d4b-d11b-4184-9a46-6b70ff3cbb2f">
+                    <propertyInstance
+                      Id="8169537d-969a-45e3-b8c2-2117f0a329e5"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f0d527bc-3590-40aa-a7fd-62abcb40afcb"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e3421a20-96e3-4e2a-8ca3-fd678d11963f"
+                  name="Speed"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="289eb113-d0e2-474b-8e8d-79d7fc905cb7"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DSetSpeed OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DMeasurementSpeed)]) ParameterIdentifier%3DSpeed"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="57c847e4-77cf-478a-86be-e1c60da2c9a8"
+                      LastKnownName="MeasurementSpeed"
+                      LastKnownLocation="Package_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="060b7df4-6e12-4353-931f-03316656505b"
+            name="SetCurrentLimit"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="29382cd4-495e-47bb-b64e-e3efe7a59cd7"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DSetCurrentLimit OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="4f52d295-5ae9-488b-9504-2d4efb2f958e"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8d5d615a-422c-4dfa-9f4b-729a4bf03eca">
+                    <propertyInstance
+                      Id="2c7f8c14-7a08-4b5c-9fdc-ac7baccd4238"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cf7aecd1-3830-49d4-9ec0-d455a1715b43">
+                    <propertyInstance
+                      Id="fa17c0c4-1c68-4deb-8418-ee44514b276d"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f6df4563-3c7d-4224-ab50-6761bbb09f9e">
+                    <propertyInstance
+                      Id="3df81d3b-178b-46c2-a716-aeead7571b61"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="80e15db3-f397-43df-bbbc-cecbdd49db65">
+                    <propertyInstance
+                      Id="ecea07b8-4b0e-462a-aae6-d0a820a8ed6b"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7ee63734-2921-4a82-a875-e823c305382a">
+                    <propertyInstance
+                      Id="5d0e2d59-9cd5-4c5d-b7bb-6561c37436c7"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1f907526-773a-4053-85e1-887704ee9f51">
+                    <propertyInstance
+                      Id="693232ac-ad23-40d1-8592-c12e2511a620"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c3e44f41-f550-4b33-a225-d35b2bf3cabe"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ff4abccd-d9e6-4b10-a03f-828e71e404d4"
+                  name="Value"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="bc4e54f3-000b-44a8-9ce1-1df0d6f15043"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DSetCurrentLimit OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)]) ParameterIdentifier%3DValue"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="4bf300e1-82f8-449c-910c-368b59e018fe"
+            name="SetVoltageLimit"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="efcbe14e-18d8-4f89-8615-ddd3420b871f"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DSetVoltageLimit OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="124a9bc7-66df-4b4e-af23-281d603dc883"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c3cde276-5b64-4e83-9e28-5f84182e70bc">
+                    <propertyInstance
+                      Id="f9afee22-eef1-4034-8f82-1db5f62bdcae"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6cab5fff-5888-4fe0-85dc-e318e9c36b0f">
+                    <propertyInstance
+                      Id="392346c0-7ebb-42bc-b409-806d2b2339ab"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fb6645a3-9a99-4af2-a825-efb52ecf3733">
+                    <propertyInstance
+                      Id="bf91f667-4b50-4bda-9245-9a80ef3a92fd"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c402ac3c-bfd3-431a-b90c-3aac93c6750e">
+                    <propertyInstance
+                      Id="eefa3911-d719-41db-b1e8-1082785a6e93"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0dc20381-1f02-435d-8bf5-a6adc95d2b8f">
+                    <propertyInstance
+                      Id="aded29e1-c27d-4f07-b1f0-a022a4542e0f"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1349605f-13fe-4e29-8be3-8a4384469c5f">
+                    <propertyInstance
+                      Id="c9feea86-32ac-47fb-95ee-f11f638a3497"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="426beb57-e82b-44ce-b861-ebfa309058e4"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="b85c18cb-fe42-4510-842c-a233b3ec7a5f"
+                  name="Value"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="ca5ed852-4691-4a0c-90e1-284c1cb76dec"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DSetVoltageLimit OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)]) ParameterIdentifier%3DValue"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="38b1ca16-ab0d-4581-b29e-c01ae7b3644f"
+            name="SetCurrentAndVoltageMeasurement"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="e748acf4-ff66-4a0b-ba8e-f77db036cc59"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3DSetCurrentAndVoltageMeasurement"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="947ec61e-3695-4797-b7a8-3db641045460"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e7ac87f1-237c-41d9-98a2-aa59f3fe5c3b">
+                    <propertyInstance
+                      Id="0b78b43e-e397-4693-bb03-e61eec87e31f"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2b4e7bee-a8cc-4198-90ea-5d1946b29a14">
+                    <propertyInstance
+                      Id="a5036768-ebb2-4e66-aa7b-250920789e07"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c20d15f5-54d7-44fa-92e4-9b44acc32834">
+                    <propertyInstance
+                      Id="4c24f1e4-1dc1-4278-821a-d22038a6ea4a"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b011f2f5-a0fb-4159-815d-d0ba6aa34fd5">
+                    <propertyInstance
+                      Id="ac126e04-e8d8-4cf2-98d9-09cac0a4ee4d"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="249bfa03-709f-44a9-860d-95327a037f25">
+                    <propertyInstance
+                      Id="99d5f901-6eae-44d4-987f-45b000a9fee2"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9d6bbc80-e049-49b5-a098-29fe760f467a">
+                    <propertyInstance
+                      Id="715a2c01-80d2-45f6-9be6-8ea7e4bbcb0f"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="20da94b8-ba35-40a0-97eb-54e3a4c9a5b7"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="edbb1a26-0bbc-4a6e-9aa8-402736274c13"
+            name="SetVoltageMeasurement"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="bb8367c5-7b5a-4cb1-a048-d5780ef2830b"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3DSetVoltageMeasurement"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="e106471e-2b18-4c1c-abbb-382ef4eb573b"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="efae8478-7ce4-4a93-89d2-6f95d2b69836">
+                    <propertyInstance
+                      Id="d151ff0e-62b9-4733-9ec7-22ac510cb875"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7dbb89a7-dff3-4975-961d-b2065b574c83">
+                    <propertyInstance
+                      Id="49437eec-f26f-4625-a28f-fcfc5340fe66"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="284e3aa0-1190-4898-9ca4-960a74c1bd97">
+                    <propertyInstance
+                      Id="f6ce25ff-9dda-4586-8bd1-42c89ae7c122"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a25cec93-2ebd-443b-829f-e4429bdaf7e8">
+                    <propertyInstance
+                      Id="4e8faa36-4f8d-433e-8840-f725095aa977"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="76396820-65f0-42c4-929c-1009fbe997b8">
+                    <propertyInstance
+                      Id="f452d940-5c78-4e80-b77b-95a35207d9da"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="df00b09e-6a97-4ed9-8c22-16b33c9ffa87">
+                    <propertyInstance
+                      Id="263a1190-0da8-4950-aea1-0d21a737f919"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2164c228-69d7-4946-b38e-9606212ccece"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="2568a87b-daee-4c9c-82be-6dbaf97e3e54"
+            name="Reset"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="dad0808c-9c98-43e1-a4c5-111b613f4bbe"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3DReset"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="54a645a4-c65f-4327-849e-f9ec13db009a"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c5841d22-a0e8-4bc5-a73b-18833ea0ea6e">
+                    <propertyInstance
+                      Id="19818f3b-8f3f-41d5-964a-5297cba97216"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d86f9cbf-4b9c-49b0-8e95-52d15532c0c8">
+                    <propertyInstance
+                      Id="c346129b-8bad-408d-b4f6-ba54b39e4c0e"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="83e080c2-a1d8-4973-bad3-00a05543c37b">
+                    <propertyInstance
+                      Id="df63c3a3-9409-4b1e-9ead-3f13ecf81fd7"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="48e45d50-5279-4a3c-a426-2083a26eaa93">
+                    <propertyInstance
+                      Id="30b8a9b3-55a9-4daa-9c46-998c5000c54f"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b8c7d5dd-2ec8-4db0-bf73-3219a440f36b">
+                    <propertyInstance
+                      Id="d536c7e8-a6ac-4af3-81a5-b2a60b8d6d8f"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fc4e39f1-0b9a-4e34-a3ab-44c491fb3ba6">
+                    <propertyInstance
+                      Id="1a28783e-4177-4db5-8194-e45b1f4e1168"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="594ddfad-1714-428b-9fad-c9737734cc7e"
+            name="SetSourceVoltage"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="f438df3c-89f1-4ec6-a159-186dff1bc478"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DSetSourceVoltage OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="51febb98-82f1-4b01-9289-0ce91fcc6503"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3d3b3953-a7e2-4b9e-88b8-ad6eee52a8a6">
+                    <propertyInstance
+                      Id="cf2c4236-4751-4b7f-a1cc-165e9ce72607"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="75711d69-2f57-4365-9205-e1b97d9806d3">
+                    <propertyInstance
+                      Id="bb05302d-a5bd-4ed9-971e-8410bcd16437"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ab151a69-7cee-4f80-94f2-945fea094542">
+                    <propertyInstance
+                      Id="2d7aebe6-73c6-4c37-bd12-e1cf104044a2"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="74b60dc1-2f7a-4283-b5e6-3651e6a5d28e">
+                    <propertyInstance
+                      Id="b0e627c5-cb75-466e-966a-34426a760d1d"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c11e463c-7398-42ba-ae27-fa7b6dcf5218">
+                    <propertyInstance
+                      Id="1348964c-2875-4892-86e5-29fd67b721fd"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b7add130-cfe7-4467-8388-ee45ec66228d">
+                    <propertyInstance
+                      Id="db9aa478-1c13-4e8b-8da4-56445c6307ab"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="79bdc164-da86-404b-b862-ab63292f5843"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="fe47aec7-a0ad-4f9e-9864-e3d15c7771fc"
+                  name="Value"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="46ed4a94-fd47-41bc-b1e8-1b9dcaf7c86c"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DSetSourceVoltage OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)]) ParameterIdentifier%3DValue"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="4df0eb5f-c414-4265-820f-f33dff5b70ed"
+            name="SetSourceCurrent"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="4bc3dafc-be1e-4dc6-9380-ed46aca18cca"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DSetSourceCurrent OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="4533983e-2247-4444-a255-2d8ac0a15708"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="949dad51-367f-4b58-9748-0692eaf0c867">
+                    <propertyInstance
+                      Id="e843cea9-aef2-4ce9-97c1-aef6a55a63cd"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dc9640ac-5336-4854-b790-ad8d32833716">
+                    <propertyInstance
+                      Id="775b6b17-8618-489a-9a9c-5a24e33f6653"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2f2dd93f-e59b-471d-b51d-0e2823e5c2f2">
+                    <propertyInstance
+                      Id="52a462ae-59f2-4c55-80a3-9a53430ba232"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1b415d37-646c-4a30-a895-e5df1feff4aa">
+                    <propertyInstance
+                      Id="85c0af16-0687-491a-8216-110bc27b51a9"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="59430465-7789-4a6b-9cd6-c5945ed46e14">
+                    <propertyInstance
+                      Id="3905398e-d415-4f00-aa0a-0b86ac5ab6bf"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fa554a57-c642-47d6-88d9-135e17a56e90">
+                    <propertyInstance
+                      Id="a7a0a3d3-d998-4b62-8e28-bb81a119071e"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c8700f75-fa20-406c-8c22-fc89e1ae22fb"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e10499c9-ba25-47a4-8591-2172fc1c9221"
+                  name="Value"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="bed5c3c4-6a29-4d49-9dd0-633ef0f20d67"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DSetSourceCurrent OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)]) ParameterIdentifier%3DValue"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="ce7e68c1-eeeb-42c6-a274-d142916a4d13"
+            name="ShowText"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="21aff325-6482-42af-8799-2b1f3ca853d0"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DShowText OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="cf8250cb-e607-4309-acc2-bb40eacbfb29"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1cd7a9db-aba8-486c-81ac-42206c33dd13">
+                    <propertyInstance
+                      Id="c9b05d24-4c01-4e9b-99af-16ec7a3815aa"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8a2a5793-af3c-418a-959d-9c02a44615b5">
+                    <propertyInstance
+                      Id="dcb59768-8e3d-4178-bb3d-776138b719e7"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1c42e58d-291f-48ae-b690-ac0d1ec327f9">
+                    <propertyInstance
+                      Id="9c59afa2-2eec-4bc4-82e5-6296f3db0e5e"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="91b53ad6-5321-46ad-8d12-bac5d9d85043">
+                    <propertyInstance
+                      Id="929d9734-a8fe-4aea-a6e8-e2a1596b34a0"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="33097ff9-e2eb-4968-aa81-787d05f818f2">
+                    <propertyInstance
+                      Id="5609bf9c-ec01-4914-9657-0b4557a20227"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f562d40b-467c-4faa-acfa-8dbd51403884">
+                    <propertyInstance
+                      Id="f8dc8c70-2763-4648-a150-5f2c24643766"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="94f0a87b-66ec-40a1-ae66-ebf68d562b16"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4972b437-7e92-4e9d-ac91-306ca7f88b92"
+                  name="text"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="64163461-9dbe-4477-aeba-54b933345f0d"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DShowText OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dtext"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="13effec2-5a73-41dd-b501-5eeb038c3ddf"
+            name="MeasureAll"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="4169ac7d-8255-42cb-86b0-4a4664375eb2"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasureAll OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble ParamKind%3DRef)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble ParamKind%3DRef)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble ParamKind%3DRef)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="b4b47fa3-18c6-4824-8a79-dddbc90caf55"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5b354b75-9d5d-4167-8c83-79fc3de72e85">
+                    <propertyInstance
+                      Id="e9637289-3fa8-4180-9a9d-5a3b86e7aee4"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c46e5b67-0736-4f46-9d4f-54e87fcc6a1b">
+                    <propertyInstance
+                      Id="72b85a98-7a6a-4020-af71-81fea8fef9a4"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="60c8d80b-5f82-420a-990e-28fe4507f6b8">
+                    <propertyInstance
+                      Id="99bc3bd9-369f-4940-964f-679b31a94c1e"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="685aa3e4-cb75-4eaa-a68d-3ca64befe7c6">
+                    <propertyInstance
+                      Id="0496d51a-9eab-4ef6-92cd-c37690208a19"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="38e1f592-c2e2-45e9-ad33-587c2fb84344">
+                    <propertyInstance
+                      Id="2abee33e-c9fd-424e-8f76-f2e1ef7bc90c"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b1abfc08-3315-4717-baa5-2ea4118f2bd1">
+                    <propertyInstance
+                      Id="bcbaa62b-f475-46d6-bd77-ac8a76e6aef8"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="50c3c4e7-d5c2-4d25-9aa7-02e6ee0a1000"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="353b38c4-be57-42ac-a941-34dc43a2ab46"
+                  name="Voltage"
+                  direction="Out">
+                  <referencesInternal>
+                    <reference
+                      Id="3e27f3b4-b3cd-461c-a881-f212db8a1fef"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasureAll OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble ParamKind%3DRef)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble ParamKind%3DRef)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble ParamKind%3DRef)]) ParameterIdentifier%3DVoltage"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="84657588-96fe-42f7-8900-8645e489ffdc"
+                  name="Current"
+                  direction="Out">
+                  <referencesInternal>
+                    <reference
+                      Id="685c9e43-aad2-40a9-a629-10fb4947e9cd"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasureAll OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble ParamKind%3DRef)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble ParamKind%3DRef)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble ParamKind%3DRef)]) ParameterIdentifier%3DCurrent"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="67af077e-36f1-4e4e-a01a-9158947fc1dd"
+                  name="Resistance"
+                  direction="Out">
+                  <referencesInternal>
+                    <reference
+                      Id="ca45654b-a877-4bfe-92f4-627127e85dd4"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasureAll OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble ParamKind%3DRef)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble ParamKind%3DRef)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble ParamKind%3DRef)]) ParameterIdentifier%3DResistance"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="2eb02b26-12ef-4318-a531-c56a6018f072"
+            name="MeasureVoltage"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="e984fd5e-ccf7-4e05-a661-50043ed6c4a2"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasureVoltage OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="5d2a0330-b3e1-4d65-bbbf-2fd5a69d794d"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="493e97e6-16a6-4f3a-8b09-6beefc4c672b">
+                    <propertyInstance
+                      Id="8cdd36a1-10d3-4bce-979b-704c46690b70"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="07733cb3-8c43-452a-8f21-8e71c738077c">
+                    <propertyInstance
+                      Id="a6564f95-85ec-4e7c-97fe-0626422991d2"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="56d302a8-c61a-42a0-8576-9cfa43c58112">
+                    <propertyInstance
+                      Id="5077f8a6-df99-4da8-814c-979c96134990"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="eaa81d65-1086-47d3-ac7e-e9a559c03329">
+                    <propertyInstance
+                      Id="1b84d514-6f64-4744-b8c5-db16f932d760"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ecdacf20-b92b-4ad8-ac67-58590a0f51b1">
+                    <propertyInstance
+                      Id="c838a721-4ab9-404f-8dd8-f7bc3aee7523"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f2ae5ba1-a87b-4c25-8f2f-321777c6cd41">
+                    <propertyInstance
+                      Id="a75c1f2a-e09f-4fe6-809a-ddef324910bd"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d3aae239-81e8-4a47-800e-e2514e22d16a"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="81b02ff6-0f62-4013-85b8-bae4d6b8ddc6"
+                  name="NumberOfAverages"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="65b4beaa-d068-42c0-a776-0a782316f76a"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasureVoltage OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)]) ParameterIdentifier%3DNumberOfAverages"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1096f577-ed9f-441d-adc9-8bc451a1144e"
+                  name="TimeDelay"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="0dd1b972-6dab-4e27-b67a-2bf31277e380"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasureVoltage OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)]) ParameterIdentifier%3DTimeDelay"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="133c3662-1604-4f19-a0c1-23f46b101c06"
+            name="MeasureCurrent"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="645d5dea-c6e1-451a-a60c-98833ecb63f2"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasureCurrent OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="e34da335-1509-4e79-a4c3-f8143262c80d"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9474d437-8bdc-4ad2-ae9f-eb7ad72db047">
+                    <propertyInstance
+                      Id="03cce7b8-12c2-49a6-aa54-9ffd5dad7d5a"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="622e7737-e938-4db3-a2ad-4f6a183372f1">
+                    <propertyInstance
+                      Id="39a827c2-dc6c-45c6-9b9c-7c8b7b2c282a"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7e4fe226-2497-4028-97b2-f74c11ee41b1">
+                    <propertyInstance
+                      Id="6de4f107-352d-43a2-b69d-b4d1d3f88297"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="79f4e2ba-949b-4e20-be51-dc995da8c0d4">
+                    <propertyInstance
+                      Id="7b81b6b1-e803-460e-81b3-ddeee800db8d"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1b48a1ab-29aa-4d20-9f41-d0871d6ace52">
+                    <propertyInstance
+                      Id="127edb29-d4d8-49b1-9bba-4bb17a1a2334"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c19be529-c682-4e48-8386-dc833c10951e">
+                    <propertyInstance
+                      Id="d5a14f0e-8ba6-4200-80a7-9e6072f72b0c"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="24ab4143-f748-4116-b226-457c1531eb44"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ef9154b1-3a5f-44f4-a2eb-f3c40e8ba33a"
+                  name="NumberOfAverages"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="8a9fba5d-1f52-49ef-9bd8-d2e8c039ee49"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasureCurrent OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)]) ParameterIdentifier%3DNumberOfAverages"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="eb704264-7761-49ef-893b-3cab5370d250"
+                  name="TimeDelay"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="2129b3ca-448a-4511-824a-53722149cb10"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasureCurrent OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)]) ParameterIdentifier%3DTimeDelay"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="d41fd069-324f-4019-a165-daa3a8e065ec"
+            name="MeasureResistance"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="a9791586-0c4c-4ab3-8048-924449b3cd6a"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasureResistance OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FInstrumentAbstraction%2Fbin%2FDebug%2FInstrumentHandler.dll&quot; Namespace%3DInstrumentAbstraction.InstrumentInterfaces Type%3DSourceMode)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="ccc857f2-f0d3-4726-8622-7d9eb1547008"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="28b9a731-e681-4211-a418-27f3629d268f">
+                    <propertyInstance
+                      Id="b3b5ec3e-7fd1-400d-9a36-1a1741eb98ed"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e0cedb9e-0666-4423-95dc-6813c3f5ec5e">
+                    <propertyInstance
+                      Id="ec59f870-8be2-4e23-ba66-27bc015044c3"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7040beb4-9018-4c7d-a097-7a5c32ed2bae">
+                    <propertyInstance
+                      Id="9331ecc2-6b82-40a6-8c31-81cb965fe979"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ee9c87c2-2a2d-4f0a-8ec9-3e8776ad2e3f">
+                    <propertyInstance
+                      Id="63b48e6d-669f-43e4-802b-bdf30dcf6e12"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8ef2e468-cb61-4aba-be1d-0087b1c40a4a">
+                    <propertyInstance
+                      Id="d0138612-be53-459c-aa60-0e59bada8e47"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f37a4e02-ec55-49ab-985e-eb1cc4f0d559">
+                    <propertyInstance
+                      Id="7837132f-61eb-446d-be17-f4f56fc93345"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="05055f06-0e8e-4e0b-98e6-b950709db3bb"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e1e3e9b1-f5ff-4279-9def-8903efdc6c27"
+                  name="valueThroughTheStrusture"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="6c53b335-eefb-4c10-b31e-11d5023cca5c"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasureResistance OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FInstrumentAbstraction%2Fbin%2FDebug%2FInstrumentHandler.dll&quot; Namespace%3DInstrumentAbstraction.InstrumentInterfaces Type%3DSourceMode)]) ParameterIdentifier%3DvalueThroughTheStrusture"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1fe8c9ce-c35c-4880-9e2d-301af0931aad"
+                  name="NumberOfAverages"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="7b477224-84f5-4596-814b-38dbada751ab"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasureResistance OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FInstrumentAbstraction%2Fbin%2FDebug%2FInstrumentHandler.dll&quot; Namespace%3DInstrumentAbstraction.InstrumentInterfaces Type%3DSourceMode)]) ParameterIdentifier%3DNumberOfAverages"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c768dab1-00aa-4e9c-b01a-e7afae83551a"
+                  name="TimeDelay"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="c8982971-0c4e-4bb0-a674-17bda46e0bb3"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasureResistance OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FInstrumentAbstraction%2Fbin%2FDebug%2FInstrumentHandler.dll&quot; Namespace%3DInstrumentAbstraction.InstrumentInterfaces Type%3DSourceMode)]) ParameterIdentifier%3DTimeDelay"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="09abecc0-7c93-42cd-a4bd-0aeefdffad4a"
+                  name="sourceMode"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="061e7afe-3181-4e59-9cdb-fa13a57b1a6c"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasureResistance OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FInstrumentAbstraction%2Fbin%2FDebug%2FInstrumentHandler.dll&quot; Namespace%3DInstrumentAbstraction.InstrumentInterfaces Type%3DSourceMode)]) ParameterIdentifier%3DsourceMode"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="36295a88-0c23-44cb-8f37-63ba84f928ff"
+                      LastKnownName="SourceMode"
+                      LastKnownLocation="Package3_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="20090635-5b5b-4bde-b731-24dfa506966b"
+            name="MeasurePower"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="1ccd40c3-e8e0-496a-b7db-edc3945a16bc"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasurePower OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FInstrumentAbstraction%2Fbin%2FDebug%2FInstrumentHandler.dll&quot; Namespace%3DInstrumentAbstraction.InstrumentInterfaces Type%3DSourceMode)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="de95af30-1f6a-412c-aeff-eeebd84b5cd9"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9b98c95f-acd9-41c4-bd08-db0eefa4577e">
+                    <propertyInstance
+                      Id="0a707792-62c4-43a9-9104-674d77c0f086"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="81d2f596-b7f7-40dc-8737-965cc3ae6d73">
+                    <propertyInstance
+                      Id="4b70f886-64d8-4738-b278-361ae6ac2b9a"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="916dc316-3909-4e16-9231-12c60eeb1f84">
+                    <propertyInstance
+                      Id="e942eb54-ff46-4a88-a286-26f07080dcb3"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ae2de9a1-5edc-45e2-a81c-0e57a6b019b8">
+                    <propertyInstance
+                      Id="5651fdb0-5a39-40f0-9c4e-ae8d621f47ba"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e4c186ab-a2d6-40b5-b178-045eed5f3b99">
+                    <propertyInstance
+                      Id="b1134538-7f11-4263-b6e4-e5284700ad78"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1099b719-82e0-40ee-b9f1-b9c827c500dc">
+                    <propertyInstance
+                      Id="75482a3f-756c-45b9-acd7-7534e6a9edc0"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="385d40ff-7cf5-4f17-85da-2aa1045d7ba3"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="86092428-4fc5-4a58-9c63-2c86d8ad166c"
+                  name="valueThroughTheStrusture"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="a68aba3d-8041-443a-bdb6-2640386e3aad"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasurePower OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FInstrumentAbstraction%2Fbin%2FDebug%2FInstrumentHandler.dll&quot; Namespace%3DInstrumentAbstraction.InstrumentInterfaces Type%3DSourceMode)]) ParameterIdentifier%3DvalueThroughTheStrusture"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="32313d5e-480d-44e2-8beb-da8692632642"
+                  name="NumberOfAverages"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="820e50f0-4ebd-4b60-ad09-e4e933f5c0c7"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasurePower OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FInstrumentAbstraction%2Fbin%2FDebug%2FInstrumentHandler.dll&quot; Namespace%3DInstrumentAbstraction.InstrumentInterfaces Type%3DSourceMode)]) ParameterIdentifier%3DNumberOfAverages"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="MeasurementStudioModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ebaf2aed-fbe9-4a26-bc5e-270f750c5781"
+                  name="TimeDelay"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="8e5e552c-381d-4a3c-92a8-19180c0d0731"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasurePower OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FInstrumentAbstraction%2Fbin%2FDebug%2FInstrumentHandler.dll&quot; Namespace%3DInstrumentAbstraction.InstrumentInterfaces Type%3DSourceMode)]) ParameterIdentifier%3DTimeDelay"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9398916a-e66b-4065-a13e-be26ef431480"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="7824aefa-9fcc-4939-865b-faab35b3b844"
+                  name="sourceMode"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="a1b0bb54-b419-404b-97fa-4627eaeeacab"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DMeasurePower OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FInstrumentAbstraction%2Fbin%2FDebug%2FInstrumentHandler.dll&quot; Namespace%3DInstrumentAbstraction.InstrumentInterfaces Type%3DSourceMode)]) ParameterIdentifier%3DsourceMode"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="36295a88-0c23-44cb-8f37-63ba84f928ff"
+                      LastKnownName="SourceMode"
+                      LastKnownLocation="Package3_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="5e705952-64af-4a78-b0ff-c81449dcf6a5"
+            name="DetectInstrument"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="9fd9e343-d9ac-4b7d-94c5-af347875dbcb"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DDetectInstrument OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DObject)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="28c4489b-f2de-4371-926c-acb973baa133"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fff9a9ec-1142-4456-9361-9cf8d25992de">
+                    <propertyInstance
+                      Id="9ab45664-b8e7-4655-89de-faefec5c43e9"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="51efef59-5889-4891-9db7-2d1fb320b1e8">
+                    <propertyInstance
+                      Id="4300ad41-2598-4d49-9e77-65b662b38b34"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fdbcf7ec-b10b-49cc-bb56-baed9ceb8983">
+                    <propertyInstance
+                      Id="2d1610d7-6b21-4305-99de-3c136bfba302"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ecf1e11b-f1b1-4941-8141-3903f48225b3">
+                    <propertyInstance
+                      Id="003e6299-2261-483e-960c-de4eda4ddc44"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="28ae237d-b1ff-4769-b6d0-f60744c6bd8c">
+                    <propertyInstance
+                      Id="cfc0057c-404c-49e3-8460-5bde70db0571"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3bfb7897-0795-49e1-9196-d278de13b6b9">
+                    <propertyInstance
+                      Id="13f3ff08-122c-4b63-9f55-fab27c5a7bc0"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="fb1ea67c-a7c8-416b-a3c7-75961984d525"
+                  name="data"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="c5a42830-b949-4acf-94db-d0153e3a6094"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xx Member%3D(Name%3DDetectInstrument OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DObject)]) ParameterIdentifier%3Ddata"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4e1d0dcb-174c-42f9-8957-f6f4a5967f24"
+                      LastKnownName="Object"
+                      LastKnownLocation="Package1_2355.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="57c847e4-77cf-478a-86be-e1c60da2c9a8"
+        name="MeasurementSpeed"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="9f165863-6472-401d-861e-22c0da0103e8"
+            handle="viewcode://./CodeSchema_Enum?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DMeasurementSpeed"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="ac20d503-e73a-4e11-84e5-a97da7a85030"
+            name="enum"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ce2197d9-edde-4a79-91b7-1462da8152c9">
+                <propertyInstance
+                  Id="172ebfe9-2654-40ec-bd99-d44f091de02d"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="16f04483-222d-43e2-a2cd-27445412a22f">
+                <propertyInstance
+                  Id="7644b860-718e-4c37-82aa-49e08a10b705"
+                  name="BaseType"
+                  value="int" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cac9c1f2-4266-4096-a4da-513996e05253">
+                <propertyInstance
+                  Id="45948630-78e5-4edc-9344-84e10ba12cbd"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="8305f225-d62f-48d2-9f51-926eaab08642"
+        name="Keithley24xxCommandBuilder"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="aff7be6e-f162-4c91-902e-73c28416dd6e"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FKeithley24xx%2Fbin%2FDebug%2FKeithley24xx.dll&quot; Namespace%3DKeithley24xxNamespace Type%3DKeithley24xxCommandBuilder"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="c39d4300-6ba5-4c9b-a1ae-7faceb41e7e2"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="de3282a4-c2a1-43ad-8447-4e7a10b8a4e0">
+                <propertyInstance
+                  Id="3773c318-b333-4682-a6ad-28816f4a892d"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f002e27f-f0c0-4c27-8fd7-b3d8e44ddfe4">
+                <propertyInstance
+                  Id="cf8df74d-155b-4efd-aa94-d747574eebb5"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a795d1aa-1a62-4cc1-ac6c-449eae326f8d">
+                <propertyInstance
+                  Id="88b3ade7-a6c3-4bbc-ac17-e2ffbe991e5d"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4f0f9fd8-ecfa-4219-882b-e26620cdcb7c">
+                <propertyInstance
+                  Id="edb62005-a511-4bd6-863d-4c4634076d4e"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e2298ddf-c78c-4992-b6d0-c45672f1ce8f">
+                <propertyInstance
+                  Id="8957dc43-02fb-4e5d-8956-bee45e589913"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

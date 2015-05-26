@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner"
+  dslVersion="1.0.0.0"
+  Id="0a7e88cc-0913-4c63-bd51-b78ee93f5093"
+  name="InstrumentInterfaces"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="f6173e14-43d0-4974-80ed-d4444d5d57c8"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DInstrumentAbstraction.InstrumentInterfaces"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <enumeration
+        Id="36295a88-0c23-44cb-8f37-63ba84f928ff"
+        name="SourceMode"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="6e47cdff-c4f8-434b-9704-f3916d8283e1"
+            handle="viewcode://./CodeSchema_Enum?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FInstrumentAbstraction%2Fbin%2FDebug%2FInstrumentHandler.dll&quot; Namespace%3DInstrumentAbstraction.InstrumentInterfaces Type%3DSourceMode"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="9f1d5878-2b4b-44f2-9647-6194e1b5ad55"
+            name="enum"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="44e88865-661b-43f3-8644-8ddae8931dbc">
+                <propertyInstance
+                  Id="9163817a-6058-4f26-a20a-f8f9be2a6b07"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="23fb4941-6c32-464e-8e8b-31212f9133ca">
+                <propertyInstance
+                  Id="50b35875-8333-440d-8a26-a1934fd062f4"
+                  name="BaseType"
+                  value="int" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4569d576-6f15-49b1-8752-73770b3e7de4">
+                <propertyInstance
+                  Id="98d0c613-6e6d-42f8-9161-de3d63364f42"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="15accea2-c8df-4560-ba63-6255d53a76d2"
+        name="ISourceMeasurementUnit"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="ad80c6f3-6511-45dd-b455-f50a9b11b33f"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FDell%2FDocuments%2FVisual Studio 2013%2FProjects%2FFourierTransformProvider%2FMeasurementStudio%2FInstrumentAbstraction%2Fbin%2FDebug%2FInstrumentHandler.dll&quot; Namespace%3DInstrumentAbstraction.InstrumentInterfaces Type%3DISourceMeasurementUnit"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="8fbb911f-a206-4229-8113-6596f1a698b7"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="848f661c-81c6-4f0f-ba38-b7355507eeaa">
+                <propertyInstance
+                  Id="a0d3ec34-32fd-4523-bf5e-3ae6ed529bc8"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="61529455-be77-4f8c-95ef-393d72e631be">
+                <propertyInstance
+                  Id="ca4c3abf-b58b-4620-b0d8-32238a2d5eb1"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3658e510-6c25-4200-a6d1-9ff4037f4eae">
+                <propertyInstance
+                  Id="718bdab0-f534-4463-8f5f-13078a8aaa52"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8e6e2c71-a6d2-440e-bebe-314d5fb29f72">
+                <propertyInstance
+                  Id="862a90f0-3873-47ac-a236-db417b6d2e72"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
