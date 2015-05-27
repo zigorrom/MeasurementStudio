@@ -1,4 +1,5 @@
 ﻿
+using InstrumentHandlerNamespace;
 using Keithley24xxNamespace;
 //using AgilentU2542A;
 //using AgilentU2442A;
@@ -24,33 +25,35 @@ namespace AgilentTest
         }
         static void Main(string[] args)
         {
+            var ih = InstrumentHandler.Instance;
             
-            var a = new Keithley24xx("asfas", "asd", "GPIB0::16::INSTR");
-            //a.ConfigureSourceDC(ke2400Constants.SourceFunctionModeVoltage, 0, 0, false, 0, ke2400Constants.StandbyHighImpedance);
-            a.SetSpeed(MeasurementSpeed.Middle);
-            //a.SetVoltageLimit(10);
-            //a.SetCurrentLimit(10);
-            //a.SetCurrentAndVoltageMeasurement();
-            //var count = 100000000;
-            var list = new List<row>();
-            var sw = new Stopwatch();
 
-            a.SwitchOn();
-            a.SetSourceVoltage(3);
-            sw.Start();
-            for (; sw.ElapsedMilliseconds<30000;)
-            {
-                var r = new row();
-                a.MeasureAll(out r.volt, out r.curr, out r.res);
-                r.time = sw.ElapsedMilliseconds;
-                list.Add(r);
-            }
-            sw.Stop();
-           // var sdsd = a.MeasureCurrent(1000, 0);
+           // var a = new Keithley24xx("asfas", "asd", "GPIB0::16::INSTR");
+           // //a.ConfigureSourceDC(ke2400Constants.SourceFunctionModeVoltage, 0, 0, false, 0, ke2400Constants.StandbyHighImpedance);
+           // a.SetSpeed(MeasurementSpeed.Middle);
+           // //a.SetVoltageLimit(10);
+           // //a.SetCurrentLimit(10);
+           // //a.SetCurrentAndVoltageMeasurement();
+           // //var count = 100000000;
+           // var list = new List<row>();
+           // var sw = new Stopwatch();
+
+           // a.SwitchOn();
+           // a.SetSourceVoltage(3);
+           // sw.Start();
+           // for (; sw.ElapsedMilliseconds<30000;)
+           // {
+           //     var r = new row();
+           //     a.MeasureAll(out r.volt, out r.curr, out r.res);
+           //     r.time = sw.ElapsedMilliseconds;
+           //     list.Add(r);
+           // }
+           // sw.Stop();
+           //// var sdsd = a.MeasureCurrent(1000, 0);
            
             
-           // Thread.Sleep(3000);
-            a.SwitchOff();
+           //// Thread.Sleep(3000);
+           // a.SwitchOff();
             //Agilent2542A ag = new Agilent2542A("a","a","USB0::0x0957::0x1718::TW52524501::0::INSTR");
             
             //AgilentU2542A ag = new AgilentU2542A("Agilent", "asrdasd", "USB0::0x0957::0x1718::TW52524501::0::INSTR");

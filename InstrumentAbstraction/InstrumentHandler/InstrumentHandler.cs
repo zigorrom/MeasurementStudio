@@ -112,6 +112,8 @@ namespace InstrumentHandlerNamespace
             return handler;
         }
 
+        
+
         private void DiscoverInstruments()
         {
             ///
@@ -119,43 +121,48 @@ namespace InstrumentHandlerNamespace
             ///
             try
             {
-                var assembly = Assembly.GetAssembly(typeof(IInstrument));
-                var IInstrumentType = typeof(IInstrument);
-                var types = assembly.GetTypes()
-                    .Where(x =>
-                    {
-                        if (x.IsAbstract || x.IsInterface)
-                            return false;
-                        if (IInstrumentType.IsAssignableFrom(x))
-                            return true;
-                        return false;
-                    })
-                    .Select(x =>
-                    {
-                        return new { Key = (InstrumentAttribute)x.GetCustomAttribute(typeof(InstrumentAttribute)), Value = x };//InstrumentInstance };
-                    });
+                var appAssemblies = AppDomain.CurrentDomain.GetAssemblies();
+                var InstrumentType = typeof(IInstrument);
+                //var types = //new IEnumerable<Type>();//appAssemblies
+                
+
+                //var assembly = Assembly.GetAssembly(typeof(IInstrument));
+                //var IInstrumentType = typeof(IInstrument);
+                //var types = assembly.GetTypes()
+                //    .Where(x =>
+                //    {
+                //        if (x.IsAbstract || x.IsInterface)
+                //            return false;
+                //        if (IInstrumentType.IsAssignableFrom(x))
+                //            return true;
+                //        return false;
+                //    })
+                //    .Select(x =>
+                //    {
+                //        return new { Key = (InstrumentAttribute)x.GetCustomAttribute(typeof(InstrumentAttribute)), Value = x };//InstrumentInstance };
+                //    });
 
 
-                var LocalResourceManager = ResourceManager.GetLocalManager();
-                var resources = LocalResourceManager.FindResources(ResourceFilter);
-                if (resources.Length == 0)
-                {
-                    throw new Exception("No instruments found");
-                }
-                foreach (var resource in resources)
-                {
-                    var s = (MessageBasedSession)LocalResourceManager.Open(resource);
-                    s.Write("*IDN?");
-                    var idn = s.ReadString();
-                    s.Dispose();
-                    foreach (var item in types)
-                    {
-                        if (!item.Key.FitsToIDN(idn))
-                            continue;
-                        var instr = (IInstrument)Activator.CreateInstance(item.Value, String.Format("Manufacturer:{0},Model:{1}", item.Key.Manufacturer, item.Key.Model), "", resource);
-                        m_Instruments.Add(instr);
-                    }
-                }
+                //var LocalResourceManager = ResourceManager.GetLocalManager();
+                //var resources = LocalResourceManager.FindResources(ResourceFilter);
+                //if (resources.Length == 0)
+                //{
+                //    throw new Exception("No instruments found");
+                //}
+                //foreach (var resource in resources)
+                //{
+                //    var s = (MessageBasedSession)LocalResourceManager.Open(resource);
+                //    s.Write("*IDN?");
+                //    var idn = s.ReadString();
+                //    s.Dispose();
+                //    foreach (var item in types)
+                //    {
+                //        if (!item.Key.FitsToIDN(idn))
+                //            continue;
+                //        var instr = (IInstrument)Activator.CreateInstance(item.Value, String.Format("Manufacturer:{0},Model:{1}", item.Key.Manufacturer, item.Key.Model), "", resource);
+                //        m_Instruments.Add(instr);
+                //    }
+                //}
             }
             catch (VisaException)
             {
