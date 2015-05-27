@@ -46,9 +46,9 @@ namespace Helper.Ranges.RangeHandlers
 
         protected virtual void Initialize(string handlerName,bool backAndForth, bool startFromZero)
         {
-            HandlerName = HandlerName;
-            BackAndForth = BackAndForth;
-            StartFromZero = StartFromZero;
+            HandlerName = handlerName;
+            BackAndForth = backAndForth;
+            StartFromZero = startFromZero;
         }
 
         public event ProgressChangedEventHandler ProgressChanged;

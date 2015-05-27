@@ -31,7 +31,7 @@ namespace Spotter
             InitializeComponent();
             exp = new IVCharacterizationExperiment();
             AllContainer.Children.Add(exp.Control);
-           
+          
             //var s = new Voltage();
             //var e = new Voltage();
             //var st = new Voltage();

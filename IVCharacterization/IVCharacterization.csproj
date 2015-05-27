@@ -54,6 +54,7 @@
     <Compile Include="DataModel\DrainSourceMeasurmentInfoRow.cs" />
     <Compile Include="DataModel\GateSourceDataRow.cs" />
     <Compile Include="DataModel\GateSourceMeasurementInfoRow.cs" />
+    <Compile Include="RangeHandlerToIndexConverter.cs" />
     <Compile Include="Views\ControlButtonsPanel.xaml.cs">
       <DependentUpon>ControlButtonsPanel.xaml</DependentUpon>
     </Compile>

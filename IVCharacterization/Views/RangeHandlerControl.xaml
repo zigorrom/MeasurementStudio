@@ -4,6 +4,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:RangeHandlers="clr-namespace:Helper.Ranges.RangeHandlers;assembly=Helper"
+    xmlns:l ="clr-namespace:IVCharacterization"
 	mc:Ignorable="d"
 	x:Class="IVCharacterization.RangeHandlerControl"
 	x:Name="RangeHandlerSelector"
@@ -11,6 +12,7 @@
 
 	<UserControl.Resources>
 		<RangeHandlers:RangeHandlerToStringConverter x:Key="RangeHandlerToStringConverter"/>
+        <l:RangeHandlerToIndexConverter x:Key ="RangeHandlerToIndexConverter"/>
 	</UserControl.Resources>
 
 	<Grid x:Name="LayoutRoot">
@@ -18,7 +20,7 @@
 			<ColumnDefinition Width="89*"/>
 			<ColumnDefinition Width="183*"/>
 		</Grid.ColumnDefinitions>
-		<ComboBox x:Name="HandlerComboBox" Grid.Column="1" Margin="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="0" Text="{Binding RangeHandler, Converter={StaticResource RangeHandlerToStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <ComboBox x:Name="HandlerComboBox" Grid.Column="1" Margin="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="{Binding RangeHandler, Converter={StaticResource RangeHandlerToIndexConverter}}" ><!--Text="{Binding RangeHandler, Converter={StaticResource RangeHandlerToStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">-->
 			<ComboBoxItem Content="Normal" HorizontalAlignment="Left" Width="175"/>
 			<ComboBoxItem Content="BackAndForth" HorizontalAlignment="Left" Width="175"/>
 			<ComboBoxItem Content="ZeroStart" HorizontalAlignment="Left" Width="175"/>

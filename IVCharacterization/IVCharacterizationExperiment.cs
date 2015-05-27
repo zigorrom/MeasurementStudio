@@ -35,6 +35,12 @@ namespace IVCharacterization
             m_transferVM = new IVMainViewModel(IVCharacteristicTypeEnum.Transfer);
             m_outputVM = new IVMainViewModel(IVCharacteristicTypeEnum.Output);
             SetContext(IVCharacteristicTypeEnum.Output);
+            m_control.ControlButtons.StartButton.Click += StartButton_Click;
+        }
+
+        void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Start();
         }
 
         void SetContext( IVCharacteristicTypeEnum e)
@@ -92,25 +98,35 @@ namespace IVCharacterization
 
                         inner = privateViewModel.DSRangeHandlerViewModel.RangeHandler;
                         inner.RepeatCounts = privateViewModel.DSRangeHandlerViewModel.RepeatCounts;
+                        inner.Range = privateViewModel.DSRangeViewModel.Range;
 
                         outer = privateViewModel.GSRangeHandlerViewModel.RangeHandler;
                         outer.RepeatCounts = privateViewModel.GSRangeHandlerViewModel.RepeatCounts;
-
+                        outer.Range = privateViewModel.GSRangeViewModel.Range;
                     }break;
                 case IVCharacteristicTypeEnum.Transfer:
                     {
                         inner = privateViewModel.GSRangeHandlerViewModel.RangeHandler;
                         inner.RepeatCounts = privateViewModel.GSRangeHandlerViewModel.RepeatCounts;
+                        inner.Range = privateViewModel.GSRangeViewModel.Range;
 
                         outer = privateViewModel.DSRangeHandlerViewModel.RangeHandler;
                         outer.RepeatCounts = privateViewModel.DSRangeHandlerViewModel.RepeatCounts;
-
+                        outer.Range = privateViewModel.DSRangeViewModel.Range;
                     } break;
                 default:
                     return;
             }
             //privateViewModel.DSRangeHandlerViewModel.RangeHandler
-            
+
+            foreach (var outer_val in outer)
+            {
+                foreach (var inner_val in inner)
+                {
+                    Debug.WriteLine("{0},{1}", outer_val, inner_val);
+                }
+            }
+
             Debug.WriteLine("");
 
             //throw new NotImplementedException();
