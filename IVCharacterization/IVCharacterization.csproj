@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -108,6 +109,10 @@
     <ProjectReference Include="..\InstrumentAbstraction\InstrumentHandler.csproj">
       <Project>{3c57f76b-be47-4de4-8466-3fd0b124d134}</Project>
       <Name>InstrumentHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Keithley24xx\Keithley24xx.csproj">
+      <Project>{79334cce-6c21-489f-8762-ae357fec3991}</Project>
+      <Name>Keithley24xx</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

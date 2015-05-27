@@ -23,8 +23,8 @@ namespace IVCharacterization
     {
         public IVMainView()
         {
-            model1 = new IVMainViewModel(IVCharacteristicTypeEnum.Output);
-            model2 = new IVMainViewModel(IVCharacteristicTypeEnum.Transfer);
+            //model1 = new IVMainViewModel(IVCharacteristicTypeEnum.Output);
+            //model2 = new IVMainViewModel(IVCharacteristicTypeEnum.Transfer);
             InitializeComponent();
             ControlButtons.StartButtonPressed += (o, e) =>
             {
@@ -47,17 +47,24 @@ namespace IVCharacterization
             context.GlobalIsEnabled = IsEnabled;
         }
 
-        IVMainViewModel model1;
-        IVMainViewModel model2;
+        //IVMainViewModel model1;
+        //IVMainViewModel model2;
+        public event EventHandler<IVCharacteristicTypeEnum> DataContextChangeDemand;
 
+        private void OnDataContextChangeDemand(object sender, IVCharacteristicTypeEnum e)
+        {
+            var handler = DataContextChangeDemand;
+            if (handler != null)
+                handler(sender, e);
+        }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var index = ((ComboBox)sender).SelectedIndex;
             switch (index)
             {
-                case 0: DataContext = model2; break;
-                case 1: DataContext = model1; break;
+                case 0: OnDataContextChangeDemand(this, IVCharacteristicTypeEnum.Transfer); break;//DataContext = model2; break;
+                case 1: OnDataContextChangeDemand(this, IVCharacteristicTypeEnum.Output); break;//DataContext = model1; break;
             }
         }
 

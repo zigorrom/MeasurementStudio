@@ -95,13 +95,32 @@ namespace IVCharacterization
             DSRangeHandlerViewModel = new RangeHandlerViewModel();
             GSRangeHandlerViewModel = new RangeHandlerViewModel();
             Visualization = new VisualizationViewModel();
-            Visualization.HorizontalAxisLabel = "Gate Voltage, Vg(V)";
-            Visualization.VertivalAxisLabel = "Drain Current, Id(A)";
+           
             Visualization.HeaderLabel = "IV Characterization";
+            SetVisualizationLabels(characteristicType);
             GlobalIsEnabled = true;
         }
 
-
+        private void SetVisualizationLabels(IVCharacteristicTypeEnum ct)
+        {
+            switch (ct)
+            {
+                case IVCharacteristicTypeEnum.Output:
+                    {
+                        Visualization.HorizontalAxisLabel = "Drain-Source Voltage, Vds(V)";
+                        Visualization.VertivalAxisLabel = "Drain Current, Id(A)";
+                    }
+                    break;
+                case IVCharacteristicTypeEnum.Transfer:
+                    {
+                        Visualization.HorizontalAxisLabel = "Gate Voltage, Vg(V)";
+                        Visualization.VertivalAxisLabel = "Drain Current, Id(A)";
+                    }
+                    break;
+                default:
+                    return;
+            }
+        }
 
         public event EventHandler<IVCharacteristicTypeEnum> ChangeIVCharacterizationViewModel;
         private void OnChangeIVCharacterizationViewModel(IVCharacteristicTypeEnum CharacteristicType)

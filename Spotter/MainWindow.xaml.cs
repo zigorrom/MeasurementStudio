@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Helper.Ranges.DoubleRange;
 using Helper.Ranges.Units;
 using Helper.Ranges.SimpleRangeControl;
+using IVCharacterization;
 
 namespace Spotter
 {
@@ -23,10 +24,14 @@ namespace Spotter
     /// </summary>
     public partial class MainWindow : Window
     {
+        IVCharacterizationExperiment exp;
         public MainWindow()
         {
           
             InitializeComponent();
+            exp = new IVCharacterizationExperiment();
+            AllContainer.Children.Add(exp.Control);
+           
             //var s = new Voltage();
             //var e = new Voltage();
             //var st = new Voltage();

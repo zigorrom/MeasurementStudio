@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace ExperimentAbstraction
 {
@@ -58,5 +59,15 @@ namespace ExperimentAbstraction
 
 
         public abstract void OwnInstruments();
+
+
+        public abstract object ViewModel { get; }
+
+
+
+        public abstract UserControl Control
+        {
+            get;
+        }
     }
 }
