@@ -37,6 +37,7 @@ namespace IVCharacterization
             m_outputVM = new IVMainViewModel(IVCharacteristicTypeEnum.Output);
             SetContext(IVCharacteristicTypeEnum.Output);
             m_control.ControlButtons.StartButton.Click += StartButton_Click;
+            InitializeInstruments();
         }
 
         void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
