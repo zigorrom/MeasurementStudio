@@ -34,14 +34,22 @@ namespace Helper.Ranges.RangeHandlers
 
         private IEnumerator<double> CurrentEnum()
         {
-            for (int count = 1; count < RepeatCounts; count++)
+            double val, MinVal, MaxVal;
+            if (Range.End > Range.Start)
             {
-                //throw new NotImplementedException();
-                for (double i = Range.Start; i <= Range.End; i += Range.Step)
-                {
-                    //OnProgressChanged((int)((i-Range.Start) / Range.RangeWidth) * 100, i);
-                    yield return i;
-                }
+                MinVal = Range.Start;
+                MaxVal = Range.End;
+            }
+            else
+            {
+                MinVal = Range.End;
+                MaxVal = Range.Start;
+            }
+
+            var count = 0;
+            for (val = MinVal; (val <= MaxVal)&&(count<Range.PointsCount); val += Range.Step, count++)
+            {
+                yield return val;
             }
         }
     }

@@ -29,7 +29,7 @@ namespace Helper.Ranges.RangeHandlers
 
         private IEnumerator<double> CurrentEnum()
         {
-            for (int i = 1; i < RepeatCounts; i++)
+            for (int i = 0; i < RepeatCounts; i++)
             {
                 double val, MinVal, MaxVal;
                 if (Range.End > Range.Start)
@@ -43,18 +43,22 @@ namespace Helper.Ranges.RangeHandlers
                     MaxVal = Range.Start;
                 }
 
-                for (val = 0; val <= MaxVal; val += Range.Step)
-                    yield return val;
+                if (Range.Step == 0)
+                    yield return 0;
+                else
+                {
+                    for (val = 0; val <= MaxVal; val += Range.Step)
+                        yield return val;
 
-                for (; val >= 0; val -= Range.Step)
-                    yield return val;
+                    for (val = MaxVal; val >= 0; val -= Range.Step)
+                        yield return val;
 
-                for (val = 0; val >= MinVal; val -= Range.Step)
-                    yield return val;
+                    for (val = 0; val >= MinVal; val -= Range.Step)
+                        yield return val;
 
-                for (; val <= 0; val += Range.Step)
-                    yield return val;
-
+                    for (val = MinVal; val <= 0; val += Range.Step)
+                        yield return val;
+                }
 
             }
         }

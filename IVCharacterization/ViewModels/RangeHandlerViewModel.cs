@@ -20,7 +20,11 @@ namespace IVCharacterization
             get { return m_repeatCounts; }
             set
             {
-                SetField(ref m_repeatCounts, value, "RepeatCounts");
+                if(SetField(ref m_repeatCounts, value, "RepeatCounts"))
+                    if(m_rangeHandler!=null)
+                    {
+                        m_rangeHandler.RepeatCounts = m_repeatCounts;
+                    }
             }
         }
 
@@ -30,7 +34,10 @@ namespace IVCharacterization
             get { return m_rangeHandler; }
             set
             {
-                SetField(ref m_rangeHandler, value, "RangeHandler");
+                if(SetField(ref m_rangeHandler, value, "RangeHandler"))
+                {
+                    RepeatCounts = m_rangeHandler.RepeatCounts;
+                }
             }
         }
 

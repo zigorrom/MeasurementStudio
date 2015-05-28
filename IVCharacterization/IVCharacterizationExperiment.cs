@@ -97,21 +97,21 @@ namespace IVCharacterization
                     {
 
                         inner = privateViewModel.DSRangeHandlerViewModel.RangeHandler;
-                        inner.RepeatCounts = privateViewModel.DSRangeHandlerViewModel.RepeatCounts;
+                        //inner.RepeatCounts = privateViewModel.DSRangeHandlerViewModel.RepeatCounts;
                         inner.Range = privateViewModel.DSRangeViewModel.Range;
 
                         outer = privateViewModel.GSRangeHandlerViewModel.RangeHandler;
-                        outer.RepeatCounts = privateViewModel.GSRangeHandlerViewModel.RepeatCounts;
+                        //outer.RepeatCounts = privateViewModel.GSRangeHandlerViewModel.RepeatCounts;
                         outer.Range = privateViewModel.GSRangeViewModel.Range;
                     }break;
                 case IVCharacteristicTypeEnum.Transfer:
                     {
                         inner = privateViewModel.GSRangeHandlerViewModel.RangeHandler;
-                        inner.RepeatCounts = privateViewModel.GSRangeHandlerViewModel.RepeatCounts;
+                        //inner.RepeatCounts = privateViewModel.GSRangeHandlerViewModel.RepeatCounts;
                         inner.Range = privateViewModel.GSRangeViewModel.Range;
 
                         outer = privateViewModel.DSRangeHandlerViewModel.RangeHandler;
-                        outer.RepeatCounts = privateViewModel.DSRangeHandlerViewModel.RepeatCounts;
+                        //outer.RepeatCounts = privateViewModel.DSRangeHandlerViewModel.RepeatCounts;
                         outer.Range = privateViewModel.DSRangeViewModel.Range;
                     } break;
                 default:
