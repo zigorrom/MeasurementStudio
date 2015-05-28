@@ -66,8 +66,8 @@ namespace IVCharacterization
 
         public override void InitializeExperiment()
         {
-            m_drainSMU = new Keithley24xx("drain", "sda", "");
-            m_gateSMU = new Keithley24xx("gate", "dsa", "");
+            m_drainSMU = new Keithley24xx("drain", "sda", "GPIB0::16::INSTR");
+            m_gateSMU = new Keithley24xx("gate", "dsa", "GPIB0::5::INSTR");
 
             ///
             /// Add here routines with InstrumentHandler;
@@ -91,6 +91,10 @@ namespace IVCharacterization
         {
             AbstractDoubleRangeHandler outer;
             AbstractDoubleRangeHandler inner;
+
+            ISourceMeasurementUnit oSMU;
+            ISourceMeasurementUnit iSMU;
+
             switch (m_currentCharacteristic)
             {
                 case IVCharacteristicTypeEnum.Output:
@@ -100,9 +104,13 @@ namespace IVCharacterization
                         //inner.RepeatCounts = privateViewModel.DSRangeHandlerViewModel.RepeatCounts;
                         inner.Range = privateViewModel.DSRangeViewModel.Range;
 
+                        iSMU = m_drainSMU;
+
                         outer = privateViewModel.GSRangeHandlerViewModel.RangeHandler;
                         //outer.RepeatCounts = privateViewModel.GSRangeHandlerViewModel.RepeatCounts;
                         outer.Range = privateViewModel.GSRangeViewModel.Range;
+
+                        oSMU = m_gateSMU;
                     }break;
                 case IVCharacteristicTypeEnum.Transfer:
                     {
@@ -110,20 +118,33 @@ namespace IVCharacterization
                         //inner.RepeatCounts = privateViewModel.GSRangeHandlerViewModel.RepeatCounts;
                         inner.Range = privateViewModel.GSRangeViewModel.Range;
 
+                        iSMU = m_gateSMU;
+
                         outer = privateViewModel.DSRangeHandlerViewModel.RangeHandler;
                         //outer.RepeatCounts = privateViewModel.DSRangeHandlerViewModel.RepeatCounts;
                         outer.Range = privateViewModel.DSRangeViewModel.Range;
+
+                        oSMU = m_drainSMU;
+
                     } break;
                 default:
                     return;
             }
             //privateViewModel.DSRangeHandlerViewModel.RangeHandler
-
+            iSMU.SwitchOn();
+            oSMU.SwitchOn();
+            var icurr = 0.0;
+            var ocurr = 0.0;
             foreach (var outer_val in outer)
             {
+                oSMU.SetSourceVoltage(outer_val);
                 foreach (var inner_val in inner)
                 {
-                    Debug.WriteLine("{0},{1}", outer_val, inner_val);
+                    iSMU.SetSourceVoltage(inner_val);
+
+                    ocurr = oSMU.MeasureCurrent(100, 0);
+                    icurr = iSMU.MeasureCurrent(100, 0);
+                    Debug.WriteLine("{0},{1} -> {2},{3}", outer_val, inner_val,ocurr,icurr);
                 }
             }
 
