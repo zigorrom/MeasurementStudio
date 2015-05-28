@@ -69,5 +69,46 @@ namespace ExperimentAbstraction
         {
             get;
         }
+
+
+        public event EventHandler ExperimentStarted;
+        protected virtual void OnExperimentStarted(object sender, EventArgs e)
+        {
+            var handler = ExperimentStarted;
+            if (handler != null)
+                handler(sender, e);
+        }
+
+        public event EventHandler ExperimentStopped;
+        protected virtual void OnExperimentStopped(object sender, EventArgs e)
+        {
+            var handler = ExperimentStopped;
+            if (handler != null)
+                handler(sender, e);
+        }
+
+        public event EventHandler ExperimentPaused;
+        protected virtual void OnExperimentPaused(object sender, EventArgs e)
+        {
+            var handler = ExperimentPaused;
+            if (handler != null)
+                handler(sender, e);
+        }
+
+        public event EventHandler ExperimentProgressChanged;
+        protected virtual void OnExperimentProgressChanged(object sender, EventArgs e)
+        {
+            var handler = ExperimentProgressChanged;
+            if (handler != null)
+                handler(sender, e);
+        }
+
+        public event EventHandler ExperimentFinished;
+        protected virtual void OnExperimentFinished(object sender, EventArgs e)
+        {
+            var handler = ExperimentFinished;
+            if (handler != null)
+                handler(sender, e);
+        }
     }
 }
