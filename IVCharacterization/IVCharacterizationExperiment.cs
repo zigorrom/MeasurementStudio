@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -145,6 +146,7 @@ namespace IVCharacterization
                     ocurr = oSMU.MeasureCurrent(100, 0);
                     icurr = iSMU.MeasureCurrent(100, 0);
                     Debug.WriteLine("{0},{1} -> {2},{3}", outer_val, inner_val,ocurr,icurr);
+                    Thread.Sleep(500);
                 }
             }
             iSMU.SwitchOff();
