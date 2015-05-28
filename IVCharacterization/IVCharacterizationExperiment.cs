@@ -147,7 +147,8 @@ namespace IVCharacterization
                     Debug.WriteLine("{0},{1} -> {2},{3}", outer_val, inner_val,ocurr,icurr);
                 }
             }
-
+            iSMU.SwitchOff();
+            oSMU.SwitchOff();
             Debug.WriteLine("");
 
             //throw new NotImplementedException();
