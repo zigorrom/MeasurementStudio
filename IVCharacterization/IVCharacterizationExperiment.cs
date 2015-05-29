@@ -36,6 +36,7 @@ namespace IVCharacterization
             m_control = new IVMainView();
             m_control.DataContextChangeDemand += a_DataContextChangeDemand;
             m_VisualizationVM = new VisualizationViewModel(m_control.Plotter);
+            m_VisualizationVM.HeaderLabel = "I-V characterization";
             m_transferVM = new IVMainViewModel(IVCharacteristicTypeEnum.Transfer);
             m_transferVM.Visualization = m_VisualizationVM;
             m_outputVM = new IVMainViewModel(IVCharacteristicTypeEnum.Output);
