@@ -35,9 +35,11 @@ namespace IVCharacterization
         {
             m_control = new IVMainView();
             m_control.DataContextChangeDemand += a_DataContextChangeDemand;
+            m_VisualizationVM = new VisualizationViewModel(m_control.Plotter);
             m_transferVM = new IVMainViewModel(IVCharacteristicTypeEnum.Transfer);
+            m_transferVM.Visualization = m_VisualizationVM;
             m_outputVM = new IVMainViewModel(IVCharacteristicTypeEnum.Output);
-            m_VisualizationVM = new VisualizationViewModel();
+            m_outputVM.Visualization = m_VisualizationVM;
             SetContext(IVCharacteristicTypeEnum.Output);
             m_control.ControlButtons.StartButton.Click += StartButton_Click;
             InitializeInstruments();
@@ -54,10 +56,19 @@ namespace IVCharacterization
             switch (e)
             {
                 case IVCharacteristicTypeEnum.Output:
-                    m_control.DataContext = m_outputVM;
+                    {
+                        m_VisualizationVM.HorizontalAxisLabel = "Drain-Source Voltage, Vds(V)";
+                        m_VisualizationVM.VertivalAxisLabel = "Drain Current, Id(A)"; ;
+                        m_control.DataContext = m_outputVM; 
+                    }
+
                     break;
                 case IVCharacteristicTypeEnum.Transfer:
-                    m_control.DataContext = m_transferVM;
+                    {
+                        m_VisualizationVM.HorizontalAxisLabel = "Gate Voltage, Vg(V)";
+                        m_VisualizationVM.VertivalAxisLabel = "Drain Current, Id(A)";
+                        m_control.DataContext = m_transferVM;
+                    }
                     break;
                 default:
                     break;
