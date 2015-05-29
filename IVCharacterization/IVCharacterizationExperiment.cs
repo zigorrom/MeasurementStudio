@@ -1,4 +1,5 @@
-﻿using ExperimentAbstraction;
+﻿using DataVisualization;
+using ExperimentAbstraction;
 using Helper.Ranges.RangeHandlers;
 using InstrumentAbstraction.InstrumentInterfaces;
 using Keithley24xxNamespace;
@@ -26,6 +27,7 @@ namespace IVCharacterization
         private IVMainViewModel m_outputVM;
         private ISourceMeasurementUnit m_gateSMU;
         private ISourceMeasurementUnit m_drainSMU;
+        private VisualizationViewModel m_VisualizationVM;
 
         
 
@@ -35,6 +37,7 @@ namespace IVCharacterization
             m_control.DataContextChangeDemand += a_DataContextChangeDemand;
             m_transferVM = new IVMainViewModel(IVCharacteristicTypeEnum.Transfer);
             m_outputVM = new IVMainViewModel(IVCharacteristicTypeEnum.Output);
+            m_VisualizationVM = new VisualizationViewModel();
             SetContext(IVCharacteristicTypeEnum.Output);
             m_control.ControlButtons.StartButton.Click += StartButton_Click;
             InitializeInstruments();

@@ -71,6 +71,7 @@ namespace IVCharacterization
             {
                 if (m_Visualization == value) return;
                 m_Visualization = value;
+                //SetVisualizationLabels(m_IVCharacteristicType)
                 OnPropertyChanged("Visualization");
             }
         }
@@ -94,16 +95,16 @@ namespace IVCharacterization
 
             DSRangeHandlerViewModel = new RangeHandlerViewModel();
             GSRangeHandlerViewModel = new RangeHandlerViewModel();
-            Visualization = new VisualizationViewModel();
+            //Visualization = new VisualizationViewModel();
            
-            Visualization.HeaderLabel = "IV Characterization";
-            SetVisualizationLabels(characteristicType);
+            //Visualization.HeaderLabel = "IV Characterization";
+            //SetVisualizationLabels(characteristicType);
             GlobalIsEnabled = true;
         }
 
-        private void SetVisualizationLabels(IVCharacteristicTypeEnum ct)
+        public void SetVisualizationLabels()
         {
-            switch (ct)
+            switch (m_IVCharacteristicType)
             {
                 case IVCharacteristicTypeEnum.Output:
                     {

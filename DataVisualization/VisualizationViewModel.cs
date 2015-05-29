@@ -10,6 +10,15 @@ namespace DataVisualization
 {
     public class VisualizationViewModel:IVisualizationViewModel, INotifyPropertyChanged
     {
+
+        public VisualizationViewModel(DataPlotter plotter)
+        {
+            m_plotter = plotter;
+        }
+
+        private DataPlotter m_plotter;
+
+
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string PropertyName)
         {

@@ -13,13 +13,15 @@ namespace IVCharacterization.DataModel
         private string m_FileName;
         private double m_DrainSourceVoltage;
         private string m_Comment;
+        private int m_ExperimentNumber;
 
 
-        public GateSourceMeasurementInfoRow(string filename, double drainSourceVoltage, string Comment)
+        public GateSourceMeasurementInfoRow(string filename, double drainSourceVoltage, string Comment, int experimentNumber)
         {
             m_FileName = filename;
             m_DrainSourceVoltage = drainSourceVoltage;
             m_Comment = Comment;
+            m_ExperimentNumber = experimentNumber;
         }
 
         [DataPropertyAttribute("FileName", "", "")]//true, true, -1, "FileName", "", "")]
@@ -41,6 +43,14 @@ namespace IVCharacterization.DataModel
         {
             get { return m_Comment; }
             set { m_Comment = value; }
+        }
+
+
+        [DataPropertyAttribute("#", "", "")]
+        public int ExperimentNumber
+        {
+            get { return m_ExperimentNumber; }
+            set { m_ExperimentNumber = value; }
         }
     }
 }

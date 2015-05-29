@@ -131,9 +131,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <DesignData Include="SampleData\IVMainViewModelSampleData.xaml" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="DataModel\ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

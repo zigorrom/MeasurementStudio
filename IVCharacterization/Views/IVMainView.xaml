@@ -30,7 +30,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <DataVisualization:DataPlotter DataContext="{Binding Visualization}" Margin="3" Height="Auto"/>
+        <DataVisualization:DataPlotter x:Name="Plotter" DataContext="{Binding Visualization}" Margin="3" Height="Auto"/>
         <Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" MinHeight="400" Margin="0.8,0,-0.4,0.2" VerticalAlignment="Top">
             <Expander.Header>
                 <TextBlock Text="Settings" TextOptions.TextFormattingMode="Ideal">

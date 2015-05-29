@@ -9,16 +9,17 @@ namespace IVCharacterization.DataModel
 {
     internal struct DrainSourceMeasurmentInfoRow:IInfoDataRow//,IFormattable
     {
-        
+        private int m_ExperimentNumber;
         private string m_FileName;
         private double m_GateVoltage;
         private string m_Comment;
 
-        public DrainSourceMeasurmentInfoRow(string filename, double gateVoltage,string comment)
+        public DrainSourceMeasurmentInfoRow(string filename, double gateVoltage,string comment, int experimentNumber)
         {
             m_FileName = filename;
             m_GateVoltage = gateVoltage;
             m_Comment = comment;
+            m_ExperimentNumber = experimentNumber;
         }
 
         private const string RowFormat = "{0}\t{1}";
@@ -51,6 +52,12 @@ namespace IVCharacterization.DataModel
             get { return m_Comment; }
             set { m_Comment = value; }
         }
-      
+
+        [DataPropertyAttribute("#", "", "")]
+        public int ExperimentNumber
+        {
+            get { return m_ExperimentNumber; }
+            set { m_ExperimentNumber = value; }
+        }
     }
 }
