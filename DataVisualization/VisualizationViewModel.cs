@@ -14,6 +14,7 @@ namespace DataVisualization
         public VisualizationViewModel(DataPlotter plotter)
         {
             m_plotter = plotter;
+            //m_plotter.AddLineGraph()
         }
 
         private DataPlotter m_plotter;

@@ -103,10 +103,10 @@ namespace AgilentU2442A
 
         public void DigitalWriteBit(bool value, int bit)
         {
-           if(DigitalDirection == DigitalDirectionEnum.Input)
-               throw new Exception("DigitalDirection is set to input");
-           if (!SendCommand(CommandSet.SOURceDIGitalDATABIT(value, bit, ChannelName)))
-               throw new MemberAccessException(MemberAccessExceptionMessage);
+            if (DigitalDirection == DigitalDirectionEnum.Input)
+                throw new Exception("DigitalDirection is set to input");
+            if (!SendCommand(CommandSet.SOURceDIGitalDATABIT(value, bit, ChannelName)))
+                throw new MemberAccessException(MemberAccessExceptionMessage);
         }
 
         public int DigitalRead()

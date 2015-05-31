@@ -41,10 +41,10 @@ namespace DataVisualization
         /// </summary>
         /// <param name="Source">ObservableDataSource</param>
         /// <param name="LineColor"></param>
-        public void AddLineGraph(IPointDataSource Source, Color LineColor)
+        public void AddLineGraph(IPointDataSource Source, Color LineColor, double thickness,string LineDescription)
         {
-            var line = ChartControl.AddLineGraph(Source, LineColor);
-
+            var line = ChartControl.AddLineGraph(Source, LineColor,thickness,LineDescription);
+            //line.Description =
 
             Binding bind = new Binding("LineThickness");
             bind.Source = m_viewModel.LineThickness;
@@ -53,5 +53,11 @@ namespace DataVisualization
             BindingOperations.SetBinding(line, Line.StrokeThicknessProperty, bind);
             //line.SetBinding(Line.StrokeThicknessProperty, bind);
         }
+
+        public void ClearPlots()
+        {
+            ChartControl.Children.RemoveAll(typeof(LineGraph));
+        }
+       
     }
 }
