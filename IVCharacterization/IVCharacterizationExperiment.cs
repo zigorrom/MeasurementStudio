@@ -42,7 +42,7 @@ namespace IVCharacterization
             m_outputVM = new IVMainViewModel(IVCharacteristicTypeEnum.Output);
             m_outputVM.Visualization = m_VisualizationVM;
             SetContext(IVCharacteristicTypeEnum.Output);
-            m_control.ControlButtons.StartButton.Click += StartButton_Click;
+            m_control.ControlButtons.StartButton.Click += StartButton_Click; 
             InitializeInstruments();
         }
 
