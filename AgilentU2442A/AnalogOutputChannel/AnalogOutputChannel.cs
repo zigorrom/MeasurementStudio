@@ -15,11 +15,33 @@ namespace AgilentU2442A
         //}
         public AnalogOutputChannel(ChannelEnum ChannelIdentifier, AgilentU2542A ParentDevice):base(ChannelIdentifier, ParentDevice)
         {
-
+            
         }
         protected override void InitializeChannel()
         {
             throw new NotImplementedException();
         }
+
+        private double m_voltage;
+
+        public double Voltage
+        {
+            get {
+                var val =  CommandSet.SOURceVOLTageQuery QueryCommand(CommandSet.SOURceVOLTageQuery(ChannelName))
+                
+                return m_voltage; 
+            }
+            set {
+                if (m_voltage == value)
+                    return;
+                if(!SendCommand(CommandSet.SOURceVOLTage(value,ChannelName)))
+                    throw new MemberAccessException(MemberAccessExceptionMessage);
+                m_voltage = value; 
+                
+            }
+        }
+        
+        
+        
     }
 }

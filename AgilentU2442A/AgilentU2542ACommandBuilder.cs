@@ -1264,7 +1264,7 @@ namespace AgilentU2442A
 
         #region SOURce region
 
-        public string SOURceVOLTage(int Value, params string[] Channels)
+        public string SOURceVOLTage(double Value, params string[] Channels)
         {
             const string CommandFormat = "SOUR:VOLT {0}, {1}\n";
             var ChannelList = GetChannelListString(Channels);
@@ -1275,6 +1275,7 @@ namespace AgilentU2442A
             return StringFormat(CommandFormat, Value, ChannelList);
         }
 
+        
         public string SOURceVOLTageQuery(params string[] Channels)
         {
             const string CommandFormat = "SOUR:VOLT? {0}\n";
