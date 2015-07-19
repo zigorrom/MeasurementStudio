@@ -27,8 +27,8 @@ namespace AgilentU2442A
         public double Voltage
         {
             get {
-                var val =  CommandSet.SOURceVOLTageQuery( QueryCommand(CommandSet.SOURceVOLTageQuery(ChannelName))
-                
+                var val = CommandSet.SOURceVOLTageQueryParse(QueryCommand(CommandSet.SOURceVOLTageQuery(ChannelName)));
+                m_voltage = val;
                 return m_voltage; 
             }
             set {

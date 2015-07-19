@@ -54,11 +54,11 @@ namespace ExperimentDataModel
 
 
 
-        public DataWriter<DataT> NewMeasurementStream(InfoT measurementInfo)
-        {
-            var fileExtention = String.IsNullOrEmpty(DataFileExtention) ? DefaultFileExtention : DataFileExtention;
-            throw new NotImplementedException();
-        }
+        //public DataWriter<DataT> NewMeasurementStream(InfoT measurementInfo)
+        //{
+        //    var fileExtention = String.IsNullOrEmpty(DataFileExtention) ? DefaultFileExtention : DataFileExtention;
+        //    throw new NotImplementedException();
+        //}
 
         public void CloseWriter()
         {

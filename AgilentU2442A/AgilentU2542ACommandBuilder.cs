@@ -1283,6 +1283,11 @@ namespace AgilentU2442A
             return StringFormat(CommandFormat, ChannelList);
         }
 
+        public double SOURceVOLTageQueryParse(string response)
+        {
+            throw new NotImplementedException();
+        }
+
         public string SOURceVOLTagePOLarity(PolarityEnum mode, params string[] Channels)
         {
             const string CommandFormat = "SOUR:VOLT:POL {0}, {1}\n";
