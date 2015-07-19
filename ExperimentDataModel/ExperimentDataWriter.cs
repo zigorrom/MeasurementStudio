@@ -38,7 +38,7 @@ namespace ExperimentDataModel
         //private int FileCounter;
         //private 
 
-        public void NewExperiment(string ExperimentName)
+        public void InitExperimentDataWriter(string ExperimentName)
         {
             //FileCounter = 0;
             var infoFileExtention = String.IsNullOrEmpty(InfoFileExtention) ? DefaultFileExtention : InfoFileExtention;
@@ -54,7 +54,7 @@ namespace ExperimentDataModel
 
 
 
-        public DataWriter<DataT> NewMeasurementStream(InfoT measurementInfo)
+        public DataWriter<DataT> InitMeasurementStream(InfoT measurementInfo)
         {
             var fileExtention = String.IsNullOrEmpty(DataFileExtention) ? DefaultFileExtention : DataFileExtention;
 
