@@ -129,7 +129,7 @@ namespace ExperimentalDataModelTest
             //    fmt.Serialize(s, model);
             //}
             var a = new ExperimentDataWriter<DrainSourceDataRow, DrainSourceMeasurmentInfoRow>(@"C:\Users\i.zadorozhnyi\Desktop\");
-           
+            a.InitExperimentDataWriter("exp1");
         }
     }
 }
