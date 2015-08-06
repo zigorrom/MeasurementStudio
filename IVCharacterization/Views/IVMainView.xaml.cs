@@ -47,8 +47,9 @@ namespace IVCharacterization
             context.GlobalIsEnabled = IsEnabled;
         }
 
-        //IVMainViewModel model1;
-        //IVMainViewModel model2;
+        //public IVMainViewModel model1 { get; private set; }
+
+        //public IVMainViewModel model2 { get; private set; }
         public event EventHandler<IVCharacteristicTypeEnum> DataContextChangeDemand;
 
         private void OnDataContextChangeDemand(object sender, IVCharacteristicTypeEnum e)

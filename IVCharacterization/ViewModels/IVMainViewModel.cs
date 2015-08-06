@@ -87,7 +87,7 @@ namespace IVCharacterization
         public RangeViewModel DSRangeViewModel { get; set; }
         public RangeViewModel GSRangeViewModel { get; set; }
 
-        public IVMainViewModel(IVCharacteristicTypeEnum characteristicType)
+        public IVMainViewModel(IVCharacteristicTypeEnum characteristicType = IVCharacteristicTypeEnum.Output)
         {
             m_IVCharacteristicType = characteristicType;
             DSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());

@@ -18,8 +18,9 @@
         <GridLength x:Key="RangeGroupFerstCoulumnWidth">115*</GridLength>
         <GridLength x:Key="RangeGroupSecondColumnWidth">163*</GridLength>
         <System:Double x:Key="RangeHandlerSelectorHeight">40</System:Double>
+    
     </UserControl.Resources>
-
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
