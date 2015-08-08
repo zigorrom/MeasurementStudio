@@ -105,13 +105,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataVisualization\DataVisualization.csproj">
-      <Project>{8a17ebb9-945b-42c8-83e1-41689d1001e6}</Project>
-      <Name>DataVisualization</Name>
-    </ProjectReference>
     <ProjectReference Include="..\IVCharacterization\IVCharacterization.csproj">
       <Project>{fa8149f8-bf54-4a46-9d0a-9980cead705b}</Project>
       <Name>IVCharacterization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OxyDataVisualization\OxyDataVisualization.csproj">
+      <Project>{a85faa24-0408-4873-b548-f7d7a5399cf1}</Project>
+      <Name>OxyDataVisualization</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

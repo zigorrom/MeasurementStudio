@@ -13,6 +13,8 @@ namespace OxyDataVisualization
         public string Title { get; set; }
         public string Subtitle { get; set; }
         public string ExpressionToDisplay { get; set; }
+
+//        private PlotModel Model { get; private set; }
         public List<List<DataPoint>> source { get; set; }
 
         public OxyMainView()

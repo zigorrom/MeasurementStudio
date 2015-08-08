@@ -24,44 +24,44 @@ namespace MeasurementStudio
         public MainWindow()
         {
             InitializeComponent();
-            recognizer = new SpeechRecognizer();
-            recognizer2 = new SpeechRecognizer();
-            Choices colors = new Choices();
-            //colors.Add(new string[] {  });
-            colors.Add("blue", "red");
+            //recognizer = new SpeechRecognizer();
+            //recognizer2 = new SpeechRecognizer();
+            //Choices colors = new Choices();
+            ////colors.Add(new string[] {  });
+            //colors.Add("blue", "red");
 
-            var commands = new Choices();
-            commands.Add("move", "measure");
-            // Create a GrammarBuilder object and append the Choices object.
-            GrammarBuilder gb = new GrammarBuilder();
-            var gb2 = new GrammarBuilder();
+            //var commands = new Choices();
+            //commands.Add("move", "measure");
+            //// Create a GrammarBuilder object and append the Choices object.
+            //GrammarBuilder gb = new GrammarBuilder();
+            //var gb2 = new GrammarBuilder();
 
-            gb.Append(colors);
+            //gb.Append(colors);
 
-            gb2.Append(commands);
-            // Create the Grammar instance and load it into the speech recognition engine.
-            Grammar g = new Grammar(gb);
-            Grammar g2 = new Grammar(gb2);
+            //gb2.Append(commands);
+            //// Create the Grammar instance and load it into the speech recognition engine.
+            //Grammar g = new Grammar(gb);
+            //Grammar g2 = new Grammar(gb2);
 
-            recognizer.LoadGrammar(g);
-            recognizer2.LoadGrammar(g2);
-            // Register a handler for the SpeechRecognized event.
-            recognizer.SpeechRecognized +=
-              new EventHandler<SpeechRecognizedEventArgs>(sre_SpeechRecognized);
-            recognizer2.SpeechRecognized += recognizer2_SpeechRecognized;
+            //recognizer.LoadGrammar(g);
+            //recognizer2.LoadGrammar(g2);
+            //// Register a handler for the SpeechRecognized event.
+            //recognizer.SpeechRecognized +=
+            //  new EventHandler<SpeechRecognizedEventArgs>(sre_SpeechRecognized);
+            //recognizer2.SpeechRecognized += recognizer2_SpeechRecognized;
         }
 
-        void recognizer2_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
-        {
-            MessageBox.Show("Speech recognized[recognizer2]: " + e.Result.Text);
-        }
+        //void recognizer2_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        //{
+        //    MessageBox.Show("Speech recognized[recognizer2]: " + e.Result.Text);
+        //}
 
-        private void sre_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
-        {
-            MessageBox.Show("Speech recognized[recognizer1]: " + e.Result.Text);
-        }
-        SpeechRecognizer recognizer;
-        SpeechRecognizer recognizer2;
+        //private void sre_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        //{
+        //    MessageBox.Show("Speech recognized[recognizer1]: " + e.Result.Text);
+        //}
+        //SpeechRecognizer recognizer;
+        //SpeechRecognizer recognizer2;
 
     }
 
