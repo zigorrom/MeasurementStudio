@@ -4,9 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:oxy="http://oxyplot.org/wpf"
+             xmlns:local="clr-namespace:OxyDataVisualization"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <local:OxyMainView x:Name="viewModel"/>
+    </UserControl.DataContext>
     <Grid>
-            <!--<oxy:PlotView-->
+        <oxy:PlotView Title="{Binding Title}" Subtitle="{Binding Subtitle}">
+            
+        </oxy:PlotView>
     </Grid>
 </UserControl>
