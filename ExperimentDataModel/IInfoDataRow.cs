@@ -8,7 +8,5 @@ namespace ExperimentDataModel
 {
     public interface IInfoDataRow
     {
-        string Filename { get; set; }
-        string Comment { get; set; }
     }
 }

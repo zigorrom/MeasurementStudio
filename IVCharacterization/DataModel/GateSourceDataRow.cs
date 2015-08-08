@@ -53,7 +53,7 @@ namespace IVCharacterization.DataModel
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            return String.Format(RowFormat, GateSourceVoltage, DrainCurrent, GateCurrent);
+            return String.Format(format, GateSourceVoltage, DrainCurrent, GateCurrent);
         }
     }
 }

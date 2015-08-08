@@ -16,16 +16,10 @@ namespace AgilentTest
     class Program
     {
     
-        private struct row
-        {
-            public long time;
-            public double curr;
-            public double volt;
-            public double res;
-        }
+       
         static void Main(string[] args)
         {
-            var ih = InstrumentHandler.Instance;
+       //     var ih = InstrumentHandler.Instance;
             
 
            // var a = new Keithley24xx("asfas", "asd", "GPIB0::16::INSTR");
