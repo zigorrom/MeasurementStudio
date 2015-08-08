@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>OxyPlot.Wpf</id>
+    <version>2014.1.546</version>
+    <title>OxyPlot for WPF</title>
+    <authors>Oystein Bjorke</authors>
+    <owners>Oystein Bjorke</owners>
+    <licenseUrl>https://raw.githubusercontent.com/oxyplot/oxyplot/master/LICENSE</licenseUrl>
+    <projectUrl>http://oxyplot.org/</projectUrl>
+    <iconUrl>http://resources.oxyplot.org/icons/oxyplot_128.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>OxyPlot is an open source plotting library for .NET. This package contains the custom control for WPF applications.</description>
+    <releaseNotes>2014.1.*
+--------
+
+New features
+
+- Support data binding paths ("Point.X") (#210)
+- Support for Xamarin.Forms (#204)
+- Support for Windows Universal apps (#190)
+
+Enhancements
+
+- Improve TrackerFormatString consistency (#214)
+- Support LineColor.BrokenLineColor
+- LabelFormatString for ScatterSeries (#12)
+
+Breaking changes
+
+- Changed tracker format strings arguments (#214)
+- Rename OxyPenLineJoin to LineJoin
+- Rename LineStyle.Undefined to LineStyle.Automatic
+
+Bugfixes
+
+- Improved text rendering for Android and iOS (#209)
+- Custom shape outline for PointAnnotation (#174)
+- Synchronize Wpf.Axis.MinimumRange (#205)
+- TrackerHitResult bug (#198)
+- Position of axis when PositionAtZeroCrossing = true (#189)
+- Expose ScatterSeries.ActualPoints (#201)
+- Add overridable Axis.FormatValueOverride (#181)
+- PngExporter text formatting (#170)</releaseNotes>
+    <tags>wpf plotting plot charting chart</tags>
+    <dependencies>
+      <dependency id="OxyPlot.Core" version="[2014.1.546]" />
+    </dependencies>
+  </metadata>
+</package>
