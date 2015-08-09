@@ -91,6 +91,12 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExperimentDataModel\ExperimentDataModel.csproj">
+      <Project>{f37c1293-015e-47ef-81fe-694857e4a303}</Project>
+      <Name>ExperimentDataModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

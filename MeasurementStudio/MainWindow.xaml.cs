@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OxyDataVisualization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Speech.Recognition;
@@ -24,6 +25,7 @@ namespace MeasurementStudio
         public MainWindow()
         {
             InitializeComponent();
+            oxy.ViewModel.Title = "10^x";
             //recognizer = new SpeechRecognizer();
             //recognizer2 = new SpeechRecognizer();
             //Choices colors = new Choices();
@@ -49,6 +51,13 @@ namespace MeasurementStudio
             //recognizer.SpeechRecognized +=
             //  new EventHandler<SpeechRecognizedEventArgs>(sre_SpeechRecognized);
             //recognizer2.SpeechRecognized += recognizer2_SpeechRecognized;
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var cb = (ComboBox)sender;
+            var selection = (GraphScaleType)(cb.SelectedIndex + 1);
+            oxy.ViewModel.Scale = selection;
         }
 
         //void recognizer2_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)

@@ -11,13 +11,8 @@
         <local:OxyMainView x:Name="viewModel"/>
     </UserControl.DataContext>
     <Grid>
-        <oxy:PlotView Title="{Binding Title}" Subtitle="{Binding Subtitle}">
-            <!--<oxy:PlotView.Series>-->
-            <oxy:PlotView.Axes>
-                <oxy:LinearAxis Position="Bottom"/>
-                <oxy:LinearAxis Position="Left"/>
-            </oxy:PlotView.Axes>
-            <!--</oxy:PlotView.Series>-->
-        </oxy:PlotView>
+        <oxy:PlotView Model="{Binding CurrentPlotModel}"/>
+
+
     </Grid>
 </UserControl>
