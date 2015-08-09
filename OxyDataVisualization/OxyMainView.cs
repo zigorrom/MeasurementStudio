@@ -9,6 +9,7 @@ namespace OxyDataVisualization
 {
     using OxyPlot.Axes;
     using OxyPlot.Series;
+    using System.Collections.ObjectModel;
     using System.ComponentModel;
     public enum GraphScaleType
     {
@@ -20,6 +21,7 @@ namespace OxyDataVisualization
 
     public class OxyMainView:INotifyPropertyChanged
     {
+        #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         public bool SetValue<T>(ref T Property, T ValueToSet, string PropertyName)
         {
@@ -44,7 +46,7 @@ namespace OxyDataVisualization
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(PropertyName));
         }
-
+        #endregion
 
         private PlotModel _plotModel;
         public PlotModel CurrentPlotModel
@@ -73,11 +75,11 @@ namespace OxyDataVisualization
             }
         }
 
-        private string _expressionToDisplay;        
-        public string ExpressionToDisplay { get; set; }
+        //private string _expressionToDisplay;        
+        //public string ExpressionToDisplay { get; set; }
 
         //create generic types for this function at class definition
-        //private Func<>
+        
 
         private GraphScaleType _scale;
         public GraphScaleType Scale
@@ -118,19 +120,39 @@ namespace OxyDataVisualization
                         _plotModel.Axes.Add(_leftAxis);
                         _bottomAxis.MajorGridlineStyle = LineStyle.Solid;
                         _leftAxis.MajorGridlineStyle = LineStyle.Solid;
+                        
                         _plotModel.InvalidatePlot(true);
                     }));
             }
         }
 
-
+        
+        public void AddPoints()
+        {
+            var rnd = new Random();
+            
+            for (int i = 0; i < 100; i++)
+            {
+                var m = rnd.NextDouble() * 10;
+                var n = rnd.NextDouble() * 100000;
+                l.Add(new DataPoint(n,  m*i));
+            }
+            //System.Threading.Thread.Sleep(400);
+            //.RemoveRange(0, 100);
+            _plotModel.InvalidatePlot(true);
+        }
+        private ObservableCollection<DataPoint> l;
         public OxyMainView()
         {
             _plotModel = new PlotModel();
             
             Scale = GraphScaleType.Lin;
-            //_plotModel.Series.Add(new FunctionSeries(new Func<double, double>((x) => Math.Pow(10,x)), 0, 100, 0.1,"10^x"));
 
+            l = new ObservableCollection<DataPoint>();
+            var ls = new LineSeries { ItemsSource = l };
+            _plotModel.Series.Add(ls);
+            
+            
         }
 
         

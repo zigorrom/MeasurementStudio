@@ -6,17 +6,7 @@
         x:Class="MeasurementStudio.MainWindow"
         Title="MainWindow" Height="600.904" Width="745.331">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="533*"/>
-            <RowDefinition Height="38*"/>
-        </Grid.RowDefinitions>
-        <oxy:OxyDataVisualizationControl x:Name="oxy"/>
-        <ComboBox HorizontalAlignment="Left" Grid.Row="1" Margin="0,0.2" Width="257" SelectedIndex="0" SelectionChanged="ComboBox_SelectionChanged">
-            <ComboBoxItem Content="Lin" HorizontalAlignment="Left" Width="254.4"/>
-            <ComboBoxItem Content="semiLog" HorizontalAlignment="Left" Width="254.4"/>
-            <ComboBoxItem Content="Log" HorizontalAlignment="Left" Width="254.4"/>
-        </ComboBox>
-        <!--<IV:IVMainView Margin="0,0,0,83"/>-->
-
+        <oxy:IVDataVisualization x:Name="oxy"/>
+        
     </Grid>
 </Window>

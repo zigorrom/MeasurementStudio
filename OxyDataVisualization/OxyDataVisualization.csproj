@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\ThirdPartyLibs\ExpressionEvaluator 2.0.3\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="ExpressionEvaluator">
+      <HintPath>..\ThirdPartyLibs\ExpressionEvaluator 2.0.3\ExpressionEvaluator.dll</HintPath>
+    </Reference>
     <Reference Include="OxyPlot">
       <HintPath>..\packages\OxyPlot.Core.2014.1.546\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
     </Reference>
@@ -56,10 +62,25 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="IVDataVisualization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NoiseDataVisualization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OxyDataVisualizationControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="IVDataVisualization.xaml.cs">
+      <DependentUpon>IVDataVisualization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NoiseDataVisualization.xaml.cs">
+      <DependentUpon>NoiseDataVisualization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NoiseMainView.cs" />
     <Compile Include="OxyMainView.cs" />
     <Compile Include="OxyDataVisualizationControl.xaml.cs">
       <DependentUpon>OxyDataVisualizationControl.xaml</DependentUpon>
