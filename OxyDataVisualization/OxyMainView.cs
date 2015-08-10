@@ -135,20 +135,21 @@ namespace OxyDataVisualization
             {
                 var m = rnd.NextDouble() * 10;
                 var n = rnd.NextDouble() * 100000;
-                l.Add(new DataPoint(n,  m*i));
+                //l.Add(new DataPoint(n,  m*i));
+                l.Add(new System.Windows.Point(n, m * i));
             }
             //System.Threading.Thread.Sleep(400);
             //.RemoveRange(0, 100);
             _plotModel.InvalidatePlot(true);
         }
-        private ObservableCollection<DataPoint> l;
+        private ObservableCollection<System.Windows.Point> l;
         public OxyMainView()
         {
             _plotModel = new PlotModel();
             
             Scale = GraphScaleType.Lin;
-
-            l = new ObservableCollection<DataPoint>();
+            l = new ObservableCollection<System.Windows.Point>();
+            //l = new ObservableCollection<DataPoint>();
             var ls = new LineSeries { ItemsSource = l };
             _plotModel.Series.Add(ls);
             
