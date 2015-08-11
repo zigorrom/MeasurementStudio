@@ -14,9 +14,9 @@ namespace ExperimentDataModel
 {
     
     //[Serializable()]
-    public class ExperimentData<InfoT, DataT> : IExperimentDataCollection<DataT, DataPoint>//ObservableCollection<DataPoint>//, ISerializable
+    public class ExperimentData<InfoT, DataT> : IExperimentDataCollection<DataT, DataPoint>
         where InfoT : struct
-        where DataT : struct
+        where DataT : struct, 
     {
         private const string CountString = "Count";
         private const string IndexerName = "Item[]";
@@ -33,7 +33,6 @@ namespace ExperimentDataModel
             _info = experimentInfo;
             _dataList = new List<DataT>();
             DisplayFunc = DefaultPredicate;
-
         }
 
         public void Add(DataT item)
@@ -106,7 +105,7 @@ namespace ExperimentDataModel
 
         public void OnNext(DataT value)
         {
-            throw new NotImplementedException();
+            Add(value);
         }
 
 
