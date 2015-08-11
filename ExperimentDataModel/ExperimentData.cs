@@ -14,9 +14,9 @@ namespace ExperimentDataModel
 {
     
     //[Serializable()]
-    public class ExperimentData<InfoT, DataT>:IExperimentDataCollection<DataT,DataPoint>//ObservableCollection<DataPoint>//, ISerializable
-        where InfoT: struct
-        where DataT: struct
+    public class ExperimentData<InfoT, DataT> : IExperimentDataCollection<DataT, DataPoint>//ObservableCollection<DataPoint>//, ISerializable
+        where InfoT : struct
+        where DataT : struct
     {
         private const string CountString = "Count";
         private const string IndexerName = "Item[]";
@@ -24,51 +24,73 @@ namespace ExperimentDataModel
         private InfoT _info;
         private List<DataT> _dataList;
         public Func<DataT, DataPoint> DisplayFunc { get; set; }
-        private readonly SimpleMonitor _monitor;
 
-        
-        public ExperimentData(InfoT experimentInfo, Func<DataT,DataPoint> DefaultPredicate)
+        private object SyncRoot = new object();
+
+
+        public ExperimentData(InfoT experimentInfo, Func<DataT, DataPoint> DefaultPredicate)
         {
-            _monitor = new SimpleMonitor();
             _info = experimentInfo;
             _dataList = new List<DataT>();
             DisplayFunc = DefaultPredicate;
-            
+
         }
 
         public void Add(DataT item)
         {
-            throw new NotImplementedException();
+            lock (SyncRoot)
+            {
+                _dataList.Add(item);
+                OnPropertyChaged(CountString);
+                OnPropertyChaged(IndexerName);
+                OnCollectionChanged(NotifyCollectionChangedAction.Add, item, _dataList.Count);
+            }
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            lock (SyncRoot)
+            {
+                _dataList.Clear();
+                OnPropertyChaged(CountString);
+                OnPropertyChaged(IndexerName);
+                OnCollectionReset();
+            }
         }
 
         public bool Contains(DataT item)
         {
-            throw new NotImplementedException();
+            return _dataList.Contains(item);
         }
 
         public void CopyTo(DataT[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            _dataList.CopyTo(array, arrayIndex);
         }
 
         public int Count
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                return _dataList.Count;
+            }
         }
 
         public bool IsReadOnly
         {
-            get { throw new NotImplementedException(); }
+            get { return false; }
         }
 
         public bool Remove(DataT item)
         {
-            throw new NotImplementedException();
+            lock (SyncRoot)
+            {
+                var result = _dataList.Remove(item);
+                OnPropertyChaged(CountString);
+                OnPropertyChaged(IndexerName);
+                OnCollectionChanged(NotifyCollectionChangedAction.Remove, item);
+                return result;
+            }
         }
 
 
@@ -98,17 +120,7 @@ namespace ExperimentDataModel
             return GetEnumerator();
         }
 
-        protected IDisposable BlockReentrancy()
-        {
-            _monitor.Enter();
-            return _monitor;
-        }
 
-        protected void CheckReentrancy()
-        {
-            if ((_monitor.Busy && (CollectionChanged != null)) && (CollectionChanged.GetInvocationList().Length > 1))
-                throw new InvalidOperationException("Collection reentrancy not Allowed");
-        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChaged(string PropertyName)
@@ -123,11 +135,12 @@ namespace ExperimentDataModel
         protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
             var handler = CollectionChanged;
-            if(handler!=null)
-                using(BlockReentrancy())
-                {
+            lock (SyncRoot)
+            {
+                if (handler != null)
+
                     handler(this, e);
-                }
+            }
         }
 
         private void OnCollectionChanged(NotifyCollectionChangedAction action, object item)
@@ -146,29 +159,12 @@ namespace ExperimentDataModel
         }
 
 
-        private class SimpleMonitor : IDisposable
-        {
-            private int _busyCounter;
-
-            public bool Busy
-            {
-                get { return _busyCounter > 0; }
-            }
-
-            public void Enter()
-            {
-                _busyCounter++;
-            }
-            public void Dispose()
-            {
-                _busyCounter--;
-            }
-        }
 
 
 
 
-        
+
+
     }
 
 
