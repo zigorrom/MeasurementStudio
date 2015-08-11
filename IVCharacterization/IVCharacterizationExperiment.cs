@@ -19,7 +19,7 @@ namespace IVCharacterization
 
     
 
-    public class IVCharacterizationExperiment:AbstractExperiment,IObservable<DrainSourceDataRow>, IObservable<GateSourceDataRow>
+    public class IVCharacterizationExperiment:AbstractExperiment//,IObservable<DrainSourceDataRow>, IObservable<GateSourceDataRow>
     {
         private const string ExperimentName = "IV characterization";
         private IVCharacteristicTypeEnum m_currentCharacteristic;
@@ -30,6 +30,7 @@ namespace IVCharacterization
         private ISourceMeasurementUnit m_drainSMU;
         private VisualizationViewModel m_VisualizationVM;
 
+        
         
 
         public IVCharacterizationExperiment():base(ExperimentName)
@@ -203,14 +204,5 @@ namespace IVCharacterization
             get { return m_control; }
         }
 
-        public IDisposable Subscribe(IObserver<GateSourceDataRow> observer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IDisposable Subscribe(IObserver<DrainSourceDataRow> observer)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

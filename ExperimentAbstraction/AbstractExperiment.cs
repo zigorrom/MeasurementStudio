@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace ExperimentAbstraction
 {
-    public abstract class AbstractExperiment:IExperiment
+    public abstract class AbstractExperiment: IExperiment
     {
         private string m_Name;
         //protected Dictionary<string, IInstrument> m_Instruments;
