@@ -16,7 +16,7 @@ namespace ExperimentDataModel
     //[Serializable()]
     public class ExperimentData<InfoT, DataT> : IExperimentDataCollection<DataT, DataPoint>
         where InfoT : struct
-        where DataT : struct, 
+        where DataT : struct
     {
         private const string CountString = "Count";
         private const string IndexerName = "Item[]";
