@@ -2,6 +2,7 @@
 using ExperimentAbstraction;
 using Helper.Ranges.RangeHandlers;
 using InstrumentAbstraction.InstrumentInterfaces;
+using IVCharacterization.DataModel;
 using Keithley24xxNamespace;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace IVCharacterization
 
     
 
-    public class IVCharacterizationExperiment:AbstractExperiment
+    public class IVCharacterizationExperiment:AbstractExperiment,IObservable<DrainSourceDataRow>, IObservable<GateSourceDataRow>
     {
         private const string ExperimentName = "IV characterization";
         private IVCharacteristicTypeEnum m_currentCharacteristic;
@@ -200,6 +201,16 @@ namespace IVCharacterization
         public override UserControl Control
         {
             get { return m_control; }
+        }
+
+        public IDisposable Subscribe(IObserver<GateSourceDataRow> observer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDisposable Subscribe(IObserver<DrainSourceDataRow> observer)
+        {
+            throw new NotImplementedException();
         }
     }
 }

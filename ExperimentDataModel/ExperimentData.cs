@@ -134,12 +134,10 @@ namespace ExperimentDataModel
         protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
             var handler = CollectionChanged;
-            lock (SyncRoot)
-            {
+            
                 if (handler != null)
 
                     handler(this, e);
-            }
         }
 
         private void OnCollectionChanged(NotifyCollectionChangedAction action, object item)
