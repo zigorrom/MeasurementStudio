@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExperimentAbstraction
 {
-    abstract class ObservableExperiment<T>:IObservable<T>
+    public abstract class ObservableExperiment<T>:IObservable<T>
     {
         private class Unsubscriber:IDisposable
         {

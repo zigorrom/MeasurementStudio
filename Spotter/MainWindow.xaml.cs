@@ -24,13 +24,13 @@ namespace Spotter
     /// </summary>
     public partial class MainWindow : Window
     {
-        IVCharacterizationExperiment exp;
+        //IVCharacterizationExperiment exp;
         public MainWindow()
         {
           
             InitializeComponent();
-            exp = new IVCharacterizationExperiment();
-            AllContainer.Children.Add(exp.Control);
+          //  exp = new IVCharacterizationExperiment();
+            //AllContainer.Children.Add(exp.Control);
             
             //var s = new Voltage();
             //var e = new Voltage();

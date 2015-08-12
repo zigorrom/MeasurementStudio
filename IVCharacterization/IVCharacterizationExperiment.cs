@@ -19,7 +19,7 @@ namespace IVCharacterization
 
     
 
-    public class IVCharacterizationExperiment:AbstractExperiment//,IObservable<DrainSourceDataRow>, IObservable<GateSourceDataRow>
+    /*public class IVCharacterizationExperiment//:AbstractExperiment//,IObservable<DrainSourceDataRow>, IObservable<GateSourceDataRow>
     {
         private const string ExperimentName = "IV characterization";
         private IVCharacteristicTypeEnum m_currentCharacteristic;
@@ -204,5 +204,5 @@ namespace IVCharacterization
             get { return m_control; }
         }
 
-    }
+    }*/
 }
