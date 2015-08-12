@@ -71,6 +71,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -105,6 +106,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExperimentDataModel\ExperimentDataModel.csproj">
+      <Project>{f37c1293-015e-47ef-81fe-694857e4a303}</Project>
+      <Name>ExperimentDataModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IVCharacterization\IVCharacterization.csproj">
       <Project>{fa8149f8-bf54-4a46-9d0a-9980cead705b}</Project>
       <Name>IVCharacterization</Name>

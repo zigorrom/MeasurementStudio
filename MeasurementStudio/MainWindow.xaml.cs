@@ -66,6 +66,12 @@ namespace MeasurementStudio
             //oxy.ViewModel.AddPoints();
         }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            viewModel.Add();
+            viewModel.MyModel.InvalidatePlot(true);
+        }
+
         //void recognizer2_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         //{
         //    MessageBox.Show("Speech recognized[recognizer2]: " + e.Result.Text);

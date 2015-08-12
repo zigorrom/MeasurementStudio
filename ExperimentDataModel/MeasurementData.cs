@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 namespace ExperimentDataModel
 {
     
-    //[Serializable()]
     public class MeasurementData<InfoT, DataT> : IExperimentDataCollection<DataT, DataPoint>
         where InfoT : struct
         where DataT : struct
