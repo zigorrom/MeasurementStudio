@@ -62,6 +62,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TimetraceAnalysis.xaml.cs">
+      <DependentUpon>TimetraceAnalysis.xaml</DependentUpon>
+    </Compile>
     <Page Include="IVDataVisualization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -86,6 +89,10 @@
       <DependentUpon>OxyDataVisualizationControl.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TimetraceAnalysis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="DataAttributeProperty.cs" />
     <Compile Include="MeasurementData.cs" />
-    <Compile Include="IExperimentDataCollection.cs" />
+    <Compile Include="IMeasurementDataCollection.cs" />
     <Compile Include="IInfoDataRow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

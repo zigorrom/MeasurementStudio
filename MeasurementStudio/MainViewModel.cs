@@ -9,7 +9,7 @@ namespace MeasurementStudio
     using ExperimentDataModel;
     using OxyPlot;
     using OxyPlot.Series;
-using System.Windows.Data;
+    using System.Windows.Data;
     public class MainViewModel
     {
         public PlotModel MyModel { get; private set; }

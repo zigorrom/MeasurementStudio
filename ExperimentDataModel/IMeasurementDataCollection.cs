@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ExperimentDataModel
 {
-    interface IExperimentDataCollection<DataT,DisplatT>: INotifyPropertyChanged, INotifyCollectionChanged, IEnumerable<DisplatT>, IObserver<DataT>
+    interface IMeasurementDataCollection<DataT,DisplatT>: INotifyPropertyChanged, INotifyCollectionChanged, IEnumerable<DisplatT>, IObserver<DataT>
     {
         void Add(DataT item);
         void Clear();

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace ExperimentDataModel
 {
     
-    public class MeasurementData<InfoT, DataT> : IExperimentDataCollection<DataT, DataPoint>
+    public class MeasurementData<InfoT, DataT> : IMeasurementDataCollection<DataT, DataPoint>
         where InfoT : struct
         where DataT : struct
     {
@@ -22,6 +22,8 @@ namespace ExperimentDataModel
 
         private InfoT _info;
         private List<DataT> _dataList;
+        public List<DataT> Items { get { return _dataList; } }
+
         public Func<DataT, DataPoint> DisplayFunc { get; set; }
 
         private object SyncRoot = new object();
