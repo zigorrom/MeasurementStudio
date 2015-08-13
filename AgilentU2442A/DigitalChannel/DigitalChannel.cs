@@ -35,7 +35,6 @@ namespace AgilentU2442A
                     return 0;
             }
         }
-        
 
         private DigitalBit[] m_BitArray;
         public DigitalBit this[int bitNumber]
