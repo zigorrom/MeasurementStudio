@@ -21,6 +21,7 @@ namespace IVCharacterization.Experiments
         public override void Start()
         {
             base.Start();
+            
         }
 
         public override void Abort()
@@ -30,27 +31,27 @@ namespace IVCharacterization.Experiments
 
         public override void OwnInstruments()
         {
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
 
         public override void InitializeExperiment()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public override void InitializeInstruments()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public override void ReleaseInstruments()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         protected override void DoMeasurement(object sender, DoWorkEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public override object ViewModel
