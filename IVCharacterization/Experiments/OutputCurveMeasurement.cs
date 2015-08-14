@@ -13,43 +13,44 @@ namespace IVCharacterization.Experiments
     public class OutputCurveMeasurement : AbstractExperiment<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>
     {
 
-        
-
         public OutputCurveMeasurement():base("Output curve measurement")
         {
             
         }
 
-        public override void InitializeExperiment()
-        {
-            //throw new NotImplementedException();
-        }
-
-        public override void InitializeInstruments()
-        {
-            //throw new NotImplementedException();
-        }
-
-        public override void ReleaseInstruments()
-        {
-            //throw new NotImplementedException();
-        }
-
         public override void Start()
         {
-            //throw new NotImplementedException();
+            base.Start();
         }
-
-       
 
         public override void Abort()
         {
-            //throw new NotImplementedException();
+            base.Abort();
         }
 
         public override void OwnInstruments()
         {
-            //throw new NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        public override void InitializeExperiment()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void InitializeInstruments()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void ReleaseInstruments()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void DoMeasurement(object sender, DoWorkEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public override object ViewModel
@@ -60,13 +61,6 @@ namespace IVCharacterization.Experiments
         public override System.Windows.Controls.UserControl Control
         {
             get { throw new NotImplementedException(); }
-        }
-
-
-
-        protected override void DoMeasurement(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }
