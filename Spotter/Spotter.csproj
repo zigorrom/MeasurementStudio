@@ -62,14 +62,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="ConfigurationControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,13 +69,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="COMDevice.cs" />
-    <Compile Include="ConfigurationControl.xaml.cs">
-      <DependentUpon>ConfigurationControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -122,6 +107,10 @@
     <ProjectReference Include="..\ExperimentAbstraction\ExperimentAbstraction.csproj">
       <Project>{f9ff4a13-f344-4422-8908-99292fae27ee}</Project>
       <Name>ExperimentAbstraction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExperimentDataModel\ExperimentDataModel.csproj">
+      <Project>{f37c1293-015e-47ef-81fe-694857e4a303}</Project>
+      <Name>ExperimentDataModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\Helper\Helper.csproj">
       <Project>{5216BA05-F05D-447A-965F-B1357DCB4990}</Project>

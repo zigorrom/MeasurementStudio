@@ -11,7 +11,7 @@ namespace IVCharacterization.ViewModels
         public OutputIVViewModel():base(IVCharacteristicTypeEnum.Output)
         {
             Visualization.HorizontalAxisTitle = "Drain - Source Voltage, Vds";
-            
+            Visualization.VerticalAxisTitle = "Drain Current, Id";
         }
     }
 }

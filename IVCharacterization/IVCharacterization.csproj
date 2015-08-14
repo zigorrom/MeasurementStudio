@@ -71,7 +71,6 @@
     <Compile Include="Views\ControlButtonsPanel.xaml.cs">
       <DependentUpon>ControlButtonsPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IVCharacterizationExperiment.cs" />
     <Compile Include="Views\IVMainView.xaml.cs">
       <DependentUpon>IVMainView.xaml</DependentUpon>
     </Compile>

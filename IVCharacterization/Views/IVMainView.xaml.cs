@@ -50,24 +50,24 @@ namespace IVCharacterization
         //public IVMainViewModel model1 { get; private set; }
 
         //public IVMainViewModel model2 { get; private set; }
-        public event EventHandler<IVCharacteristicTypeEnum> DataContextChangeDemand;
+        //public event EventHandler<IVCharacteristicTypeEnum> DataContextChangeDemand;
 
-        private void OnDataContextChangeDemand(object sender, IVCharacteristicTypeEnum e)
-        {
-            var handler = DataContextChangeDemand;
-            if (handler != null)
-                handler(sender, e);
-        }
+        //private void OnDataContextChangeDemand(object sender, IVCharacteristicTypeEnum e)
+        //{
+        //    var handler = DataContextChangeDemand;
+        //    if (handler != null)
+        //        handler(sender, e);
+        //}
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var index = ((ComboBox)sender).SelectedIndex;
-            switch (index)
-            {
-                case 0: OnDataContextChangeDemand(this, IVCharacteristicTypeEnum.Transfer); break;//DataContext = model2; break;
-                case 1: OnDataContextChangeDemand(this, IVCharacteristicTypeEnum.Output); break;//DataContext = model1; break;
-            }
-        }
+        //private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    var index = ((ComboBox)sender).SelectedIndex;
+        //    switch (index)
+        //    {
+        //        case 0: OnDataContextChangeDemand(this, IVCharacteristicTypeEnum.Transfer); break;//DataContext = model2; break;
+        //        case 1: OnDataContextChangeDemand(this, IVCharacteristicTypeEnum.Output); break;//DataContext = model1; break;
+        //    }
+        //}
 
         
     }
