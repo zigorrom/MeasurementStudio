@@ -67,6 +67,7 @@
     <Compile Include="Experiments\OutputCurveMeasurement.cs" />
     <Compile Include="Experiments\TransferCurveMeasurement.cs" />
     <Compile Include="RangeHandlerToIndexConverter.cs" />
+    <Compile Include="ViewModels\OutputIVViewModel.cs" />
     <Compile Include="Views\ControlButtonsPanel.xaml.cs">
       <DependentUpon>ControlButtonsPanel.xaml</DependentUpon>
     </Compile>

@@ -81,7 +81,7 @@
       <DependentUpon>NoiseDataVisualization.xaml</DependentUpon>
     </Compile>
     <Compile Include="NoiseMainView.cs" />
-    <Compile Include="OxyMainView.cs" />
+    <Compile Include="OxyMainViewModel.cs" />
     <Compile Include="OxyDataVisualizationControl.xaml.cs">
       <DependentUpon>OxyDataVisualizationControl.xaml</DependentUpon>
       <SubType>Code</SubType>

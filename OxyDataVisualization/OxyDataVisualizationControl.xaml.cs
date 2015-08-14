@@ -25,7 +25,7 @@ namespace OxyDataVisualization
             InitializeComponent();
         }
 
-        public OxyMainView ViewModel
+        public OxyMainViewModel ViewModel
         {
             get { return viewModel; }
         }

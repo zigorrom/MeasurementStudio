@@ -4,6 +4,7 @@ using Helper.Ranges.DoubleRange;
 using Helper.Ranges.RangeHandlers;
 using Helper.Ranges.SimpleRangeControl;
 using Instruments;
+using OxyDataVisualization;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,21 +26,15 @@ namespace IVCharacterization
         Transfer
     }
 
-    public class IVMainViewModel : INotifyPropertyChanged
+    public abstract class IVMainViewModel : INotifyPropertyChanged
     {
-        private IInstrument m_BackGateSMU;
-        private IInstrument m_DrainSourseSMU;
-
         private IVCharacteristicTypeEnum m_IVCharacteristicType;
         public IVCharacteristicTypeEnum IVCharacteristicType
         {
             get { return m_IVCharacteristicType; }
             set
             {
-                if (m_IVCharacteristicType == value)
-                    return;
-               // OnChangeIVCharacterizationViewModel(value);
-                //OnPropertyChanged("IVCharacteristicType");
+                SetField(ref m_IVCharacteristicType, value, "IVCharacteristicType");
             }
         }
 
@@ -63,8 +58,8 @@ namespace IVCharacterization
             }
         }
 
-        private VisualizationViewModel m_Visualization;
-        public VisualizationViewModel Visualization
+        private OxyMainViewModel m_Visualization;
+        public OxyMainViewModel Visualization
         {
             get { return m_Visualization; }
             set
@@ -102,26 +97,26 @@ namespace IVCharacterization
             GlobalIsEnabled = true;
         }
 
-        public void SetVisualizationLabels()
-        {
-            switch (m_IVCharacteristicType)
-            {
-                case IVCharacteristicTypeEnum.Output:
-                    {
-                        Visualization.HorizontalAxisLabel = "Drain-Source Voltage, Vds(V)";
-                        Visualization.VertivalAxisLabel = "Drain Current, Id(A)";
-                    }
-                    break;
-                case IVCharacteristicTypeEnum.Transfer:
-                    {
-                        Visualization.HorizontalAxisLabel = "Gate Voltage, Vg(V)";
-                        Visualization.VertivalAxisLabel = "Drain Current, Id(A)";
-                    }
-                    break;
-                default:
-                    return;
-            }
-        }
+        //public void SetVisualizationLabels()
+        //{
+        //    switch (m_IVCharacteristicType)
+        //    {
+        //        case IVCharacteristicTypeEnum.Output:
+        //            {
+        //                Visualization.HorizontalAxisLabel = "Drain-Source Voltage, Vds(V)";
+        //                Visualization.VertivalAxisLabel = "Drain Current, Id(A)";
+        //            }
+        //            break;
+        //        case IVCharacteristicTypeEnum.Transfer:
+        //            {
+        //                Visualization.HorizontalAxisLabel = "Gate Voltage, Vg(V)";
+        //                Visualization.VertivalAxisLabel = "Drain Current, Id(A)";
+        //            }
+        //            break;
+        //        default:
+        //            return;
+        //    }
+        //}
 
         public event EventHandler<IVCharacteristicTypeEnum> ChangeIVCharacterizationViewModel;
         private void OnChangeIVCharacterizationViewModel(IVCharacteristicTypeEnum CharacteristicType)

@@ -19,7 +19,7 @@ namespace OxyDataVisualization
         Log
     }
 
-    public class OxyMainView:INotifyPropertyChanged
+    public class OxyMainViewModel:INotifyPropertyChanged
     {
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -66,6 +66,7 @@ namespace OxyDataVisualization
                 _plotModel.Title = value;
             }
         }
+        
         public string Subtitle
         {
             get { return _plotModel.Subtitle; }
@@ -75,6 +76,33 @@ namespace OxyDataVisualization
             }
         }
 
+        private Axis _bottomAxis;
+        private Axis _leftAxis;
+
+        private string _horizontalAxisTitle;
+        public string HorizontalAxisTitle
+        {
+            get { return _horizontalAxisTitle; }
+            set
+            {
+                _horizontalAxisTitle = value;
+                if(_bottomAxis!=null)
+                _bottomAxis.Title = value;
+            }
+        }
+
+        private string _verticalAxisTitle;
+        public string VerticalAxisTitle
+        {
+            get { return _verticalAxisTitle; }
+            set
+            {
+                _verticalAxisTitle = value;
+                if (_leftAxis != null)
+                _leftAxis.Title = value;
+            }
+        }
+        
         //private string _expressionToDisplay;        
         //public string ExpressionToDisplay { get; set; }
 
@@ -90,9 +118,7 @@ namespace OxyDataVisualization
                 SetValue(ref _scale, value, "Scale",
                     new Action(() =>
                     {
-                        Axis _bottomAxis;
-                        Axis _leftAxis;
-                        switch (_scale)
+                       switch (_scale)
                         {
                             
                             case GraphScaleType.SemiLog:
@@ -115,6 +141,9 @@ namespace OxyDataVisualization
                                 }
                                 break;
                         }
+                       _bottomAxis.Title = _horizontalAxisTitle;
+                       _leftAxis.Title = _verticalAxisTitle;
+
                         _plotModel.Axes.Clear();
                         _plotModel.Axes.Add(_bottomAxis);
                         _plotModel.Axes.Add(_leftAxis);
@@ -133,7 +162,7 @@ namespace OxyDataVisualization
             _plotModel.InvalidatePlot(true);
         }
         
-        public OxyMainView()
+        public OxyMainViewModel()
         {
             _plotModel = new PlotModel();
             Scale = GraphScaleType.Lin;
