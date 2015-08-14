@@ -14,5 +14,7 @@ namespace IVCharacterization.ViewModels
             Visualization.VerticalAxisTitle = "Drain Current, Id";
             Visualization.Title = "Output I-V Characterization";
         }
+
+
     }
 }

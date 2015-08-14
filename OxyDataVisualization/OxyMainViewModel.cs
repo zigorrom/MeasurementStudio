@@ -11,6 +11,7 @@ namespace OxyDataVisualization
     using OxyPlot.Series;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
+    using System.Windows.Data;
     public enum GraphScaleType
     {
         None,
@@ -158,10 +159,31 @@ namespace OxyDataVisualization
         
         public void AddSeries(IEnumerable<DataPoint> Points)
         {
+            //var obs = new ObservableCollection<DataPoint>(Points);
+            //_plotModel.Series.Add(new LineSeries { ItemsSource = obs, StrokeThickness = 2 });
+            //var ls = new LineSeries();
+            //var bnd = new Binding();
+            //bnd.Source = Points;
+            //bnd.Mode = BindingMode.Default;
+            //bnd.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            //BindingOperations.SetBinding(OxyPlot.Wpf.LineSeries.ItemsSourceProperty, Points, bnd);
+
+
+            //    var StartBind = new Binding("Start");
+            //StartBind.Source = m_doubleRange;//.Start;
+            //StartBind.Mode = BindingMode.TwoWay;
+            //StartBind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            //BindingOperations.SetBinding(Start, DoubleUnitValueDependencyObject.NumericValueProperty, StartBind);
             _plotModel.Series.Add(new LineSeries { ItemsSource = Points, StrokeThickness = 2 });
-            _plotModel.InvalidatePlot(true);
+            //_plotModel.InvalidatePlot(true);
         }
         
+        public void InvalidatePlot(bool UpdateData)
+        {
+            if (_plotModel != null)
+                _plotModel.InvalidatePlot(UpdateData);
+        }
+
         public OxyMainViewModel()
         {
             _plotModel = new PlotModel();

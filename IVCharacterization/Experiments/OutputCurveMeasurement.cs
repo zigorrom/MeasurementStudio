@@ -16,14 +16,14 @@ namespace IVCharacterization.Experiments
     {
         private OutputIVViewModel _vm;
         private IVMainView _control;
-        private MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow> _mea;
+        //private MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow> _mea;
 
         public OutputCurveMeasurement():base("Output curve measurement")
         {
             _vm = new OutputIVViewModel();
             _control = new IVMainView();
             _control.DataContext = _vm;
-            _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow("asdda", 123, "", 1), new Func<DrainSourceDataRow, OxyPlot.DataPoint>((x) => new DataPoint(x.DrainSourceVoltage, x.DrainCurrent)));
+            
             
             _control.ControlButtons.StartButtonPressed += ControlButtons_StartButtonPressed;
         }
@@ -36,7 +36,7 @@ namespace IVCharacterization.Experiments
         public override void Start()
         {
             base.Start();
-            _vm.Visualization.AddSeries(_mea);
+            
            
         }
 
@@ -67,13 +67,23 @@ namespace IVCharacterization.Experiments
 
         protected override void DoMeasurement(object sender, DoWorkEventArgs e)
         {
-            //throw new NotImplementedException();
-            for (int i = 0; i < 1000; i++)
+            for (int j = 0; j < 4; j++)
             {
-                _mea.Add(new DrainSourceDataRow(i, i * 100, 0));
-                _vm.Visualization.CurrentPlotModel.InvalidatePlot(true);    
-                System.Threading.Thread.Sleep(100);
+                var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("asdda_{0}",j), 123, "", 1), new Func<DrainSourceDataRow, OxyPlot.DataPoint>((x) => new DataPoint(x.DrainSourceVoltage, x.DrainCurrent)));
+                _vm.AddSeries(_mea);
+                //_vm.Visualization.AddSeries(_mea);
+                //throw new NotImplementedException();
+                for (int i = 0; i < 100000; i++)
+                {
+                    _mea.Add(new DrainSourceDataRow(i, i*j , 0));
+
+                    if (i % 1000 == 0)
+                        _vm.InvalidatePlot(true);
+                    //_vm.Visualization.CurrentPlotModel.InvalidatePlot(true);    
+                    //System.Threading.Thread.Sleep(100);
+                }
             }
+            
 
         }
 

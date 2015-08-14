@@ -5,6 +5,7 @@ using Helper.Ranges.RangeHandlers;
 using Helper.Ranges.SimpleRangeControl;
 using Instruments;
 using OxyDataVisualization;
+using OxyPlot;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -62,13 +63,24 @@ namespace IVCharacterization
         public OxyMainViewModel Visualization
         {
             get { return m_Visualization; }
-            set
+            private set
             {
-                if (m_Visualization == value) return;
-                m_Visualization = value;
-                //SetVisualizationLabels(m_IVCharacteristicType)
-                OnPropertyChanged("Visualization");
+                SetField(ref m_Visualization, value, "Visualization");
             }
+        }
+
+        public void AddSeries(IEnumerable<DataPoint> Points)
+        {
+            if (Visualization != null)
+            {
+                Visualization.AddSeries(Points);
+            }
+        }
+
+        public void InvalidatePlot(bool updateData)
+        {
+            if (Visualization != null)
+                Visualization.InvalidatePlot(updateData);
         }
 
         private bool m_globalIsEnabled;
