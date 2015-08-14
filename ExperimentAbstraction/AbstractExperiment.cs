@@ -16,20 +16,15 @@ namespace ExperimentAbstraction
         where DataT : struct
     {
         private string m_Name;
-        //protected Dictionary<string, IInstrument> m_Instruments;
         protected Queue<MeasurementData<InfoT, DataT>> _dataQueue;
-        private BackgroundWorker _worker;
 
         public AbstractExperiment(string ExperimentName)
         {
             m_Name = ExperimentName;
             _dataQueue = new Queue<MeasurementData<InfoT, DataT>>();
-            _worker = new BackgroundWorker();
-            _worker.WorkerSupportsCancellation = true;
-            _worker.WorkerReportsProgress = true;
-            _worker.DoWork+=DoMeasurement;
+            InitializeInstruments();
+            InitializeExperiment();
         }
-
        
 
         public abstract void OwnInstruments();
@@ -43,16 +38,20 @@ namespace ExperimentAbstraction
         public virtual void Start()
         {
             OnExperimentStarted(this, new EventArgs());
-            
         }
-
-
 
         protected abstract void DoMeasurement(object sender, DoWorkEventArgs e);
 
-        public abstract int ReportProgress();
+        public virtual void ReportProgress()
+        {
+            OnExperimentProgressChanged(this, new EventArgs());
+        }
+
         
-        public abstract void Abort();
+        public virtual void Abort()
+        {
+            OnExperimentStopped(this, new EventArgs());
+        }
         
 
         public string Name

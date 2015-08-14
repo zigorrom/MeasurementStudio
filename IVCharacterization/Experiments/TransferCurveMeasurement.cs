@@ -35,7 +35,7 @@ namespace IVCharacterization.Experiments
             throw new NotImplementedException();
         }
 
-        public override int ReportProgress()
+        public override void ReportProgress()
         {
             throw new NotImplementedException();
         }

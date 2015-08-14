@@ -3,6 +3,7 @@ using ExperimentDataModel;
 using IVCharacterization.DataModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,8 @@ namespace IVCharacterization.Experiments
     public class OutputCurveMeasurement : AbstractExperiment<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>
     {
 
-        
+        private BackgroundWorker _worker;
+
 
 
 
@@ -41,7 +43,7 @@ namespace IVCharacterization.Experiments
             throw new NotImplementedException();
         }
 
-        public override int ReportProgress()
+        public override void ReportProgress()
         {
             throw new NotImplementedException();
         }

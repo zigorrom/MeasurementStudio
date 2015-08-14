@@ -18,10 +18,7 @@ namespace test
         static void Main(string[] args)
         {
 
-            using (var sr = new FileStream("D:\\test.txt", FileMode.CreateNew,FileAccess.Write,FileShare.None))
-            {
-                Console.ReadKey();
-            }
+           
 
             //Console.WriteLine(Convert.ToString(3-1,2));
             //Console.WriteLine(Instruments.ActualInstruments.AgilentU2442A.AgilentU2542A.CounterFunctionEnum.Frequency);
