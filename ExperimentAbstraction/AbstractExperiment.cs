@@ -27,12 +27,24 @@ namespace ExperimentAbstraction
             _worker = new BackgroundWorker();
             _worker.WorkerSupportsCancellation = true;
             _worker.WorkerReportsProgress = true;
-
-
+            _worker.DoWork += DoMeasurement;
+            _worker.ProgressChanged += _worker_ProgressChanged;
+            _worker.RunWorkerCompleted += _worker_RunWorkerCompleted;
+            
             InitializeInstruments();
             InitializeExperiment();
             
 
+        }
+
+        void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            OnExperimentFinished(sender, e);
+        }
+
+        void _worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            OnExperimentProgressChanged(sender, e);
         }
        
 
@@ -51,12 +63,7 @@ namespace ExperimentAbstraction
 
         protected abstract void DoMeasurement(object sender, DoWorkEventArgs e);
 
-        public virtual void ReportProgress()
-        {
-            OnExperimentProgressChanged(this, new EventArgs());
-        }
-
-        
+       
         public virtual void Abort()
         {
             _worker.CancelAsync();
@@ -121,7 +128,7 @@ namespace ExperimentAbstraction
         }
 
         public event EventHandler ExperimentProgressChanged;
-        protected virtual void OnExperimentProgressChanged(object sender, EventArgs e)
+        protected virtual void OnExperimentProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             var handler = ExperimentProgressChanged;
             if (handler != null)

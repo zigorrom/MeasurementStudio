@@ -15,7 +15,7 @@ namespace ExperimentAbstraction
         void OwnInstruments();
         void ReleaseInstruments();
         void Start();
-        void ReportProgress();
+        //void ReportProgress();
         void Abort();
         object ViewModel { get; }
         UserControl Control { get; }

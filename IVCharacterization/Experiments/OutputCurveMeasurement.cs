@@ -40,10 +40,7 @@ namespace IVCharacterization.Experiments
             //throw new NotImplementedException();
         }
 
-        public override void ReportProgress()
-        {
-            //throw new NotImplementedException();
-        }
+       
 
         public override void Abort()
         {
