@@ -66,7 +66,9 @@ namespace IVCharacterization.Experiments
             get { throw new NotImplementedException(); }
         }
 
-        protected override void DoMeasurement()
+
+
+        protected override void DoMeasurement(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             throw new NotImplementedException();
         }

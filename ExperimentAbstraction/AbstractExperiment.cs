@@ -25,7 +25,12 @@ namespace ExperimentAbstraction
             m_Name = ExperimentName;
             _dataQueue = new Queue<MeasurementData<InfoT, DataT>>();
             _worker = new BackgroundWorker();
+            _worker.WorkerSupportsCancellation = true;
+            _worker.WorkerReportsProgress = true;
+            _worker.DoWork+=DoMeasurement;
         }
+
+       
 
         public abstract void OwnInstruments();
 
@@ -35,9 +40,15 @@ namespace ExperimentAbstraction
 
         public abstract void ReleaseInstruments();
 
-        public abstract void Start();
+        public virtual void Start()
+        {
+            OnExperimentStarted(this, new EventArgs());
+            
+        }
 
-        protected abstract void DoMeasurement();
+
+
+        protected abstract void DoMeasurement(object sender, DoWorkEventArgs e);
 
         public abstract int ReportProgress();
         
