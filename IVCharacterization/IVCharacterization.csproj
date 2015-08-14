@@ -132,6 +132,10 @@
       <Project>{79334cce-6c21-489f-8762-ae357fec3991}</Project>
       <Name>Keithley24xx</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OxyDataVisualization\OxyDataVisualization.csproj">
+      <Project>{A85FAA24-0408-4873-B548-F7D7A5399CF1}</Project>
+      <Name>OxyDataVisualization</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\ControlButtonsPanel.xaml">

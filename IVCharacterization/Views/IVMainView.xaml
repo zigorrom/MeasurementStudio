@@ -6,10 +6,12 @@
              xmlns:DataVisualization ="clr-namespace:DataVisualization;assembly=DataVisualization"
              xmlns:Ranges ="clr-namespace:Helper.Ranges.SimpleRangeControl;assembly=Helper"
              xmlns:local="clr-namespace:IVCharacterization"
+             
              xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:OxyDataVisualization="clr-namespace:OxyDataVisualization;assembly=OxyDataVisualization"
              x:Class="IVCharacterization.IVMainView"
              mc:Ignorable="d" 
-             d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578" d:DataContext="{d:DesignData /SampleData/IVMainViewModelSampleData.xaml}">
+             d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578">
     <UserControl.Resources>
         <local:CharacteristicTypeValueConverter x:Key="CharacteristicTypeValueConverter"/>
         <GridLength x:Key="RangeGroupHeight">205*</GridLength>
@@ -18,9 +20,9 @@
         <GridLength x:Key="RangeGroupFerstCoulumnWidth">115*</GridLength>
         <GridLength x:Key="RangeGroupSecondColumnWidth">163*</GridLength>
         <System:Double x:Key="RangeHandlerSelectorHeight">40</System:Double>
-    
+
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -31,7 +33,8 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <DataVisualization:DataPlotter x:Name="Plotter" DataContext="{Binding Visualization}" Margin="3" Height="Auto"/>
+        <OxyDataVisualization:OxyDataVisualizationControl x:Name="Plotter"/>
+        <!--<DataVisualization:DataPlotter x:Name="Plotter" DataContext="{Binding Visualization}" Margin="3" Height="Auto"/>-->
         <Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" MinHeight="400" Margin="0.8,0,-0.4,0.2" VerticalAlignment="Top">
             <Expander.Header>
                 <TextBlock Text="Settings" TextOptions.TextFormattingMode="Ideal">
@@ -54,11 +57,13 @@
                                 <RowDefinition Height="288*"/>
                                 <!--<RowDefinition Height="50*"/>-->
                             </Grid.RowDefinitions>
-                            <ComboBox IsEnabled="{Binding GlobalIsEnabled}" Margin="3,3,2.6,3" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="ComboBox_SelectionChanged">
-                                <!--Text="{Binding IVCharacteristicType, Converter={StaticResource CharacteristicTypeValueConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >-->
+                            <!--<ComboBox IsEnabled="{Binding GlobalIsEnabled}" Margin="3,3,2.6,3" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="ComboBox_SelectionChanged">
+                                -->
+                            <!--Text="{Binding IVCharacteristicType, Converter={StaticResource CharacteristicTypeValueConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >-->
+                            <!--
                                 <ComboBoxItem Content="Output"/>
                                 <ComboBoxItem Content="Transfer"/>
-                            </ComboBox>
+                            </ComboBox>-->
 
                             <GroupBox Header="Drain-Source Voltage Range" Grid.Row="1" Margin="0">
 
@@ -90,6 +95,10 @@
             <local:ControlButtonsPanel x:Name="ControlButtons" Grid.Column="1" Margin="3"/>
             <ProgressBar x:Name="ProcessProgress" Margin="10" Visibility="Hidden"/>
         </Grid>
+
+
+
+        
 
 
 
