@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IVCharacterization.DataModel
 {
-    internal struct DrainSourceDataRow:IFormattable
+    public struct DrainSourceDataRow:IFormattable
     {
         
         private double m_DrainSourceVoltage;

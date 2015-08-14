@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IVCharacterization.Experiments;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,8 @@ namespace IVtest
     {
         static void Main(string[] args)
         {
-            var oc = new OutputCurveMeasurement
+            var oc = new OutputCurveMeasurement();
+            
         }
     }
 }

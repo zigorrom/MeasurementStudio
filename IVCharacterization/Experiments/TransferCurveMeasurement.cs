@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IVCharacterization.Experiments
 {
-    class TransferCurveMeasurement : AbstractExperiment<GateSourceMeasurementInfoRow,GateSourceDataRow>
+    public class TransferCurveMeasurement : AbstractExperiment<GateSourceMeasurementInfoRow,GateSourceDataRow>
     {
         public TransferCurveMeasurement():base("Transfer curve measurement")
         {

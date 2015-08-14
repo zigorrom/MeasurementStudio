@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IVCharacterization.Experiments
 {
-    class OutputCurveMeasurement : AbstractExperiment<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>
+    public class OutputCurveMeasurement : AbstractExperiment<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>
     {
 
         

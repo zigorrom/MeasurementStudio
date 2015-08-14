@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IVCharacterization.DataModel
 {
-    internal struct GateSourceDataRow:IFormattable
+    public struct GateSourceDataRow:IFormattable
     {
         
         public GateSourceDataRow(double drainSourceVoltage, double drainCurrent, double gateCurrent)
