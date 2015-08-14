@@ -2,6 +2,7 @@
 using NationalInstruments.VisaNS;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -11,21 +12,16 @@ namespace test
 {
 
 
-    class a
-    {
-
-    }
-    class b:a
-    {
-
-    }
 
     class Program
     {
         static void Main(string[] args)
         {
-            var asd = new b();
-            var t = asd.GetType();
+
+            using (var sr = new FileStream("D:\\test.txt", FileMode.CreateNew,FileAccess.Write,FileShare.None))
+            {
+                Console.ReadKey();
+            }
 
             //Console.WriteLine(Convert.ToString(3-1,2));
             //Console.WriteLine(Instruments.ActualInstruments.AgilentU2442A.AgilentU2542A.CounterFunctionEnum.Frequency);
