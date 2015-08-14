@@ -136,7 +136,6 @@ namespace OxyDataVisualization
         public OxyMainView()
         {
             _plotModel = new PlotModel();
-            
             Scale = GraphScaleType.Lin;
            
             
