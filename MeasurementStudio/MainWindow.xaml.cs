@@ -69,7 +69,7 @@ namespace MeasurementStudio
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             viewModel.Add();
-            viewModel.MyModel.InvalidatePlot(true);
+         //   viewModel.MyModel.InvalidatePlot(true);
         }
 
         //void recognizer2_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)

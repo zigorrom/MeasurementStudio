@@ -24,6 +24,7 @@ namespace IVCharacterization.Experiments
             _control = new IVMainView();
             _control.DataContext = _vm;
             _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow("asdda", 123, "", 1), new Func<DrainSourceDataRow, OxyPlot.DataPoint>((x) => new DataPoint(x.DrainSourceVoltage, x.DrainCurrent)));
+            
             _control.ControlButtons.StartButtonPressed += ControlButtons_StartButtonPressed;
         }
 

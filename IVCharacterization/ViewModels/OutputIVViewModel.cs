@@ -12,6 +12,7 @@ namespace IVCharacterization.ViewModels
         {
             Visualization.HorizontalAxisTitle = "Drain - Source Voltage, Vds";
             Visualization.VerticalAxisTitle = "Drain Current, Id";
+            Visualization.Title = "Output I-V Characterization";
         }
     }
 }
