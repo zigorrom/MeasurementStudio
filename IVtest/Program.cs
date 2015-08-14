@@ -12,7 +12,7 @@ namespace IVtest
         static void Main(string[] args)
         {
             var oc = new OutputCurveMeasurement();
-            
+            oc.Start();
         }
     }
 }

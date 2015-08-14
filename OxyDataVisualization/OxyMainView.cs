@@ -127,31 +127,18 @@ namespace OxyDataVisualization
         }
 
         
-        public void AddPoints()
+        public void AddSeries(IEnumerable<DataPoint> Points)
         {
-            var rnd = new Random();
-            
-            for (int i = 0; i < 100; i++)
-            {
-                var m = rnd.NextDouble() * 10;
-                var n = rnd.NextDouble() * 100000;
-                //l.Add(new DataPoint(n,  m*i));
-                l.Add(new System.Windows.Point(n, m * i));
-            }
-            //System.Threading.Thread.Sleep(400);
-            //.RemoveRange(0, 100);
+            _plotModel.Series.Add(new LineSeries { ItemsSource = Points, StrokeThickness = 2 });
             _plotModel.InvalidatePlot(true);
         }
-        private ObservableCollection<System.Windows.Point> l;
+        
         public OxyMainView()
         {
             _plotModel = new PlotModel();
             
             Scale = GraphScaleType.Lin;
-            l = new ObservableCollection<System.Windows.Point>();
-            //l = new ObservableCollection<DataPoint>();
-            var ls = new LineSeries { ItemsSource = l };
-            _plotModel.Series.Add(ls);
+           
             
             
         }

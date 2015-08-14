@@ -37,6 +37,7 @@ namespace ExperimentAbstraction
 
         }
 
+
         void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             OnExperimentFinished(sender, e);
@@ -59,6 +60,7 @@ namespace ExperimentAbstraction
         public virtual void Start()
         {
             OnExperimentStarted(this, new EventArgs());
+            _worker.RunWorkerAsync();
         }
 
         protected abstract void DoMeasurement(object sender, DoWorkEventArgs e);
@@ -103,6 +105,14 @@ namespace ExperimentAbstraction
             get;
         }
 
+        public void SetDisplayFunction(string Function)
+        {
+            //Set function through expression evaluator;
+            //https://csharpeval.codeplex.com/
+            throw new NotImplementedException();
+        }
+
+
         public event EventHandler ExperimentStarted;
         protected virtual void OnExperimentStarted(object sender, EventArgs e)
         {
@@ -142,5 +152,8 @@ namespace ExperimentAbstraction
             if (handler != null)
                 handler(sender, e);
         }
+
+
+        
     }
 }

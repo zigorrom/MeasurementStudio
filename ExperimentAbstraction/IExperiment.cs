@@ -19,6 +19,8 @@ namespace ExperimentAbstraction
         void Abort();
         object ViewModel { get; }
         UserControl Control { get; }
+        void SetDisplayFunction(string Function);
+
 
         event EventHandler ExperimentStarted;
         event EventHandler ExperimentStopped;

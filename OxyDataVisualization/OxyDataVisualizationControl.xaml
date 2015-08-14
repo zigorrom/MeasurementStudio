@@ -12,7 +12,5 @@
     </UserControl.DataContext>
     <Grid>
         <oxy:PlotView Model="{Binding CurrentPlotModel}"/>
-        
-
     </Grid>
 </UserControl>
