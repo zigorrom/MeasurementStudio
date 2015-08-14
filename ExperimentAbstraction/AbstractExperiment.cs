@@ -25,10 +25,10 @@ namespace ExperimentAbstraction
             m_Name = ExperimentName;
             _dataQueue = new Queue<MeasurementData<InfoT, DataT>>();
             _worker = new BackgroundWorker();
-            
-          //  m_Instruments = new Dictionary<string, IInstrument>();
         }
-        
+
+        public abstract void OwnInstruments();
+
         public abstract void InitializeExperiment();
 
         public abstract void InitializeInstruments();
@@ -36,6 +36,8 @@ namespace ExperimentAbstraction
         public abstract void ReleaseInstruments();
 
         public abstract void Start();
+
+        protected abstract void DoMeasurement();
 
         public abstract int ReportProgress();
         
@@ -66,19 +68,12 @@ namespace ExperimentAbstraction
             return m_Name.GetHashCode();
         }
 
-
-        public abstract void OwnInstruments();
-
-
         public abstract object ViewModel { get; }
-
-
 
         public abstract UserControl Control
         {
             get;
         }
-
 
         public event EventHandler ExperimentStarted;
         protected virtual void OnExperimentStarted(object sender, EventArgs e)
