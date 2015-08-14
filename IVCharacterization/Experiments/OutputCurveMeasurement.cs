@@ -1,4 +1,5 @@
 ﻿using ExperimentAbstraction;
+using ExperimentDataModel;
 using IVCharacterization.DataModel;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace IVCharacterization.Experiments
     {
 
         
+
+
 
         public OutputCurveMeasurement():base("Output curve measurement")
         {

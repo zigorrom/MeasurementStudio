@@ -112,6 +112,10 @@
       <Project>{f9ff4a13-f344-4422-8908-99292fae27ee}</Project>
       <Name>ExperimentAbstraction</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExperimentalDataModelTest\ExperimentalDataModelTest.csproj">
+      <Project>{a7ddfec9-618b-4abe-9b1f-5376db0a282d}</Project>
+      <Name>ExperimentalDataModelTest</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ExperimentDataModel\ExperimentDataModel.csproj">
       <Project>{f37c1293-015e-47ef-81fe-694857e4a303}</Project>
       <Name>ExperimentDataModel</Name>

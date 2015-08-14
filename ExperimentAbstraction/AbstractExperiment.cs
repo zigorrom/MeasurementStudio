@@ -1,7 +1,9 @@
 ﻿
+using ExperimentDataModel;
 using Instruments;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,13 +12,20 @@ using System.Windows.Controls;
 namespace ExperimentAbstraction
 {
     public abstract class AbstractExperiment<InfoT,DataT>:ObservableExperiment<DataT>, IExperiment
+        where InfoT : struct
+        where DataT : struct
     {
         private string m_Name;
         //protected Dictionary<string, IInstrument> m_Instruments;
+        protected Queue<MeasurementData<InfoT, DataT>> _dataQueue;
+        private BackgroundWorker _worker;
 
         public AbstractExperiment(string ExperimentName)
         {
             m_Name = ExperimentName;
+            _dataQueue = new Queue<MeasurementData<InfoT, DataT>>();
+            _worker = new BackgroundWorker();
+            
           //  m_Instruments = new Dictionary<string, IInstrument>();
         }
         
