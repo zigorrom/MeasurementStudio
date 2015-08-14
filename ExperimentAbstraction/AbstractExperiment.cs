@@ -17,13 +17,22 @@ namespace ExperimentAbstraction
     {
         private string m_Name;
         protected Queue<MeasurementData<InfoT, DataT>> _dataQueue;
+        private BackgroundWorker _worker;
+
 
         public AbstractExperiment(string ExperimentName)
         {
             m_Name = ExperimentName;
             _dataQueue = new Queue<MeasurementData<InfoT, DataT>>();
+            _worker = new BackgroundWorker();
+            _worker.WorkerSupportsCancellation = true;
+            _worker.WorkerReportsProgress = true;
+
+
             InitializeInstruments();
             InitializeExperiment();
+            
+
         }
        
 
@@ -50,7 +59,9 @@ namespace ExperimentAbstraction
         
         public virtual void Abort()
         {
+            _worker.CancelAsync();
             OnExperimentStopped(this, new EventArgs());
+            
         }
         
 

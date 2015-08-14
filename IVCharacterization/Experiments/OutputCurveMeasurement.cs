@@ -13,49 +13,46 @@ namespace IVCharacterization.Experiments
     public class OutputCurveMeasurement : AbstractExperiment<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>
     {
 
-        private BackgroundWorker _worker;
-
-
-
+        
 
         public OutputCurveMeasurement():base("Output curve measurement")
         {
-
+            
         }
 
         public override void InitializeExperiment()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public override void InitializeInstruments()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public override void ReleaseInstruments()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public override void Start()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public override void ReportProgress()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public override void Abort()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public override void OwnInstruments()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public override object ViewModel
