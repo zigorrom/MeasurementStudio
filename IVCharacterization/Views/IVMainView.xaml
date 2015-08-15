@@ -25,7 +25,8 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="617*"/>
 
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
@@ -33,9 +34,21 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <OxyDataVisualization:OxyDataVisualizationControl DataContext="{Binding Visualization}" x:Name="Plotter" />
+        <Menu Grid.ColumnSpan="2" VerticalContentAlignment="Center">
+            <MenuItem Header="File">
+                <MenuItem Header="New experiment"/>
+                <MenuItem/>
+            </MenuItem>
+            <MenuItem Header="Export">
+                <MenuItem Header="Graph"/>
+                <MenuItem Header="Origin"/>
+            </MenuItem>
+        </Menu>
+
+
+        <OxyDataVisualization:OxyDataVisualizationControl DataContext="{Binding Visualization}" x:Name="Plotter" Grid.Row="1" />
         <!--<DataVisualization:DataPlotter x:Name="Plotter" DataContext="{Binding Visualization}" Margin="3" Height="Auto"/>-->
-        <Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" MinHeight="400" Margin="0.8,0,-0.4,0.2" VerticalAlignment="Top">
+        <Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" MinHeight="400" Grid.Row="1">
             <Expander.Header>
                 <TextBlock Text="Settings" TextOptions.TextFormattingMode="Ideal">
                     <TextBlock.RenderTransform>
@@ -51,10 +64,11 @@
                     <TabItem Header="Range setup">
                         <Grid Background="#FFE5E5E5">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="288*"/>
+                                <!--<RowDefinition Height="52*"/>-->
+                                <RowDefinition Height="Auto"/>
                                 <!--<RowDefinition Height="50*"/>-->
-                                <RowDefinition Height="288*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                                 <!--<RowDefinition Height="50*"/>-->
                             </Grid.RowDefinitions>
                             <!--<ComboBox IsEnabled="{Binding GlobalIsEnabled}" Margin="3,3,2.6,3" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="ComboBox_SelectionChanged">
@@ -65,7 +79,7 @@
                                 <ComboBoxItem Content="Transfer"/>
                             </ComboBox>-->
 
-                            <GroupBox Header="Drain-Source Voltage Range" Grid.Row="1" Margin="0">
+                            <GroupBox Header="Drain-Source Voltage Range" Grid.Row="0" Margin="0">
 
                                 <StackPanel IsEnabled="{Binding GlobalIsEnabled}">
                                     <Ranges:RangeControl DataContext="{Binding DSRangeViewModel}" Grid.ColumnSpan="2"/>
@@ -73,11 +87,23 @@
                                 </StackPanel>
 
                             </GroupBox>
-                            <GroupBox Header="Gate-Source Voltage Range" Grid.Row="2" Margin="0" Grid.RowSpan="2">
+                            <GroupBox Header="Gate-Source Voltage Range" Grid.Row="1" Margin="0" >
                                 <StackPanel IsEnabled="{Binding GlobalIsEnabled}">
                                     <Ranges:RangeControl DataContext="{Binding GSRangeViewModel}" Grid.ColumnSpan="2"/>
                                     <local:RangeHandlerControl Grid.Row="1" DataContext="{Binding GSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>
                                 </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Save directory" Grid.Row="2">
+                                <Grid IsEnabled="{Binding GlobalIsEnabled}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40*"/>
+                                        <ColumnDefinition Width="40*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0"/>
+                                    <TextBox Grid.Column="1"/>
+                                    <CheckBox Grid.Column="2" Content="AI" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                                </Grid>
                             </GroupBox>
                         </Grid>
                     </TabItem>
@@ -85,9 +111,10 @@
                         <Grid Background="#FFE5E5E5"/>
                     </TabItem>
                 </TabControl>
+                
             </Grid>
         </Expander>
-        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0.4,-0.4,-0.4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="346.4"/>
@@ -98,7 +125,7 @@
 
 
 
-        
+
 
 
 
