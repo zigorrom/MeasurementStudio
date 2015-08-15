@@ -4,7 +4,7 @@ using Helper.Ranges.DoubleRange;
 using Helper.Ranges.RangeHandlers;
 using Helper.Ranges.SimpleRangeControl;
 using Instruments;
-using OxyDataVisualization;
+using DataVisualization;
 using OxyPlot;
 using System;
 using System.Collections.Generic;
@@ -12,6 +12,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataVisualization.OxyPlotVisualization;
 
 namespace IVCharacterization
 {

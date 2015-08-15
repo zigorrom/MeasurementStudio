@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DataVisualization.OxyPlotVisualization
+namespace DataVisualization.DynamicDataDisplay
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for D3DataVisualizationControl.xaml
     /// </summary>
-    public partial class OxyDataVisualizationControl : UserControl
+    public partial class D3DataVisualizationControl : UserControl
     {
-        public OxyDataVisualizationControl()
+        public D3DataVisualizationControl()
         {
             InitializeComponent();
-        }
-
-        public OxyMainViewModel ViewModel
-        {
-            get { return viewModel; }
         }
     }
 }

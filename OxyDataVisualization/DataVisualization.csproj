@@ -7,8 +7,8 @@
     <ProjectGuid>{A85FAA24-0408-4873-B548-F7D7A5399CF1}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OxyDataVisualization</RootNamespace>
-    <AssemblyName>OxyDataVisualization</AssemblyName>
+    <RootNamespace>DataVisualization</RootNamespace>
+    <AssemblyName>DataVisualization</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -31,9 +31,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\ThirdPartyLibs\ExpressionEvaluator 2.0.3\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamicDataDisplay">
+      <HintPath>..\packages\DynamicDataDisplayWpf.0.4.0\lib\DynamicDataDisplay.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamicDataDisplay.Maps">
+      <HintPath>..\packages\DynamicDataDisplayWpf.0.4.0\lib\DynamicDataDisplay.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamicDataDisplay.Markers">
+      <HintPath>..\packages\DynamicDataDisplayWpf.0.4.0\lib\DynamicDataDisplay.Markers.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamicDataDisplay.Markers2">
+      <HintPath>..\packages\DynamicDataDisplayWpf.0.4.0\lib\DynamicDataDisplay.Markers2.dll</HintPath>
     </Reference>
     <Reference Include="ExpressionEvaluator">
       <HintPath>..\ThirdPartyLibs\ExpressionEvaluator 2.0.3\ExpressionEvaluator.dll</HintPath>
@@ -46,6 +61,9 @@
     </Reference>
     <Reference Include="OxyPlot.Xps">
       <HintPath>..\packages\OxyPlot.Wpf.2014.1.546\lib\net45\OxyPlot.Xps.dll</HintPath>
+    </Reference>
+    <Reference Include="Parser">
+      <HintPath>..\packages\DynamicDataDisplayWpf.0.4.0\lib\Parser.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -62,10 +80,19 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="DynamicDataDisplay\D3DataVisualizationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OxyPlot\OxyDataVisualizationControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AbstractDataVisualizationViewModel.cs" />
+    <Compile Include="DynamicDataDisplay\D3DataVisualizationControl.xaml.cs">
+      <DependentUpon>D3DataVisualizationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IDataVisualizationViewModel.cs" />
     <Compile Include="OxyPlot\OxyMainViewModel.cs" />
     <Compile Include="OxyPlot\OxyDataVisualizationControl.xaml.cs">
       <DependentUpon>OxyDataVisualizationControl.xaml</DependentUpon>
@@ -103,9 +130,7 @@
       <Name>ExperimentDataModel</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DynamicDataDisplay\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

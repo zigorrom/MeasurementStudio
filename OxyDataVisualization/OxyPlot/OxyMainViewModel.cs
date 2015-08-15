@@ -5,20 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OxyDataVisualization
+namespace DataVisualization.OxyPlotVisualization
 {
     using OxyPlot.Axes;
     using OxyPlot.Series;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Windows.Data;
-    public enum GraphScaleType
-    {
-        None,
-        Lin,
-        SemiLog,
-        Log
-    }
+    
 
     public class OxyMainViewModel:INotifyPropertyChanged
     {
@@ -168,7 +162,7 @@ namespace OxyDataVisualization
             //bnd.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
             //BindingOperations.SetBinding(OxyPlot.Wpf.LineSeries.ItemsSourceProperty, Points, bnd);
 
-
+            
             //    var StartBind = new Binding("Start");
             //StartBind.Source = m_doubleRange;//.Start;
             //StartBind.Mode = BindingMode.TwoWay;

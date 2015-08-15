@@ -96,6 +96,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -104,10 +105,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataVisualization\DataVisualization.csproj">
-      <Project>{8A17EBB9-945B-42C8-83E1-41689D1001E6}</Project>
-      <Name>DataVisualization</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ExperimentAbstraction\ExperimentAbstraction.csproj">
       <Project>{f9ff4a13-f344-4422-8908-99292fae27ee}</Project>
       <Name>ExperimentAbstraction</Name>
@@ -132,9 +129,9 @@
       <Project>{79334cce-6c21-489f-8762-ae357fec3991}</Project>
       <Name>Keithley24xx</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OxyDataVisualization\OxyDataVisualization.csproj">
+    <ProjectReference Include="..\OxyDataVisualization\DataVisualization.csproj">
       <Project>{A85FAA24-0408-4873-B548-F7D7A5399CF1}</Project>
-      <Name>OxyDataVisualization</Name>
+      <Name>DataVisualization</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

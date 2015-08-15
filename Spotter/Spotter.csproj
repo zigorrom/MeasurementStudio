@@ -124,9 +124,9 @@
       <Project>{FA8149F8-BF54-4A46-9D0A-9980CEAD705B}</Project>
       <Name>IVCharacterization</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OxyDataVisualization\OxyDataVisualization.csproj">
+    <ProjectReference Include="..\OxyDataVisualization\DataVisualization.csproj">
       <Project>{A85FAA24-0408-4873-B548-F7D7A5399CF1}</Project>
-      <Name>OxyDataVisualization</Name>
+      <Name>DataVisualization</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
