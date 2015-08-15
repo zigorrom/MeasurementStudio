@@ -62,27 +62,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="IVDataVisualization.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NoiseDataVisualization.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="OxyDataVisualizationControl.xaml">
+    <Page Include="OxyPlot\OxyDataVisualizationControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="IVDataVisualization.xaml.cs">
-      <DependentUpon>IVDataVisualization.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NoiseDataVisualization.xaml.cs">
-      <DependentUpon>NoiseDataVisualization.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NoiseMainView.cs" />
-    <Compile Include="OxyMainViewModel.cs" />
-    <Compile Include="OxyDataVisualizationControl.xaml.cs">
+    <Compile Include="OxyPlot\OxyMainViewModel.cs" />
+    <Compile Include="OxyPlot\OxyDataVisualizationControl.xaml.cs">
       <DependentUpon>OxyDataVisualizationControl.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -117,6 +102,9 @@
       <Project>{f37c1293-015e-47ef-81fe-694857e4a303}</Project>
       <Name>ExperimentDataModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DynamicDataDisplay\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
