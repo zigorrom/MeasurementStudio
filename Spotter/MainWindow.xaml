@@ -4,7 +4,7 @@
         xmlns:SimpleRangeControl="clr-namespace:Helper.Ranges.SimpleRangeControl;assembly=Helper" xmlns:IVCharacterization="clr-namespace:IVCharacterization;assembly=IVCharacterization" x:Class="Spotter.MainWindow"
     xmlns:dc="clr-namespace:IVCharacterization.ViewModels;assembly=IVCharacterization"
     
-        Title="MainWindow" Height="752.711" Width="746.813">
+        Title="MainWindow" Height="752.711" Width="746.813" WindowStartupLocation="CenterScreen">
     
     <Grid x:Name="AllContainer">
         

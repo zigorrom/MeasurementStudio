@@ -35,7 +35,10 @@ namespace ExperimentDataModel
             _dataList = new List<DataT>();
             DisplayFunc = DefaultPredicate;
         }
+        ~MeasurementData()
+        {
 
+        }
         public void Add(DataT item)
         {
             lock (SyncRoot)
