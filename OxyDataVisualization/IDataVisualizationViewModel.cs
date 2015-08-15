@@ -27,5 +27,6 @@ namespace DataVisualization
         void InvalidatePlot();
         
 
+
     }
 }

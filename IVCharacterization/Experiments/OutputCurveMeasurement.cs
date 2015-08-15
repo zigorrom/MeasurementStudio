@@ -52,7 +52,7 @@ namespace IVCharacterization.Experiments
             for (int i = 0; i < _meaList.Count; i++)
             {
                 _meaList[i].DisplayFunc = new Func<DrainSourceDataRow, DataPoint>((x) => new DataPoint(x.DrainSourceVoltage, Math.Log(x.DrainCurrent)));
-                _vm.InvalidatePlot(true);
+                _vm.InvalidatePlot();
             }
         }
 
@@ -95,7 +95,7 @@ namespace IVCharacterization.Experiments
                     //_vm.Visualization.CurrentPlotModel.InvalidatePlot(true);    
                     //System.Threading.Thread.Sleep(100);
                 }
-                _vm.InvalidatePlot(true);
+                _vm.InvalidatePlot();
             }
             
 

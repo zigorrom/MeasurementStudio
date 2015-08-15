@@ -4,7 +4,7 @@ using Helper.Ranges.DoubleRange;
 using Helper.Ranges.RangeHandlers;
 using Helper.Ranges.SimpleRangeControl;
 using Instruments;
-using DataVisualization;
+
 using OxyPlot;
 using System;
 using System.Collections.Generic;
@@ -78,10 +78,10 @@ namespace IVCharacterization
             }
         }
 
-        public void InvalidatePlot(bool updateData)
+        public void InvalidatePlot()
         {
             if (Visualization != null)
-                Visualization.InvalidatePlot(updateData);
+                Visualization.InvalidatePlot();
         }
 
         private bool m_globalIsEnabled;

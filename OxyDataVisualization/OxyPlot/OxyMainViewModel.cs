@@ -9,16 +9,17 @@ namespace DataVisualization.OxyPlotVisualization
 {
     using OxyPlot.Axes;
     using OxyPlot.Series;
+    using System.Collections;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Windows.Data;
     
 
-    public class OxyMainViewModel:INotifyPropertyChanged
+    public class OxyMainViewModel:INotifyPropertyChanged//:AbstractDataVisualizationViewModel//:INotifyPropertyChanged
     {
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
-        public bool SetValue<T>(ref T Property, T ValueToSet, string PropertyName)
+        public bool SetField<T>(ref T Property, T ValueToSet, string PropertyName)
         {
             if (Object.Equals(Property, ValueToSet))
                 return false;
@@ -26,9 +27,9 @@ namespace DataVisualization.OxyPlotVisualization
             OnPropertyChanged(PropertyName);
             return true;
         }
-        public bool SetValue<T>(ref T Property, T ValueToSet, string PropertyName, Action callback)
+        public bool SetField<T>(ref T Property, T ValueToSet, string PropertyName, Action callback)
         {
-            var res = SetValue<T>(ref Property, ValueToSet, PropertyName);
+            var res = SetField<T>(ref Property, ValueToSet, PropertyName);
             if (res == false)
                 return false;
             callback();
@@ -48,11 +49,11 @@ namespace DataVisualization.OxyPlotVisualization
         {
             get{return _plotModel;}
             set{
-                SetValue(ref _plotModel, value, "CurrentPlotModel");
+                SetField(ref _plotModel, value, "CurrentPlotModel");
             }
         }
-               
-        
+
+
         public string Title
         {
             get { return _plotModel.Title; }
@@ -61,7 +62,7 @@ namespace DataVisualization.OxyPlotVisualization
                 _plotModel.Title = value;
             }
         }
-        
+
         public string Subtitle
         {
             get { return _plotModel.Subtitle; }
@@ -71,9 +72,6 @@ namespace DataVisualization.OxyPlotVisualization
             }
         }
 
-        private Axis _bottomAxis;
-        private Axis _leftAxis;
-
         private string _horizontalAxisTitle;
         public string HorizontalAxisTitle
         {
@@ -81,8 +79,8 @@ namespace DataVisualization.OxyPlotVisualization
             set
             {
                 _horizontalAxisTitle = value;
-                if(_bottomAxis!=null)
-                _bottomAxis.Title = value;
+                if (_bottomAxis != null)
+                    _bottomAxis.Title = value;
             }
         }
 
@@ -94,7 +92,7 @@ namespace DataVisualization.OxyPlotVisualization
             {
                 _verticalAxisTitle = value;
                 if (_leftAxis != null)
-                _leftAxis.Title = value;
+                    _leftAxis.Title = value;
             }
         }
         
@@ -102,20 +100,23 @@ namespace DataVisualization.OxyPlotVisualization
         //public string ExpressionToDisplay { get; set; }
 
         //create generic types for this function at class definition
-        
+
+
+        private Axis _bottomAxis;
+        private Axis _leftAxis;
 
         private GraphScaleType _scale;
-        public GraphScaleType Scale
+        public GraphScaleType ScaleType
         {
             get { return _scale; }
             set
             {
-                SetValue(ref _scale, value, "Scale",
+                SetField(ref _scale, value, "Scale",
                     new Action(() =>
                     {
-                       switch (_scale)
+                        switch (_scale)
                         {
-                            
+
                             case GraphScaleType.SemiLog:
                                 {
                                     _bottomAxis = new LinearAxis { Position = AxisPosition.Bottom };
@@ -124,68 +125,68 @@ namespace DataVisualization.OxyPlotVisualization
                                 break;
                             case GraphScaleType.Log:
                                 {
-                                    _bottomAxis = new LogarithmicAxis { Position = AxisPosition.Bottom};
-                                    _leftAxis = new LogarithmicAxis { Position = AxisPosition.Left};
+                                    _bottomAxis = new LogarithmicAxis { Position = AxisPosition.Bottom };
+                                    _leftAxis = new LogarithmicAxis { Position = AxisPosition.Left };
                                 }
                                 break;
                             default:
                             case GraphScaleType.Lin:
                                 {
-                                    _bottomAxis = new LinearAxis { Position = AxisPosition.Bottom};
-                                    _leftAxis = new LinearAxis { Position = AxisPosition.Left};
+                                    _bottomAxis = new LinearAxis { Position = AxisPosition.Bottom };
+                                    _leftAxis = new LinearAxis { Position = AxisPosition.Left };
                                 }
                                 break;
                         }
-                       _bottomAxis.Title = _horizontalAxisTitle;
-                       _leftAxis.Title = _verticalAxisTitle;
+                        _bottomAxis.Title = HorizontalAxisTitle;
+                        _leftAxis.Title = VerticalAxisTitle;
 
                         _plotModel.Axes.Clear();
                         _plotModel.Axes.Add(_bottomAxis);
                         _plotModel.Axes.Add(_leftAxis);
                         _bottomAxis.MajorGridlineStyle = LineStyle.Solid;
                         _leftAxis.MajorGridlineStyle = LineStyle.Solid;
-                        
+
                         _plotModel.InvalidatePlot(true);
                     }));
             }
         }
 
         
-        public void AddSeries(IEnumerable<DataPoint> Points)
-        {
-            //var obs = new ObservableCollection<DataPoint>(Points);
-            //_plotModel.Series.Add(new LineSeries { ItemsSource = obs, StrokeThickness = 2 });
-            //var ls = new LineSeries();
-            //var bnd = new Binding();
-            //bnd.Source = Points;
-            //bnd.Mode = BindingMode.Default;
-            //bnd.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-            //BindingOperations.SetBinding(OxyPlot.Wpf.LineSeries.ItemsSourceProperty, Points, bnd);
-
-            
-            //    var StartBind = new Binding("Start");
-            //StartBind.Source = m_doubleRange;//.Start;
-            //StartBind.Mode = BindingMode.TwoWay;
-            //StartBind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-            //BindingOperations.SetBinding(Start, DoubleUnitValueDependencyObject.NumericValueProperty, StartBind);
-            _plotModel.Series.Add(new LineSeries { ItemsSource = Points, StrokeThickness = 2 });
-            //_plotModel.InvalidatePlot(true);
-        }
-        
-        public void InvalidatePlot(bool UpdateData)
-        {
-            if (_plotModel != null)
-                _plotModel.InvalidatePlot(UpdateData);
-        }
+    
 
         public OxyMainViewModel()
         {
             _plotModel = new PlotModel();
-            Scale = GraphScaleType.Lin;
-           
+            ScaleType = GraphScaleType.Lin;
+
+            //var bnd = new Binding();
+            //bnd.Source = this;
+            //bnd.Path = new System.Windows.PropertyPath("ChartTitle");
+            //bnd.Mode = BindingMode.TwoWay;
+            //bnd.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            //BindingOperations.SetBinding(, OxyPlot.Wpf.PlotView.TitleProperty, bnd);
+            //BindingOperations.SetBinding(ChartTitle, )
             
             
         }
+
+
+
+        
+
+        public void AddSeries(IEnumerable points)
+        {
+            if (_plotModel != null)
+                _plotModel.Series.Add(new LineSeries { ItemsSource = points });
+        }
+
+        public void InvalidatePlot()
+        {
+            if (_plotModel != null)
+                _plotModel.InvalidatePlot(true);
+        }
+
+
 
         
     }

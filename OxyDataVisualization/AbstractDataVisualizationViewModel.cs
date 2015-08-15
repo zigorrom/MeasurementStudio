@@ -9,7 +9,7 @@ namespace DataVisualization
     public abstract class AbstractDataVisualizationViewModel:IDataVisualizationViewModel
     {
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        private bool SetField<T>(ref T field, T value, string PropertyName)
+        protected bool SetField<T>(ref T field, T value, string PropertyName)
         {
             if (Object.Equals(field, value))
                 return false;
@@ -17,7 +17,16 @@ namespace DataVisualization
             OnPropertyChanged(PropertyName);
             return true;
         }
-        private void OnPropertyChanged(string PropertyName)
+
+        protected bool SetField<T>(ref T field, T value, string PropertyName, Action callback)
+        {
+            var res = SetField<T>(ref field, value, PropertyName);
+            if (!res )
+                return false;
+            callback();
+            return true;
+        }
+        protected void OnPropertyChanged(string PropertyName)
         {
             var handler = PropertyChanged;
             if (handler != null)
