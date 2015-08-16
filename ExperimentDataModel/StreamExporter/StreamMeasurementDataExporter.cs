@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExperimentDataModel
 {
-    public interface IMeasurementDataExporter
+    public class StreamMeasurementDataExporter
     {
 
     }

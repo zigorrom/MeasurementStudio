@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExperimentDataModel
 {
-    public abstract class MeasurementDataExporter
+    public class DataBaseMeasurementDataExporter
     {
 
     }
