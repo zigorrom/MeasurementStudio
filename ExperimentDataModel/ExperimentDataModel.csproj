@@ -53,6 +53,7 @@
     <Compile Include="MeasurementData.cs" />
     <Compile Include="IMeasurementDataCollection.cs" />
     <Compile Include="IInfoDataRow.cs" />
+    <Compile Include="MeasurementDataExporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
