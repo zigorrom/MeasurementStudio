@@ -90,8 +90,8 @@ namespace IVCharacterization.Experiments
                 {
                     _mea.Add(new DrainSourceDataRow(i, i*j , 0));
 
-                    //if (i % 1000 == 0)
-                        //_vm.InvalidatePlot(true);
+                    if (i % 10 == 0)
+                        _vm.InvalidatePlot();
                     //_vm.Visualization.CurrentPlotModel.InvalidatePlot(true);    
                     //System.Threading.Thread.Sleep(100);
                 }
