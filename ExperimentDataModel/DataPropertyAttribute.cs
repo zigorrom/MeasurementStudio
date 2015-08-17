@@ -17,6 +17,9 @@ namespace ExperimentDataModel
             PropertyComments = propertyComments;
         }
         
+
+        ///public int PriorityNumber
+
         public string PropertyName { get; private set; }
         public string PropertyUnits { get; private set; }
         public string PropertyComments { get; private set; }

@@ -12,9 +12,16 @@ namespace ExperimentDataModel
     {
         public AbstractMeasurementDataExporter()
         {
-
+            _infoHeader = String.Empty;
+            _measurementHeader = String.Empty;
+            PrepareInfoHeader();
+            PrepareMeasurementHeader();
         }
 
+        protected string _infoHeader;
+        protected string _measurementHeader;
+
+        protected Delegate _f;
 
         private string _workingDirectory;
         public string WorkingDirectory
@@ -26,6 +33,33 @@ namespace ExperimentDataModel
         {
             _workingDirectory = WorkingFolder;
         }
+
+        protected virtual void PrepareInfoHeader()
+        {
+            var it = typeof(InfoT);
+
+            var m = it.GetProperties().Where(x => x.GetCustomAttributes(typeof(DataPropertyAttribute), false).Length > 0).Select(
+                x =>
+                
+                    
+                     Delegate.CreateDelegate(typeof(Func<object>), x.GetMethod)
+                    
+                ).ToArray();
+            
+            //var properties = it.GetProperties();
+            _f = Delegate.Combine(m);
+            //for(int i = 0; i < properties.Length; i++)
+            //{
+            //    _f = Delegate.Combine(   properties[i].GetMethod;
+            //}
+        }
+
+
+        protected virtual void PrepareMeasurementHeader()
+        {
+
+        }
+        
 
         public abstract void Write(MeasurementData<InfoT, DataT> measurement);
 
