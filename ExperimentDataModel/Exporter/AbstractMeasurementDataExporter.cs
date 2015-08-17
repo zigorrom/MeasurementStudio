@@ -38,16 +38,18 @@ namespace ExperimentDataModel
         {
             var it = typeof(InfoT);
 
-            var m = it.GetProperties().Where(x => x.GetCustomAttributes(typeof(DataPropertyAttribute), false).Length > 0).Select(
-                x =>
-                
-                    
-                     Delegate.CreateDelegate(typeof(Func<object>), x.GetMethod)
-                    
+            var prop =it.GetProperties(); 
+            var m = prop.Where(x => x.GetCustomAttributes(typeof(DataPropertyAttribute), false).Length > 0).Select(
+                x => x.GetMethod
                 ).ToArray();
-            
+
+
+            for (int i = 0; i < prop.Length; i++)
+            {
+                    
+            }
             //var properties = it.GetProperties();
-            _f = Delegate.Combine(m);
+            
             //for(int i = 0; i < properties.Length; i++)
             //{
             //    _f = Delegate.Combine(   properties[i].GetMethod;
