@@ -24,7 +24,6 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
             <RowDefinition Height="617*"/>
 
             <RowDefinition Height="60"/>
@@ -33,21 +32,11 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Menu Grid.ColumnSpan="2" VerticalContentAlignment="Center">
-            <MenuItem Header="File">
-                <MenuItem Header="New experiment"/>
-                <MenuItem/>
-            </MenuItem>
-            <MenuItem Header="Export">
-                <MenuItem Header="Graph"/>
-                <MenuItem Header="Origin"/>
-            </MenuItem>
-        </Menu>
 
 
-        <OxyDataVisualization:OxyDataVisualizationControl DataContext="{Binding Visualization}" x:Name="Plotter" Grid.Row="1" />
+        <OxyDataVisualization:OxyDataVisualizationControl DataContext="{Binding Visualization}" x:Name="Plotter" />
         <!--<DataVisualization:DataPlotter x:Name="Plotter" DataContext="{Binding Visualization}" Margin="3" Height="Auto"/>-->
-        <Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" MinHeight="400" Grid.Row="1">
+        <Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" MinHeight="400">
             <Expander.Header>
                 <TextBlock Text="Settings" TextOptions.TextFormattingMode="Ideal">
                     <TextBlock.RenderTransform>
