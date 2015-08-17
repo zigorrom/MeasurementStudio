@@ -43,10 +43,11 @@ namespace ExperimentDataModel
                 x => x.GetMethod
                 ).ToArray();
 
+            var a = Activator.CreateInstance<InfoT>();
 
-            for (int i = 0; i < prop.Length; i++)
+            for (int i = 0; i < m.Length; i++)
             {
-                    
+                var r = m[i].Invoke(a,null);
             }
             //var properties = it.GetProperties();
             
