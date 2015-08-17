@@ -158,21 +158,8 @@ namespace DataVisualization.OxyPlotVisualization
         {
             _plotModel = new PlotModel();
             ScaleType = GraphScaleType.Lin;
-
-            //var bnd = new Binding();
-            //bnd.Source = this;
-            //bnd.Path = new System.Windows.PropertyPath("ChartTitle");
-            //bnd.Mode = BindingMode.TwoWay;
-            //bnd.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-            //BindingOperations.SetBinding(, OxyPlot.Wpf.PlotView.TitleProperty, bnd);
-            //BindingOperations.SetBinding(ChartTitle, )
-            
-            
         }
 
-
-
-        
 
         public void AddSeries(IEnumerable points)
         {
