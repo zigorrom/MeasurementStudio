@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace IVCharacterization.DataModel
 {
+
+    [Serializable]
     public struct GateSourceMeasurementInfoRow
     {
         
@@ -23,28 +25,24 @@ namespace IVCharacterization.DataModel
             m_Comment = Comment;
             m_ExperimentNumber = experimentNumber;
         }
-
-        [DataPropertyAttribute("FileName", "", "")]//true, true, -1, "FileName", "", "")]
+        [DataPropertyAttribute("FileName", "", "")]
         public string Filename
         {
             get { return m_FileName; }
             set { m_FileName = value; }
         }
-
-        [DataPropertyAttribute("DrainSourceVoltage", "V", "")]//true, true, -1, "DrainSourceVoltage", "V", "")]
+        [DataPropertyAttribute("DrainSourceVoltage", "V", "")]
         public double DrainSourceVoltage
         {
             get { return m_DrainSourceVoltage;}
             set { m_DrainSourceVoltage = value; }
         }
-
-        [DataPropertyAttribute("Comment", "", "")]//true, true, -1, "DrainSourceVoltage", "V", "")]
+        [DataPropertyAttribute("Comment", "", "")]
         public string Comment
         {
             get { return m_Comment; }
             set { m_Comment = value; }
         }
-
 
         [DataPropertyAttribute("#", "", "")]
         public int ExperimentNumber

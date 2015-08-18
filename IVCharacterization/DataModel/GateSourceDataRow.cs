@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace IVCharacterization.DataModel
 {
+    [Serializable]
     public struct GateSourceDataRow:IFormattable
     {
         
@@ -20,8 +21,7 @@ namespace IVCharacterization.DataModel
 
 
         private double m_GateSourceVoltage;
-
-        [DataPropertyAttribute("V\\_DS", "GateSourceVoltage", "V")]//true, true, -1, "V\\_DS", "GateSourceVoltage", "V")]
+        [DataPropertyAttribute("V\\_DS", "GateSourceVoltage", "V")]
         public double GateSourceVoltage
         {
             get { return m_GateSourceVoltage; }
@@ -30,7 +30,7 @@ namespace IVCharacterization.DataModel
 
 
         private double m_DrainCurrent;
-        [DataPropertyAttribute("I\\_D", "DrainCurrent", "A")]//true, true, -1, "I\\_D", "DrainCurrent", "A")]
+        [DataPropertyAttribute("I\\_D", "DrainCurrent", "A")]
         public double DrainCurrent
         {
             get { return m_DrainCurrent; }
@@ -38,7 +38,7 @@ namespace IVCharacterization.DataModel
         }
 
         private double m_GateCurrent;
-        [DataPropertyAttribute("I\\_G", "GateCurrent", "A")]//true, true, -1, "I\\_G", "GateCurrent", "A")]
+        [DataPropertyAttribute("I\\_G", "GateCurrent", "A")]
         public double GateCurrent
         {
             get { return m_GateCurrent; }

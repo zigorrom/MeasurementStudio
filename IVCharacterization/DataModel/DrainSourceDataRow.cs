@@ -8,28 +8,28 @@ using System.Threading.Tasks;
 
 namespace IVCharacterization.DataModel
 {
-    public struct DrainSourceDataRow:IFormattable
+    [Serializable]
+    public struct DrainSourceDataRow
     {
         
         private double m_DrainSourceVoltage;
         private double m_DrainCurrent;        
         private double m_GateCurrent;
 
-        [DataPropertyAttribute("V\\_DS", "DrainSourceVoltage", "V")]//true, true, -1, "V\\_DS", "DrainSourceVoltage", "V")]
+        [DataPropertyAttribute("V\\-(DS)", "DrainSourceVoltage", "V")]
         public double DrainSourceVoltage
         {
             get { return m_DrainSourceVoltage; }
             set { m_DrainSourceVoltage = value; }
         }
 
-        [DataPropertyAttribute("I\\_D", "DrainCurrent", "A")]//true, true, -1, "I\\_D", "DrainCurrent", "A")]
+        [DataPropertyAttribute("I\\-(D)", "DrainCurrent", "A")]
         public double DrainCurrent
         {
             get { return m_DrainCurrent; }
             set { m_DrainCurrent = value; }
         }
-
-        [DataPropertyAttribute("I\\_G", "GateCurrent", "A")]//true, true, -1, "I\\_G", "GateCurrent", "A")]
+        [DataPropertyAttribute("I\\-(G)", "GateCurrent", "A")]
         public double GateCurrent
         {
             get { return m_GateCurrent; ; }

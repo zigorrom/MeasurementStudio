@@ -54,12 +54,16 @@ namespace ExperimentDataModel
 #endregion
 
 
-
-
         private const string CountString = "Count";
         private const string IndexerName = "Item[]";
 
         private InfoT _info;
+        public InfoT Info
+        {
+            get { return _info; }
+            private set { _info = value; }
+        }
+
         private List<DataT> _dataList;
         public List<DataT> Items { get { return _dataList; } }
 
@@ -68,11 +72,11 @@ namespace ExperimentDataModel
         private object SyncRoot = new object();
 
 
-        public MeasurementData(InfoT experimentInfo, Func<DataT, DataPoint> DefaultPredicate)
+        public MeasurementData(InfoT experimentInfo, Func<DataT, DataPoint> DefaultFunctor)
         {
-            _info = experimentInfo;
+            Info = experimentInfo;
             _dataList = new List<DataT>();
-            DisplayFunc = DefaultPredicate;
+            DisplayFunc = DefaultFunctor;
         }
         ~MeasurementData()
         {

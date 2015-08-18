@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace IVCharacterization.DataModel
 {
-    public struct DrainSourceMeasurmentInfoRow//,IFormattable
+    [Serializable]
+    public struct DrainSourceMeasurmentInfoRow
     {
         private int m_ExperimentNumber;
         private string m_FileName;
@@ -28,25 +29,20 @@ namespace IVCharacterization.DataModel
             return String.Format(RowFormat, m_FileName, m_GateVoltage);
         }
 
-        //public string ToString(string format, IFormatProvider formatProvider)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        [DataPropertyAttribute("FileName", "", "")]//true, true, -1, "FileName", "", "")]
+       
+        [DataPropertyAttribute("FileName", "", "")]
         public string Filename
         {
             get { return m_FileName; }
             set { m_FileName = value; }
         }
-
-        [DataPropertyAttribute("GateVoltage", "V", "")]//true, true, -1, "GateVoltage", "V", "")]
+        [DataPropertyAttribute("GateVoltage", "V", "")]
         public double GateVoltage
         {
             get { return m_GateVoltage; }
             set { m_GateVoltage = value; }
         }
-        [DataPropertyAttribute("Comment", "", "")]//true, true, -1, "GateVoltage", "V", "")]
+        [DataPropertyAttribute("Comment", "", "")]
         public string Comment
         {
             get { return m_Comment; }
