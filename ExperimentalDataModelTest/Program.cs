@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ExperimentalDataModelTest
 {
-    internal struct DrainSourceDataRow : IFormattable
+    public struct DrainSourceDataRow : IFormattable
     {
 
         private double m_DrainSourceVoltage;
@@ -60,7 +60,7 @@ namespace ExperimentalDataModelTest
         }
     }
 
-    internal struct DrainSourceMeasurmentInfoRow : IInfoDataRow, IFormattable
+    public struct DrainSourceMeasurmentInfoRow : IFormattable//IInfoDataRow, IFormattable
     {
         private int m_ExperimentNumber;
         private string m_FileName;
@@ -125,7 +125,7 @@ namespace ExperimentalDataModelTest
         {
 
             var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(
-                new DrainSourceMeasurmentInfoRow("", 1, "", 23), new Func<DrainSourceDataRow,
+                new DrainSourceMeasurmentInfoRow("123123afasf", 1, "asfnaslkgfkals", 23), new Func<DrainSourceDataRow,
                     OxyPlot.DataPoint>(
                     (x) => 
                         new DataPoint(x.DrainSourceVoltage, x.DrainCurrent)
@@ -133,7 +133,7 @@ namespace ExperimentalDataModelTest
                     );
 
             var sw = new StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>();
-            
+            sw.Write(new DrainSourceMeasurmentInfoRow("123123afasf", 1, "asfnaslkgfkals", 23));
 
             //IVDataModel model = new IVDataModel();
             //RawDataFormatter fmt = new RawDataFormatter();

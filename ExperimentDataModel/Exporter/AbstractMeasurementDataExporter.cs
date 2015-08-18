@@ -36,7 +36,7 @@ namespace ExperimentDataModel
             _workingDirectory = WorkingFolder;
         }
 
-        private Func<InfoT, string> _exportInfoFunction;
+        protected Func<InfoT, string> _exportInfoFunction;
         private void GenerateInfoExportFunction(Type t)
         {
             var propNames = t.GetProperties().Where(x => x.GetCustomAttributes(typeof(DataPropertyAttribute), false).Length > 0).Select(x => "t."+x.Name).ToArray();
@@ -71,9 +71,9 @@ namespace ExperimentDataModel
             var provider = new CSharpCodeProvider();
             var parameters = new CompilerParameters();
 
-            parameters.ReferencedAssemblies.Add(t.Assembly.FullName);
+            parameters.ReferencedAssemblies.Add(t.Assembly.Location);
             parameters.GenerateInMemory = true;
-            parameters.GenerateExecutable = true;
+            parameters.GenerateExecutable = false;
 
             var result = provider.CompileAssemblyFromSource(parameters, FinalCode);
 
