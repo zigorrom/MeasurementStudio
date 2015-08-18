@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.CSharp;
+using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,7 +49,7 @@ namespace ExperimentDataModel
                         {
                             public static string ExportType(_TYPE_ t)
                             {
-                                return String.Format(_SRTFORM_,_SRTPAR_);
+                                return String.Format(_STRFORM_,_STRPAR_);
                             }
                         }
                     }
@@ -60,9 +63,29 @@ namespace ExperimentDataModel
             for (int i = 0; i < propNames.Length; i++)
                 arr[i] = String.Format("{{{0}}}", i);
 
-            var stringFormat = String.Join("\t", arr);// + "\"";
+            var stringFormat = "\""+String.Join("\t", arr) + "\"";
 
             var FinalCode = codeFormat.Replace("_NS_", nameSpace).Replace("_TYPE_", typeName).Replace("_STRFORM_", stringFormat).Replace("_STRPAR_", stringNames); //String.Format(codeFormat, nameSpace, typeName, stringFormat, stringNames);
+
+
+            var provider = new CSharpCodeProvider();
+            var parameters = new CompilerParameters();
+
+            parameters.ReferencedAssemblies.Add(t.Assembly.FullName);
+            parameters.GenerateInMemory = true;
+            parameters.GenerateExecutable = true;
+
+            var result = provider.CompileAssemblyFromSource(parameters, FinalCode);
+
+            if (result.Errors.HasErrors)
+                throw new Exception("Compiler error: " + String.Join(";", result.Errors));
+
+            var type = result.CompiledAssembly.GetType("ExportFunctions.ExportToString");
+
+            var method = type.GetMethod("ExportType");
+
+            _exportInfoFunction = (Func<InfoT, string>)Delegate.CreateDelegate(typeof(Func<InfoT, string>), method);
+
 
         }
 
