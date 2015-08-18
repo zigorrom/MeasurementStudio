@@ -41,7 +41,10 @@ namespace ExperimentDataModel
         {
             var t = typeof(InfoT);
             var properties = t.GetProperties();
-            var propNames = properties.Where(x => x.GetCustomAttributes(typeof(DataPropertyAttribute), false).Length > 0).Select(x => "t."+x.Name).ToArray();
+            var propNames = properties
+                .Where(x => x.GetCustomAttributes(typeof(DataPropertyAttribute), false).Length > 0)
+                .Select(x => "t."+x.Name)
+                .ToArray();
 
             const string codeFormat = @"
                     using System;

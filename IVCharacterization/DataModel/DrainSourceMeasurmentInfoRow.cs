@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IVCharacterization.DataModel
 {
-    public struct DrainSourceMeasurmentInfoRow:IInfoDataRow//,IFormattable
+    public struct DrainSourceMeasurmentInfoRow//,IFormattable
     {
         private int m_ExperimentNumber;
         private string m_FileName;
