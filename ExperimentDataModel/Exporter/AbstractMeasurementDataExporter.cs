@@ -15,14 +15,14 @@ namespace ExperimentDataModel
     {
         public AbstractMeasurementDataExporter()
         {
-            _infoHeader = String.Empty;
-            _measurementHeader = String.Empty;
+            //_infoHeader = String.Empty;
+            //_measurementHeader = String.Empty;
             PrepareInfoHeader();
             PrepareMeasurementHeader();
         }
 
-        protected string _infoHeader;
-        protected string _measurementHeader;
+        //protected string _infoHeader;
+        //protected string _measurementHeader;
 
 
         private string _workingDirectory;
