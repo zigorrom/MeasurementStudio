@@ -83,19 +83,19 @@ namespace IVCharacterization.Experiments
             {
                 var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("asdda_{0}",j), 123, "", 1), new Func<DrainSourceDataRow, OxyPlot.DataPoint>((x) => new DataPoint(x.DrainSourceVoltage, x.DrainCurrent)));
                 _meaList.Add(_mea);
-                _vm.AddSeries(_mea);
+                //_vm.AddSeries(_mea);
                 //_vm.Visualization.AddSeries(_mea);
                 //throw new NotImplementedException();
-                for (int i = 0; i < 100000; i++)
-                {
-                    _mea.Add(new DrainSourceDataRow(i, i*j , 0));
+                //for (int i = 0; i < 100000; i++)
+                //{
+                //    _mea.Add(new DrainSourceDataRow(i, i*j , 0));
 
-                    if (i % 10 == 0)
-                        _vm.InvalidatePlot();
-                    //_vm.Visualization.CurrentPlotModel.InvalidatePlot(true);    
-                    //System.Threading.Thread.Sleep(100);
-                }
-                _vm.InvalidatePlot();
+                //    if (i % 10 == 0)
+                //        _vm.InvalidatePlot();
+                //    //_vm.Visualization.CurrentPlotModel.InvalidatePlot(true);    
+                //    //System.Threading.Thread.Sleep(100);
+                //}
+                //_vm.InvalidatePlot();
             }
             
 

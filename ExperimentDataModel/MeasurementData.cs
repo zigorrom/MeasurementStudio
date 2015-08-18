@@ -12,11 +12,50 @@ using System.Threading.Tasks;
 
 namespace ExperimentDataModel
 {
-    
+    [Serializable]
     public class MeasurementData<InfoT, DataT> : IMeasurementDataCollection<DataT, DataPoint>
         where InfoT : struct
         where DataT : struct
     {
+        #region Property and collection changed events
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChaged(string PropertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(PropertyName));
+        }
+
+
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
+        protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+        {
+            var handler = CollectionChanged;
+
+            if (handler != null)
+
+                handler(this, e);
+        }
+
+        private void OnCollectionChanged(NotifyCollectionChangedAction action, object item)
+        {
+            OnCollectionChanged(new NotifyCollectionChangedEventArgs(action, item));
+        }
+
+        private void OnCollectionChanged(NotifyCollectionChangedAction action, object item, int index)
+        {
+            OnCollectionChanged(new NotifyCollectionChangedEventArgs(action, item, index));
+        }
+
+        private void OnCollectionReset()
+        {
+            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
+#endregion
+
+
+
+
         private const string CountString = "Count";
         private const string IndexerName = "Item[]";
 
@@ -97,25 +136,37 @@ namespace ExperimentDataModel
         }
 
 
-        public void OnCompleted()
+       
+        public int IndexOf(DataT item)
         {
-            throw new NotImplementedException();
+            return _dataList.IndexOf(item);
         }
 
-        public void OnError(Exception error)
+        public void Insert(int index, DataT item)
         {
-            throw new NotImplementedException();
+            _dataList.Insert(index, item);
         }
 
-        public void OnNext(DataT value)
+        public void RemoveAt(int index)
         {
-            Add(value);
+            _dataList.RemoveAt(index);
         }
 
-
-        public IEnumerator<DataPoint> GetEnumerator()
+        public DataT this[int index]
         {
-            return _dataList.Select(DisplayFunc).GetEnumerator();
+            get
+            {
+                return _dataList[index];
+            }
+            set
+            {
+                _dataList[index] = value;
+            }
+        }
+
+        public IEnumerator<DataT> GetEnumerator()
+        {
+            return _dataList.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -123,49 +174,14 @@ namespace ExperimentDataModel
             return GetEnumerator();
         }
 
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChaged(string PropertyName)
+        public IEnumerator<DataPoint> DisplayEnumerator
         {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(PropertyName));
-        }
-
-
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
-        protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
-        {
-            var handler = CollectionChanged;
+            get
+            {
+                return _dataList.Select(DisplayFunc).GetEnumerator();
+            }
             
-                if (handler != null)
-
-                    handler(this, e);
         }
-
-        private void OnCollectionChanged(NotifyCollectionChangedAction action, object item)
-        {
-            OnCollectionChanged(new NotifyCollectionChangedEventArgs(action, item));
-        }
-
-        private void OnCollectionChanged(NotifyCollectionChangedAction action, object item, int index)
-        {
-            OnCollectionChanged(new NotifyCollectionChangedEventArgs(action, item, index));
-        }
-
-        private void OnCollectionReset()
-        {
-            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-        }
-
-
-
-
-
-
-
-
     }
 
 

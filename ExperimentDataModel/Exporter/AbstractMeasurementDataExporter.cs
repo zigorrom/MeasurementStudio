@@ -37,9 +37,12 @@ namespace ExperimentDataModel
         }
 
         protected Func<InfoT, string> _exportInfoFunction;
-        private void GenerateInfoExportFunction(Type t)
+        private void PrepareInfoHeader()
         {
-            var propNames = t.GetProperties().Where(x => x.GetCustomAttributes(typeof(DataPropertyAttribute), false).Length > 0).Select(x => "t."+x.Name).ToArray();
+            var t = typeof(InfoT);
+            var properties = t.GetProperties();
+            var propNames = properties.Where(x => x.GetCustomAttributes(typeof(DataPropertyAttribute), false).Length > 0).Select(x => "t."+x.Name).ToArray();
+
             const string codeFormat = @"
                     using System;
                     using _NS_;
@@ -54,72 +57,31 @@ namespace ExperimentDataModel
                         }
                     }
                     ";
+
             var nameSpace = t.Namespace;
             var typeName = t.Name;
-            
             var stringNames = String.Join(", ",propNames);
-            
             var arr = new string[propNames.Length];
             for (int i = 0; i < propNames.Length; i++)
                 arr[i] = String.Format("{{{0}}}", i);
-
             var stringFormat = "\""+String.Join("\t", arr) + "\"";
-
             var FinalCode = codeFormat.Replace("_NS_", nameSpace).Replace("_TYPE_", typeName).Replace("_STRFORM_", stringFormat).Replace("_STRPAR_", stringNames); //String.Format(codeFormat, nameSpace, typeName, stringFormat, stringNames);
-
 
             var provider = new CSharpCodeProvider();
             var parameters = new CompilerParameters();
-
             parameters.ReferencedAssemblies.Add(t.Assembly.Location);
             parameters.GenerateInMemory = true;
             parameters.GenerateExecutable = false;
-
             var result = provider.CompileAssemblyFromSource(parameters, FinalCode);
-
             if (result.Errors.HasErrors)
                 throw new Exception("Compiler error: " + String.Join(";", result.Errors));
 
             var type = result.CompiledAssembly.GetType("ExportFunctions.ExportToString");
-
             var method = type.GetMethod("ExportType");
-
             _exportInfoFunction = (Func<InfoT, string>)Delegate.CreateDelegate(typeof(Func<InfoT, string>), method);
-
-
         }
 
 
-
-        protected virtual void PrepareInfoHeader()
-        {
-            var it = typeof(InfoT);
-            GenerateInfoExportFunction(it);
-
-
-            //var prop =it.GetProperties(); 
-            
-            //var m = prop.Where(x => x.GetCustomAttributes(typeof(DataPropertyAttribute), false).Length > 0).Select(
-            //    x => x.GetMethod
-            //    ).ToArray();
-
-            //var a = Activator.CreateInstance<InfoT>();
-            
-
-            
-
-            //for (int i = 0; i < m.Length; i++)
-            //{
-            //    var r = m[i].Invoke(a,null);
-            //    r.ToString();
-            //}
-            //var properties = it.GetProperties();
-            
-            //for(int i = 0; i < properties.Length; i++)
-            //{
-            //    _f = Delegate.Combine(   properties[i].GetMethod;
-            //}
-        }
 
 
         protected virtual void PrepareMeasurementHeader()

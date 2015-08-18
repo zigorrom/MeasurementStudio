@@ -7,15 +7,17 @@ using System.Text;
 
 namespace ExperimentDataModel
 {
-    interface IMeasurementDataCollection<DataT,DisplatT>: INotifyPropertyChanged, INotifyCollectionChanged, IEnumerable<DisplatT>, IObserver<DataT>
+    interface IMeasurementDataCollection<DataT,DisplayT>:INotifyPropertyChanged, INotifyCollectionChanged, IList<DataT>//, IEnumerable<DisplatT>,// IObserver<DataT>//, IList<DataT>
     {
-        void Add(DataT item);
-        void Clear();
-        bool Contains(DataT item);
-        void CopyTo(DataT[] array, int arrayIndex);
-        int Count { get; }
-        bool IsReadOnly { get; }
-        bool Remove(DataT item);
+        IEnumerator<DisplayT> DisplayEnumerator { get; }
+
+        //void Add(DataT item);
+        //void Clear();
+        //bool Contains(DataT item);
+        //void CopyTo(DataT[] array, int arrayIndex);
+        //int Count { get; }
+        //bool IsReadOnly { get; }
+        //bool Remove(DataT item);
         
     }
 }
