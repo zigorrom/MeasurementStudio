@@ -15,7 +15,7 @@ namespace ExperimentDataModel
         /// </summary>
         public void Write(InfoT a)
         {
-            var s = _exportInfoFunction(a);
+            //var s = _exportInfoFunction(a);
         }
         public override void Write(MeasurementData<InfoT, DataT> measurement)
         {

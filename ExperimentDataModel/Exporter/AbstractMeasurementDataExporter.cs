@@ -15,15 +15,10 @@ namespace ExperimentDataModel
     {
         public AbstractMeasurementDataExporter()
         {
-            //_infoHeader = String.Empty;
-            //_measurementHeader = String.Empty;
-            PrepareInfoHeader();
-            PrepareMeasurementHeader();
+            //PrepareExportFunction<InfoT>();
+            //PrepareInfoExportFunction();
+            //PrepareMeasurementHeader();
         }
-
-        //protected string _infoHeader;
-        //protected string _measurementHeader;
-
 
         private string _workingDirectory;
         public string WorkingDirectory
@@ -36,16 +31,23 @@ namespace ExperimentDataModel
             _workingDirectory = WorkingFolder;
         }
 
-        protected Func<InfoT, string> _exportInfoFunction;
-        private void PrepareInfoHeader()
+        private Func<InfoT, string> _exportInfoFunction;
+        private Func<DataT, string> _exportDataFunction;
+
+        private void PrepareExportFunction<T>(out Func<T,string> exportFunction)
         {
-            var t = typeof(InfoT);
+            exportFunction = null;
+            var t = typeof(T);
             var properties = t.GetProperties();
             var propNames = properties
                 .Where(x => x.GetCustomAttributes(typeof(DataPropertyAttribute), false).Length > 0)
                 .Select(x => "t."+x.Name)
                 .ToArray();
 
+            const string NameSpacePlaceholder = "_NS_";
+            const string ParamTypePlaceholder = "_TYPE_";
+            const string StringFormatPlaceholder = "_STRFORM_";
+            const string ParamsPlaceholder = "_STRPAR_";
             const string codeFormat = @"
                     using System;
                     using _NS_;
@@ -58,8 +60,7 @@ namespace ExperimentDataModel
                                 return String.Format(_STRFORM_,_STRPAR_);
                             }
                         }
-                    }
-                    ";
+                    }";
 
             var nameSpace = t.Namespace;
             var typeName = t.Name;
@@ -68,7 +69,11 @@ namespace ExperimentDataModel
             for (int i = 0; i < propNames.Length; i++)
                 arr[i] = String.Format("{{{0}}}", i);
             var stringFormat = "\""+String.Join("\t", arr) + "\"";
-            var FinalCode = codeFormat.Replace("_NS_", nameSpace).Replace("_TYPE_", typeName).Replace("_STRFORM_", stringFormat).Replace("_STRPAR_", stringNames); //String.Format(codeFormat, nameSpace, typeName, stringFormat, stringNames);
+            var FinalCode = codeFormat
+                .Replace(NameSpacePlaceholder, nameSpace)
+                .Replace(ParamTypePlaceholder, typeName)
+                .Replace(StringFormatPlaceholder, stringFormat)
+                .Replace(ParamsPlaceholder, stringNames); //String.Format(codeFormat, nameSpace, typeName, stringFormat, stringNames);
 
             var provider = new CSharpCodeProvider();
             var parameters = new CompilerParameters();
