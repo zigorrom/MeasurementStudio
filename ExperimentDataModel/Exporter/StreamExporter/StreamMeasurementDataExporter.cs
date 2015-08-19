@@ -131,7 +131,7 @@ namespace ExperimentDataModel
             Header = String.Join("\r\n", propertyNameRow, propertyUnitsRow, propertyCommentsRow);
         }
 
-        public  void Write(MeasurementData<InfoT, DataT> measurement)
+        public void Write(MeasurementData<InfoT, DataT> measurement)
         {
             var infofn = String.Concat(WorkingDirectory, "\\", ExperimentName, ".txt");
             var datafn = String.Concat(WorkingDirectory, "\\", measurement.Info.Filename, ".txt");
@@ -154,14 +154,15 @@ namespace ExperimentDataModel
                     DataSW.WriteLine(_dataHeader);
                     foreach (var d in measurement)
                     {
-                        DataSW.WriteLine(_exportDataFunction(d));
+                        DataSW.WriteLine(_exportDataFunction(d)); 
                     }
                 }
             }
-            
-          
+        }
 
-            
+        public async Task  WriteAsync(MeasurementData<InfoT, DataT> measurement)
+        {
+            await Task.Factory.StartNew(()=>Write(measurement));
         }
 
         public void Dispose()
