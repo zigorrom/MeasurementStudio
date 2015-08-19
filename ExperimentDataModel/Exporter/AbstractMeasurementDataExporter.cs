@@ -15,9 +15,9 @@ namespace ExperimentDataModel
     {
         public AbstractMeasurementDataExporter()
         {
-            //PrepareExportFunction<InfoT>();
-            //PrepareInfoExportFunction();
-            //PrepareMeasurementHeader();
+            PrepareExportFunction<InfoT>(out _exportInfoFunction);
+            PrepareExportFunction<DataT>(out _exportDataFunction);
+           
         }
 
         private string _workingDirectory;
@@ -86,14 +86,14 @@ namespace ExperimentDataModel
 
             var type = result.CompiledAssembly.GetType("ExportFunctions.ExportToString");
             var method = type.GetMethod("ExportType");
-            _exportInfoFunction = (Func<InfoT, string>)Delegate.CreateDelegate(typeof(Func<InfoT, string>), method);
+            exportFunction = (Func<T, string>)Delegate.CreateDelegate(typeof(Func<T, string>), method);
         }
 
-
-
-
-        protected virtual void PrepareMeasurementHeader()
+        private void PrepareHeader<T>(out string Header)
         {
+            Header = String.Empty;
+            var t = typeof(T);
+            var properties = t.GetProperties();
 
         }
         
