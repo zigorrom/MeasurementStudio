@@ -141,7 +141,7 @@ namespace ExperimentDataModel
             var WriteInfoHeader = true;
             if (File.Exists(infofn))
                 WriteInfoHeader = false;
-            using (StreamWriter InfoSW = new StreamWriter(new FileStream(infofn,FileMode.OpenOrCreate,FileAccess.ReadWrite,FileShare.Read)))
+            using (StreamWriter InfoSW = new StreamWriter(new FileStream(infofn,FileMode.Append,FileAccess.Write,FileShare.Read)))
             {
                 if (WriteInfoHeader)
                     InfoSW.WriteLine(_infoHeader);

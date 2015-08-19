@@ -120,7 +120,7 @@ namespace ExperimentalDataModelTest
             for (int i = 0; i < 10; i++)
             {
                 var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(
-                    new DrainSourceMeasurmentInfoRow(String.Concat("file_", i), 1, String.Concat("Comment_", i), i),
+                    new DrainSourceMeasurmentInfoRow(String.Concat("file_", i), i*0.123, String.Concat("Comment_", i), i),
                     new Func<DrainSourceDataRow, OxyPlot.DataPoint>((x) => new DataPoint(x.DrainSourceVoltage, x.DrainCurrent))
                    );
                 var rnd = new Random();
