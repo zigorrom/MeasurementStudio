@@ -14,7 +14,7 @@ namespace ExperimentDataModel
 {
     [Serializable]
     public class MeasurementData<InfoT, DataT> : IMeasurementDataCollection<DataT, DataPoint>
-        where InfoT : struct
+        where InfoT : struct, IMeasurementInfo
         where DataT : struct
     {
         #region Property and collection changed events

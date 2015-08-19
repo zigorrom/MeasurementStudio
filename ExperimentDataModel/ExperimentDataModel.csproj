@@ -52,6 +52,7 @@
     <Compile Include="Exporter\DatabaseExporter\DataBaseMeasurementDataExporter.cs" />
     <Compile Include="DataPropertyAttribute.cs" />
     <Compile Include="Exporter\IMeasurementDataExporter.cs" />
+    <Compile Include="IMeasurementInfo.cs" />
     <Compile Include="MeasurementData.cs" />
     <Compile Include="IMeasurementDataCollection.cs" />
     <Compile Include="Exporter\OriginExporter\OriginMeasurementDataExporter.cs" />

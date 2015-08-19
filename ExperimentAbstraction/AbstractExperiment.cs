@@ -12,7 +12,7 @@ using System.Windows.Controls;
 namespace ExperimentAbstraction
 {
     public abstract class AbstractExperiment<InfoT,DataT>:ObservableExperiment<DataT>, IExperiment
-        where InfoT : struct
+        where InfoT : struct,IMeasurementInfo
         where DataT : struct
     {
         private string m_Name;

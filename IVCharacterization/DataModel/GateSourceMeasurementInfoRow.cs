@@ -9,7 +9,7 @@ namespace IVCharacterization.DataModel
 {
 
     [Serializable]
-    public struct GateSourceMeasurementInfoRow
+    public struct GateSourceMeasurementInfoRow:IMeasurementInfo
     {
         
         private string m_FileName;

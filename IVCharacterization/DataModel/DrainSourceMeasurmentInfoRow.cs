@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace IVCharacterization.DataModel
 {
     [Serializable]
-    public struct DrainSourceMeasurmentInfoRow
+    public struct DrainSourceMeasurmentInfoRow:IMeasurementInfo
     {
         private int m_ExperimentNumber;
         private string m_FileName;

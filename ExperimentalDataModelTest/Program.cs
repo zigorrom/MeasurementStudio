@@ -27,7 +27,7 @@ namespace ExperimentalDataModelTest
             set { m_DrainCurrent = value; }
         }
 
-        [DataPropertyAttribute("GateCurrent", "A", "I\\_G")]//true, true, -1, "I\\_G", "GateCurrent", "A")]
+        [DataPropertyAttribute("GateCurrent", "A", "I\\_G", PropertyOrderPriorityEnum.Highest)]//true, true, -1, "I\\_G", "GateCurrent", "A")]
         public double GateCurrent
         {
             get { return m_GateCurrent; ; }
@@ -54,7 +54,7 @@ namespace ExperimentalDataModelTest
         }
     }
 
-    public struct DrainSourceMeasurmentInfoRow : IFormattable//IInfoDataRow, IFormattable
+    public struct DrainSourceMeasurmentInfoRow : IMeasurementInfo//IFormattable//IInfoDataRow, IFormattable
     {
         private int m_ExperimentNumber;
         private string m_FileName;
@@ -79,27 +79,27 @@ namespace ExperimentalDataModelTest
             return String.Format(formatProvider, RowFormat, m_ExperimentNumber, m_GateVoltage, m_FileName, m_Comment);
         }
 
-        [DataPropertyAttribute("FileName", "", "")]//true, true, -1, "FileName", "", "")]
+        [DataPropertyAttribute("FileName", "", "", PropertyOrderPriorityEnum.High)]//true, true, -1, "FileName", "", "")]
         public string Filename
         {
             get { return m_FileName; }
             set { m_FileName = value; }
         }
 
-        [DataPropertyAttribute("GateVoltage", "V", "")]//true, true, -1, "GateVoltage", "V", "")]
+        [DataPropertyAttribute("GateVoltage", "V", "", PropertyOrderPriorityEnum.High)]//true, true, -1, "GateVoltage", "V", "")]
         public double GateVoltage
         {
             get { return m_GateVoltage; }
             set { m_GateVoltage = value; }
         }
-        [DataPropertyAttribute("Comment", "", "")]//true, true, -1, "GateVoltage", "V", "")]
+        [DataPropertyAttribute("Comment", "", "", PropertyOrderPriorityEnum.Normal)]//true, true, -1, "GateVoltage", "V", "")]
         public string Comment
         {
             get { return m_Comment; }
             set { m_Comment = value; }
         }
 
-        [DataPropertyAttribute("#", "", "")]
+        [DataPropertyAttribute("#", "", "", PropertyOrderPriorityEnum.Highest)]
         public int ExperimentNumber
         {
             get { return m_ExperimentNumber; }
@@ -117,7 +117,6 @@ namespace ExperimentalDataModelTest
     {
         static void Main(string[] args)
         {
-
             var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(
                 new DrainSourceMeasurmentInfoRow("123123afasf", 1, "asfnaslkgfkals", 23), new Func<DrainSourceDataRow,
                     OxyPlot.DataPoint>(
@@ -125,8 +124,20 @@ namespace ExperimentalDataModelTest
                         new DataPoint(x.DrainSourceVoltage, x.DrainCurrent)
                     )
                     );
-            
-            var sw = new StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>();
+            a.Add(new DrainSourceDataRow(1123, 123, 123));
+            a.Add(new DrainSourceDataRow(1123, 123, 123));
+            a.Add(new DrainSourceDataRow(1123, 123, 123));
+            a.Add(new DrainSourceDataRow(1123, 123, 123));
+            a.Add(new DrainSourceDataRow(1123, 123, 123));
+            a.Add(new DrainSourceDataRow(1123, 123, 123));
+            a.Add(new DrainSourceDataRow(1123, 123, 123));
+
+            using (StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow> s = new StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>("C:\\Users\\Dell\\Desktop"))
+            {
+                s.NewExperiment("blabla");
+                s.Write(a);
+            }
+
             //sw.Write(new DrainSourceMeasurmentInfoRow("123123afasf", 1, "asfnaslkgfkals", 23));
 
             //IVDataModel model = new IVDataModel();
