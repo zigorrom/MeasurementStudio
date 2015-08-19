@@ -1,14 +1,8 @@
 ﻿using ExperimentDataModel;
 using OxyPlot;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Net.Mail;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Linq;
 
 namespace ExperimentalDataModelTest
 {
@@ -131,7 +125,7 @@ namespace ExperimentalDataModelTest
                         new DataPoint(x.DrainSourceVoltage, x.DrainCurrent)
                     )
                     );
-
+            
             var sw = new StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>();
             //sw.Write(new DrainSourceMeasurmentInfoRow("123123afasf", 1, "asfnaslkgfkals", 23));
 
