@@ -64,8 +64,10 @@ namespace ExperimentDataModel
             const string ParamTypePlaceholder = "_TYPE_";
             const string StringFormatPlaceholder = "_STRFORM_";
             const string ParamsPlaceholder = "_STRPAR_";
+            const string CulturePlaceholder = "_CULTURE_";
             const string codeFormat = @"
                     using System;
+                    using System.Globalization;
                     using _NS_;
                     namespace ExportFunctions
                     {  
@@ -73,11 +75,11 @@ namespace ExperimentDataModel
                         {
                             public static string ExportType(_TYPE_ t)
                             {
-                                return String.Format(_STRFORM_,_STRPAR_);
+                                return String.Format(new CultureInfo(_CULTURE_),_STRFORM_,_STRPAR_);
                             }
                         }
                     }";
-
+            var culture = "\"en-US\"";
             var nameSpace = t.Namespace;
             var typeName = t.Name;
             var stringNames = String.Join(", ", propNames);
@@ -86,6 +88,7 @@ namespace ExperimentDataModel
                 arr[i] = String.Format("{{{0}}}", i);
             var stringFormat = "\"" + String.Join("\t", arr) + "\"";
             var FinalCode = codeFormat
+                .Replace(CulturePlaceholder, culture)
                 .Replace(NameSpacePlaceholder, nameSpace)
                 .Replace(ParamTypePlaceholder, typeName)
                 .Replace(StringFormatPlaceholder, stringFormat)
@@ -97,6 +100,7 @@ namespace ExperimentDataModel
             
             var interfaces = t.GetInterfaces();
             parameters.ReferencedAssemblies.Add(t.Assembly.Location);
+            parameters.ReferencedAssemblies.Add("System.Globalization.dll");
             foreach (var i in interfaces)
             {
                 parameters.ReferencedAssemblies.Add(i.Assembly.Location);

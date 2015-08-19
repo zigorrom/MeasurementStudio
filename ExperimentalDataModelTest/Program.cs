@@ -60,13 +60,15 @@ namespace ExperimentalDataModelTest
         private string m_FileName;
         private double m_GateVoltage;
         private string m_Comment;
+        private DateTime m_ExperimentTime;
 
-        public DrainSourceMeasurmentInfoRow(string filename, double gateVoltage, string comment, int experimentNumber)
+        public DrainSourceMeasurmentInfoRow(string filename, double gateVoltage, string comment, int experimentNumber,DateTime experimentTime)
         {
             m_FileName = filename;
             m_GateVoltage = gateVoltage;
             m_Comment = comment;
             m_ExperimentNumber = experimentNumber;
+            m_ExperimentTime = experimentTime;
         }
 
         private const string RowFormat = "{0}\t{1}\t{2}\t{3}";
@@ -106,8 +108,12 @@ namespace ExperimentalDataModelTest
             set { m_ExperimentNumber = value; }
         }
 
-
-
+        [DataPropertyAttribute("Experiment time", "","experiment start time", PropertyOrderPriorityEnum.Lowest)]
+        public DateTime ExperimentTime
+        {
+            get { return m_ExperimentTime; }
+            set { m_ExperimentTime = value; }
+        }
 
 
 
@@ -120,7 +126,7 @@ namespace ExperimentalDataModelTest
             for (int i = 0; i < 10; i++)
             {
                 var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(
-                    new DrainSourceMeasurmentInfoRow(String.Concat("file_", i), i*0.123, String.Concat("Comment_", i), i),
+                    new DrainSourceMeasurmentInfoRow(String.Concat("file_", i), i*0.123, String.Concat("Comment_", i), i, DateTime.Now),
                     new Func<DrainSourceDataRow, OxyPlot.DataPoint>((x) => new DataPoint(x.DrainSourceVoltage, x.DrainCurrent))
                    );
                 var rnd = new Random();

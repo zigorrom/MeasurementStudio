@@ -9,6 +9,8 @@ namespace ExperimentDataModel
 
     public enum PropertyOrderPriorityEnum:int
     {
+        Lowest,
+        Low,
         Normal,
         High,
         Highest
