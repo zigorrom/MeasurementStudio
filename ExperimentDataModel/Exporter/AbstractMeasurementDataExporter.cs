@@ -17,7 +17,7 @@ namespace ExperimentDataModel
         {
             PrepareExportFunction<InfoT>(out _exportInfoFunction);
             PrepareExportFunction<DataT>(out _exportDataFunction);
-           
+            PrepareHeader<InfoT>(out _infoHeader);
         }
 
         private string _workingDirectory;
@@ -33,6 +33,9 @@ namespace ExperimentDataModel
 
         private Func<InfoT, string> _exportInfoFunction;
         private Func<DataT, string> _exportDataFunction;
+
+        private string _infoHeader;
+        private string _dataHeader;
 
         private void PrepareExportFunction<T>(out Func<T,string> exportFunction)
         {
@@ -94,7 +97,13 @@ namespace ExperimentDataModel
             Header = String.Empty;
             var t = typeof(T);
             var properties = t.GetProperties();
+            var attrType = typeof(DataPropertyAttribute);
+            var attributes = properties
+                .Where(x => x.GetCustomAttributes(attrType, false).Length == 1)
+                .Select(x => (DataPropertyAttribute)x.GetCustomAttribute(attrType, false));
+                //.ToArray<DataPropertyAttribute>();
 
+            string RowFormat = String.Join("\t", attributes.Select(x => x.PropertyName));
         }
         
 

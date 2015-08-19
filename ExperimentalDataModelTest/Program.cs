@@ -133,7 +133,7 @@ namespace ExperimentalDataModelTest
                     );
 
             var sw = new StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>();
-            sw.Write(new DrainSourceMeasurmentInfoRow("123123afasf", 1, "asfnaslkgfkals", 23));
+            //sw.Write(new DrainSourceMeasurmentInfoRow("123123afasf", 1, "asfnaslkgfkals", 23));
 
             //IVDataModel model = new IVDataModel();
             //RawDataFormatter fmt = new RawDataFormatter();
