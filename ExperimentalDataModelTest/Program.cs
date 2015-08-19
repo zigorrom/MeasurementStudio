@@ -19,21 +19,21 @@ namespace ExperimentalDataModelTest
         private double m_DrainCurrent;
         private double m_GateCurrent;
 
-        [DataPropertyAttribute("V\\_DS", "DrainSourceVoltage", "V")]//true, true, -1, "V\\_DS", "DrainSourceVoltage", "V")]
+        [DataPropertyAttribute("DrainSourceVoltage", "V", "V\\_DS")]//true, true, -1, "V\\_DS", "DrainSourceVoltage", "V")]
         public double DrainSourceVoltage
         {
             get { return m_DrainSourceVoltage; }
             set { m_DrainSourceVoltage = value; }
         }
 
-        [DataPropertyAttribute("I\\_D", "DrainCurrent", "A")]//true, true, -1, "I\\_D", "DrainCurrent", "A")]
+        [DataPropertyAttribute("DrainCurrent", "A", "I\\_D")]//true, true, -1, "I\\_D", "DrainCurrent", "A")]
         public double DrainCurrent
         {
             get { return m_DrainCurrent; }
             set { m_DrainCurrent = value; }
         }
 
-        [DataPropertyAttribute("I\\_G", "GateCurrent", "A")]//true, true, -1, "I\\_G", "GateCurrent", "A")]
+        [DataPropertyAttribute("GateCurrent", "A", "I\\_G")]//true, true, -1, "I\\_G", "GateCurrent", "A")]
         public double GateCurrent
         {
             get { return m_GateCurrent; ; }

@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exporter\AbstractMeasurementDataExporter.cs" />
     <Compile Include="Exporter\DatabaseExporter\DataBaseMeasurementDataExporter.cs" />
     <Compile Include="DataPropertyAttribute.cs" />
     <Compile Include="Exporter\IMeasurementDataExporter.cs" />
