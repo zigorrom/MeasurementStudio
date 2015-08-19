@@ -117,25 +117,22 @@ namespace ExperimentalDataModelTest
     {
         static void Main(string[] args)
         {
-            var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(
-                new DrainSourceMeasurmentInfoRow("123123afasf", 1, "asfnaslkgfkals", 23), new Func<DrainSourceDataRow,
-                    OxyPlot.DataPoint>(
-                    (x) => 
-                        new DataPoint(x.DrainSourceVoltage, x.DrainCurrent)
-                    )
-                    );
-            a.Add(new DrainSourceDataRow(1123, 123, 123));
-            a.Add(new DrainSourceDataRow(1123, 123, 123));
-            a.Add(new DrainSourceDataRow(1123, 123, 123));
-            a.Add(new DrainSourceDataRow(1123, 123, 123));
-            a.Add(new DrainSourceDataRow(1123, 123, 123));
-            a.Add(new DrainSourceDataRow(1123, 123, 123));
-            a.Add(new DrainSourceDataRow(1123, 123, 123));
-
-            using (StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow> s = new StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>("C:\\Users\\Dell\\Desktop"))
+            for (int i = 0; i < 10; i++)
             {
-                s.NewExperiment("blabla");
-                s.Write(a);
+                var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(
+                    new DrainSourceMeasurmentInfoRow(String.Concat("file_", i), 1, String.Concat("Comment_", i), i),
+                    new Func<DrainSourceDataRow, OxyPlot.DataPoint>((x) => new DataPoint(x.DrainSourceVoltage, x.DrainCurrent))
+                   );
+                var rnd = new Random();
+                for (int j = 0; j < 10000; j++)
+                {
+                    a.Add(new DrainSourceDataRow(rnd.NextDouble(), rnd.NextDouble() * 10, rnd.NextDouble() * 100));
+                }
+                using (StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow> s = new StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>("C:\\Users\\Dell\\Desktop\\Measurement"))
+                {
+                    s.NewExperiment("Final");
+                    s.Write(a);
+                }
             }
 
             //sw.Write(new DrainSourceMeasurmentInfoRow("123123afasf", 1, "asfnaslkgfkals", 23));
