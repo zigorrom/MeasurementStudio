@@ -19,7 +19,7 @@ namespace DataVisualization
     public interface IDataVisualizationViewModel:INotifyPropertyChanged
     {
         string ChartTitle { get; set; }
-        string ChartSubtitle { get; set; }
+       // string ChartSubtitle { get; set; }
         string HorizontalAxisTitle { get; set; }
         string VerticalAxisTitle { get; set; }
         GraphScaleType ScaleType { get; set; }
