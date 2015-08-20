@@ -10,11 +10,18 @@
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="546*"/>
-            <RowDefinition Height="25*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="539*"/>
         </Grid.RowDefinitions>
-        
-       
+        <Menu HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <MenuItem Header="Experiment">
+                <MenuItem Header="IV-OutputCurve"/>
+                <MenuItem Header="IV-TransferCurve" HorizontalAlignment="Left"/>
+            </MenuItem>
+        </Menu>
+
+
+
 
     </Grid>
 </Window>
