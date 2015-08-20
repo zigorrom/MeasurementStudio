@@ -4,9 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:d3 ="http://research.microsoft.com/DynamicDataDisplay/1.0"
+             xmlns:local="clr-namespace:DataVisualization.DynamicDataDisplay"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <local:D3MainViewModel/>
+    </UserControl.DataContext>
     <Grid>
-        <d3:ChartPlotter/>
+        
+        <d3:ChartPlotter>
+            <d3:Header Content="faf"/>
+            
+        </d3:ChartPlotter>
     </Grid>
 </UserControl>

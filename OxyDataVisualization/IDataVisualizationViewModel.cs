@@ -24,6 +24,7 @@ namespace DataVisualization
         string VerticalAxisTitle { get; set; }
         GraphScaleType ScaleType { get; set; }
         void AddSeries(IEnumerable points);
+        void ClearChart();
         void InvalidatePlot();
 
 

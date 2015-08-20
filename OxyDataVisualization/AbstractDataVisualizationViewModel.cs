@@ -92,11 +92,9 @@ namespace DataVisualization
         public abstract void AddSeries(System.Collections.IEnumerable points);
 
         public abstract void InvalidatePlot();
-        
 
 
-
-
+        public abstract void ClearChart();
         
     }
 }

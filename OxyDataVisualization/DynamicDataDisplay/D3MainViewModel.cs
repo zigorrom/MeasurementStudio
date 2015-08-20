@@ -30,5 +30,10 @@ namespace DataVisualization.DynamicDataDisplay
         {
             throw new NotImplementedException();
         }
+
+        public override void ClearChart()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
