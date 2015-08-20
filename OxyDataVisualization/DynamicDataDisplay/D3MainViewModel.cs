@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
+
 
 namespace DataVisualization.DynamicDataDisplay
 {
@@ -99,7 +99,8 @@ namespace DataVisualization.DynamicDataDisplay
 
         public void AddSeries(System.Collections.IEnumerable points)
         {
-            _plotter.AddLineChart()
+         qweqwe   
+
         }
 
         public void ClearChart()
