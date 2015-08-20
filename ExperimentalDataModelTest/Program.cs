@@ -1,6 +1,7 @@
 ﻿using ExperimentDataModel;
 using OxyPlot;
 using System;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Forms;
 //using System.Linq;
@@ -120,6 +121,8 @@ namespace ExperimentalDataModelTest
 
     }
 
+  
+
     class Program
     {
         [STAThread]
@@ -145,6 +148,7 @@ namespace ExperimentalDataModelTest
                 }
             }
             MessageBox.Show("Done");
+            
 
            
         }
