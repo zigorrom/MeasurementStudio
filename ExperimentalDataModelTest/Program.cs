@@ -146,16 +146,7 @@ namespace ExperimentalDataModelTest
             }
             MessageBox.Show("Done");
 
-            //sw.Write(new DrainSourceMeasurmentInfoRow("123123afasf", 1, "asfnaslkgfkals", 23));
-
-            //IVDataModel model = new IVDataModel();
-            //RawDataFormatter fmt = new RawDataFormatter();
-            //using(Stream s = new FileStream(Directory.GetCurrentDirectory()+"\\text.txt",FileMode.Create,FileAccess.Write,FileShare.None))
-            //{
-            //    fmt.Serialize(s, model);
-            //}
-            //var a = new ExperimentDataWriter<DrainSourceDataRow, DrainSourceMeasurmentInfoRow>(@"C:\Users\i.zadorozhnyi\Desktop\");
-            //a.InitExperimentDataWriter("exp1");
+           
         }
     }
 }
