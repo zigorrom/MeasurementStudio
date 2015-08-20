@@ -13,11 +13,11 @@
         </Grid.RowDefinitions>
         <Menu HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
             <MenuItem Header="Experiment">
-                <MenuItem Header="IV-OutputCurve"/>
+                <MenuItem Header="IV-OutputCurve" Click="MenuItem_Click"/>
                 <MenuItem Header="IV-TransferCurve" HorizontalAlignment="Left"/>
             </MenuItem>
         </Menu>
-        <pt:PageTransition/>        
+        <pt:PageTransition Grid.Row="2" Name="PageTransitionControl" TransitionType="Grow"/>        
 
 
 

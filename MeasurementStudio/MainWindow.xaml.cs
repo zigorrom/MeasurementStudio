@@ -1,4 +1,5 @@
 ﻿using DataVisualization;
+using IVCharacterization.Experiments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,12 @@ namespace MeasurementStudio
         {
             InitializeComponent();
             
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var a = new OutputCurveMeasurement();
+            PageTransitionControl.ShowPage(a.Control);
         }
 
        
