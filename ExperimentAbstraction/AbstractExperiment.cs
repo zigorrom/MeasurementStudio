@@ -72,7 +72,17 @@ namespace ExperimentAbstraction
             OnExperimentStopped(this, new EventArgs());
             
         }
-        
+
+        public virtual void New(string ExperimentName)
+        {
+            CleanExperiment();
+            Name = ExperimentName;
+        }
+
+        public virtual void CleanExperiment()
+        {
+            
+        }
 
         public string Name
         {
@@ -85,6 +95,7 @@ namespace ExperimentAbstraction
                 m_Name = value;
             }
         }
+
 
         public bool Equals(IInstrumentOwner other)
         {
@@ -112,7 +123,7 @@ namespace ExperimentAbstraction
             throw new NotImplementedException();
         }
 
-
+        #region Events
         public event EventHandler ExperimentStarted;
         protected virtual void OnExperimentStarted(object sender, EventArgs e)
         {
@@ -152,8 +163,14 @@ namespace ExperimentAbstraction
             if (handler != null)
                 handler(sender, e);
         }
+        #endregion
 
 
-        
+
+
+
+
+
+       
     }
 }

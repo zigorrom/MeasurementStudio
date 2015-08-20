@@ -165,6 +165,7 @@ namespace DataVisualization.OxyPlotVisualization
         {
             if (_plotModel != null)
                 _plotModel.Series.Add(new LineSeries { ItemsSource = points });
+
         }
 
         public void InvalidatePlot()

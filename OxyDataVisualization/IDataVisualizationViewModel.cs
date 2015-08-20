@@ -25,7 +25,6 @@ namespace DataVisualization
         GraphScaleType ScaleType { get; set; }
         void AddSeries(IEnumerable points);
         void InvalidatePlot();
-        
 
 
     }

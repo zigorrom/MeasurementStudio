@@ -15,8 +15,9 @@ namespace ExperimentAbstraction
         void OwnInstruments();
         void ReleaseInstruments();
         void Start();
-        //void ReportProgress();
         void Abort();
+        void New(string ExperimentName);
+        void CleanExperiment();
         object ViewModel { get; }
         UserControl Control { get; }
         void SetDisplayFunction(string Function);
