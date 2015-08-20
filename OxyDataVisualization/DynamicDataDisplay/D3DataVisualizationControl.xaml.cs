@@ -23,6 +23,11 @@ namespace DataVisualization.DynamicDataDisplay
         public D3DataVisualizationControl()
         {
             InitializeComponent();
+            model = new D3MainViewModel(plotter);
+            model.ChartTitle = "asdasdasdasfsagasdgasgasg";
+            DataContext = model;
         }
+
+        public D3MainViewModel model { get; private set; }
     }
 }

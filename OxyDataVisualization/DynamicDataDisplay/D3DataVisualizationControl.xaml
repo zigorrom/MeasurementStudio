@@ -7,13 +7,11 @@
              xmlns:local="clr-namespace:DataVisualization.DynamicDataDisplay"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.DataContext>
-        <local:D3MainViewModel/>
-    </UserControl.DataContext>
+   
     <Grid>
         
-        <d3:ChartPlotter>
-            <d3:Header Content="faf"/>
+        <d3:ChartPlotter Name="plotter">
+            <d3:Header Content="{Binding Path=ChartTitle}"/>
             
         </d3:ChartPlotter>
     </Grid>

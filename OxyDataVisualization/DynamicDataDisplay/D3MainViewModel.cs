@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
 
 namespace DataVisualization.DynamicDataDisplay
 {
@@ -43,69 +44,62 @@ namespace DataVisualization.DynamicDataDisplay
             _plotter = Plotter;
         }
 
+        private string _chartTitle;
         public string ChartTitle
         {
             get
             {
-                throw new NotImplementedException();
+                return _chartTitle;
             }
             set
             {
-                throw new NotImplementedException();
+                SetField(ref _chartTitle, value, "ChartTitle");
             }
         }
 
-        public string ChartSubtitle
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
 
+        private string _horizontalAxisTitle;
         public string HorizontalAxisTitle
         {
             get
             {
-                throw new NotImplementedException();
+                return _horizontalAxisTitle;
             }
             set
             {
-                throw new NotImplementedException();
+                SetField(ref _horizontalAxisTitle, value, "HorizontalAxisTitle");
             }
         }
 
+        private string _verticalAxisTitle;
         public string VerticalAxisTitle
         {
             get
             {
-                throw new NotImplementedException();
+                return _verticalAxisTitle;
             }
             set
             {
-                throw new NotImplementedException();
+                SetField(ref _verticalAxisTitle, value, "VerticalAxisTitle");
             }
         }
 
+        private GraphScaleType _scaleType;
         public GraphScaleType ScaleType
         {
             get
             {
-                throw new NotImplementedException();
+                return _scaleType;
             }
             set
             {
-                throw new NotImplementedException();
+                SetField(ref _scaleType, value, "ScaleType");
             }
         }
 
         public void AddSeries(System.Collections.IEnumerable points)
         {
-            throw new NotImplementedException();
+            _plotter.AddLineChart()
         }
 
         public void ClearChart()

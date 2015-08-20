@@ -26,13 +26,13 @@ namespace Spotter
     /// </summary>
     public partial class MainWindow : Window
     {
-        OutputCurveMeasurement mea;
+        //OutputCurveMeasurement mea;
         public MainWindow()
         {
           
             InitializeComponent();
-            mea = new OutputCurveMeasurement();
-            this.Content = mea.Control;
+            //mea = new OutputCurveMeasurement();
+            //this.Content = mea.Control;
             
             
         }
