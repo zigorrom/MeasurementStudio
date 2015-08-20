@@ -2,6 +2,7 @@
 using OxyPlot;
 using System;
 using System.Globalization;
+using System.Windows.Forms;
 //using System.Linq;
 
 namespace ExperimentalDataModelTest
@@ -13,21 +14,21 @@ namespace ExperimentalDataModelTest
         private double m_DrainCurrent;
         private double m_GateCurrent;
 
-        [DataPropertyAttribute("DrainSourceVoltage", "V", "V\\_DS")]//true, true, -1, "V\\_DS", "DrainSourceVoltage", "V")]
+        [DataPropertyAttribute("DrainSourceVoltage", "V", "V\\-(DS)")]//true, true, -1, "V\\_DS", "DrainSourceVoltage", "V")]
         public double DrainSourceVoltage
         {
             get { return m_DrainSourceVoltage; }
             set { m_DrainSourceVoltage = value; }
         }
 
-        [DataPropertyAttribute("DrainCurrent", "A", "I\\_D")]//true, true, -1, "I\\_D", "DrainCurrent", "A")]
+        [DataPropertyAttribute("DrainCurrent", "A", "I\\-(D)")]//true, true, -1, "I\\_D", "DrainCurrent", "A")]
         public double DrainCurrent
         {
             get { return m_DrainCurrent; }
             set { m_DrainCurrent = value; }
         }
 
-        [DataPropertyAttribute("GateCurrent", "A", "I\\_G", PropertyOrderPriorityEnum.Highest)]//true, true, -1, "I\\_G", "GateCurrent", "A")]
+        [DataPropertyAttribute("GateCurrent", "A", "I\\-(G)", PropertyOrderPriorityEnum.Highest)]//true, true, -1, "I\\_G", "GateCurrent", "A")]
         public double GateCurrent
         {
             get { return m_GateCurrent; ; }
@@ -121,8 +122,11 @@ namespace ExperimentalDataModelTest
 
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
+            FolderBrowserDialog sbd = new FolderBrowserDialog();
+            sbd.ShowDialog();
             for (int i = 0; i < 10; i++)
             {
                 var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(
@@ -134,12 +138,13 @@ namespace ExperimentalDataModelTest
                 {
                     a.Add(new DrainSourceDataRow(rnd.NextDouble(), rnd.NextDouble() * 10, rnd.NextDouble() * 100));
                 }
-                using (StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow> s = new StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>("C:\\Users\\Dell\\Desktop\\Measurement"))
+                using (var s = new StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(sbd.SelectedPath))
                 {
                     s.NewExperiment("Final");
                     s.Write(a);
                 }
             }
+            MessageBox.Show("Done");
 
             //sw.Write(new DrainSourceMeasurmentInfoRow("123123afasf", 1, "asfnaslkgfkals", 23));
 
