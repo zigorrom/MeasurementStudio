@@ -42,18 +42,17 @@ namespace IVCharacterization.Experiments
         public override void Start()
         {
             base.Start();
-            
            
         }
 
         public override void Abort()
         {
             base.Abort();
-            for (int i = 0; i < _meaList.Count; i++)
-            {
-                _meaList[i].DisplayFunc = new Func<DrainSourceDataRow, DataPoint>((x) => new DataPoint(x.DrainSourceVoltage, Math.Log(x.DrainCurrent)));
-                _vm.InvalidatePlot();
-            }
+            //for (int i = 0; i < _meaList.Count; i++)
+            //{
+            //    //_meaList[i].DisplayFunc = new Func<DrainSourceDataRow, DataPoint>((x) => new DataPoint(x.DrainSourceVoltage, Math.Log(x.DrainCurrent)));
+            //    //_vm.InvalidatePlot();
+            //}
         }
 
         public override void OwnInstruments()
