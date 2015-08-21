@@ -27,6 +27,7 @@ namespace DataVisualization.DynamicDataDisplay
             model.ChartTitle = "asdasdasdasfsagasdgasgasg";
             model.HorizontalAxisTitle = "horizontal";
             model.VerticalAxisTitle = "vertical";
+            
             DataContext = model;
         }
 
