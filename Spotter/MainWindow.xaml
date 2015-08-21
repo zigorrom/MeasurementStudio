@@ -3,14 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:dc="clr-namespace:IVCharacterization.ViewModels;assembly=IVCharacterization"
     
-        xmlns:DynamicDataDisplay="clr-namespace:DataVisualization.DynamicDataDisplayChart;assembly=DataVisualization"
+        
+        xmlns:DynamicDataDisplayChart="clr-namespace:DataVisualization.DynamicDataDisplayChart;assembly=DataVisualization"
+    
+        
         x:Class="Spotter.MainWindow"
     
         Title="MainWindow" Height="752.711" Width="746.813" WindowStartupLocation="CenterScreen">
 
     <Grid x:Name="AllContainer">
 
-        <DynamicDataDisplay:D3DataVisualizationControl/>
+
+
+
+        <DynamicDataDisplayChart:D3DataVisualizationControl/>
+
+
+
 
     </Grid>
     <!--<SimpleRangeControl:RangeControl x:Name="range" HorizontalAlignment="Left" Margin="92,63,0,0" VerticalAlignment="Top" Width="340"/>-->

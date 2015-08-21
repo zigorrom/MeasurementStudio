@@ -1,4 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
+﻿
+using Microsoft.Research.DynamicDataDisplay;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,6 +45,7 @@ namespace DataVisualization.DynamicDataDisplayChart
         public D3MainViewModel(ChartPlotter Plotter)
         {
             _plotter = Plotter;
+            AddSeries(enumer());
         }
 
         private string _chartTitle;
@@ -101,8 +103,16 @@ namespace DataVisualization.DynamicDataDisplayChart
 
         public void AddSeries(System.Collections.IEnumerable points)
         {
-            _plotter.
+            
+            //_plotter.AddLineChart(new DynamicDataDisplay.Markers.DataSources.EnumerableDataSource(points));
 
+        }
+        private IEnumerable<Point> enumer()
+        {
+            for (int i = 0; i < 1100; i++)
+			{
+                yield return new Point(i, i);
+			}
         }
 
         public void ClearChart()
