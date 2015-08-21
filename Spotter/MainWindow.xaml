@@ -4,7 +4,13 @@
         xmlns:dc="clr-namespace:IVCharacterization.ViewModels;assembly=IVCharacterization"
     
         
-        xmlns:DynamicDataDisplayChart="clr-namespace:DataVisualization.DynamicDataDisplayChart;assembly=DataVisualization"
+       
+    
+        
+        xmlns:DynamicDataDisplay="clr-namespace:DataVisualization.DynamicDataDisplay;assembly=DataVisualization"
+    
+        
+       
     
         
         x:Class="Spotter.MainWindow"
@@ -16,7 +22,15 @@
 
 
 
-        <DynamicDataDisplayChart:D3DataVisualizationControl/>
+
+
+
+
+        <DynamicDataDisplay:D3DataVisualizationControl/>
+
+
+
+
 
 
 
