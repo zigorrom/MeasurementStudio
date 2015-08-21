@@ -1,0 +1,566 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DynamicDataDisplay.Maps</name>
+    </assembly>
+    <members>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Charts.Maps.Map.AspectRatio">
+            <summary>
+            Gets or sets map's aspect ratio. Default value is 2.0.
+            </summary>
+            <value>The proportion.</value>
+        </member>
+        <member name="T:Microsoft.Research.DynamicDataDisplay.Maps.Charts.CapturingPlotter">
+            <summary>
+            Represents a plotter with now extra place around it, e.g. without Left, Right, Top, Bottom panels and without
+            Footer panel and Header panel. Used in tiled rendering.
+            </summary>
+            <summary>
+            CapturingPlotter
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Maps.Charts.CapturingPlotter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Research.DynamicDataDisplay.Maps.Charts.CapturingPlotter"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Maps.Charts.CapturingPlotter.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering.RenderingMap">
+            <summary>
+            Represents a sort of map that renders contents of some visual element to tiles and the displays this tile pyramid.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering.RenderingMap.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering.RenderingMap"/> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileServerBase.ServerName">
+            <summary>
+            Gets or sets the name of the server.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.Collection.Items">
+            <summary>
+            Contains the items in the collection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.Collection.MaxLevel">
+            <summary>
+            The maximum pyramid level the tiles are stored at. 
+            This must be less than or equal to log2(TileSize) - typically equal to this value or one less.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.Collection.TileSize">
+            <summary>
+            The size of the tiles. Note they have to be square. 
+            This is true for both images and collections. 
+            However, for collections, the TileSize also has to be a power of 2 (e.g. 128, 256, 512, etc).
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.Collection.Format">
+            <summary>
+            This defines the file format of the tiles.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.Collection.Quality">
+            <summary>
+            Used when creating thumbnail tiles, from 0 to 1. 1 is highest quality, 0 is lowest. 
+            Generally this value should be 0.8 or higher; however, for Deep Zoom this does not matter since collections are read-only.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.Collection.NextItemId">
+            <summary>
+            Gets the count of items in the collection; however this does not actually matter for Deep Zoom since collections are read only.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.FileSystemTileServer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.FileSystemTileServer"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.FileSystemTileServer.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.FileSystemTileServer"/> class.
+            </summary>
+            <param name="serverName">Name of the server.</param>
+        </member>
+        <member name="F:Microsoft.Research.DynamicDataDisplay.Charts.Maps.FileSystemTileServer.fileMap">
+            <summary>
+            Contains bool value whether there is image with following tile index.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Charts.Maps.FileSystemTileServer.FileExtension">
+            <summary>
+            Gets or sets the extension that is added to file while saving and opening.
+            Should be in format '.xxx', where 'xxx' is an actual extension.
+            </summary>
+            <value>The file extension.</value>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Charts.Maps.FileSystemTileServer.CachePath">
+            <summary>
+            Gets the full path to the folder that serves as cache of downloaded tiles.
+            </summary>
+            <value>The cache path.</value>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Charts.Maps.FileSystemTileServer.ServerName">
+            <summary>
+            Gets or sets the name of the server.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.ITileStore">
+            <summary>
+            Contains a method to save tile image for given id.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.ITileStore.BeginSaveImage(Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex,System.Windows.Media.Imaging.BitmapSource,System.IO.Stream)">
+            <summary>
+            Begins to save image for given id.
+            </summary>
+            <param name="id">The id.</param>
+            <param name="image">The image.</param>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.ITileStore.Clear">
+            <summary>
+            Clears this cache - deletes all tiles.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.WriteableFileSystemTileServer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.WriteableFileSystemTileServer"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.WriteableFileSystemTileServer.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.WriteableFileSystemTileServer"/> class.
+            </summary>
+            <param name="serverName">Name of the server.</param>
+        </member>
+        <member name="T:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.DisplayRect">
+            <summary>
+            One or more of these elements are used to describe available pixels.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.DisplayRect.Rect">
+            <summary>
+            Defines the rectangle to be displayed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.DisplayRect.MinLevel">
+            <summary>
+            Index of the lowest level at which the rectangle is displayed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.DisplayRect.MaxLevel">
+            <summary>
+            Index of the highest level at which the rectangle is displayed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.I.Size">
+            <summary>
+            Size of the image in pixels.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.I.N">
+            <summary>
+            This is the number of the item (Morton Number) where it appears in the tiles.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.I.Id">
+            <summary>
+            This is a number associated with the item. It could be a database key or any other number that you will find useful. By default it’s the same as I.N.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.I.Source">
+            <summary>
+            This is the path to the .dzi file associated with this item in the collection. It can be absolute or relative.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.I.IsPath">
+            <summary>
+            Determines whether the Source is a path. Always 1 for Deep Zoom images so this attribute does not need to be included.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.I.Type">
+            <summary>
+            The pixel source type. Always ImagePixelSource for Deep Zoom images so this attribute does not need to be included.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.I.Viewport">
+            <summary>
+            Location of the image in the viewport.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.Image">
+            <summary>
+            If you are defining a single image (versus a collection of images) for Deep Zoom, this element is the root element of the schema.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.Image.DisplayRects">
+            <summary>
+            If this element is not present, the image is not sparse - all pixels are available at all levels. 
+            Otherwise, you can use the DisplayRect elements to describe all the available pixels.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.Image.Size">
+            <summary>
+            Defines the size of the image in pixels.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.Image.TileSize">
+            <summary>
+            The tile size of the level in pixels. Note that these have to be square. 
+            Unlike Collection.TileSize, the TileSize for an Image does not have to be a power of 2 value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.Image.Overlap">
+            <summary>
+            The tile overlap on all four sides of the tiles. A value of 0 is allowed for Deep Zoom images.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.Image.Format">
+            <summary>
+            This defines the file format of the tiles as an extension.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.uint32rect.X">
+            <summary>
+            X coordinate of the upper-left corner of the rectangle.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.uint32rect.Y">
+            <summary>
+            Y coordinate of the upper-left corner of the rectangle.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.uint32rect.Width">
+            <summary>
+            Width of the rectangle.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.uint32rect.Height">
+            <summary>
+            Height of the rectangle.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.uint32size.Width">
+            <summary>
+            The width of the image.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.uint32size.Height">
+            <summary>
+            The height of the image.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.Viewport">
+            <summary>
+            Location of the image in the viewport.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.Viewport.Width">
+            <summary>
+            The width of the area of the image displayed. This value is in logical coordinates. 
+            For example a value of 1 displays the entire image (no zoom), 
+            a value of 0.5 is 200% zoomed in and a value of 0 is completely zoomed (user cannot see the image at all). 
+            A value above 1 is zooming out from the image. 
+            For example, a value of 2 means that the image will take up half the size of the MultiScaleSubImage control area (50% zoom).
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.Viewport.X">
+            <summary>
+            The left coordinate of the rectangular area of the image to be displayed. 
+            The coordinates of the point are in local coordinates (0-1) relative to the displayed image width.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom.Viewport.Y">
+            <summary>
+            The top coordinate of the rectangular area of the image to be displayed. 
+            The coordinates of the point are in local coordinates (0-1) relative to the displayed image width.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Research.DynamicDataDisplay.Maps.Properties.Resources">
+            <summary>
+              Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.Properties.Resources.ResourceManager">
+            <summary>
+              Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.Properties.Resources.Culture">
+            <summary>
+              Перезаписывает свойство CurrentUICulture текущего потока для всех
+              обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Maps.Properties.Resources.InvalidTileLevel">
+            <summary>
+              Ищет локализованную строку, похожую на Tile level {0} is not supported, it should be within range [{1}—{2}]..
+            </summary>
+        </member>
+        <member name="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.CacheLocation">
+            <summary>
+            Represents a enumeration of tile cache locations - types of base folders used to store tiles.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Research.DynamicDataDisplay.Charts.Maps.CacheLocation.ApplicationFolder">
+            <summary>
+            Tiles are being searched and saved to application folder.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Research.DynamicDataDisplay.Charts.Maps.CacheLocation.ApplicationDataFolder">
+            <summary>
+            Tiles are being searched and saved to roaming user profile application data folder.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Research.DynamicDataDisplay.Charts.Maps.CacheLocation.TemporaryInternetFiles">
+            <summary>
+            Tiles are being searched and saved to temporary internet files (cache of Intenet Explorer).
+            </summary>
+        </member>
+        <member name="F:Microsoft.Research.DynamicDataDisplay.Charts.Maps.CacheLocation.TempFiles">
+            <summary>
+            Tiles are being searched and saved to user profile's Temp folder.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Research.DynamicDataDisplay.Charts.Maps.CacheLocation.CustomPath">
+            <summary>
+            Tiles are being searched on user-specified path.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.AutoDisposableFileServer">
+            <summary>
+            Represents a file system tile server with random name which deletes its contents during application shutdown process.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.AutoDisposableFileServer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.AutoDisposableFileServer"/> class.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.Network.OpenStreetMapServer">
+            <summary>
+            Sample network tile server, which downloads tile images from OpenStreetMap server.
+            <remarks>
+            OpenStreetMap - http://www.openstreetmap.org/
+            Used here by permission of OpenStreetMap.
+            To use this sample server in your applications, you should read, agree and follow to
+            OpenStreetMap license.
+            Do not use this server too much - do not create high load on OpenStreetMap servers.
+            OpenStreetMap tile isage policy - http://wiki.openstreetmap.org/wiki/Tile_usage_policy
+            </remarks>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.Network.OpenStreetMapServer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.Network.OpenStreetMapServer"/> class.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.LowerTileInfo">
+            <summary>
+            Contains information about loaded lower tile - its Id and a Clip, that should be applied to 
+            visual, that is rendering this tile.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Charts.Maps.LowerTileInfo.Id">
+            <summary>
+            Gets or sets the id.
+            </summary>
+            <value>The id.</value>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Charts.Maps.LowerTileInfo.Clip">
+            <summary>
+            Gets or sets the geometric clip.
+            </summary>
+            <value>The clip.</value>
+        </member>
+        <member name="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.Set`1">
+            <summary>
+            Represents an unordered set of values.
+            </summary>
+            <typeparam name="T">Type of values.</typeparam>
+        </member>
+        <member name="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex">
+            <summary>
+            Describes a tile of tiled map.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.#ctor(System.Int32,System.Int32,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex"/> struct.
+            </summary>
+            <param name="x">The x.</param>
+            <param name="y">The y.</param>
+            <param name="level">The level.</param>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.GetLowerTile">
+            <summary>
+            Gets the lower tile.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.GetLowerTile(System.Int32)">
+            <summary>
+            Gets the lower tile.
+            </summary>
+            <param name="levelUp">Number of levels up.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.Equals(System.Object)">
+            <summary>
+            Indicates whether this instance and a specified object are equal.
+            </summary>
+            <param name="obj">Another object to compare to.</param>
+            <returns>
+            true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.GetHashCode">
+            <summary>
+            Returns the hash code for this instance.
+            </summary>
+            <returns>
+            A 32-bit signed integer that is the hash code for this instance.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.ToString">
+            <summary>
+            Returns the fully qualified type name of this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> containing a fully qualified type name.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.op_Equality(Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex,Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex)">
+            <summary>
+            Implements the operator ==.
+            </summary>
+            <param name="index1">The index1.</param>
+            <param name="index2">The index2.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.op_Inequality(Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex,Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex)">
+            <summary>
+            Implements the operator !=.
+            </summary>
+            <param name="index1">The index1.</param>
+            <param name="index2">The index2.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.Equals(Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.X">
+            <summary>
+            Gets the X zero-based index of tile.
+            Zero index is on the left of map.
+            </summary>
+            <value>The X.</value>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.Y">
+            <summary>
+            Gets the Y zero-based index of tile.
+            Zero index is on the bottom of map.
+            </summary>
+            <value>The Y.</value>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.Level">
+            <summary>
+            Gets the tile level.
+            The less the value, the less number of tiles level contains.
+            </summary>
+            <value>The level.</value>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.HasLowerTile">
+            <summary>
+            Gets a value indicating whether this instance has lower tile.
+            </summary>
+            <value>
+            	<c>true</c> if this instance has lower tile; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.TileIndexEqualityComparer">
+            <summary>
+            Represents default EqualityComparer for tile indices.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.TileIndexEqualityComparer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.TileIndexEqualityComparer"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.TileIndexEqualityComparer.Equals(Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex,Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex)">
+            <summary>
+            Determines whether the specified objects are equal.
+            </summary>
+            <param name="x">The first object of type <paramref name="T"/> to compare.</param>
+            <param name="y">The second object of type <paramref name="T"/> to compare.</param>
+            <returns>
+            true if the specified objects are equal; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex.TileIndexEqualityComparer.GetHashCode(Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileIndex)">
+            <summary>
+            Returns a hash code for the specified object.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> for which a hash code is to be returned.</param>
+            <returns>A hash code for the specified object.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            The type of <paramref name="obj"/> is a reference type and <paramref name="obj"/> is null.
+            </exception>
+        </member>
+        <member name="P:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileServerSystem.Mode">
+            <summary>
+            Gets or sets the mode of network access of <see cref="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileServerSystem"/>.
+            </summary>
+            <remarks>Default value is <see cref="F:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileSystemMode.OnlineAndCache"/>.</remarks>
+            <value>The mode.</value>
+        </member>
+        <member name="E:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileServerSystem.ModeChanged">
+            <summary>
+            Occurs when mode of network access changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileServerSystem.Changed">
+            <summary>
+            Occurs when <see cref="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileServerSystem"/> changes.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileSystemMode">
+            <summary>
+            Enumerates network access modes of <see cref="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileServerSystem"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileSystemMode.OnlineOnly">
+            <summary>
+            <see cref="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileServerSystem"/> does not use file system cache to store downloaded tile images and loads new tiles only from <see cref="!:TileServerSystem.NetworkServer"/>.
+            If NetworkServer is unaccessible, no tiles are shown.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileSystemMode.OnlineAndCache">
+            <summary>
+            <see cref="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileServerSystem"/> uses both NetworkServer and FileServer to load tile images from. FileServer is used to store downloaded tile images.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileSystemMode.CacheOnly">
+            <summary>
+            <see cref="T:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileServerSystem"/> does not use <see cref="!:TileServerSystem.NetworkServer"/> to download tiles, it shows only tiles that were previously downloaded and 
+            stored to <see cref="P:Microsoft.Research.DynamicDataDisplay.Charts.Maps.TileServerSystem.FileServer"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

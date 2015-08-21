@@ -8,6 +8,8 @@
              
              xmlns:System="clr-namespace:System;assembly=mscorlib"
            
+             xmlns:DataVisualization="clr-namespace:DataVisualization;assembly=DataVisualization"
+           
              x:Class="IVCharacterization.IVMainView"
              mc:Ignorable="d" 
              d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578">
@@ -99,7 +101,7 @@
                         <Grid Background="#FFE5E5E5"/>
                     </TabItem>
                 </TabControl>
-                
+
             </Grid>
         </Expander>
         <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0.4,-0.4,-0.4">
@@ -110,6 +112,14 @@
             <local:ControlButtonsPanel x:Name="ControlButtons" Grid.Column="1" Margin="3"/>
             <ProgressBar x:Name="ProcessProgress" Margin="10" Visibility="Hidden"/>
         </Grid>
+
+
+
+
+
+
+
+        <DataVisualization:D3DataVisualizationControl />
 
 
 

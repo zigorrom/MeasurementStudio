@@ -47,6 +47,8 @@ namespace IVCharacterization
             context.GlobalIsEnabled = IsEnabled;
         }
 
+        
+
         //public IVMainViewModel model1 { get; private set; }
 
         //public IVMainViewModel model2 { get; private set; }
