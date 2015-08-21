@@ -8,7 +8,7 @@
              
              xmlns:System="clr-namespace:System;assembly=mscorlib"
            
-             xmlns:DataVisualization="clr-namespace:DataVisualization;assembly=DataVisualization"
+
            
              x:Class="IVCharacterization.IVMainView"
              mc:Ignorable="d" 
@@ -119,7 +119,7 @@
 
 
 
-        <DataVisualization:D3DataVisualizationControl />
+        <!--<DataVisualization:D3DataVisualizationControl />-->
 
 
 
