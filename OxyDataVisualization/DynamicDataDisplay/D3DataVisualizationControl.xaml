@@ -7,13 +7,31 @@
              xmlns:local="clr-namespace:DataVisualization.DynamicDataDisplay"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-   
+    <UserControl.Resources>
+        <local:VisibilityToCheckedConverter x:Name="VisibilityToCheckedConverter"/>
+    </UserControl.Resources>
     <Grid>
         
-        <d3:ChartPlotter Name="plotter">
+        <d3:ChartPlotter Name="plotter" >
+            <d3:Legend>
+                <d3:LegendItem>
+                    <d3:LegendItem.Resources>
+                        <DataTemplate x:Key="Microsoft.Research.DynamicDataDisplay.LineGraph">
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding Path=Visibility, Converter={StaticResource VisibilityToCheckedConverter}, Mode=TwoWay}"/>
+                                <Line Width="15" Height="15" X1="0" Y1="0" X2="15" Y2="15" Stroke="{Binding Path=Stroke}" StrokeThickness="2"/>
+                                <TextBlock Margin="5,0,0,0" Text="{Binding Path=Description}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </d3:LegendItem.Resources>
+                </d3:LegendItem>
+            </d3:Legend>
+            
             <d3:Header Content="{Binding Path=ChartTitle}"/>
             <d3:VerticalAxisTitle Content="{Binding Path=VerticalAxisTitle}"/>
             <d3:HorizontalAxisTitle Content="{Binding Path=HorizontalAxisTitle}"/>
+            <d3:CursorCoordinateGraph/>
+            <d3:AxisCursorGraph/>
         </d3:ChartPlotter>
     </Grid>
 </UserControl>

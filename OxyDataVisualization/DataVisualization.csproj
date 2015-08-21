@@ -93,6 +93,7 @@
       <DependentUpon>D3DataVisualizationControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DynamicDataDisplay\D3MainViewModel.cs" />
+    <Compile Include="DynamicDataDisplay\VisibilityToCheckedConverter.cs" />
     <Compile Include="IDataVisualizationViewModel.cs" />
     <Compile Include="OxyPlot\OxyMainViewModel.cs" />
     <Compile Include="OxyPlot\OxyDataVisualizationControl.xaml.cs">
