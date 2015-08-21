@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:dc="clr-namespace:IVCharacterization.ViewModels;assembly=IVCharacterization"
     
-        xmlns:DynamicDataDisplay="clr-namespace:DataVisualization.DynamicDataDisplay;assembly=DataVisualization"
+        xmlns:DynamicDataDisplay="clr-namespace:DataVisualization.DynamicDataDisplayChart;assembly=DataVisualization"
         x:Class="Spotter.MainWindow"
     
         Title="MainWindow" Height="752.711" Width="746.813" WindowStartupLocation="CenterScreen">

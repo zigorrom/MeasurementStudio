@@ -9,7 +9,7 @@ using System.Windows;
 using System.Windows.Data;
 
 
-namespace DataVisualization.DynamicDataDisplay
+namespace DataVisualization.DynamicDataDisplayChart
 {
     public class D3MainViewModel:IDataVisualizationViewModel
     {
@@ -101,7 +101,7 @@ namespace DataVisualization.DynamicDataDisplay
 
         public void AddSeries(System.Collections.IEnumerable points)
         {
-            
+            _plotter.
 
         }
 

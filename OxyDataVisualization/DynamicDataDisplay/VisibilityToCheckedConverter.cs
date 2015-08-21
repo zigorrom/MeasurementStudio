@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace DataVisualization.DynamicDataDisplay
+namespace DataVisualization.DynamicDataDisplayChart
 {
     public class VisibilityToCheckedConverter : IValueConverter
     {

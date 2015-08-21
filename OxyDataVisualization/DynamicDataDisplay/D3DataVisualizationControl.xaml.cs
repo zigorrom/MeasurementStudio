@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DataVisualization.DynamicDataDisplay
+namespace DataVisualization.DynamicDataDisplayChart
 {
     /// <summary>
     /// Interaction logic for D3DataVisualizationControl.xaml
@@ -27,7 +28,7 @@ namespace DataVisualization.DynamicDataDisplay
             model.ChartTitle = "asdasdasdasfsagasdgasgasg";
             model.HorizontalAxisTitle = "horizontal";
             model.VerticalAxisTitle = "vertical";
-            
+           
             DataContext = model;
         }
 
