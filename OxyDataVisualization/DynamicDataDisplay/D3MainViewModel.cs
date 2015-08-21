@@ -99,7 +99,7 @@ namespace DataVisualization.DynamicDataDisplay
 
         public void AddSeries(System.Collections.IEnumerable points)
         {
-         qweqwe   
+            
 
         }
 

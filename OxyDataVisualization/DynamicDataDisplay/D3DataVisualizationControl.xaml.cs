@@ -25,6 +25,8 @@ namespace DataVisualization.DynamicDataDisplay
             InitializeComponent();
             model = new D3MainViewModel(plotter);
             model.ChartTitle = "asdasdasdasfsagasdgasgasg";
+            model.HorizontalAxisTitle = "horizontal";
+            model.VerticalAxisTitle = "vertical";
             DataContext = model;
         }
 

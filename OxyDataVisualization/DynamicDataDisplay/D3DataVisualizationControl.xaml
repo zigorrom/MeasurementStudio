@@ -12,7 +12,8 @@
         
         <d3:ChartPlotter Name="plotter">
             <d3:Header Content="{Binding Path=ChartTitle}"/>
-            
+            <d3:VerticalAxisTitle Content="{Binding Path=VerticalAxisTitle}"/>
+            <d3:HorizontalAxisTitle Content="{Binding Path=HorizontalAxisTitle}"/>
         </d3:ChartPlotter>
     </Grid>
 </UserControl>
