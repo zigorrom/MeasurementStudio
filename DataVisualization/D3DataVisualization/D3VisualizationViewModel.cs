@@ -29,7 +29,12 @@ namespace DataVisualization.D3DataVisualization
 
 
         #endregion
-
+        public D3VisualizationViewModel()
+        {
+            Title = "adfasf";
+            HorizontalAxisTitle = "horiz";
+            VerticalAxisTitle = "vert";
+        }
 
         private string _title;
         public string Title

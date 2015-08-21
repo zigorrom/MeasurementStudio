@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DataVisualization.D3DataVisualization;
+using Microsoft.Research.DynamicDataDisplay;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
 
 namespace DataVisualization.D3DataVisualization
 {
@@ -24,6 +26,16 @@ namespace DataVisualization.D3DataVisualization
         public D3DataVisualizationControl()
         {
             InitializeComponent();
+            plotter.AddLineGraph(new ObservableDataSource<Point>(enumerator(100)));
+            plotter.AddLineGraph(new ObservableDataSource<Point>(enumerator(300)));
+        }
+
+        private IEnumerable<Point> enumerator(int mult)
+        {
+            for (int i = 0; i < 1000; i+=10)
+            {
+                yield return new Point(i, mult* Math.Sin(i));
+            }
         }
     }
 }
