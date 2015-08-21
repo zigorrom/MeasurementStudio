@@ -1,8 +1,6 @@
-﻿using IVCharacterization.Experiments;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Speech.Recognition;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MeasurementStudio
+namespace DataVisualizationTest
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -26,13 +24,5 @@ namespace MeasurementStudio
         {
             InitializeComponent();
         }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            //var a = new OutputCurveMeasurement();
-            //PageTransitionControl.ShowPage(a.Control);
-        }
-
     }
-
 }

@@ -1,4 +1,4 @@
-﻿using DataVisualization;
+﻿
 using Helper.Ranges;
 using Helper.Ranges.DoubleRange;
 using Helper.Ranges.RangeHandlers;
@@ -12,7 +12,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataVisualization.OxyPlotVisualization;
+
 
 namespace IVCharacterization
 {
@@ -60,28 +60,30 @@ namespace IVCharacterization
             }
         }
 
-        private OxyMainViewModel m_Visualization;
-        public OxyMainViewModel Visualization
-        {
-            get { return m_Visualization; }
-            private set
-            {
-                SetField(ref m_Visualization, value, "Visualization");
-            }
-        }
+        //private OxyMainViewModel m_Visualization;
+        //public OxyMainViewModel Visualization
+        //{
+        //    get { return m_Visualization; }
+        //    private set
+        //    {
+        //        SetField(ref m_Visualization, value, "Visualization");
+        //    }
+        //}
 
         public void AddSeries(IEnumerable<DataPoint> Points)
         {
-            if (Visualization != null)
-            {
-                Visualization.AddSeries(Points);
-            }
+            //if (Visualization != null)
+            //{
+            //    Visualization.AddSeries(Points);
+            //}
+            throw new NotImplementedException();
         }
 
         public void InvalidatePlot()
         {
-            if (Visualization != null)
-                Visualization.InvalidatePlot();
+            //if (Visualization != null)
+            //    Visualization.InvalidatePlot();
+            throw new NotImplementedException();
         }
 
         private bool m_globalIsEnabled;
@@ -104,8 +106,8 @@ namespace IVCharacterization
             DSRangeHandlerViewModel = new RangeHandlerViewModel();
             GSRangeHandlerViewModel = new RangeHandlerViewModel();
             
-            Visualization = new OxyMainViewModel();
-            
+            //Visualization = new OxyMainViewModel();
+            throw new NotImplementedException();
             GlobalIsEnabled = true;
         }
 

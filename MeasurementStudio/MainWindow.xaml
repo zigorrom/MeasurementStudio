@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:pt="clr-namespace:WpfPageTransitions;assembly=WpfPageTransitions"
         xmlns:local="clr-namespace:MeasurementStudio"
+        xmlns:DataVisualization="clr-namespace:DataVisualization;assembly=DataVisualization"
         x:Class="MeasurementStudio.MainWindow"
         Title="MainWindow" Height="600.904" Width="745.331">
-   
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -17,7 +18,8 @@
                 <MenuItem Header="IV-TransferCurve" HorizontalAlignment="Left"/>
             </MenuItem>
         </Menu>
-        <pt:PageTransition Grid.Row="2" Name="PageTransitionControl" TransitionType="Grow"/>        
+        <DataVisualization:D3DataVisualizationControl Grid.Row="1"/>
+        <!--<pt:PageTransition Grid.Row="2" Name="PageTransitionControl" TransitionType="Grow"/>-->
 
 
 

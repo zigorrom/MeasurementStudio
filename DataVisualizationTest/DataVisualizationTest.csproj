@@ -4,18 +4,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3381B9B8-6664-4DE5-B134-76A4287CD51A}</ProjectGuid>
+    <ProjectGuid>{6496C585-4FC8-4570-9F5C-BE43C2557C54}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MeasurementStudio</RootNamespace>
-    <AssemblyName>MeasurementStudio</AssemblyName>
+    <RootNamespace>DataVisualizationTest</RootNamespace>
+    <AssemblyName>DataVisualizationTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -34,12 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DynamicDataDisplay">
-      <HintPath>..\ThirdPartyLibs\DynamicDataDisplay.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Speech" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -65,7 +61,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -89,7 +84,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -103,26 +97,6 @@
     <ProjectReference Include="..\DataVisualization\DataVisualization.csproj">
       <Project>{30c24fe4-d01d-4078-989d-2442cee52b0b}</Project>
       <Name>DataVisualization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ExperimentAbstraction\ExperimentAbstraction.csproj">
-      <Project>{f9ff4a13-f344-4422-8908-99292fae27ee}</Project>
-      <Name>ExperimentAbstraction</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ExperimentDataModel\ExperimentDataModel.csproj">
-      <Project>{f37c1293-015e-47ef-81fe-694857e4a303}</Project>
-      <Name>ExperimentDataModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\InstrumentAbstraction\InstrumentHandler.csproj">
-      <Project>{3c57f76b-be47-4de4-8466-3fd0b124d134}</Project>
-      <Name>InstrumentHandler</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IVCharacterization\IVCharacterization.csproj">
-      <Project>{fa8149f8-bf54-4a46-9d0a-9980cead705b}</Project>
-      <Name>IVCharacterization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WpfPageTransitions\WpfPageTransitions.csproj">
-      <Project>{22a46d61-1d40-43a9-802c-b9d43dadd9ec}</Project>
-      <Name>WpfPageTransitions</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
