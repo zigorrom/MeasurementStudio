@@ -69,11 +69,19 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="DynamicDataDisplay\D3DataVisualizationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OxyPlot\OxyDataVisualizationControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="AbstractDataVisualizationViewModel.cs" />
+    <Compile Include="DynamicDataDisplay\D3DataVisualizationControl.xaml.cs">
+      <DependentUpon>D3DataVisualizationControl.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DynamicDataDisplay\D3MainViewModel.cs" />
     <Compile Include="DynamicDataDisplay\VisibilityToCheckedConverter.cs" />
     <Compile Include="IDataVisualizationViewModel.cs" />
