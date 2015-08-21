@@ -53,6 +53,8 @@
     <Compile Include="D3DataVisualization\D3DataVisualizationControl.xaml.cs">
       <DependentUpon>D3DataVisualizationControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="D3DataVisualization\D3VisualizationViewModel.cs" />
+    <Compile Include="IDataVisuzlizationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -4,9 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
+             xmlns:local ="clr-namespace:DataVisualization.D3DataVisualization"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <local:D3VisualizationViewModel/>
+    </UserControl.DataContext>
     <Grid>
-        
+        <d3:ChartPlotter x:Name="plotter" >
+            <d3:Header Content="{Binding Title}"/>
+            
+        </d3:ChartPlotter>
     </Grid>
 </UserControl>
