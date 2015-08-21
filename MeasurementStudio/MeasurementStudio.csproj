@@ -100,10 +100,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataVisualization\DataVisualization.csproj">
-      <Project>{30c24fe4-d01d-4078-989d-2442cee52b0b}</Project>
-      <Name>DataVisualization</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ExperimentAbstraction\ExperimentAbstraction.csproj">
       <Project>{f9ff4a13-f344-4422-8908-99292fae27ee}</Project>
       <Name>ExperimentAbstraction</Name>
