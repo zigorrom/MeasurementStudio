@@ -1,0 +1,17 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:DataVisualization="clr-namespace:DataVisualization;assembly=DataVisualization"
+        x:Class="DataVisualizationTest.MainWindow"
+        
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+
+
+
+        <DataVisualization:D3DataVisualizationControl/>
+
+
+
+    </Grid>
+</Window>

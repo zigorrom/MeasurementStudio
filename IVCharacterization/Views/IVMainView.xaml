@@ -7,12 +7,12 @@
              xmlns:local="clr-namespace:IVCharacterization"
              
              xmlns:System="clr-namespace:System;assembly=mscorlib"
-             xmlns:OxyDataVisualization="clr-namespace:DataVisualization.OxyPlotVisualization;assembly=DataVisualization"
+           
              x:Class="IVCharacterization.IVMainView"
              mc:Ignorable="d" 
              d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578">
     <UserControl.Resources>
-        <local:CharacteristicTypeValueConverter x:Key="CharacteristicTypeValueConverter"/>
+        <!--<local:CharacteristicTypeValueConverter x:Key="CharacteristicTypeValueConverter"/>-->
         <GridLength x:Key="RangeGroupHeight">205*</GridLength>
         <GridLength x:Key="RangeControlHeight">58*</GridLength>
         <GridLength x:Key="AdditionalSettingsSpaceHeight">15*</GridLength>
@@ -34,7 +34,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <OxyDataVisualization:OxyDataVisualizationControl DataContext="{Binding Visualization}" x:Name="Plotter" />
+        <!--<OxyDataVisualization:OxyDataVisualizationControl DataContext="{Binding Visualization}" x:Name="Plotter" />-->
         <!--<DataVisualization:DataPlotter x:Name="Plotter" DataContext="{Binding Visualization}" Margin="3" Height="Auto"/>-->
         <Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" MinHeight="400">
             <Expander.Header>

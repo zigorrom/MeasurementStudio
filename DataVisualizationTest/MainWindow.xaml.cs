@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DataVisualization.DynamicDataDisplay
+namespace DataVisualizationTest
 {
     /// <summary>
-    /// Interaction logic for D3DataVisualizationControl.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class D3DataVisualizationControl : UserControl
+    public partial class MainWindow : Window
     {
-        public D3DataVisualizationControl()
+        public MainWindow()
         {
             InitializeComponent();
         }
