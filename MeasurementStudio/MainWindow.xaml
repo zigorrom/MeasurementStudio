@@ -18,9 +18,9 @@
                 <MenuItem Header="IV-TransferCurve" HorizontalAlignment="Left"/>
             </MenuItem>
         </Menu>
-        <D3DataVisualization:D3DataVisualizationControl Grid.Row="1"/>
+        <!--<D3DataVisualization:D3DataVisualizationControl Grid.Row="1"/>-->
         <!--<DataVisualization:D3DataVisualizationControl Grid.Row="1"/>-->
-        <!--<pt:PageTransition Grid.Row="2" Name="PageTransitionControl" TransitionType="Grow"/>-->
+        <pt:PageTransition Grid.Row="2" Name="PageTransitionControl" TransitionType="Grow"/>
 
 
 

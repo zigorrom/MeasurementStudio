@@ -54,7 +54,7 @@
       <DependentUpon>D3DataVisualizationControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="D3DataVisualization\D3VisualizationViewModel.cs" />
-    <Compile Include="D3DataVisualization\GraphTypeToAxisProviderConverter.cs" />
+    <Compile Include="D3DataVisualization\ID3View.cs" />
     <Compile Include="D3DataVisualization\VisibilityToCheckedConverter.cs" />
     <Compile Include="IDataVisuzlizationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

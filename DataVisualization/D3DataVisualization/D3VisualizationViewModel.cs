@@ -37,6 +37,9 @@ namespace DataVisualization.D3DataVisualization
             StrokeThickness = 4;
         }
 
+
+        public ID3View View { get; set; }
+        
         private string _title;
         public string Title
         {

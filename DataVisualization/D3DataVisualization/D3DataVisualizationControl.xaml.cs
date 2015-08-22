@@ -15,20 +15,24 @@ using System.Windows.Shapes;
 using DataVisualization.D3DataVisualization;
 using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
+using Microsoft.Research.DynamicDataDisplay.Charts;
+using Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric;
 
 namespace DataVisualization.D3DataVisualization
 {
     /// <summary>
     /// Interaction logic for D3DataVisualizationControl.xaml
     /// </summary>
-    public partial class D3DataVisualizationControl : UserControl
+    public partial class D3DataVisualizationControl : UserControl, ID3View
     {
         public D3DataVisualizationControl()
         {
             InitializeComponent();
-            plotter.AddLineGraph(new ObservableDataSource<Point>(enumerator(100)));
-            plotter.AddLineGraph(new ObservableDataSource<Point>(enumerator(300)));
+            (DataContext as D3VisualizationViewModel).View = this as ID3View;
+            
         }
+        
+
 
         private IEnumerable<Point> enumerator(int mult)
         {
@@ -36,6 +40,67 @@ namespace DataVisualization.D3DataVisualization
             {
                 yield return new Point(i, mult* Math.Sin(i));
             }
+        }
+
+        public void SetScale(GraphScaleType scaleType)
+        {
+            HorizontalAxis xAxis;
+            VerticalAxis yAxis;
+            switch (scaleType)
+            {
+
+                case GraphScaleType.LinLog:
+                    {
+                        xAxis = new HorizontalAxis();
+                        yAxis = new VerticalAxis
+                        {
+                            TicksProvider = new LogarithmNumericTicksProvider(10),
+                            LabelProvider = new UnroundingLabelProvider()
+                        };
+                    }
+                    break;
+                case GraphScaleType.LogLog:
+                    {
+                        xAxis = new HorizontalAxis
+                        {
+                            TicksProvider = new LogarithmNumericTicksProvider(10),
+                            LabelProvider = new UnroundingLabelProvider()
+                        };
+                        yAxis = new VerticalAxis
+                        {
+                            TicksProvider = new LogarithmNumericTicksProvider(10),
+                            LabelProvider = new UnroundingLabelProvider()
+                        };
+                    }
+                    break;
+                case GraphScaleType.LinLin:
+                default:
+                    {
+                        xAxis = new HorizontalAxis();
+                        yAxis = new VerticalAxis();
+                    }
+                    break;
+            }
+            plotter.MainHorizontalAxis = xAxis;
+            plotter.MainVerticalAxis = yAxis;
+        }
+        /*HorizontalAxis xAxis = new HorizontalAxis
+            {
+                TicksProvider = new LogarithmNumericTicksProvider(10),
+                LabelProvider = new UnroundingLabelProvider()
+            };
+            plotter.MainHorizontalAxis = xAxis;
+
+            VerticalAxis yAxis = new VerticalAxis
+            {
+                TicksProvider = new LogarithmNumericTicksProvider(10),
+                LabelProvider = new UnroundingLabelProvider()
+            };
+            plotter.MainVerticalAxis = yAxis;*/
+        public void AddSeries(System.Collections.IEnumerable data)
+        {
+            plotter.AddLineGraph(new ObservableDataSource<Point>(enumerator(100)));
+            plotter.AddLineGraph(new ObservableDataSource<Point>(enumerator(300)));
         }
     }
 }

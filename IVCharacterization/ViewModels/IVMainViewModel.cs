@@ -1,10 +1,10 @@
 ﻿
+using DataVisualization.D3DataVisualization;
 using Helper.Ranges;
 using Helper.Ranges.DoubleRange;
 using Helper.Ranges.RangeHandlers;
 using Helper.Ranges.SimpleRangeControl;
 using Instruments;
-
 using OxyPlot;
 using System;
 using System.Collections.Generic;
@@ -60,15 +60,15 @@ namespace IVCharacterization
             }
         }
 
-        //private OxyMainViewModel m_Visualization;
-        //public OxyMainViewModel Visualization
-        //{
-        //    get { return m_Visualization; }
-        //    private set
-        //    {
-        //        SetField(ref m_Visualization, value, "Visualization");
-        //    }
-        //}
+        private D3VisualizationViewModel m_Visualization;
+        public D3VisualizationViewModel Visualization
+        {
+            get { return m_Visualization; }
+            private set
+            {
+                SetField(ref m_Visualization, value, "Visualization");
+            }
+        }
 
         public void AddSeries(IEnumerable<DataPoint> Points)
         {
@@ -105,9 +105,9 @@ namespace IVCharacterization
 
             DSRangeHandlerViewModel = new RangeHandlerViewModel();
             GSRangeHandlerViewModel = new RangeHandlerViewModel();
-            
-            //Visualization = new OxyMainViewModel();
-            throw new NotImplementedException();
+
+            Visualization = new D3VisualizationViewModel();
+            //throw new NotImplementedException();
             GlobalIsEnabled = true;
         }
 

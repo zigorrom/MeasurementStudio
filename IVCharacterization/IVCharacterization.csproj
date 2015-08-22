@@ -105,6 +105,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataVisualization\DataVisualization.csproj">
+      <Project>{E058E277-4F95-4AC3-B2BF-AA8BCB2E3E84}</Project>
+      <Name>DataVisualization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ExperimentAbstraction\ExperimentAbstraction.csproj">
       <Project>{f9ff4a13-f344-4422-8908-99292fae27ee}</Project>
       <Name>ExperimentAbstraction</Name>
