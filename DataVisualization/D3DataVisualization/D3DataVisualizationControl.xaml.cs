@@ -34,7 +34,14 @@ namespace DataVisualization.D3DataVisualization
 
         void D3DataVisualizationControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            
+            if (DataContext == null)
+                return;
+            var dc = DataContext as D3VisualizationViewModel;
+            if (dc == null)
+                return;
+            dc.View = this;
+
+            //SetScale(dc.ScaleType);
         }
          
 
