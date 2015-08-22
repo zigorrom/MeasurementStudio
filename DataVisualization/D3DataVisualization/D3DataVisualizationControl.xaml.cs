@@ -28,10 +28,15 @@ namespace DataVisualization.D3DataVisualization
         public D3DataVisualizationControl()
         {
             InitializeComponent();
-            (DataContext as D3VisualizationViewModel).View = this as ID3View;
+            //(DataContext as D3VisualizationViewModel).View = this as ID3View;
+            DataContextChanged += D3DataVisualizationControl_DataContextChanged;
+        }
+
+        void D3DataVisualizationControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
             
         }
-        
+         
 
 
         private IEnumerable<Point> enumerator(int mult)

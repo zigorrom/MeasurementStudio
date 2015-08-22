@@ -54,6 +54,9 @@ namespace ExperimentDataModel
             exportFunction = null;
             var t = typeof(T);
             var properties = t.GetProperties();
+            if (properties.Length < 1)
+                throw new ArgumentException("Seems none of type properties were marked with DataPropertyAttribute");
+
             var propNames = properties
                 .Where(x => x.GetCustomAttributes(typeof(DataPropertyAttribute), false).Length > 0)
                 .OrderByDescending(x => x.GetCustomAttribute<DataPropertyAttribute>(false).PropertyOrderPriority)
@@ -121,6 +124,8 @@ namespace ExperimentDataModel
             Header = String.Empty;
             var t = typeof(T);
             var properties = t.GetProperties();
+            if (properties.Length < 1)
+                throw new ArgumentException("Seems none of type properties were marked with DataPropertyAttribute");
             var attrType = typeof(DataPropertyAttribute);
             var attributes = properties
                 .Where(x => x.GetCustomAttributes(attrType, false).Length == 1)
