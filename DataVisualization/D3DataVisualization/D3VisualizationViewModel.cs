@@ -34,6 +34,7 @@ namespace DataVisualization.D3DataVisualization
             Title = "adfasf";
             HorizontalAxisTitle = "horiz";
             VerticalAxisTitle = "vert";
+            StrokeThickness = 4;
         }
 
         private string _title;
