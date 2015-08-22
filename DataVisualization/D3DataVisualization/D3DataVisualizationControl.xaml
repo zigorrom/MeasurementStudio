@@ -12,7 +12,15 @@
     </UserControl.DataContext>
     <UserControl.Resources>
         <local:VisibilityToCheckedConverter x:Key="VisibilityToCheckedConverter"/>
+        <local:GraphTypeToAxisConverter x:Key="GraphTypeToAxisConverter"/>
         
+        <DataTemplate x:Key="LegendTemplate">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding Path=Visibility, Converter={StaticResource VisibilityToCheckedConverter}, Mode=TwoWay}"/>
+                <Line Width="15" Height="15" X1="0" Y1="0" X2="15" Y2="15" Stroke="{Binding Path=Stroke}" StrokeThickness="2"/>
+                <TextBlock Margin="5,0,0,0" Text="{Binding Path=Description}"/>
+            </StackPanel>
+        </DataTemplate>
     </UserControl.Resources>
      
     <Grid>
@@ -23,22 +31,11 @@
             <!--<d3:AxisCursorGraph/>
             <d3:CursorCoordinateGraph/>-->
             
-            <d3:Legend>
-                <d3:LineLegendItem>
-                    <d3:LineLegendItem.Resources>
-                        <DataTemplate x:Key="Microsoft.Research.DynamicDataDisplay.LineGraph">
-                            <StackPanel Orientation="Horizontal">
-                                <CheckBox IsChecked="{Binding Path=Visibility, Converter={StaticResource VisibilityToCheckedConverter}, Mode=TwoWay}"/>
-                                <Line Width="15" Height="15" X1="0" Y1="0" X2="15" Y2="15" Stroke="{Binding Path=Stroke}" StrokeThickness="2"/>
-                                <TextBlock Margin="5,0,0,0" Text="{Binding Path=Description}"/>
-                            </StackPanel>
-                        </DataTemplate>
 
-                    </d3:LineLegendItem.Resources>
-                </d3:LineLegendItem>
-            </d3:Legend>
             
                 
+            
+           
          
             
         </d3:ChartPlotter>
