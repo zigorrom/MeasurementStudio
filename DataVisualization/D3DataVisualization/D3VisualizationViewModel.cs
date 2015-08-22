@@ -31,10 +31,10 @@ namespace DataVisualization.D3DataVisualization
         #endregion
         public D3VisualizationViewModel()
         {
-            Title = "adfasf";
-            HorizontalAxisTitle = "horiz";
-            VerticalAxisTitle = "vert";
-            StrokeThickness = 4;
+            //Title = "adfasf";
+            //HorizontalAxisTitle = "horiz";
+            //VerticalAxisTitle = "vert";
+            //StrokeThickness = 4;
         }
 
 
@@ -98,13 +98,21 @@ namespace DataVisualization.D3DataVisualization
             get
             {
                 return _scaleType;
+                
             }
             set
             {
+                //View.SetScale(value);
                 SetField(ref _scaleType, value, "ScaleType");
             }
         }
 
-        
+
+
+
+        public void AddLineGraph(IEnumerable<System.Windows.Point> data)
+        {
+            View.AddSeries(data);
+        }
     }
 }

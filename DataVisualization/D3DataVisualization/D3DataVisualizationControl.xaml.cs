@@ -89,20 +89,8 @@ namespace DataVisualization.D3DataVisualization
             plotter.MainHorizontalAxis = xAxis;
             plotter.MainVerticalAxis = yAxis;
         }
-        /*HorizontalAxis xAxis = new HorizontalAxis
-            {
-                TicksProvider = new LogarithmNumericTicksProvider(10),
-                LabelProvider = new UnroundingLabelProvider()
-            };
-            plotter.MainHorizontalAxis = xAxis;
-
-            VerticalAxis yAxis = new VerticalAxis
-            {
-                TicksProvider = new LogarithmNumericTicksProvider(10),
-                LabelProvider = new UnroundingLabelProvider()
-            };
-            plotter.MainVerticalAxis = yAxis;*/
-        public void AddSeries(System.Collections.IEnumerable data)
+        
+        public void AddSeries(IEnumerable<Point> data)
         {
             plotter.AddLineGraph(new ObservableDataSource<Point>(enumerator(100)));
             plotter.AddLineGraph(new ObservableDataSource<Point>(enumerator(300)));

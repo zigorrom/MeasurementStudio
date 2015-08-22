@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DataVisualization
 {
@@ -21,7 +22,7 @@ namespace DataVisualization
         string VerticalAxisTitle { get; set; }
         int StrokeThickness { get; set; }
         GraphScaleType ScaleType { get; set; }
-        
 
+        void AddLineGraph(IEnumerable<Point> data);
     }
 }
