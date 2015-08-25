@@ -83,6 +83,10 @@
     <Compile Include="Ranges\Units\AbstractUnitConverter.cs" />
     <Compile Include="Ranges\Units\UnitPrefixes.cs" />
     <Compile Include="Ranges\Units\VoltageUnitConverter.cs" />
+    <Compile Include="StartStopControl\ControlButtonsPanel.xaml.cs">
+      <DependentUpon>ControlButtonsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StartStopControl\ControlButtonsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Ranges\SimpleRangeControl\RangeControl.xaml">
@@ -94,6 +98,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ranges\SimpleRangeControl\SimpleValueRow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StartStopControl\ControlButtonsPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
