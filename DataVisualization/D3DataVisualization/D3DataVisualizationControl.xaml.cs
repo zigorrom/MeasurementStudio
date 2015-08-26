@@ -56,6 +56,7 @@ namespace DataVisualization.D3DataVisualization
 
         public void SetScale(GraphScaleType scaleType)
         {
+            
             HorizontalAxis xAxis;
             VerticalAxis yAxis;
             switch (scaleType)
