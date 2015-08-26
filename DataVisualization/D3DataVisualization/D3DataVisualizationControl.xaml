@@ -12,9 +12,6 @@
     </UserControl.DataContext>-->
     <UserControl.Resources>
         <local:VisibilityToCheckedConverter x:Key="VisibilityToCheckedConverter"/>
-        
-        
-        
     </UserControl.Resources>
      
     <Grid>
