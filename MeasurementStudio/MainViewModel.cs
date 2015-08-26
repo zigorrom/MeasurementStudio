@@ -13,10 +13,9 @@ namespace MeasurementStudio
     public class MainViewModel
     {
 
+
         public MainViewModel()
         {
-
-
 
         }
 

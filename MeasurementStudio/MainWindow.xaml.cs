@@ -30,6 +30,7 @@ namespace MeasurementStudio
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             var a = new OutputCurveMeasurement();
+            a.Start();
             PageTransitionControl.ShowPage(a.Control);
         }
 

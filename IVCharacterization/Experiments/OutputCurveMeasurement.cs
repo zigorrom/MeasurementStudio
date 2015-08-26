@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace IVCharacterization.Experiments
 {
@@ -23,6 +24,7 @@ namespace IVCharacterization.Experiments
             _vm = new OutputIVViewModel();
             _control = new IVMainView();
             _control.DataContext = _vm;
+            
             _meaList = new List<MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>>();
             
             _control.ControlButtons.StartButtonPressed += ControlButtons_StartButtonPressed;
@@ -82,6 +84,7 @@ namespace IVCharacterization.Experiments
             {
                 var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("asdda_{0}",j), 123, "", 1), new Func<DrainSourceDataRow, OxyPlot.DataPoint>((x) => new DataPoint(x.DrainSourceVoltage, x.DrainCurrent)));
                 _meaList.Add(_mea);
+                _vm.AddSeries(_mea.Select(x=>new Point(x.DrainSourceVoltage, x.DrainCurrent)));
                 //_vm.AddSeries(_mea);
                 //_vm.Visualization.AddSeries(_mea);
                 //throw new NotImplementedException();
