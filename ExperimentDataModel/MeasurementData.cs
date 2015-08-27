@@ -203,6 +203,8 @@ namespace ExperimentDataModel
 //            throw new NotImplementedException();
 //        }
 
+        public event EventHandler DataChanged;
+
         private bool _collectionChanged = false;
 
         private bool _updatesEnabled = true;
@@ -212,6 +214,7 @@ namespace ExperimentDataModel
         private Func<DataT, Point> xyMapping;
         private Func<DataT, double> xMapping;
         private Func<DataT, double> yMapping;
+        private readonly List<Mapping<T>> mappings = new List<Mapping<T>>();
 
 
         private readonly ObservableCollection<DataT> _measurementCollection;
@@ -219,7 +222,7 @@ namespace ExperimentDataModel
         public MeasurementData(InfoT info)
         {
             _measurementInfo = info;
-
+            _measurementCollection.CollectionChanged += OnCollectionChanged;
             if(typeof(DataT)==typeof(Point))
             {
                 xyMapping = t => (Point)(object)t;
@@ -234,15 +237,109 @@ namespace ExperimentDataModel
         public void ResumeUpdate()
         {
             _updatesEnabled = true;
-            if (collectionChanged)
+            if (_collectionChanged)
             {
-                collectionChanged = false;
+                _collectionChanged = false;
                 RaiseDataChanged();
             }
         }
 
+        private void RaiseDataChanged()
+        {
+            var handler = DataChanged;
+            if (handler != null)
+            {
+                DataChanged(this, EventArgs.Empty);
+            }
+        }
+
+        private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (_updatesEnabled)
+                RaiseDataChanged();
+            else
+                _collectionChanged = true;
+        }
+
+        public ObservableCollection<DataT> Collection
+        {
+            get { return _measurementCollection; }
+        }
+
+        public void AppendMany(IEnumerable<DataT> data)
+        {
+            if (data == null)
+                throw new ArgumentNullException("data");
+
+            _updatesEnabled = false;
+            foreach (var p in data)
+            {
+                
+                _measurementCollection.Add(p);
+            }
+            _updatesEnabled = true;
+            RaiseDataChanged();
+        }
+
+        public void SetXMapping(Func<DataT, double> mapping)
+        {
+            if (mapping == null)
+                throw new ArgumentNullException();
+            this.xMapping = mapping;
+        }
+
+        public void SetYMapping(Func<DataT, double> mapping)
+        {
+            if (mapping == null)
+                throw new ArgumentNullException("mapping");
+
+            this.yMapping = mapping;
+        }
+
+        public void SetXYMapping(Func<DataT, Point> mapping)
+        {
+            if (mapping == null)
+                throw new ArgumentNullException("mapping");
+
+            this.xyMapping = mapping;
+        }
+
+        private void ApplyMappings(DependencyObject target, DataT elem)
+        {
+            if (target != null)
+            {
+                foreach (var mapping in mappings)
+                {
+                    target.SetValue(mapping.Property, mapping.F(elem));
+                }
+            }
+        }
 
 
+        private void FillPoint(DataT elem, ref Point point)
+        {
+            if(xyMapping != null)
+            {
+                point = xyMapping(elem);
+            }
+            else
+            {
+                if (xMapping != null)
+                {
+                    point.X = xMapping(elem);
+                }
+                if (yMapping != null)
+                {
+                    point.Y = yMapping(elem);
+                }
+            }
+
+        }
+
+        public IPointEnumerator GetEnumerator(DependencyObject context)
+        {
+            return new PointEnumerator(this);
+        }
 
 
         private class PointEnumerator:IPointEnumerator
@@ -253,12 +350,12 @@ namespace ExperimentDataModel
             public PointEnumerator(MeasurementData<InfoT, DataT> dataSource)
             {
                 this.dataSource = dataSource;
-                enumerator = dataSource.GetEnumerator();
+                enumerator = dataSource.Collection.GetEnumerator() ;
             }
 
             public void ApplyMappings(DependencyObject target)
             {
-                throw new NotImplementedException();
+                dataSource.ApplyMappings(targer, enumerator.Current);
             }
 
             public void GetCurrent(ref Point p)
