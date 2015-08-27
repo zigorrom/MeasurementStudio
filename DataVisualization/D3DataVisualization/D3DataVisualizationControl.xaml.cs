@@ -105,8 +105,15 @@ namespace DataVisualization.D3DataVisualization
         
         public void AddSeries(IEnumerable<Point> data)
         {
-            plotter.AddLineGraph(new ObservableDataSource<Point>(data));
+            var d = new ObservableDataSource<Point>(data);
+            d.SetXYMapping(p => p);
+
+            
+
+            plotter.AddLineGraph(d);
             
         }
+
+        
     }
 }

@@ -15,13 +15,14 @@
         <Menu HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
             <MenuItem Header="Experiment">
                 <MenuItem Header="IV-OutputCurve" Click="MenuItem_Click"/>
-                <MenuItem Header="IV-TransferCurve" HorizontalAlignment="Left"/>
+                <MenuItem Header="IV-TransferCurve" />
+                <MenuItem Header="Noise Measurement"/>
             </MenuItem>
         </Menu>
         <!--<D3DataVisualization:D3DataVisualizationControl Grid.Row="1"/>-->
         <!--<DataVisualization:D3DataVisualizationControl Grid.Row="1"/>-->
         <pt:PageTransition Grid.Row="2" Name="PageTransitionControl" TransitionType="Grow"/>
-
+        
 
 
 

@@ -1,5 +1,6 @@
 ﻿
 using DataVisualization.D3DataVisualization;
+using ExperimentAbstraction;
 using Helper.Ranges;
 using Helper.Ranges.DoubleRange;
 using Helper.Ranges.RangeHandlers;
@@ -71,6 +72,8 @@ namespace IVCharacterization
                 SetField(ref m_Visualization, value, "Visualization");
             }
         }
+
+        public  IExperiment Experiment { get; set; }
 
         public void AddSeries(IEnumerable<Point> Points)
         {

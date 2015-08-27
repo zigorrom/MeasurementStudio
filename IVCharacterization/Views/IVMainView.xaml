@@ -23,6 +23,8 @@
             <D3DataVisualization:D3DataVisualizationControl x:Name="Plotter"/>
         </DataTemplate>
         
+        
+        
     </UserControl.Resources>
 
     <Grid>
