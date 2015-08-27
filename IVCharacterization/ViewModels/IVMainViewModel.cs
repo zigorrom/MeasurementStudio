@@ -7,11 +7,13 @@ using Helper.Ranges.SimpleRangeControl;
 using Instruments;
 using OxyPlot;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 
 namespace IVCharacterization
@@ -70,13 +72,13 @@ namespace IVCharacterization
             }
         }
 
-        public void AddSeries(IEnumerable<DataPoint> Points)
+        public void AddSeries(IEnumerable<Point> Points)
         {
-            //if (Visualization != null)
-            //{
-            //    Visualization.AddSeries(Points);
-            //}
-            throw new NotImplementedException();
+            if (Visualization != null)
+            {
+                Visualization.AddLineGraph(Points);
+            }
+            
         }
 
         public void InvalidatePlot()

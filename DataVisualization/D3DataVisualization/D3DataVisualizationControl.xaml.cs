@@ -61,6 +61,7 @@ namespace DataVisualization.D3DataVisualization
 
         public void SetScale(GraphScaleType scaleType)
         {
+            
             HorizontalAxis xAxis;
             VerticalAxis yAxis;
             switch (scaleType)
@@ -104,8 +105,8 @@ namespace DataVisualization.D3DataVisualization
         
         public void AddSeries(IEnumerable<Point> data)
         {
-            plotter.AddLineGraph(new ObservableDataSource<Point>(enumerator(100)));
-            plotter.AddLineGraph(new ObservableDataSource<Point>(enumerator(300)));
+            plotter.AddLineGraph(new ObservableDataSource<Point>(data));
+            
         }
     }
 }
