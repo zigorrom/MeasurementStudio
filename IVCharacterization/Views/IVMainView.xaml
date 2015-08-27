@@ -18,7 +18,11 @@
         <GridLength x:Key="RangeGroupFerstCoulumnWidth">115*</GridLength>
         <GridLength x:Key="RangeGroupSecondColumnWidth">163*</GridLength>
         <System:Double x:Key="RangeHandlerSelectorHeight">40</System:Double>
-
+        
+        <DataTemplate DataType="{x:Type D3DataVisualization:D3VisualizationViewModel}">
+            <D3DataVisualization:D3DataVisualizationControl x:Name="Plotter"/>
+        </DataTemplate>
+        
     </UserControl.Resources>
 
     <Grid>
@@ -32,8 +36,8 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <D3DataVisualization:D3DataVisualizationControl x:Name="Plotter" DataContext="{Binding Visualization}"/>
-        
+        <!--<D3DataVisualization:D3DataVisualizationControl x:Name="Plotter"/>-->
+        <ContentControl Content="{Binding Visualization}" />
         <Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" MinHeight="400">
             <Expander.Header>
                 <TextBlock Text="Settings" TextOptions.TextFormattingMode="Ideal">

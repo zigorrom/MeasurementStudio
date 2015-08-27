@@ -28,6 +28,11 @@ namespace DataVisualization.D3DataVisualization
         public D3DataVisualizationControl()
         {
             InitializeComponent();
+
+            //var dc = DataContext as D3VisualizationViewModel;
+            //if (dc == null)
+            //    throw new NullReferenceException();
+            //dc.View = this;
             //(DataContext as D3VisualizationViewModel).View = this as ID3View;
             DataContextChanged += D3DataVisualizationControl_DataContextChanged;
         }
