@@ -103,14 +103,10 @@ namespace DataVisualization.D3DataVisualization
             plotter.MainVerticalAxis = yAxis;
         }
         
-        public void AddSeries(IEnumerable<Point> data)
+        public void AddSeries(IPointDataSource data)
         {
-            var d = new ObservableDataSource<Point>(data);
-            d.SetXYMapping(p => p);
             
-
-            plotter.AddLineGraph(d);
-            
+            Dispatcher.Invoke(new Action(() => plotter.AddLineGraph(data)));
             
         }
 

@@ -16,6 +16,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using IVCharacterization.ViewModels;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
 
 
 namespace IVCharacterization
@@ -76,7 +78,7 @@ namespace IVCharacterization
 
         public  IExperiment Experiment { get; protected set; }
 
-        public void AddSeries(IEnumerable<Point> Points)
+        public void AddSeries(IPointDataSource Points)
         {
             if (Visualization != null)
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -23,6 +24,6 @@ namespace DataVisualization
         int StrokeThickness { get; set; }
         GraphScaleType ScaleType { get; set; }
 
-        void AddLineGraph(IEnumerable<Point> data);
+        void AddLineGraph(IPointDataSource data);
     }
 }

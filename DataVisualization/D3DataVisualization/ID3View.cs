@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,6 @@ namespace DataVisualization.D3DataVisualization
     {
         void SetScale(GraphScaleType scaleType);
 
-        void AddSeries(IEnumerable<Point> data);
+        void AddSeries(IPointDataSource data);
     }
 }

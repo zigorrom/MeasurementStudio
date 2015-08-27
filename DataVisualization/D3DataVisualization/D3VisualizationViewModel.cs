@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DataVisualization.D3DataVisualization
 {
@@ -110,7 +112,7 @@ namespace DataVisualization.D3DataVisualization
 
 
 
-        public void AddLineGraph(IEnumerable<System.Windows.Point> data)
+        public void AddLineGraph(IPointDataSource data)
         {
             View.AddSeries(data);
         }

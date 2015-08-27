@@ -2,7 +2,7 @@
 using ExperimentDataModel;
 using IVCharacterization.DataModel;
 using IVCharacterization.ViewModels;
-
+using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -81,19 +81,27 @@ namespace IVCharacterization.Experiments
         protected override void DoMeasurement(object sender, DoWorkEventArgs e)
         {
             _meaList.Clear();
-            for (int j = 0; j < 4; j++)
+            for (int j = 0; j < 1; j++)
             {
                 var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("asdda_{0}",j), 123, "", 1), new Func<DrainSourceDataRow, Point>((x) => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
                 _meaList.Add(_mea);
+                var ds = new ObservableDataSource<DrainSourceDataRow>(_mea);
+                ds.SetXYMapping(_mea.DisplayFunc);
+                _vm.AddSeries(ds);
                 //_vm.AddSeries(_mea.Select(x=>new Point(x.DrainSourceVoltage, x.DrainCurrent)));
                 //_vm.AddSeries(_mea);
                 //_vm.Visualization.AddSeries(_mea);
                 //throw new NotImplementedException();
                 for (int i = 0; i < 100000; i++)
                 {
-                    _mea.Add(new DrainSourceDataRow(i, i * j, 0));
+                    var val = new DrainSourceDataRow(i, i * j, 0);
+                    //_mea.Add(new DrainSourceDataRow(i, i * j, 0));
+                    //ds.ResumeUpdate();
+                    _mea.Add(val);
+                    ds.Collection.Add(val);
+                    System.Threading.Thread.Sleep(100);
                 }
-                _vm.AddSeries(_mea.Select(x => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
+                //_vm.AddSeries(_mea.Select(x => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
                 //_vm.InvalidatePlot();
             }
             
