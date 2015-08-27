@@ -14,6 +14,11 @@ using System.Windows;
 
 namespace ExperimentDataModel
 {
+    /// <summary>
+    /// https://searchcode.com/codesearch/view/11042258/
+    /// </summary>
+
+
     [Serializable]
     public class MeasurementData<InfoT, DataT> : IMeasurementDataCollection<DataT, Point>
         where InfoT : struct, IMeasurementInfo
