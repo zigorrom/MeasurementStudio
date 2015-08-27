@@ -6,7 +6,7 @@ using Helper.Ranges.DoubleRange;
 using Helper.Ranges.RangeHandlers;
 using Helper.Ranges.SimpleRangeControl;
 using Instruments;
-using OxyPlot;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 
 namespace IVCharacterization
@@ -73,7 +74,7 @@ namespace IVCharacterization
             }
         }
 
-        public  IExperiment Experiment { get; set; }
+        public  IExperiment Experiment { get; protected set; }
 
         public void AddSeries(IEnumerable<Point> Points)
         {
@@ -84,12 +85,9 @@ namespace IVCharacterization
             
         }
 
-        public void InvalidatePlot()
-        {
-            //if (Visualization != null)
-            //    Visualization.InvalidatePlot();
-            throw new NotImplementedException();
-        }
+        
+
+
 
         private bool m_globalIsEnabled;
         public bool GlobalIsEnabled { get { return m_globalIsEnabled; }
@@ -116,6 +114,7 @@ namespace IVCharacterization
             GlobalIsEnabled = true;
         }
 
+        #region PropertyEvents
         public event EventHandler<IVCharacteristicTypeEnum> ChangeIVCharacterizationViewModel;
         private void OnChangeIVCharacterizationViewModel(IVCharacteristicTypeEnum CharacteristicType)
         {
@@ -139,5 +138,6 @@ namespace IVCharacterization
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(PropertyName));
         }
+        #endregion
     }
 }

@@ -1,5 +1,5 @@
 ﻿using ExperimentDataModel;
-using OxyPlot;
+
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -128,26 +128,26 @@ namespace ExperimentalDataModelTest
         [STAThread]
         static void Main(string[] args)
         {
-            FolderBrowserDialog sbd = new FolderBrowserDialog();
-            sbd.ShowDialog();
-            for (int i = 0; i < 10; i++)
-            {
-                var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(
-                    new DrainSourceMeasurmentInfoRow(String.Concat("file_", i), i*0.123, String.Concat("Comment_", i), i, DateTime.Now),
-                    new Func<DrainSourceDataRow, OxyPlot.DataPoint>((x) => new DataPoint(x.DrainSourceVoltage, x.DrainCurrent))
-                   );
-                var rnd = new Random();
-                for (int j = 0; j < 10000; j++)
-                {
-                    a.Add(new DrainSourceDataRow(rnd.NextDouble(), rnd.NextDouble() * 10, rnd.NextDouble() * 100));
-                }
-                using (var s = new StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(sbd.SelectedPath))
-                {
-                    s.NewExperiment("Final");
-                    s.Write(a);
-                }
-            }
-            MessageBox.Show("Done");
+            //FolderBrowserDialog sbd = new FolderBrowserDialog();
+            //sbd.ShowDialog();
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(
+            //        new DrainSourceMeasurmentInfoRow(String.Concat("file_", i), i*0.123, String.Concat("Comment_", i), i, DateTime.Now),
+            //        new Func<DrainSourceDataRow, Point>((x) => new DataPoint(x.DrainSourceVoltage, x.DrainCurrent))
+            //       );
+            //    var rnd = new Random();
+            //    for (int j = 0; j < 10000; j++)
+            //    {
+            //        a.Add(new DrainSourceDataRow(rnd.NextDouble(), rnd.NextDouble() * 10, rnd.NextDouble() * 100));
+            //    }
+            //    using (var s = new StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(sbd.SelectedPath))
+            //    {
+            //        s.NewExperiment("Final");
+            //        s.Write(a);
+            //    }
+            //}
+            //MessageBox.Show("Done");
             
 
            

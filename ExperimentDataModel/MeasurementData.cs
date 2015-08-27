@@ -1,4 +1,4 @@
-﻿using OxyPlot;
+﻿
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,11 +9,12 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ExperimentDataModel
 {
     [Serializable]
-    public class MeasurementData<InfoT, DataT> : IMeasurementDataCollection<DataT, DataPoint>
+    public class MeasurementData<InfoT, DataT> : IMeasurementDataCollection<DataT, Point>
         where InfoT : struct, IMeasurementInfo
         where DataT : struct
     {
@@ -67,12 +68,12 @@ namespace ExperimentDataModel
         private List<DataT> _dataList;
         public List<DataT> Items { get { return _dataList; } }
 
-        public Func<DataT, DataPoint> DisplayFunc { get; set; }
+        public Func<DataT, Point> DisplayFunc { get; set; }
 
         private object SyncRoot = new object();
 
 
-        public MeasurementData(InfoT experimentInfo, Func<DataT, DataPoint> DefaultFunctor)
+        public MeasurementData(InfoT experimentInfo, Func<DataT, Point> DefaultFunctor)
         {
             Info = experimentInfo;
             _dataList = new List<DataT>();
@@ -178,7 +179,7 @@ namespace ExperimentDataModel
             return GetEnumerator();
         }
 
-        public IEnumerator<DataPoint> DisplayEnumerator
+        public IEnumerator<Point> DisplayEnumerator
         {
             get
             {

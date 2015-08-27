@@ -2,7 +2,7 @@
 using ExperimentDataModel;
 using IVCharacterization.DataModel;
 using IVCharacterization.ViewModels;
-using OxyPlot;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,7 +22,7 @@ namespace IVCharacterization.Experiments
         public OutputCurveMeasurement():base("Output curve measurement")
         {
             _vm = new OutputIVViewModel();
-            _vm.Experiment = this;
+            //_vm.Experiment = this;
             _control = new IVMainView();
             _control.DataContext = _vm;
             
@@ -83,7 +83,7 @@ namespace IVCharacterization.Experiments
             _meaList.Clear();
             for (int j = 0; j < 4; j++)
             {
-                var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("asdda_{0}",j), 123, "", 1), new Func<DrainSourceDataRow, OxyPlot.DataPoint>((x) => new DataPoint(x.DrainSourceVoltage, x.DrainCurrent)));
+                var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("asdda_{0}",j), 123, "", 1), new Func<DrainSourceDataRow, Point>((x) => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
                 _meaList.Add(_mea);
                 //_vm.AddSeries(_mea.Select(x=>new Point(x.DrainSourceVoltage, x.DrainCurrent)));
                 //_vm.AddSeries(_mea);

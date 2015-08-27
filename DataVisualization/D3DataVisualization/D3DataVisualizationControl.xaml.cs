@@ -107,10 +107,10 @@ namespace DataVisualization.D3DataVisualization
         {
             var d = new ObservableDataSource<Point>(data);
             d.SetXYMapping(p => p);
-
             
 
             plotter.AddLineGraph(d);
+            
             
         }
 
