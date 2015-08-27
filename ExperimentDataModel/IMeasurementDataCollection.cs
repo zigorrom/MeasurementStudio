@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -7,9 +8,9 @@ using System.Text;
 
 namespace ExperimentDataModel
 {
-    interface IMeasurementDataCollection<DataT,DisplayT>:INotifyPropertyChanged, INotifyCollectionChanged, IList<DataT>//, IEnumerable<DisplatT>,// IObserver<DataT>//, IList<DataT>
+    interface IMeasurementDataCollection<DataT,DisplayT>:IPointDataSource// INotifyPropertyChanged, INotifyCollectionChanged, IPointDataSource//, IEnumerable<DisplatT>,// IObserver<DataT>//, IList<DataT>
     {
-        IEnumerator<DisplayT> DisplayEnumerator { get; }
+        //IEnumerator<DisplayT> DisplayEnumerator { get; }
 
         //void Add(DataT item);
         //void Clear();

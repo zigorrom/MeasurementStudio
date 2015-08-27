@@ -87,7 +87,8 @@ namespace IVCharacterization.Experiments
                 _meaList.Add(_mea);
                 var ds = new ObservableDataSource<DrainSourceDataRow>(_mea);
                 ds.SetXYMapping(_mea.DisplayFunc);
-                _vm.AddSeries(ds);
+                //_vm.AddSeries(ds); 
+               
                 //_vm.AddSeries(_mea.Select(x=>new Point(x.DrainSourceVoltage, x.DrainCurrent)));
                 //_vm.AddSeries(_mea);
                 //_vm.Visualization.AddSeries(_mea);
@@ -101,6 +102,7 @@ namespace IVCharacterization.Experiments
                     ds.Collection.Add(val);
                     System.Threading.Thread.Sleep(100);
                 }
+                _vm.AddSeries(ds); 
                 //_vm.AddSeries(_mea.Select(x => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
                 //_vm.InvalidatePlot();
             }

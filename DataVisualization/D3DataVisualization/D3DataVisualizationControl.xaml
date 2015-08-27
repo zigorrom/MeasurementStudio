@@ -12,23 +12,23 @@
     </UserControl.DataContext>-->
     <UserControl.Resources>
         <local:VisibilityToCheckedConverter x:Key="VisibilityToCheckedConverter"/>
+        
     </UserControl.Resources>
      
     <Grid>
         <d3:ChartPlotter x:Name="plotter" >
+            <!--<d3:ChartPlotter.Resources>
+                <DataTemplate DataType="{x:Type d3:LineGraph}">
+                    <d3:LineGraph StrokeThickness="{Binding StrokeThickness}"/>
+                                  
+                </DataTemplate>
+                
+            </d3:ChartPlotter.Resources>-->
             <d3:Header Content="{Binding Title}"/>
             <d3:HorizontalAxisTitle Content="{Binding HorizontalAxisTitle}"/>
             <d3:VerticalAxisTitle Content="{Binding VerticalAxisTitle}"/>
-           <d3:AxisCursorGraph/>
+            <d3:AxisCursorGraph/>
             <d3:CursorCoordinateGraph/>
-            
-
-            
-                
-            
-           
-         
-            
         </d3:ChartPlotter>
     </Grid>
 </UserControl>
