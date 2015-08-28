@@ -118,7 +118,7 @@ namespace IVCharacterization
             switch (characteristicType)
             {
                 case IVCharacteristicTypeEnum.Output:
-                 IVExperiment = 
+                 break;//IVExperiment = 
                 case IVCharacteristicTypeEnum.Transfer:
                     break;
                 default:
