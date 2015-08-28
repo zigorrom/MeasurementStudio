@@ -11,6 +11,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace ExperimentDataModel
 {
@@ -20,7 +21,7 @@ namespace ExperimentDataModel
 
 
     [Serializable]
-    public class MeasurementData<InfoT, DataT> : IMeasurementDataCollection<DataT, Point>
+    public class MeasurementData<InfoT, DataT> : IMeasurementDataCollection<DataT>
         where InfoT : struct, IMeasurementInfo
         where DataT : struct
     {
@@ -209,19 +210,25 @@ namespace ExperimentDataModel
 
         private bool _updatesEnabled = true;
 
-        private InfoT _measurementInfo;
+//        private InfoT _measurementInfo;
+        public InfoT Info
+        {
+            get;
+            private set;
+        }
+
 
         private Func<DataT, Point> xyMapping;
         private Func<DataT, double> xMapping;
         private Func<DataT, double> yMapping;
-        private readonly List<Mapping<T>> mappings = new List<Mapping<T>>();
+        //private readonly List<Mapping<DataT>> mappings = new List<Mapping<DataT>>();
+        
 
-
-        private readonly ObservableCollection<DataT> _measurementCollection;
+        private readonly ObservableCollection<DataT> _measurementCollection = new ObservableCollection<DataT>();
 
         public MeasurementData(InfoT info)
         {
-            _measurementInfo = info;
+            Info = info;
             _measurementCollection.CollectionChanged += OnCollectionChanged;
             if(typeof(DataT)==typeof(Point))
             {
@@ -249,7 +256,8 @@ namespace ExperimentDataModel
             var handler = DataChanged;
             if (handler != null)
             {
-                DataChanged(this, EventArgs.Empty);
+                Dispatcher.CurrentDispatcher.Invoke(()=>handler(this, EventArgs.Empty));
+                //handler(this, EventArgs.Empty);
             }
         }
 
@@ -306,13 +314,15 @@ namespace ExperimentDataModel
 
         private void ApplyMappings(DependencyObject target, DataT elem)
         {
-            if (target != null)
-            {
-                foreach (var mapping in mappings)
-                {
-                    target.SetValue(mapping.Property, mapping.F(elem));
-                }
-            }
+
+            throw new NotImplementedException();
+        //    //if (target != null)
+        //    //{
+        //    //    foreach (var mapping in mappings)
+        //    //    //{
+        //    //        target.SetValue(mapping.Property, mapping.F(elem));
+        //    //    }
+        //    //}
         }
 
 
@@ -355,23 +365,34 @@ namespace ExperimentDataModel
 
             public void ApplyMappings(DependencyObject target)
             {
-                dataSource.ApplyMappings(targer, enumerator.Current);
+                dataSource.ApplyMappings(target, enumerator.Current);
             }
 
             public void GetCurrent(ref Point p)
             {
-                throw new NotImplementedException();
+                dataSource.FillPoint(enumerator.Current, ref p);
             }
 
             public bool MoveNext()
             {
-                throw new NotImplementedException();
+                return enumerator.MoveNext();
             }
 
             public void Dispose()
             {
-                throw new NotImplementedException();
+                enumerator.Dispose();
+                GC.SuppressFinalize(this);
             }
+        }
+
+        public IEnumerator<DataT> GetEnumerator()
+        {
+            return _measurementCollection.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 
