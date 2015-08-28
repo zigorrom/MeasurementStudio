@@ -14,6 +14,7 @@ namespace IVCharacterization.ViewModels
             Visualization.VerticalAxisTitle = "Drain Current, I_{D}(A)";
             Visualization.Title = "Output I-V Characterization";
             Visualization.StrokeThickness = 10;
+            Visualization.ScaleType = DataVisualization.GraphScaleType.LogLog;
             //Visualization.ScaleType = DataVisualization.GraphScaleType.LinLin;
         }
 

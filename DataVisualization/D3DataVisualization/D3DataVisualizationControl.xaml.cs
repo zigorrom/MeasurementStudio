@@ -45,8 +45,7 @@ namespace DataVisualization.D3DataVisualization
             if (dc == null)
                 return;
             dc.View = this;
-
-            //SetScale(dc.ScaleType);
+           // SetScale(dc.ScaleType);
         }
          
 
@@ -105,6 +104,7 @@ namespace DataVisualization.D3DataVisualization
         
         public void AddSeries(IPointDataSource data)
         {
+            //LineGraph a = new LineGraph();
             
             Dispatcher.Invoke(new Action(() => plotter.AddLineGraph(data)));
             
