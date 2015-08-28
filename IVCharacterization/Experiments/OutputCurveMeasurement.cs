@@ -92,7 +92,7 @@ namespace IVCharacterization.Experiments
                 var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("asdda_{0}", j), 123, "", 1));//, new Func<DrainSourceDataRow, Point>((x) => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
                 _mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
                 _vm.AddSeries(_mea);
-                int exp = 2;
+                int exp = 1000;
                 for (int i = 1; i < 100000; i++)
                 {
                     if(i%exp==0)
@@ -102,36 +102,13 @@ namespace IVCharacterization.Experiments
                             _mea.ResumeUpdate();
                             _mea.SuspendUpdate();
                         });
-                        exp += exp;
+                        
                     }
                     CallInUIThread(() => _mea.Collection.Add(new DrainSourceDataRow(i, j*Math.Log(i), 0)));
                    // System.Threading.Thread.Sleep(10);
                 }
                 
-                
-
-                
-                //_meaList.Add(_mea);
-                //var ds = new ObservableDataSource<DrainSourceDataRow>(_mea);
-                //ds.SetXYMapping(_mea.DisplayFunc);
-                //_vm.AddSeries(ds); 
-               
-                //_vm.AddSeries(_mea.Select(x=>new Point(x.DrainSourceVoltage, x.DrainCurrent)));
-                //_vm.AddSeries(_mea);
-                //_vm.Visualization.AddSeries(_mea);
-                //throw new NotImplementedException();
-                //for (int i = 0; i < 100000; i++)
-                //{
-                //    var val = new DrainSourceDataRow(i, i * j, 0);
-                //    //_mea.Add(new DrainSourceDataRow(i, i * j, 0));
-                //    //ds.ResumeUpdate();
-                //    _mea.Add(val);
-                //    ds.Collection.Add(val);
-                //    System.Threading.Thread.Sleep(100);
-                //}
-                //_vm.AddSeries(ds); 
-                //_vm.AddSeries(_mea.Select(x => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
-                //_vm.InvalidatePlot();
+          
             }
             
 
