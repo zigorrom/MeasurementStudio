@@ -256,8 +256,9 @@ namespace ExperimentDataModel
             var handler = DataChanged;
             if (handler != null)
             {
-                Dispatcher.CurrentDispatcher.Invoke(()=>handler(this, EventArgs.Empty));
-                //handler(this, EventArgs.Empty);
+                
+                //Dispatcher.CurrentDispatcher.Invoke(()=>handler(this, EventArgs.Empty));
+                handler(this, EventArgs.Empty);
             }
         }
 
