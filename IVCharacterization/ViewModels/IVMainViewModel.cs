@@ -87,10 +87,6 @@ namespace IVCharacterization
             
         }
 
-        
-
-
-
         private bool m_globalIsEnabled;
         public bool GlobalIsEnabled { get { return m_globalIsEnabled; }
             set
@@ -112,10 +108,38 @@ namespace IVCharacterization
             GSRangeHandlerViewModel = new RangeHandlerViewModel();
 
             Visualization = new D3VisualizationViewModel();
-            //throw new NotImplementedException();
             GlobalIsEnabled = true;
+
+            
         }
 
+        private void InitializeExperiment(IVCharacteristicTypeEnum characteristicType)
+        {
+            switch (characteristicType)
+            {
+                case IVCharacteristicTypeEnum.Output:
+                 IVExperiment = 
+                case IVCharacteristicTypeEnum.Transfer:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private IExperiment _ivExperiment;
+        public IExperiment IVExperiment
+        {
+            get
+            {
+                return _ivExperiment;
+            }
+            protected set
+            {
+                SetField(ref _ivExperiment, value, "IVExperiment");
+            }
+        }
+
+        
         #region PropertyEvents
         public event EventHandler<IVCharacteristicTypeEnum> ChangeIVCharacterizationViewModel;
         private void OnChangeIVCharacterizationViewModel(IVCharacteristicTypeEnum CharacteristicType)

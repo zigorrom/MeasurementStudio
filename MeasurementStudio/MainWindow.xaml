@@ -5,7 +5,7 @@
         xmlns:local="clr-namespace:MeasurementStudio"
         xmlns:D3DataVisualization="clr-namespace:DataVisualization.D3DataVisualization;assembly=DataVisualization"
         x:Class="MeasurementStudio.MainWindow"
-        Title="MainWindow" Height="600.904" Width="745.331">
+        Title="MainWindow">
 
     <Grid>
         <Grid.RowDefinitions>
