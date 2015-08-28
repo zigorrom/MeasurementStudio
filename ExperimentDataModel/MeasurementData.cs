@@ -225,6 +225,7 @@ namespace ExperimentDataModel
         
 
         private readonly ObservableCollection<DataT> _measurementCollection = new ObservableCollection<DataT>();
+        private object SyncRoot = new object();
 
         public MeasurementData(InfoT info)
         {
@@ -386,6 +387,8 @@ namespace ExperimentDataModel
             }
         }
 
+        #region ICollection
+
         public IEnumerator<DataT> GetEnumerator()
         {
             return _measurementCollection.GetEnumerator();
@@ -395,6 +398,45 @@ namespace ExperimentDataModel
         {
             return GetEnumerator();
         }
+
+        public void Add(DataT item)
+        {
+            lock (SyncRoot)
+            {
+                _measurementCollection.Add(item);
+            }
+        }
+
+        public void Clear()
+        {
+            _measurementCollection.Clear();
+        }
+
+        public bool Contains(DataT item)
+        {
+            return _measurementCollection.Contains(item);
+        }
+
+        public void CopyTo(DataT[] array, int arrayIndex)
+        {
+            _measurementCollection.CopyTo(array, arrayIndex);
+        }
+
+        public int Count
+        {
+            get { return _measurementCollection.Count; }
+        }
+
+        public bool IsReadOnly
+        {
+            get { return false; }
+        }
+
+        public bool Remove(DataT item)
+        {
+            return _measurementCollection.Remove(item);
+        }
+        #endregion
     }
 
 

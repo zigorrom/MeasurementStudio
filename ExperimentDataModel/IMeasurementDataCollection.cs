@@ -8,7 +8,7 @@ using System.Text;
 
 namespace ExperimentDataModel
 {
-    interface IMeasurementDataCollection<DataT>:IPointDataSource, IEnumerable<DataT>// INotifyPropertyChanged, INotifyCollectionChanged, IPointDataSource//, IEnumerable<DisplatT>,// IObserver<DataT>//, IList<DataT>
+    interface IMeasurementDataCollection<DataT>:IPointDataSource, ICollection<DataT>// IEnumerable<DataT>// INotifyPropertyChanged, INotifyCollectionChanged, IPointDataSource//, IEnumerable<DisplatT>,// IObserver<DataT>//, IList<DataT>
     {
         //IEnumerator<DisplayT> DisplayEnumerator { get; }
 

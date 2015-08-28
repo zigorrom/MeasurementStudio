@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace IVCharacterization.Experiments
 {
@@ -78,21 +79,38 @@ namespace IVCharacterization.Experiments
             //throw new NotImplementedException();
         }
 
+        private void CallInUIThread(Action action)
+        {
+            Application.Current.Dispatcher.Invoke(action);
+        }
+
         protected override void DoMeasurement(object sender, DoWorkEventArgs e)
         {
             _meaList.Clear();
-            for (int j = 0; j < 1; j++)
+            for (int j = 0; j <4; j++)
             {
                 var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("asdda_{0}", j), 123, "", 1));//, new Func<DrainSourceDataRow, Point>((x) => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
                 _mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
-                
-                
-                for (int i = 1; i < 100; i++)
-                {
-                    _mea.Collection.Add(new DrainSourceDataRow(i,Math.Log(i), 0));
-                }
-
                 _vm.AddSeries(_mea);
+                int exp = 2;
+                for (int i = 1; i < 100000; i++)
+                {
+                    if(i%exp==0)
+                    {
+                        CallInUIThread(() =>
+                        {
+                            _mea.ResumeUpdate();
+                            _mea.SuspendUpdate();
+                        });
+                        exp += exp;
+                    }
+                    CallInUIThread(() => _mea.Collection.Add(new DrainSourceDataRow(i, j*Math.Log(i), 0)));
+                   // System.Threading.Thread.Sleep(10);
+                }
+                
+                
+
+                
                 //_meaList.Add(_mea);
                 //var ds = new ObservableDataSource<DrainSourceDataRow>(_mea);
                 //ds.SetXYMapping(_mea.DisplayFunc);
