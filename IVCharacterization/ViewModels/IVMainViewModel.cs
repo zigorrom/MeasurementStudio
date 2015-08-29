@@ -28,23 +28,23 @@ namespace IVCharacterization
         public const string TransferCharacteristic = "Transfer";
     }
 
-    public enum IVCharacteristicTypeEnum
-    {
-        Output,
-        Transfer
-    }
+    //public enum IVCharacteristicTypeEnum
+    //{
+    //    Output,
+    //    Transfer
+    //}
 
     public abstract class IVMainViewModel : INotifyPropertyChanged
     {
-        private IVCharacteristicTypeEnum m_IVCharacteristicType;
-        public IVCharacteristicTypeEnum IVCharacteristicType
-        {
-            get { return m_IVCharacteristicType; }
-            set
-            {
-                SetField(ref m_IVCharacteristicType, value, "IVCharacteristicType");
-            }
-        }
+        //private IVCharacteristicTypeEnum m_IVCharacteristicType;
+        //public IVCharacteristicTypeEnum IVCharacteristicType
+        //{
+        //    get { return m_IVCharacteristicType; }
+        //    set
+        //    {
+        //        SetField(ref m_IVCharacteristicType, value, "IVCharacteristicType");
+        //    }
+        //}
 
         private RangeHandlerViewModel m_DSRangeHandlerViewModel;
         public RangeHandlerViewModel DSRangeHandlerViewModel
@@ -98,9 +98,9 @@ namespace IVCharacterization
         public RangeViewModel DSRangeViewModel { get; set; }
         public RangeViewModel GSRangeViewModel { get; set; }
 
-        public IVMainViewModel(IVCharacteristicTypeEnum characteristicType = IVCharacteristicTypeEnum.Output)
+        public IVMainViewModel()//IVCharacteristicTypeEnum characteristicType = IVCharacteristicTypeEnum.Output)
         {
-            m_IVCharacteristicType = characteristicType;
+            //m_IVCharacteristicType = characteristicType;
             DSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
             GSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
 
@@ -113,18 +113,7 @@ namespace IVCharacterization
             
         }
 
-        private void InitializeExperiment(IVCharacteristicTypeEnum characteristicType)
-        {
-            switch (characteristicType)
-            {
-                case IVCharacteristicTypeEnum.Output:
-                 break;//IVExperiment = 
-                case IVCharacteristicTypeEnum.Transfer:
-                    break;
-                default:
-                    break;
-            }
-        }
+       
 
         private IExperiment _ivExperiment;
         public IExperiment IVExperiment
@@ -141,13 +130,13 @@ namespace IVCharacterization
 
         
         #region PropertyEvents
-        public event EventHandler<IVCharacteristicTypeEnum> ChangeIVCharacterizationViewModel;
-        private void OnChangeIVCharacterizationViewModel(IVCharacteristicTypeEnum CharacteristicType)
-        {
-            var handler = ChangeIVCharacterizationViewModel;
-            if (handler != null)
-                handler(this, CharacteristicType);
-        }
+        //public event EventHandler<IVCharacteristicTypeEnum> ChangeIVCharacterizationViewModel;
+        //private void OnChangeIVCharacterizationViewModel(IVCharacteristicTypeEnum CharacteristicType)
+        //{
+        //    var handler = ChangeIVCharacterizationViewModel;
+        //    if (handler != null)
+        //        handler(this, CharacteristicType);
+        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected bool SetField<ST>(ref ST field, ST value, string propertyName)

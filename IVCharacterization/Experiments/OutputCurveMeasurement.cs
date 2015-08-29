@@ -96,7 +96,7 @@ namespace IVCharacterization.Experiments
                 _mea2.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
                 _vm.AddSeries(_mea);
                 _vm.AddSeries(_mea2);
-                int exp = 1000;
+                int exp = 2000;
                 for (int i = 1; i < 100000; i++)
                 {
                     if(i%exp==0)

@@ -56,35 +56,26 @@
                     <TabItem Header="Range setup">
                         <Grid Background="#FFE5E5E5">
                             <Grid.RowDefinitions>
-                                <!--<RowDefinition Height="52*"/>-->
-                                <RowDefinition Height="Auto"/>
-                                <!--<RowDefinition Height="50*"/>-->
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
-                                <!--<RowDefinition Height="50*"/>-->
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <!--<ComboBox IsEnabled="{Binding GlobalIsEnabled}" Margin="3,3,2.6,3" SelectedIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="ComboBox_SelectionChanged">
-                                -->
-                            <!--Text="{Binding IVCharacteristicType, Converter={StaticResource CharacteristicTypeValueConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >-->
-                            <!--
-                                <ComboBoxItem Content="Output"/>
-                                <ComboBoxItem Content="Transfer"/>
-                            </ComboBox>-->
+                            
 
                             <GroupBox Header="Drain-Source Voltage Range" Grid.Row="0" Margin="0">
-
                                 <StackPanel IsEnabled="{Binding GlobalIsEnabled}">
                                     <Ranges:RangeControl DataContext="{Binding DSRangeViewModel}" Grid.ColumnSpan="2"/>
                                     <local:RangeHandlerControl Margin="3" Grid.Row="1" DataContext="{Binding DSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>
                                 </StackPanel>
-
                             </GroupBox>
+                            
                             <GroupBox Header="Gate-Source Voltage Range" Grid.Row="1" Margin="0" >
                                 <StackPanel IsEnabled="{Binding GlobalIsEnabled}">
                                     <Ranges:RangeControl DataContext="{Binding GSRangeViewModel}" Grid.ColumnSpan="2"/>
                                     <local:RangeHandlerControl Grid.Row="1" DataContext="{Binding GSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>
                                 </StackPanel>
                             </GroupBox>
+                            
                             <GroupBox Header="Save directory" Grid.Row="2">
                                 <Grid IsEnabled="{Binding GlobalIsEnabled}">
                                     <Grid.ColumnDefinitions>
