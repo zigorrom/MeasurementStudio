@@ -92,10 +92,5 @@ namespace IVCharacterization
             
         }
 
-        
-        
-
-        
-       
     }
 }

@@ -50,6 +50,7 @@
     <Compile Include="AbstractExperiment.cs" />
     <Compile Include="AbstractExperimentViewModel.cs" />
     <Compile Include="IExperiment.cs" />
+    <Compile Include="IExperimentViewModel.cs" />
     <Compile Include="ObservableExperiment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

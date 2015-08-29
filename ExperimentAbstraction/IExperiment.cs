@@ -1,6 +1,7 @@
 ﻿using Instruments;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace ExperimentAbstraction
         event EventHandler ExperimentStarted;
         event EventHandler ExperimentStopped;
         event EventHandler ExperimentPaused;
-        event EventHandler ExperimentProgressChanged;
+        event ProgressChangedEventHandler ExperimentProgressChanged;
         event EventHandler ExperimentFinished;
     }
 }

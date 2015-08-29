@@ -131,5 +131,10 @@ namespace IVCharacterization.Experiments
         {
             get { return _control; }
         }
+
+        public override void CleanExperiment()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

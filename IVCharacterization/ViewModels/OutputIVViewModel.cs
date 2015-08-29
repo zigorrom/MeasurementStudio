@@ -1,6 +1,7 @@
 ﻿using IVCharacterization.Experiments;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,6 @@ namespace IVCharacterization.ViewModels
             Visualization.StrokeThickness = 10;
 
         }
-
         protected override void InitExperiment()
         {
             Experiment = new OutputCurveMeasurement();
@@ -29,7 +29,7 @@ namespace IVCharacterization.ViewModels
             throw new NotImplementedException();
         }
 
-        protected override void ExperimentProgressChangedHandler(object sender, EventArgs e)
+        protected override void ExperimentProgressChangedHandler(object sender, ProgressChangedEventArgs e)
         {
             throw new NotImplementedException();
         }

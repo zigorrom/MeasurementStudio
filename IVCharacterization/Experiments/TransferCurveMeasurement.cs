@@ -62,5 +62,10 @@ namespace IVCharacterization.Experiments
         {
             throw new NotImplementedException();
         }
+
+        public override void CleanExperiment()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

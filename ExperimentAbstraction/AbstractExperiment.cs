@@ -19,7 +19,6 @@ namespace ExperimentAbstraction
         protected Queue<MeasurementData<InfoT, DataT>> _dataQueue;
         private BackgroundWorker _worker;
 
-
         public AbstractExperiment(string ExperimentName)
         {
             m_Name = ExperimentName;
@@ -34,7 +33,6 @@ namespace ExperimentAbstraction
             InitializeInstruments();
             InitializeExperiment();
             
-
         }
 
 
@@ -70,7 +68,6 @@ namespace ExperimentAbstraction
         {
             _worker.CancelAsync();
             OnExperimentStopped(this, new EventArgs());
-            
         }
 
         public virtual void New(string ExperimentName)
@@ -79,10 +76,7 @@ namespace ExperimentAbstraction
             Name = ExperimentName;
         }
 
-        public virtual void CleanExperiment()
-        {
-            
-        }
+        public abstract void CleanExperiment();
 
         public string Name
         {
@@ -148,7 +142,7 @@ namespace ExperimentAbstraction
                 handler(sender, e);
         }
 
-        public event EventHandler ExperimentProgressChanged;
+        public event ProgressChangedEventHandler ExperimentProgressChanged;
         protected virtual void OnExperimentProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             var handler = ExperimentProgressChanged;

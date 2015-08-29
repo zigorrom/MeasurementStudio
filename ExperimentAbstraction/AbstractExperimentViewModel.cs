@@ -4,10 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ExperimentAbstraction
 {
-    public abstract class AbstractExperimentViewModel: INotifyPropertyChanged
+    public abstract class AbstractExperimentViewModel : INotifyPropertyChanged, IExperimentViewModel
     {
         #region PropertyEvents
 
@@ -27,7 +28,6 @@ namespace ExperimentAbstraction
                 handler(this, new PropertyChangedEventArgs(PropertyName));
         }
         #endregion
-
 
         private IExperiment _experiment;
         public virtual IExperiment Experiment
@@ -55,16 +55,29 @@ namespace ExperimentAbstraction
             Experiment.ExperimentProgressChanged += ExperimentProgressChangedHandler;
         }
 
-        protected abstract void ExperimentProgressChangedHandler(object sender, EventArgs e);
+        protected abstract void ExperimentProgressChangedHandler(object sender, ProgressChangedEventArgs e);
         protected abstract void ExperimentFinishedHandler(object sender, EventArgs e);
         protected abstract void ExperimentStoppedHandler(object sender, EventArgs e);
         protected abstract void InitExperiment();
         protected abstract void ExperimentPausedHandler(object sender, EventArgs e);
         protected abstract void ExperimentStartedHandler(object sender, EventArgs e);
-        
 
-        
+        public async Task ExecuteInUIThread(Action action)
+        {
+            await Application.Current.Dispatcher.BeginInvoke(action,null);
+        }
 
-
+        private System.Windows.Controls.UserControl _mainView;
+        public System.Windows.Controls.UserControl MainView
+        {
+            get
+            {
+                return _mainView;
+            }
+            set
+            {
+                _mainView = value;
+            }
+        }
     }
 }
