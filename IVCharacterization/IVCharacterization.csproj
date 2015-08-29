@@ -63,9 +63,6 @@
     <Compile Include="Experiments\TransferCurveMeasurement.cs" />
     <Compile Include="RangeHandlerToIndexConverter.cs" />
     <Compile Include="ViewModels\OutputIVViewModel.cs" />
-    <Compile Include="Views\ControlButtonsPanel.xaml.cs">
-      <DependentUpon>ControlButtonsPanel.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\IVMainView.xaml.cs">
       <DependentUpon>IVMainView.xaml</DependentUpon>
     </Compile>
@@ -129,10 +126,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\ControlButtonsPanel.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\IVMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

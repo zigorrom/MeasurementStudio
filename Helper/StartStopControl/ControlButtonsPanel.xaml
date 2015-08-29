@@ -42,8 +42,8 @@
             <ColumnDefinition Width="{DynamicResource HalfGridWidth}"/>
             <ColumnDefinition Width="{DynamicResource HalfGridWidth}"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="StartButton" Content="Start" Margin="3"/>
-        <Button x:Name="PauseButton" Content="Pause" Margin="3" Visibility="Hidden"/>
-        <Button x:Name="StopButton" Content="Stop" Grid.Column="1" Margin="3"/>
+        <Button x:Name="StartButton" Content="Start" Command="{Binding StartClickCommand}" Margin="3"/>
+        <Button x:Name="PauseButton" Content="Pause" Command="{Binding PauseClickCommand}" Margin="3" Visibility="Hidden"/>
+        <Button x:Name="StopButton" Content="Stop" Command="{Binding StopClickCommand}" Grid.Column="1" Margin="3"/>
     </Grid>
 </UserControl>

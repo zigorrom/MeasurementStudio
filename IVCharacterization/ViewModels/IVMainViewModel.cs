@@ -18,6 +18,7 @@ using System.Windows;
 using System.Windows.Input;
 using IVCharacterization.ViewModels;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
+using Helper.StartStopControl;
 
 
 namespace IVCharacterization
@@ -98,6 +99,8 @@ namespace IVCharacterization
         public RangeViewModel DSRangeViewModel { get; set; }
         public RangeViewModel GSRangeViewModel { get; set; }
 
+        public ControlButtonsViewModel ExperimentControlButtons {get;set;}
+
         public IVMainViewModel()//IVCharacteristicTypeEnum characteristicType = IVCharacteristicTypeEnum.Output)
         {
             //m_IVCharacteristicType = characteristicType;
@@ -108,6 +111,8 @@ namespace IVCharacterization
             GSRangeHandlerViewModel = new RangeHandlerViewModel();
 
             Visualization = new D3VisualizationViewModel();
+
+            ExperimentControlButtons = new ControlButtonsViewModel();
             GlobalIsEnabled = true;
 
             

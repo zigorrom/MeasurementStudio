@@ -29,8 +29,8 @@ namespace IVCharacterization.Experiments
             
             _meaList = new List<MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>>();
             
-            _control.ControlButtons.StartButtonPressed += ControlButtons_StartButtonPressed;
-            _control.ControlButtons.StopButtonPressed += ControlButtons_StopButtonPressed;
+            //_control.ControlButtons.StartButtonPressed += ControlButtons_StartButtonPressed;
+            //_control.ControlButtons.StopButtonPressed += ControlButtons_StopButtonPressed;
         }
 
         void ControlButtons_StopButtonPressed(object sender, System.Windows.RoutedEventArgs e)

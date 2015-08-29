@@ -24,5 +24,7 @@ namespace Helper.StartStopControl
         {
             InitializeComponent();
         }
+
+       
     }
 }

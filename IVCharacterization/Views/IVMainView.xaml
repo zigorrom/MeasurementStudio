@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:IVCharacterization"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:D3DataVisualization="clr-namespace:DataVisualization.D3DataVisualization;assembly=DataVisualization"
+             xmlns:StartStopControl="clr-namespace:Helper.StartStopControl;assembly=Helper"
              x:Class="IVCharacterization.IVMainView"
              mc:Ignorable="d" 
              d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578">
@@ -18,13 +19,16 @@
         <GridLength x:Key="RangeGroupFerstCoulumnWidth">115*</GridLength>
         <GridLength x:Key="RangeGroupSecondColumnWidth">163*</GridLength>
         <System:Double x:Key="RangeHandlerSelectorHeight">40</System:Double>
-        
+
         <DataTemplate DataType="{x:Type D3DataVisualization:D3VisualizationViewModel}">
             <D3DataVisualization:D3DataVisualizationControl x:Name="Plotter"/>
         </DataTemplate>
         
-        
-        
+        <DataTemplate DataType="{x:Type StartStopControl:ControlButtonsViewModel}">
+            <StartStopControl:ControlButtonsPanel x:Name="ControlButtons"/>
+        </DataTemplate>
+
+
     </UserControl.Resources>
 
     <Grid>
@@ -60,7 +64,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            
+
 
                             <GroupBox Header="Drain-Source Voltage Range" Grid.Row="0" Margin="0">
                                 <StackPanel IsEnabled="{Binding GlobalIsEnabled}">
@@ -68,14 +72,14 @@
                                     <local:RangeHandlerControl Margin="3" Grid.Row="1" DataContext="{Binding DSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>
                                 </StackPanel>
                             </GroupBox>
-                            
+
                             <GroupBox Header="Gate-Source Voltage Range" Grid.Row="1" Margin="0" >
                                 <StackPanel IsEnabled="{Binding GlobalIsEnabled}">
                                     <Ranges:RangeControl DataContext="{Binding GSRangeViewModel}" Grid.ColumnSpan="2"/>
                                     <local:RangeHandlerControl Grid.Row="1" DataContext="{Binding GSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>
                                 </StackPanel>
                             </GroupBox>
-                            
+
                             <GroupBox Header="Save directory" Grid.Row="2">
                                 <Grid IsEnabled="{Binding GlobalIsEnabled}">
                                     <Grid.ColumnDefinitions>
@@ -102,8 +106,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="346.4"/>
             </Grid.ColumnDefinitions>
-            <local:ControlButtonsPanel x:Name="ControlButtons" Grid.Column="1" Margin="3"/>
             <ProgressBar x:Name="ProcessProgress" Margin="10" Visibility="Hidden"/>
+            <ContentControl Grid.Column="1" Content="{Binding ExperimentControlButtons}" />
         </Grid>
 
     </Grid>
