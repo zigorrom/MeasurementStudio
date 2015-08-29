@@ -23,30 +23,10 @@ using Helper.StartStopControl;
 
 namespace IVCharacterization
 {
-    public struct IVCharacteristicNames
+  
+
+    public abstract class IVMainViewModel : AbstractExperimentViewModel
     {
-        public const string OutputCharacteristic = "Output";
-        public const string TransferCharacteristic = "Transfer";
-    }
-
-    //public enum IVCharacteristicTypeEnum
-    //{
-    //    Output,
-    //    Transfer
-    //}
-
-    public abstract class IVMainViewModel : INotifyPropertyChanged
-    {
-        //private IVCharacteristicTypeEnum m_IVCharacteristicType;
-        //public IVCharacteristicTypeEnum IVCharacteristicType
-        //{
-        //    get { return m_IVCharacteristicType; }
-        //    set
-        //    {
-        //        SetField(ref m_IVCharacteristicType, value, "IVCharacteristicType");
-        //    }
-        //}
-
         private RangeHandlerViewModel m_DSRangeHandlerViewModel;
         public RangeHandlerViewModel DSRangeHandlerViewModel
         {
@@ -77,8 +57,6 @@ namespace IVCharacterization
             }
         }
 
-        public  IExperiment Experiment { get; protected set; }
-
         public void AddSeries(IPointDataSource Points)
         {
             if (Visualization != null)
@@ -98,12 +76,10 @@ namespace IVCharacterization
 
         public RangeViewModel DSRangeViewModel { get; set; }
         public RangeViewModel GSRangeViewModel { get; set; }
-
         public ControlButtonsViewModel ExperimentControlButtons {get;set;}
-
-        public IVMainViewModel()//IVCharacteristicTypeEnum characteristicType = IVCharacteristicTypeEnum.Output)
+        
+        public IVMainViewModel()
         {
-            //m_IVCharacteristicType = characteristicType;
             DSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
             GSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
 
@@ -111,53 +87,15 @@ namespace IVCharacterization
             GSRangeHandlerViewModel = new RangeHandlerViewModel();
 
             Visualization = new D3VisualizationViewModel();
-
             ExperimentControlButtons = new ControlButtonsViewModel();
             GlobalIsEnabled = true;
-
             
         }
 
-       
-
-        private IExperiment _ivExperiment;
-        public IExperiment IVExperiment
-        {
-            get
-            {
-                return _ivExperiment;
-            }
-            protected set
-            {
-                SetField(ref _ivExperiment, value, "IVExperiment");
-            }
-        }
+        
+        
 
         
-        #region PropertyEvents
-        //public event EventHandler<IVCharacteristicTypeEnum> ChangeIVCharacterizationViewModel;
-        //private void OnChangeIVCharacterizationViewModel(IVCharacteristicTypeEnum CharacteristicType)
-        //{
-        //    var handler = ChangeIVCharacterizationViewModel;
-        //    if (handler != null)
-        //        handler(this, CharacteristicType);
-        //}
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected bool SetField<ST>(ref ST field, ST value, string propertyName)
-        {
-            if (EqualityComparer<ST>.Default.Equals(field, value))
-                return false;
-            field = value;
-            OnPropertyChanged(propertyName);
-            return true;
-        }
-        private void OnPropertyChanged(string PropertyName)
-        {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(PropertyName));
-        }
-        #endregion
+       
     }
 }

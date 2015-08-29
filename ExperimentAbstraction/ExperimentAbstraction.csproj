@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractExperiment.cs" />
+    <Compile Include="AbstractExperimentViewModel.cs" />
     <Compile Include="IExperiment.cs" />
     <Compile Include="ObservableExperiment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
