@@ -116,5 +116,17 @@ namespace DataVisualization.D3DataVisualization
         {
             View.AddSeries(data);
         }
+
+        //public async Task ExecuteInUIThread(Action action)
+        //{
+        //    await Application.Current.Dispatcher.BeginInvoke(action, null);
+        //}
+
+
+        //public System.Windows.Controls.UserControl MainView
+        //{
+        //    get;
+        //    set;
+        //}
     }
 }

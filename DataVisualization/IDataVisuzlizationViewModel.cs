@@ -1,4 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿
+using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +17,7 @@ namespace DataVisualization
         LinLog,
         LogLog
     }
-    public interface IDataVisualizationViewModel:INotifyPropertyChanged
+    public interface IDataVisualizationViewModel : INotifyPropertyChanged
     {
         string Title { get; set; }
         string HorizontalAxisTitle { get; set; }

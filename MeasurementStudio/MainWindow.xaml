@@ -4,9 +4,18 @@
         xmlns:pt="clr-namespace:WpfPageTransitions;assembly=WpfPageTransitions"
         xmlns:local="clr-namespace:MeasurementStudio"
         xmlns:D3DataVisualization="clr-namespace:DataVisualization.D3DataVisualization;assembly=DataVisualization"
+    xmlns:iv ="clr-namespace:IVCharacterization.ViewModels;assembly=IVCharacterization"
+    xmlns:ivv="clr-namespace:IVCharacterization;assembly=IVCharacterization"
         x:Class="MeasurementStudio.MainWindow"
         Title="MainWindow">
-
+    <!--<Window.DataContext>
+        <iv:OutputIVViewModel/>
+    </Window.DataContext>-->
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type iv:OutputIVViewModel}">
+            <ivv:IVMainView/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -21,7 +30,10 @@
         </Menu>
         <!--<D3DataVisualization:D3DataVisualizationControl Grid.Row="1"/>-->
         <!--<DataVisualization:D3DataVisualizationControl Grid.Row="1"/>-->
-        <pt:PageTransition Grid.Row="2" Name="PageTransitionControl" TransitionType="Grow"/>
+        <!--<ContentControl x:Name="c" Grid.Row="2"/>-->
+        <pt:PageTransition Grid.Row="2" Name="PageTransitionControl"  TransitionType="GrowAndFade">
+            
+        </pt:PageTransition>
         
 
 

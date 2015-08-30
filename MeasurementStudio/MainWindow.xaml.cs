@@ -1,4 +1,5 @@
 ﻿using IVCharacterization.Experiments;
+using IVCharacterization.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +30,14 @@ namespace MeasurementStudio
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var a = new OutputCurveMeasurement();
-            
-            PageTransitionControl.ShowPage(a.Control);
+            var a = new UserControl { Content = new OutputIVViewModel() };
+            //var a = new UserControl { Content = new Border{ BorderThickness = new Thickness(5), BorderBrush = Brushes.Red, Background = Brushes.Green} };//new OutputIVViewModel() };
+            //c.Content = new OutputIVViewModel();
+            //var a = new OutputCurveMeasurement();
+            //var a = new IVCharacterization.IVMainView();
+            //var vm = new OutputIVViewModel();
+            //a.DataContext = vm;
+            PageTransitionControl.ShowPage(a);
         }
 
     }

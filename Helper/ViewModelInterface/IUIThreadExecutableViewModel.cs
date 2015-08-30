@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace ExperimentAbstraction
+namespace Helper.ViewModelInterface
 {
-    public interface IExperimentViewModel
+    public interface IUIThreadExecutableViewModel
     {
-        Task ExecuteInUIThread(Action action);
+        void ExecuteInUIThread(Action action);
+        Task ExecuteInUIThreadAsync(Action action);
         UserControl MainView { get; set; }
     }
 }

@@ -89,7 +89,25 @@ namespace IVCharacterization
             Visualization = new D3VisualizationViewModel();
             ExperimentControlButtons = new ControlButtonsViewModel();
             GlobalIsEnabled = true;
-            
+
+            ExperimentControlButtons.PauseCommandRaised += ExperimentControlButtons_PauseCommandRaised;
+            ExperimentControlButtons.StartCommandRaised += ExperimentControlButtons_StartCommandRaised;
+            ExperimentControlButtons.StopCommandRaised += ExperimentControlButtons_StopCommandRaised;
+        }
+
+        void ExperimentControlButtons_StopCommandRaised(object sender, EventArgs e)
+        {
+            Experiment.Abort();
+        }
+
+        void ExperimentControlButtons_StartCommandRaised(object sender, EventArgs e)
+        {
+            Experiment.Start();
+        }
+
+        void ExperimentControlButtons_PauseCommandRaised(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
     }

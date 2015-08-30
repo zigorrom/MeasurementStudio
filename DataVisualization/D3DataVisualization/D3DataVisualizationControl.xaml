@@ -17,17 +17,7 @@
      
     <Grid>
         <d3:ChartPlotter x:Name="plotter" LegendVisibility="Collapsed">
-            <d3:ChartPlotter.Resources>
-                        <DataTemplate DataType="{x:Type d3:NewLegendItem}" >
-                            <StackPanel Orientation="Horizontal">
-                                <CheckBox IsChecked="{Binding Path=Visibility, Converter={StaticResource VisibilityToCheckedConverter}, Mode=TwoWay}"/>
-                                <Line Width="15" Height="15" X1="0" Y1="0" X2="15" Y2="15" Stroke="{Binding Path=Stroke}" StrokeThickness="2"/>
-                                <TextBlock Margin="5,0,0,0" Text="{Binding Path=Description}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    
             
-                </d3:ChartPlotter.Resources>
             <d3:Header Content="{Binding Title}"/>
             <d3:HorizontalAxisTitle Content="{Binding HorizontalAxisTitle}"/>
             <d3:VerticalAxisTitle Content="{Binding VerticalAxisTitle}"/>

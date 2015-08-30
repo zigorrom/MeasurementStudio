@@ -12,8 +12,6 @@ namespace MeasurementStudio
     using System.Windows.Data;
     public class MainViewModel
     {
-
-
         public MainViewModel()
         {
 

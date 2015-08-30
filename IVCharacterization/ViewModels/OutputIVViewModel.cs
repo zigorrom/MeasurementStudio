@@ -21,32 +21,32 @@ namespace IVCharacterization.ViewModels
         }
         protected override void InitExperiment()
         {
-            Experiment = new OutputCurveMeasurement();
+            Experiment = new OutputCurveMeasurement(this);
         }
 
         protected override void ExperimentStartedHandler(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         protected override void ExperimentProgressChangedHandler(object sender, ProgressChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         protected override void ExperimentFinishedHandler(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         protected override void ExperimentStoppedHandler(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         protected override void ExperimentPausedHandler(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

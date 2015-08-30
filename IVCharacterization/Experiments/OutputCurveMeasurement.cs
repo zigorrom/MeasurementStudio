@@ -16,21 +16,17 @@ namespace IVCharacterization.Experiments
 {
     public class OutputCurveMeasurement : AbstractExperiment<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>
     {
-        private OutputIVViewModel _vm;
-        private IVMainView _control;
+        private IVMainViewModel _vm;
+        //private IVMainView _control;
         private List<MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>> _meaList;
+        
 
-        public OutputCurveMeasurement():base("Output curve measurement")
+        public OutputCurveMeasurement(IVMainViewModel viewModel):base("Output curve measurement")
         {
-            _vm = new OutputIVViewModel();
-            //_vm.Experiment = this;
-            _control = new IVMainView();
-            _control.DataContext = _vm;
+            _vm = viewModel;
             
             _meaList = new List<MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>>();
             
-            //_control.ControlButtons.StartButtonPressed += ControlButtons_StartButtonPressed;
-            //_control.ControlButtons.StopButtonPressed += ControlButtons_StopButtonPressed;
         }
 
         void ControlButtons_StopButtonPressed(object sender, System.Windows.RoutedEventArgs e)
@@ -79,15 +75,11 @@ namespace IVCharacterization.Experiments
             //throw new NotImplementedException();
         }
 
-        private void CallInUIThread(Action action)
-        {
-            Application.Current.Dispatcher.Invoke(action);
-        }
 
-        protected override void DoMeasurement(object sender, DoWorkEventArgs e)
+        protected override async void DoMeasurement(object sender, DoWorkEventArgs e)
         {
             _meaList.Clear();
-            for (int j = 0; j <4; j++)
+            for (int j = 0; j < 4; j++)
             {
                 var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("asdda_{0}", j), 123, "", 1));//, new Func<DrainSourceDataRow, Point>((x) => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
                 var _mea2 = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("asdda_{0}", j), 123, "", 1));//, new Func<DrainSourceDataRow, Point>((x) => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
@@ -96,12 +88,12 @@ namespace IVCharacterization.Experiments
                 _mea2.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
                 _vm.AddSeries(_mea);
                 _vm.AddSeries(_mea2);
-                int exp = 2000;
-                for (int i = 1; i < 100000; i++)
+                int exp = 1000;
+                for (int i = 1; i < 10000; i++)
                 {
-                    if(i%exp==0)
+                    if (i % exp == 0)
                     {
-                        CallInUIThread(() =>
+                        _vm.ExecuteInUIThread(() =>
                         {
                             _mea.ResumeUpdate();
                             _mea2.ResumeUpdate();
@@ -109,14 +101,14 @@ namespace IVCharacterization.Experiments
                             _mea2.SuspendUpdate();
                         });
                     }
-                    CallInUIThread(() =>
-                    { 
-                        _mea.Collection.Add(new DrainSourceDataRow(i, j * Math.Log(i), 0)); 
-                        _mea2.Add(new DrainSourceDataRow(i,(j+0.2) * Math.Log(i),0));
+                    _vm.ExecuteInUIThread(() =>
+                    {
+                        _mea.Add(new DrainSourceDataRow(i, j * Math.Log(i), 0));
+                        _mea2.Add(new DrainSourceDataRow(i, (j + 0.2) * Math.Log(i), 0));
                     });
                 }
-                
-          
+
+
             }
             
 
@@ -124,12 +116,12 @@ namespace IVCharacterization.Experiments
 
         public override object ViewModel
         {
-            get { return _vm; }
+            get { return null; }//_vm; }
         }
 
         public override System.Windows.Controls.UserControl Control
         {
-            get { return _control; }
+            get { return null; }
         }
 
         public override void CleanExperiment()
