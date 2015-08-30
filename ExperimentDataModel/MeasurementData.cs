@@ -222,15 +222,15 @@ namespace ExperimentDataModel
         private Func<DataT, double> xMapping;
         private Func<DataT, double> yMapping;
         //private readonly List<Mapping<DataT>> mappings = new List<Mapping<DataT>>();
-        
 
-        private readonly ObservableCollection<DataT> _measurementCollection = new ObservableCollection<DataT>();
+        private readonly LinkedList<DataT> _measurementCollection = new LinkedList<DataT>();
+        //private readonly ObservableCollection<DataT> _measurementCollection = new ObservableCollection<DataT>();
         private object SyncRoot = new object();
 
         public MeasurementData(InfoT info)
         {
             Info = info;
-            _measurementCollection.CollectionChanged += OnCollectionChanged;
+            //_measurementCollection.CollectionChanged += OnCollectionChanged;
             if(typeof(DataT)==typeof(Point))
             {
                 xyMapping = t => (Point)(object)t;
@@ -257,7 +257,6 @@ namespace ExperimentDataModel
             var handler = DataChanged;
             if (handler != null)
             {
-                
                 //Dispatcher.CurrentDispatcher.Invoke(()=>handler(this, EventArgs.Empty));
                 handler(this, EventArgs.Empty);
             }
@@ -271,10 +270,15 @@ namespace ExperimentDataModel
                 _collectionChanged = true;
         }
 
-        public ObservableCollection<DataT> Collection
+        public ICollection<DataT> Collection
         {
             get { return _measurementCollection; }
         }
+
+        //public ObservableCollection<DataT> Collection
+        //{
+        //    get { return _measurementCollection; }
+        //}
 
         public void AppendMany(IEnumerable<DataT> data)
         {
@@ -284,11 +288,12 @@ namespace ExperimentDataModel
             _updatesEnabled = false;
             foreach (var p in data)
             {
-                
-                _measurementCollection.Add(p);
+                _measurementCollection.AddLast(p);
+                //_measurementCollection.Add(p);
             }
             _updatesEnabled = true;
-            RaiseDataChanged();
+            OnCollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add));
+            //RaiseDataChanged();
         }
 
         public void SetXMapping(Func<DataT, double> mapping)
@@ -403,7 +408,9 @@ namespace ExperimentDataModel
         {
             lock (SyncRoot)
             {
-                _measurementCollection.Add(item);
+                //_measurementCollection.Add(item);
+                _measurementCollection.AddLast(item);
+                OnCollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             }
         }
 
@@ -434,7 +441,10 @@ namespace ExperimentDataModel
 
         public bool Remove(DataT item)
         {
-            return _measurementCollection.Remove(item);
+            var r =_measurementCollection.Remove(item);
+            if(r)
+                OnCollectionChanged(this, new NotifyCollectionChangedEventArgs( NotifyCollectionChangedAction.Reset));
+            return r;
         }
         #endregion
     }

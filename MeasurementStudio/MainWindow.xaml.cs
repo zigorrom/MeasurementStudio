@@ -30,7 +30,7 @@ namespace MeasurementStudio
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var a = new UserControl { Content = new OutputIVViewModel() };
+            var a = new UserControl { /*ContentTemplate = (DataTemplate)Resources["ivtemplate"], */ Content = new OutputIVViewModel() };
             //var a = new UserControl { Content = new Border{ BorderThickness = new Thickness(5), BorderBrush = Brushes.Red, Background = Brushes.Green} };//new OutputIVViewModel() };
             //c.Content = new OutputIVViewModel();
             //var a = new OutputCurveMeasurement();
