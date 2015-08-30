@@ -12,12 +12,20 @@
     </UserControl.DataContext>-->
     <UserControl.Resources>
         <local:VisibilityToCheckedConverter x:Key="VisibilityToCheckedConverter"/>
-        
+       
     </UserControl.Resources>
      
     <Grid>
-        <d3:ChartPlotter x:Name="plotter" LegendVisibility="Collapsed">
+        <d3:ChartPlotter x:Name="plotter">
             
+            <!--<d3:ChartPlotter.Resources>
+                <DataTemplate DataType="{x:Type d3:LineLegendItem}">
+                    <StackPanel Orientation="Horizontal">
+                        <Line X1="0" Y1="0" X2="15" Y2="15" Stroke="Black"/>
+                        <TextBlock Text="{Binding Description}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </d3:ChartPlotter.Resources>-->
             <d3:Header Content="{Binding Title}"/>
             <d3:HorizontalAxisTitle Content="{Binding HorizontalAxisTitle}"/>
             <d3:VerticalAxisTitle Content="{Binding VerticalAxisTitle}"/>
@@ -25,23 +33,6 @@
             <d3:CursorCoordinateGraph/>
         </d3:ChartPlotter>
         
-        <!--<d3:NewLegend Grid.Column="1" d3:Plotter.Plotter="{Binding ElementName=plotter}">
-            <d3:NewLegend.Style>
-                <Style TargetType="{x:Type d3:NewLegend}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type d3:NewLegend}">
-                                <Grid>
-                                    <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-									  Margin="5">
-                                        <ItemsPresenter/>
-                                    </ScrollViewer>
-                                </Grid>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </d3:NewLegend.Style>
-        </d3:NewLegend>-->
+        
     </Grid>
 </UserControl>

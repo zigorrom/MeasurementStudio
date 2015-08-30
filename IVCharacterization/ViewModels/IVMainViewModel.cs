@@ -107,7 +107,8 @@ namespace IVCharacterization
 
         void ExperimentControlButtons_PauseCommandRaised(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            System.Diagnostics.Debug.WriteLine("Pause button press not handled");
+            //throw new NotImplementedException();
         }
 
     }

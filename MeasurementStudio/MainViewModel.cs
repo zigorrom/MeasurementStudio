@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 namespace MeasurementStudio
 {
     using ExperimentDataModel;
-    
     using System.Collections.ObjectModel;
     using System.Windows.Data;
+    
     public class MainViewModel
     {
+        
+        
         public MainViewModel()
         {
 

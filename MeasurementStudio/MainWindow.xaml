@@ -8,9 +8,9 @@
     xmlns:ivv="clr-namespace:IVCharacterization;assembly=IVCharacterization"
         x:Class="MeasurementStudio.MainWindow"
         Title="MainWindow">
-    <!--<Window.DataContext>
-        <iv:OutputIVViewModel/>
-    </Window.DataContext>-->
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
     <Window.Resources>
         <DataTemplate DataType="{x:Type iv:OutputIVViewModel}">
             <ivv:IVMainView/>
@@ -18,10 +18,10 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="539*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Menu HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+        <Menu HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Top">
             <MenuItem Header="Experiment">
                 <MenuItem Header="IV-OutputCurve" Click="MenuItem_Click"/>
                 <MenuItem Header="IV-TransferCurve" />
@@ -32,9 +32,9 @@
         <!--<DataVisualization:D3DataVisualizationControl Grid.Row="1"/>-->
         <!--<ContentControl x:Name="c" Grid.Row="2"/>-->
         <pt:PageTransition Grid.Row="2" Name="PageTransitionControl"  TransitionType="GrowAndFade">
-            
+
         </pt:PageTransition>
-        
+
 
 
 
