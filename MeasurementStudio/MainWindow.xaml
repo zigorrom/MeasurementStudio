@@ -4,8 +4,8 @@
         xmlns:pt="clr-namespace:WpfPageTransitions;assembly=WpfPageTransitions"
         xmlns:local="clr-namespace:MeasurementStudio"
         xmlns:D3DataVisualization="clr-namespace:DataVisualization.D3DataVisualization;assembly=DataVisualization"
-    xmlns:iv ="clr-namespace:IVCharacterization.ViewModels;assembly=IVCharacterization"
-    xmlns:ivv="clr-namespace:IVCharacterization;assembly=IVCharacterization"
+        xmlns:iv ="clr-namespace:IVCharacterization.ViewModels;assembly=IVCharacterization"
+        xmlns:ivv="clr-namespace:IVCharacterization;assembly=IVCharacterization"
         x:Class="MeasurementStudio.MainWindow"
         Title="MainWindow">
     <Window.DataContext>
