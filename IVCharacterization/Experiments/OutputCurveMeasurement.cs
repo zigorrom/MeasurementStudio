@@ -65,19 +65,15 @@ namespace IVCharacterization.Experiments
         {
             var bgw = (BackgroundWorker)sender;
             _meaList.Clear();
-            for (int j = 0; j < 1; j++)
+            for (int j = 0; j < 10; j++)
             {
                 var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("asdda_{0}", j), 123, "", 1));//, new Func<DrainSourceDataRow, Point>((x) => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
-                //var _mea2 = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("asdda_{0}", j), 123, "", 1));//, new Func<DrainSourceDataRow, Point>((x) => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
                 _mea.SuspendUpdate();
-                //_mea2.SuspendUpdate();
                 _mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
-                //_mea2.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
                 _vm.AddSeries(_mea);
-                //_vm.AddSeries(_mea2);
                 int exp = 10;
-                var rand = new Random(j);
-                for (int i = 1; i < 1000; i++)
+                var rand = new Random();
+                for (int i = 1; i < 500; i++)
                 {
 
                     if (i % exp == 0)
@@ -85,20 +81,14 @@ namespace IVCharacterization.Experiments
                          _vm.ExecuteInUIThread(() =>
                         {
                             _mea.ResumeUpdate();
-                            //          _mea2.ResumeUpdate();
                             _mea.SuspendUpdate();
-                            //        _mea2.SuspendUpdate();
                         });
                     }
-                    //_vm.ExecuteInUIThread(() =>
-                    //{
                     var r = rand.NextDouble();
 
                     _mea.Add(new DrainSourceDataRow(i, (r + j) * Math.Log(i), 0));
-                    // _mea2.Add(new DrainSourceDataRow(i, (r+j + 0.2) * Math.Log(i), 0));
-                    //});
+                    
                 }
-                bgw.ReportProgress(j);
 
 
 

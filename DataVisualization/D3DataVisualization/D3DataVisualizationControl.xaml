@@ -7,25 +7,17 @@
              xmlns:local ="clr-namespace:DataVisualization.D3DataVisualization"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <!--<UserControl.DataContext>
-        <local:D3VisualizationViewModel/>
-    </UserControl.DataContext>-->
+   
     <UserControl.Resources>
         <local:VisibilityToCheckedConverter x:Key="VisibilityToCheckedConverter"/>
-       
+        
     </UserControl.Resources>
      
     <Grid>
-        <d3:ChartPlotter x:Name="plotter">
+        <d3:ChartPlotter x:Name="plotter" LegendVisibility="Hidden" NewLegendVisible="True">
+          
+           
             
-            <!--<d3:ChartPlotter.Resources>
-                <DataTemplate DataType="{x:Type d3:LineLegendItem}">
-                    <StackPanel Orientation="Horizontal">
-                        <Line X1="0" Y1="0" X2="15" Y2="15" Stroke="Black"/>
-                        <TextBlock Text="{Binding Description}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </d3:ChartPlotter.Resources>-->
             <d3:Header Content="{Binding Title}"/>
             <d3:HorizontalAxisTitle Content="{Binding HorizontalAxisTitle}"/>
             <d3:VerticalAxisTitle Content="{Binding VerticalAxisTitle}"/>

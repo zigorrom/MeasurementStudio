@@ -16,6 +16,7 @@ namespace ExperimentAbstraction
         void OwnInstruments();
         void ReleaseInstruments();
         void Start();
+        void Pause();
         void Abort();
         void New(string ExperimentName);
         void CleanExperiment();

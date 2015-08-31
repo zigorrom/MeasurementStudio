@@ -36,6 +36,7 @@ namespace IVCharacterization.ViewModels
 
         protected override void ExperimentFinishedHandler(object sender, EventArgs e)
         {
+            base.Experiment_ExperimentFinished(sender, e);
             //throw new NotImplementedException();
         }
 

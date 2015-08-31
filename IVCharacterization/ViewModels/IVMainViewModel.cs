@@ -93,21 +93,33 @@ namespace IVCharacterization
             ExperimentControlButtons.PauseCommandRaised += ExperimentControlButtons_PauseCommandRaised;
             ExperimentControlButtons.StartCommandRaised += ExperimentControlButtons_StartCommandRaised;
             ExperimentControlButtons.StopCommandRaised += ExperimentControlButtons_StopCommandRaised;
+
+            Experiment.ExperimentFinished += Experiment_ExperimentFinished;
+        }
+
+        protected virtual void Experiment_ExperimentFinished(object sender, EventArgs e)
+        {
+            GlobalIsEnabled = true;
+            ExecuteInUIThread(() => ExperimentControlButtons.Reset());
         }
 
         void ExperimentControlButtons_StopCommandRaised(object sender, EventArgs e)
         {
+            GlobalIsEnabled = true;
             Experiment.Abort();
         }
 
         void ExperimentControlButtons_StartCommandRaised(object sender, EventArgs e)
         {
+            GlobalIsEnabled = false;
             Experiment.Start();
         }
 
         void ExperimentControlButtons_PauseCommandRaised(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Pause button press not handled");
+            GlobalIsEnabled = false;
+            Experiment.Pause();
+            //System.Diagnostics.Debug.WriteLine("Pause button press not handled");
             //throw new NotImplementedException();
         }
 

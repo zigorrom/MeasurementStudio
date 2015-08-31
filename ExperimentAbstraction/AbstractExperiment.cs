@@ -63,7 +63,12 @@ namespace ExperimentAbstraction
 
         protected abstract void DoMeasurement(object sender, DoWorkEventArgs e);
 
-       
+        public virtual void Pause()
+        {
+            OnExperimentPaused(this, EventArgs.Empty);
+            throw new NotImplementedException();
+        }
+        
         public virtual void Abort()
         {
             _worker.CancelAsync();

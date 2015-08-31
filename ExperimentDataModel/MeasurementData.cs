@@ -223,14 +223,14 @@ namespace ExperimentDataModel
         private Func<DataT, double> yMapping;
         //private readonly List<Mapping<DataT>> mappings = new List<Mapping<DataT>>();
 
-        private readonly LinkedList<DataT> _measurementCollection = new LinkedList<DataT>();
-        //private readonly ObservableCollection<DataT> _measurementCollection = new ObservableCollection<DataT>();
+        //private readonly LinkedList<DataT> _measurementCollection = new LinkedList<DataT>();
+        private readonly ObservableCollection<DataT> _measurementCollection = new ObservableCollection<DataT>();
         private object SyncRoot = new object();
 
         public MeasurementData(InfoT info)
         {
             Info = info;
-            //_measurementCollection.CollectionChanged += OnCollectionChanged;
+            _measurementCollection.CollectionChanged += OnCollectionChanged;
             if(typeof(DataT)==typeof(Point))
             {
                 xyMapping = t => (Point)(object)t;
@@ -257,7 +257,6 @@ namespace ExperimentDataModel
             var handler = DataChanged;
             if (handler != null)
             {
-                //Dispatcher.CurrentDispatcher.Invoke(()=>handler(this, EventArgs.Empty));
                 handler(this, EventArgs.Empty);
             }
         }
@@ -270,15 +269,15 @@ namespace ExperimentDataModel
                 _collectionChanged = true;
         }
 
-        public ICollection<DataT> Collection
-        {
-            get { return _measurementCollection; }
-        }
-
-        //public ObservableCollection<DataT> Collection
+        //public ICollection<DataT> Collection
         //{
         //    get { return _measurementCollection; }
         //}
+
+        public ObservableCollection<DataT> Collection
+        {
+            get { return _measurementCollection; }
+        }
 
         public void AppendMany(IEnumerable<DataT> data)
         {
@@ -288,8 +287,8 @@ namespace ExperimentDataModel
             _updatesEnabled = false;
             foreach (var p in data)
             {
-                _measurementCollection.AddLast(p);
-                //_measurementCollection.Add(p);
+                //_measurementCollection.AddLast(p);
+                _measurementCollection.Add(p);
             }
             _updatesEnabled = true;
             OnCollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add));
@@ -408,8 +407,8 @@ namespace ExperimentDataModel
         {
             lock (SyncRoot)
             {
-                //_measurementCollection.Add(item);
-                _measurementCollection.AddLast(item);
+                _measurementCollection.Add(item);
+                //_measurementCollection.AddLast(item);
                 OnCollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             }
         }

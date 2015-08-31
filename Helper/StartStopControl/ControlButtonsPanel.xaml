@@ -7,43 +7,18 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <GridLength x:Key="HalfGridWidth">50*</GridLength>
-        <Storyboard x:Key="OnClick1">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="StartButton">
-                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
-            </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="PauseButton">
-                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
-            </ObjectAnimationUsingKeyFrames>
-        </Storyboard>
-        <Storyboard x:Key="OnClick2">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="StartButton">
-                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
-            </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="PauseButton">
-                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
-            </ObjectAnimationUsingKeyFrames>
-        </Storyboard>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
 
     </UserControl.Resources>
-    <UserControl.Triggers>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="StartButton">
-            <BeginStoryboard x:Name="OnClick1_BeginStoryboard1" Storyboard="{StaticResource OnClick1}"/>
-        </EventTrigger>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="PauseButton">
-            <BeginStoryboard x:Name="OnClick1_BeginStoryboard" Storyboard="{StaticResource OnClick2}"/>
-        </EventTrigger>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="StopButton">
-            <BeginStoryboard x:Name="OnStopClickStoryboard" Storyboard="{StaticResource OnClick2}"/>
-        </EventTrigger>
-    </UserControl.Triggers>
+    
 
     <Grid x:Name="LayoutRoot">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{DynamicResource HalfGridWidth}"/>
             <ColumnDefinition Width="{DynamicResource HalfGridWidth}"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="StartButton" Content="Start" Command="{Binding StartClickCommand}" Margin="3"/>
-        <Button x:Name="PauseButton" Content="Pause" Command="{Binding PauseClickCommand}" Margin="3" Visibility="Hidden"/>
-        <Button x:Name="StopButton" Content="Stop" Command="{Binding StopClickCommand}" Grid.Column="1" Margin="3"/>
+        <Button x:Name="StartButton" Visibility="{Binding Path=CanStartCommandExecute,Converter={StaticResource BoolToVis}}" Content="Start" Command="{Binding StartClickCommand}" Margin="3" Grid.ColumnSpan="2"/>
+        <Button x:Name="PauseButton" Visibility="{Binding Path=CanPauseCommandExecute,Converter={StaticResource BoolToVis}}" Content="Pause" Command="{Binding PauseClickCommand}" Margin="3" />
+        <Button x:Name="StopButton" Visibility="{Binding Path=CanStopCommandExecute,Converter={StaticResource BoolToVis}}" Content="Stop" Command="{Binding StopClickCommand}" Grid.Column="1" Margin="3"/>
     </Grid>
 </UserControl>
