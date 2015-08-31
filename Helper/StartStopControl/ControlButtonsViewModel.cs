@@ -1,15 +1,17 @@
-﻿using Microsoft.TeamFoundation.MVVM;
+﻿using Helper.ViewModelInterface;
+using Microsoft.TeamFoundation.MVVM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Helper.StartStopControl
 {
-    public class ControlButtonsViewModel:INotifyPropertyChanged
+    public class ControlButtonsViewModel:INotifyPropertyChanged,IUIThreadExecutableViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string PropertyName)
@@ -137,11 +139,36 @@ namespace Helper.StartStopControl
 
         private void SetCanExecute(bool CanStartExec, bool CanStopExec, bool CanPauseExec)
         {
-            CanStartCommandExecute = CanStartExec;
-            CanPauseCommandExecute = CanPauseExec;
-            CanStopCommandExecute = CanStopExec;
+            ExecuteInUIThread(()=>{
+                CanStartCommandExecute = CanStartExec;
+                CanPauseCommandExecute = CanPauseExec;
+                CanStopCommandExecute = CanStopExec;
+            });
+            
         }
 
-        
+
+
+        public void ExecuteInUIThread(Action action)
+        {
+            Application.Current.Dispatcher.Invoke(action);
+        }
+
+        public Task ExecuteInUIThreadAsync(Action action)
+        {
+            throw new NotImplementedException();
+        }
+
+        public System.Windows.Controls.UserControl MainView
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

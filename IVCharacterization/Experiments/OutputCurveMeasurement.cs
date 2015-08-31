@@ -87,7 +87,7 @@ namespace IVCharacterization.Experiments
                     var r = rand.NextDouble();
 
                     _mea.Add(new DrainSourceDataRow(i, (r + j) * Math.Log(i), 0));
-                    
+                    System.Threading.Thread.Sleep(100);
                 }
 
 

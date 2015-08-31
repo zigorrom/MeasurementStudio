@@ -99,25 +99,25 @@ namespace IVCharacterization
 
         protected virtual void Experiment_ExperimentFinished(object sender, EventArgs e)
         {
-            GlobalIsEnabled = true;
+            ExecuteInUIThread(() => GlobalIsEnabled = true);
             ExecuteInUIThread(() => ExperimentControlButtons.Reset());
         }
 
         void ExperimentControlButtons_StopCommandRaised(object sender, EventArgs e)
         {
-            GlobalIsEnabled = true;
+            ExecuteInUIThread(() => GlobalIsEnabled = true);
             Experiment.Abort();
         }
 
         void ExperimentControlButtons_StartCommandRaised(object sender, EventArgs e)
         {
-            GlobalIsEnabled = false;
+            ExecuteInUIThread(() => GlobalIsEnabled = true);
             Experiment.Start();
         }
 
         void ExperimentControlButtons_PauseCommandRaised(object sender, EventArgs e)
         {
-            GlobalIsEnabled = false;
+            ExecuteInUIThread(() => GlobalIsEnabled = true);
             Experiment.Pause();
             //System.Diagnostics.Debug.WriteLine("Pause button press not handled");
             //throw new NotImplementedException();
