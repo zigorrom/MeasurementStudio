@@ -83,6 +83,11 @@ namespace ExperimentAbstraction
 
         public abstract void CleanExperiment();
 
+        public bool IsRunning
+        {
+            get { return _worker.IsBusy; }
+        }
+
         public string Name
         {
             get
@@ -163,6 +168,9 @@ namespace ExperimentAbstraction
                 handler(sender, e);
         }
         #endregion
+
+
+
 
 
 

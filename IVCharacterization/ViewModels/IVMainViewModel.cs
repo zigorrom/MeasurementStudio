@@ -112,7 +112,12 @@ namespace IVCharacterization
         void ExperimentControlButtons_StartCommandRaised(object sender, EventArgs e)
         {
             ExecuteInUIThread(() => GlobalIsEnabled = true);
-            Experiment.Start();
+            if (!Experiment.IsRunning)
+                Experiment.Start();
+            else
+            {
+                MessageBox.Show("Experiment is running");
+            }
         }
 
         void ExperimentControlButtons_PauseCommandRaised(object sender, EventArgs e)

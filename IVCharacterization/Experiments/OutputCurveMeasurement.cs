@@ -61,11 +61,12 @@ namespace IVCharacterization.Experiments
         }
 
 
-        protected override async void DoMeasurement(object sender, DoWorkEventArgs e)
+        protected override void DoMeasurement(object sender, DoWorkEventArgs e)
         {
             var bgw = (BackgroundWorker)sender;
             _meaList.Clear();
-            for (int j = 0; j < 10; j++)
+            bool StopExperiment = false;
+            for (int j = 0; j < 2 && !StopExperiment; j++)
             {
                 var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("asdda_{0}", j), 123, "", 1));//, new Func<DrainSourceDataRow, Point>((x) => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
                 _mea.SuspendUpdate();
@@ -73,9 +74,9 @@ namespace IVCharacterization.Experiments
                 _vm.AddSeries(_mea);
                 int exp = 10;
                 var rand = new Random();
-                for (int i = 1; i < 500; i++)
+                for (int i = 1; i < 500 && !StopExperiment; i++)
                 {
-
+                    StopExperiment = bgw.CancellationPending;
                     if (i % exp == 0)
                     {
                          _vm.ExecuteInUIThread(() =>
@@ -87,7 +88,7 @@ namespace IVCharacterization.Experiments
                     var r = rand.NextDouble();
 
                     _mea.Add(new DrainSourceDataRow(i, (r + j) * Math.Log(i), 0));
-                    System.Threading.Thread.Sleep(100);
+                    System.Threading.Thread.Sleep(2);
                 }
 
 
