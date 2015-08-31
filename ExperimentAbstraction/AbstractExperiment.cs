@@ -11,14 +11,43 @@ using System.Windows.Controls;
 
 namespace ExperimentAbstraction
 {
-    public abstract class AbstractExperiment<InfoT,DataT>:ObservableExperiment<DataT>, IExperiment
+    public abstract class AbstractExperiment<InfoT, DataT> : ObservableExperiment<DataT>, IExperiment, IDisposable
         where InfoT : struct,IMeasurementInfo
         where DataT : struct
     {
         private string m_Name;
         protected Queue<MeasurementData<InfoT, DataT>> _dataQueue;
         private BackgroundWorker _worker;
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
+        ~AbstractExperiment()
+        {
+            // Finalizer calls Dispose(false)
+            Dispose(false);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // free managed resources
+                if (_worker != null)
+                {
+                    _worker.Dispose();
+                    _worker = null;
+                }
+            }
+            // free native resources if there are any.
+            if (_dataQueue != null)
+            {
+                _dataQueue.Clear();
+                _dataQueue = null;
+            }
+        }
         public AbstractExperiment(string ExperimentName)
         {
             m_Name = ExperimentName;
@@ -29,16 +58,16 @@ namespace ExperimentAbstraction
             _worker.DoWork += DoMeasurement;
             _worker.ProgressChanged += _worker_ProgressChanged;
             _worker.RunWorkerCompleted += _worker_RunWorkerCompleted;
-            
+
             InitializeInstruments();
             InitializeExperiment();
-            
+
         }
 
-         protected StreamMeasurementDataExporter<InfoT,DataT> GetStreamExporter(string WorkingDirectory)
-         {
-             return new StreamMeasurementDataExporter<InfoT, DataT>(WorkingDirectory);
-         }
+        protected StreamMeasurementDataExporter<InfoT, DataT> GetStreamExporter(string WorkingDirectory)
+        {
+            return new StreamMeasurementDataExporter<InfoT, DataT>(WorkingDirectory);
+        }
         void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             OnExperimentFinished(sender, e);
@@ -48,8 +77,8 @@ namespace ExperimentAbstraction
         {
             OnExperimentProgressChanged(sender, e);
         }
-       
-       
+
+
         public abstract void OwnInstruments();
 
         public abstract void InitializeExperiment();
@@ -71,7 +100,7 @@ namespace ExperimentAbstraction
             OnExperimentPaused(this, EventArgs.Empty);
             throw new NotImplementedException();
         }
-        
+
         public virtual void Abort()
         {
             _worker.CancelAsync();
@@ -181,6 +210,8 @@ namespace ExperimentAbstraction
 
 
 
-       
+
+
+
     }
 }

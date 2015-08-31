@@ -78,9 +78,9 @@ namespace IVCharacterization.Experiments
                     _mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
                     _vm.AddSeries(_mea);
 
-                    int exp = 10;
+                    int exp = 100000;
                     var rand = new Random();
-                    for (int i = 1; i < 100 && !StopExperiment; i++)
+                    for (int i = 1; i < 500000 && !StopExperiment; i++)
                     {
                         StopExperiment = bgw.CancellationPending;
                         if (i % exp == 0)
@@ -94,6 +94,7 @@ namespace IVCharacterization.Experiments
                         var r = rand.NextDouble();
 
                         _mea.Add(new DrainSourceDataRow(i, (r + j) * Math.Log(i), 0));
+                        System.Diagnostics.Debug.WriteLine(_mea.Count);
                         System.Threading.Thread.Sleep(2);
                     }
                     writer.Write(_mea);
