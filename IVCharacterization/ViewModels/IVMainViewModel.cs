@@ -94,14 +94,15 @@ namespace IVCharacterization
             ExperimentControlButtons.StartCommandRaised += ExperimentControlButtons_StartCommandRaised;
             ExperimentControlButtons.StopCommandRaised += ExperimentControlButtons_StopCommandRaised;
 
-            Experiment.ExperimentFinished += Experiment_ExperimentFinished;
+            //Experiment.ExperimentFinished += Experiment_ExperimentFinished;
         }
 
-        protected virtual void Experiment_ExperimentFinished(object sender, EventArgs e)
+        protected override void ExperimentFinishedHandler(object sender, EventArgs e)
         {
             ExecuteInUIThread(() => GlobalIsEnabled = true);
             ExecuteInUIThread(() => ExperimentControlButtons.Reset());
         }
+       
 
         void ExperimentControlButtons_StopCommandRaised(object sender, EventArgs e)
         {

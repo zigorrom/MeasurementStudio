@@ -8,7 +8,7 @@
         xmlns:ivv="clr-namespace:IVCharacterization;assembly=IVCharacterization"
         x:Class="MeasurementStudio.MainWindow"
          
-        Title="MainWindow">
+        Title="MainWindow" WindowState="Maximized">
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>

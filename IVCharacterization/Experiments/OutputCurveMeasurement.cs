@@ -66,7 +66,7 @@ namespace IVCharacterization.Experiments
             var bgw = (BackgroundWorker)sender;
             _meaList.Clear();
             bool StopExperiment = false;
-            for (int j = 0; j < 2 && !StopExperiment; j++)
+            for (int j = 0; j < 8 && !StopExperiment; j++)
             {
                 var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("asdda_{0}", j), 123, "", 1));//, new Func<DrainSourceDataRow, Point>((x) => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
                 _mea.SuspendUpdate();
@@ -74,7 +74,7 @@ namespace IVCharacterization.Experiments
                 _vm.AddSeries(_mea);
                 int exp = 10;
                 var rand = new Random();
-                for (int i = 1; i < 500 && !StopExperiment; i++)
+                for (int i = 1; i < 100 && !StopExperiment; i++)
                 {
                     StopExperiment = bgw.CancellationPending;
                     if (i % exp == 0)

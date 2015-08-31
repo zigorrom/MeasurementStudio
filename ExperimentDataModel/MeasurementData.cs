@@ -25,184 +25,7 @@ namespace ExperimentDataModel
         where InfoT : struct, IMeasurementInfo
         where DataT : struct
     {
-//        #region Property and collection changed events
-//        public event PropertyChangedEventHandler PropertyChanged;
-//        protected virtual void OnPropertyChaged(string PropertyName)
-//        {
-//            var handler = PropertyChanged;
-//            if (handler != null)
-//                handler(this, new PropertyChangedEventArgs(PropertyName));
-//        }
-
-
-//        public event NotifyCollectionChangedEventHandler CollectionChanged;
-//        protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
-//        {
-//            var handler = CollectionChanged;
-
-//            if (handler != null)
-
-//                handler(this, e);
-//        }
-
-//        private void OnCollectionChanged(NotifyCollectionChangedAction action, object item)
-//        {
-//            OnCollectionChanged(new NotifyCollectionChangedEventArgs(action, item));
-//        }
-
-//        private void OnCollectionChanged(NotifyCollectionChangedAction action, object item, int index)
-//        {
-//            OnCollectionChanged(new NotifyCollectionChangedEventArgs(action, item, index));
-//        }
-
-//        private void OnCollectionReset()
-//        {
-//            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-//        }
-//#endregion
-
-
-//        private const string CountString = "Count";
-//        private const string IndexerName = "Item[]";
-
-//        private InfoT _info;
-//        public InfoT Info
-//        {
-//            get { return _info; }
-//            private set { _info = value; }
-//        }
-
-//        private List<DataT> _dataList;
-//        public List<DataT> Items { get { return _dataList; } }
-
-//        public Func<DataT, Point> DisplayFunc { get; set; }
-
-//        private object SyncRoot = new object();
-
-
-//        public MeasurementData(InfoT experimentInfo, Func<DataT, Point> DefaultFunctor)
-//        {
-//            Info = experimentInfo;
-//            _dataList = new List<DataT>();
-//            DisplayFunc = DefaultFunctor;
-//        }
-//        ~MeasurementData()
-//        {
-//            IPointDataSource a = new ObservableDataSource<Point>();
-            
-//        }
-//        public void Add(DataT item)
-//        {
-//            lock (SyncRoot)
-//            {
-//                _dataList.Add(item);
-//                OnPropertyChaged(CountString);
-//                OnPropertyChaged(IndexerName);
-//                OnCollectionChanged(NotifyCollectionChangedAction.Add, item, _dataList.Count);
-//            }
-//        }
-
-//        public void Clear()
-//        {
-//            lock (SyncRoot)
-//            {
-//                _dataList.Clear();
-//                OnPropertyChaged(CountString);
-//                OnPropertyChaged(IndexerName);
-//                OnCollectionReset();
-//            }
-//        }
-
-//        public bool Contains(DataT item)
-//        {
-//            return _dataList.Contains(item);
-//        }
-
-//        public void CopyTo(DataT[] array, int arrayIndex)
-//        {
-//            _dataList.CopyTo(array, arrayIndex);
-//        }
-
-//        public int Count
-//        {
-//            get
-//            {
-//                return _dataList.Count;
-//            }
-//        }
-
-//        public bool IsReadOnly
-//        {
-//            get { return false; }
-//        }
-
-//        public bool Remove(DataT item)
-//        {
-//            lock (SyncRoot)
-//            {
-//                var result = _dataList.Remove(item);
-//                OnPropertyChaged(CountString);
-//                OnPropertyChaged(IndexerName);
-//                OnCollectionChanged(NotifyCollectionChangedAction.Remove, item);
-//                return result;
-//            }
-//        }
-
-
-       
-//        public int IndexOf(DataT item)
-//        {
-//            return _dataList.IndexOf(item);
-//        }
-
-//        public void Insert(int index, DataT item)
-//        {
-//            _dataList.Insert(index, item);
-//        }
-
-//        public void RemoveAt(int index)
-//        {
-//            _dataList.RemoveAt(index);
-//        }
-
-//        public DataT this[int index]
-//        {
-//            get
-//            {
-//                return _dataList[index];
-//            }
-//            set
-//            {
-//                _dataList[index] = value;
-//            }
-//        }
-
-//        public IEnumerator<DataT> GetEnumerator()
-//        {
-//            return _dataList.GetEnumerator();
-//        }
-
-//        IEnumerator IEnumerable.GetEnumerator()
-//        {
-//            return GetEnumerator();
-//        }
-
-//        public IEnumerator<Point> DisplayEnumerator
-//        {
-//            get
-//            {
-//                return _dataList.Select(DisplayFunc).GetEnumerator();
-//            }
-            
-//        }
-
-//        public event EventHandler DataChanged;
-
-//        public IPointEnumerator GetEnumerator(DependencyObject context)
-//        {
-            
-//            throw new NotImplementedException();
-//        }
+      
 
         public event EventHandler DataChanged;
 
@@ -248,6 +71,7 @@ namespace ExperimentDataModel
             if (_collectionChanged)
             {
                 _collectionChanged = false;
+                
                 RaiseDataChanged();
             }
         }
@@ -269,11 +93,6 @@ namespace ExperimentDataModel
                 _collectionChanged = true;
         }
 
-        //public ICollection<DataT> Collection
-        //{
-        //    get { return _measurementCollection; }
-        //}
-
         public ObservableCollection<DataT> Collection
         {
             get { return _measurementCollection; }
@@ -291,8 +110,8 @@ namespace ExperimentDataModel
                 _measurementCollection.Add(p);
             }
             _updatesEnabled = true;
-            OnCollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add));
-            //RaiseDataChanged();
+            //OnCollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add));
+            RaiseDataChanged();
         }
 
         public void SetXMapping(Func<DataT, double> mapping)
@@ -322,13 +141,7 @@ namespace ExperimentDataModel
         {
 
             throw new NotImplementedException();
-        //    //if (target != null)
-        //    //{
-        //    //    foreach (var mapping in mappings)
-        //    //    //{
-        //    //        target.SetValue(mapping.Property, mapping.F(elem));
-        //    //    }
-        //    //}
+      
         }
 
 
@@ -366,7 +179,8 @@ namespace ExperimentDataModel
             public PointEnumerator(MeasurementData<InfoT, DataT> dataSource)
             {
                 this.dataSource = dataSource;
-                enumerator = dataSource.Collection.GetEnumerator() ;
+                var collection = dataSource.Collection;
+                enumerator = collection.GetEnumerator() ;
             }
 
             public void ApplyMappings(DependencyObject target)
@@ -409,7 +223,7 @@ namespace ExperimentDataModel
             {
                 _measurementCollection.Add(item);
                 //_measurementCollection.AddLast(item);
-                OnCollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+                //OnCollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             }
         }
 
@@ -440,10 +254,10 @@ namespace ExperimentDataModel
 
         public bool Remove(DataT item)
         {
-            var r =_measurementCollection.Remove(item);
-            if(r)
-                OnCollectionChanged(this, new NotifyCollectionChangedEventArgs( NotifyCollectionChangedAction.Reset));
-            return r;
+            lock (SyncRoot)
+            {
+                return _measurementCollection.Remove(item);
+            }
         }
         #endregion
     }
