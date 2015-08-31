@@ -179,7 +179,7 @@ namespace ExperimentDataModel
             public PointEnumerator(MeasurementData<InfoT, DataT> dataSource)
             {
                 this.dataSource = dataSource;
-                var collection = dataSource.Collection;
+                var collection = new List<DataT>(dataSource.Collection);
                 enumerator = collection.GetEnumerator() ;
             }
 

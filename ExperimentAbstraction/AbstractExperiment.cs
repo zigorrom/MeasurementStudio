@@ -35,7 +35,10 @@ namespace ExperimentAbstraction
             
         }
 
-
+         protected StreamMeasurementDataExporter<InfoT,DataT> GetStreamExporter(string WorkingDirectory)
+         {
+             return new StreamMeasurementDataExporter<InfoT, DataT>(WorkingDirectory);
+         }
         void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             OnExperimentFinished(sender, e);
@@ -46,7 +49,7 @@ namespace ExperimentAbstraction
             OnExperimentProgressChanged(sender, e);
         }
        
-
+       
         public abstract void OwnInstruments();
 
         public abstract void InitializeExperiment();
