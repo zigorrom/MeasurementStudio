@@ -67,7 +67,7 @@ namespace IVCharacterization.Experiments
             _meaList.Clear();
             bool StopExperiment = false;
 
-            using (var writer = GetStreamExporter(@"F:\test"))
+            using (var writer = GetStreamExporter(@"D:\test"))
             {
 
                 writer.NewExperiment("hz");
@@ -78,9 +78,9 @@ namespace IVCharacterization.Experiments
                     _mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
                     _vm.AddSeries(_mea);
 
-                    int exp = 100000;
+                    int exp = 10;
                     var rand = new Random();
-                    for (int i = 1; i < 500000 && !StopExperiment; i++)
+                    for (int i = 1; i < 500 && !StopExperiment; i++)
                     {
                         StopExperiment = bgw.CancellationPending;
                         if (i % exp == 0)
