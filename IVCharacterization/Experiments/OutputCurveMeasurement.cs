@@ -77,44 +77,50 @@ namespace IVCharacterization.Experiments
             var WorkingDirectory = _vm.WorkingDirectory;
             var ExperimentName = _vm.ExperimentName;
             var MeasurementName = _vm.MeasurementName;
-            using (var writer = GetStreamExporter(WorkingDirectory))
-            {
-
-                writer.NewExperiment(ExperimentName);
-                for (int j = 0; j < 5 && !StopExperiment; j++)
+            try {
+                using (var writer = GetStreamExporter(WorkingDirectory))
                 {
-                    var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("{0}_{1}",MeasurementName, _vm.MeasurementCount++), 123, "", 1));//, new Func<DrainSourceDataRow, Point>((x) => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
-                    
-                    
-                    _mea.SuspendUpdate();
-                    _mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
-                    _vm.AddSeries(_mea);
 
-                    int exp = 10;
-                    var rand = new Random();
-                    for (int i = 1; i < 100 && !StopExperiment; i++)
+                    writer.NewExperiment(ExperimentName);
+                    for (int j = 0; j < 5 && !StopExperiment; j++)
                     {
-                        StopExperiment = bgw.CancellationPending;
-                        if (i % exp == 0)
-                        {
-                            _vm.ExecuteInUIThread(() =>
-                           {
-                               _mea.ResumeUpdate();
-                               _mea.SuspendUpdate();
-                           });
-                        }
-                        var r = rand.NextDouble();
+                        var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("{0}_{1}", MeasurementName, _vm.MeasurementCount++), 123, "", 1));//, new Func<DrainSourceDataRow, Point>((x) => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
 
-                        _mea.Add(new DrainSourceDataRow(i, (r + j) * Math.Log(i), 0));
-                        System.Diagnostics.Debug.WriteLine(_mea.Count);
-                        System.Threading.Thread.Sleep(2);
+
+                        _mea.SuspendUpdate();
+                        _mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
+                        _vm.AddSeries(_mea);
+
+                        int exp = 10;
+                        var rand = new Random();
+                        for (int i = 1; i < 100 && !StopExperiment; i++)
+                        {
+                            StopExperiment = bgw.CancellationPending;
+                            if (i % exp == 0)
+                            {
+                                _vm.ExecuteInUIThread(() =>
+                               {
+                                   _mea.ResumeUpdate();
+                                   _mea.SuspendUpdate();
+                               });
+                            }
+                            var r = rand.NextDouble();
+
+                            _mea.Add(new DrainSourceDataRow(i, (r + j) * Math.Log(i), 0));
+                            System.Diagnostics.Debug.WriteLine(_mea.Count);
+                            System.Threading.Thread.Sleep(2);
+                        }
+                        writer.Write(_mea);
+                        _vm.ExecuteInUIThread(()=> bgw.ReportProgress(j * 20));
                     }
-                    writer.Write(_mea);
                 }
 
 
             }
-
+            catch(Exception exception)
+            {
+                _vm.ErrorHandler(exception);
+            }
 
         }
 

@@ -46,6 +46,16 @@ namespace ExperimentAbstraction
             }
         }
 
+        private bool _ExperimentIsRunning;
+        public bool ExperimentIsRunning
+        {
+            get { return _ExperimentIsRunning; }
+            set
+            {
+                SetField(ref _ExperimentIsRunning, value, "ExperimentIsRunning");
+            }
+        }
+
         private string _experimentName;
         public string ExperimentName
         {
@@ -87,6 +97,17 @@ namespace ExperimentAbstraction
         protected abstract string GetExperimentName();
 
 
+        private int _currentProgress;
+        public int CurrentProgress
+        {
+            get { return _currentProgress; }
+            set
+            {
+                SetField(ref _currentProgress, value, "CurrentProgress");
+            }
+        }
+
+
         private System.Windows.Forms.FolderBrowserDialog fbd = new System.Windows.Forms.FolderBrowserDialog();
         private ICommand _selectWorkingDirectory;
         public ICommand SelectWorkingDirectory
@@ -110,6 +131,7 @@ namespace ExperimentAbstraction
         {
             InitExperiment();
             InitEventHandlers();
+            ExperimentIsRunning = false;
         }
         protected abstract void InitExperiment();
 
@@ -141,11 +163,13 @@ namespace ExperimentAbstraction
             Application.Current.Dispatcher.Invoke(action);
         }
 
-        protected virtual void ErrorHandler(Exception e)
+        public virtual void ErrorHandler(Exception e)
         {
             System.Diagnostics.Debug.WriteLine("Error occured:");
             System.Diagnostics.Debug.Write(e.ToString());
             System.Diagnostics.Debug.WriteLine("**************");
+
+            MessageBox.Show(e.Message, "Error occured", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
 

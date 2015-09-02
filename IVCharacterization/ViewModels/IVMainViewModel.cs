@@ -100,11 +100,6 @@ namespace IVCharacterization
 
         }
 
-        protected override void ExperimentFinishedHandler(object sender, EventArgs e)
-        {
-            ExecuteInUIThread(() => GlobalIsEnabled = true);
-            ExecuteInUIThread(() => ExperimentControlButtons.Reset());
-        }
        
 
         void ExperimentControlButtons_StopCommandRaised(object sender, EventArgs e)
@@ -118,7 +113,10 @@ namespace IVCharacterization
             ExecuteInUIThread(() => GlobalIsEnabled = true);
             string Message = String.Empty;
             if (CheckParametersBeforeStart(out Message))
+            {
+                ExperimentIsRunning = true;
                 Experiment.Start();
+            }
             else
             {
                 ExperimentControlButtons.Reset();
@@ -164,12 +162,13 @@ namespace IVCharacterization
 
         protected override void ExperimentProgressChangedHandler(object sender, ProgressChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            CurrentProgress = e.ProgressPercentage;
         }
 
         protected override void ExperimentStoppedHandler(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            CurrentProgress = 0;
+            ExperimentIsRunning = false;
         }
 
         protected override void ExperimentPausedHandler(object sender, EventArgs e)
@@ -179,8 +178,20 @@ namespace IVCharacterization
 
         protected override void ExperimentStartedHandler(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            CurrentProgress = 0;
+            ExperimentIsRunning = true;
+            
         }
+
+        protected override void ExperimentFinishedHandler(object sender, EventArgs e)
+        {
+            ExecuteInUIThread(() => GlobalIsEnabled = true);
+            ExecuteInUIThread(() => ExperimentControlButtons.Reset());
+            ExperimentIsRunning = false;
+            CurrentProgress = 0;
+            
+        }
+       
 
         protected override string GetExperimentName()
         {
@@ -189,5 +200,6 @@ namespace IVCharacterization
                 return d.ExperimentName;
             return String.Empty;
         }
+       
     }
 }

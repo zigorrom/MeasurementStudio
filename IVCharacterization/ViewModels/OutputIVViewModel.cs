@@ -26,13 +26,18 @@ namespace IVCharacterization.ViewModels
 
         protected override void ExperimentStartedHandler(object sender, EventArgs e)
         {
+            base.ExperimentStartedHandler(sender, e);
             //throw new NotImplementedException();
         }
 
         protected override void ExperimentProgressChangedHandler(object sender, ProgressChangedEventArgs e)
         {
-            //throw new NotImplementedException();
+            base.ExperimentProgressChangedHandler(sender, e);
         }
+        //protected override void ExperimentProgressChangedHandler(object sender, ProgressChangedEventArgs e)
+        //{
+        //    //throw new NotImplementedException();
+        //}
 
         protected override void ExperimentFinishedHandler(object sender, EventArgs e)
         {
@@ -43,11 +48,13 @@ namespace IVCharacterization.ViewModels
 
         protected override void ExperimentStoppedHandler(object sender, EventArgs e)
         {
+            base.ExperimentStoppedHandler(sender, e);
             //throw new NotImplementedException();
         }
 
         protected override void ExperimentPausedHandler(object sender, EventArgs e)
         {
+            base.ExperimentPausedHandler(sender, e);
             //throw new NotImplementedException();
         }
     }
