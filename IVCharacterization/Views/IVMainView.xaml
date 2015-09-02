@@ -25,20 +25,20 @@
         <DataTemplate DataType="{x:Type D3DataVisualization:D3VisualizationViewModel}">
             <D3DataVisualization:D3DataVisualizationControl x:Name="Plotter"/>
         </DataTemplate>
-        
+
         <DataTemplate DataType="{x:Type StartStopControl:ControlButtonsViewModel}">
             <StartStopControl:ControlButtonsPanel x:Name="ControlButtons"/>
         </DataTemplate>
 
         <DataTemplate x:Key="SelectorButtonTemplate">
             <Grid >
-                
+
                 <Button Content="Workspace"/>
                 <TextBox/>
                 <Button Content="Select"/>
             </Grid>
         </DataTemplate>
-        
+
         <DataTemplate x:Key="DefaultAutoIncrement">
             <Grid>
                 <Button Content="Workspace"/>
@@ -46,11 +46,11 @@
                 <TextBox/>
             </Grid>
         </DataTemplate>
-                      
+
         <DataTemplate DataType="{x:Type vm:IVexpSettingsViewModel}">
             <v:IVexpSettings/>
         </DataTemplate>
-                      
+
     </UserControl.Resources>
 
     <Grid>
@@ -105,12 +105,21 @@
                             <GroupBox Header="Save directory" Grid.Row="2">
                                 <Grid IsEnabled="{Binding GlobalIsEnabled}">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="40*"/>
-                                        <ColumnDefinition Width="40*"/>
-                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="72*"/>
+                                        <ColumnDefinition Width="167*"/>
+                                        <ColumnDefinition Width="42*"/>
                                     </Grid.ColumnDefinitions>
-                                    <!--<ContentControl ContentTemplateSelector=""-->
-                                    <!--<CheckBox Grid.Column="2" Content="AI" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>-->
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50*"/>
+                                        <RowDefinition Height="50*"/>
+                                        <RowDefinition Height="50*"/>
+                                    </Grid.RowDefinitions>
+                                    <Button ToolTip="{Binding ExperimentName}" Content="New Experiment" Grid.ColumnSpan="3" Command="{Binding CreateNewExperiment}" Margin="5"/>
+                                    <Button Command="{Binding SelectWorkingDirectory}"  Grid.Row="1" Content="Workspace" ToolTip="{Binding WorkingDirectory}" Grid.RowSpan="2"/>
+                                    <TextBlock Text="Measurement Name" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Margin="5,0,5,5"/>
+                                    <TextBlock Text="#" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Margin="5,0,5,5"/>
+                                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding MeasurementName}" Margin="5,5,5,0"/>
+                                    <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding MeasurementCount}" Margin="5,5,5,0"/>
                                 </Grid>
                             </GroupBox>
                         </Grid>

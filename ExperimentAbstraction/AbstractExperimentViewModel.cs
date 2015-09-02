@@ -1,4 +1,5 @@
 ﻿using Helper.ViewModelInterface;
+using Microsoft.TeamFoundation.MVVM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+
+using System.Windows.Input;
 
 namespace ExperimentAbstraction
 {
@@ -73,7 +76,35 @@ namespace ExperimentAbstraction
 
         private const string MeasurementName_MeasurementCount_Separator = "_";
 
+        private ICommand _createNewExperiment;
+        
+        public ICommand CreateNewExperiment
+        {
+            get { return _createNewExperiment ?? (_createNewExperiment = new RelayCommand(() => {
+                ExperimentName = GetExperimentName();        
+            })); }
+        }
+        protected abstract string GetExperimentName();
 
+
+        private System.Windows.Forms.FolderBrowserDialog fbd = new System.Windows.Forms.FolderBrowserDialog();
+        private ICommand _selectWorkingDirectory;
+        public ICommand SelectWorkingDirectory
+        {
+            get
+            {
+                return _selectWorkingDirectory ?? (_selectWorkingDirectory = new RelayCommand(() =>
+                {
+                    //var fbd = new System.Windows.Forms.FolderBrowserDialog();
+                    
+                    if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        WorkingDirectory = fbd.SelectedPath;
+                    }
+
+                }));
+            }
+        }
 
         public AbstractExperimentViewModel()
         {
@@ -93,6 +124,8 @@ namespace ExperimentAbstraction
             Experiment.ExperimentProgressChanged += ExperimentProgressChangedHandler;
         }
 
+        protected abstract bool CheckParametersBeforeStart();
+        
         protected abstract void ExperimentProgressChangedHandler(object sender, ProgressChangedEventArgs e);
         protected abstract void ExperimentFinishedHandler(object sender, EventArgs e);
         protected abstract void ExperimentStoppedHandler(object sender, EventArgs e);

@@ -20,11 +20,7 @@ namespace IVCharacterization.Experiments
         //private IVMainView _control;
         private List<MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>> _meaList;
 
-        private string WorkingDirectory;
-        private string ExperimentName;
-        private string MeasurementName;
-        private int MeasurementCount;
-
+       
         public OutputCurveMeasurement(IVMainViewModel viewModel):base("Output curve measurement")
         {
             _vm = viewModel;
@@ -51,6 +47,10 @@ namespace IVCharacterization.Experiments
 
         public override void InitializeExperiment()
         {
+            //WorkingDirectory = _vm.WorkingDirectory;
+            //ExperimentName = _vm.ExperimentName;
+            //MeasurementName = _vm.MeasurementName;
+            //MeasurementCount = _vm.MeasurementCount;
             //throw new NotImplementedException();
         }
 
@@ -64,20 +64,28 @@ namespace IVCharacterization.Experiments
             //throw new NotImplementedException();
         }
 
+        //private string WorkingDirectory;
+        //private string ExperimentName;
+        //private string MeasurementName;
+        //private int MeasurementCount;
 
         protected override void DoMeasurement(object sender, DoWorkEventArgs e)
         {
             var bgw = (BackgroundWorker)sender;
             _meaList.Clear();
             bool StopExperiment = false;
-
-            using (var writer = GetStreamExporter(@"F:\test"))
+            var WorkingDirectory = _vm.WorkingDirectory;
+            var ExperimentName = _vm.ExperimentName;
+            var MeasurementName = _vm.MeasurementName;
+            using (var writer = GetStreamExporter(WorkingDirectory))
             {
 
-                writer.NewExperiment("hz");
+                writer.NewExperiment(ExperimentName);
                 for (int j = 0; j < 8 && !StopExperiment; j++)
                 {
-                    var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("asdda_{0}", j), 123, "", 1));//, new Func<DrainSourceDataRow, Point>((x) => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
+                    var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("{0}_{1}",MeasurementName, _vm.MeasurementCount++), 123, "", 1));//, new Func<DrainSourceDataRow, Point>((x) => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
+                    
+                    
                     _mea.SuspendUpdate();
                     _mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
                     _vm.AddSeries(_mea);

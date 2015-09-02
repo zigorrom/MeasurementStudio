@@ -116,7 +116,7 @@ namespace IVCharacterization
         void ExperimentControlButtons_StartCommandRaised(object sender, EventArgs e)
         {
             ExecuteInUIThread(() => GlobalIsEnabled = true);
-            if (!Experiment.IsRunning)
+            if (CheckParametersBeforeStart())
                 Experiment.Start();
             else
             {
@@ -132,5 +132,50 @@ namespace IVCharacterization
             //throw new NotImplementedException();
         }
 
+
+        protected override void InitExperiment()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool CheckParametersBeforeStart()
+        {
+            //var res = true;
+            if (Experiment.IsRunning)
+                return false;
+            if (String.IsNullOrEmpty(ExperimentName))
+                return false;
+            if (String.IsNullOrEmpty(MeasurementName))
+                return false;
+            return true;
+        }
+
+        protected override void ExperimentProgressChangedHandler(object sender, ProgressChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void ExperimentStoppedHandler(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void ExperimentPausedHandler(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void ExperimentStartedHandler(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override string GetExperimentName()
+        {
+            var d = new IVCharacterization.Views.NewExperiment();
+            if (d.ShowDialog().Value)
+                return d.ExperimentName;
+            return String.Empty;
+        }
     }
 }
