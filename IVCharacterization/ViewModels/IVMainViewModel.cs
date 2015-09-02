@@ -133,10 +133,7 @@ namespace IVCharacterization
         }
 
 
-        protected override void InitExperiment()
-        {
-            throw new NotImplementedException();
-        }
+        
 
         protected override bool CheckParametersBeforeStart(out string Message)
         {

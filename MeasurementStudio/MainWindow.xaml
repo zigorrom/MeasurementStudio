@@ -21,6 +21,10 @@
         <DataTemplate DataType="{x:Type iv:OutputIVViewModel}">
                     <ivv:IVMainView/>
                 </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type iv:TransfrerIVViewModel}">
+            <ivv:IVMainView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -31,7 +35,7 @@
             <MenuItem Header="View">
                 <MenuItem Header="Home Page" Command="{Binding SelectExperiment}" CommandParameter ="{x:Static local:PagesEnum.Home}"/>
                 <MenuItem Header="IV-OutputCurve" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.IVOutput}"/>
-                <MenuItem Header="IV-TransferCurve" />
+                <MenuItem Header="IV-TransferCurve" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.IVTransfer}" />
                 <MenuItem Header="Noise Measurement"/>
             </MenuItem>
         </Menu>

@@ -64,6 +64,7 @@
     <Compile Include="RangeHandlerToIndexConverter.cs" />
     <Compile Include="ViewModels\IVexpSettingsViewModel.cs" />
     <Compile Include="ViewModels\OutputIVViewModel.cs" />
+    <Compile Include="ViewModels\TransfrerIVViewModel.cs" />
     <Compile Include="Views\IVexpSettings.xaml.cs">
       <DependentUpon>IVexpSettings.xaml</DependentUpon>
     </Compile>
