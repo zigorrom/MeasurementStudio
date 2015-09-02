@@ -124,7 +124,7 @@ namespace ExperimentAbstraction
             Experiment.ExperimentProgressChanged += ExperimentProgressChangedHandler;
         }
 
-        protected abstract bool CheckParametersBeforeStart();
+        protected abstract bool CheckParametersBeforeStart(out string Message);
         
         protected abstract void ExperimentProgressChangedHandler(object sender, ProgressChangedEventArgs e);
         protected abstract void ExperimentFinishedHandler(object sender, EventArgs e);

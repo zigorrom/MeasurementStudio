@@ -116,11 +116,13 @@ namespace IVCharacterization
         void ExperimentControlButtons_StartCommandRaised(object sender, EventArgs e)
         {
             ExecuteInUIThread(() => GlobalIsEnabled = true);
-            if (CheckParametersBeforeStart())
+            string Message = String.Empty;
+            if (CheckParametersBeforeStart(out Message))
                 Experiment.Start();
             else
             {
-                MessageBox.Show("Experiment is running");
+                ExperimentControlButtons.Reset();
+                MessageBox.Show(Message);
             }
         }
 
@@ -138,15 +140,25 @@ namespace IVCharacterization
             throw new NotImplementedException();
         }
 
-        protected override bool CheckParametersBeforeStart()
+        protected override bool CheckParametersBeforeStart(out string Message)
         {
+            Message = String.Empty;
             //var res = true;
             if (Experiment.IsRunning)
+            {
+                Message = "Experiment is running";
                 return false;
+            }
             if (String.IsNullOrEmpty(ExperimentName))
+            {
+                Message = "Fill in the experiment name";
                 return false;
+            }
             if (String.IsNullOrEmpty(MeasurementName))
+            {
+                Message = "Fill in the measurement name";
                 return false;
+            }
             return true;
         }
 
