@@ -10,7 +10,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="115*"/>
+            <RowDefinition Height="131*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="115*"/>
@@ -21,7 +22,8 @@
             <TextBlock Text="{Binding UserName}" FontSize="20" HorizontalAlignment="Center"/>
         </StackPanel>
         <WrapPanel Grid.Column="1"/>
-        <GroupBox Header="Recent" Grid.Row="1"/>
+        <GroupBox Header="Recent" Grid.Row="1" Grid.RowSpan="2" Margin="5"/>
+        <WrapPanel Grid.Column="1" Margin="5" Grid.Row="1"/>
 
     </Grid>
 </UserControl>
