@@ -45,7 +45,7 @@ namespace Helper.Ranges.RangeHandlers
             var progressCount = 0;
 
 
-            for (int i = 0; i <= RepeatCounts; i++)
+            for (int i = 0; i < RepeatCounts; i++)
             {
                 if (Range.Step == 0)
                 {

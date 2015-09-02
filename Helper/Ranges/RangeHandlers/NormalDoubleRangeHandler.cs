@@ -49,7 +49,7 @@ namespace Helper.Ranges.RangeHandlers
             var maxCount = RepeatCounts * Range.PointsCount;
             var progressCount = 0;
 
-            for (int i = 0; i <= RepeatCounts; i++)
+            for (int i = 0; i < RepeatCounts; i++)
             {
 
                 var count = 0;

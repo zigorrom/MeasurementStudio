@@ -119,8 +119,8 @@ namespace IVCharacterization.Experiments
 
                 _writer.NewExperiment(_experimentName);
 
-                int exp = _dsRangeHandler.Range.PointsCount / 10;
-
+                int exp = _dsRangeHandler.Range.PointsCount / 100 ;
+                exp = exp > 0 ? exp : 1;
                 var count = 0;
 
                 var rand = new Random();
