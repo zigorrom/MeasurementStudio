@@ -19,7 +19,11 @@ namespace IVCharacterization.Experiments
         private IVMainViewModel _vm;
         //private IVMainView _control;
         private List<MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>> _meaList;
-        
+
+        private string WorkingDirectory;
+        private string ExperimentName;
+        private string MeasurementName;
+        private int MeasurementCount;
 
         public OutputCurveMeasurement(IVMainViewModel viewModel):base("Output curve measurement")
         {

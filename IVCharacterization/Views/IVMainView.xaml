@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Ranges ="clr-namespace:Helper.Ranges.SimpleRangeControl;assembly=Helper"
              xmlns:local="clr-namespace:IVCharacterization"
+    xmlns:vm ="clr-namespace:IVCharacterization.ViewModels"
+    xmlns:v ="clr-namespace:IVCharacterization.Views"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:D3DataVisualization="clr-namespace:DataVisualization.D3DataVisualization;assembly=DataVisualization"
              xmlns:StartStopControl="clr-namespace:Helper.StartStopControl;assembly=Helper"
@@ -28,7 +30,27 @@
             <StartStopControl:ControlButtonsPanel x:Name="ControlButtons"/>
         </DataTemplate>
 
-
+        <DataTemplate x:Key="SelectorButtonTemplate">
+            <Grid >
+                
+                <Button Content="Workspace"/>
+                <TextBox/>
+                <Button Content="Select"/>
+            </Grid>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="DefaultAutoIncrement">
+            <Grid>
+                <Button Content="Workspace"/>
+                <TextBox/>
+                <TextBox/>
+            </Grid>
+        </DataTemplate>
+                      
+        <DataTemplate DataType="{x:Type vm:IVexpSettingsViewModel}">
+            <v:IVexpSettings/>
+        </DataTemplate>
+                      
     </UserControl.Resources>
 
     <Grid>
@@ -87,17 +109,14 @@
                                         <ColumnDefinition Width="40*"/>
                                         <ColumnDefinition Width="20*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBox Grid.Column="0"/>
-                                    <TextBox Grid.Column="1"/>
-                                    <CheckBox Grid.Column="2" Content="AI" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                                    <!--<ContentControl ContentTemplateSelector=""-->
+                                    <!--<CheckBox Grid.Column="2" Content="AI" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>-->
                                 </Grid>
                             </GroupBox>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Settings">
-                        <StackPanel Orientation="Vertical">
-                            
-                        </StackPanel>
+                        <ContentControl Content="{Binding IVSettingsViewModel}"/>
                     </TabItem>
                 </TabControl>
 

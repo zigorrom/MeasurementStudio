@@ -77,6 +77,8 @@ namespace IVCharacterization
         public RangeViewModel DSRangeViewModel { get; set; }
         public RangeViewModel GSRangeViewModel { get; set; }
         public ControlButtonsViewModel ExperimentControlButtons {get;set;}
+
+        public IVexpSettingsViewModel IVSettingsViewModel { get; set; }
         
         public IVMainViewModel()
         {
@@ -89,6 +91,8 @@ namespace IVCharacterization
             Visualization = new D3VisualizationViewModel();
             ExperimentControlButtons = new ControlButtonsViewModel();
             GlobalIsEnabled = true;
+
+            IVSettingsViewModel = new IVexpSettingsViewModel();
 
             ExperimentControlButtons.PauseCommandRaised += ExperimentControlButtons_PauseCommandRaised;
             ExperimentControlButtons.StartCommandRaised += ExperimentControlButtons_StartCommandRaised;

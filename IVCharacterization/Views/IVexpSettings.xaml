@@ -6,9 +6,7 @@
              xmlns:vm="clr-namespace:IVCharacterization.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.DataContext>
-        <vm:IVexpSettingsViewModel/>
-    </UserControl.DataContext>
+    
     <StackPanel>
         <CheckBox Content="Use sample selector" IsChecked="{Binding UseSampleSelector}"/>
         
