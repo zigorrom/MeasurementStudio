@@ -1,14 +1,12 @@
-﻿using Helper.Ranges.RangeHandlers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace IVCharacterization
+namespace Helper.Ranges.RangeHandlers
 {
-    
     [ValueConversion(typeof(int), typeof(AbstractDoubleRangeHandler))]
     public class RangeHandlerToIndexConverter : IValueConverter
     {
@@ -31,8 +29,8 @@ namespace IVCharacterization
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var val = (int)value ;
-            
+            var val = (int)value;
+
             switch (val)
             {
                 case 1: return new BackAndForthRangeHandler();

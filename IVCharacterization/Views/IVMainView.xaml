@@ -10,6 +10,7 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:D3DataVisualization="clr-namespace:DataVisualization.D3DataVisualization;assembly=DataVisualization"
              xmlns:StartStopControl="clr-namespace:Helper.StartStopControl;assembly=Helper"
+             xmlns:ranges ="clr-namespace:Helper.Ranges.RangeHandlers;assembly=Helper"
              x:Class="IVCharacterization.IVMainView"
              mc:Ignorable="d" 
              d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578">
@@ -82,7 +83,7 @@
                     </TextBlock.RenderTransform>
                 </TextBlock>
             </Expander.Header>
-            <Grid>
+            <Grid IsEnabled="{Binding GlobalIsEnabled}">
                 <TabControl Width="300">
                     <TabItem Header="Range setup">
                         <Grid Background="#FFE5E5E5">
@@ -94,21 +95,21 @@
 
 
                             <GroupBox Header="Drain-Source Voltage Range" Grid.Row="0" Margin="0">
-                                <StackPanel IsEnabled="{Binding GlobalIsEnabled}">
+                                <StackPanel> <!--IsEnabled="{Binding GlobalIsEnabled}"-->
                                     <Ranges:RangeControl DataContext="{Binding DSRangeViewModel}" Grid.ColumnSpan="2"/>
-                                    <local:RangeHandlerControl Margin="3" Grid.Row="1" DataContext="{Binding DSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>
+                                    <ranges:RangeHandlerControl Margin="3" Grid.Row="1" DataContext="{Binding DSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>
                                 </StackPanel>
                             </GroupBox>
 
                             <GroupBox Header="Gate-Source Voltage Range" Grid.Row="1" Margin="0" >
-                                <StackPanel IsEnabled="{Binding GlobalIsEnabled}">
+                                <StackPanel> <!--IsEnabled="{Binding GlobalIsEnabled}">-->
                                     <Ranges:RangeControl DataContext="{Binding GSRangeViewModel}" Grid.ColumnSpan="2"/>
-                                    <local:RangeHandlerControl Grid.Row="1" DataContext="{Binding GSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>
+                                    <ranges:RangeHandlerControl Grid.Row="1" DataContext="{Binding GSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>
                                 </StackPanel>
                             </GroupBox>
 
                             <GroupBox Header="Save directory" Grid.Row="2">
-                                <Grid IsEnabled="{Binding GlobalIsEnabled}">
+                                <Grid> <!--IsEnabled="{Binding GlobalIsEnabled}">-->
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="72*"/>
                                         <ColumnDefinition Width="167*"/>

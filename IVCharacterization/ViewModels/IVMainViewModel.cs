@@ -34,8 +34,11 @@ namespace IVCharacterization
             private set
             {
                 SetField(ref m_DSRangeHandlerViewModel, value, "DSRangeHandlerViewModel");
+                    
             }
         }
+
+       
 
         private RangeHandlerViewModel m_GSRangeHandlerViewModel;
         public RangeHandlerViewModel GSRangeHandlerViewModel
@@ -84,7 +87,7 @@ namespace IVCharacterization
         {
             DSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
             GSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
-
+            
             DSRangeHandlerViewModel = new RangeHandlerViewModel();
             GSRangeHandlerViewModel = new RangeHandlerViewModel();
 

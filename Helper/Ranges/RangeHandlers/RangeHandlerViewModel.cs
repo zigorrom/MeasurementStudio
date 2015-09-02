@@ -1,14 +1,13 @@
-﻿using Helper.Ranges.RangeHandlers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IVCharacterization
+namespace Helper.Ranges.RangeHandlers
 {
-    public class RangeHandlerViewModel:INotifyPropertyChanged
+    public class RangeHandlerViewModel : INotifyPropertyChanged
     {
         public RangeHandlerViewModel()
         {
@@ -16,12 +15,13 @@ namespace IVCharacterization
             m_rangeHandler = null;
         }
         private int m_repeatCounts;
-        public int RepeatCounts {
+        public int RepeatCounts
+        {
             get { return m_repeatCounts; }
             set
             {
-                if(SetField(ref m_repeatCounts, value, "RepeatCounts"))
-                    if(m_rangeHandler!=null)
+                if (SetField(ref m_repeatCounts, value, "RepeatCounts"))
+                    if (m_rangeHandler != null)
                     {
                         m_rangeHandler.RepeatCounts = m_repeatCounts;
                     }
@@ -34,8 +34,9 @@ namespace IVCharacterization
             get { return m_rangeHandler; }
             set
             {
-                if(SetField(ref m_rangeHandler, value, "RangeHandler"))
+                if (SetField(ref m_rangeHandler, value, "RangeHandler"))
                 {
+
                     RepeatCounts = m_rangeHandler.RepeatCounts;
                 }
             }
@@ -45,7 +46,7 @@ namespace IVCharacterization
 
 
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
 
         protected bool SetField<ST>(ref ST field, ST value, string propertyName)
         {

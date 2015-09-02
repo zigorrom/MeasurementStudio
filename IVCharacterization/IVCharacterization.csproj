@@ -54,14 +54,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CharacteristicTypeValueConverter.cs" />
     <Compile Include="DataModel\DrainSourceDataRow.cs" />
     <Compile Include="DataModel\DrainSourceMeasurmentInfoRow.cs" />
     <Compile Include="DataModel\GateSourceDataRow.cs" />
     <Compile Include="DataModel\GateSourceMeasurementInfoRow.cs" />
     <Compile Include="Experiments\OutputCurveMeasurement.cs" />
     <Compile Include="Experiments\TransferCurveMeasurement.cs" />
-    <Compile Include="RangeHandlerToIndexConverter.cs" />
     <Compile Include="ViewModels\IVexpSettingsViewModel.cs" />
     <Compile Include="ViewModels\OutputIVViewModel.cs" />
     <Compile Include="ViewModels\TransfrerIVViewModel.cs" />
@@ -88,10 +86,6 @@
     <Compile Include="Views\NewExperiment.xaml.cs">
       <DependentUpon>NewExperiment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RangeHandlerControl.xaml.cs">
-      <DependentUpon>RangeHandlerControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\RangeHandlerViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -145,10 +139,6 @@
     <Page Include="Views\NewExperiment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\RangeHandlerControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

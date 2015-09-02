@@ -77,6 +77,11 @@ namespace IVCharacterization.Experiments
             var WorkingDirectory = _vm.WorkingDirectory;
             var ExperimentName = _vm.ExperimentName;
             var MeasurementName = _vm.MeasurementName;
+
+            var dsRange = _vm.DSRangeHandlerViewModel;
+            var gsRange = _vm.GSRangeHandlerViewModel;
+
+            
             try {
                 using (var writer = GetStreamExporter(WorkingDirectory))
                 {
