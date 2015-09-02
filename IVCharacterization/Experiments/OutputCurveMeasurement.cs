@@ -67,7 +67,7 @@ namespace IVCharacterization.Experiments
             _meaList.Clear();
             bool StopExperiment = false;
 
-            using (var writer = GetStreamExporter(@"D:\test"))
+            using (var writer = GetStreamExporter(@"F:\test"))
             {
 
                 writer.NewExperiment("hz");
@@ -117,6 +117,11 @@ namespace IVCharacterization.Experiments
         }
 
         public override void CleanExperiment()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void FinalizeExperiment()
         {
             throw new NotImplementedException();
         }

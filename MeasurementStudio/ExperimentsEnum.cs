@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace MeasurementStudio
 {
-    public interface IMainViewModel
+    public enum PagesEnum
     {
-        IPageTransitionView View { get; set; }
-        void DataContextIsSet();
+        Home,
+        IVOutput,
+        IVTransfer,
+        
     }
 }

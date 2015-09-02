@@ -69,26 +69,20 @@ namespace ExperimentAbstraction
 
         public async Task ExecuteInUIThreadAsync(Action action)
         {
-            await Application.Current.Dispatcher.BeginInvoke(action,null);
+            await Application.Current.Dispatcher.BeginInvoke(action, null);
         }
         public void ExecuteInUIThread(Action action)
         {
             Application.Current.Dispatcher.Invoke(action);
         }
 
-        private System.Windows.Controls.UserControl _mainView;
-        public System.Windows.Controls.UserControl MainView
+        protected virtual void ErrorHandler(Exception e)
         {
-            get
-            {
-                return _mainView;
-            }
-            set
-            {
-                _mainView = value;
-            }
+            System.Diagnostics.Debug.WriteLine("Error occured:");
+            System.Diagnostics.Debug.Write(e.ToString());
+            System.Diagnostics.Debug.WriteLine("**************");
         }
 
-        
+
     }
 }

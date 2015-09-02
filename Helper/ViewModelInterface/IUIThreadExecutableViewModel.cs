@@ -11,6 +11,6 @@ namespace Helper.ViewModelInterface
     {
         void ExecuteInUIThread(Action action);
         Task ExecuteInUIThreadAsync(Action action);
-        UserControl MainView { get; set; }
+        
     }
 }

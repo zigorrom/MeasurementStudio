@@ -62,7 +62,11 @@
     <Compile Include="Experiments\OutputCurveMeasurement.cs" />
     <Compile Include="Experiments\TransferCurveMeasurement.cs" />
     <Compile Include="RangeHandlerToIndexConverter.cs" />
+    <Compile Include="ViewModels\IVexpSettingsViewModel.cs" />
     <Compile Include="ViewModels\OutputIVViewModel.cs" />
+    <Compile Include="Views\IVexpSettings.xaml.cs">
+      <DependentUpon>IVexpSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\IVMainView.xaml.cs">
       <DependentUpon>IVMainView.xaml</DependentUpon>
     </Compile>
@@ -126,6 +130,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\IVexpSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\IVMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

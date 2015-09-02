@@ -95,7 +95,9 @@
                         </Grid>
                     </TabItem>
                     <TabItem Header="Settings">
-                        <Grid Background="#FFE5E5E5"/>
+                        <StackPanel Orientation="Vertical">
+                            
+                        </StackPanel>
                     </TabItem>
                 </TabControl>
 

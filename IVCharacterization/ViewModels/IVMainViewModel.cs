@@ -94,7 +94,6 @@ namespace IVCharacterization
             ExperimentControlButtons.StartCommandRaised += ExperimentControlButtons_StartCommandRaised;
             ExperimentControlButtons.StopCommandRaised += ExperimentControlButtons_StopCommandRaised;
 
-            //Experiment.ExperimentFinished += Experiment_ExperimentFinished;
         }
 
         protected override void ExperimentFinishedHandler(object sender, EventArgs e)

@@ -87,6 +87,8 @@ namespace ExperimentAbstraction
 
         public abstract void ReleaseInstruments();
 
+        public abstract void FinalizeExperiment();
+        
         public virtual void Start()
         {
             OnExperimentStarted(this, new EventArgs());
@@ -213,5 +215,8 @@ namespace ExperimentAbstraction
 
 
 
+
+
+       
     }
 }
