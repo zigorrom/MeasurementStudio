@@ -43,6 +43,38 @@ namespace ExperimentAbstraction
             }
         }
 
+        private string _experimentName;
+        public string ExperimentName
+        {
+            get { return _experimentName; }
+            set { SetField(ref _experimentName, value, "ExperimentName"); }
+        }
+
+        private string _measurementName;
+        public string MeasurementName
+        {
+            get { return _measurementName; }
+            set { SetField(ref _measurementName, value, "MeasurementName"); }
+        }
+
+        private string _workingDirectory;
+        public string WorkingDirectory
+        {
+            get { return _workingDirectory; }
+            set { SetField(ref _workingDirectory, value, "WorkingDirectory"); }
+        }
+
+        private int _measurementCount;
+        public int MeasurementCount
+        {
+            get { return _measurementCount; }
+            set { SetField(ref _measurementCount, value, "MeasurementCount"); }
+        }
+
+        private const string MeasurementName_MeasurementCount_Separator = "_";
+
+
+
         public AbstractExperimentViewModel()
         {
             InitExperiment();
