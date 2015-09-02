@@ -52,13 +52,22 @@ namespace Helper.Ranges.RangeHandlers
         }
 
         public event ProgressChangedEventHandler ProgressChanged;
-
         public void OnProgressChanged(int ProcessPercentage, object State)
         {
             var handler = ProgressChanged;
             if (handler != null)
                 handler(this, new ProgressChangedEventArgs(ProcessPercentage, State));
         }
+
+        public event EventHandler<int> CyclePassed;
+        public void OnCyclePassed(int CycleNumber)
+        {
+            var handler = CyclePassed;
+            if (handler != null)
+                handler(this, CycleNumber);
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string PropertyName)
         {

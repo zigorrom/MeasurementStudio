@@ -91,6 +91,9 @@ namespace IVCharacterization
             DSRangeHandlerViewModel = new RangeHandlerViewModel();
             GSRangeHandlerViewModel = new RangeHandlerViewModel();
 
+            DSRangeHandlerViewModel.RangeHandler.Range = DSRangeViewModel.Range;
+            GSRangeHandlerViewModel.RangeHandler.Range = GSRangeViewModel.Range;
+
             Visualization = new D3VisualizationViewModel();
             ExperimentControlButtons = new ControlButtonsViewModel();
             GlobalIsEnabled = true;

@@ -12,7 +12,7 @@ namespace Helper.Ranges.RangeHandlers
         public RangeHandlerViewModel()
         {
             m_repeatCounts = 0;
-            m_rangeHandler = null;
+            m_rangeHandler = new NormalDoubleRangeHandler();
         }
         private int m_repeatCounts;
         public int RepeatCounts

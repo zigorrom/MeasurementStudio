@@ -19,22 +19,27 @@ namespace Helper.Ranges.RangeHandlers
 
         private IEnumerator<double> CurrentEnum()
         {
+            double val, MinVal, MaxVal;
+            if (Range.End > Range.Start)
+            {
+                MinVal = Range.Start;
+                MaxVal = Range.End;
+            }
+            else
+            {
+                MinVal = Range.End;
+                MaxVal = Range.Start;
+            }
+
             for (int i = 0; i < RepeatCounts; i++)
             {
-                double val, MinVal, MaxVal;
-                if (Range.End > Range.Start)
-                {
-                    MinVal = Range.Start;
-                    MaxVal = Range.End;
-                }
-                else
-                {
-                    MinVal = Range.End;
-                    MaxVal = Range.Start;
-                }
+                
 
                 if (Range.Step == 0)
+                {
                     yield return 0;
+                    break;
+                }
                 else
                 {
                     for (val = 0; val <= MaxVal; val += Range.Step)

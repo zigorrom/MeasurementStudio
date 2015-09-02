@@ -46,10 +46,14 @@ namespace Helper.Ranges.RangeHandlers
                 MaxVal = Range.Start;
             }
 
-            var count = 0;
-            for (val = MinVal; (val <= MaxVal)&&(count<Range.PointsCount); val += Range.Step, count++)
+            for (int i = 0; i < RepeatCounts; i++)
             {
-                yield return val;
+
+                var count = 0;
+                for (val = MinVal; (val <= MaxVal) && (count < Range.PointsCount); val += Range.Step, count++)
+                {
+                    yield return val;
+                }
             }
         }
     }
