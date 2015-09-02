@@ -28,7 +28,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Menu HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Top">
-            <MenuItem Header="Experiment">
+            <MenuItem Header="View">
                 <MenuItem Header="Home Page" Command="{Binding SelectExperiment}" CommandParameter ="{x:Static local:PagesEnum.Home}"/>
                 <MenuItem Header="IV-OutputCurve" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.IVOutput}"/>
                 <MenuItem Header="IV-TransferCurve" />
