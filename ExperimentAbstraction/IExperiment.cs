@@ -23,7 +23,7 @@ namespace ExperimentAbstraction
         void New(string ExperimentName);
         void CleanExperiment();
         object ViewModel { get; }
-        UserControl Control { get; }
+        //UserControl Control { get; }
         void SetDisplayFunction(string Function);
 
 

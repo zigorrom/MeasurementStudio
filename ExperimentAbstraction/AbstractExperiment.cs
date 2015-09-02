@@ -149,10 +149,7 @@ namespace ExperimentAbstraction
 
         public abstract object ViewModel { get; }
 
-        public abstract UserControl Control
-        {
-            get;
-        }
+        
 
         public void SetDisplayFunction(string Function)
         {

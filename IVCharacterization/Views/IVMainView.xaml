@@ -44,7 +44,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Text="{Binding MeasurementName}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <TextBox Text="{Binding MeasurementName}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,0"/>
 
                 <Button Grid.Column="1" Content="Select"/>
             </Grid>

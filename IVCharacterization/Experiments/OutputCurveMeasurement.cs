@@ -130,10 +130,10 @@ namespace IVCharacterization.Experiments
             get { return null; }//_vm; }
         }
 
-        public override System.Windows.Controls.UserControl Control
-        {
-            get { return null; }
-        }
+        //public override System.Windows.Controls.UserControl Control
+        //{
+        //    get { return null; }
+        //}
 
         public override void CleanExperiment()
         {
