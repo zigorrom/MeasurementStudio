@@ -36,7 +36,7 @@ namespace MeasurementStudio
         }
         public HomeViewModel()
         {
-            UserName = Environment.UserName;
+            UserName = System.DirectoryServices.AccountManagement.UserPrincipal.Current.DisplayName;//System.dire //Environment.UserName;
         }
     }
 }

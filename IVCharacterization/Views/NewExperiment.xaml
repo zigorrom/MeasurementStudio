@@ -1,10 +1,12 @@
 ﻿<Window x:Class="IVCharacterization.Views.NewExperiment"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="NewExperiment" Height="300" Width="300">
-    <StackPanel Orientation="Vertical">
-        <TextBlock Text="Enter your experiment name"/>
-        <TextBox x:Name="ExpName"/>
-        <Button Content="OK" Click="Button_Click"/>
+        Title="NewExperiment" Height="300" Width="300"
+        SizeToContent="WidthAndHeight">
+ 
+    <StackPanel Orientation="Vertical" Margin="5">
+        <TextBlock Text="Enter your experiment name" HorizontalAlignment="Center" Margin="0,10" FontSize="20"/>
+        <TextBox x:Name="ExpName" HorizontalContentAlignment="Center" Margin="5"/>
+        <Button Content="OK" Click="Button_Click" HorizontalAlignment="Center"/>
     </StackPanel>
 </Window>

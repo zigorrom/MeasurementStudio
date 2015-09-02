@@ -81,7 +81,7 @@ namespace IVCharacterization.Experiments
             {
 
                 writer.NewExperiment(ExperimentName);
-                for (int j = 0; j < 8 && !StopExperiment; j++)
+                for (int j = 0; j < 5 && !StopExperiment; j++)
                 {
                     var _mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("{0}_{1}",MeasurementName, _vm.MeasurementCount++), 123, "", 1));//, new Func<DrainSourceDataRow, Point>((x) => new Point(x.DrainSourceVoltage, x.DrainCurrent)));
                     
@@ -92,7 +92,7 @@ namespace IVCharacterization.Experiments
 
                     int exp = 10;
                     var rand = new Random();
-                    for (int i = 1; i < 500 && !StopExperiment; i++)
+                    for (int i = 1; i < 100 && !StopExperiment; i++)
                     {
                         StopExperiment = bgw.CancellationPending;
                         if (i % exp == 0)

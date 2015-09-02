@@ -159,16 +159,6 @@ namespace Helper.StartStopControl
             throw new NotImplementedException();
         }
 
-        public System.Windows.Controls.UserControl MainView
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        
     }
 }
