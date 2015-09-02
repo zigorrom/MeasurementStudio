@@ -31,7 +31,11 @@ namespace Helper.Ranges.RangeHandlers
                 MaxVal = Range.Start;
             }
 
-            for (int i = 0; i < RepeatCounts; i++)
+            var maxCount = RepeatCounts * Range.PointsCount;
+            var progressCount = 0;
+
+
+            for (int i = 0; i <= RepeatCounts; i++)
             {
                 
 
@@ -42,12 +46,14 @@ namespace Helper.Ranges.RangeHandlers
                 }
                 else
                 {
-                    for (val = 0; val <= MaxVal; val += Range.Step)
+                    for (val = 0; val <= MaxVal; val += Range.Step, progressCount++)
                     {
+                        OnProgressChanged(progressCount / maxCount, null);
                         yield return val;
                     }
-                    for (val = 0; val >= MinVal; val -= Range.Step)
+                    for (val = 0; val >= MinVal; val -= Range.Step, progressCount++)
                     {
+                        OnProgressChanged(progressCount / maxCount, null);
                         yield return val;
                     }
                 }

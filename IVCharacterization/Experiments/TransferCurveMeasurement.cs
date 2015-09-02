@@ -51,10 +51,7 @@ namespace IVCharacterization.Experiments
             //throw new NotImplementedException();
         }
 
-        public override object ViewModel
-        {
-            get { throw new NotImplementedException(); }
-        }
+      
 
         
 
@@ -115,7 +112,7 @@ namespace IVCharacterization.Experiments
             }
         }
 
-        public override void CleanExperiment()
+        public override void ClearExperiment()
         {
             throw new NotImplementedException();
         }

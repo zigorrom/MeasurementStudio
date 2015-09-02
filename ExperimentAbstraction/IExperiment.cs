@@ -21,8 +21,8 @@ namespace ExperimentAbstraction
         void Pause();
         void Abort();
         void New(string ExperimentName);
-        void CleanExperiment();
-        object ViewModel { get; }
+        void ClearExperiment();
+        
         //UserControl Control { get; }
         void SetDisplayFunction(string Function);
 

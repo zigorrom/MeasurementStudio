@@ -59,8 +59,8 @@ namespace ExperimentAbstraction
             _worker.ProgressChanged += _worker_ProgressChanged;
             _worker.RunWorkerCompleted += _worker_RunWorkerCompleted;
 
-            InitializeInstruments();
-            InitializeExperiment();
+            //InitializeInstruments();
+            //InitializeExperiment();
 
         }
 
@@ -68,6 +68,7 @@ namespace ExperimentAbstraction
         {
             return new StreamMeasurementDataExporter<InfoT, DataT>(WorkingDirectory);
         }
+
         void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             OnExperimentFinished(sender, e);
@@ -91,6 +92,9 @@ namespace ExperimentAbstraction
         
         public virtual void Start()
         {
+            InitializeInstruments();
+            InitializeExperiment();
+            
             OnExperimentStarted(this, new EventArgs());
             _worker.RunWorkerAsync();
         }
@@ -111,11 +115,11 @@ namespace ExperimentAbstraction
 
         public virtual void New(string ExperimentName)
         {
-            CleanExperiment();
+            ClearExperiment();
             Name = ExperimentName;
         }
 
-        public abstract void CleanExperiment();
+        public abstract void ClearExperiment();
 
         public bool IsRunning
         {
@@ -147,7 +151,7 @@ namespace ExperimentAbstraction
             return m_Name.GetHashCode();
         }
 
-        public abstract object ViewModel { get; }
+        
 
         
 
