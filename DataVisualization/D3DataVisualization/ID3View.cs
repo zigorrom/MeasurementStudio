@@ -14,5 +14,7 @@ namespace DataVisualization.D3DataVisualization
         void SetScale(GraphScaleType scaleType);
 
         void AddSeries(IPointDataSource data);
+
+        void Clear();
     }
 }

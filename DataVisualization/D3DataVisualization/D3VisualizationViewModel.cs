@@ -128,5 +128,10 @@ namespace DataVisualization.D3DataVisualization
         //    get;
         //    set;
         //}
+
+        public void Clear()
+        {
+            View.Clear();
+        }
     }
 }

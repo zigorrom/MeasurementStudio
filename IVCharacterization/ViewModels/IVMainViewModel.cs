@@ -62,10 +62,13 @@ namespace IVCharacterization
 
         public void AddSeries(IPointDataSource Points)
         {
-            if (Visualization != null)
+            ExecuteInUIThread(() =>
             {
-                Visualization.AddLineGraph(Points);
-            }
+                if (Visualization != null)
+                {
+                    Visualization.AddLineGraph(Points);
+                }
+            });
             
         }
 
@@ -194,8 +197,11 @@ namespace IVCharacterization
             CurrentProgress = 0;
             
         }
-       
 
+        protected override void ClearVisualization()
+        {
+            ExecuteInUIThread(() => Visualization.Clear());
+        }
         protected override string GetExperimentName()
         {
             var d = new IVCharacterization.Views.NewExperiment();

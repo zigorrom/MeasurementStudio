@@ -24,7 +24,7 @@ namespace DataVisualization
         string VerticalAxisTitle { get; set; }
         int StrokeThickness { get; set; }
         GraphScaleType ScaleType { get; set; }
-
+        void Clear();
         void AddLineGraph(IPointDataSource data);
     }
 }

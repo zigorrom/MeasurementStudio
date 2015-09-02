@@ -105,11 +105,17 @@ namespace DataVisualization.D3DataVisualization
         public void AddSeries(IPointDataSource data)
         {
             //LineGraph a = new LineGraph();
-            
-            Dispatcher.Invoke(new Action(() => plotter.AddLineGraph(data)));
+            plotter.AddLineGraph(data);
+            //Dispatcher.Invoke(new Action(() => plotter.AddLineGraph(data)));
             
         }
 
-        
+
+
+
+        public void Clear()
+        {
+           plotter.Children.RemoveAll(typeof(LineGraph));
+        }
     }
 }

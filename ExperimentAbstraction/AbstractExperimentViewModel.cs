@@ -91,7 +91,8 @@ namespace ExperimentAbstraction
         public ICommand CreateNewExperiment
         {
             get { return _createNewExperiment ?? (_createNewExperiment = new RelayCommand(() => {
-                ExperimentName = GetExperimentName();        
+                ExperimentName = GetExperimentName();
+                ClearVisualization();
             })); }
         }
         protected abstract string GetExperimentName();
@@ -154,6 +155,7 @@ namespace ExperimentAbstraction
         protected abstract void ExperimentPausedHandler(object sender, EventArgs e);
         protected abstract void ExperimentStartedHandler(object sender, EventArgs e);
 
+        protected abstract void ClearVisualization();
         public async Task ExecuteInUIThreadAsync(Action action)
         {
             await Application.Current.Dispatcher.BeginInvoke(action, null);
