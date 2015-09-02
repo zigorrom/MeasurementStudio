@@ -6,21 +6,22 @@
              mc:Ignorable="d" 
              xmlns:local ="clr-namespace:MeasurementStudio"
              d:DesignHeight="550.882" d:DesignWidth="562.353">
-    
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="296*"/>
-            <RowDefinition Height="255*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="230"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="166*"/>
         </Grid.ColumnDefinitions>
         <StackPanel>
             <TextBlock Text="Welcome" FontSize="24"/>
             <TextBlock Text="{Binding UserName}" FontSize="20" HorizontalAlignment="Center"/>
         </StackPanel>
         <WrapPanel Grid.Column="1"/>
+        <GroupBox Header="Recent" Grid.Row="1"/>
 
     </Grid>
 </UserControl>
