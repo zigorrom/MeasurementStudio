@@ -110,6 +110,7 @@ namespace IVCharacterization.Experiments
                             System.Diagnostics.Debug.WriteLine(_mea.Count);
                             System.Threading.Thread.Sleep(2);
                         }
+                        _vm.ExecuteInUIThread(() => _mea.ResumeUpdate());
                         writer.Write(_mea);
                         _vm.ExecuteInUIThread(()=> bgw.ReportProgress(j * 20));
                     }
