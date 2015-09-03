@@ -11,8 +11,10 @@ namespace Helper.Ranges.RangeHandlers
     {
         public RangeHandlerViewModel()
         {
-            m_repeatCounts = 0;
-            m_rangeHandler = new NormalDoubleRangeHandler();
+            RepeatCounts = 1;
+            RangeHandler = new NormalDoubleRangeHandler();
+            //m_repeatCounts = 0;
+            //m_rangeHandler = new NormalDoubleRangeHandler();
         }
         private int m_repeatCounts;
         public int RepeatCounts
@@ -20,11 +22,15 @@ namespace Helper.Ranges.RangeHandlers
             get { return m_repeatCounts; }
             set
             {
+                if (value < 1)
+                    value = 1;
                 if (SetField(ref m_repeatCounts, value, "RepeatCounts"))
+                {
                     if (m_rangeHandler != null)
                     {
                         m_rangeHandler.RepeatCounts = m_repeatCounts;
                     }
+                }
             }
         }
 

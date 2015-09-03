@@ -121,6 +121,9 @@ namespace Helper.Ranges.RangeHandlers
             set
             {
                 if (m_RepeatCount == value) return;
+                if (value < 1)
+                    value = 1;
+
                 m_RepeatCount = value;
                 OnPropertyChanged("RepeatCounts");
             }

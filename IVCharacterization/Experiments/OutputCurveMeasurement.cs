@@ -151,7 +151,7 @@ namespace IVCharacterization.Experiments
                     }
 
                     _vm.ExecuteInUIThread(() => mea.ResumeUpdate());
-                    //            writer.Write(_mea);
+                    _writer.Write(mea);
                     //_vm.ExecuteInUIThread(() => bgw.ReportProgress(j * 20));
                 }
             }

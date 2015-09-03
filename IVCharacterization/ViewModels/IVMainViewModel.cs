@@ -86,17 +86,28 @@ namespace IVCharacterization
         public ControlButtonsViewModel ExperimentControlButtons {get;set;}
 
         public IVexpSettingsViewModel IVSettingsViewModel { get; set; }
-        
+
         public IVMainViewModel()
         {
             DSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
             GSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
-            
+
             DSRangeHandlerViewModel = new RangeHandlerViewModel();
             GSRangeHandlerViewModel = new RangeHandlerViewModel();
 
-            DSRangeHandlerViewModel.RangeHandler.Range = DSRangeViewModel.Range;
-            GSRangeHandlerViewModel.RangeHandler.Range = GSRangeViewModel.Range;
+            DSRangeHandlerViewModel.PropertyChanged += (o, e) =>
+            {
+                if (e.PropertyName == "RangeHandler")
+                    DSRangeHandlerViewModel.RangeHandler.Range = DSRangeViewModel.Range;
+            };
+
+            GSRangeHandlerViewModel.PropertyChanged += (o, e) =>
+            {
+                if (e.PropertyName == "RangeHandler")
+                    GSRangeHandlerViewModel.RangeHandler.Range = GSRangeViewModel.Range;
+            };
+
+
 
             Visualization = new D3VisualizationViewModel();
             ExperimentControlButtons = new ControlButtonsViewModel();
