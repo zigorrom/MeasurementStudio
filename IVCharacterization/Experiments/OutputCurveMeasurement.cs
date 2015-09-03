@@ -146,7 +146,7 @@ namespace IVCharacterization.Experiments
                         }
                         var r = rand.NextDouble();
 
-                        mea.Add(new DrainSourceDataRow(dsEnumerator.Current, (r + gEnumerator.Current) * Math.Log(dsEnumerator.Current), 0));
+                        mea.Add(new DrainSourceDataRow(dsEnumerator.Current, (r + gEnumerator.Current) * Math.Pow(dsEnumerator.Current, 2), 0));// * Math.Log(dsEnumerator.Current), 0)); //
 
                     }
 

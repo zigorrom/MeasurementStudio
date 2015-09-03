@@ -25,7 +25,7 @@ namespace ExperimentDataModel
         where InfoT : struct, IMeasurementInfo
         where DataT : struct
     {
-      
+
 
         public event EventHandler DataChanged;
 
@@ -33,7 +33,7 @@ namespace ExperimentDataModel
 
         private bool _updatesEnabled = true;
 
-//        private InfoT _measurementInfo;
+        //        private InfoT _measurementInfo;
         public InfoT Info
         {
             get;
@@ -54,7 +54,7 @@ namespace ExperimentDataModel
         {
             Info = info;
             _measurementCollection.CollectionChanged += OnCollectionChanged;
-            if(typeof(DataT)==typeof(Point))
+            if (typeof(DataT) == typeof(Point))
             {
                 xyMapping = t => (Point)(object)t;
             }
@@ -71,7 +71,7 @@ namespace ExperimentDataModel
             if (_collectionChanged)
             {
                 _collectionChanged = false;
-                
+
                 RaiseDataChanged();
             }
         }
@@ -141,13 +141,13 @@ namespace ExperimentDataModel
         {
 
             throw new NotImplementedException();
-      
+
         }
 
 
         private void FillPoint(DataT elem, ref Point point)
         {
-            if(xyMapping != null)
+            if (xyMapping != null)
             {
                 point = xyMapping(elem);
             }
@@ -171,7 +171,7 @@ namespace ExperimentDataModel
         }
 
 
-        private class PointEnumerator:IPointEnumerator
+        private class PointEnumerator : IPointEnumerator
         {
             private readonly MeasurementData<InfoT, DataT> dataSource;
             private readonly IEnumerator<DataT> enumerator;
@@ -180,7 +180,7 @@ namespace ExperimentDataModel
             {
                 this.dataSource = dataSource;
                 var collection = new List<DataT>(dataSource.Collection);
-                enumerator = collection.GetEnumerator() ;
+                enumerator = collection.GetEnumerator();
             }
 
             public void ApplyMappings(DependencyObject target)

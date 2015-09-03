@@ -19,6 +19,7 @@ using System.Windows.Input;
 using IVCharacterization.ViewModels;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using Helper.StartStopControl;
+using System.Windows.Threading;
 
 
 namespace IVCharacterization
