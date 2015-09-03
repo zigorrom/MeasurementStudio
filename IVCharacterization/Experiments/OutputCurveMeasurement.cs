@@ -119,8 +119,8 @@ namespace IVCharacterization.Experiments
 
                 _writer.NewExperiment(_experimentName);
 
-                int exp = _dsRangeHandler.Range.PointsCount / 100 ;
-                exp = exp > 0 ? exp : 1;
+                int exp = 10;//_dsRangeHandler.Range.PointsCount / 100 ;
+                //exp = exp > 0 ? exp : 1;
                 var count = 0;
 
                 var rand = new Random();
@@ -136,7 +136,7 @@ namespace IVCharacterization.Experiments
                         StopExperiment = bgw.CancellationPending;
                         if (StopExperiment) break;
 
-                        if (count % exp == 0)
+                        if (count++ % exp == 0)
                         {
                             _vm.ExecuteInUIThread(() =>
                            {
