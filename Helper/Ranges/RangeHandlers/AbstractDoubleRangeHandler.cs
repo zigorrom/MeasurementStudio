@@ -33,7 +33,7 @@ namespace Helper.Ranges.RangeHandlers
             Initialize(HandlerName, BackAndForth, StartFromZero);
             //m_BackAndForth = false;
             //m_StartFromZero = false;
-            m_RepeatCount = 1;
+            //RepeatCounts = 1;
         }
         public AbstractDoubleRangeHandler(string HandlerName, bool BackAndForth, bool StartFromZero)
         {
@@ -41,7 +41,7 @@ namespace Helper.Ranges.RangeHandlers
             Initialize(HandlerName, BackAndForth, StartFromZero);
             //m_BackAndForth = false;
             //m_StartFromZero = false;
-            m_RepeatCount = 1;
+            //m_RepeatCount = 1;
         }
 
         protected virtual void Initialize(string handlerName,bool backAndForth, bool startFromZero)
@@ -49,6 +49,8 @@ namespace Helper.Ranges.RangeHandlers
             HandlerName = handlerName;
             BackAndForth = backAndForth;
             StartFromZero = startFromZero;
+
+            RepeatCounts = 1;
         }
 
         public event ProgressChangedEventHandler ProgressChanged;
