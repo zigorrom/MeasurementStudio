@@ -55,11 +55,19 @@ namespace IVCharacterization.Experiments
 
             AssertParams();
 
-            
+
+            //_dsRangeHandler.CyclePassed += (o, e) => { _currentData = new MeasurementData<DrainSourceMeasurmentInfoRow,DrainSourceDataRow>()};
+            //_dsRangeHandler.ProgressChanged += _dsRangeHandler_ProgressChanged;
+            //_gsRangeHandler.ProgressChanged += _gsRangeHandler_ProgressChanged;
+
 
             _writer = GetStreamExporter(_workingDirectory);
             //throw new NotImplementedException();
         }
+
+       
+
+       
 
         private void AssertParams()
         {
@@ -103,6 +111,7 @@ namespace IVCharacterization.Experiments
 
         private StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow> _writer;
 
+        private MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow> _currentData;
         
 
         protected override void DoMeasurement(object sender, DoWorkEventArgs e)
@@ -114,8 +123,7 @@ namespace IVCharacterization.Experiments
 
                 bool StopExperiment = false;
 
-                var gEnumerator = _gsRangeHandler.GetEnumerator();
-                var dsEnumerator = _dsRangeHandler.GetEnumerator();
+               
 
                 _writer.NewExperiment(_experimentName);
 
@@ -123,14 +131,22 @@ namespace IVCharacterization.Experiments
                 //exp = exp > 0 ? exp : 1;
                 var count = 0;
 
+                _dsRangeHandler.ProgressChanged +=
+                    (o, progress) =>
+                    {
+                        _vm.ExecuteInUIThread(()=>bgw.ReportProgress(progress.ProgressPercentage));
+                    };
+
                 var rand = new Random();
+                var gEnumerator = _gsRangeHandler.GetEnumerator();
+                
                 while (gEnumerator.MoveNext() && !StopExperiment)
                 {
                     var mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("{0}_{1}", _measurementName, _measurementCount++), gEnumerator.Current, "", _measurementCount));
                     mea.SuspendUpdate();
                     mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
                     _vm.AddSeries(mea);
-
+                    var dsEnumerator = _dsRangeHandler.GetEnumerator();
                     while (dsEnumerator.MoveNext() && !StopExperiment)
                     {
                         StopExperiment = bgw.CancellationPending;
@@ -147,7 +163,7 @@ namespace IVCharacterization.Experiments
                         var r = rand.NextDouble();
 
                         mea.Add(new DrainSourceDataRow(dsEnumerator.Current, (r + gEnumerator.Current) * Math.Pow(dsEnumerator.Current, 2), 0));// * Math.Log(dsEnumerator.Current), 0)); //
-
+                        System.Threading.Thread.Sleep(10);
                     }
 
                     _vm.ExecuteInUIThread(() => mea.ResumeUpdate());

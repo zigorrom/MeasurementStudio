@@ -107,6 +107,8 @@ namespace IVCharacterization
                     GSRangeHandlerViewModel.RangeHandler.Range = GSRangeViewModel.Range;
             };
 
+            DSRangeHandlerViewModel.InvalidateProperties();
+            GSRangeHandlerViewModel.InvalidateProperties();
 
 
             Visualization = new D3VisualizationViewModel();
@@ -203,9 +205,10 @@ namespace IVCharacterization
 
         protected override void ExperimentFinishedHandler(object sender, EventArgs e)
         {
+            ExperimentIsRunning = false;
             ExecuteInUIThread(() => GlobalIsEnabled = true);
             ExecuteInUIThread(() => ExperimentControlButtons.Reset());
-            ExperimentIsRunning = false;
+            
             CurrentProgress = 0;
             
         }

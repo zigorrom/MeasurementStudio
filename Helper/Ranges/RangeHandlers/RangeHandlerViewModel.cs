@@ -42,13 +42,17 @@ namespace Helper.Ranges.RangeHandlers
             {
                 if (SetField(ref m_rangeHandler, value, "RangeHandler"))
                 {
-
-                    RepeatCounts = m_rangeHandler.RepeatCounts;
+                    m_rangeHandler.RepeatCounts = RepeatCounts;
+                    //RepeatCounts = m_rangeHandler.RepeatCounts;
                 }
             }
         }
 
-
+        public void InvalidateProperties()
+        {
+            OnPropertyChanged("RepeatCounts");
+            OnPropertyChanged("RangeHandler");
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
