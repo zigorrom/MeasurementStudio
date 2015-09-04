@@ -60,5 +60,10 @@ namespace Helper.Ranges.RangeHandlers
                 }
             }
         }
+
+        public override int TotalPoints
+        {
+            get { return RepeatCounts * Range.PointsCount; }
+        }
     }
 }

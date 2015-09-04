@@ -69,5 +69,10 @@ namespace Helper.Ranges.RangeHandlers
                 OnCyclePassed(i+1);
             }
         }
+
+        public override int TotalPoints
+        {
+            get { return RepeatCounts * 2 * Range.PointsCount; }
+        }
     }
 }

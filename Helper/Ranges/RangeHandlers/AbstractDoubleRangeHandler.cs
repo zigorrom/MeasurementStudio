@@ -26,6 +26,10 @@ namespace Helper.Ranges.RangeHandlers
                 OnPropertyChanged("Range");
             }
         }
+
+        public abstract int TotalPoints{get;}
+        
+
         public AbstractDoubleRangeHandler(string HandlerName, bool BackAndForth, bool StartFromZero, DoubleRangeBase range)
         {
             m_range = range;

@@ -27,6 +27,8 @@ namespace Helper.Ranges.RangeHandlers
                 return CurrentEnum();
         }
 
+       
+
         private IEnumerator<double> CurrentEnum()
         {
             double val, MinVal, MaxVal;
