@@ -45,6 +45,7 @@ namespace MeasurementStudio
         //    }
         //}
 
+
         private PagesEnum _current;
 
         private ICommand _selectExperiment;
