@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CVCharacterization
+namespace CVCharacterization.Views
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for CVMainView.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class CVMainView : UserControl
     {
-        public UserControl1()
+        public CVMainView()
         {
             InitializeComponent();
         }

@@ -48,19 +48,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewModels\CVMainViewModel.cs" />
-    <Page Include="UserControl1.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="DataModel\CapacityFrequencyDataRow.cs" />
     <Compile Include="DataModel\CapacityFrequencyInfoRow.cs" />
     <Compile Include="DataModel\CapacityVoltageDataRow.cs" />
     <Compile Include="DataModel\CapacityVoltageInfoRow.cs" />
     <Compile Include="Experiments\CapacitanceFrequencyMeasurement.cs" />
     <Compile Include="Experiments\CapacitanceVoltageMeasurement.cs" />
-    <Compile Include="UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="Views\CVMainView.xaml.cs">
+      <DependentUpon>CVMainView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -87,14 +82,18 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ExperimentDataModel\ExperimentDataModel.csproj">
       <Project>{f37c1293-015e-47ef-81fe-694857e4a303}</Project>
       <Name>ExperimentDataModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\CVMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
