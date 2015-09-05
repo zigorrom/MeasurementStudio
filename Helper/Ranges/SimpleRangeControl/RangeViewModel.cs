@@ -53,9 +53,9 @@ namespace Helper.Ranges.SimpleRangeControl
             PointsCount = new IntPointsCount(0);
             RepeatCounts = 1;
             RangeHandler = new NormalDoubleRangeHandler();
-
-
             m_doubleRange = new DoubleRangeBase(Start.NumericValue, End.NumericValue, Step.NumericValue);
+
+            RangeHandler.Range = Range;
 
             var StartBind = new Binding(StartName);
             StartBind.Source = m_doubleRange;//.Start;
@@ -94,7 +94,7 @@ namespace Helper.Ranges.SimpleRangeControl
                 {
                     if (m_rangeHandler != null)
                     {
-                        m_rangeHandler.RepeatCounts = m_repeatCounts;
+                        RangeHandler.RepeatCounts = m_repeatCounts;
                     }
                 }
             }
@@ -108,7 +108,8 @@ namespace Helper.Ranges.SimpleRangeControl
             {
                 if (SetField(ref m_rangeHandler, value, "RangeHandler"))
                 {
-                    m_rangeHandler.RepeatCounts = RepeatCounts;
+                    RangeHandler.RepeatCounts = RepeatCounts;
+                    RangeHandler.Range = Range;
                     //RepeatCounts = m_rangeHandler.RepeatCounts;
                 }
             }

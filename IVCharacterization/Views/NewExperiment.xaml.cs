@@ -19,9 +19,11 @@ namespace IVCharacterization.Views
     /// </summary>
     public partial class NewExperiment : Window
     {
-        public NewExperiment()
+        public NewExperiment(string CurrentExperimentName)
         {
+            
             InitializeComponent();
+            ExpName.Text = CurrentExperimentName;
         }
 
         public string ExperimentName

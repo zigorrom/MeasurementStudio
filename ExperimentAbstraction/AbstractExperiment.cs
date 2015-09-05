@@ -2,6 +2,7 @@
 using ExperimentDataModel;
 using Instruments;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -16,7 +17,11 @@ namespace ExperimentAbstraction
         where DataT : struct
     {
         private string m_Name;
-        protected Queue<MeasurementData<InfoT, DataT>> _dataQueue;
+        
+        protected ConcurrentQueue<MeasurementData<InfoT, DataT>> _dataQueue;
+
+        protected StreamMeasurementDataExporter<InfoT, DataT> _dataWriter;
+
         private BackgroundWorker _worker;
         public void Dispose()
         {
@@ -29,6 +34,8 @@ namespace ExperimentAbstraction
             // Finalizer calls Dispose(false)
             Dispose(false);
         }
+
+
 
         protected virtual void Dispose(bool disposing)
         {
@@ -44,14 +51,14 @@ namespace ExperimentAbstraction
             // free native resources if there are any.
             if (_dataQueue != null)
             {
-                _dataQueue.Clear();
+                //_dataQueue.TryDequeue
                 _dataQueue = null;
             }
         }
         public AbstractExperiment(string ExperimentName)
         {
             m_Name = ExperimentName;
-            _dataQueue = new Queue<MeasurementData<InfoT, DataT>>();
+            _dataQueue = new ConcurrentQueue<MeasurementData<InfoT, DataT>>();
             _worker = new BackgroundWorker();
             _worker.WorkerSupportsCancellation = true;
             _worker.WorkerReportsProgress = true;
@@ -83,6 +90,7 @@ namespace ExperimentAbstraction
         public abstract void OwnInstruments();
 
         public abstract void InitializeExperiment();
+        
 
         public abstract void InitializeInstruments();
 

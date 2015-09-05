@@ -93,6 +93,7 @@ namespace IVCharacterization.Experiments
 
         public override void InitializeInstruments()
         {
+           // base.InitializeExperiment();
             //throw new NotImplementedException();
         }
 

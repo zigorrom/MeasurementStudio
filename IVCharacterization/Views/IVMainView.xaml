@@ -32,10 +32,14 @@
         <DataTemplate DataType="{x:Type StartStopControl:ControlButtonsViewModel}">
             <StartStopControl:ControlButtonsPanel x:Name="ControlButtons"/>
         </DataTemplate>
-
+        
+        <ContextMenu x:Key="OpenFolderContextMenu">
+            <MenuItem Header="Open containing folder" Command="{Binding OpenWorkingDirectory}"/>
+        </ContextMenu>
+        
         <DataTemplate x:Key="DefaultMeasurementNameTemplate">
             <StackPanel Margin="5,5,5,0">
-                <TextBox Text="{Binding MeasurementName}"/>
+                <TextBox Text="{Binding MeasurementName}" />
             </StackPanel>
         </DataTemplate>
 
@@ -56,7 +60,7 @@
         <DataTemplate DataType="{x:Type vm:IVexpSettingsViewModel}">
             <v:IVexpSettings/>
         </DataTemplate>
-
+        
     </UserControl.Resources>
 
     <Grid>
@@ -97,14 +101,14 @@
                             <GroupBox Header="Drain-Source Voltage Range" Grid.Row="0" Margin="0">
                                 <StackPanel> <!--IsEnabled="{Binding GlobalIsEnabled}"-->
                                     <Ranges:RangeControl DataContext="{Binding DSRangeViewModel}" Grid.ColumnSpan="2"/>
-                                    <ranges:RangeHandlerControl Margin="3" Grid.Row="1" DataContext="{Binding DSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>
+                                    <!--<ranges:RangeHandlerControl Margin="3" Grid.Row="1" DataContext="{Binding DSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>-->
                                 </StackPanel>
                             </GroupBox>
 
                             <GroupBox Header="Gate-Source Voltage Range" Grid.Row="1" Margin="0" >
                                 <StackPanel> <!--IsEnabled="{Binding GlobalIsEnabled}">-->
                                     <Ranges:RangeControl DataContext="{Binding GSRangeViewModel}" Grid.ColumnSpan="2"/>
-                                    <ranges:RangeHandlerControl Grid.Row="1" DataContext="{Binding GSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>
+                                    <!--<ranges:RangeHandlerControl Grid.Row="1" DataContext="{Binding GSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>-->
                                 </StackPanel>
                             </GroupBox>
 
@@ -121,8 +125,8 @@
                                         <RowDefinition Height="50*"/>
                                     </Grid.RowDefinitions>
                                     <Button ToolTip="{Binding ExperimentName}" Content="New Experiment" Grid.ColumnSpan="3" Command="{Binding CreateNewExperiment}" Margin="5"/>
-                                    <Button Command="{Binding SelectWorkingDirectory}"  Grid.Row="1" Content="Workspace" ToolTip="{Binding WorkingDirectory}" Grid.RowSpan="2"/>
-                                    <TextBlock Text="Measurement Name" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Margin="5,0,5,5"/>
+                                    <Button ContextMenu="{StaticResource OpenFolderContextMenu}" Command="{Binding SelectWorkingDirectory}"  Grid.Row="1" Content="Workspace" ToolTip="{Binding WorkingDirectory}" Grid.RowSpan="2" Margin="5,0,0,0"/>
+                                    <TextBlock  Text="Measurement Name" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Margin="5,0,5,5"/>
                                     <TextBlock Text="#" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Margin="5,0,5,5"/>
 
                                     <ContentControl Grid.Column="1" Grid.Row="2" Content="{Binding}" >
@@ -158,6 +162,7 @@
                 <ColumnDefinition Width="346.4"/>
             </Grid.ColumnDefinitions>
             <ProgressBar  Value="{Binding CurrentProgress}"  Margin="10" Visibility="{Binding ExperimentIsRunning, Converter={StaticResource BoolToVis}}"/>
+            <TextBlock Visibility="{Binding ExperimentIsRunning, Converter={StaticResource BoolToVis}}" Text="{Binding CurrentProgress, StringFormat='Progress: {0}%'}" HorizontalAlignment="Center" VerticalAlignment="Center"/> 
             <ContentControl Grid.Column="1" Content="{Binding ExperimentControlButtons}" />
         </Grid>
 

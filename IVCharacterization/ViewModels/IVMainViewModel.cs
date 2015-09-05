@@ -181,7 +181,7 @@ namespace IVCharacterization
         }
         protected override string GetExperimentName()
         {
-            var d = new IVCharacterization.Views.NewExperiment();
+            var d = new IVCharacterization.Views.NewExperiment(ExperimentName);
             if (d.ShowDialog().Value)
                 return d.ExperimentName;
             return String.Empty;

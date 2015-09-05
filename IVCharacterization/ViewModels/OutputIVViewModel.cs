@@ -34,10 +34,7 @@ namespace IVCharacterization.ViewModels
         {
             base.ExperimentProgressChangedHandler(sender, e);
         }
-        //protected override void ExperimentProgressChangedHandler(object sender, ProgressChangedEventArgs e)
-        //{
-        //    //throw new NotImplementedException();
-        //}
+        
 
         protected override void ExperimentFinishedHandler(object sender, EventArgs e)
         {
