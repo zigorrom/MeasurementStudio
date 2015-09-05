@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http.SelfHost;
 
 namespace test
 {
@@ -18,9 +19,15 @@ namespace test
         static void Main(string[] args)
         {
 
+            var config = new HttpSelfHostConfiguration("http://localhost:8999");
+            var server = new HttpSelfHostServer(config);
+            var task = server.OpenAsync();
+            task.Wait();
+            Console.WriteLine("Server is up and running");
+            Console.ReadLine();
 
-            Console.WriteLine(Environment.UserName);
-            Console.ReadKey();
+            //Console.WriteLine(Environment.UserName);
+            //Console.ReadKey();
             //Console.WriteLine(Convert.ToString(3-1,2));
             //Console.WriteLine(Instruments.ActualInstruments.AgilentU2442A.AgilentU2542A.CounterFunctionEnum.Frequency);
             //Instruments.ActualInstruments.AgilentU2442A.AgilentU2542A a = new Instruments.ActualInstruments.AgilentU2442A.AgilentU2542A("asd", "fsdf", "dsafsd");
