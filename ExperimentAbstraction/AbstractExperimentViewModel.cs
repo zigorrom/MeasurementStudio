@@ -128,6 +128,28 @@ namespace ExperimentAbstraction
             }
         }
 
+        private ICommand _openWorkingDirectory;
+        public ICommand OpenWorkingDirectory
+        {
+            get {
+                return _openWorkingDirectory ?? (_openWorkingDirectory = new RelayCommand((o) =>
+                {
+                    try
+                    {
+                        System.Diagnostics.Process.Start(WorkingDirectory);
+                    }catch (Exception ex)
+                    {
+                        ErrorHandler(ex);
+                    }
+
+                }, (o) =>
+                {
+                    return !String.IsNullOrEmpty(WorkingDirectory);
+                }));
+            }
+        }
+
+
         public AbstractExperimentViewModel()
         {
             InitExperiment();
