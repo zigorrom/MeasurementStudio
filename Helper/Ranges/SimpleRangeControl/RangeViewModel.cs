@@ -17,51 +17,61 @@ namespace Helper.Ranges.SimpleRangeControl
         private DoubleUnitValueDependencyObject m_Step;
         private IntPointsCount m_PointCount;
         private DoubleRangeBase m_doubleRange;
-        
-        
+
+        private const string StartName = "Start";
+        private const string EndName = "End";
+        private const string StepName = "Step";
+        private const string PointsCountName = "PointsCount";
+
+
+        #region NotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
-
-
-
-        public void OnPropertyChanged(string PropertyName)
+        private void OnPropertyChanged(string PropertyName)
         {
             var handler = PropertyChanged;
             if(handler!= null)
                 handler(this, new PropertyChangedEventArgs(PropertyName));
         }
 
+        //private 
+        private bool SetField<T>(ref T field, T value, string FieldName )
+        {
+            if (Object.Equals(field, value))
+                return false;
+            field = value;
+            OnPropertyChanged(FieldName);
+            return true;
+        }
+        #endregion
 
         public RangeViewModel(DoubleUnitValueDependencyObject start, DoubleUnitValueDependencyObject end, DoubleUnitValueDependencyObject step)
         {
             Start = start;
-
             End = end;
-
             Step = step;
-
             PointsCount = new IntPointsCount(0);
 
             m_doubleRange = new DoubleRangeBase(Start.NumericValue, End.NumericValue, Step.NumericValue);
 
-            var StartBind = new Binding("Start");
+            var StartBind = new Binding(StartName);
             StartBind.Source = m_doubleRange;//.Start;
             StartBind.Mode = BindingMode.TwoWay;
             StartBind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
             BindingOperations.SetBinding(Start, DoubleUnitValueDependencyObject.NumericValueProperty, StartBind);
 
-            var EndBind = new Binding("End");
+            var EndBind = new Binding(EndName);
             EndBind.Source = m_doubleRange;//.End;
             EndBind.Mode = BindingMode.TwoWay;
             EndBind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
             BindingOperations.SetBinding(End, DoubleUnitValueDependencyObject.NumericValueProperty, EndBind);
 
-            var StepBind = new Binding("Step");
+            var StepBind = new Binding(StepName);
             StepBind.Source = m_doubleRange;//.Step;
             StepBind.Mode = BindingMode.TwoWay;
             StepBind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
             BindingOperations.SetBinding(Step, DoubleUnitValueDependencyObject.NumericValueProperty, StepBind);
 
-            var PointsCountBind = new Binding("PointsCount");
+            var PointsCountBind = new Binding(PointsCountName);
             PointsCountBind.Source = m_doubleRange;//.PointsCount;
             PointsCountBind.Mode = BindingMode.TwoWay;
             PointsCountBind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
@@ -69,16 +79,15 @@ namespace Helper.Ranges.SimpleRangeControl
         }
 
 
-       
-
         public IntPointsCount PointsCount
         {
             get { return m_PointCount; }
             set
             {
-                if (m_PointCount == value) return;
-                m_PointCount = value;
-                OnPropertyChanged("PointsCount");
+                SetField(ref m_PointCount, value, PointsCountName);
+                //if (m_PointCount == value) return;
+                //m_PointCount = value;
+                //OnPropertyChanged("PointsCount");
             }
         }
 
@@ -87,10 +96,11 @@ namespace Helper.Ranges.SimpleRangeControl
             get { return m_Start; }
             private set
             {
-                if (m_Start == value)
-                    return;
-                m_Start = value;
-                OnPropertyChanged("Start");
+                SetField(ref m_Start, value, StartName);
+                //if (m_Start == value)
+                //    return;
+                //m_Start = value;
+                //OnPropertyChanged("Start");
             }
         }
 
@@ -99,10 +109,11 @@ namespace Helper.Ranges.SimpleRangeControl
             get { return m_End; }
             private set
             {
-                if (m_End == value)
-                    return;
-                m_End = value;
-                OnPropertyChanged("End");
+                SetField(ref m_End, value, EndName);
+                //if (m_End == value)
+                //    return;
+                //m_End = value;
+                //OnPropertyChanged("End");
             }
         }
 
@@ -111,10 +122,11 @@ namespace Helper.Ranges.SimpleRangeControl
             get { return m_Step; }
             private set
             {
-                if (m_Step== value)
-                    return;
-                m_Step= value;
-                OnPropertyChanged("Step");
+                //if (m_Step== value)
+                //    return;
+                //m_Step= value;
+                //OnPropertyChanged("Step");
+                SetField(ref m_Step, value, StepName);
             }
         }
 
