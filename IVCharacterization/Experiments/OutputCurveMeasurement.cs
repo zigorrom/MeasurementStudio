@@ -50,8 +50,8 @@ namespace IVCharacterization.Experiments
             _measurementName = _vm.MeasurementName;
             _measurementCount = _vm.MeasurementCount;
 
-            _dsRangeHandler = _vm.DSRangeHandlerViewModel.RangeHandler;
-            _gsRangeHandler = _vm.GSRangeHandlerViewModel.RangeHandler;
+            _dsRangeHandler = _vm.DSRangeViewModel.RangeHandler;
+            _gsRangeHandler = _vm.GSRangeViewModel.RangeHandler;
 
             AssertParams();
 

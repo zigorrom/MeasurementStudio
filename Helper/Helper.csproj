@@ -58,18 +58,17 @@
     <Compile Include="Ranges\RangeHandlers\AbstractDoubleRangeHandler.cs" />
     <Compile Include="Ranges\RangeHandlers\BackAndForthRangeHandler.cs" />
     <Compile Include="Ranges\RangeHandlers\NormalDoubleRangeHandler.cs" />
-    <Compile Include="Ranges\RangeHandlers\RangeHandlerControl.xaml.cs">
-      <DependentUpon>RangeHandlerControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Ranges\RangeHandlers\RangeHandlerToIndexConverter.cs" />
-    <Compile Include="Ranges\RangeHandlers\RangeHandlerToStringConverter.cs" />
-    <Compile Include="Ranges\RangeHandlers\RangeHandlerViewModel.cs" />
     <Compile Include="Ranges\RangeHandlers\ZeroCrossingBackAndForthRangeHandler.cs" />
     <Compile Include="Ranges\RangeHandlers\ZeroCrossRangeHandler.cs" />
     <Compile Include="Ranges\DoubleRange\DoubleRangeBase.cs" />
     <Compile Include="Ranges\SimpleRangeControl\RangeControl.xaml.cs">
       <DependentUpon>RangeControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ranges\SimpleRangeControl\RangeHandlerControl.xaml.cs">
+      <DependentUpon>RangeHandlerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ranges\SimpleRangeControl\RangeHandlerToIndexConverter.cs" />
+    <Compile Include="Ranges\SimpleRangeControl\RangeHandlerToStringConverter.cs" />
     <Compile Include="Ranges\SimpleRangeControl\SimplePointsNumberDisplay.xaml.cs">
       <DependentUpon>SimplePointsNumberDisplay.xaml</DependentUpon>
     </Compile>
@@ -87,11 +86,11 @@
     <Compile Include="ViewModelInterface\IUIThreadExecutableViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Ranges\RangeHandlers\RangeHandlerControl.xaml">
+    <Page Include="Ranges\SimpleRangeControl\RangeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Ranges\SimpleRangeControl\RangeControl.xaml">
+    <Page Include="Ranges\SimpleRangeControl\RangeHandlerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

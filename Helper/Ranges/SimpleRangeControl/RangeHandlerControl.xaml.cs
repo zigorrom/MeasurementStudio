@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Helper.Ranges.RangeHandlers
+namespace Helper.Ranges.SimpleRangeControl
 {
     /// <summary>
     /// Interaction logic for RangeHandlerControl.xaml

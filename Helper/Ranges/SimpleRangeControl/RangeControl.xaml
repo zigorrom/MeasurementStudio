@@ -14,10 +14,7 @@
         <RangeControls:SimpleValueRow Label="Stop" x:Name="EndValueControl" DataContext="{Binding End}"/>
         <RangeControls:SimplePointsNumberDisplay ValueLabel="Counts" x:Name="PointsCount" DataContext="{Binding PointsCount}"/>
         <RangeControls:SimpleValueRow Label="Step" x:Name="StepValueControl" DataContext="{Binding Step}"/>
-        
-        <!--<local:SimpleValueRow x:Name="StartValueControl" Margin="0" Height="Auto"/>-->
-        <!--<local:SimpleValueRow x:Name="StopValueControl" Height="Auto"/>-->
-        <!--<local:SimplePointsNumberDisplay x:Name="PointsCountControl" Height="Auto"/>-->
-        <!--<local:SimpleValueRow x:Name="StepValueControl" Height="Auto"/>-->
+        <RangeControls:RangeHandlerControl/>
+       
     </StackPanel>
 </UserControl>

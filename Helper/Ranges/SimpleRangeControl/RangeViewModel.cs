@@ -1,4 +1,5 @@
 ﻿using Helper.Ranges.DoubleRange;
+using Helper.Ranges.RangeHandlers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -50,6 +51,9 @@ namespace Helper.Ranges.SimpleRangeControl
             End = end;
             Step = step;
             PointsCount = new IntPointsCount(0);
+            RepeatCounts = 1;
+            RangeHandler = new NormalDoubleRangeHandler();
+
 
             m_doubleRange = new DoubleRangeBase(Start.NumericValue, End.NumericValue, Step.NumericValue);
 
@@ -78,6 +82,37 @@ namespace Helper.Ranges.SimpleRangeControl
             BindingOperations.SetBinding(PointsCount,IntPointsCount.PointsCountProperty, PointsCountBind);
         }
 
+        private int m_repeatCounts;
+        public int RepeatCounts
+        {
+            get { return m_repeatCounts; }
+            set
+            {
+                if (value < 1)
+                    value = 1;
+                if (SetField(ref m_repeatCounts, value, "RepeatCounts"))
+                {
+                    if (m_rangeHandler != null)
+                    {
+                        m_rangeHandler.RepeatCounts = m_repeatCounts;
+                    }
+                }
+            }
+        }
+
+        private AbstractDoubleRangeHandler m_rangeHandler;
+        public AbstractDoubleRangeHandler RangeHandler
+        {
+            get { return m_rangeHandler; }
+            set
+            {
+                if (SetField(ref m_rangeHandler, value, "RangeHandler"))
+                {
+                    m_rangeHandler.RepeatCounts = RepeatCounts;
+                    //RepeatCounts = m_rangeHandler.RepeatCounts;
+                }
+            }
+        }
 
         public IntPointsCount PointsCount
         {

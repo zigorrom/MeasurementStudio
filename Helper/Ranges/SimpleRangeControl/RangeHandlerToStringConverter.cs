@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Helper.Ranges.RangeHandlers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Helper.Ranges.RangeHandlers
+namespace Helper.Ranges.SimpleRangeControl
 {
-    [ValueConversion(typeof(string),typeof(AbstractDoubleRangeHandler))]
-    public class RangeHandlerToStringConverter:IValueConverter
+    [ValueConversion(typeof(string), typeof(AbstractDoubleRangeHandler))]
+    public class RangeHandlerToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {

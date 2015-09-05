@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Helper.Ranges.RangeHandlers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Helper.Ranges.RangeHandlers
+namespace Helper.Ranges.SimpleRangeControl
 {
     [ValueConversion(typeof(int), typeof(AbstractDoubleRangeHandler))]
     public class RangeHandlerToIndexConverter : IValueConverter

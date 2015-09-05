@@ -28,28 +28,7 @@ namespace IVCharacterization
 
     public abstract class IVMainViewModel : AbstractExperimentViewModel
     {
-        private RangeHandlerViewModel m_DSRangeHandlerViewModel;
-        public RangeHandlerViewModel DSRangeHandlerViewModel
-        {
-            get { return m_DSRangeHandlerViewModel; }
-            private set
-            {
-                SetField(ref m_DSRangeHandlerViewModel, value, "DSRangeHandlerViewModel");
-                    
-            }
-        }
-
        
-
-        private RangeHandlerViewModel m_GSRangeHandlerViewModel;
-        public RangeHandlerViewModel GSRangeHandlerViewModel
-        {
-            get { return m_GSRangeHandlerViewModel; }
-            private set
-            {
-                SetField(ref m_GSRangeHandlerViewModel, value, "GSRangeHandlerViewModel");
-            }
-        }
 
         private D3VisualizationViewModel m_Visualization;
         public D3VisualizationViewModel Visualization
@@ -92,23 +71,6 @@ namespace IVCharacterization
             DSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
             GSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
 
-            DSRangeHandlerViewModel = new RangeHandlerViewModel();
-            GSRangeHandlerViewModel = new RangeHandlerViewModel();
-
-            DSRangeHandlerViewModel.PropertyChanged += (o, e) =>
-            {
-                if (e.PropertyName == "RangeHandler")
-                    DSRangeHandlerViewModel.RangeHandler.Range = DSRangeViewModel.Range;
-            };
-
-            GSRangeHandlerViewModel.PropertyChanged += (o, e) =>
-            {
-                if (e.PropertyName == "RangeHandler")
-                    GSRangeHandlerViewModel.RangeHandler.Range = GSRangeViewModel.Range;
-            };
-
-            DSRangeHandlerViewModel.InvalidateProperties();
-            GSRangeHandlerViewModel.InvalidateProperties();
 
 
             Visualization = new D3VisualizationViewModel();

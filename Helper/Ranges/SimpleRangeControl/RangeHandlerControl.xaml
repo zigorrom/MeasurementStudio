@@ -1,24 +1,24 @@
-﻿<UserControl x:Class="Helper.Ranges.RangeHandlers.RangeHandlerControl"
+﻿<UserControl x:Class="Helper.Ranges.SimpleRangeControl.RangeHandlerControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local ="clr-namespace:Helper.Ranges.RangeHandlers"
+             xmlns:local="clr-namespace:Helper.Ranges.SimpleRangeControl"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="278.824" d:DesignWidth="495.294" Height="50">
     <UserControl.Resources>
-        <local:RangeHandlerToStringConverter x:Key="RangeHandlerToStringConverter"/>
         <local:RangeHandlerToIndexConverter x:Key="RangeHandlerToIndexConverter"/>
+        <local:RangeHandlerToStringConverter x:Key="RangeHandlerToStringConverter"/>
+        <GridLength x:Key="LabelGridColumnWidth">60</GridLength>
     </UserControl.Resources>
-    
-    <Grid>
+    <Border BorderBrush="Black" BorderThickness="1" Margin="3" Padding="3" DataContext="{Binding Mode=OneWay}">
         <Grid x:Name="LayoutRoot">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="89*"/>
-                <ColumnDefinition Width="183*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <ComboBox x:Name="HandlerComboBox" Grid.Column="1" Margin="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="{Binding RangeHandler, Converter={StaticResource RangeHandlerToIndexConverter}}" >
-                
+
                 <ComboBoxItem Content="Normal" HorizontalAlignment="Left" Width="175"/>
                 <ComboBoxItem Content="BackAndForth" HorizontalAlignment="Left" Width="175"/>
                 <ComboBoxItem Content="ZeroStart" HorizontalAlignment="Left" Width="175"/>
@@ -26,9 +26,9 @@
 
             </ComboBox>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                <Label Content="#" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Content="#" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <TextBox x:Name="CountsRepeat" HorizontalAlignment="Center" Height="35" TextWrapping="Wrap" Text="{Binding RepeatCounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="63" Margin="3" VerticalContentAlignment="Center"/>
             </StackPanel>
         </Grid>
-    </Grid>
+    </Border>
 </UserControl>

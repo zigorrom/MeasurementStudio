@@ -20,9 +20,9 @@ namespace test
         static void Main(string[] args)
         {
 
-            var config = new HttpSelfHostConfiguration("http://localhost:8999");
-            config.Routes.MapHttpRoute("default", "api/{controller}/{id}",new { id = RouteParameter.Optional });
-            var server = new HttpSelfHostServer(config);//, new MySimpleHttpMessageHandler());
+            var config = new MyConfig("http://localhost:8999"); //new HttpSelfHostConfiguration("http://localhost:8999");
+            //config.Routes.MapHttpRoute("default", "api/{controller}/{id}",new { id = RouteParameter.Optional });
+            var server = new HttpSelfHostServer(config, new MySimpleHttpMessageHandler());
             var task = server.OpenAsync();
             task.Wait();
             Console.WriteLine("Server is up and running");
