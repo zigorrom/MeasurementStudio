@@ -1,25 +1,13 @@
-﻿
-using DataVisualization.D3DataVisualization;
+﻿using DataVisualization.D3DataVisualization;
 using ExperimentAbstraction;
-using Helper.Ranges;
 using Helper.Ranges.DoubleRange;
-using Helper.Ranges.RangeHandlers;
 using Helper.Ranges.SimpleRangeControl;
-using Instruments;
-
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 using IVCharacterization.ViewModels;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using Helper.StartStopControl;
-using System.Windows.Threading;
 
 
 namespace IVCharacterization

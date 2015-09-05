@@ -35,15 +35,7 @@ namespace MeasurementStudio
                 handler(this, new PropertyChangedEventArgs(PropertyName));
         }
         #endregion
-        //private HomeViewModel _home;
-        //public HomeViewModel Home
-        //{
-        //    get { return _home; }
-        //    set
-        //    {
-        //        SetField(ref _home, value, "Home");
-        //    }
-        //}
+        
 
 
         private PagesEnum _current;
