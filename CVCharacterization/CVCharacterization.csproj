@@ -47,6 +47,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ViewModels\CVMainViewModel.cs" />
     <Page Include="UserControl1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -55,6 +56,8 @@
     <Compile Include="DataModel\CapacityFrequencyInfoRow.cs" />
     <Compile Include="DataModel\CapacityVoltageDataRow.cs" />
     <Compile Include="DataModel\CapacityVoltageInfoRow.cs" />
+    <Compile Include="Experiments\CapacitanceFrequencyMeasurement.cs" />
+    <Compile Include="Experiments\CapacitanceVoltageMeasurement.cs" />
     <Compile Include="UserControl1.xaml.cs">
       <DependentUpon>UserControl1.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -85,8 +88,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Experiments\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
