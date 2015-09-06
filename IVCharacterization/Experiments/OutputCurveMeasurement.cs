@@ -42,6 +42,9 @@ namespace IVCharacterization.Experiments
 
         public override void InitializeExperiment()
         {
+            base.InitializeExperiment();
+            
+
             _workingDirectory = _vm.WorkingDirectory;
             _experimentName = _vm.ExperimentName;
             _measurementName = _vm.MeasurementName;
@@ -51,7 +54,8 @@ namespace IVCharacterization.Experiments
             _gsRangeHandler = _vm.GSRangeViewModel.RangeHandler;
 
             AssertParams();
-            _writer = GetStreamExporter(_workingDirectory);
+            //_writer = GetStreamExporter(_workingDirectory);
+            InitializeWriter(_workingDirectory, _experimentName);
         }
 
        
@@ -82,12 +86,14 @@ namespace IVCharacterization.Experiments
 
         public override void InitializeInstruments()
         {
-           // base.InitializeExperiment();
+            
+            //base.InitializeExperiment();
             //throw new NotImplementedException();
         }
 
         public override void ReleaseInstruments()
         {
+            
             //throw new NotImplementedException();
         }
 
@@ -99,7 +105,7 @@ namespace IVCharacterization.Experiments
         private AbstractDoubleRangeHandler _dsRangeHandler;
         private AbstractDoubleRangeHandler _gsRangeHandler;
 
-        private StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow> _writer;
+        //private StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow> _writer;
 
         //private MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow> _currentData;
         
@@ -115,7 +121,7 @@ namespace IVCharacterization.Experiments
 
                
 
-                _writer.NewExperiment(_experimentName);
+                //_writer.NewExperiment(_experimentName);
 
                 int exp = 10;//_dsRangeHandler.Range.PointsCount / 100 ;
                 //exp = exp > 0 ? exp : 1;
@@ -158,7 +164,8 @@ namespace IVCharacterization.Experiments
                     }
 
                     _vm.ExecuteInUIThread(() => mea.ResumeUpdate());
-                    _writer.Write(mea);
+                    EnqueueData(mea);
+                    //_writer.Write(mea);
                     _vm.MeasurementCount++;
                     
                 }
@@ -226,12 +233,14 @@ namespace IVCharacterization.Experiments
         
         public override void ClearExperiment()
         {
-            throw new NotImplementedException();
+            
+           // throw new NotImplementedException();
         }
 
         public override void FinalizeExperiment()
         {
-            throw new NotImplementedException();
+            base.FinalizeExperiment();
+            //throw new NotImplementedException();
         }
     }
 }
