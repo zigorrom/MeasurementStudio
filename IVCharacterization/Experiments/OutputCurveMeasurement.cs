@@ -18,9 +18,7 @@ namespace IVCharacterization.Experiments
     public class OutputCurveMeasurement : AbstractExperiment<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>
     {
         private IVMainViewModel _vm;
-        //private IVMainView _control;
-        //private List<MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>> _meaList;
-
+       
        
         public OutputCurveMeasurement(IVMainViewModel viewModel):base("Output curve measurement")
         {
@@ -30,7 +28,6 @@ namespace IVCharacterization.Experiments
         public override void Start()
         {
             base.Start();
-           
         }
 
         public override void Abort()
@@ -54,15 +51,7 @@ namespace IVCharacterization.Experiments
             _gsRangeHandler = _vm.GSRangeViewModel.RangeHandler;
 
             AssertParams();
-
-
-            //_dsRangeHandler.CyclePassed += (o, e) => { _currentData = new MeasurementData<DrainSourceMeasurmentInfoRow,DrainSourceDataRow>()};
-            //_dsRangeHandler.ProgressChanged += _dsRangeHandler_ProgressChanged;
-            //_gsRangeHandler.ProgressChanged += _gsRangeHandler_ProgressChanged;
-
-
             _writer = GetStreamExporter(_workingDirectory);
-            //throw new NotImplementedException();
         }
 
        
@@ -112,7 +101,7 @@ namespace IVCharacterization.Experiments
 
         private StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow> _writer;
 
-        private MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow> _currentData;
+        //private MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow> _currentData;
         
 
         protected override void DoMeasurement(object sender, DoWorkEventArgs e)

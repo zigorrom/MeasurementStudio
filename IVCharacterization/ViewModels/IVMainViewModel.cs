@@ -83,7 +83,7 @@ namespace IVCharacterization
 
         void ExperimentControlButtons_StartCommandRaised(object sender, EventArgs e)
         {
-            ExecuteInUIThread(() => GlobalIsEnabled = true);
+            ExecuteInUIThread(() => GlobalIsEnabled = false);
             string Message = String.Empty;
             if (CheckParametersBeforeStart(out Message))
             {

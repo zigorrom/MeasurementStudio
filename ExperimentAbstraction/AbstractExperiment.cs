@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -18,9 +19,11 @@ namespace ExperimentAbstraction
     {
         private string m_Name;
         
-        protected ConcurrentQueue<MeasurementData<InfoT, DataT>> _dataQueue;
+        //protected ConcurrentQueue<MeasurementData<InfoT, DataT>> _dataQueue;
 
-        protected StreamMeasurementDataExporter<InfoT, DataT> _dataWriter;
+        //protected StreamMeasurementDataExporter<InfoT, DataT> _dataWriter;
+
+        //private Thread _writerThread;
 
         private BackgroundWorker _worker;
         public void Dispose()
@@ -49,16 +52,16 @@ namespace ExperimentAbstraction
                 }
             }
             // free native resources if there are any.
-            if (_dataQueue != null)
-            {
-                //_dataQueue.TryDequeue
-                _dataQueue = null;
-            }
+            //if (_dataQueue != null)
+            //{
+            //    //_dataQueue.TryDequeue
+            //    _dataQueue = null;
+            //}
         }
         public AbstractExperiment(string ExperimentName)
         {
             m_Name = ExperimentName;
-            _dataQueue = new ConcurrentQueue<MeasurementData<InfoT, DataT>>();
+            //_dataQueue = new ConcurrentQueue<MeasurementData<InfoT, DataT>>();
             _worker = new BackgroundWorker();
             _worker.WorkerSupportsCancellation = true;
             _worker.WorkerReportsProgress = true;
@@ -66,11 +69,15 @@ namespace ExperimentAbstraction
             _worker.ProgressChanged += _worker_ProgressChanged;
             _worker.RunWorkerCompleted += _worker_RunWorkerCompleted;
 
-            //InitializeInstruments();
-            //InitializeExperiment();
-
         }
 
+        //protected void InitializeWriter(string WorkingDirectory, string ExperimentName)
+        //{
+        //    //_dataWriter = new StreamMeasurementDataExporter<InfoT, DataT>(WorkingDirectory);
+        //    //_dataWriter.NewExperiment(ExperimentName);
+        //}
+
+        
         protected StreamMeasurementDataExporter<InfoT, DataT> GetStreamExporter(string WorkingDirectory)
         {
             return new StreamMeasurementDataExporter<InfoT, DataT>(WorkingDirectory);
@@ -90,6 +97,12 @@ namespace ExperimentAbstraction
         public abstract void OwnInstruments();
 
         public abstract void InitializeExperiment();
+        //{
+        //    //_writerThread = new Thread(new ParameterizedThreadStart((o)=>{
+        //    //    MeasurementData<InfoT,DataT> obj;
+        //    //    _dataQueue.TryDequeue(out obj);
+        //    //}));
+        //}
         
 
         public abstract void InitializeInstruments();
