@@ -21,6 +21,7 @@ namespace test
         {
 
             var config = new MyConfig("http://localhost:8999"); //new HttpSelfHostConfiguration("http://localhost:8999");
+            var messageHandler = new MySimpleHttpMessageHandler();
             //config.Routes.MapHttpRoute("default", "api/{controller}/{id}",new { id = RouteParameter.Optional });
             var server = new HttpSelfHostServer(config, new MySimpleHttpMessageHandler());
             var task = server.OpenAsync();

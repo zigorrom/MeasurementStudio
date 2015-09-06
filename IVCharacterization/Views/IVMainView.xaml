@@ -11,6 +11,7 @@
              xmlns:D3DataVisualization="clr-namespace:DataVisualization.D3DataVisualization;assembly=DataVisualization"
              xmlns:StartStopControl="clr-namespace:Helper.StartStopControl;assembly=Helper"
              xmlns:ranges ="clr-namespace:Helper.Ranges.RangeHandlers;assembly=Helper"
+                xmlns:sf ="clr-namespace:Helper.ExperimentWorkingDirectory;assembly=Helper"
              x:Class="IVCharacterization.IVMainView"
              mc:Ignorable="d" 
              d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578">
@@ -113,7 +114,8 @@
                             </GroupBox>
 
                             <GroupBox Header="Save directory" Grid.Row="2">
-                                <Grid> <!--IsEnabled="{Binding GlobalIsEnabled}">-->
+                                <sf:SaveControl DataContext="{Binding}"/>
+                                <!--<Grid> --><!--IsEnabled="{Binding GlobalIsEnabled}">--><!--
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="72*"/>
                                         <ColumnDefinition Width="167*"/>
@@ -141,11 +143,11 @@
                                         </ContentControl.Style>
                                     </ContentControl>
                                     
-                                    <!--<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding MeasurementName}" Margin="5,5,5,0"/>-->
+                                    --><!--<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding MeasurementName}" Margin="5,5,5,0"/>--><!--
                                     
                                     
                                     <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding MeasurementCount}" Margin="5,5,5,0"/>
-                                </Grid>
+                                </Grid>-->
                             </GroupBox>
                         </Grid>
                     </TabItem>
