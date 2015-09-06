@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace MeasurementStudio
 {
-    using ExperimentDataModel;
-    using IVCharacterization.ViewModels;
-    using Microsoft.TeamFoundation.MVVM;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Input;
+    using CVCharacterization.ViewModels;
+using ExperimentDataModel;
+using IVCharacterization.ViewModels;
+using Microsoft.TeamFoundation.MVVM;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Input;
     
     public class MainViewModel:INotifyPropertyChanged, IMainViewModel
     {
@@ -91,6 +92,7 @@ namespace MeasurementStudio
             _controls.Add(PagesEnum.Home, new UserControl { Content = new HomeViewModel()});
             _controls.Add(PagesEnum.IVOutput, new UserControl { Content = new OutputIVViewModel() });
             _controls.Add(PagesEnum.IVTransfer, new UserControl { Content = new TransfrerIVViewModel() });
+            _controls.Add(PagesEnum.CVCharacteristics, new UserControl { Content = new CVViewModel() });
             //_controls.Add(ExperimentsEnum.IVTransfer, new UserControl{Content = new})
             //View.ShowPage(new System.Windows.Controls.UserControl { Content = Home });
         }

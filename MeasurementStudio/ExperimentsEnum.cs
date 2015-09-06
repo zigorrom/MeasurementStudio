@@ -11,6 +11,6 @@ namespace MeasurementStudio
         Home,
         IVOutput,
         IVTransfer,
-        
+        CVCharacteristics
     }
 }

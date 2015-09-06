@@ -14,7 +14,7 @@
     <Border BorderBrush="Black" BorderThickness="1" Margin="3" Padding="3" DataContext="{Binding Mode=OneWay}">
         <Grid x:Name="LayoutRoot">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="60" />
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <ComboBox x:Name="HandlerComboBox" Grid.Column="1" Margin="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectedIndex="{Binding RangeHandler, Converter={StaticResource RangeHandlerToIndexConverter}}" >
@@ -25,10 +25,14 @@
                 <ComboBoxItem Content="ZeroStartBackAndForth" HorizontalAlignment="Left" Width="175"/>
 
             </ComboBox>
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                <Label Content="#" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <TextBox x:Name="CountsRepeat" HorizontalAlignment="Center" Height="35" TextWrapping="Wrap" Text="{Binding RepeatCounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="63" Margin="3" VerticalContentAlignment="Center"/>
-            </StackPanel>
+            <Grid Margin="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="#" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1" x:Name="CountsRepeat" TextWrapping="Wrap" Text="{Binding RepeatCounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            </Grid>
         </Grid>
     </Border>
 </UserControl>

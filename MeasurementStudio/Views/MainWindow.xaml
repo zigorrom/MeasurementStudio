@@ -6,6 +6,8 @@
         xmlns:D3DataVisualization="clr-namespace:DataVisualization.D3DataVisualization;assembly=DataVisualization"
         xmlns:iv ="clr-namespace:IVCharacterization.ViewModels;assembly=IVCharacterization"
         xmlns:ivv="clr-namespace:IVCharacterization;assembly=IVCharacterization"
+        xmlns:cvvm="clr-namespace:CVCharacterization.ViewModels;assembly=CVCharacterization"
+        xmlns:cvv ="clr-namespace:CVCharacterization.Views;assembly=CVCharacterization"
         x:Class="MeasurementStudio.MainWindow"
          
         Title="MainWindow" WindowState="Maximized">
@@ -21,6 +23,9 @@
         <DataTemplate DataType="{x:Type iv:OutputIVViewModel}">
                     <ivv:IVMainView/>
                 </DataTemplate>
+        <DataTemplate DataType="{x:Type cvvm:CVViewModel}">
+            <cvv:CVMainView/>
+        </DataTemplate>
         
         <DataTemplate DataType="{x:Type iv:TransfrerIVViewModel}">
             <ivv:IVMainView/>
@@ -36,6 +41,7 @@
                 <MenuItem Header="Home Page" Command="{Binding SelectExperiment}" CommandParameter ="{x:Static local:PagesEnum.Home}"/>
                 <MenuItem Header="IV-OutputCurve" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.IVOutput}"/>
                 <MenuItem Header="IV-TransferCurve" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.IVTransfer}" />
+                <MenuItem Header="CV-Characterization" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.CVCharacteristics}"/>
                 <MenuItem Header="Noise Measurement"/>
             </MenuItem>
         </Menu>

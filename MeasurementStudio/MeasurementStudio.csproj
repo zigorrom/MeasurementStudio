@@ -112,6 +112,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CVCharacterization\CVCharacterization.csproj">
+      <Project>{42cd634d-510b-465d-9255-2eb0b4c08c3b}</Project>
+      <Name>CVCharacterization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataVisualization\DataVisualization.csproj">
       <Project>{E058E277-4F95-4AC3-B2BF-AA8BCB2E3E84}</Project>
       <Name>DataVisualization</Name>

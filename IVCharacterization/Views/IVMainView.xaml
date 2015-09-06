@@ -11,12 +11,11 @@
              xmlns:D3DataVisualization="clr-namespace:DataVisualization.D3DataVisualization;assembly=DataVisualization"
              xmlns:StartStopControl="clr-namespace:Helper.StartStopControl;assembly=Helper"
              xmlns:ranges ="clr-namespace:Helper.Ranges.RangeHandlers;assembly=Helper"
-                xmlns:sf ="clr-namespace:Helper.ExperimentWorkingDirectory;assembly=Helper"
+             xmlns:sf ="clr-namespace:Helper.ExperimentWorkingDirectory;assembly=Helper"
              x:Class="IVCharacterization.IVMainView"
              mc:Ignorable="d" 
              d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578">
     <UserControl.Resources>
-        <!--<local:CharacteristicTypeValueConverter x:Key="CharacteristicTypeValueConverter"/>-->
         <GridLength x:Key="RangeGroupHeight">205*</GridLength>
         <GridLength x:Key="RangeControlHeight">58*</GridLength>
         <GridLength x:Key="AdditionalSettingsSpaceHeight">15*</GridLength>
@@ -34,30 +33,6 @@
             <StartStopControl:ControlButtonsPanel x:Name="ControlButtons"/>
         </DataTemplate>
         
-        <ContextMenu x:Key="OpenFolderContextMenu">
-            <MenuItem Header="Open containing folder" Command="{Binding OpenWorkingDirectory}"/>
-        </ContextMenu>
-        
-        <DataTemplate x:Key="DefaultMeasurementNameTemplate">
-            <StackPanel Margin="5,5,5,0">
-                <TextBox Text="{Binding MeasurementName}" />
-            </StackPanel>
-        </DataTemplate>
-
-        <DataTemplate x:Key="AdvancedMeasurementNameTemplate">
-            <Grid Margin="5,5,5,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <TextBox Text="{Binding MeasurementName}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,0"/>
-
-                <Button Grid.Column="1" Content="Select"/>
-            </Grid>
-            
-            
-        </DataTemplate>
-
         <DataTemplate DataType="{x:Type vm:IVexpSettingsViewModel}">
             <v:IVexpSettings/>
         </DataTemplate>
@@ -75,7 +50,7 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <!--<D3DataVisualization:D3DataVisualizationControl x:Name="Plotter"/>-->
+        
         <ContentControl Content="{Binding Visualization}" />
         <Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" MinHeight="400">
             <Expander.Header>
@@ -91,63 +66,27 @@
             <Grid IsEnabled="{Binding GlobalIsEnabled}">
                 <TabControl Width="300">
                     <TabItem Header="Range setup">
-                        <Grid Background="#FFE5E5E5">
+                        <Grid> <!--Background="#FFE5E5E5"-->
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-
                             <GroupBox Header="Drain-Source Voltage Range" Grid.Row="0" Margin="0">
-                                <StackPanel> <!--IsEnabled="{Binding GlobalIsEnabled}"-->
+                                <StackPanel>
                                     <Ranges:RangeControl DataContext="{Binding DSRangeViewModel}" Grid.ColumnSpan="2"/>
-                                    <!--<ranges:RangeHandlerControl Margin="3" Grid.Row="1" DataContext="{Binding DSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>-->
                                 </StackPanel>
                             </GroupBox>
 
                             <GroupBox Header="Gate-Source Voltage Range" Grid.Row="1" Margin="0" >
-                                <StackPanel> <!--IsEnabled="{Binding GlobalIsEnabled}">-->
+                                <StackPanel> 
                                     <Ranges:RangeControl DataContext="{Binding GSRangeViewModel}" Grid.ColumnSpan="2"/>
-                                    <!--<ranges:RangeHandlerControl Grid.Row="1" DataContext="{Binding GSRangeHandlerViewModel}" Height="{DynamicResource RangeHandlerSelectorHeight}"/>-->
                                 </StackPanel>
                             </GroupBox>
 
                             <GroupBox Header="Save directory" Grid.Row="2">
                                 <sf:SaveControl DataContext="{Binding}"/>
-                                <!--<Grid> --><!--IsEnabled="{Binding GlobalIsEnabled}">--><!--
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="72*"/>
-                                        <ColumnDefinition Width="167*"/>
-                                        <ColumnDefinition Width="42*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="50*"/>
-                                        <RowDefinition Height="50*"/>
-                                        <RowDefinition Height="50*"/>
-                                    </Grid.RowDefinitions>
-                                    <Button ToolTip="{Binding ExperimentName}" Content="New Experiment" Grid.ColumnSpan="3" Command="{Binding CreateNewExperiment}" Margin="5"/>
-                                    <Button ContextMenu="{StaticResource OpenFolderContextMenu}" Command="{Binding SelectWorkingDirectory}"  Grid.Row="1" Content="Workspace" ToolTip="{Binding WorkingDirectory}" Grid.RowSpan="2" Margin="5,0,0,0"/>
-                                    <TextBlock  Text="Measurement Name" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Margin="5,0,5,5"/>
-                                    <TextBlock Text="#" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Margin="5,0,5,5"/>
-
-                                    <ContentControl Grid.Column="1" Grid.Row="2" Content="{Binding}" >
-                                        <ContentControl.Style>
-                                            <Style TargetType="{x:Type ContentControl}">
-                                                <Setter Property="ContentTemplate" Value="{StaticResource DefaultMeasurementNameTemplate}"/>
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IVSettingsViewModel.UseSampleSelector}" Value="true">
-                                                        <Setter Property="ContentTemplate" Value="{StaticResource AdvancedMeasurementNameTemplate}"/>                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </ContentControl.Style>
-                                    </ContentControl>
-                                    
-                                    --><!--<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding MeasurementName}" Margin="5,5,5,0"/>--><!--
-                                    
-                                    
-                                    <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding MeasurementCount}" Margin="5,5,5,0"/>
-                                </Grid>-->
                             </GroupBox>
                         </Grid>
                     </TabItem>
@@ -167,6 +106,5 @@
             <TextBlock Visibility="{Binding ExperimentIsRunning, Converter={StaticResource BoolToVis}}" Text="{Binding CurrentProgress, StringFormat='Progress: {0}%'}" HorizontalAlignment="Center" VerticalAlignment="Center"/> 
             <ContentControl Grid.Column="1" Content="{Binding ExperimentControlButtons}" />
         </Grid>
-
     </Grid>
 </UserControl>
