@@ -39,7 +39,7 @@ namespace IVCharacterization.ViewModels
         protected override void ExperimentFinishedHandler(object sender, EventArgs e)
         {
             base.ExperimentFinishedHandler(sender, e);
-
+            //comment
         }
         
 
