@@ -8,8 +8,30 @@ using System.Threading.Tasks;
 
 namespace HP34401A
 {
+
+
+    [Export(typeof(IInstrumentFactory))]
+    [ExportMetadata("Factory","")]
+    public class HP34401AFactory : IInstrumentFactory
+    {
+        public IInstrument CreateInstrument(string Name, string Alias, string ResourceName)
+        {
+            return new HP34401A(Name, Alias, ResourceName);
+        }
+
+        public bool CreateInstrument<T>(out T instrument, string Name, string Alias, string ResourceName) where T : IInstrument
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool FitsIDN(string IDN)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     [Export(typeof(IInstrument))]
-    [ExportMetadata("InstrumentMetadata", typeof(IMultimeter))]
+    //[ExportMetadata("InstrumentMetadata", typeof(IMultimeter))]
     [InstrumentAttribute("HEWLETT-PACKARD", "34401A")]
     public class HP34401A : AbstractMessageBasedInstrument, IMultimeter
     {

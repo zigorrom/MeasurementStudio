@@ -151,14 +151,29 @@ namespace InstrumentHandlerNamespace
                 var directory = string.Concat(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
                                 .Split('\\').Reverse().Skip(3).Reverse().Aggregate((a, b) => a + "\\" + b)
                                 , "\\", "Instrument\\Components");
+                
+                ///
+                ///ADD HERE SECURITY KEY CHECK
+                /// 
+                ///
+
+
+
 
                 var directoryCatalog = new DirectoryCatalog(directory, "*.dll");
+                
                 var asmCatalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
                 aggregateCatalog.Catalogs.Add(directoryCatalog);
                 aggregateCatalog.Catalogs.Add(asmCatalog);
 
                 var container = new CompositionContainer(aggregateCatalog);
                 container.ComposeParts(this);
+
+
+                foreach (var i in Instruments)
+                {
+                    
+                }
             }
             catch (Exception ex)
             {
@@ -186,6 +201,6 @@ namespace InstrumentHandlerNamespace
 
         [ImportMany]
         //public IEnumerable<IInstrument> Instruments { get; set; }
-        public Lazy<IInstrument, IDictionary<string, object>>[] Instruments { get; set; }
+        private Lazy<IInstrument, IDictionary<string, object>>[] Instruments { get; set; }
     }
 }

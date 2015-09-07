@@ -36,10 +36,10 @@ namespace InstrumentHandlerNamespace
         public InstrumentHandlerViewModel()
         {
             _instrumentHandler = InstrumentHandler.Instance;
-            foreach (var i in _instrumentHandler.Instruments)
-            {
-
-            }
+            //foreach (var i in _instrumentHandler.Instruments)
+            //{
+            //    var instr = i.Value.CreateInstrument("", "", "");
+            //}
         }
     
     }
