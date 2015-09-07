@@ -30,7 +30,10 @@ namespace IVCharacterization.ViewModels
         private bool _useSampleSelector;
         public bool UseSampleSelector
         {
-            get { return _useSampleSelector; }
+            get
+            {
+                return _useSampleSelector;
+            }
             set
             {
                 SetField(ref _useSampleSelector, value, "UseSampleSelector");
