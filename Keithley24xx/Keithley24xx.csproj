@@ -47,9 +47,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InstrumentAbstraction\InstrumentHandler.csproj">
-      <Project>{3c57f76b-be47-4de4-8466-3fd0b124d134}</Project>
-      <Name>InstrumentHandler</Name>
+    <ProjectReference Include="..\Instrument\Instrument.csproj">
+      <Project>{0b56f789-4a97-4cf6-81e7-da41a40a5761}</Project>
+      <Name>Instrument</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

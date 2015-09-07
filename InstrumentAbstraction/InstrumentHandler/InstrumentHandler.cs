@@ -128,6 +128,11 @@ namespace InstrumentHandlerNamespace
 
                 //var assembly = Assembly.GetAssembly(typeof(IInstrument));
                 //var IInstrumentType = typeof(IInstrument);
+                var types = appAssemblies
+                    .SelectMany(a => a.GetTypes());
+                    
+
+
                 //var types = assembly.GetTypes()
                 //    .Where(x =>
                 //    {

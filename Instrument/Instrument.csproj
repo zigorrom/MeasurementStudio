@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{711A5520-1DA3-47B1-9737-3F6CC8480A6A}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{0B56F789-4A97-4CF6-81E7-DA41A40A5761}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgilentTest</RootNamespace>
-    <AssemblyName>AgilentTest</AssemblyName>
+    <RootNamespace>Instrument</RootNamespace>
+    <AssemblyName>Instrument</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,6 +30,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ivi.Visa.Interop, Version=5.3.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\ThirdPartyLibs\Ivi.Visa.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.Common, Version=13.0.40.190, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdPartyLibs\NationalInstruments.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.NI4882, Version=13.0.45.159, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdPartyLibs\NationalInstruments.NI4882.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.VisaNS, Version=13.0.45.167, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdPartyLibs\NationalInstruments.VisaNS.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,24 +56,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Abstract\AbstractChannel.cs" />
+    <Compile Include="Abstract\AbstractChannelName.cs" />
+    <Compile Include="Abstract\AbstractCommandBuilder.cs" />
+    <Compile Include="Abstract\AbstractMessageBasedInstrument.cs" />
+    <Compile Include="Abstract\IChannelName.cs" />
+    <Compile Include="Abstract\IInstrument.cs" />
+    <Compile Include="Abstract\IInstrumentOwner.cs" />
+    <Compile Include="Abstract\IMessageBasedInstrument.cs" />
+    <Compile Include="Abstract\InstrumentAttribute.cs" />
+    <Compile Include="Abstract\InstrumentState.cs" />
+    <Compile Include="InstrumentInterfaces\IMultimeter.cs" />
+    <Compile Include="InstrumentInterfaces\ISourceMeasurementUnit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\InstrumentAbstraction\InstrumentHandler.csproj">
-      <Project>{3c57f76b-be47-4de4-8466-3fd0b124d134}</Project>
-      <Name>InstrumentHandler</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Keithley24xx\Keithley24xx.csproj">
-      <Project>{79334cce-6c21-489f-8762-ae357fec3991}</Project>
-      <Name>Keithley24xx</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
