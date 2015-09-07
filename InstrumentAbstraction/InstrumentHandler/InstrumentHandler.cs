@@ -1,4 +1,5 @@
 ﻿
+
 using Instruments;
 using NationalInstruments.VisaNS;
 using System;
@@ -184,6 +185,7 @@ namespace InstrumentHandlerNamespace
 
 
         [ImportMany]
-        public Lazy<IInstrument, IDictionary<string, Type>>[] Instruments { get; set; }
+        //public IEnumerable<IInstrument> Instruments { get; set; }
+        public Lazy<IInstrument, IDictionary<string, object>>[] Instruments { get; set; }
     }
 }
