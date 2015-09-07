@@ -67,9 +67,33 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AgilentU2442A\AgilentU2442A.csproj">
+      <Project>{63c41453-1d5a-4c9d-ae0a-d4a08feefca3}</Project>
+      <Name>AgilentU2442A</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HP34401A\HP34401A.csproj">
+      <Project>{1539d235-d7ea-4d1d-8d5f-c08fa6a1c1ec}</Project>
+      <Name>HP34401A</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Instrument\Instrument.csproj">
       <Project>{0b56f789-4a97-4cf6-81e7-da41a40a5761}</Project>
       <Name>Instrument</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Keithley24xx\Keithley24xx.csproj">
+      <Project>{79334cce-6c21-489f-8762-ae357fec3991}</Project>
+      <Name>Keithley24xx</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Keithley2602A\Keithley2602A.csproj">
+      <Project>{6a447dc6-2d01-46a9-8d5d-c59e0653ece5}</Project>
+      <Name>Keithley2602A</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KeithleyMultimeter\KeithleyMultimeter.csproj">
+      <Project>{80a8ef86-fd3f-4117-8ed6-e3f494bc6361}</Project>
+      <Name>KeithleyMultimeter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StanfordSR830\StanfordSR830.csproj">
+      <Project>{ed4b9610-76a0-497e-8067-2aac76a6c484}</Project>
+      <Name>StanfordSR830</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

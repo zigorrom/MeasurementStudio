@@ -121,7 +121,7 @@ namespace InstrumentHandlerNamespace
             ///
             try
             {
-                var appAssemblies = AppDomain.CurrentDomain.GetAssemblies();
+                var appAssemblies = Assembly.GetExecutingAssembly().GetReferencedAssemblies(); //AppDomain.CurrentDomain.asse .GetAssemblies();
                 var InstrumentType = typeof(IInstrument);
                 //var types = //new IEnumerable<Type>();//appAssemblies
                 
@@ -129,7 +129,10 @@ namespace InstrumentHandlerNamespace
                 //var assembly = Assembly.GetAssembly(typeof(IInstrument));
                 //var IInstrumentType = typeof(IInstrument);
                 var types = appAssemblies
-                    .SelectMany(a => a.GetTypes());
+                    .Select(an => Assembly.Load(an))
+                    .SelectMany(a => a.GetTypes())
+                    .Where(p => InstrumentType.IsAssignableFrom(p))
+                    .ToArray();
                     
 
 
