@@ -1,12 +1,15 @@
 ﻿using Instruments;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace KeithleyMultimeter
 {
+    [Export(typeof(IInstrument))]
+    [ExportMetadata("InstrumentMetadata", typeof(IMultimeter))]
     [InstrumentAttribute("NDCV", "")]
     public class KeithleyMultimeter : AbstractMessageBasedInstrument, IMultimeter
     {

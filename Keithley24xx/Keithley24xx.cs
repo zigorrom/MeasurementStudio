@@ -7,13 +7,15 @@ using System.Globalization;
 using System.Threading;
 using Instruments;
 using InstrumentAbstraction.InstrumentInterfaces;
+using System.ComponentModel.Composition;
 
 
 
 namespace Keithley24xxNamespace
 {
 
-
+    [Export(typeof(IInstrument))]
+    [ExportMetadata("InstrumentMetadata",typeof(ISourceMeasurementUnit))]
     [InstrumentAttribute("KEITHLEY", "24")]//24 - BECAUSE 2400,2430 FITS
     public class Keithley24xx : AbstractMessageBasedInstrument, ISourceMeasurementUnit//, ISourceMeasurementUnit
     {

@@ -73,7 +73,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CVCharacterization", "CVCha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstrumentHandlerTest", "InstrumentHandlerTest\InstrumentHandlerTest.csproj", "{2388C727-EA72-489B-A089-758009EC45ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instrument", "Instrument\Instrument.csproj", "{0B56F789-4A97-4CF6-81E7-DA41A40A5761}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instruments", "Instrument\Instruments.csproj", "{0B56F789-4A97-4CF6-81E7-DA41A40A5761}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

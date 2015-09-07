@@ -1,12 +1,15 @@
 ﻿using Instruments;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HP34401A
 {
+    [Export(typeof(IInstrument))]
+    [ExportMetadata("InstrumentMetadata", typeof(IMultimeter))]
     [InstrumentAttribute("HEWLETT-PACKARD", "34401A")]
     public class HP34401A : AbstractMessageBasedInstrument, IMultimeter
     {

@@ -100,9 +100,9 @@
       <Project>{5216ba05-f05d-447a-965f-b1357dcb4990}</Project>
       <Name>Helper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Instrument\Instrument.csproj">
+    <ProjectReference Include="..\Instrument\Instruments.csproj">
       <Project>{0b56f789-4a97-4cf6-81e7-da41a40a5761}</Project>
-      <Name>Instrument</Name>
+      <Name>Instruments</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

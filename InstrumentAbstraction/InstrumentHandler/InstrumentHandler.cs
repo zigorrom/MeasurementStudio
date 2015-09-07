@@ -4,6 +4,8 @@ using NationalInstruments.VisaNS;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -27,16 +29,16 @@ namespace InstrumentHandlerNamespace
 
         //private Dictionary<string,IInstrument> m_InstrumentList;
         //private List<IInstrument> m_Instruments;
-        private ObservableCollection<IInstrument> _instruments;
-        public ObservableCollection<IInstrument> Instruments
-        {
-            get { return _instruments; }
-        }
+        //private ObservableCollection<IInstrument> _instruments;
+        //public ObservableCollection<IInstrument> Instruments
+        //{
+        //    get { return _instruments; }
+        //}
         private void InitializeHandler()
         {
 
-            if (_instruments == null)
-                _instruments = new ObservableCollection<IInstrument>();
+            //if (_instruments == null)
+            //    _instruments = new ObservableCollection<IInstrument>();
 
             DiscoverInstruments();
             CheckInstrumentsConnectivity();
@@ -47,10 +49,10 @@ namespace InstrumentHandlerNamespace
 
         private void CheckInstrumentsConnectivity()
         {
-            foreach (var instr in _instruments)
-            {
-                //if(instr.Is)
-            }
+            //foreach (var instr in _instruments)
+            //{
+            //    //if(instr.Is)
+            //}
 
         }
 
@@ -119,37 +121,6 @@ namespace InstrumentHandlerNamespace
             ///
             /// CREATE ATTRIBUTES THAT ALLOWS TO DETERMINE WHICH CLASS CAN BE SUITABLE TO USE INSTRUMENT
             ///
-            try
-            {
-                var appAssemblies = Assembly.GetExecutingAssembly().GetReferencedAssemblies(); //AppDomain.CurrentDomain.asse .GetAssemblies();
-                var InstrumentType = typeof(IInstrument);
-                //var types = //new IEnumerable<Type>();//appAssemblies
-                
-
-                //var assembly = Assembly.GetAssembly(typeof(IInstrument));
-                //var IInstrumentType = typeof(IInstrument);
-                var types = appAssemblies
-                    .Select(an => Assembly.Load(an))
-                    .SelectMany(a => a.GetTypes())
-                    .Where(p => InstrumentType.IsAssignableFrom(p))
-                    .ToArray();
-                    
-
-
-                //var types = assembly.GetTypes()
-                //    .Where(x =>
-                //    {
-                //        if (x.IsAbstract || x.IsInterface)
-                //            return false;
-                //        if (IInstrumentType.IsAssignableFrom(x))
-                //            return true;
-                //        return false;
-                //    })
-                //    .Select(x =>
-                //    {
-                //        return new { Key = (InstrumentAttribute)x.GetCustomAttribute(typeof(InstrumentAttribute)), Value = x };//InstrumentInstance };
-                //    });
-
 
                 //var LocalResourceManager = ResourceManager.GetLocalManager();
                 //var resources = LocalResourceManager.FindResources(ResourceFilter);
@@ -171,14 +142,27 @@ namespace InstrumentHandlerNamespace
                 //        m_Instruments.Add(instr);
                 //    }
                 //}
-            }
-            catch (VisaException)
+        
+
+            try
             {
-                //throw;
+                var aggregateCatalog = new AggregateCatalog();
+                var directory = string.Concat(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+                                .Split('\\').Reverse().Skip(3).Reverse().Aggregate((a, b) => a + "\\" + b)
+                                , "\\", "Instrument\\Components");
+
+                var directoryCatalog = new DirectoryCatalog(directory, "*.dll");
+                var asmCatalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
+                aggregateCatalog.Catalogs.Add(directoryCatalog);
+                aggregateCatalog.Catalogs.Add(asmCatalog);
+
+                var container = new CompositionContainer(aggregateCatalog);
+                container.ComposeParts(this);
             }
             catch (Exception ex)
             {
-                //throw;
+
+                throw ex;
             }
 
         }
@@ -197,5 +181,9 @@ namespace InstrumentHandlerNamespace
         {
             throw new NotImplementedException();
         }
+
+
+        [ImportMany]
+        public Lazy<IInstrument, IDictionary<string, Type>>[] Instruments { get; set; }
     }
 }
