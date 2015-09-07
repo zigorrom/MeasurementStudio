@@ -28,7 +28,7 @@ namespace Keithley24xxNamespace
             
         }
 
-
+        public Keithley24xx() : base("", "", "") { }
 
         private Keithley24xxCommandBuilder m_CommandSet;
         //public override AbstractCommandBuilder CommandSet
