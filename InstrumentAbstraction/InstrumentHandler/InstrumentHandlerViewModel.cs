@@ -8,43 +8,75 @@ using System.Threading.Tasks;
 
 namespace InstrumentHandlerNamespace
 {
-    public sealed partial class InstrumentHandler : INotifyPropertyChanged
+
+    public class InstrumentHandlerViewModel:INotifyPropertyChanged
     {
+        #region PropertyEvents
+
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string PropertyName)
+        protected bool SetField<ST>(ref ST field, ST value, string propertyName)
         {
-            if (null != PropertyChanged)
-                PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
+            if (EqualityComparer<ST>.Default.Equals(field, value))
+                return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
         }
-
-        //private ObservableCollection<IInstrumentOwner> m_Owners
-
-        private void InitializeViewModel()
+        private void OnPropertyChanged(string PropertyName)
         {
-            //throw new NotImplementedException();
+            var handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(PropertyName));
         }
+        #endregion
 
 
-        private IInstrumentOwner m_CurrentOwner;
-        public IInstrumentOwner CurrentOwner
+        InstrumentHandler _instrumentHandler;
+
+        public InstrumentHandlerViewModel()
         {
-            get { return m_CurrentOwner; }
-            set
-            {
-                if (m_CurrentOwner == value) return;
-                m_CurrentOwner = value;
-                OnPropertyChanged("CurrentOwner");
-                OnPropertyChanged("InstrumentRuleCollection");
-            }
+            _instrumentHandler = InstrumentHandler.Instance;
         }
-
-
-
-
-
-
-
-
-
+    
     }
+
+    //public sealed  class InstrumentHandler : INotifyPropertyChanged
+    //{
+    //    public event PropertyChangedEventHandler PropertyChanged;
+    //    public void OnPropertyChanged(string PropertyName)
+    //    {
+    //        if (null != PropertyChanged)
+    //            PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
+    //    }
+
+    //    //private ObservableCollection<IInstrumentOwner> m_Owners
+
+    //    private void InitializeViewModel()
+    //    {
+    //        //throw new NotImplementedException();
+    //    }
+
+
+    //    private IInstrumentOwner m_CurrentOwner;
+    //    public IInstrumentOwner CurrentOwner
+    //    {
+    //        get { return m_CurrentOwner; }
+    //        set
+    //        {
+    //            if (m_CurrentOwner == value) return;
+    //            m_CurrentOwner = value;
+    //            OnPropertyChanged("CurrentOwner");
+    //            OnPropertyChanged("InstrumentRuleCollection");
+    //        }
+    //    }
+
+
+
+
+
+
+
+
+
+    //}
 }

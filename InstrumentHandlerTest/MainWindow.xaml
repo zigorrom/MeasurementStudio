@@ -1,0 +1,12 @@
+﻿<Window x:Class="InstrumentHandlerTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ih ="clr-namespace:InstrumentHandlerNamespace;assembly=InstrumentHandler"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <ih:InstrumentHandlerViewModel/>
+    </Window.DataContext>
+    <Grid>
+        
+    </Grid>
+</Window>

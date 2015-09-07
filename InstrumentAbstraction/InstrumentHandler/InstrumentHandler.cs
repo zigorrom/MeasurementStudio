@@ -18,36 +18,36 @@ namespace InstrumentHandlerNamespace
     //
 
     [Serializable]
-    public sealed partial class InstrumentHandler//:NotifyPropertyChanged
+    public sealed class InstrumentHandler//:NotifyPropertyChanged
     {
-        private static volatile InstrumentHandler m_Handler;
+        private static volatile InstrumentHandler _handler;
         private static object syncRoot = new object();
         private const string SerializationFileName = "Devices.ser";
         private const string ResourceFilter = "(GPIB)|(USB)|(COM)?*INSTR";
 
         //private Dictionary<string,IInstrument> m_InstrumentList;
         //private List<IInstrument> m_Instruments;
-        private ObservableCollection<IInstrument> m_Instruments;
+        private ObservableCollection<IInstrument> _instruments;
         public ObservableCollection<IInstrument> Instruments
         {
-            get { return m_Instruments; }
+            get { return _instruments; }
         }
         private void InitializeHandler()
         {
 
-            if (m_Instruments == null)
-                m_Instruments = new ObservableCollection<IInstrument>();
+            if (_instruments == null)
+                _instruments = new ObservableCollection<IInstrument>();
 
             DiscoverInstruments();
             CheckInstrumentsConnectivity();
 
-            InitializeViewModel();
+            //InitializeViewModel();
         }
 
 
         private void CheckInstrumentsConnectivity()
         {
-            foreach (var instr in m_Instruments)
+            foreach (var instr in _instruments)
             {
                 //if(instr.Is)
             }
@@ -81,10 +81,10 @@ namespace InstrumentHandlerNamespace
             {
                 lock (syncRoot)
                 {
-                    if (m_Handler == null)
-                        m_Handler = DeserializeOrNew();
+                    if (_handler == null)
+                        _handler = DeserializeOrNew();
                 }
-                return m_Handler;
+                return _handler;
             }
         }
 
