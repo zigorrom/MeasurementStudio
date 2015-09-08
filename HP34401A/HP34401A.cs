@@ -19,7 +19,7 @@ namespace HP34401A
             return new HP34401A(Name, Alias, ResourceName);
         }
 
-        public bool CreateInstrument<T>(out T instrument, string Name, string Alias, string ResourceName) where T : IInstrument
+        public bool CreateInstrument<T>(out T instrument, string Name, string Alias, string ResourceName)
         {
             throw new NotImplementedException();
         }
