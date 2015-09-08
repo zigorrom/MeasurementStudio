@@ -173,6 +173,7 @@ namespace InstrumentHandlerNamespace
                 foreach (var i in Instruments)
                 {
                     
+
                 }
             }
             catch (Exception ex)
@@ -201,6 +202,6 @@ namespace InstrumentHandlerNamespace
 
         [ImportMany]
         //public IEnumerable<IInstrument> Instruments { get; set; }
-        private Lazy<IInstrument, IDictionary<string, object>>[] Instruments { get; set; }
+        private Lazy<IInstrumentFactory, IDictionary<string, object>>[] Instruments { get; set; }
     }
 }
