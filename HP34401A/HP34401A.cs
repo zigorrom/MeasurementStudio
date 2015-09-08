@@ -11,11 +11,17 @@ namespace HP34401A
 
 
     [Export(typeof(IInstrumentFactory))]
-    [ExportMetadata("Factory",typeof(HP34401A))]
+    //[ExportMetadata("Factory",typeof(HP34401A))]
     public class HP34401AFactory : IInstrumentFactory
     {
+        public HP34401AFactory()
+        {
+
+        }
+
         public IInstrument CreateInstrument(string Name, string Alias, string ResourceName)
         {
+            //throw new NotImplementedException();
             return new HP34401A(Name, Alias, ResourceName);
         }
 
@@ -30,7 +36,7 @@ namespace HP34401A
         }
     }
 
-    [Export(typeof(IInstrument))]
+    //[Export(typeof(IInstrument))]
     //[ExportMetadata("InstrumentMetadata", typeof(IMultimeter))]
     [InstrumentAttribute("HEWLETT-PACKARD", "34401A")]
     public class HP34401A : AbstractMessageBasedInstrument, IMultimeter

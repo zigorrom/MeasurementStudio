@@ -169,12 +169,12 @@ namespace InstrumentHandlerNamespace
                 var container = new CompositionContainer(aggregateCatalog);
                 container.ComposeParts(this);
 
-
                 foreach (var i in Instruments)
                 {
-                    
-
+                    var a = i.Value;
+                   var instr =  a.CreateInstrument("", "", "");
                 }
+               
             }
             catch (Exception ex)
             {
@@ -201,6 +201,7 @@ namespace InstrumentHandlerNamespace
 
 
         [ImportMany]
+        //public Lazy<IInstrumentFactory>[] factories { get; set; }
         //public IEnumerable<IInstrument> Instruments { get; set; }
         private Lazy<IInstrumentFactory, IDictionary<string, object>>[] Instruments { get; set; }
     }
