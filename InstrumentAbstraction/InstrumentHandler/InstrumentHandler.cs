@@ -29,7 +29,7 @@ namespace InstrumentHandlerNamespace
         
         private const string SerializationFileName = "Devices.seri";
         private const string ResourceFilter = "(GPIB)|(USB)|(COM)?*INSTR";//"?*INSTR";
-
+        private const string AllResourceFilter = "?";
         // For serialization default constructor necessary
         private InstrumentHandler()
         {
@@ -163,7 +163,7 @@ namespace InstrumentHandlerNamespace
             try
             {
                 var LocalResourceManager = ResourceManager.GetLocalManager();
-                var resources = LocalResourceManager.FindResources(ResourceFilter);
+                var resources = LocalResourceManager.FindResources(AllResourceFilter);
                 if (resources.Length == 0)
                 {
                     throw new Exception("No instruments found");
