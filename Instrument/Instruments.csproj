@@ -64,8 +64,10 @@
     <Compile Include="Abstract\IInstrument.cs" />
     <Compile Include="Abstract\IInstrumentFactory.cs" />
     <Compile Include="Abstract\IInstrumentOwner.cs" />
+    <Compile Include="Abstract\IInstrumentResourceItem.cs" />
     <Compile Include="Abstract\IMessageBasedInstrument.cs" />
     <Compile Include="Abstract\InstrumentAttribute.cs" />
+    <Compile Include="Abstract\InstrumentResourceItem.cs" />
     <Compile Include="Abstract\InstrumentState.cs" />
     <Compile Include="InstrumentInterfaces\IMultimeter.cs" />
     <Compile Include="InstrumentInterfaces\ISourceMeasurementUnit.cs" />

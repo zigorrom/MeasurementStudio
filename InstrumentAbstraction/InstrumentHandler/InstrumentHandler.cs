@@ -80,7 +80,8 @@ namespace InstrumentHandlerNamespace
 
         private void InitializeProperties()
         {
-            Instruments = new List<IInstrument>();
+            Instruments = new ObservableCollection<IInstrument>();
+            Resources = new ObservableCollection<IInstrumentResourceItem>();
         }
 
         private static InstrumentHandler DeserializeOrNew()
@@ -149,7 +150,10 @@ namespace InstrumentHandlerNamespace
             }
         }
 
-        public List<IInstrument> Instruments { get; private set; }
+        public ObservableCollection<IInstrument> Instruments { get; private set; }
+
+        public ObservableCollection<IInstrumentResourceItem> Resources { get; private set; }
+
 
         private void DiscoverInstruments()
         {
@@ -170,10 +174,10 @@ namespace InstrumentHandlerNamespace
                 {
                     var s = (MessageBasedSession)LocalResourceManager.Open(resource);
                     var idn = s.Query("*IDN?");
-
-                    var factory = InstrumentFactoriesPlugins.Where(x => x.Value.FitsIDN(idn)).Select(x=>x.Value).FirstOrDefault();
-                    if (factory == default(IInstrumentFactory))
-                        continue;
+                    Resources.Add(new InstrumentResourceItem(resource, idn));
+                    //var factory = InstrumentFactoriesPlugins.Where(x => x.Value.FitsIDN(idn)).Select(x=>x.Value).FirstOrDefault();
+                    //if (factory == default(IInstrumentFactory))
+                    //    continue;
                     
                     //Instruments.Add(factory.CreateInstrument()
                     //s.Write("*IDN?");
