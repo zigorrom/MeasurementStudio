@@ -201,6 +201,6 @@ namespace InstrumentHandlerNamespace
 
         [ImportMany]
         //public IEnumerable<IInstrument> Instruments { get; set; }
-        private Lazy<IInstrument, IDictionary<string, object>>[] Instruments { get; set; }
+        private Lazy<IInstrumentFactory, IDictionary<string, object>>[] Instruments { get; set; }
     }
 }
