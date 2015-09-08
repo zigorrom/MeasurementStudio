@@ -173,8 +173,14 @@ namespace InstrumentHandlerNamespace
 
                 foreach (var resource in resources)
                 {
-                    var s = (MessageBasedSession)LocalResourceManager.Open(resource);
-                    var idn = s.Query("*IDN?");
+                    var idn = String.Empty;
+                    try
+                    {
+                        var s = (MessageBasedSession)LocalResourceManager.Open(resource);
+                        idn = s.Query("*IDN?");
+                    }catch(Exception ex1)
+                    { 
+                    }
                     Resources.Add(new InstrumentResourceItem(resource, idn));
                     //var factory = InstrumentFactoriesPlugins.Where(x => x.Value.FitsIDN(idn)).Select(x=>x.Value).FirstOrDefault();
                     //if (factory == default(IInstrumentFactory))
