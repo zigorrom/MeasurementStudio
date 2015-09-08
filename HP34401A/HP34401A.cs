@@ -11,7 +11,7 @@ namespace HP34401A
 
 
     [Export(typeof(IInstrumentFactory))]
-    [ExportMetadata("Factory","")]
+    [ExportMetadata("Factory",typeof(HP34401A))]
     public class HP34401AFactory : IInstrumentFactory
     {
         public IInstrument CreateInstrument(string Name, string Alias, string ResourceName)
