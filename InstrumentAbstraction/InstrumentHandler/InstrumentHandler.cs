@@ -173,6 +173,7 @@ namespace InstrumentHandlerNamespace
                 foreach (var i in Instruments)
                 {
                     
+
                 }
             }
             catch (Exception ex)
