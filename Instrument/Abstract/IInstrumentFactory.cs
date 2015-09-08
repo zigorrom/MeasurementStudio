@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Instruments
 {
+
+    
     public interface IInstrumentFactory
     {
         IInstrument CreateInstrument(string Name, string Alias, string ResourceName);
