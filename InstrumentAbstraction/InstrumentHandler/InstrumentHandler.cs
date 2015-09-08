@@ -111,7 +111,7 @@ namespace InstrumentHandlerNamespace
             var ihandler = new InstrumentHandler();
 
             ihandler.InitializeHandler();
-            return _handler;
+            return ihandler;
         }
 
         private void InitPlugins()
