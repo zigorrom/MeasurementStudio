@@ -27,8 +27,8 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding Resource}"/>
                         <TextBlock Text="{Binding IDN}" Grid.Column="1"/>
-                        <TextBlock Text="{Binding Name}" Grid.Column="2"/>
-                        <TextBlock Text="{Binding Alias}" Grid.Column="3"/>
+                        <TextBox Text="{Binding Name}" Grid.Column="2"/>
+                        <TextBox Text="{Binding Alias}" Grid.Column="3"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
