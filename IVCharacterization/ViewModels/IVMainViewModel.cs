@@ -16,8 +16,6 @@ namespace IVCharacterization
 
     public abstract class IVMainViewModel : AbstractExperimentViewModel
     {
-       
-
         private D3VisualizationViewModel m_Visualization;
         public D3VisualizationViewModel Visualization
         {
