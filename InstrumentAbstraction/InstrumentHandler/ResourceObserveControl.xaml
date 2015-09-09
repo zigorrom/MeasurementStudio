@@ -15,14 +15,7 @@
     
     <Grid>
         <ListView ItemsSource="{Binding Resources}">
-            <ListView.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </ListView.RenderTransform>
+           
             <ListView.View>
                 
                 <GridView>
