@@ -27,6 +27,9 @@ namespace IVCharacterization.ViewModels
                 handler(this, new PropertyChangedEventArgs(PropertyName));
         }
         #endregion
+
+
+
         private bool _useSampleSelector;
         public bool UseSampleSelector
         {

@@ -30,6 +30,9 @@ namespace InstrumentHandlerNamespace
         private const string SerializationFileName = "Devices.seri";
         private const string ResourceFilter = "(GPIB)|(USB)|(COM)?*INSTR";//"?*INSTR";
         private const string AllResourceFilter = "?*";
+
+        [ImportMany]
+        private Lazy<IInstrumentFactory, IDictionary<string, object>>[] InstrumentFactoriesPlugins { get; set; }
         // For serialization default constructor necessary
         private InstrumentHandler()
         {
@@ -86,30 +89,7 @@ namespace InstrumentHandlerNamespace
 
         private static InstrumentHandler DeserializeOrNew()
         {
-            
-            //InstrumentHandler handler;
-            //try
-            //{
-            //    var dir = Directory.GetCurrentDirectory();
-            //    var binFormatter = new BinaryFormatter();
-            //    using (Stream stream = new FileStream(String.Format("{0}\\{1}", dir, SerializationFileName), FileMode.Open, FileAccess.Read, FileShare.None))
-            //    {
-            //        handler = (InstrumentHandler)binFormatter.Deserialize(stream);
-            //        stream.Close();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    handler = new InstrumentHandler();
-            //}
-            //if (null == handler)
-            //    handler = new InstrumentHandler();
-
-            //handler.InitializeHandler();
-            //return handler;
-
-            var ihandler = new InstrumentHandler();
-
+           var ihandler = new InstrumentHandler();
             ihandler.InitializeHandler();
             return ihandler;
         }
@@ -176,33 +156,17 @@ namespace InstrumentHandlerNamespace
                     {
                         var s = (MessageBasedSession)LocalResourceManager.Open(resource);
                         idn = s.Query("*IDN?");
-                    }catch(Exception ex1)
-                    { 
+                    }
+                    catch (Exception ex1)
+                    {
                     }
                     Resources.Add(new InstrumentResourceItem(resource, idn));
-                    //var factory = InstrumentFactoriesPlugins.Where(x => x.Value.FitsIDN(idn)).Select(x=>x.Value).FirstOrDefault();
-                    //if (factory == default(IInstrumentFactory))
-                    //    continue;
-                    
-                    //Instruments.Add(factory.CreateInstrument()
-                    //s.Write("*IDN?");
-                    //var idn = s.ReadString();
-                    //s.Dispose();
-                    //foreach (var item in types)
-                    //{
-                    //    if (!item.Key.FitsToIDN(idn))
-                    //        continue;
-                    //    var instr = (IInstrument)Activator.CreateInstance(item.Value, String.Format("Manufacturer:{0},Model:{1}", item.Key.Manufacturer, item.Key.Model), "", resource);
-                    //    m_Instruments.Add(instr);
-                    //}
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
 
             }
-
-
-
         }
 
         private void CheckInstrumentsConnectivity()
@@ -210,14 +174,6 @@ namespace InstrumentHandlerNamespace
            
 
         }
-
-
-       
-
-      
-
-        
-
         
 
         public bool TryGetDevice(string InstrumentName, out IInstrument Instrument, IInstrumentOwner Owner)
@@ -235,8 +191,5 @@ namespace InstrumentHandlerNamespace
             throw new NotImplementedException();
         }
 
-
-        [ImportMany]
-        private Lazy<IInstrumentFactory, IDictionary<string, object>>[] InstrumentFactoriesPlugins { get; set; }
     }
 }
