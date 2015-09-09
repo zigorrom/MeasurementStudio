@@ -7,16 +7,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type ri:IInstrumentResourceItem}">
-           
-        </DataTemplate>
+       
         
         
     </UserControl.Resources>
     
     <Grid>
         <ListView ItemsSource="{Binding Resources}">
-            <ListView.ItemTemplate>
+            <ListView.Resources>
+                <DataTemplate x:Key="Input">
+                    <TextBox Text="sdfssdg"/>
+                </DataTemplate>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Resource}" Header="Resource"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=IDN}" Header="IDN"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" CellTemplate="{StaticResource Input}" Header="Name" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Alias}" CellTemplate="{StaticResource Input}" Header="Alias"/>
+                </GridView>
+            </ListView.View>
+            <!--<ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -31,7 +43,7 @@
                         <TextBox Text="{Binding Alias}" Grid.Column="3"/>
                     </Grid>
                 </DataTemplate>
-            </ListView.ItemTemplate>
+            </ListView.ItemTemplate>-->
         </ListView>
 
     </Grid>
