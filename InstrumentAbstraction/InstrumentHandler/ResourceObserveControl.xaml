@@ -7,25 +7,25 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-       
+        <ResourceDictionary>
+            <DataTemplate x:Key="input">
+                <TextBox Text="{Binding}"/>
+            </DataTemplate>
+        </ResourceDictionary>
         
-        
+
     </UserControl.Resources>
     
     <Grid>
         <ListView ItemsSource="{Binding Resources}">
-            <ListView.Resources>
-                <DataTemplate x:Key="Input">
-                    <TextBox Text="sdfssdg"/>
-                </DataTemplate>
-            </ListView.Resources>
+            
             <ListView.View>
                 <GridView>
-                    
+                   
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Resource}" Header="Resource"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=IDN}" Header="IDN"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" CellTemplate="{StaticResource Input}" Header="Name" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Alias}" CellTemplate="{StaticResource Input}" Header="Alias"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" CellTemplate="{StaticResource input}" Header="Name" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Alias}" CellTemplate="{StaticResource input}" Header="Alias"/>
                 </GridView>
             </ListView.View>
             <!--<ListView.ItemTemplate>
