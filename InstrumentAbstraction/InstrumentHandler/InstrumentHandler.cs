@@ -164,12 +164,10 @@ namespace InstrumentHandlerNamespace
             {
                 var LocalResourceManager = ResourceManager.GetLocalManager();
                 var resources = LocalResourceManager.FindResources(AllResourceFilter);
-                
                 if (resources.Length == 0)
                 {
                     throw new Exception("No instruments found");
                 }
-
 
                 foreach (var resource in resources)
                 {
