@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace StanfordSR830
 {
-    [Export(typeof(IInstrument))]
-    [ExportMetadata("InstrumentMetadata", typeof(IMultimeter))]
+    //[Export(typeof(IInstrument))]
+    //[ExportMetadata("InstrumentMetadata", typeof(IMultimeter))]
     [InstrumentAttribute("Stanford", "SR830")]
     public class StanfordSR830 : AbstractMessageBasedInstrument//, ILockInAmplifier
     {

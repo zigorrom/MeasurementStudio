@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace Keithley2602A
 {
-    [Export(typeof(IInstrument))]
-    [ExportMetadata("InstrumentMetadata", typeof(ISourceMeasurementUnit))]
+    //[Export(typeof(IInstrument))]
+    //[ExportMetadata("InstrumentMetadata", typeof(ISourceMeasurementUnit))]
     [InstrumentAttribute("Keithley", "2602A")]
     public class Keithley2602A : AbstractMessageBasedInstrument//, ISourceMeasurementUnit
     {

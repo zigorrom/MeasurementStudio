@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace KeithleyMultimeter
 {
-    [Export(typeof(IInstrument))]
-    [ExportMetadata("InstrumentMetadata", typeof(IMultimeter))]
+    //[Export(typeof(IInstrument))]
+    //[ExportMetadata("InstrumentMetadata", typeof(IMultimeter))]
     [InstrumentAttribute("NDCV", "")]
     public class KeithleyMultimeter : AbstractMessageBasedInstrument, IMultimeter
     {

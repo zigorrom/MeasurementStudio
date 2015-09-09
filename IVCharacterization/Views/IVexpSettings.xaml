@@ -1,11 +1,12 @@
-﻿<UserControl x:Class="IVCharacterization.Views.IVexpSettings"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:IVCharacterization.ViewModels"
+             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" x:Class="IVCharacterization.Views.IVexpSettings"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" VerticalAlignment="Top">
     <UserControl.Resources>
         <DataTemplate x:Key="pulseModeTemplate">
             <Grid>
@@ -23,37 +24,67 @@
                 <TextBox Grid.Column="1" Grid.Row="1"/>
             </Grid>
         </DataTemplate>
+        <Thickness x:Key="MarginAppearance">3</Thickness>
     </UserControl.Resources>
-    
-    <StackPanel>
-        
-        <CheckBox Content="Use sample selector" IsChecked="{Binding UseSampleSelector}" FlowDirection="RightToLeft" HorizontalContentAlignment="Center"/>
-        <TextBlock Text="Delay between measurements"/>
-        <TextBox/>
-        
-        <TextBlock Text="Current Compliance"/>
-        <TextBox/>
-        
-        <CheckBox x:Name="pulseMode" Content="Pulse Mode" />
-        <ContentControl>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="43*"/>
+           
+        </Grid.RowDefinitions>
+        <CheckBox Content="Use sample selector" IsChecked="{Binding UseSampleSelector}" FlowDirection="RightToLeft" HorizontalContentAlignment="Center" Style="{DynamicResource GeneralControlAppearance}" Grid.ColumnSpan="2" Margin="{DynamicResource MarginAppearance}" VerticalContentAlignment="Stretch" VerticalAlignment="Center"/>
+
+        <TextBlock Text="Drain SMU" Grid.Row="1" Margin="{DynamicResource MarginAppearance}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <ComboBox SelectedIndex="0" Grid.Row="1" Grid.Column="1" Margin="{DynamicResource MarginAppearance}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <ComboBoxItem Content="Drain Keithley resource"/>
+        </ComboBox>
+
+        <TextBlock Text="Gate SMU" Grid.Row="2" Margin="{DynamicResource MarginAppearance}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <ComboBox SelectedIndex="0" Grid.Row="2" Grid.Column="1" Margin="{DynamicResource MarginAppearance}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <ComboBoxItem Content="Gate Keithley resource"/>
+        </ComboBox>
+
+        <TextBlock Text="Measurement Delay" Grid.Row="3" Margin="{DynamicResource MarginAppearance}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="{DynamicResource MarginAppearance}" VerticalContentAlignment="Center"/>
+
+        <TextBlock Text="Current Compliance" Grid.Row="4" Margin="{DynamicResource MarginAppearance}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="{DynamicResource MarginAppearance}"/>
+
+        <CheckBox x:Name="pulseMode" Content="Pulse Mode" Grid.Row="5" Grid.ColumnSpan="2" Margin="{DynamicResource MarginAppearance}" HorizontalAlignment="Center"  />
+        <ContentControl Grid.Row="6" Grid.ColumnSpan="2">
             <ContentControl.Style>
                 <Style TargetType="{x:Type ContentControl}">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=pulseMode,Path=IsChecked}" Value="true">
+                        <DataTrigger Binding="{Binding IsChecked, ElementName=pulseMode}" Value="true">
                             <Setter Property="ContentTemplate" Value="{StaticResource pulseModeTemplate}"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </ContentControl.Style>
         </ContentControl>
-        
-        <ComboBox SelectedIndex="0">
+
+        <TextBlock Text="Measurement speed"  Grid.Row="7" Margin="{DynamicResource MarginAppearance}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <ComboBox SelectedIndex="0" Grid.Row="7" Grid.Column="1" Margin="{DynamicResource MarginAppearance}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <ComboBoxItem Content="Slow"/>
             <ComboBoxItem Content="Midlle"/>
             <ComboBoxItem Content="Fast"/>
         </ComboBox>
-        <ComboBox>
-            
+
+        <TextBlock Text="Averaging"  Grid.Row="8" Margin="{DynamicResource MarginAppearance}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <ComboBox SelectedIndex="0" Grid.Column="1" Grid.Row="8" Margin="{DynamicResource MarginAppearance}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <ComboBoxItem Content="Averaging"/>
         </ComboBox>
-    </StackPanel>
+    </Grid>
 </UserControl>

@@ -14,7 +14,7 @@
     </UserControl.Resources>
      
     <Grid>
-        <d3:ChartPlotter x:Name="plotter" LegendVisibility="Hidden" NewLegendVisible="True">
+        <d3:ChartPlotter x:Name="plotter" LegendVisibility="Hidden" NewLegendVisible="False">
           
            
             
