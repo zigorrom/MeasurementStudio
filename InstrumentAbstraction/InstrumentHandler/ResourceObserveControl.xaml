@@ -7,25 +7,31 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <ResourceDictionary>
-            <DataTemplate x:Key="input">
-                <TextBox Text="{Binding}"/>
-            </DataTemplate>
-        </ResourceDictionary>
-        
+        <DataTemplate x:Key="SelectButtonColumnDataTemplate">
+            <Button Content="Select" Command="{Binding SelectItemCommand}" />
+        </DataTemplate>
 
     </UserControl.Resources>
     
     <Grid>
         <ListView ItemsSource="{Binding Resources}">
-            
+            <ListView.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ListView.RenderTransform>
             <ListView.View>
+                
                 <GridView>
-                   
+                    
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Resource}" Header="Resource"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=IDN}" Header="IDN"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" CellTemplate="{StaticResource input}" Header="Name" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Alias}" CellTemplate="{StaticResource input}" Header="Alias"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}"  Header="Name" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Alias}" CellTemplate="{StaticResource SelectButtonColumnDataTemplate}" Header="Alias"/>
+                    
                 </GridView>
             </ListView.View>
             <!--<ListView.ItemTemplate>
