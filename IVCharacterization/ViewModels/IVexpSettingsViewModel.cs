@@ -41,5 +41,55 @@ namespace IVCharacterization.ViewModels
 
         }
 
+        private double _delayBetweenMeasurements;
+
+        public double DelayBetweenMeasurements
+        {
+            get { return _delayBetweenMeasurements; }
+            set { _delayBetweenMeasurements = value; }
+        }
+
+        private double _currentCompliance;
+
+        public double CurrentCompliance
+        {
+            get { return _currentCompliance; }
+            set { _currentCompliance = value; }
+        }
+
+        private bool _pulseMode;
+
+        public bool PulseMode
+        {
+            get { return _pulseMode; }
+            set { _pulseMode = value; }
+        }
+
+        private double _pulseLength;
+
+        public double PulseLength
+        {
+            get { return _pulseLength; }
+            set { _pulseLength = value; }
+        }
+
+        private double _pulseDelay;
+
+        public double PulseDelay
+        {
+            get { return _pulseDelay; }
+            set { _pulseDelay = value; }
+        }
+
+        private int _deviceAveraging;
+
+        public int DeviceAveraging
+        {
+            get { return _deviceAveraging; }
+            set { _deviceAveraging = value; }
+        }
+
+
+
     }
 }
