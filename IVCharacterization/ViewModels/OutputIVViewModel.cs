@@ -21,7 +21,7 @@ namespace IVCharacterization.ViewModels
         }
         protected override void InitExperiment()
         {
-            //Experiment = new OutputCurveMeasurement(this);
+            Experiment = new OutputCurveMeasurement(this);
         }
 
         protected override void ExperimentStartedHandler(object sender, EventArgs e)

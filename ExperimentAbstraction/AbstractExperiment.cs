@@ -109,14 +109,13 @@ namespace ExperimentAbstraction
 
         private void SelectMeasurement(object sender, DoWorkEventArgs e)
         {
+            InitializeExperiment();
             if (SimulateExperiment)
             {
-                InitializeExperiment();
                 SimulateMeasurement(sender, e);
             }
             else
             {
-                InitializeExperiment();
                 InitializeInstruments();
                 OwnInstruments();
                 DoMeasurement(sender, e);
@@ -129,15 +128,25 @@ namespace ExperimentAbstraction
         
         void RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            ReleaseInstruments();
             FinalizeExperiment();
-            //ClearExperiment();
             OnExperimentFinished(sender, e);
+            
             if (e.Cancelled)
+            {
                 HandleMessage("Measurement was aborted");
-            if (e.Error != null)
-                HandleError(e.Error);
+                return;
+            }
 
+            if (e.Error != null)
+            {
+                HandleError(e.Error);
+                return;
+            }
+
+            if (!SimulateExperiment)
+                ReleaseInstruments();
+            
+            HandleMessage("Measurement completed");
         }
 
         void ProgressChanged(object sender, ProgressChangedEventArgs e)

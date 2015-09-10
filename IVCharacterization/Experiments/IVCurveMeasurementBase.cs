@@ -16,22 +16,22 @@ namespace IVCharacterization.Experiments
         where InfoT : struct,IMeasurementInfo
         where DataT : struct
     {
-        private IVMainViewModel _vm;
+        protected IVMainViewModel _vm;
 
-        private string _workingDirectory;
-        private string _experimentName;
-        private string _measurementName;
-        private int _measurementCount;
-        private IInstrumentResourceItem _drainIntrumentResource;
-        private IInstrumentResourceItem _gateInstrumentResource;
+        protected string _workingDirectory;
+        protected string _experimentName;
+        protected string _measurementName;
+        protected int _measurementCount;
+        protected IInstrumentResourceItem _drainIntrumentResource;
+        protected IInstrumentResourceItem _gateInstrumentResource;
 
 
-        private AbstractDoubleRangeHandler _dsRangeHandler;
-        private AbstractDoubleRangeHandler _gsRangeHandler;
+        protected AbstractDoubleRangeHandler _dsRangeHandler;
+        protected AbstractDoubleRangeHandler _gsRangeHandler;
 
-        private Keithley24xx _drainKeithley;
+        protected Keithley24xx _drainKeithley;
 
-        private Keithley24xx _gate_Keithley;
+        protected Keithley24xx _gate_Keithley;
 
 
         public IVCurveMeasurementBase(IVMainViewModel viewModel)
@@ -56,6 +56,7 @@ namespace IVCharacterization.Experiments
             _drainIntrumentResource = _vm.IVSettingsViewModel.DrainInstrumentResource;
             _gateInstrumentResource = _vm.IVSettingsViewModel.GateInstrumentResource;
 
+            SimulateExperiment = _vm.IVSettingsViewModel.SimulationMode;
             AssertParams();
             InitializeWriter(_workingDirectory, _experimentName);
 
@@ -136,6 +137,9 @@ namespace IVCharacterization.Experiments
             _vm.MessageHandler(Message);
             //throw new NotImplementedException();
         }
+
+
+      
         //public override void InitializeInstruments()
         //{
 
