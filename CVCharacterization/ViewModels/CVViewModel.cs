@@ -20,5 +20,15 @@ namespace CVCharacterization.ViewModels
         {
             throw new NotImplementedException();
         }
+
+        protected override void SetRangeViewModels(out Helper.Ranges.SimpleRangeControl.RangeViewModel vm1, out Helper.Ranges.SimpleRangeControl.RangeViewModel vm2)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void SetVisualization(out DataVisualization.D3DataVisualization.D3VisualizationViewModel visualVM)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

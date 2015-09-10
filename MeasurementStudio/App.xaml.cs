@@ -17,7 +17,7 @@ namespace MeasurementStudio
       
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-
+            MessageBox.Show("Ooooops... Something went wrong", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)

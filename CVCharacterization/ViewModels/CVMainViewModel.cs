@@ -19,9 +19,11 @@ namespace CVCharacterization.ViewModels
             VoltageRange = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
             FrequencyRange = new RangeViewModel(new Frequency(), new Frequency(), new Frequency());
             Visualization = new D3VisualizationViewModel();
-            ExperimentControlButtons = new ControlButtonsViewModel();
+            
         }
 
+        protected abstract void SetRangeViewModels(out RangeViewModel vm1, out RangeViewModel vm2);
+        protected abstract void SetVisualization(out D3VisualizationViewModel visualVM);
 
         private RangeViewModel _voltageRange;
         public RangeViewModel VoltageRange
@@ -52,49 +54,24 @@ namespace CVCharacterization.ViewModels
         }
 
 
+
         protected override string GetExperimentName()
         {
-            throw new NotImplementedException();
+            var d = new CVCharacterization.Views.NewExperiment(ExperimentName);
+            if (d.ShowDialog().Value)
+                return d.ExperimentName;
+            return String.Empty;
         }
 
-        //protected override void InitExperiment()
-        //{
-        //    //Experiment = new CapacitanceVoltageMeasurement();
-        //}
+       
 
-        protected override bool CheckParametersBeforeStart(out string Message)
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        protected override void ExperimentProgressChangedHandler(object sender, System.ComponentModel.ProgressChangedEventArgs e)
-        {
-           // throw new NotImplementedException();
-        }
-
-        protected override void ExperimentFinishedHandler(object sender, EventArgs e)
-        {
-            //throw new NotImplementedException();
-        }
-
-        protected override void ExperimentStoppedHandler(object sender, EventArgs e)
-        {
-            //throw new NotImplementedException();
-        }
-
-        protected override void ExperimentPausedHandler(object sender, EventArgs e)
-        {
-            //throw new NotImplementedException();
-        }
-
-        protected override void ExperimentStartedHandler(object sender, EventArgs e)
-        {
-            //throw new NotImplementedException();
-        }
+        
 
         protected override void ClearVisualization()
         {
-            //throw new NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

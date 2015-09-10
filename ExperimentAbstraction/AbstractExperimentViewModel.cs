@@ -1,4 +1,5 @@
-﻿using Helper.ViewModelInterface;
+﻿using Helper.StartStopControl;
+using Helper.ViewModelInterface;
 using Microsoft.TeamFoundation.MVVM;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
 using System.Windows.Input;
 
 namespace ExperimentAbstraction
@@ -32,6 +32,19 @@ namespace ExperimentAbstraction
                 handler(this, new PropertyChangedEventArgs(PropertyName));
         }
         #endregion
+
+
+        public ControlButtonsViewModel ExperimentControlButtons { get;private set; }
+
+        private bool m_globalIsEnabled;
+        public bool GlobalIsEnabled
+        {
+            get { return m_globalIsEnabled; }
+            set
+            {
+                SetField(ref m_globalIsEnabled, value, "GlobalIsEnabled");
+            }
+        }
 
         private IExperiment _experiment;
         public virtual IExperiment Experiment
@@ -155,8 +168,47 @@ namespace ExperimentAbstraction
         public AbstractExperimentViewModel()
         {
             InitExperiment(out _experiment);
+            
+            ExperimentControlButtons = new ControlButtonsViewModel();
+
+            ExperimentControlButtons.PauseCommandRaised += ExperimentControlButtons_PauseCommandRaised;
+            ExperimentControlButtons.StartCommandRaised += ExperimentControlButtons_StartCommandRaised;
+            ExperimentControlButtons.StopCommandRaised += ExperimentControlButtons_StopCommandRaised;
+            
             InitEventHandlers();
+            GlobalIsEnabled = true;
             ExperimentIsRunning = false;
+        }
+
+        void ExperimentControlButtons_StopCommandRaised(object sender, EventArgs e)
+        {
+            ExecuteInUIThread(() => GlobalIsEnabled = true);
+            Experiment.Abort();
+        }
+
+        void ExperimentControlButtons_StartCommandRaised(object sender, EventArgs e)
+        {
+            string Message = String.Empty;
+            if (CheckParametersBeforeStart(out Message))
+            {
+                ExperimentIsRunning = true;
+                ExecuteInUIThread(() => GlobalIsEnabled = false);
+                Experiment.Start();
+            }
+            else
+            {
+                ExperimentControlButtons.Reset();
+                MessageHandler(Message);
+                //MessageBox.Show(Message);
+            }
+        }
+
+        void ExperimentControlButtons_PauseCommandRaised(object sender, EventArgs e)
+        {
+            ExecuteInUIThread(() => GlobalIsEnabled = true);
+            Experiment.Pause();
+            //System.Diagnostics.Debug.WriteLine("Pause button press not handled");
+            //throw new NotImplementedException();
         }
         protected abstract void InitExperiment( out IExperiment experiment);
 
@@ -171,13 +223,60 @@ namespace ExperimentAbstraction
             Experiment.ExperimentProgressChanged += ExperimentProgressChangedHandler;
         }
 
-        protected abstract bool CheckParametersBeforeStart(out string Message);
+        protected bool CheckParametersBeforeStart(out string Message)
+        {
+            Message = String.Empty;
+            //var res = true;
+            if (Experiment.IsRunning)
+            {
+                Message = "Experiment is running";
+                return false;
+            }
+            if (String.IsNullOrEmpty(ExperimentName))
+            {
+                Message = "Fill in the experiment name";
+                return false;
+            }
+            if (String.IsNullOrEmpty(MeasurementName))
+            {
+                Message = "Fill in the measurement name";
+                return false;
+            }
+            return true;
+        }
+
         
-        protected abstract void ExperimentProgressChangedHandler(object sender, ProgressChangedEventArgs e);
-        protected abstract void ExperimentFinishedHandler(object sender, EventArgs e);
-        protected abstract void ExperimentStoppedHandler(object sender, EventArgs e);
-        protected abstract void ExperimentPausedHandler(object sender, EventArgs e);
-        protected abstract void ExperimentStartedHandler(object sender, EventArgs e);
+        protected virtual void ExperimentProgressChangedHandler(object sender, ProgressChangedEventArgs e)
+        {
+            CurrentProgress = e.ProgressPercentage;
+        }
+        protected virtual void ExperimentStartedHandler(object sender, EventArgs e)
+        {
+            CurrentProgress = 0;
+            ExperimentIsRunning = true;
+        }
+        protected virtual void ExperimentPausedHandler(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected virtual void ExperimentStoppedHandler(object sender, EventArgs e)
+        {
+            CurrentProgress = 0;
+            ExperimentIsRunning = false;
+        }
+
+        protected virtual void ExperimentFinishedHandler(object sender, EventArgs e)
+        {
+
+            ExperimentIsRunning = false;
+            ExecuteInUIThread(() => GlobalIsEnabled = true);
+            ExecuteInUIThread(() => ExperimentControlButtons.Reset());
+            CurrentProgress = 0;
+        }
+        
+        
+        
 
         protected abstract void ClearVisualization();
         public async Task ExecuteInUIThreadAsync(Action action)
