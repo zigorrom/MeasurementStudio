@@ -20,11 +20,11 @@ namespace ExperimentAbstraction
         bool IsRunning { get; }
         void Pause();
         void Abort();
-        void New(string ExperimentName);
-        void ClearExperiment();
+        //void New(string ExperimentName);
+        //void ClearExperiment();
         
         //UserControl Control { get; }
-        void SetDisplayFunction(string Function);
+       // void SetDisplayFunction(string Function);
 
 
         event EventHandler ExperimentStarted;

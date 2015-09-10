@@ -21,7 +21,7 @@ namespace IVCharacterization.ViewModels
 
         protected override void InitExperiment()
         {
-            Experiment = new TransferCurveMeasurement(this);
+            //Experiment = new TransferCurveMeasurement(this);
         }
     }
 }

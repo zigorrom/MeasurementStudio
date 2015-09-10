@@ -20,20 +20,20 @@ namespace ExperimentAbstraction
         private string m_Name;
         
         private ConcurrentQueue<MeasurementData<InfoT, DataT>> _dataQueue= new ConcurrentQueue<MeasurementData<InfoT, DataT>>();
-
-        protected void EnqueueData(MeasurementData<InfoT,DataT> data)
-        {
-            _dataQueue.Enqueue(data);
-        }
-        
         private StreamMeasurementDataExporter<InfoT, DataT> _dataWriter;
-        protected void InitializeWriter(string WorkingDirectory, string ExperimentName)
-        {
-            _dataWriter = new StreamMeasurementDataExporter<InfoT, DataT>(WorkingDirectory);
-            _dataWriter.NewExperiment(ExperimentName);
-        }
+       
         private Thread _writerThread;
         private WaitHandle _experimentStopped = new AutoResetEvent(false);
+        private BackgroundWorker _worker;
+
+
+       
+        protected bool SimulateExperiment
+        {
+            get;
+            set;
+          
+        }
 
         protected void InitializeWriterThread()
         {
@@ -49,20 +49,27 @@ namespace ExperimentAbstraction
             }));
         }
         
-        private BackgroundWorker _worker;
+        protected void InitializeWriter(string WorkingDirectory, string ExperimentName)
+        {
+            _dataWriter = new StreamMeasurementDataExporter<InfoT, DataT>(WorkingDirectory);
+            _dataWriter.NewExperiment(ExperimentName);
+        }
+
+        protected StreamMeasurementDataExporter<InfoT, DataT> GetStreamExporter(string WorkingDirectory)
+        {
+            return new StreamMeasurementDataExporter<InfoT, DataT>(WorkingDirectory);
+        }
+
+        protected void EnqueueData(MeasurementData<InfoT, DataT> data)
+        {
+            _dataQueue.Enqueue(data);
+        }
+
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
-        ~AbstractExperiment()
-        {
-            // Finalizer calls Dispose(false)
-            Dispose(false);
-        }
-
-
 
         protected virtual void Dispose(bool disposing)
         {
@@ -75,98 +82,106 @@ namespace ExperimentAbstraction
                     _worker = null;
                 }
             }
-            // free native resources if there are any.
-            //if (_dataQueue != null)
-            //{
-            //    //_dataQueue.TryDequeue
-            //    _dataQueue = null;
-            //}
+
         }
+
+        ~AbstractExperiment()
+        {
+            // Finalizer calls Dispose(false)
+            Dispose(false);
+        }
+
+
+
+        
         public AbstractExperiment(string ExperimentName)
         {
             m_Name = ExperimentName;
-            //_dataQueue = new ConcurrentQueue<MeasurementData<InfoT, DataT>>();
             _worker = new BackgroundWorker();
             _worker.WorkerSupportsCancellation = true;
             _worker.WorkerReportsProgress = true;
-            _worker.DoWork += DoMeasurement;
-            _worker.ProgressChanged += _worker_ProgressChanged;
-            _worker.RunWorkerCompleted += _worker_RunWorkerCompleted;
-            
+            _worker.DoWork += SelectMeasurement;
+            _worker.ProgressChanged += ProgressChanged;
+            _worker.RunWorkerCompleted += RunWorkerCompleted;
+            SimulateExperiment = false;
         }
 
-        
 
-        
-        protected StreamMeasurementDataExporter<InfoT, DataT> GetStreamExporter(string WorkingDirectory)
+        private void SelectMeasurement(object sender, DoWorkEventArgs e)
         {
-            return new StreamMeasurementDataExporter<InfoT, DataT>(WorkingDirectory);
+            if (SimulateExperiment)
+            {
+                InitializeExperiment();
+                SimulateMeasurement(sender, e);
+            }
+            else
+            {
+                InitializeExperiment();
+                InitializeInstruments();
+                OwnInstruments();
+                DoMeasurement(sender, e);
+            }
         }
 
-        void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        protected abstract void DoMeasurement(object sender, DoWorkEventArgs e);
+        protected abstract void SimulateMeasurement(object sender, DoWorkEventArgs e);
+        
+        
+        void RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             ReleaseInstruments();
             FinalizeExperiment();
-            ClearExperiment();
+            //ClearExperiment();
             OnExperimentFinished(sender, e);
+            if (e.Cancelled)
+                HandleMessage("Measurement was aborted");
+            if (e.Error != null)
+                HandleError(e.Error);
+
         }
 
-        void _worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        void ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             OnExperimentProgressChanged(sender, e);
         }
-
-
-        public abstract void OwnInstruments();
+        
 
         public virtual void InitializeExperiment()
         {
             InitializeWriterThread();
             _writerThread.Start(_experimentStopped);
         }
-         
-        
-
         public abstract void InitializeInstruments();
+        public abstract void OwnInstruments();
 
+        protected abstract void HandleError(Exception e);
+        protected abstract void HandleMessage(string Message);
+        
         public abstract void ReleaseInstruments();
-
         public virtual void FinalizeExperiment()
         {
             ((AutoResetEvent)_experimentStopped).Set();
             _writerThread.Join();
         }
-        
-        public virtual void Start()
+        //public abstract void ClearExperiment();
+
+
+        public void Start()
         {
-            InitializeInstruments();
-            InitializeExperiment();
-            
-            OnExperimentStarted(this, new EventArgs());
             _worker.RunWorkerAsync();
+            OnExperimentStarted(this, new EventArgs());
         }
 
-        protected abstract void DoMeasurement(object sender, DoWorkEventArgs e);
-
-        public virtual void Pause()
+        public void Pause()
         {
             OnExperimentPaused(this, EventArgs.Empty);
-            throw new NotImplementedException();
         }
 
-        public virtual void Abort()
+        public void Abort()
         {
             _worker.CancelAsync();
             OnExperimentStopped(this, new EventArgs());
         }
-
-        public virtual void New(string ExperimentName)
-        {
-            ClearExperiment();
-            Name = ExperimentName;
-        }
-
-        public abstract void ClearExperiment();
 
         public bool IsRunning
         {
@@ -185,7 +200,6 @@ namespace ExperimentAbstraction
             }
         }
 
-
         public bool Equals(IInstrumentOwner other)
         {
             if (other.Name == m_Name)
@@ -198,16 +212,12 @@ namespace ExperimentAbstraction
             return m_Name.GetHashCode();
         }
 
-        
-
-        
-
-        public void SetDisplayFunction(string Function)
-        {
-            //Set function through expression evaluator;
-            //https://csharpeval.codeplex.com/
-            throw new NotImplementedException();
-        }
+        //public void SetDisplayFunction(string Function)
+        //{
+        //    //Set function through expression evaluator;
+        //    //https://csharpeval.codeplex.com/
+        //    throw new NotImplementedException();
+        //}
 
         #region Events
         public event EventHandler ExperimentStarted;
@@ -250,26 +260,6 @@ namespace ExperimentAbstraction
                 handler(sender, e);
         }
         #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //private class ExperimentStateObject
-        //{
-        //    //private ManualResetEvent _stopEvent;
-            
-
-        //}
        
     }
 }

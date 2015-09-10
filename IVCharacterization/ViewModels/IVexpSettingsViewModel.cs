@@ -1,5 +1,8 @@
-﻿using System;
+﻿using InstrumentHandlerNamespace;
+using Instruments;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -27,6 +30,46 @@ namespace IVCharacterization.ViewModels
                 handler(this, new PropertyChangedEventArgs(PropertyName));
         }
         #endregion
+
+        
+        public IVexpSettingsViewModel()
+        {
+            _instrumentHandler = InstrumentHandler.Instance;
+            
+        }
+
+        private InstrumentHandler _instrumentHandler;
+
+        public ObservableCollection<IInstrumentResourceItem> Resources
+        {
+            get
+            {
+                if (_instrumentHandler != null)
+                {
+                    return _instrumentHandler.Resources;
+                }
+                return null;
+            }
+        }
+
+        private IInstrumentResourceItem _drainInstrumentResource;
+
+        public IInstrumentResourceItem DrainInstrumentResource
+        {
+            get { return _drainInstrumentResource; }
+            set { SetField(ref _drainInstrumentResource, value, "DrainInstrumentResource"); }
+        }
+
+        private IInstrumentResourceItem _gateInstrumentResource;
+
+        public IInstrumentResourceItem GateInstrumentResource
+        {
+            get { return _gateInstrumentResource; }
+            set { SetField(ref _gateInstrumentResource, value, "GateInstrumentResource"); }
+        }
+
+
+
 
         private bool _useSampleSelector;
         public bool UseSampleSelector

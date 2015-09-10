@@ -196,6 +196,15 @@ namespace ExperimentAbstraction
             MessageBox.Show(e.Message, "Error occured", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+        public virtual void MessageHandler(string e)
+        {
+            System.Diagnostics.Debug.WriteLine("Message arrived:");
+            System.Diagnostics.Debug.Write(e);
+            System.Diagnostics.Debug.WriteLine("**************");
+
+            MessageBox.Show(e, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
 
     }
 }

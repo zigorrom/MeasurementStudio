@@ -59,7 +59,7 @@ namespace CVCharacterization.ViewModels
 
         protected override void InitExperiment()
         {
-            Experiment = new CapacitanceVoltageMeasurement();
+            //Experiment = new CapacitanceVoltageMeasurement();
         }
 
         protected override bool CheckParametersBeforeStart(out string Message)

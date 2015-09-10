@@ -15,7 +15,11 @@ using System.Windows.Threading;
 
 namespace IVCharacterization.Experiments
 {
-    public class OutputCurveMeasurement : AbstractExperiment<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>
+
+
+
+    #region OldVersion
+    /*public class OutputCurveMeasurement : AbstractExperiment<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>
     {
         private IVMainViewModel _vm;
         
@@ -194,5 +198,6 @@ namespace IVCharacterization.Experiments
             base.FinalizeExperiment();
             //throw new NotImplementedException();
         }
-    }
+    }*/
+    #endregion
 }

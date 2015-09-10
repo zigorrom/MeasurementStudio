@@ -11,7 +11,8 @@ using System.Windows;
 
 namespace IVCharacterization.Experiments
 {
-    public class TransferCurveMeasurement : AbstractExperiment<GateSourceMeasurementInfoRow,GateSourceDataRow>
+#region OldVersion
+    /*public class TransferCurveMeasurement : AbstractExperiment<GateSourceMeasurementInfoRow,GateSourceDataRow>
     {
 
         private IVMainViewModel _vm;
@@ -121,5 +122,6 @@ namespace IVCharacterization.Experiments
         {
             throw new NotImplementedException();
         }
-    }
+    }*/
+#endregion
 }
