@@ -18,7 +18,9 @@ namespace IVCharacterization.Experiments
     public class OutputCurveMeasurement : AbstractExperiment<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>
     {
         private IVMainViewModel _vm;
-       
+        
+
+
        
         public OutputCurveMeasurement(IVMainViewModel viewModel):base("Output curve measurement")
         {

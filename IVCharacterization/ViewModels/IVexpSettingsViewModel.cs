@@ -28,8 +28,6 @@ namespace IVCharacterization.ViewModels
         }
         #endregion
 
-
-
         private bool _useSampleSelector;
         public bool UseSampleSelector
         {
@@ -49,7 +47,7 @@ namespace IVCharacterization.ViewModels
         public double DelayBetweenMeasurements
         {
             get { return _delayBetweenMeasurements; }
-            set { _delayBetweenMeasurements = value; }
+            set { SetField(ref _delayBetweenMeasurements, value, "DelayBetweenMeasurements"); }
         }
 
         private double _currentCompliance;
@@ -57,7 +55,7 @@ namespace IVCharacterization.ViewModels
         public double CurrentCompliance
         {
             get { return _currentCompliance; }
-            set { _currentCompliance = value; }
+            set { SetField(ref _currentCompliance, value, "CurrentCompliance"); }
         }
 
         private bool _pulseMode;
@@ -65,7 +63,7 @@ namespace IVCharacterization.ViewModels
         public bool PulseMode
         {
             get { return _pulseMode; }
-            set { _pulseMode = value; }
+            set { SetField(ref _pulseMode, value, "PulseMode"); }
         }
 
         private double _pulseLength;
@@ -73,7 +71,7 @@ namespace IVCharacterization.ViewModels
         public double PulseLength
         {
             get { return _pulseLength; }
-            set { _pulseLength = value; }
+            set { SetField(ref _pulseLength, value, "PulseLength"); }
         }
 
         private double _pulseDelay;
@@ -81,7 +79,7 @@ namespace IVCharacterization.ViewModels
         public double PulseDelay
         {
             get { return _pulseDelay; }
-            set { _pulseDelay = value; }
+            set { SetField(ref _pulseDelay, value, "PulseDelay"); }
         }
 
         private int _deviceAveraging;
@@ -89,9 +87,16 @@ namespace IVCharacterization.ViewModels
         public int DeviceAveraging
         {
             get { return _deviceAveraging; }
-            set { _deviceAveraging = value; }
+            set { SetField(ref _deviceAveraging, value, "DeviceAveraging"); }
         }
 
+        private bool _simulationMode;
+
+        public bool SimulationMode
+        {
+            get { return _simulationMode; }
+            set { SetField(ref _simulationMode, value, "SimulationMode"); }
+        }
 
 
     }
