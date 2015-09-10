@@ -1,4 +1,6 @@
-﻿using IVCharacterization.Experiments;
+﻿using Helper.Ranges.DoubleRange;
+using Helper.Ranges.SimpleRangeControl;
+using IVCharacterization.Experiments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +17,15 @@ namespace IVCharacterization.ViewModels
             Visualization.VerticalAxisTitle = "Drain Current, I_{D}(A)";
             Visualization.Title = "Transfer I-V Characterization";
             Visualization.StrokeThickness = 10;
+            FirstRangeViewModel = new RangeViewModel("Gate-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
+            SecondRangeViewModel = new RangeViewModel("Drain-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
         }
 
 
 
         protected override void InitExperiment()
         {
-            //Experiment = new TransferCurveMeasurement(this);
+            Experiment = new TransferCurveMeasurement(this);
         }
     }
 }

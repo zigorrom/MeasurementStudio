@@ -50,8 +50,8 @@ namespace IVCharacterization.Experiments
             _measurementName = _vm.MeasurementName;
             _measurementCount = _vm.MeasurementCount;
 
-            _dsRangeHandler = _vm.DSRangeViewModel.RangeHandler;
-            _gsRangeHandler = _vm.GSRangeViewModel.RangeHandler;
+            _dsRangeHandler = _vm.FirstRangeViewModel.RangeHandler;
+            _gsRangeHandler = _vm.SecondRangeViewModel.RangeHandler;
 
             _drainIntrumentResource = _vm.IVSettingsViewModel.DrainInstrumentResource;
             _gateInstrumentResource = _vm.IVSettingsViewModel.GateInstrumentResource;

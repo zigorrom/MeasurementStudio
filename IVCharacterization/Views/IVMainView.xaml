@@ -73,15 +73,15 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <GroupBox Header="Drain-Source Voltage Range" Grid.Row="0" Margin="0">
+                            <GroupBox Header="{Binding RangeName}" DataContext="{Binding FirstRangeViewModel}" Grid.Row="0" Margin="0">
                                 <StackPanel>
-                                    <Ranges:RangeControl DataContext="{Binding DSRangeViewModel}" Grid.ColumnSpan="2"/>
+                                    <Ranges:RangeControl DataContext="{Binding}" Grid.ColumnSpan="2" /> <!--DataContext="{Binding DSRangeViewModel}"-->
                                 </StackPanel>
                             </GroupBox>
 
-                            <GroupBox Header="Gate-Source Voltage Range" Grid.Row="1" Margin="0" >
+                            <GroupBox Header="{Binding RangeName}" DataContext="{Binding SecondRangeViewModel}" Grid.Row="1" Margin="0" >
                                 <StackPanel> 
-                                    <Ranges:RangeControl DataContext="{Binding GSRangeViewModel}" Grid.ColumnSpan="2"/>
+                                    <Ranges:RangeControl DataContext="{Binding}" Grid.ColumnSpan="2"/>
                                 </StackPanel>
                             </GroupBox>
 

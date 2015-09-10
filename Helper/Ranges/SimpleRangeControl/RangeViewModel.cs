@@ -18,12 +18,14 @@ namespace Helper.Ranges.SimpleRangeControl
         private DoubleUnitValueDependencyObject m_Step;
         private IntPointsCount m_PointCount;
         private DoubleRangeBase m_doubleRange;
+        private string m_RangeName;
+
 
         private const string StartName = "Start";
         private const string EndName = "End";
         private const string StepName = "Step";
         private const string PointsCountName = "PointsCount";
-
+        
 
         #region NotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -44,6 +46,11 @@ namespace Helper.Ranges.SimpleRangeControl
             return true;
         }
         #endregion
+
+        public RangeViewModel(string RangeName,DoubleUnitValueDependencyObject start, DoubleUnitValueDependencyObject end, DoubleUnitValueDependencyObject step):this(start, end, step)
+        {
+            this.RangeName = RangeName;
+        }
 
         public RangeViewModel(DoubleUnitValueDependencyObject start, DoubleUnitValueDependencyObject end, DoubleUnitValueDependencyObject step)
         {
@@ -169,6 +176,12 @@ namespace Helper.Ranges.SimpleRangeControl
         public DoubleRangeBase Range
         {
             get { return m_doubleRange; }
+        }
+
+        public string RangeName
+        {
+            get { return m_RangeName; }
+            set { SetField(ref m_RangeName, value, "RangeName"); }
         }
     }
 }

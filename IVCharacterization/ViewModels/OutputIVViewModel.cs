@@ -1,4 +1,6 @@
-﻿using IVCharacterization.Experiments;
+﻿using Helper.Ranges.DoubleRange;
+using Helper.Ranges.SimpleRangeControl;
+using IVCharacterization.Experiments;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +19,8 @@ namespace IVCharacterization.ViewModels
             Visualization.VerticalAxisTitle = "Drain Current, I_{D}(A)";
             Visualization.Title = "Output I-V Characterization";
             Visualization.StrokeThickness = 10;
-
+            FirstRangeViewModel = new RangeViewModel("Drain-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
+            SecondRangeViewModel = new RangeViewModel("Gate-Source Voltage Range",new Voltage(), new Voltage(), new Voltage());
         }
         protected override void InitExperiment()
         {

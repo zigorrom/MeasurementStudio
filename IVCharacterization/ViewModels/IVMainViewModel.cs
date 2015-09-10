@@ -46,16 +46,16 @@ namespace IVCharacterization
             }
         }
 
-        public RangeViewModel DSRangeViewModel { get; set; }
-        public RangeViewModel GSRangeViewModel { get; set; }
+        public RangeViewModel FirstRangeViewModel { get; set; }
+        public RangeViewModel SecondRangeViewModel { get; set; }
         public ControlButtonsViewModel ExperimentControlButtons {get;set;}
 
         public IVexpSettingsViewModel IVSettingsViewModel { get; set; }
 
         public IVMainViewModel()
         {
-            DSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
-            GSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
+            //DSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
+            //GSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
 
 
 
