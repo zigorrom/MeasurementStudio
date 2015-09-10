@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:hsw ="clr-namespace:Hammer.SpinningWheel;assembly=Hammer.SpinningWheel"
              mc:Ignorable="d" 
              xmlns:local ="clr-namespace:MeasurementStudio"
              d:DesignHeight="550.882" d:DesignWidth="562.353">
@@ -23,7 +24,14 @@
         </StackPanel>
         <WrapPanel Grid.Column="1"/>
         <GroupBox Header="Recent" Grid.Row="1" Grid.RowSpan="2" Margin="5"/>
-        <WrapPanel Grid.Column="1" Margin="5" Grid.Row="1"/>
+        <UniformGrid Grid.Column="1" Grid.Row="1">
+            <hsw:SpinningWheel IsSpinning="True" 
+                               Radius="40" 
+                               CircleCount="10"
+                               CircleColor="Blue"
+                               CircleRadius="8" Speed="0.6"/>
+            
+        </UniformGrid>
 
     </Grid>
 </UserControl>

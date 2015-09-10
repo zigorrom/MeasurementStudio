@@ -66,6 +66,7 @@ namespace InstrumentHandlerNamespace
             }
         }
         
+        
         private void InitializeHandler()
         {
             

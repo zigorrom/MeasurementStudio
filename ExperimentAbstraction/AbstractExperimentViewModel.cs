@@ -46,6 +46,8 @@ namespace ExperimentAbstraction
             }
         }
 
+        
+
         private bool _ExperimentIsRunning;
         public bool ExperimentIsRunning
         {
@@ -152,11 +154,11 @@ namespace ExperimentAbstraction
 
         public AbstractExperimentViewModel()
         {
-            InitExperiment();
+            InitExperiment(out _experiment);
             InitEventHandlers();
             ExperimentIsRunning = false;
         }
-        protected abstract void InitExperiment();
+        protected abstract void InitExperiment( out IExperiment experiment);
 
         private void InitEventHandlers()
         {

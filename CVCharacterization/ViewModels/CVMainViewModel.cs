@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CVCharacterization.ViewModels
 {
-    public class AbstractCVMainViewModel : AbstractExperimentViewModel
+    public abstract class AbstractCVMainViewModel : AbstractExperimentViewModel
     {
         public AbstractCVMainViewModel()
         {
@@ -57,10 +57,10 @@ namespace CVCharacterization.ViewModels
             throw new NotImplementedException();
         }
 
-        protected override void InitExperiment()
-        {
-            //Experiment = new CapacitanceVoltageMeasurement();
-        }
+        //protected override void InitExperiment()
+        //{
+        //    //Experiment = new CapacitanceVoltageMeasurement();
+        //}
 
         protected override bool CheckParametersBeforeStart(out string Message)
         {

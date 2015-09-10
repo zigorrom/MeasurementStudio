@@ -15,5 +15,10 @@ namespace CVCharacterization.ViewModels
             Visualization.Title = "C-V Characterization";
             Visualization.StrokeThickness = 10;
         }
+
+        protected override void InitExperiment(out ExperimentAbstraction.IExperiment experiment)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

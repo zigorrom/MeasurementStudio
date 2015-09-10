@@ -1,4 +1,5 @@
-﻿using Helper.Ranges.DoubleRange;
+﻿using DataVisualization.D3DataVisualization;
+using Helper.Ranges.DoubleRange;
 using Helper.Ranges.SimpleRangeControl;
 using IVCharacterization.Experiments;
 using System;
@@ -13,19 +14,35 @@ namespace IVCharacterization.ViewModels
     {
         public TransfrerIVViewModel()
         {
-            Visualization.HorizontalAxisTitle = "Gate - Source Voltage, V_{DS}(V)";
-            Visualization.VerticalAxisTitle = "Drain Current, I_{D}(A)";
-            Visualization.Title = "Transfer I-V Characterization";
-            Visualization.StrokeThickness = 10;
-            FirstRangeViewModel = new RangeViewModel("Gate-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
-            SecondRangeViewModel = new RangeViewModel("Drain-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
+            //Visualization.HorizontalAxisTitle = "Gate - Source Voltage, V_{DS}(V)";
+            //Visualization.VerticalAxisTitle = "Drain Current, I_{D}(A)";
+            //Visualization.Title = "Transfer I-V Characterization";
+            //Visualization.StrokeThickness = 10;
+            //FirstRangeViewModel = new RangeViewModel("Gate-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
+            //SecondRangeViewModel = new RangeViewModel("Drain-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
         }
 
 
-
-        protected override void InitExperiment()
+        protected override void InitExperiment(out ExperimentAbstraction.IExperiment experiment)
         {
-            Experiment = new TransferCurveMeasurement(this);
+            experiment = new TransferCurveMeasurement(this);
+        }
+
+        protected override void SetRangeViewModels(out RangeViewModel vm1, out RangeViewModel vm2)
+        {
+            vm1 = new RangeViewModel("Gate-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
+            vm2 = new RangeViewModel("Drain-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
+        }
+
+        protected override void SetVisualization(out DataVisualization.D3DataVisualization.D3VisualizationViewModel visualVM)
+        {
+            visualVM = new D3VisualizationViewModel
+            {
+                HorizontalAxisTitle = "Gate - Source Voltage, V_{DS}(V)",
+                VerticalAxisTitle = "Drain Current, I_{D}(A)",
+                Title = "Transfer I-V Characterization",
+                StrokeThickness = 10
+            };
         }
     }
 }

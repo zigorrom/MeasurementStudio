@@ -46,20 +46,44 @@ namespace IVCharacterization
             }
         }
 
-        public RangeViewModel FirstRangeViewModel { get; set; }
-        public RangeViewModel SecondRangeViewModel { get; set; }
+        private RangeViewModel _firstRangeViewModel;
+        public RangeViewModel FirstRangeViewModel
+        {
+            get { return _firstRangeViewModel; }
+            set { _firstRangeViewModel = value; }
+        }
+
+        private RangeViewModel _secondRangeViewModel;
+
+        public RangeViewModel SecondRangeViewModel
+        {
+            get { return _secondRangeViewModel; }
+            set { _secondRangeViewModel = value; }
+        }
+
+         
+        //public RangeViewModel FirstRangeViewModel { get; set; }
+        //public RangeViewModel SecondRangeViewModel { get; set; }
         public ControlButtonsViewModel ExperimentControlButtons {get;set;}
 
         public IVexpSettingsViewModel IVSettingsViewModel { get; set; }
+
+
+        protected abstract void SetRangeViewModels(out RangeViewModel vm1, out RangeViewModel vm2);
+        protected abstract void SetVisualization(out D3VisualizationViewModel visualVM);
+        
+
+
 
         public IVMainViewModel()
         {
             //DSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
             //GSRangeViewModel = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
+            SetRangeViewModels(out _firstRangeViewModel, out _secondRangeViewModel);
+            SetVisualization(out m_Visualization);
 
 
-
-            Visualization = new D3VisualizationViewModel();
+            //Visualization = new D3VisualizationViewModel();
             ExperimentControlButtons = new ControlButtonsViewModel();
             GlobalIsEnabled = true;
 
@@ -81,15 +105,18 @@ namespace IVCharacterization
 
         void ExperimentControlButtons_StartCommandRaised(object sender, EventArgs e)
         {
-            ExecuteInUIThread(() => GlobalIsEnabled = false);
+            
             string Message = String.Empty;
             if (CheckParametersBeforeStart(out Message))
             {
                 ExperimentIsRunning = true;
+                ExecuteInUIThread(() => GlobalIsEnabled = false);
                 Experiment.Start();
+                
             }
             else
             {
+
                 ExperimentControlButtons.Reset();
                 MessageBox.Show(Message);
             }
