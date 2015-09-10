@@ -4,6 +4,7 @@ using ExperimentAbstraction;
 using Helper.Ranges.DoubleRange;
 using Helper.Ranges.SimpleRangeControl;
 using Helper.StartStopControl;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,27 +17,27 @@ namespace CVCharacterization.ViewModels
     {
         public AbstractCVMainViewModel()
         {
-            VoltageRange = new RangeViewModel(new Voltage(), new Voltage(), new Voltage());
-            FrequencyRange = new RangeViewModel(new Frequency(), new Frequency(), new Frequency());
-            Visualization = new D3VisualizationViewModel();
+            SetRangeViewModels(out _firstRangeViewModel, out _secondRangeViewModel);
+            SetVisualization(out _visualization);
             
+            //ExperimentControlButtons = new ControlButtonsViewModel();
         }
 
         protected abstract void SetRangeViewModels(out RangeViewModel vm1, out RangeViewModel vm2);
         protected abstract void SetVisualization(out D3VisualizationViewModel visualVM);
 
-        private RangeViewModel _voltageRange;
+        private RangeViewModel _firstRangeViewModel;
         public RangeViewModel VoltageRange
         {
-            get { return _voltageRange; }
-            set { _voltageRange = value; }
+            get { return _firstRangeViewModel; }
+            set { _firstRangeViewModel = value; }
         }
 
-        private RangeViewModel _frequencyRange;
+        private RangeViewModel _secondRangeViewModel;
         public RangeViewModel FrequencyRange
         {
-            get { return _frequencyRange; }
-            set { _frequencyRange = value; }
+            get { return _secondRangeViewModel; }
+            set { _secondRangeViewModel = value; }
         }
 
         private D3VisualizationViewModel _visualization;
@@ -46,15 +47,17 @@ namespace CVCharacterization.ViewModels
             set { _visualization = value; }
         }
 
-        private ControlButtonsViewModel _experimentControlButtons;
-        public ControlButtonsViewModel ExperimentControlButtons
+        public void AddSeries(IPointDataSource Points)
         {
-            get { return _experimentControlButtons; }
-            set { _experimentControlButtons = value; }
+            ExecuteInUIThread(() =>
+                {
+                    if(Visualization!=null)
+                    {
+                        Visualization.AddLineGraph(Points);
+                    }
+                });
         }
-
-
-
+        
         protected override string GetExperimentName()
         {
             var d = new CVCharacterization.Views.NewExperiment(ExperimentName);
@@ -63,15 +66,9 @@ namespace CVCharacterization.ViewModels
             return String.Empty;
         }
 
-       
-
-        
-
-        
-
         protected override void ClearVisualization()
         {
-            throw new NotImplementedException();
+            ExecuteInUIThread(() => Visualization.Clear());
         }
     }
 }

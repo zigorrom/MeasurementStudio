@@ -1,4 +1,5 @@
 ﻿using CVCharacterization.DataModel;
+using CVCharacterization.ViewModels;
 using ExperimentAbstraction;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,14 @@ using System.Threading.Tasks;
 
 namespace CVCharacterization.Experiments
 {
+    public sealed class CapacitanceVoltageMeasurement
+    {
+        public CapacitanceVoltageMeasurement(AbstractCVMainViewModel viewModel)
+        {
+
+        }
+    }
+
     //sealed public class CapacitanceVoltageMeasurement:AbstractExperiment<CapacityVoltageInfoRow,CapacityVoltageDataRow>
     //{
     //    public CapacitanceVoltageMeasurement():base("CapacitanceVoltageMeasurement")

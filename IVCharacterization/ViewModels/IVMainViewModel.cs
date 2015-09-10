@@ -21,6 +21,7 @@ namespace IVCharacterization
             SetRangeViewModels(out _firstRangeViewModel, out _secondRangeViewModel);
             SetVisualization(out m_Visualization);
             IVSettingsViewModel = new IVexpSettingsViewModel();
+            
         }
 
 

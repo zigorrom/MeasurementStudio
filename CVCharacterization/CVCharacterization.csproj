@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DynamicDataDisplay, Version=0.3.4703.0, Culture=neutral, PublicKeyToken=5b7d744a7263923f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdPartyLibs\DynamicDataDisplay\DynamicDataDisplay.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -47,7 +51,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ViewModels\CVMainViewModel.cs" />
+    <Compile Include="Experiments\CapacitanceMeasurementBase.cs" />
+    <Compile Include="ViewModels\AbstractCVMainViewModel.cs" />
     <Compile Include="DataModel\CapacityFrequencyDataRow.cs" />
     <Compile Include="DataModel\CapacityFrequencyInfoRow.cs" />
     <Compile Include="DataModel\CapacityVoltageDataRow.cs" />
