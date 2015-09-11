@@ -92,7 +92,7 @@ using System.Windows.Input;
             _controls.Add(PagesEnum.Home, new UserControl { Content = new HomeViewModel()});
             _controls.Add(PagesEnum.IVOutput, new UserControl { Content = new OutputIVViewModel() });
             _controls.Add(PagesEnum.IVTransfer, new UserControl { Content = new TransfrerIVViewModel() });
-            //_controls.Add(PagesEnum.CVCharacteristics, new UserControl { Content = new CVViewModel() });
+            _controls.Add(PagesEnum.CVCharacteristics, new UserControl { Content = new CVViewModel() });
             
         }
 

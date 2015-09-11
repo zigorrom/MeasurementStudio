@@ -52,12 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Experiments\CapacitanceMeasurementBase.cs" />
-    <Compile Include="ViewModels\CVMainViewModel.cs" />
+    <Compile Include="ViewModels\CVViewModelBase.cs" />
     <Compile Include="DataModel\CapacityFrequencyDataRow.cs" />
     <Compile Include="DataModel\CapacityFrequencyInfoRow.cs" />
     <Compile Include="DataModel\CapacityVoltageDataRow.cs" />
     <Compile Include="DataModel\CapacityVoltageInfoRow.cs" />
     <Compile Include="Experiments\CapacitanceVoltageMeasurement.cs" />
+    <Compile Include="ViewModels\CVSettingsViewModel.cs" />
     <Compile Include="ViewModels\CVViewModel.cs" />
     <Compile Include="Views\CVexpSettings.xaml.cs">
       <DependentUpon>CVexpSettings.xaml</DependentUpon>

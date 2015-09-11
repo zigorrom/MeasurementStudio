@@ -6,6 +6,8 @@
              xmlns:D3DataVisualization ="clr-namespace:DataVisualization.D3DataVisualization;assembly=DataVisualization"
              xmlns:Ranges ="clr-namespace:Helper.Ranges.SimpleRangeControl;assembly=Helper"
              xmlns:SaveControl="clr-namespace:Helper.ExperimentWorkingDirectory;assembly=Helper"
+             xmlns:vm="clr-namespace:CVCharacterization.ViewModels"
+             xmlns:v ="clr-namespace:CVCharacterization.Views"
              xmlns:StartStopControl="clr-namespace:Helper.StartStopControl;assembly=Helper"
              mc:Ignorable="d" 
              d:DesignHeight="709.698" d:DesignWidth="946">
@@ -14,9 +16,12 @@
             <D3DataVisualization:D3DataVisualizationControl/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type Ranges:RangeViewModel}">
-            <Ranges:RangeControl/>
+        <DataTemplate DataType="{x:Type vm:CVSettingsViewModel}">
+            <v:CVexpSettings/>
         </DataTemplate>
+        <!--<DataTemplate DataType="{x:Type Ranges:RangeViewModel}">
+            <Ranges:RangeControl/>
+        </DataTemplate>-->
 
         <DataTemplate DataType="{x:Type StartStopControl:ControlButtonsViewModel}">
             <StartStopControl:ControlButtonsPanel x:Name="ControlButtons"/>
@@ -57,24 +62,24 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <GroupBox Header="Voltage Range" Grid.Row="0">
+                            <GroupBox Header="{Binding RangeName}" DataContext="{Binding FirstRangeViewModel}" Grid.Row="0">
                                 <StackPanel>
-                                    <ContentControl Content="{Binding VoltageRange}"/>
+                                    <Ranges:RangeControl DataContext="{Binding}"/>
                                 </StackPanel>
                             </GroupBox>
-                            <GroupBox Header="Frequency Range" Grid.Row="1">
+                            <GroupBox Header="{Binding RangeName}" DataContext="{Binding SecondRangeViewModel}" Grid.Row="1">
                                 <StackPanel>
-                                    <ContentControl Content="{Binding FrequencyRange}"/>
+                                    <Ranges:RangeControl DataContext="{Binding}"/>
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox Header="Save directory" Grid.Row="2">
-                                <SaveControl:SaveControl/>
+                                <SaveControl:SaveControl DataContext="{Binding}"/>
                             </GroupBox>
                         </Grid>
                         
                     </TabItem>
                     <TabItem Header="Settings">
-                        <ContentControl Content="{Binding CVSettingsViewModel}"/>
+                        <ContentControl Content="{Binding SettingsViewModel}"/>
                     </TabItem>
                 </TabControl>
             </Grid>

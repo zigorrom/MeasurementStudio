@@ -11,7 +11,7 @@ namespace CVCharacterization.Experiments
 {
     public sealed class CapacitanceVoltageMeasurement:CapacitanceMeasurementBase<CapacityVoltageInfoRow,CapacityVoltageDataRow>
     {
-        public CapacitanceVoltageMeasurement(CVMainViewModel viewModel)
+        public CapacitanceVoltageMeasurement(CVViewModelBase viewModel)
             : base(viewModel, "C-V measurement")
         {
 

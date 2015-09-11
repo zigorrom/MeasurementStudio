@@ -15,7 +15,7 @@ namespace CVCharacterization.Experiments
         where InfoT : struct,IMeasurementInfo
         where DataT : struct
     {
-        protected CVMainViewModel _vm;
+        protected CVViewModelBase _vm;
 
         protected string _workingDirectory;
         protected string _experimentName;
@@ -28,7 +28,7 @@ namespace CVCharacterization.Experiments
         protected AbstractDoubleRangeHandler _firstRangeHandler;
         protected AbstractDoubleRangeHandler _secondRangeHandler;
 
-        public CapacitanceMeasurementBase(CVMainViewModel viewModel, string Name)
+        public CapacitanceMeasurementBase(CVViewModelBase viewModel, string Name)
             : base(Name)
         {
             _vm = viewModel;
@@ -65,7 +65,7 @@ namespace CVCharacterization.Experiments
         //{
         //    throw new NotImplementedException();
         //}
-        private void AssertParams()
+        protected override void AssertParams()
         {
             if (String.IsNullOrEmpty(_workingDirectory))
                 throw new ArgumentNullException("Working directory is not set");
