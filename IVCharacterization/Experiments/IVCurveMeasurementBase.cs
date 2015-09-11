@@ -18,10 +18,10 @@ namespace IVCharacterization.Experiments
     {
         protected IVMainViewModel _vm;
 
-        protected string _workingDirectory;
-        protected string _experimentName;
-        protected string _measurementName;
-        protected int _measurementCount;
+        //protected string _workingDirectory;
+        //protected string _experimentName;
+        //protected string _measurementName;
+        //protected int _measurementCount;
         protected IInstrumentResourceItem _drainIntrumentResource;
         protected IInstrumentResourceItem _gateInstrumentResource;
 
@@ -44,11 +44,11 @@ namespace IVCharacterization.Experiments
         {
             //try { 
             base.InitializeExperiment();
-
-            _workingDirectory = _vm.WorkingDirectory;
-            _experimentName = _vm.ExperimentName;
-            _measurementName = _vm.MeasurementName;
-            _measurementCount = _vm.MeasurementCount;
+            
+            WorkingDirectory = _vm.WorkingDirectory;
+            ExperimentName = _vm.ExperimentName;
+            MeasurementName = _vm.MeasurementName;
+            MeasurementCount = _vm.MeasurementCount;
 
             _dsRangeHandler = _vm.FirstRangeViewModel.RangeHandler;
             _gsRangeHandler = _vm.SecondRangeViewModel.RangeHandler;
@@ -58,7 +58,7 @@ namespace IVCharacterization.Experiments
 
             SimulateExperiment = _vm.IVSettingsViewModel.SimulationMode;
             AssertParams();
-            InitializeWriter(_workingDirectory, _experimentName);
+            InitializeWriter(WorkingDirectory, ExperimentName);
 
             //}
             //catch (Exception ex)
@@ -92,19 +92,9 @@ namespace IVCharacterization.Experiments
             _gate_Keithley.InstrumentOwner = this;
         }
 
-        private void AssertParams()
+        protected override void AssertParams()
         {
-            if (String.IsNullOrEmpty(_workingDirectory))
-                throw new ArgumentNullException("Working directory is not set");
-
-            if (String.IsNullOrEmpty(_experimentName))
-                throw new ArgumentNullException("Experiment name is not set");
-
-            if (String.IsNullOrEmpty(_measurementName))
-                throw new ArgumentNullException("MeasurementName is not set");
-
-            if (_measurementCount < 0)
-                throw new ArgumentNullException("Measurement count is not set");
+            base.AssertParams();
 
             if (_dsRangeHandler == null)
                 throw new ArgumentNullException("Drain Source range is not set");

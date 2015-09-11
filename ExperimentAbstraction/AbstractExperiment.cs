@@ -92,6 +92,25 @@ namespace ExperimentAbstraction
         }
 
 
+        protected string WorkingDirectory;
+        protected string ExperimentName;
+        protected string MeasurementName;
+        protected int MeasurementCount;
+
+        protected virtual void AssertParams()
+        {
+            if (String.IsNullOrEmpty(WorkingDirectory))
+                throw new ArgumentNullException("Working directory is not set");
+
+            if (String.IsNullOrEmpty(ExperimentName))
+                throw new ArgumentNullException("Experiment name is not set");
+
+            if (String.IsNullOrEmpty(MeasurementName))
+                throw new ArgumentNullException("MeasurementName is not set");
+
+            if (MeasurementCount < 0)
+                throw new ArgumentNullException("Measurement count is not set");
+        }
       
         
         public AbstractExperiment(string ExperimentName)

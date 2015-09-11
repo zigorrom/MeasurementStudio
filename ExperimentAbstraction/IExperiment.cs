@@ -20,6 +20,7 @@ namespace ExperimentAbstraction
         bool IsRunning { get; }
         void Pause();
         void Abort();
+        //void AssertParams();
         //void New(string ExperimentName);
         //void ClearExperiment();
         

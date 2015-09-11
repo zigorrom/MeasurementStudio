@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{aee4dc4a-a465-4239-839d-eb3b8f82aa07}</ProjectGuid>
+    <ProjectGuid>{AEE4DC4A-A465-4239-839D-EB3B8F82AA07}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NewExperiment</RootNamespace>
@@ -14,7 +14,6 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -32,73 +31,89 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    
     <Reference Include="Microsoft.CSharp" />
-    
-    
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    
-    
     <Reference Include="System.Xaml">
-	<RequiredTargetFramework>4.0</RequiredTargetFramework>
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    
-    
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    
   </ItemGroup>
-
   <ItemGroup>
-    <Page Include="UserControl1.xaml">
-       <Generator>MSBuild:Compile</Generator>
-       <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
+    <Compile Include="DataModel\MeasurementDataRow.cs" />
+    <Compile Include="DataModel\MeasurementInfoRow.cs" />
+    <Compile Include="Experiments\MeasurementBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-
+    <Compile Include="ViewModels\ExperimentMainViewModel.cs" />
+    <Compile Include="ViewModels\ExperimentSettingsViewModel.cs" />
+    <Compile Include="Views\ExperimentMainView.xaml.cs">
+      <DependentUpon>ExperimentMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExperimentSettings.xaml.cs">
+      <DependentUpon>ExperimentSettings.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-
     <AppDesigner Include="Properties\" />
-
   </ItemGroup>
-
+  <ItemGroup>
+    <Resource Include="_Definitions\_project.vstemplate.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="_preprocess.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="sw-file-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\ExperimentMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExperimentSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ExperimentAbstraction\ExperimentAbstraction.csproj">
+      <Project>{f9ff4a13-f344-4422-8908-99292fae27ee}</Project>
+      <Name>ExperimentAbstraction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ExperimentDataModel\ExperimentDataModel.csproj">
+      <Project>{f37c1293-015e-47ef-81fe-694857e4a303}</Project>
+      <Name>ExperimentDataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Helper\Helper.csproj">
+      <Project>{5216ba05-f05d-447a-965f-b1357dcb4990}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -107,5 +122,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>

@@ -49,7 +49,7 @@ namespace IVCharacterization.Experiments
 
             while (gEnumerator.MoveNext() && !StopExperiment)
             {
-                var mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("{0}_{1}", _measurementName, _measurementCount++), gEnumerator.Current, "", _measurementCount));
+                var mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("{0}_{1}", MeasurementName, MeasurementCount++), gEnumerator.Current, "", MeasurementCount));
 
                 mea.SuspendUpdate();
                 mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
