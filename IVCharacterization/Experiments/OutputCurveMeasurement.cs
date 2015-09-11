@@ -20,7 +20,7 @@ namespace IVCharacterization.Experiments
     {
 
         public OutputCurveMeasurement(IVMainViewModel viewModel)
-            : base(viewModel)
+            : base(viewModel, "Output characteristic measurement")
         {
 
         }

@@ -34,8 +34,8 @@ namespace IVCharacterization.Experiments
         protected Keithley24xx _gate_Keithley;
 
 
-        public IVCurveMeasurementBase(IVMainViewModel viewModel)
-            : base("Output curve measurement")
+        public IVCurveMeasurementBase(IVMainViewModel viewModel, string Name)
+            : base(Name)
         {
             _vm = viewModel;
         }
@@ -137,111 +137,6 @@ namespace IVCharacterization.Experiments
             _vm.MessageHandler(Message);
             //throw new NotImplementedException();
         }
-
-
-      
-        //public override void InitializeInstruments()
-        //{
-
-        //    //base.InitializeExperiment();
-        //    //throw new NotImplementedException();
-        //}
-
-        //public override void ReleaseInstruments()
-        //{
-
-        //    //throw new NotImplementedException();
-        //}
-
-
-
-        //private StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow> _writer;
-
-        //private MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow> _currentData;
-
-
-        //protected override void DoMeasurement(object sender, DoWorkEventArgs e)
-        //{
-        //    var bgw = (BackgroundWorker)sender;
-
-        //    try
-        //    {
-
-        //        bool StopExperiment = false;
-
-
-
-        //        //_writer.NewExperiment(_experimentName);
-
-        //        int exp = 10;//_dsRangeHandler.Range.PointsCount / 100 ;
-        //        //exp = exp > 0 ? exp : 1;
-        //        var count = 0;
-
-        //        var maxCount = _dsRangeHandler.TotalPoints * _gsRangeHandler.TotalPoints;
-        //        var counter = 0;
-
-        //        var progressCalculator = new Func<int, int>((c) => (int)Math.Floor(100.0 * c / maxCount));
-
-        //        var rand = new Random();
-        //        var gEnumerator = _gsRangeHandler.GetEnumerator();
-
-        //        while (gEnumerator.MoveNext() && !StopExperiment)
-        //        {
-        //            var mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("{0}_{1}", _measurementName, _measurementCount++), gEnumerator.Current, "", _measurementCount));
-
-        //            mea.SuspendUpdate();
-        //            mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
-        //            _vm.AddSeries(mea);
-        //            var dsEnumerator = _dsRangeHandler.GetEnumerator();
-        //            while (dsEnumerator.MoveNext() && !StopExperiment)
-        //            {
-        //                StopExperiment = bgw.CancellationPending;
-        //                if (StopExperiment) break;
-
-        //                if (count++ % exp == 0)
-        //                {
-        //                    _vm.ExecuteInUIThread(() =>
-        //                   {
-        //                       mea.ResumeUpdate();
-        //                       mea.SuspendUpdate();
-        //                   });
-        //                }
-        //                var r = rand.NextDouble();
-
-        //                mea.Add(new DrainSourceDataRow(dsEnumerator.Current, (r + gEnumerator.Current) * Math.Pow(dsEnumerator.Current, 2), 0));// * Math.Log(dsEnumerator.Current), 0)); //
-        //                _vm.ExecuteInUIThread(() => bgw.ReportProgress(progressCalculator(counter++)));
-        //                System.Threading.Thread.Sleep(10);
-        //            }
-
-        //            _vm.ExecuteInUIThread(() => mea.ResumeUpdate());
-        //            EnqueueData(mea);
-        //            //_writer.Write(mea);
-        //            _vm.MeasurementCount++;
-
-        //        }
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        _vm.ErrorHandler(exception);
-        //    }
-
-
-        //}
-
-
-
-
-        //public override void ClearExperiment()
-        //{
-
-        //   // throw new NotImplementedException();
-        //}
-
-        //public override void FinalizeExperiment()
-        //{
-        //    base.FinalizeExperiment();
-        //    //throw new NotImplementedException();
-        //}
 
     }
 }

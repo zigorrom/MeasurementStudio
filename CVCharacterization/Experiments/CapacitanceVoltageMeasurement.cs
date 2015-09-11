@@ -9,11 +9,22 @@ using System.Threading.Tasks;
 
 namespace CVCharacterization.Experiments
 {
-    public sealed class CapacitanceVoltageMeasurement
+    public sealed class CapacitanceVoltageMeasurement:CapacitanceMeasurementBase<CapacityVoltageInfoRow,CapacityVoltageDataRow>
     {
         public CapacitanceVoltageMeasurement(AbstractCVMainViewModel viewModel)
+            : base(viewModel, "C-V measurement")
         {
 
+        }
+
+        protected override void DoMeasurement(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void SimulateMeasurement(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 

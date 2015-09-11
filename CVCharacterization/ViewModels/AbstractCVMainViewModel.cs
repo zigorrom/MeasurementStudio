@@ -27,14 +27,14 @@ namespace CVCharacterization.ViewModels
         protected abstract void SetVisualization(out D3VisualizationViewModel visualVM);
 
         private RangeViewModel _firstRangeViewModel;
-        public RangeViewModel VoltageRange
+        public RangeViewModel FirstRangeViewModel
         {
             get { return _firstRangeViewModel; }
             set { _firstRangeViewModel = value; }
         }
 
         private RangeViewModel _secondRangeViewModel;
-        public RangeViewModel FrequencyRange
+        public RangeViewModel SecondRangeViewModel
         {
             get { return _secondRangeViewModel; }
             set { _secondRangeViewModel = value; }

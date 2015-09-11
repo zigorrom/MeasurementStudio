@@ -16,7 +16,7 @@ namespace IVCharacterization.Experiments
     {
 
         public TransferCurveMeasurement(IVMainViewModel viewModel)
-            : base(viewModel)
+            : base(viewModel,"Transfer characteristic measurement")
         {
 
         }
