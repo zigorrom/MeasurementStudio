@@ -15,7 +15,7 @@ namespace CVCharacterization.Experiments
         where InfoT : struct,IMeasurementInfo
         where DataT : struct
     {
-        protected AbstractCVMainViewModel _vm;
+        protected CVMainViewModel _vm;
 
         protected string _workingDirectory;
         protected string _experimentName;
@@ -28,7 +28,7 @@ namespace CVCharacterization.Experiments
         protected AbstractDoubleRangeHandler _firstRangeHandler;
         protected AbstractDoubleRangeHandler _secondRangeHandler;
 
-        public CapacitanceMeasurementBase(AbstractCVMainViewModel viewModel, string Name)
+        public CapacitanceMeasurementBase(CVMainViewModel viewModel, string Name)
             : base(Name)
         {
             _vm = viewModel;

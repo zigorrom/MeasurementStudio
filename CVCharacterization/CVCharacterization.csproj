@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Experiments\CapacitanceMeasurementBase.cs" />
-    <Compile Include="ViewModels\AbstractCVMainViewModel.cs" />
+    <Compile Include="ViewModels\CVMainViewModel.cs" />
     <Compile Include="DataModel\CapacityFrequencyDataRow.cs" />
     <Compile Include="DataModel\CapacityFrequencyInfoRow.cs" />
     <Compile Include="DataModel\CapacityVoltageDataRow.cs" />

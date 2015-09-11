@@ -14,9 +14,9 @@ using System.Threading.Tasks;
 
 namespace CVCharacterization.ViewModels
 {
-    public abstract class AbstractCVMainViewModel : AbstractExperimentViewModel
+    public abstract class CVMainViewModel : AbstractExperimentViewModel
     {
-        public AbstractCVMainViewModel()
+        public CVMainViewModel()
         {
             SetRangeViewModels(out _firstRangeViewModel, out _secondRangeViewModel);
             SetVisualization(out _visualization);

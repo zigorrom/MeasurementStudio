@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CVCharacterization.ViewModels
 {
-    public class CVViewModel:AbstractCVMainViewModel
+    public class CVViewModel:CVMainViewModel
     {
         public CVViewModel():base()
         {
