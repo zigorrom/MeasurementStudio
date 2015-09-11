@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="DataModel\MeasurementDataRow.cs" />
     <Compile Include="DataModel\MeasurementInfoRow.cs" />
+    <Compile Include="Experiments\Experiment.cs" />
     <Compile Include="Experiments\MeasurementBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
