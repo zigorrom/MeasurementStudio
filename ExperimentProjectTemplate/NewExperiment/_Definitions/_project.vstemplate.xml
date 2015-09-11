@@ -1,7 +1,7 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>NewExperimenProject</Name>
-    <Description>Useful to speedup your experiment development</Description>
+    <Name>NewExperimentTemplate</Name>
+    <Description>Speeds up experimentDevelopmentTime</Description>
     <DefaultName>NewExperiment</DefaultName>
     
     <ProjectType>CSharp</ProjectType>
@@ -12,7 +12,7 @@
     <LocationField>Enabled</LocationField>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
     <Icon>sw-file-icon.png</Icon>
-    <TemplateID>9d68aab3-d917-41e9-98bf-3bb1eb1cbb7b</TemplateID>
+    <TemplateID>2436a40b-961e-470d-b195-05b8599206e1</TemplateID>
     <!-- Indicates how many parent folders this item template should appear in -->
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
   </TemplateData>
