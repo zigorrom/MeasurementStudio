@@ -10,31 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CVCharacterization.Views
 {
     /// <summary>
-    /// Interaction logic for NewExperiment.xaml
+    /// Interaction logic for CVexpSettings.xaml
     /// </summary>
-    public partial class NewExperiment : Window
+    public partial class CVexpSettings : UserControl
     {
-        public NewExperiment(string CurrentExperimentName)
+        public CVexpSettings()
         {
-
             InitializeComponent();
-            ExpName.Text = CurrentExperimentName;
-        }
-
-        public string ExperimentName
-        {
-            get { return ExpName.Text; }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = true;
-
         }
     }
 }

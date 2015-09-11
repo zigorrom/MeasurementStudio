@@ -59,11 +59,11 @@
     <Compile Include="DataModel\CapacityVoltageInfoRow.cs" />
     <Compile Include="Experiments\CapacitanceVoltageMeasurement.cs" />
     <Compile Include="ViewModels\CVViewModel.cs" />
+    <Compile Include="Views\CVexpSettings.xaml.cs">
+      <DependentUpon>CVexpSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CVMainView.xaml.cs">
       <DependentUpon>CVMainView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NewExperiment.xaml.cs">
-      <DependentUpon>NewExperiment.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -114,11 +114,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\CVMainView.xaml">
+    <Page Include="Views\CVexpSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NewExperiment.xaml">
+    <Page Include="Views\CVMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

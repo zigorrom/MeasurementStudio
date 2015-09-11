@@ -12,16 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace IVCharacterization.Views
+namespace Helper.NewExperimentWindow
 {
     /// <summary>
-    /// Interaction logic for NewExperiment.xaml
+    /// Interaction logic for NewExperimentControl.xaml
     /// </summary>
-    public partial class NewExperiment : Window
+    public partial class NewExperimentControl : Window
     {
-        public NewExperiment(string CurrentExperimentName)
+        public NewExperimentControl(string CurrentExperimentName)
         {
-            
             InitializeComponent();
             ExpName.Text = CurrentExperimentName;
         }

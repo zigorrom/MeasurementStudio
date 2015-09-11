@@ -1,6 +1,7 @@
 ﻿using CVCharacterization.Experiments;
 using DataVisualization.D3DataVisualization;
 using ExperimentAbstraction;
+using Helper.NewExperimentWindow;
 using Helper.Ranges.DoubleRange;
 using Helper.Ranges.SimpleRangeControl;
 using Helper.StartStopControl;
@@ -60,7 +61,7 @@ namespace CVCharacterization.ViewModels
         
         protected override string GetExperimentName()
         {
-            var d = new CVCharacterization.Views.NewExperiment(ExperimentName);
+            var d = new NewExperimentControl(ExperimentName);
             if (d.ShowDialog().Value)
                 return d.ExperimentName;
             return String.Empty;

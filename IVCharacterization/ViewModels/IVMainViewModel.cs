@@ -8,6 +8,7 @@ using System.Windows;
 using IVCharacterization.ViewModels;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using Helper.StartStopControl;
+using Helper.NewExperimentWindow;
 
 
 namespace IVCharacterization
@@ -73,7 +74,7 @@ namespace IVCharacterization
         }
         protected override string GetExperimentName()
         {
-            var d = new IVCharacterization.Views.NewExperiment(ExperimentName);
+            var d = new NewExperimentControl(ExperimentName);
             if (d.ShowDialog().Value)
                 return d.ExperimentName;
             return String.Empty;
