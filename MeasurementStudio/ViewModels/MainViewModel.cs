@@ -47,7 +47,7 @@ using System.Windows.Input;
         {
             get
             {
-                return _keyPressed ?? (_keyPressed = new RoutedUICommand("keyInput", "keyPressed", typeof(IMainViewModel)));
+                return _keyPressed ?? (_keyPressed = new RelayCommand(() => System.Windows.MessageBox.Show("Key pressed")));//new RoutedUICommand("keyInput", "keyPressed", typeof(IMainViewModel)));
             }
         }
 

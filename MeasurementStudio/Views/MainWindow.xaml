@@ -16,10 +16,10 @@
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>
-    <Window.InputBindings>
-        <KeyBinding  Command="" />
+    <!--<Window.InputBindings>
+        <KeyBinding  Command="KeyPressed" />
             
-    </Window.InputBindings>
+    </Window.InputBindings>-->
     <Window.Resources>
         <DataTemplate DataType="{x:Type local:HomeViewModel}">
             <local:HomeView/>
