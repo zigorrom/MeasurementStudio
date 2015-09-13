@@ -1,4 +1,5 @@
-﻿using Helper.StartStopControl;
+﻿using Helper.NewExperimentWindow;
+using Helper.StartStopControl;
 using Helper.ViewModelInterface;
 using Microsoft.TeamFoundation.MVVM;
 using System;
@@ -110,7 +111,13 @@ namespace ExperimentAbstraction
                 ClearVisualization();
             })); }
         }
-        protected abstract string GetExperimentName();
+        private string GetExperimentName()
+        {
+            var d = new NewExperimentControl(ExperimentName);
+            if (d.ShowDialog().Value)
+                return d.ExperimentName;
+            return String.Empty;
+        }
 
 
         private int _currentProgress;

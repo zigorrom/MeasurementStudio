@@ -72,13 +72,13 @@ namespace IVCharacterization
         {
             ExecuteInUIThread(() => Visualization.Clear());
         }
-        protected override string GetExperimentName()
-        {
-            var d = new NewExperimentControl(ExperimentName);
-            if (d.ShowDialog().Value)
-                return d.ExperimentName;
-            return String.Empty;
-        }
+        //protected override string GetExperimentName()
+        //{
+        //    var d = new NewExperimentControl(ExperimentName);
+        //    if (d.ShowDialog().Value)
+        //        return d.ExperimentName;
+        //    return String.Empty;
+        //}
        
     }
 }

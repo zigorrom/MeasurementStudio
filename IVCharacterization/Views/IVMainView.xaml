@@ -15,6 +15,13 @@
              x:Class="IVCharacterization.IVMainView"
              mc:Ignorable="d" 
              d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578">
+    <!--<UserControl.InputBindings>
+        --><!--<KeyBinding Command="{SelectWorkingDirectory" Modifiers="Control" Gesture="W+D"/>--><!--
+    </UserControl.InputBindings>-->
+    <UserControl.InputBindings>
+        <KeyBinding Command="{Binding SelectWorkingDirectory}" Modifiers="Control" Key="W"/>
+        <KeyBinding Command="{Binding CreateNewExperiment}" Modifiers="Control" Key="N"/>
+    </UserControl.InputBindings>
     <UserControl.Resources>
         <GridLength x:Key="RangeGroupHeight">205*</GridLength>
         <GridLength x:Key="RangeControlHeight">58*</GridLength>
