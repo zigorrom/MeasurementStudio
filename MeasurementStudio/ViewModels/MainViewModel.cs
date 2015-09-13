@@ -41,6 +41,16 @@ using System.Windows.Input;
 
         private PagesEnum _current;
 
+
+        private ICommand _keyPressed;
+        public ICommand KeyPressed
+        {
+            get
+            {
+                return _keyPressed ?? (_keyPressed = new RoutedUICommand("keyInput", "keyPressed", typeof(IMainViewModel)));
+            }
+        }
+
         private ICommand _selectExperiment;
         public ICommand SelectExperiment
         {
@@ -109,5 +119,8 @@ using System.Windows.Input;
                 return;
             View.ShowPage(_controls[_current]);
         }
+
+
+        
     }
 }

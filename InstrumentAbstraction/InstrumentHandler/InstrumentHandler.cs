@@ -73,7 +73,7 @@ namespace InstrumentHandlerNamespace
 
             InitializeProperties();
 
-            InitPlugins();
+            //InitPlugins();
             
             DiscoverInstruments();
             

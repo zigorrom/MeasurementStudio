@@ -11,10 +11,15 @@
         x:Class="MeasurementStudio.MainWindow"
          
         Title="MainWindow" WindowState="Maximized">
+    
+    
     <Window.DataContext>
-        
         <local:MainViewModel/>
     </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding  Command="" />
+            
+    </Window.InputBindings>
     <Window.Resources>
         <DataTemplate DataType="{x:Type local:HomeViewModel}">
             <local:HomeView/>
