@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http.SelfHost;
 using System.Web.Http;
+using Hioki3432;
+using Instruments;
 
 namespace test
 {
@@ -20,14 +22,17 @@ namespace test
         static void Main(string[] args)
         {
 
-            var config = new MyConfig("http://localhost:8999"); //new HttpSelfHostConfiguration("http://localhost:8999");
-            var messageHandler = new MySimpleHttpMessageHandler();
-            //config.Routes.MapHttpRoute("default", "api/{controller}/{id}",new { id = RouteParameter.Optional });
-            var server = new HttpSelfHostServer(config, new MySimpleHttpMessageHandler());
-            var task = server.OpenAsync();
-            task.Wait();
-            Console.WriteLine("Server is up and running");
-            Console.ReadLine();
+            var h = new Hioki3532("","","COM8", 9600, System.IO.Ports.Parity.None, 7, System.IO.Ports.StopBits.One, System.IO.Ports.Handshake.None, Delimiter.CR_LF);
+
+
+            //var config = new MyConfig("http://localhost:8999"); //new HttpSelfHostConfiguration("http://localhost:8999");
+            //var messageHandler = new MySimpleHttpMessageHandler();
+            ////config.Routes.MapHttpRoute("default", "api/{controller}/{id}",new { id = RouteParameter.Optional });
+            //var server = new HttpSelfHostServer(config, new MySimpleHttpMessageHandler());
+            //var task = server.OpenAsync();
+            //task.Wait();
+            //Console.WriteLine("Server is up and running");
+            //Console.ReadLine();
 
             //Console.WriteLine(Environment.UserName);
             //Console.ReadKey();
