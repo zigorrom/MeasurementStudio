@@ -6,6 +6,6 @@
     <StackPanel Orientation="Vertical" Margin="5" FocusManager.FocusedElement="{Binding ElementName=ExpName}">
         <TextBlock Text="Enter your experiment name" HorizontalAlignment="Center" Margin="0,10" FontSize="20"/>
         <TextBox x:Name="ExpName" HorizontalContentAlignment="Center" Margin="5"/>
-        <Button Content="OK" Click="Button_Click" HorizontalAlignment="Center" IsDefault="True"/>
+        <Button Content="OK" Click="Button_Click" IsDefault="True" Height="30" Margin="5"/>
     </StackPanel>
 </Window>
