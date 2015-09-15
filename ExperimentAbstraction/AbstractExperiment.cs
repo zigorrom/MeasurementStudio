@@ -26,7 +26,6 @@ namespace ExperimentAbstraction
         private WaitHandle _experimentStopped = new AutoResetEvent(false);
         private BackgroundWorker _worker;
 
-
        
         protected bool SimulateExperiment
         {

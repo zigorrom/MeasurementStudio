@@ -35,7 +35,10 @@ namespace IVCharacterization.Experiments
         protected Keithley24xx _gate_Keithley;
         protected IVexpSettingsViewModel _settings;
 
-
+        protected string GetGraphLineDescription(string Name, double Value, string  Units)
+        {
+            return String.Format("{0} = {1:f4} {2}", Name, Value, Units);
+        }
 
         public IVCurveMeasurementBase(IVMainViewModel viewModel, string Name)
             : base(Name)

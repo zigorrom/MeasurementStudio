@@ -39,7 +39,7 @@ namespace IVCharacterization.Experiments
 
                 mea.SuspendUpdate();
                 mea.SetXYMapping(x => new Point(x.GateSourceVoltage, x.DrainCurrent));
-                _vm.AddSeries(mea, String.Concat("Vds = ",dsEnumerator.Current,"V"));
+                _vm.AddSeries(mea, GetGraphLineDescription("Vds", dsEnumerator.Current, "V"));
 
                 _drainKeithley.SetSourceVoltage(dsEnumerator.Current);
 
@@ -98,17 +98,17 @@ namespace IVCharacterization.Experiments
             var progressCalculator = new Func<int, int>((c) => (int)Math.Floor(100.0 * c / maxCount));
 
             var rand = new Random();
-            var gEnumerator = _firstRangeHandler.GetEnumerator();
+            var dsEnumerator = _firstRangeHandler.GetEnumerator();
 
-            while (gEnumerator.MoveNext() && !StopExperiment)
+            while (dsEnumerator.MoveNext() && !StopExperiment)
             {
-                var mea = new MeasurementData<GateSourceMeasurementInfoRow, GateSourceDataRow>(new GateSourceMeasurementInfoRow(String.Format("{0}_{1}", MeasurementName, MeasurementCount++), gEnumerator.Current, "", MeasurementCount));
+                var mea = new MeasurementData<GateSourceMeasurementInfoRow, GateSourceDataRow>(new GateSourceMeasurementInfoRow(String.Format("{0}_{1}", MeasurementName, MeasurementCount++), dsEnumerator.Current, "", MeasurementCount));
 
                 mea.SuspendUpdate();
                 mea.SetXYMapping(x => new Point(x.GateSourceVoltage, x.DrainCurrent));
-                _vm.AddSeries(mea,String.Concat("Vds = " , gEnumerator.Current," V"));
-                var dsEnumerator = _secondRangeHandler.GetEnumerator();
-                while (dsEnumerator.MoveNext() && !StopExperiment)
+                _vm.AddSeries(mea, GetGraphLineDescription("Vds", dsEnumerator.Current, "V"));
+                var gEnumerator = _secondRangeHandler.GetEnumerator();
+                while (gEnumerator.MoveNext() && !StopExperiment)
                 {
                     StopExperiment = bgw.CancellationPending;
                     if (StopExperiment)
@@ -126,7 +126,7 @@ namespace IVCharacterization.Experiments
                     }
                     var r = rand.NextDouble();
 
-                    mea.Add(new GateSourceDataRow(dsEnumerator.Current, (r + gEnumerator.Current) * Math.Pow(dsEnumerator.Current, 2), 0));// * Math.Log(dsEnumerator.Current), 0)); //
+                    mea.Add(new GateSourceDataRow(gEnumerator.Current, (r + dsEnumerator.Current) * Math.Pow(gEnumerator.Current, 2), 0));// * Math.Log(dsEnumerator.Current), 0)); //
                     _vm.ExecuteInUIThread(() => bgw.ReportProgress(progressCalculator(counter++)));
                     System.Threading.Thread.Sleep(10);
                 }
