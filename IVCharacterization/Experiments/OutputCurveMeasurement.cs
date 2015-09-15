@@ -32,11 +32,11 @@ namespace IVCharacterization.Experiments
             int refreshEvery = 10;
             var count = 0;
             var counter = 0;
-            var maxCount = _dsRangeHandler.TotalPoints * _gsRangeHandler.TotalPoints;
+            var maxCount = _firstRangeHandler.TotalPoints * _secondRangeHandler.TotalPoints;
             var progressCalc = new Func<int, int>((c) => (int)Math.Floor(100.0 * c / maxCount));
             _drainKeithley.SwitchOn();
             _gate_Keithley.SwitchOn();
-            var gEnumerator = _gsRangeHandler.GetEnumerator();
+            var gEnumerator = _secondRangeHandler.GetEnumerator();
             while (gEnumerator.MoveNext() && !StopExperiment)
             {
                 var mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("{0}_{1}", MeasurementName, MeasurementCount++), gEnumerator.Current, "", MeasurementCount));
@@ -47,7 +47,7 @@ namespace IVCharacterization.Experiments
 
                 _gate_Keithley.SetSourceVoltage(gEnumerator.Current);
 
-                var dsEnumerator = _dsRangeHandler.GetEnumerator();
+                var dsEnumerator = _firstRangeHandler.GetEnumerator();
                 while (dsEnumerator.MoveNext() && !StopExperiment)
                 {
                     StopExperiment = bgw.CancellationPending;
@@ -96,13 +96,13 @@ namespace IVCharacterization.Experiments
             //exp = exp > 0 ? exp : 1;
             var count = 0;
 
-            var maxCount = _dsRangeHandler.TotalPoints * _gsRangeHandler.TotalPoints;
+            var maxCount = _firstRangeHandler.TotalPoints * _secondRangeHandler.TotalPoints;
             var counter = 0;
 
             var progressCalculator = new Func<int, int>((c) => (int)Math.Floor(100.0 * c / maxCount));
 
             var rand = new Random();
-            var gEnumerator = _gsRangeHandler.GetEnumerator();
+            var gEnumerator = _secondRangeHandler.GetEnumerator();
 
             while (gEnumerator.MoveNext() && !StopExperiment)
             {
@@ -111,7 +111,7 @@ namespace IVCharacterization.Experiments
                 mea.SuspendUpdate();
                 mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
                 _vm.AddSeries(mea);
-                var dsEnumerator = _dsRangeHandler.GetEnumerator();
+                var dsEnumerator = _firstRangeHandler.GetEnumerator();
                 while (dsEnumerator.MoveNext() && !StopExperiment)
                 {
                     StopExperiment = bgw.CancellationPending;

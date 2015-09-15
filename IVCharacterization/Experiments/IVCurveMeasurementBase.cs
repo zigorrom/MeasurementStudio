@@ -27,8 +27,8 @@ namespace IVCharacterization.Experiments
         protected IInstrumentResourceItem _gateInstrumentResource;
 
 
-        protected AbstractDoubleRangeHandler _dsRangeHandler;
-        protected AbstractDoubleRangeHandler _gsRangeHandler;
+        protected AbstractDoubleRangeHandler _firstRangeHandler;
+        protected AbstractDoubleRangeHandler _secondRangeHandler;
 
         protected Keithley24xx _drainKeithley;
 
@@ -53,8 +53,8 @@ namespace IVCharacterization.Experiments
             MeasurementName = _vm.MeasurementName;
             MeasurementCount = _vm.MeasurementCount;
 
-            _dsRangeHandler = _vm.FirstRangeViewModel.RangeHandler;
-            _gsRangeHandler = _vm.SecondRangeViewModel.RangeHandler;
+            _firstRangeHandler = _vm.FirstRangeViewModel.RangeHandler;
+            _secondRangeHandler = _vm.SecondRangeViewModel.RangeHandler;
 
             _settings = _vm.IVSettingsViewModel;
 
@@ -109,11 +109,11 @@ namespace IVCharacterization.Experiments
         {
             base.AssertParams();
 
-            if (_dsRangeHandler == null)
-                throw new ArgumentNullException("Drain Source range is not set");
+            if (_firstRangeHandler == null)
+                throw new ArgumentNullException("Range is not set");
 
-            if (_gsRangeHandler == null)
-                throw new ArgumentNullException("Gate Source range is not set");
+            if (_secondRangeHandler == null)
+                throw new ArgumentNullException("Range is not set");
             if (!SimulateExperiment)
             {
                 if (_drainIntrumentResource == null)
