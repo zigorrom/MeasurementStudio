@@ -211,7 +211,6 @@ namespace Instruments
         public virtual void Dispose()
         {
             if (m_session != null)
-
                 m_session.Dispose();
             m_session = null;
         }
