@@ -14,6 +14,13 @@
     <Grid>
         <d3:ChartPlotter x:Name="plotter" NewLegendVisible="True" LegendVisibility="Collapsed"  >
             <d3:ChartPlotter.Resources>
+                <!--<Style TargetType="{x:Type d3:NewLegend}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType=""
+                        </Setter.Value>
+                    </Setter>
+                </Style>-->
                 <Style TargetType="{x:Type d3:NewLegendItem}">
                     <Setter Property="Template">
                         <Setter.Value>
