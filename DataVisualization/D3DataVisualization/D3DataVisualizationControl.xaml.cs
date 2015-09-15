@@ -102,10 +102,10 @@ namespace DataVisualization.D3DataVisualization
             plotter.MainVerticalAxis = yAxis;
         }
         
-        public void AddSeries(IPointDataSource data)
+        public void AddSeries(IPointDataSource data, string Description)
         {
             //LineGraph a = new LineGraph();
-            plotter.AddLineGraph(data);
+            plotter.AddLineGraph(data,Description);
             //Dispatcher.Invoke(new Action(() => plotter.AddLineGraph(data)));
             
         }

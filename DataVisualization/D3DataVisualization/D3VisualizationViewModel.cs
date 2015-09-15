@@ -112,9 +112,9 @@ namespace DataVisualization.D3DataVisualization
 
 
 
-        public void AddLineGraph(IPointDataSource data)
+        public void AddLineGraph(IPointDataSource data, string Description)
         {
-            View.AddSeries(data);
+            View.AddSeries(data, Description);
         }
 
         //public async Task ExecuteInUIThread(Action action)

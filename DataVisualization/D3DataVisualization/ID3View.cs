@@ -13,7 +13,7 @@ namespace DataVisualization.D3DataVisualization
     {
         void SetScale(GraphScaleType scaleType);
 
-        void AddSeries(IPointDataSource data);
+        void AddSeries(IPointDataSource data, string Description);
 
         void Clear();
     }

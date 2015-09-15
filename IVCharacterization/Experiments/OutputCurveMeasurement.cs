@@ -43,7 +43,7 @@ namespace IVCharacterization.Experiments
 
                 mea.SuspendUpdate();
                 mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
-                _vm.AddSeries(mea);
+                _vm.AddSeries(mea,String.Concat("Vg = ",gEnumerator.Current," V"));
 
                 _gate_Keithley.SetSourceVoltage(gEnumerator.Current);
 
@@ -110,7 +110,7 @@ namespace IVCharacterization.Experiments
 
                 mea.SuspendUpdate();
                 mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
-                _vm.AddSeries(mea);
+                _vm.AddSeries(mea, String.Concat("Vg = ", gEnumerator.Current, " V"));
                 var dsEnumerator = _firstRangeHandler.GetEnumerator();
                 while (dsEnumerator.MoveNext() && !StopExperiment)
                 {

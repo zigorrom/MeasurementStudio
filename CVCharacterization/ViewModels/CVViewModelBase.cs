@@ -50,13 +50,13 @@ namespace CVCharacterization.ViewModels
             set { SetField(ref _visualization, value, "Visualization"); }
         }
 
-        public void AddSeries(IPointDataSource Points)
+        public void AddSeries(IPointDataSource Points, string Description)
         {
             ExecuteInUIThread(() =>
                 {
                     if(Visualization!=null)
                     {
-                        Visualization.AddLineGraph(Points);
+                        Visualization.AddLineGraph(Points,Description);
                     }
                 });
         }

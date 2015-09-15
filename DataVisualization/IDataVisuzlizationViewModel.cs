@@ -25,6 +25,6 @@ namespace DataVisualization
         int StrokeThickness { get; set; }
         GraphScaleType ScaleType { get; set; }
         void Clear();
-        void AddLineGraph(IPointDataSource data);
+        void AddLineGraph(IPointDataSource data,string Description);
     }
 }
