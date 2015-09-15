@@ -27,7 +27,62 @@ namespace IVCharacterization.Experiments
 
         protected override void DoMeasurement(object sender, DoWorkEventArgs e)
         {
-            throw new NotImplementedException();
+            var bgw = (BackgroundWorker)sender;
+            bool StopExperiment = false;
+            int refreshEvery = 10;
+            var count = 0;
+            var counter = 0;
+            var maxCount = _dsRangeHandler.TotalPoints * _gsRangeHandler.TotalPoints;
+            var progressCalc = new Func<int, int>((c) => (int)Math.Floor(100.0 * c / maxCount));
+            
+            var gEnumerator = _gsRangeHandler.GetEnumerator();
+            while (gEnumerator.MoveNext() && !StopExperiment)
+            {
+                var mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("{0}_{1}", MeasurementName, MeasurementCount++), gEnumerator.Current, "", MeasurementCount));
+
+                mea.SuspendUpdate();
+                mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
+                _vm.AddSeries(mea);
+
+                _gate_Keithley.SetSourceVoltage(gEnumerator.Current);
+
+                var dsEnumerator = _dsRangeHandler.GetEnumerator();
+                while (dsEnumerator.MoveNext() && !StopExperiment)
+                {
+                    StopExperiment = bgw.CancellationPending;
+                    if (StopExperiment)
+                    {
+                        e.Cancel = true; break;
+                    }
+
+                    if (count++ % refreshEvery == 0)
+                    {
+                        _vm.ExecuteInUIThread(() =>
+                        {
+                            mea.ResumeUpdate();
+                            mea.SuspendUpdate();
+                        });
+                    }
+
+                    _drainKeithley.SetSourceVoltage(dsEnumerator.Current);
+
+                    double drainVolt, drainCurr, drainRes;
+                    _drainKeithley.MeasureAll(out drainVolt, out drainCurr, out drainRes);
+                    double gateVolt, gateCurr, gateRes;
+                    _gate_Keithley.MeasureAll(out gateVolt, out gateCurr, out gateRes);
+
+                    mea.Add(new DrainSourceDataRow(drainVolt, drainCurr, gateCurr));
+                    _vm.ExecuteInUIThread(() => bgw.ReportProgress(progressCalc(counter++)));
+                    System.Threading.Thread.Sleep(10);
+                }
+
+                _vm.ExecuteInUIThread(() => mea.ResumeUpdate());
+                EnqueueData(mea);
+                //_writer.Write(mea);
+                _vm.MeasurementCount++;
+
+            }
+
         }
 
         protected override void SimulateMeasurement(object sender, DoWorkEventArgs e)

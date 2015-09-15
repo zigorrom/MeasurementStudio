@@ -12,9 +12,9 @@ namespace IVCharacterization.DataModel
     public struct GateSourceDataRow:IFormattable
     {
         
-        public GateSourceDataRow(double drainSourceVoltage, double drainCurrent, double gateCurrent)
+        public GateSourceDataRow(double gateSourceVoltage, double drainCurrent, double gateCurrent)
         {
-            m_GateSourceVoltage = drainSourceVoltage;
+            m_GateSourceVoltage = gateSourceVoltage;
             m_DrainCurrent = drainCurrent;
             m_GateCurrent = gateCurrent; 
         }

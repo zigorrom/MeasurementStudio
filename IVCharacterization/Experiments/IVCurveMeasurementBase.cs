@@ -2,6 +2,7 @@
 using ExperimentDataModel;
 using Helper.Ranges.RangeHandlers;
 using Instruments;
+using IVCharacterization.ViewModels;
 using Keithley24xxNamespace;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,8 @@ namespace IVCharacterization.Experiments
         protected Keithley24xx _drainKeithley;
 
         protected Keithley24xx _gate_Keithley;
+        protected IVexpSettingsViewModel _settings;
+
 
 
         public IVCurveMeasurementBase(IVMainViewModel viewModel, string Name)
@@ -53,11 +56,13 @@ namespace IVCharacterization.Experiments
             _dsRangeHandler = _vm.FirstRangeViewModel.RangeHandler;
             _gsRangeHandler = _vm.SecondRangeViewModel.RangeHandler;
 
-            _drainIntrumentResource = _vm.IVSettingsViewModel.DrainInstrumentResource;
-            _gateInstrumentResource = _vm.IVSettingsViewModel.GateInstrumentResource;
+            _settings = _vm.IVSettingsViewModel;
 
-            SimulateExperiment = _vm.IVSettingsViewModel.SimulationMode;
-            AssertParams();
+            _drainIntrumentResource = _settings.DrainInstrumentResource;
+            _gateInstrumentResource = _settings.GateInstrumentResource;
+
+            SimulateExperiment = _settings.SimulationMode;
+            //AssertParams();
             InitializeWriter(WorkingDirectory, ExperimentName);
 
             //}
@@ -69,8 +74,7 @@ namespace IVCharacterization.Experiments
 
         public override void InitializeInstruments()
         {
-            //try
-            //{
+            
             _drainKeithley = new Keithley24xx(_drainIntrumentResource.Name, _drainIntrumentResource.Alias, _drainIntrumentResource.Resource);
             if (_drainKeithley.IsAlive(true))
                 throw new ArgumentException("Drain Keithley doesnt respond");
@@ -78,11 +82,20 @@ namespace IVCharacterization.Experiments
             _gate_Keithley = new Keithley24xx(_gateInstrumentResource.Name, _gateInstrumentResource.Alias, _gateInstrumentResource.Resource);
             if (_drainKeithley.IsAlive(true))
                 throw new ArgumentException("Gate Keithley doesnt respond");
-            //}
-            //catch (Exception ex)
-            //{
-            //    _vm.ErrorHandler(ex);
-            //}
+
+
+            if(!_drainKeithley.SetCurrentLimit(_settings.CurrentCompliance))
+            {
+                HandleMessage("Current limit was not set for drain");
+            }
+
+            if(!_gate_Keithley.SetCurrentLimit(_settings.CurrentCompliance))
+            {
+                HandleMessage("Current Limit was not set for gate");
+            }
+            
+            
+
         }
 
         public override void OwnInstruments()

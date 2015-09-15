@@ -131,12 +131,14 @@ namespace ExperimentAbstraction
             InitializeExperiment();
             if (SimulateExperiment)
             {
+                AssertParams();
                 SimulateMeasurement(sender, e);
             }
             else
             {
                 InitializeInstruments();
                 OwnInstruments();
+                AssertParams();
                 DoMeasurement(sender, e);
             }
         }

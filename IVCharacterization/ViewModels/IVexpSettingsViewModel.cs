@@ -1,5 +1,6 @@
 ﻿using InstrumentHandlerNamespace;
 using Instruments;
+using Keithley24xxNamespace;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -67,9 +68,6 @@ namespace IVCharacterization.ViewModels
             get { return _gateInstrumentResource; }
             set { SetField(ref _gateInstrumentResource, value, "GateInstrumentResource"); }
         }
-
-
-
 
         private bool _useSampleSelector;
         public bool UseSampleSelector
@@ -139,6 +137,21 @@ namespace IVCharacterization.ViewModels
         {
             get { return _simulationMode; }
             set { SetField(ref _simulationMode, value, "SimulationMode"); }
+        }
+
+        private MeasurementSpeed _measurementSpeed;
+
+        public MeasurementSpeed measurementSpeed
+        {
+            get { return _measurementSpeed; }
+            set { SetField(ref _measurementSpeed, value, "measurementSpeed"); }
+        }
+
+        private bool _waitForValueSet;
+        public bool WaitForValueSet
+        {
+            get { return _waitForValueSet; }
+            set { SetField(ref _waitForValueSet, value, "WaitForValueSet"); }
         }
 
 
