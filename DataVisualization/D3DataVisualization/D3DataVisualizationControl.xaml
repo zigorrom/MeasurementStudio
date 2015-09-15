@@ -14,13 +14,6 @@
     <Grid>
         <d3:ChartPlotter x:Name="plotter" NewLegendVisible="True" LegendVisibility="Collapsed"  >
             <d3:ChartPlotter.Resources>
-                <DataTemplate DataType="{x:Type d3:LineGraph}">
-                    <StackPanel Orientation="Horizontal">
-                        <Line Width="15" Height="15" X1="0" Y1="0" X2="15" Y2="15" Stroke="{Binding Path=Stroke}" StrokeThickness="2"/>
-                        <TextBlock Margin="5,0,0,0" Text="{Binding Path=Description}"/>
-                    </StackPanel>
-                </DataTemplate>
-                
                 <Style TargetType="{x:Type d3:NewLegendItem}">
                     <Setter Property="Template">
                         <Setter.Value>
@@ -29,13 +22,6 @@
                                     <CheckBox Margin="5,2,0,2" IsChecked="{Binding Path=Visibility, Converter={StaticResource  VisibilityToCheckedConverter}}"/>
                                     <Line Margin="5,2,0,2" Width="15" Height="15" X1="0" Y1="0" X2="15" Y2="15" Stroke="{Binding Path=Stroke}" StrokeThickness="2"/>
                                     <TextBlock Text="{Binding Path=Description}" Margin="5,2,0,2"/>
-                                    
-                                    <!--<ContentControl>
-                                        <ContentControl.Content>
-                                            <Binding Path="(d3:NewLegend.Description)"/>
-                                        </ContentControl.Content>
-
-                                    </ContentControl>-->
                                 </StackPanel>
                             </ControlTemplate>
                         </Setter.Value>
