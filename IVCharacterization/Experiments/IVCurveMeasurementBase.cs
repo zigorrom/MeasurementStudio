@@ -76,11 +76,11 @@ namespace IVCharacterization.Experiments
         {
             
             _drainKeithley = new Keithley24xx(_drainIntrumentResource.Name, _drainIntrumentResource.Alias, _drainIntrumentResource.Resource);
-            if (_drainKeithley.IsAlive(true))
+            if (!_drainKeithley.IsAlive(true))
                 throw new ArgumentException("Drain Keithley doesnt respond");
 
             _gate_Keithley = new Keithley24xx(_gateInstrumentResource.Name, _gateInstrumentResource.Alias, _gateInstrumentResource.Resource);
-            if (_drainKeithley.IsAlive(true))
+            if (!_drainKeithley.IsAlive(true))
                 throw new ArgumentException("Gate Keithley doesnt respond");
 
 

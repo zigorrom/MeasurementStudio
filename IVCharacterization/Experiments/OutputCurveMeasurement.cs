@@ -34,7 +34,8 @@ namespace IVCharacterization.Experiments
             var counter = 0;
             var maxCount = _dsRangeHandler.TotalPoints * _gsRangeHandler.TotalPoints;
             var progressCalc = new Func<int, int>((c) => (int)Math.Floor(100.0 * c / maxCount));
-            
+            _drainKeithley.SwitchOn();
+            _gate_Keithley.SwitchOn();
             var gEnumerator = _gsRangeHandler.GetEnumerator();
             while (gEnumerator.MoveNext() && !StopExperiment)
             {
@@ -73,7 +74,7 @@ namespace IVCharacterization.Experiments
 
                     mea.Add(new DrainSourceDataRow(drainVolt, drainCurr, gateCurr));
                     _vm.ExecuteInUIThread(() => bgw.ReportProgress(progressCalc(counter++)));
-                    System.Threading.Thread.Sleep(10);
+                    //System.Threading.Thread.Sleep(10);
                 }
 
                 _vm.ExecuteInUIThread(() => mea.ResumeUpdate());
@@ -82,7 +83,8 @@ namespace IVCharacterization.Experiments
                 _vm.MeasurementCount++;
 
             }
-
+            _drainKeithley.SwitchOff();
+            _gate_Keithley.SwitchOff();
         }
 
         protected override void SimulateMeasurement(object sender, DoWorkEventArgs e)
