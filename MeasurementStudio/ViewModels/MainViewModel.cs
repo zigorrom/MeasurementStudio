@@ -41,7 +41,6 @@ using System.Windows.Input;
 
         private PagesEnum _current;
 
-
         private ICommand _keyPressed;
         public ICommand KeyPressed
         {
