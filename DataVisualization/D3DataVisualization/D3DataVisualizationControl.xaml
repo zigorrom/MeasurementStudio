@@ -14,13 +14,27 @@
     <Grid>
         <d3:ChartPlotter x:Name="plotter" NewLegendVisible="True" LegendVisibility="Collapsed"  >
             <d3:ChartPlotter.Resources>
-                <!--<Style TargetType="{x:Type d3:NewLegend}">
+               
+                <Style TargetType="{x:Type d3:NewLegend}">
                     <Setter Property="Template">
                         <Setter.Value>
-                            <ControlTemplate TargetType=""
+                            <ControlTemplate TargetType="{x:Type d3:NewLegend}">
+                                <Grid>
+                                    <!--<Rectangle Name="backRect" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}"
+                                            RadiusX="10"
+                                            RadiusY="10"
+                                            StrokeThickness="1"/>-->
+                                    <Expander>
+                                        <!--<ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="5">
+                                            <ItemsPresenter/>
+                                        </ScrollViewer>-->
+                                    </Expander>
+                                </Grid>
+                            </ControlTemplate>
                         </Setter.Value>
                     </Setter>
-                </Style>-->
+                </Style>
+                
                 <Style TargetType="{x:Type d3:NewLegendItem}">
                     <Setter Property="Template">
                         <Setter.Value>
