@@ -106,7 +106,6 @@ namespace DynamicSignalAnalyzer
 
     }
 
-
     public enum SampleRatesEnum : int
     {
         Fs3K,
@@ -128,6 +127,7 @@ namespace DynamicSignalAnalyzer
         Fs420K,
         Fs450K
     }
+
     public struct SampleRates
     {
         private const int Fs3K = 3072;
@@ -241,7 +241,6 @@ namespace DynamicSignalAnalyzer
 
     }
 
-
     public enum CutoffFrequenciesEnum : int
     {
         f1k,
@@ -263,6 +262,7 @@ namespace DynamicSignalAnalyzer
         f140k,
         f150k
     }
+   
     public struct CutoffFrequencies
     {
         private const int F1K = 1000;

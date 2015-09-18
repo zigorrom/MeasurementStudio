@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DiscretizationParameters.cs" />
+    <Compile Include="DynamicSignalAnalyzer.cs" />
     <Compile Include="IDataRouter.cs" />
     <Compile Include="ITransformDataContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
