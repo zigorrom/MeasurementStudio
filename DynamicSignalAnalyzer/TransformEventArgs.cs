@@ -8,6 +8,6 @@ namespace DynamicSignalAnalyzer
 {
     public class TransformEventArgs:EventArgs
     {
-        public int AveragesDone { get; }
+        public int AveragesDone { get; private set; }
     }
 }

@@ -9,7 +9,7 @@ namespace DynamicSignalAnalyzer
 
     public interface ITransformDataContract
     {
-        event TransformEventArgs NewdDataHandled;
+        event EventHandler<TransformEventArgs>  NewdDataHandled;
         event EventHandler AveragesNumberReached;
     }
 }
