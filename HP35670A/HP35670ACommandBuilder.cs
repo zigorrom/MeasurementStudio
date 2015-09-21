@@ -19,6 +19,54 @@ namespace HP35670ANamespace
         On,
         Off
     }
+    public enum ActiveTracesEnum
+    {
+        A,
+        B,
+        C,
+        D,
+        AB,
+        CD,
+        ABCD
+    }
+
+    public enum FormatEnum
+    {
+        ASCII,
+        REAL
+    }
+
+    public enum CMDSTR
+    {
+        XFR_POW
+    }
+
+    public enum VoltageUnits
+    {
+        V,
+        V2,
+        VdivRTHZ,
+        V2divHZ,
+        V2SdivHZ
+    }
+
+    public enum CalibrationEnum
+    {
+        ON,
+        OFF,
+        ONCE
+    }
+
+    public enum FrequencyResolutionEnum : int
+    {
+        r100 = 100,
+        r200 = 200,
+        r400 = 400,
+        r800 = 800,
+        r1600 = 1600
+    }
+
+
 
     public class HP35670ACommandBuilder:AbstractCommandBuilder
     {
@@ -67,16 +115,7 @@ namespace HP35670ANamespace
             return StringFormat(CommandFormat, channelName, s);
         }
 
-        public enum ActiveTracesEnum
-        {
-            A,
-            B,
-            C,
-            D,
-            AB,
-            CD,
-            ABCD
-        }
+        
 
         public string CALCulateACTive(int channelName, ActiveTracesEnum activeTraces)
         {
@@ -109,13 +148,7 @@ namespace HP35670ANamespace
 
         }
 
-        public enum FormatEnum
-        {
-            ASCII,
-            REAL
-        }
-
-
+       
         public string FORMatDATA(FormatEnum format, int number)
         {
             if (number < 3 || number > 64)
@@ -136,10 +169,6 @@ namespace HP35670ANamespace
             return StringFormat(CommandFormat, s, number);
         }
 
-        public enum CMDSTR
-        {
-            XFR_POW
-        }
 
         public string CALCulateFEED(int channelName, CMDSTR commandString)
         {
@@ -160,14 +189,7 @@ namespace HP35670ANamespace
 
         }
 
-        public enum VoltageUnits
-        {
-            V,
-            V2,
-            VdivRTHZ,
-            V2divHZ,
-            V2SdivHZ
-        }
+       
 
         public string CALCulateUNITVOLTage(int channelName, VoltageUnits units)
         {
@@ -196,12 +218,7 @@ namespace HP35670ANamespace
             return StringFormat(CommandFormat, channelName, s);
         }
 
-        public enum CalibrationEnum
-        {
-            ON,
-            OFF,
-            ONCE
-        }
+       
       
 
         public string CALibrationAUTO(CalibrationEnum cal)
@@ -223,15 +240,7 @@ namespace HP35670ANamespace
             return StringFormat(CommandFormat, s);
         }
 
-        public enum FrequencyResolutionEnum :int
-        {
-            r100 = 100,
-            r200 = 200,
-            r400 = 400,
-            r800 = 800,
-            r1600 = 1600
-        }
-
+       
         public string FREquencyRESolution(FrequencyResolutionEnum resolution)
         {
             const string CommandFormat = "FREQ:RES {0}";
@@ -333,6 +342,20 @@ namespace HP35670ANamespace
         public string INIT()
         {
             return "INIT";
+        }
+
+        public string OUTPutSTATus(SwitchState state)
+        {
+            const string CommandFormat = "OUTPUT:STAT {0}";
+            switch (state)
+            {
+                case SwitchState.On:
+                    return StringFormat(CommandFormat, "ON");
+                case SwitchState.Off:
+                    return StringFormat(CommandFormat, "OFF");
+                default:
+                    throw new ArgumentException();
+            }
         }
 
         public string DataQuery(int channelName)
