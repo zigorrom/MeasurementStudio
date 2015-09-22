@@ -97,13 +97,13 @@
     <Compile Include="ViewModelInterface\IUIThreadExecutableViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ExpandableTabControlResourceDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="ExpandableTabControl\ExpandableTabControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExpandableTabControl\ExpandableTabControlResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ExperimentWorkingDirectory\SaveControl.xaml">
       <SubType>Designer</SubType>
