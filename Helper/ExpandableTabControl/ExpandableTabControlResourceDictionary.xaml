@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 	<SolidColorBrush x:Key="TabControlNormalBorderBrush" Color="#8C8E94"/>
 	<Style x:Key="ExpandableTabControl" TargetType="{x:Type TabControl}">
 		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
@@ -26,7 +27,7 @@
 						</Grid.RowDefinitions>
 						<Expander x:Name="ContentExpander" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
 						<TabPanel Grid.Row="1" Grid.Column="1" x:Name="HeaderPanel" IsItemsHost="true" Margin="2,2,2,0" KeyboardNavigation.TabIndex="1" Panel.ZIndex="1"/>
-						<Border Visibility="{Binding ElementName=ContentExpander, Path=IsExpanded}"  Grid.Row="2" Grid.ColumnSpan="2" x:Name="ContentPanel" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
+                        <Border Visibility="{Binding ElementName=ContentExpander, Path=IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"  Grid.Row="2" Grid.ColumnSpan="2" x:Name="ContentPanel" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
 							<ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
 						</Border>
 					</Grid>
