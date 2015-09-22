@@ -4,5 +4,11 @@
              StartupUri="Views/MainWindow.xaml" DispatcherUnhandledException="Application_DispatcherUnhandledException" Exit="Application_Exit" Startup="Application_Startup" LoadCompleted="Application_LoadCompleted">
     <Application.Resources>
          
+    	<ResourceDictionary>
+    		<ResourceDictionary.MergedDictionaries>
+    			<ResourceDictionary Source="/Helper;component/ExpandableTabControlResourceDictionary.xaml"/>
+    		</ResourceDictionary.MergedDictionaries>
+    	</ResourceDictionary>
+         
     </Application.Resources>
 </Application>
