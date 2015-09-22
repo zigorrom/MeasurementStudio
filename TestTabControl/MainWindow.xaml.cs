@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Helper.ExpandableTabControl
+namespace TestTabControl
 {
     /// <summary>
-    /// Interaction logic for ExpandableTabControl.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class ExpandableTabControl : UserControl
+    public partial class MainWindow : Window
     {
-        public ExpandableTabControl()
+        public MainWindow()
         {
             InitializeComponent();
         }
