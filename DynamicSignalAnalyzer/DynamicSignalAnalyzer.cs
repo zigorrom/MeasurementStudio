@@ -24,11 +24,9 @@ namespace DynamicSignalAnalyzer
         {
             public event EventHandler<TransformEventArgs> NewDataHandled;
             public event EventHandler AveragesNumberReached;
-
+            
             private DiscretizationParameters _params;
             
-
-
             public TransformProvider(DiscretizationParameters parameters)
             {
                 _params = parameters;
