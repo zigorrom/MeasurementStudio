@@ -8,8 +8,10 @@ namespace DynamicSignalAnalyzer
 {
     public class DynamicSignalAnalyzer
     {
+        
 
-        public ITransformDataContract AddFrequencyRange(DiscretizationParameters rangePameters)
+
+        public IDataTransformContract AddFrequencyRange(DiscretizationParameters rangePameters)
         {
             throw new NotImplementedException();
         }

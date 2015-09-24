@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DynamicSignalAnalyzer
 {
 
-    public interface ITransformDataContract
+    public interface IDataTransformContract
     {
         event EventHandler<TransformEventArgs>  NewDataHandled;
         event EventHandler AveragesNumberReached;
