@@ -13,7 +13,30 @@ namespace DynamicSignalAnalyzer
 
         public IDataTransformContract AddFrequencyRange(DiscretizationParameters rangePameters)
         {
-            throw new NotImplementedException();
+
+            // add to list
+
+            return new TransformProvider(rangePameters);
+        }
+
+
+        private class TransformProvider:IDataTransformContract
+        {
+            public event EventHandler<TransformEventArgs> NewDataHandled;
+            public event EventHandler AveragesNumberReached;
+
+            private DiscretizationParameters _params;
+            
+
+
+            public TransformProvider(DiscretizationParameters parameters)
+            {
+                _params = parameters;
+                
+            }
+
+
+
         }
 
     }
