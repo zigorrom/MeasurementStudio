@@ -34,8 +34,12 @@ namespace IVCharacterization.Experiments
             var counter = 0;
             var maxCount = _firstRangeHandler.TotalPoints * _secondRangeHandler.TotalPoints;
             var progressCalc = new Func<int, int>((c) => (int)Math.Floor(100.0 * c / maxCount));
-            _drainKeithley.SwitchOn();
-            _gate_Keithley.SwitchOn();
+            //_drainKeithley.SwitchOn();
+            //_gate_Keithley.SwitchOn();
+
+            _drainKeithley.SwitchON();
+            _gateKeithley.SwitchON();
+
             var gEnumerator = _secondRangeHandler.GetEnumerator();
             while (gEnumerator.MoveNext() && !StopExperiment)
             {
@@ -45,7 +49,7 @@ namespace IVCharacterization.Experiments
                 mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
                 _vm.AddSeries(mea, GetGraphLineDescription("Vg", gEnumerator.Current, "V"));///String.Format("{0} = ")   String.Concat("Vg = ",gEnumerator.Current," V"));
 
-                _gate_Keithley.SetSourceVoltage(gEnumerator.Current);
+                _gateKeithley.SetSourceVoltage(gEnumerator.Current);
 
                 var dsEnumerator = _firstRangeHandler.GetEnumerator();
                 while (dsEnumerator.MoveNext() && !StopExperiment)
@@ -67,10 +71,16 @@ namespace IVCharacterization.Experiments
 
                     _drainKeithley.SetSourceVoltage(dsEnumerator.Current);
 
-                    double drainVolt, drainCurr, drainRes;
-                    _drainKeithley.MeasureAll(out drainVolt, out drainCurr, out drainRes);
-                    double gateVolt, gateCurr, gateRes;
-                    _gate_Keithley.MeasureAll(out gateVolt, out gateCurr, out gateRes);
+                    var drainVolt = _drainKeithley.MeasureVoltage();
+                    var drainCurr = _drainKeithley.MeasureCurrent();
+
+                    //double drainVolt, drainCurr, drainRes;
+                    //_drainKeithley.MeasureAll(out drainVolt, out drainCurr, out drainRes);
+                    //double gateVolt, gateCurr, gateRes;
+                    //_gateKeithley.MeasureAll(out gateVolt, out gateCurr, out gateRes);
+                    var gateVolt = _gateKeithley.MeasureVoltage();
+                    var gateCurr = _gateKeithley.MeasureCurrent();
+
 
                     mea.Add(new DrainSourceDataRow(drainVolt, drainCurr, gateCurr));
                     _vm.ExecuteInUIThread(() => bgw.ReportProgress(progressCalc(counter++)));
@@ -83,8 +93,11 @@ namespace IVCharacterization.Experiments
                 _vm.MeasurementCount++;
 
             }
-            _drainKeithley.SwitchOff();
-            _gate_Keithley.SwitchOff();
+
+            _drainKeithley.SwitchOFF();
+            _gateKeithley.SwitchOFF();
+            //_drainKeithley.SwitchOff();
+            //_gateKeithley.SwitchOff();
         }
 
         protected override void SimulateMeasurement(object sender, DoWorkEventArgs e)

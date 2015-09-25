@@ -1,8 +1,10 @@
-﻿using ExperimentAbstraction;
+﻿using DeviceIO;
+using ExperimentAbstraction;
 using ExperimentDataModel;
 using Helper.Ranges.RangeHandlers;
 using Instruments;
 using IVCharacterization.ViewModels;
+using Keithley2430;
 using Keithley24xxNamespace;
 using System;
 using System.Collections.Generic;
@@ -30,9 +32,14 @@ namespace IVCharacterization.Experiments
         protected AbstractDoubleRangeHandler _firstRangeHandler;
         protected AbstractDoubleRangeHandler _secondRangeHandler;
 
-        protected Keithley24xx _drainKeithley;
+        //protected Keithley24xx _drainKeithley;
 
-        protected Keithley24xx _gate_Keithley;
+        //protected Keithley24xx _gate_Keithley;
+
+        protected ISourceMeterUnit _drainKeithley;
+        protected ISourceMeterUnit _gateKeithley;
+
+
         protected IVexpSettingsViewModel _settings;
 
         protected string GetGraphLineDescription(string Name, double Value, string  Units)
@@ -77,35 +84,39 @@ namespace IVCharacterization.Experiments
 
         public override void InitializeInstruments()
         {
-            
-            _drainKeithley = new Keithley24xx(_drainIntrumentResource.Name, _drainIntrumentResource.Alias, _drainIntrumentResource.Resource);
-            if (!_drainKeithley.IsAlive(true))
-                throw new ArgumentException("Drain Keithley doesnt respond");
+            _drainKeithley = new Keithley2430Channel(new VisaDevice(_drainIntrumentResource.Resource));
+            _gateKeithley = new Keithley2430Channel(new VisaDevice(_gateInstrumentResource.Resource));
 
-            _gate_Keithley = new Keithley24xx(_gateInstrumentResource.Name, _gateInstrumentResource.Alias, _gateInstrumentResource.Resource);
-            if (!_drainKeithley.IsAlive(true))
-                throw new ArgumentException("Gate Keithley doesnt respond");
+            _drainKeithley.SMU_SourceMode = SourceMode.Voltage;
+            _gateKeithley.SMU_SourceMode = SourceMode.Voltage;
+            //_drainKeithley = new Keithley24xx(_drainIntrumentResource.Name, _drainIntrumentResource.Alias, _drainIntrumentResource.Resource);
+            //if (!_drainKeithley.IsAlive(true))
+            //    throw new ArgumentException("Drain Keithley doesnt respond");
+
+            //_gate_Keithley = new Keithley24xx(_gateInstrumentResource.Name, _gateInstrumentResource.Alias, _gateInstrumentResource.Resource);
+            //if (!_drainKeithley.IsAlive(true))
+            //    throw new ArgumentException("Gate Keithley doesnt respond");
 
 
-            if(!_drainKeithley.SetCurrentLimit(_settings.CurrentCompliance))
-            {
-                HandleMessage("Current limit was not set for drain");
-            }
+            //if(!_drainKeithley.SetCurrentLimit(_settings.CurrentCompliance))
+            //{
+            //    HandleMessage("Current limit was not set for drain");
+            //}
 
-            if(!_gate_Keithley.SetCurrentLimit(_settings.CurrentCompliance))
-            {
-                HandleMessage("Current Limit was not set for gate");
-            }
-            
-            
+            //if(!_gate_Keithley.SetCurrentLimit(_settings.CurrentCompliance))
+            //{
+            //    HandleMessage("Current Limit was not set for gate");
+            //}
+
+
 
         }
 
         public override void OwnInstruments()
         {
             
-            _drainKeithley.InstrumentOwner = this;
-            _gate_Keithley.InstrumentOwner = this;
+            //_drainKeithley.InstrumentOwner = this;
+            //_gate_Keithley.InstrumentOwner = this;
         }
 
         protected override void AssertParams()
@@ -122,15 +133,15 @@ namespace IVCharacterization.Experiments
                 if (_drainIntrumentResource == null)
                     throw new ArgumentNullException("Drain instrument resource was not set");
 
-                if (_gate_Keithley == null)
+                if (_gateKeithley == null)
                     throw new ArgumentNullException("Gate instrument resource was not set");
             }
         }
 
         public override void ReleaseInstruments()
         {
-            _drainKeithley.InstrumentOwner = null;
-            _gate_Keithley.InstrumentOwner = null;
+            //_drainKeithley.InstrumentOwner = null;
+            //_gateKeithley.InstrumentOwner = null;
         }
 
         protected override void HandleError(Exception e)

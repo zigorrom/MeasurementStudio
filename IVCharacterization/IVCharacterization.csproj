@@ -34,9 +34,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DeviceIO">
+      <HintPath>..\ThirdPartyLibs\Instruments\DeviceIO.dll</HintPath>
+    </Reference>
     <Reference Include="DynamicDataDisplay, Version=0.3.4703.0, Culture=neutral, PublicKeyToken=5b7d744a7263923f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ThirdPartyLibs\DynamicDataDisplay\DynamicDataDisplay.dll</HintPath>
+    </Reference>
+    <Reference Include="Keithley2430">
+      <HintPath>..\ThirdPartyLibs\Instruments\Keithley2430.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
