@@ -30,6 +30,8 @@ namespace DynamicSignalAnalyzer
             public TransformProvider(DiscretizationParameters parameters)
             {
                 _params = parameters;
+                //var a// = new ConcurrentExclusiveSchedulerPair(TaskScheduler.Default);
+                
                 
             }
 

@@ -4,7 +4,8 @@ using ExperimentDataModel;
 using Helper.Ranges.RangeHandlers;
 using Instruments;
 using IVCharacterization.ViewModels;
-using Keithley2430;
+
+using Keithley2430Namespace;
 using Keithley24xxNamespace;
 using System;
 using System.Collections.Generic;
@@ -84,8 +85,15 @@ namespace IVCharacterization.Experiments
 
         public override void InitializeInstruments()
         {
-            _drainKeithley = new Keithley2430Channel(new VisaDevice(_drainIntrumentResource.Resource));
-            _gateKeithley = new Keithley2430Channel(new VisaDevice(_gateInstrumentResource.Resource));
+
+            var k1 = new Keithley2430(_drainIntrumentResource.Resource);
+            _drainKeithley = k1.SMU_Channel;
+
+            var k2 = new Keithley2430(_gateInstrumentResource.Resource);
+            _gateKeithley = k2.SMU_Channel;
+
+            //_drainKeithley = new Keithley2430Channel(new VisaDevice(_drainIntrumentResource.Resource));
+            //_gateKeithley = new Keithley2430Channel(new VisaDevice(_gateInstrumentResource.Resource));
 
             _drainKeithley.SMU_SourceMode = SourceMode.Voltage;
             _gateKeithley.SMU_SourceMode = SourceMode.Voltage;
