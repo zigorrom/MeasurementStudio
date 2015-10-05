@@ -34,15 +34,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DeviceIO">
+    <Reference Include="DeviceIO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ThirdPartyLibs\Instruments\DeviceIO.dll</HintPath>
     </Reference>
     <Reference Include="DynamicDataDisplay, Version=0.3.4703.0, Culture=neutral, PublicKeyToken=5b7d744a7263923f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ThirdPartyLibs\DynamicDataDisplay\DynamicDataDisplay.dll</HintPath>
     </Reference>
-    <Reference Include="Keithley2430">
-      <HintPath>..\ThirdPartyLibs\Instruments\Keithley2430.dll</HintPath>
+    <Reference Include="Keithley24xx, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdPartyLibs\Instruments\Keithley24xx.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
@@ -132,10 +134,6 @@
     <ProjectReference Include="..\Instrument\Instruments.csproj">
       <Project>{0b56f789-4a97-4cf6-81e7-da41a40a5761}</Project>
       <Name>Instruments</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Keithley24xx\Keithley24xx.csproj">
-      <Project>{79334cce-6c21-489f-8762-ae357fec3991}</Project>
-      <Name>Keithley24xx</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
