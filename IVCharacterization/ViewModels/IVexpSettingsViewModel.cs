@@ -107,12 +107,12 @@ namespace IVCharacterization.ViewModels
             set { SetField(ref _pulseMode, value, "PulseMode"); }
         }
 
-        private double _pulseLength;
+        private double _pulseWidth;
 
-        public double PulseLength
+        public double PulseWidth
         {
-            get { return _pulseLength; }
-            set { SetField(ref _pulseLength, value, "PulseLength"); }
+            get { return _pulseWidth; }
+            set { SetField(ref _pulseWidth, value, "PulseLength"); }
         }
 
         private double _pulseDelay;
@@ -139,13 +139,13 @@ namespace IVCharacterization.ViewModels
             set { SetField(ref _simulationMode, value, "SimulationMode"); }
         }
 
-        //private MeasurementSpeed _measurementSpeed;
+        private MeasurementSpeed _measurementSpeed;
 
-        //public MeasurementSpeed measurementSpeed
-        //{
-        //    get { return _measurementSpeed; }
-        //    set { SetField(ref _measurementSpeed, value, "measurementSpeed"); }
-        //}
+        public MeasurementSpeed MeasurementSpeed
+        {
+            get { return _measurementSpeed; }
+            set { SetField(ref _measurementSpeed, value, "measurementSpeed"); }
+        }
 
         private bool _waitForValueSet;
         public bool WaitForValueSet

@@ -90,14 +90,66 @@ namespace IVCharacterization.Experiments
             //var k2 = new Keithley2430(_gateInstrumentResource.Resource);
             //_gateKeithley = k2.SMU_Channel;
             var drainIO = new VisaDevice(_drainIntrumentResource.Resource);
-            _drainKeithley = new Keithley2430();
+            var draink = new Keithley24xx<Keithley2430>(drainIO);
+
+            _drainKeithley = draink.Channel;
             _drainKeithley.Initialize(drainIO);
+
+            var gateIO = new VisaDevice(_gateInstrumentResource.Resource);
+            var gatek = new Keithley24xx<Keithley2400>(gateIO);
+
+            _gateKeithley = gatek.Channel;
+            _gateKeithley.Initialize(gateIO);
 
             //_drainKeithley = new Keithley2430Channel(new VisaDevice(_drainIntrumentResource.Resource));
             //_gateKeithley = new Keithley2430Channel(new VisaDevice(_gateInstrumentResource.Resource));
 
             _drainKeithley.SMU_SourceMode = SourceMode.Voltage;
             _gateKeithley.SMU_SourceMode = SourceMode.Voltage;
+
+            _drainKeithley.SetCompliance(SourceMode.Voltage, _settings.CurrentCompliance);
+            _gateKeithley.SetCompliance(SourceMode.Voltage, _settings.CurrentCompliance);
+            
+            var npls = 0.0;
+            switch (_settings.MeasurementSpeed)
+            {
+                case MeasurementSpeed.Slow:
+                    npls = 0.01;
+                    break;
+                case MeasurementSpeed.Middle:
+                    npls = 1;
+                    break;
+                case MeasurementSpeed.Fast:
+                    npls = 10;
+                    break;
+                default:
+                    throw new ArgumentException("NPLC not set");
+            }
+
+            _drainKeithley.SetNPLC(npls);
+            _gateKeithley.SetNPLC(npls);
+
+
+            _drainKeithley.SetAveraging(_settings.DeviceAveraging);
+            _gateKeithley.SetAveraging(_settings.DeviceAveraging);
+
+            if(_settings.PulseMode)
+            {
+                _drainKeithley.SMU_ShapeMode = ShapeMode.Pulse;
+                _drainKeithley.PulseWidth = _settings.PulseWidth;
+                _drainKeithley.PulseDelay = _settings.PulseDelay;
+            }
+            else
+            {
+                _drainKeithley.SMU_ShapeMode = ShapeMode.DC;
+            }
+
+            _drainKeithley.SetCompliance(SourceMode.Voltage, _settings.CurrentCompliance);
+            _gateKeithley.SetCompliance(SourceMode.Voltage, _settings.CurrentCompliance);
+
+
+            //_drainKeithley.SetNPLC()
+
             //_drainKeithley = new Keithley24xx(_drainIntrumentResource.Name, _drainIntrumentResource.Alias, _drainIntrumentResource.Resource);
             //if (!_drainKeithley.IsAlive(true))
             //    throw new ArgumentException("Drain Keithley doesnt respond");
