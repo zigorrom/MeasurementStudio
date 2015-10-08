@@ -46,6 +46,8 @@ namespace Helper.Ranges.RangeHandlers
                 MaxVal = Range.Start;
             }
 
+            
+
             var maxCount = RepeatCounts * Range.PointsCount;
             var progressCount = 0;
 
