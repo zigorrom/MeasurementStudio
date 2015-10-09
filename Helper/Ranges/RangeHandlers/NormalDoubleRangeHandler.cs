@@ -57,7 +57,6 @@ namespace Helper.Ranges.RangeHandlers
             }
             for (int i = 0; i < RepeatCounts; i++)
             {
-
                 var count = 0;
                 for (val = Range.Start; comparator(val,Range.End) && (count < Range.PointsCount); val += step, count++, progressCount++)
                 {
