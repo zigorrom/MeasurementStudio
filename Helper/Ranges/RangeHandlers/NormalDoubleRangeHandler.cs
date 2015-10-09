@@ -34,23 +34,27 @@ namespace Helper.Ranges.RangeHandlers
 
         private IEnumerator<double> CurrentEnum()
         {
-            double val, MinVal, MaxVal;
-            if (Range.End > Range.Start)
-            {
-                MinVal = Range.Start;
-                MaxVal = Range.End;
-            }
-            else
-            {
-                MinVal = Range.End;
-                MaxVal = Range.Start;
-            }
-
-            
+            double val, step;//, MinVal, MaxVal;
 
             var maxCount = RepeatCounts * Range.PointsCount;
             var progressCount = 0;
 
+            
+            if (Range.End > Range.Start)
+            {
+                //MinVal = Range.Start;
+                //MaxVal = Range.End;
+                //step = Range.Step;
+                
+
+            }
+            else
+            {
+                //MinVal = Range.End;
+                //MaxVal = Range.Start;
+                ste
+                
+            }
             for (int i = 0; i < RepeatCounts; i++)
             {
 
@@ -61,6 +65,10 @@ namespace Helper.Ranges.RangeHandlers
                     yield return val;
                 }
             }
+            
+
+            
+            
         }
 
         public override int TotalPoints
