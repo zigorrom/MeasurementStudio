@@ -102,8 +102,24 @@ using System.Windows.Input;
             _controls.Add(PagesEnum.IVOutput, new UserControl { Content = new OutputIVViewModel() });
             _controls.Add(PagesEnum.IVTransfer, new UserControl { Content = new TransfrerIVViewModel() });
             _controls.Add(PagesEnum.CVCharacteristics, new UserControl { Content = new CVViewModel() });
-            
+            //Initialize();
         }
+
+        //private async void Initialize()
+        //{
+        //    await InitializeViews();
+        //}
+
+        //private async Task InitializeViews()
+        //{
+        //    var t1 = Task.Factory.StartNew(() => { _controls.Add(PagesEnum.IVOutput, new UserControl { Content = new OutputIVViewModel() }); });
+        //    var t2 = Task.Factory.StartNew(() => { _controls.Add(PagesEnum.IVTransfer, new UserControl { Content = new TransfrerIVViewModel() }); });
+        //    var t3 = Task.Factory.StartNew(() => { _controls.Add(PagesEnum.CVCharacteristics, new UserControl { Content = new CVViewModel() }); });
+        //    await t1;
+        //    await t2;
+        //    await t3;
+        //}
+
 
         public IPageTransitionView View
         {
