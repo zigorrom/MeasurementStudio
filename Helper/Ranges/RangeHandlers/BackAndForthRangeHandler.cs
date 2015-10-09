@@ -36,32 +36,44 @@ namespace Helper.Ranges.RangeHandlers
 
         private IEnumerator<double> CurrentEnum()
         {
-            double val, MinVal, MaxVal;
+            double val, step;//, MinVal, MaxVal;
+
+            var maxCount = RepeatCounts * Range.PointsCount;
+            var progressCount = 0;
+
+            Func<double, double, bool> directComparator;
+            Func<double, double, bool> reverseComparator;
+
             if (Range.End > Range.Start)
             {
-                MinVal = Range.Start;
-                MaxVal = Range.End;
+                //MinVal = Range.Start;
+                //MaxVal = Range.End;
+                step = Range.Step;
+                directComparator = new Func<double, double, bool>((a, b) => a <= b);
+                reverseComparator = new Func<double, double, bool>((a, b) => a >= b);
             }
             else
             {
-                MinVal = Range.End;
-                MaxVal = Range.Start;
+                //MinVal = Range.End;
+                //MaxVal = Range.Start;
+                step = -Range.Step;
+                directComparator = new Func<double, double, bool>((a, b) => a >= b);
+                reverseComparator = new Func<double, double, bool>((a, b) => a <= b);
             }
 
             
-            var maxCount = RepeatCounts * Range.PointsCount;
-            var progressCount = 0;
+           
 
             for (int i = 0; i < RepeatCounts; i++)
             {
                 var count = 0;
-                for (val = MinVal; (val <= MaxVal)&&(count<Range.PointsCount); val += Range.Step,count++, progressCount++)
+                for (val = Range.Start; directComparator(val, Range.End) && (count < Range.PointsCount); val += Range.Step, count++, progressCount++)
                 {
                     OnProgressChanged(progressCount / maxCount, null);
                     yield return val;
                 }
                 count = 0;
-                for (val = MaxVal; (val >= MinVal) && (count < Range.PointsCount); val -= Range.Step, count++, progressCount++)
+                for (val = Range.End; reverseComparator(val,Range.Start) && (count < Range.PointsCount); val -= Range.Step, count++, progressCount++)
                 {
                     OnProgressChanged(progressCount / maxCount, null);
                     yield return val;
