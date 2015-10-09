@@ -53,7 +53,7 @@ namespace Helper.Ranges.RangeHandlers
                 //MinVal = Range.End;
                 //MaxVal = Range.Start;
                 step = -Range.Step;
-                comparator = new Func<double, double, bool>((a, b) => a <= b);
+                comparator = new Func<double, double, bool>((a, b) => a >= b);
             }
             for (int i = 0; i < RepeatCounts; i++)
             {
