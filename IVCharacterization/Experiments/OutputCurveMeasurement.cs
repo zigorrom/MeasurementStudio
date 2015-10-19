@@ -36,6 +36,7 @@ namespace IVCharacterization.Experiments
             var progressCalc = new Func<int, int>((c) => (int)Math.Floor(100.0 * c / maxCount));
             //_drainKeithley.SwitchOn();
             //_gate_Keithley.SwitchOn();
+            
 
             _drainKeithley.SwitchON();
             _gateKeithley.SwitchON();
