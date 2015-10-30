@@ -139,6 +139,21 @@ namespace ExperimentDataModel
             var propertyCommentsRow = String.Join("\t", attributes.Select(x => x.PropertyComments));
             Header = String.Join("\r\n", propertyNameRow, propertyUnitsRow, propertyCommentsRow);
         }
+        public void WriteInfo(InfoT info)
+        {
+            var infofn = String.Concat(WorkingDirectory, "\\", ExperimentName, ".txt");
+            var WriteInfoHeader = true;
+            if (File.Exists(infofn))
+                WriteInfoHeader = false;
+            using (StreamWriter InfoSW = new StreamWriter(new FileStream(infofn, FileMode.Append, FileAccess.Write, FileShare.Read)))
+            {
+                if (WriteInfoHeader)
+                    InfoSW.WriteLine(_infoHeader);
+
+                InfoSW.WriteLine(_exportInfoFunction(info));
+            }
+        }
+
 
         public void Write(MeasurementData<InfoT, DataT> measurement)
         {
