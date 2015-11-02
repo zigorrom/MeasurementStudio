@@ -20,9 +20,9 @@ namespace CurrentTimetrace.Experiments
         protected IInstrumentResourceItem _drainInstrument;
         protected IInstrumentResourceItem _gateInstrument;
 
-        public TimetraceExperimentBase():base("Current timetrace")
+        public TimetraceExperimentBase(TimetraceMainViewModel vm, string Name):base(Name)
         {
-
+            _vm = vm;
         }
 
         protected override void DoMeasurement(object sender, System.ComponentModel.DoWorkEventArgs e)
