@@ -1,4 +1,5 @@
-﻿using DataVisualization.D3DataVisualization;
+﻿using CurrentTimetrace.Experiments;
+using DataVisualization.D3DataVisualization;
 using ExperimentAbstraction;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace CurrentTimetrace.ViewModels
 
         protected override void InitExperiment(out IExperiment experiment)
         {
-            experiment = null;
+            experiment = new TimetraceExperiment(this);
             //throw new NotImplementedException();
         }
 

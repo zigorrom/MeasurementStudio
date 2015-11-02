@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CurrentTimetrace.DataModel
 {
     [Serializable]
-    public struct TimetraceInfoRow
+    public struct TimetraceInfoRow : IMeasurementInfo
     {
         [DataProperty("Event #", "", "")]
         public int EventNumber { get; private set; }
@@ -16,5 +16,11 @@ namespace CurrentTimetrace.DataModel
         public string EventDescription { get; private set; }
         [DataProperty("Time", "sec", "t")]
         public double Time { get; private set; }
+
+        [DataProperty("Filename", "", "")]
+        public string Filename
+        {
+            get; set;
+        }
     }
 }

@@ -8,6 +8,8 @@
         xmlns:ivv="clr-namespace:IVCharacterization;assembly=IVCharacterization"
         xmlns:cvvm="clr-namespace:CVCharacterization.ViewModels;assembly=CVCharacterization"
         xmlns:cvv ="clr-namespace:CVCharacterization.Views;assembly=CVCharacterization"
+        xmlns:cttvm ="clr-namespace:CurrentTimetrace.ViewModels;assembly=CurrentTimetrace"
+        xmlns:cttv ="clr-namespace:CurrentTimetrace.Views;assembly=CurrentTimetrace"
         x:Class="MeasurementStudio.MainWindow"
          
         Title="MainWindow" WindowState="Maximized">
@@ -34,6 +36,10 @@
         
         <DataTemplate DataType="{x:Type iv:TransfrerIVViewModel}">
             <ivv:IVMainView/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type cttvm:TimetraceMainViewModel}">
+            <cttv:TimetraceMainView/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
