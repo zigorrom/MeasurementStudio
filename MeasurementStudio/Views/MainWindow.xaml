@@ -48,6 +48,7 @@
                 <MenuItem Header="IV-TransferCurve" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.IVTransfer}" />
                 <MenuItem Header="CV-Characterization" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.CVCharacteristics}"/>
                 <MenuItem Header="Noise Measurement"/>
+                <MenuItem Header="Timetrace" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.Timetrace}"/>
             </MenuItem>
         </Menu>
         

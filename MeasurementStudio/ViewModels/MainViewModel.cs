@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace MeasurementStudio
 {
+    using CurrentTimetrace.ViewModels;
     using CVCharacterization.ViewModels;
-using ExperimentDataModel;
-using IVCharacterization.ViewModels;
-using Microsoft.TeamFoundation.MVVM;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Input;
+    using ExperimentDataModel;
+    using IVCharacterization.ViewModels;
+    using Microsoft.TeamFoundation.MVVM;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Input;
     
     public class MainViewModel:INotifyPropertyChanged, IMainViewModel
     {
@@ -102,6 +103,7 @@ using System.Windows.Input;
             _controls.Add(PagesEnum.IVOutput, new UserControl { Content = new OutputIVViewModel() });
             _controls.Add(PagesEnum.IVTransfer, new UserControl { Content = new TransfrerIVViewModel() });
             _controls.Add(PagesEnum.CVCharacteristics, new UserControl { Content = new CVViewModel() });
+            _controls.Add(PagesEnum.Timetrace, new UserControl { Content = new TimetraceMainViewModel() });
             //Initialize();
         }
 

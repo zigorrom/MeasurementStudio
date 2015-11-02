@@ -69,9 +69,6 @@
     <Compile Include="Views\TimetraceMainView.xaml.cs">
       <DependentUpon>TimetraceMainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TimetraceSettings.xaml.cs">
-      <DependentUpon>TimetraceSettings.xaml</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -84,10 +81,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\TimetraceMainView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TimetraceSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -106,6 +99,10 @@
       <Project>{f37c1293-015e-47ef-81fe-694857e4a303}</Project>
       <Name>ExperimentDataModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Helper\Helper.csproj">
+      <Project>{5216ba05-f05d-447a-965f-b1357dcb4990}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InstrumentAbstraction\InstrumentHandler.csproj">
       <Project>{3c57f76b-be47-4de4-8466-3fd0b124d134}</Project>
       <Name>InstrumentHandler</Name>
@@ -113,6 +110,10 @@
     <ProjectReference Include="..\Instrument\Instruments.csproj">
       <Project>{0b56f789-4a97-4cf6-81e7-da41a40a5761}</Project>
       <Name>Instruments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IVCharacterization\IVCharacterization.csproj">
+      <Project>{FA8149F8-BF54-4A46-9D0A-9980CEAD705B}</Project>
+      <Name>IVCharacterization</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

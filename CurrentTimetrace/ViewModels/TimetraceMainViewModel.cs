@@ -19,5 +19,16 @@ namespace CurrentTimetrace.ViewModels
         }
 
 
+
+        protected override void InitExperiment(out IExperiment experiment)
+        {
+            experiment = null;
+            //throw new NotImplementedException();
+        }
+
+        protected override void ClearVisualization()
+        {
+           // throw new NotImplementedException();
+        }
     }
 }
