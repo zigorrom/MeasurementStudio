@@ -84,7 +84,8 @@ namespace LegacyNoiseSetupVoltageControl.ViewModels
         {
             get
             {
-                return _setSampleVoltageCommand??(_setSampleVoltageCommand = new RelayCommand())
+                throw new NotImplementedException();
+                //return _setSampleVoltageCommand ?? (_setSampleVoltageCommand = new RelayCommand());
             }
         }
 

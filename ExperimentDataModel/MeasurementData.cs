@@ -78,6 +78,13 @@ namespace ExperimentDataModel
 
         private void RaiseDataChanged()
         {
+
+            ///
+            /// Implement rising event on every few samples
+            ///
+
+
+
             var handler = DataChanged;
             if (handler != null)
             {
