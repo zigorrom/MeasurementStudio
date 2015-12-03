@@ -25,8 +25,7 @@ namespace ExperimentDataModel
         where InfoT : struct, IMeasurementInfo
         where DataT : struct
     {
-
-
+        
         public event EventHandler DataChanged;
 
         private bool _collectionChanged = false;

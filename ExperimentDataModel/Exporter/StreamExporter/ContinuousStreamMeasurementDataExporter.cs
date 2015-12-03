@@ -146,7 +146,7 @@ namespace ExperimentDataModel.Exporter.StreamExporter
 
         public void  StopDataListening()
         {
-
+            throw new NotImplementedException();
         }
 
         public void OnCompleted()

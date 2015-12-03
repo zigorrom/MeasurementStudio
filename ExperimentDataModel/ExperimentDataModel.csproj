@@ -52,6 +52,7 @@
     <Compile Include="MeasurementData.cs" />
     <Compile Include="IMeasurementDataCollection.cs" />
     <Compile Include="Exporter\OriginExporter\OriginMeasurementDataExporter.cs" />
+    <Compile Include="ObservableMeasurementData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Exporter\StreamExporter\StreamMeasurementDataExporter.cs" />
   </ItemGroup>
