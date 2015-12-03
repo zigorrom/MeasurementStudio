@@ -44,9 +44,13 @@ namespace ExperimentDataModel
         private Func<DataT, Point> xyMapping;
         private Func<DataT, double> xMapping;
         private Func<DataT, double> yMapping;
+
+
+
         //private readonly List<Mapping<DataT>> mappings = new List<Mapping<DataT>>();
 
         //private readonly LinkedList<DataT> _measurementCollection = new LinkedList<DataT>();
+
         private readonly ObservableCollection<DataT> _measurementCollection = new ObservableCollection<DataT>();
         private object SyncRoot = new object();
 
