@@ -29,13 +29,13 @@ namespace ExperimentDataModel
         }
 
         public event EventHandler DataChanged;
-
         private Func<DataT, Point> xyMapping;
         private Func<DataT, double> xMapping;
         private Func<DataT, double> yMapping;
-
-        private readonly ObservableCollection<DataT> _measurementCollection = new ObservableCollection<DataT>();
+       
         private object SyncRoot = new object();
+
+        #region Settings
 
         private int _refreshEveryNpoints;
 
@@ -45,6 +45,7 @@ namespace ExperimentDataModel
             set { _refreshEveryNpoints = value; }
         }
 
+        
         private int _saveRequestEveryNpoints;
 
         public int SaveRequestEveryNpoints
@@ -53,6 +54,7 @@ namespace ExperimentDataModel
             set { _saveRequestEveryNpoints = value; }
         }
 
+        
         private int _displayPointsWindow;
 
         public int DisplayPointsWindow
@@ -72,6 +74,9 @@ namespace ExperimentDataModel
             private set { _updatesEnabled = value; }
         }
 
+
+        #endregion 
+
         public void SuspendUpdate()
         {
             UpdatesEnabled = false;
@@ -88,21 +93,17 @@ namespace ExperimentDataModel
         }
 
 
-        private int _updatePointsCounter = 0;
-
-
         private void RaiseDataChanged()
         {
-            if (_updatePointsCounter < RefreshEveryNpoint)
+            if (Count % RefreshEveryNpoint >0)
                 return;
             
-            _updatePointsCounter = 0;
             var handler = DataChanged;
             if (handler != null)
             {
                 handler(this, EventArgs.Empty);
             }
-
+            
         }
 
         protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
@@ -116,6 +117,80 @@ namespace ExperimentDataModel
                 _collectionChanged = true;
         }
 
+
+
+        private DataT[] CurrentDisplayWindow
+        {
+            get
+            {
+                var startIndex = 0;
+                var length = Count;
+                if (Count > DisplayPointsWindow)
+                {
+                    startIndex = Count - DisplayPointsWindow;
+                    length = DisplayPointsWindow;
+                }
+                var displayArray = new DataT[length];
+                CopyTo(displayArray, startIndex);
+                return displayArray;
+            }
+        }
+
+
+        public void SetXMapping(Func<DataT, double> mapping)
+        {
+            if (mapping == null)
+                throw new ArgumentNullException();
+            this.xMapping = mapping;
+        }
+
+        public void SetYMapping(Func<DataT, double> mapping)
+        {
+            if (mapping == null)
+                throw new ArgumentNullException("mapping");
+
+            this.yMapping = mapping;
+        }
+
+        public void SetXYMapping(Func<DataT, Point> mapping)
+        {
+            if (mapping == null)
+                throw new ArgumentNullException("mapping");
+
+            this.xyMapping = mapping;
+        }
+
+        private void ApplyMappings(DependencyObject target, DataT elem)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        private void FillPoint(DataT elem, ref Point point)
+        {
+            if (xyMapping != null)
+            {
+                point = xyMapping(elem);
+            }
+            else
+            {
+                if (xMapping != null)
+                {
+                    point.X = xMapping(elem);
+                }
+                if (yMapping != null)
+                {
+                    point.Y = yMapping(elem);
+                }
+            }
+
+        }
+
+        private void ApplyMappings(DependencyObject target, object p)
+        {
+            throw new NotImplementedException();
+        }
+
         public IDisposable Subscribe(IObserver<DataT[]> observer)
         {
             
@@ -126,17 +201,42 @@ namespace ExperimentDataModel
 
         public IPointEnumerator GetEnumerator(DependencyObject context)
         {
-            
-            throw new NotImplementedException();
+            return new PointEnumerator(this);
         }
 
 
+        private class PointEnumerator : IPointEnumerator
+        {
+            private readonly ObservableMeasurementData<InfoT, DataT> dataSource;
+            private readonly IEnumerator enumerator;
+
+            public PointEnumerator(ObservableMeasurementData<InfoT, DataT> dataSource)
+            {
+                this.dataSource = dataSource;
+                enumerator = dataSource.CurrentDisplayWindow.GetEnumerator();
+            }
+
+            public void ApplyMappings(DependencyObject target)
+            {
+                dataSource.ApplyMappings(target, enumerator.Current);
+            }
+
+            public void GetCurrent(ref Point p)
+            {
+                dataSource.FillPoint((DataT)enumerator.Current, ref p);
+            }
+
+            public bool MoveNext()
+            {
+                return enumerator.MoveNext();
+            }
+
+            public void Dispose()
+            {
+                GC.SuppressFinalize(this);
+            }
+        }
 
 
-
-
-
-
-        
     }
 }
