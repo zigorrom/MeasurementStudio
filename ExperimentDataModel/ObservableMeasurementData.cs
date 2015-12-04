@@ -68,6 +68,8 @@ namespace ExperimentDataModel
 
         private bool _updatesEnabled = true;
 
+        private bool _justSaved = false;
+
         public bool UpdatesEnabled
         {
             get { return _updatesEnabled; }
@@ -92,6 +94,14 @@ namespace ExperimentDataModel
             }
         }
 
+        private void SendSaveRequest()
+        {
+            if(Count > SaveRequestEveryNpoints+DisplayPointsWindow)
+            {
+
+            }
+        }
+
 
         private void RaiseDataChanged()
         {
@@ -103,7 +113,6 @@ namespace ExperimentDataModel
             {
                 handler(this, EventArgs.Empty);
             }
-            
         }
 
         protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
@@ -116,8 +125,6 @@ namespace ExperimentDataModel
             else
                 _collectionChanged = true;
         }
-
-
 
         private DataT[] CurrentDisplayWindow
         {
