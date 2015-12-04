@@ -206,6 +206,7 @@ namespace ExperimentDataModel
 
         
 
+
         public IPointEnumerator GetEnumerator(DependencyObject context)
         {
             return new PointEnumerator(this);
