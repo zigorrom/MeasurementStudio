@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace ExperimentDataModel
 {
-    internal interface IMeasuredDataObserver<in DataT>:IObserver<DataT>
+    public interface IMeasuredDataObserver<in DataT>:IObserver<DataT>
     {
-        public ObserverOptions Options { get; }   
-        public void OnNextDataSet(DataT[] samples);
+        ObserverOptions Options { get; }
+        void OnCompleted();
+        void OnError(Exception error);
+        void OnNext(DataT value);
+        void OnNextDataSet(DataT[] samples);
     }
 }

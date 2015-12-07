@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ExperimentDataModel
 {
-    internal interface IMeasuredDataObservable<DataT>:IObservable<DataT>
+    internal interface IMeasuredDataObservable<DataT>
     {
-
+        IDisposable Subscribe(IMeasuredDataObserver<DataT> observer);
     }
 }

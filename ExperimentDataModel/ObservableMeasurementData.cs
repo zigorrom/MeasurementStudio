@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace ExperimentDataModel
 {
-    public class ObservableMeasurementData<InfoT,DataT>: ObservableCollection<DataT>, IObservable<DataT[]>, IPointDataSource
+    public class ObservableMeasurementData<InfoT,DataT>: ObservableCollection<DataT>, IMeasuredDataObservable<DataT>, IPointDataSource
         where InfoT: struct, IMeasurementInfo
         where DataT: struct
     {
@@ -193,18 +193,39 @@ namespace ExperimentDataModel
 
         }
 
-        private void ApplyMappings(DependencyObject target, object p)
+       
+
+
+        #region Observable implementation
+
+        public IDisposable Subscribe(IMeasuredDataObserver<DataT> observer)
         {
-            throw new NotImplementedException();
+            if (!observers.Contains(observer))
+                observers.Add(observer);
+            return new Unsubscriber(observers, observer);
         }
 
-        public IDisposable Subscribe(IObserver<DataT[]> observer)
+        private List<IMeasuredDataObserver<DataT>> observers;
+
+        private class Unsubscriber:IDisposable
         {
-            
-            throw new NotImplementedException();
+            private List<IMeasuredDataObserver<DataT>> _observers;
+            private IMeasuredDataObserver<DataT> _observer;
+
+            public Unsubscriber(List<IMeasuredDataObserver<DataT>> observers, IMeasuredDataObserver<DataT> observer)
+            {
+                this._observers = observers;
+                this._observer = observer;
+            }
+
+            public void Dispose()
+            {
+                if (_observer != null && _observers.Contains(_observer))
+                    _observers.Remove(_observer);
+            }
         }
 
-        
+        #endregion
 
 
         public IPointEnumerator GetEnumerator(DependencyObject context)
@@ -216,27 +237,34 @@ namespace ExperimentDataModel
         private class PointEnumerator : IPointEnumerator
         {
             private readonly ObservableMeasurementData<InfoT, DataT> dataSource;
-            private readonly IEnumerator enumerator;
+            private readonly DataT[] data;
+
+            private int _currentIndex;
 
             public PointEnumerator(ObservableMeasurementData<InfoT, DataT> dataSource)
             {
                 this.dataSource = dataSource;
-                enumerator = dataSource.CurrentDisplayWindow.GetEnumerator();
+                this.data = dataSource.CurrentDisplayWindow;
+                _currentIndex = -1;
             }
 
             public void ApplyMappings(DependencyObject target)
             {
-                dataSource.ApplyMappings(target, enumerator.Current);
+                dataSource.ApplyMappings(target, data[_currentIndex]);
             }
 
             public void GetCurrent(ref Point p)
             {
-                dataSource.FillPoint((DataT)enumerator.Current, ref p);
+                dataSource.FillPoint(data[_currentIndex], ref p);
             }
 
             public bool MoveNext()
             {
-                return enumerator.MoveNext();
+                if(++_currentIndex>=data.Length)
+                {
+                    return false;
+                }
+                return true;
             }
 
             public void Dispose()
@@ -246,5 +274,7 @@ namespace ExperimentDataModel
         }
 
 
+
+        
     }
 }

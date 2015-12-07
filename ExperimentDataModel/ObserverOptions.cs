@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace ExperimentDataModel
 {
-    internal class ObserverOptions
+    public class ObserverOptions
     {
+        private int _samplesNumber;
+
+        public int SamplesNumber
+        {
+            get { return _samplesNumber; }
+            private set { _samplesNumber = value; }
+        }
+
     }
 }
