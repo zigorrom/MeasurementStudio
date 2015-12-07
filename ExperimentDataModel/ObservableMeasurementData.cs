@@ -18,6 +18,7 @@ namespace ExperimentDataModel
         public ObservableMeasurementData(InfoT info)
         {
             Info = info;
+            observers = new List<IMeasuredDataObserver<DataT>>();
         }
 
         private InfoT _info;
@@ -93,15 +94,6 @@ namespace ExperimentDataModel
                 RaiseDataChanged();
             }
         }
-
-        private void SendSaveRequest()
-        {
-            if(Count > SaveRequestEveryNpoints+DisplayPointsWindow)
-            {
-
-            }
-        }
-
 
         private void RaiseDataChanged()
         {
