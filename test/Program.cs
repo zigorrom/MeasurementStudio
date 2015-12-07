@@ -22,7 +22,7 @@ namespace test
         static void Main(string[] args)
         {
 
-
+            
 
             //var h = new Hioki3532("","","COM8", 9600, System.IO.Ports.Parity.None, 7, System.IO.Ports.StopBits.One, System.IO.Ports.Handshake.None, Delimiter.CR_LF);
 
