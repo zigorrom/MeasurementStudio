@@ -21,7 +21,7 @@ namespace test
     {
         static void Main(string[] args)
         {
-
+           // Buffer.BlockCopy()
             for (uint i = uint.MaxValue-2, a=0; a<5; i++,a++)
             {
                 Console.WriteLine(i);
