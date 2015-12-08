@@ -264,12 +264,12 @@ namespace ExperimentDataModel
 
         private class PointEnumerator : IPointEnumerator
         {
-            private readonly IList<DataT> dataSource;
+            private readonly ObservableMeasurementData<InfoT, DataT> dataSource;
             private readonly DataT[] data;
 
             private int _currentIndex;
 
-            public PointEnumerator(IList<DataT> dataSource)
+            public PointEnumerator(ObservableMeasurementData<InfoT, DataT> dataSource)
             {
                 this.dataSource = dataSource;
                 this.data = dataSource.CurrentDisplayWindow;
