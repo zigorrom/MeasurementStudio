@@ -19,8 +19,11 @@ namespace ExperimentDataModel
         {
             Info = info;
             observers = new List<IMeasuredDataObserver<DataT>>();
+            var a = new List<int>();
+            
         }
 
+        
         private InfoT _info;
 
         public InfoT Info
@@ -39,7 +42,6 @@ namespace ExperimentDataModel
         #region Settings
 
         private int _refreshEveryNpoints;
-
         public int RefreshEveryNpoint
         {
             get { return _refreshEveryNpoints; }
@@ -48,7 +50,6 @@ namespace ExperimentDataModel
 
         
         private int _saveRequestEveryNpoints;
-
         public int SaveRequestEveryNpoints
         {
             get { return _saveRequestEveryNpoints; }
@@ -57,7 +58,6 @@ namespace ExperimentDataModel
 
         
         private int _displayPointsWindow;
-
         public int DisplayPointsWindow
         {
             get { return _displayPointsWindow; }
@@ -68,15 +68,11 @@ namespace ExperimentDataModel
         private bool _collectionChanged = false;
 
         private bool _updatesEnabled = true;
-
-        private bool _justSaved = false;
-
         public bool UpdatesEnabled
         {
             get { return _updatesEnabled; }
             private set { _updatesEnabled = value; }
         }
-
 
         #endregion 
 
@@ -163,7 +159,6 @@ namespace ExperimentDataModel
         {
             throw new NotImplementedException();
         }
-
 
         private void FillPoint(DataT elem, ref Point point)
         {
