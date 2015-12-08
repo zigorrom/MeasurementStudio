@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace ExperimentDataModel
 {
-    public class ObservableMeasurementData<InfoT,DataT>: ObservableCollection<DataT>, IMeasuredDataObservable<DataT>, IPointDataSource
+    public class ObservableMeasurementData<InfoT,DataT>: ICollection<DataT>, INotifyCollectionChanged, IMeasuredDataObservable<DataT>, IPointDataSource
         where InfoT: struct, IMeasurementInfo
         where DataT: struct
     {
@@ -19,27 +19,163 @@ namespace ExperimentDataModel
         {
             Info = info;
             observers = new List<IMeasuredDataObserver<DataT>>();
-            var a = new List<int>();
+            _dataCollection = new List<DataT>();
+            //var a = _dataCollection.GetRange( .GetEnumerator();
+            _currentIndex = 0;
             
         }
 
+        private List<DataT> _dataCollection;
         
         private InfoT _info;
-
         public InfoT Info
         {
             get { return _info; }
             private set { _info = value; }
         }
 
+        #region Collection implementation
+
+        public void Add(DataT item)
+        {
+            _dataCollection.Add(item);
+            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add));
+        }
+
+        public void Clear()
+        {
+            _dataCollection.Clear();
+            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
+
+        public bool Contains(DataT item)
+        {
+            return _dataCollection.Contains(item);
+        }
+
+        public void CopyTo(DataT[] array, int arrayIndex)
+        {
+            _dataCollection.CopyTo(array, arrayIndex);
+        }
+
+        public int Count
+        {
+            get { return _dataCollection.Count; }
+        }
+
+        public bool IsReadOnly
+        {
+            get { return true; }
+        }
+
+        public bool Remove(DataT item)
+        {
+            var result = _dataCollection.Remove(item);
+            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove));
+            return result;
+        }
+
+        public IEnumerator<DataT> GetEnumerator()
+        {
+            return _dataCollection.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        #endregion
+
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
+
+        protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+        {
+            var handler = CollectionChanged;
+            if(null!=handler)
+            {
+                handler(this, e);
+            }
+
+            RaiseDataChanged();
+        }
+
+        private void RaiseDataChanged()
+        {
+            if (Count % RefreshEveryNpoint >0)
+                return;
+
+            var handler = DataChanged;
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
+            }
+        }
+        
+        //public void SuspendUpdate()
+        //{
+        //    UpdatesEnabled = false;
+        //}
+
+        //public void ResumeUpdate()
+        //{
+        //    UpdatesEnabled = true;
+        //    if (_collectionChanged)
+        //    {
+        //        _collectionChanged = false;
+        //        RaiseDataChanged();
+        //    }
+        //}
+
+        //private void RaiseDataChanged()
+        //{
+        //    if (Count % RefreshEveryNpoint >0)
+        //        return;
+            
+        //    var handler = DataChanged;
+        //    if (handler != null)
+        //    {
+        //        handler(this, EventArgs.Empty);
+        //    }
+        //}
+
+        //protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+        //{
+        //    if (UpdatesEnabled)
+        //    {
+        //        base.OnCollectionChanged(e);
+        //        RaiseDataChanged();
+        //    }
+        //    else
+        //        _collectionChanged = true;
+        //}
+
+        //private DataT[] CurrentDisplayWindow
+        //{
+        //    get
+        //    {
+        //        var startIndex = 0;
+        //        var length = Count;
+        //        if (Count > DisplayPointsWindow)
+        //        {
+        //            startIndex = Count - DisplayPointsWindow;
+        //            length = DisplayPointsWindow;
+        //        }
+        //        var displayArray = new DataT[length];
+        //        CopyTo(displayArray, startIndex);
+        //        return displayArray;
+        //    }
+        //}
+
+        #region IPointEnumerator implementation
+
         public event EventHandler DataChanged;
         private Func<DataT, Point> xyMapping;
         private Func<DataT, double> xMapping;
         private Func<DataT, double> yMapping;
-       
+
         private object SyncRoot = new object();
 
-        #region Settings
 
         private int _refreshEveryNpoints;
         public int RefreshEveryNpoint
@@ -48,22 +184,14 @@ namespace ExperimentDataModel
             set { _refreshEveryNpoints = value; }
         }
 
-        
-        private int _saveRequestEveryNpoints;
-        public int SaveRequestEveryNpoints
+
+        private int _displayWindowPointsCount;
+        public int DisplayWindowPointsCount
         {
-            get { return _saveRequestEveryNpoints; }
-            set { _saveRequestEveryNpoints = value; }
+            get { return _displayWindowPointsCount; }
+            set { _displayWindowPointsCount = value; }
         }
 
-        
-        private int _displayPointsWindow;
-        public int DisplayPointsWindow
-        {
-            get { return _displayPointsWindow; }
-            set { _displayPointsWindow = value; }
-        }
-        
 
         private bool _collectionChanged = false;
 
@@ -74,63 +202,7 @@ namespace ExperimentDataModel
             private set { _updatesEnabled = value; }
         }
 
-        #endregion 
-
-        public void SuspendUpdate()
-        {
-            UpdatesEnabled = false;
-        }
-
-        public void ResumeUpdate()
-        {
-            UpdatesEnabled = true;
-            if (_collectionChanged)
-            {
-                _collectionChanged = false;
-                RaiseDataChanged();
-            }
-        }
-
-        private void RaiseDataChanged()
-        {
-            if (Count % RefreshEveryNpoint >0)
-                return;
-            
-            var handler = DataChanged;
-            if (handler != null)
-            {
-                handler(this, EventArgs.Empty);
-            }
-        }
-
-        protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
-        {
-            if (UpdatesEnabled)
-            {
-                base.OnCollectionChanged(e);
-                RaiseDataChanged();
-            }
-            else
-                _collectionChanged = true;
-        }
-
-        private DataT[] CurrentDisplayWindow
-        {
-            get
-            {
-                var startIndex = 0;
-                var length = Count;
-                if (Count > DisplayPointsWindow)
-                {
-                    startIndex = Count - DisplayPointsWindow;
-                    length = DisplayPointsWindow;
-                }
-                var displayArray = new DataT[length];
-                CopyTo(displayArray, startIndex);
-                return displayArray;
-            }
-        }
-
+        
 
         public void SetXMapping(Func<DataT, double> mapping)
         {
@@ -180,8 +252,57 @@ namespace ExperimentDataModel
 
         }
 
-       
+        private int _currentIndex;
 
+
+        public IPointEnumerator GetEnumerator(DependencyObject context)
+        {
+            _dataCollection.GetRange(0,0)
+            throw new NotImplementedException();
+            //   return new PointEnumerator(this);
+        }
+
+        private class PointEnumerator : IPointEnumerator
+        {
+            private readonly IList<DataT> dataSource;
+            private readonly DataT[] data;
+
+            private int _currentIndex;
+
+            public PointEnumerator(IList<DataT> dataSource)
+            {
+                this.dataSource = dataSource;
+                this.data = dataSource.CurrentDisplayWindow;
+                _currentIndex = -1;
+            }
+
+            public void ApplyMappings(DependencyObject target)
+            {
+                dataSource.ApplyMappings(target, data[_currentIndex]);
+            }
+
+            public void GetCurrent(ref Point p)
+            {
+                dataSource.FillPoint(data[_currentIndex], ref p);
+            }
+
+            public bool MoveNext()
+            {
+                if (++_currentIndex >= data.Length)
+                {
+                    return false;
+                }
+                return true;
+            }
+
+            public void Dispose()
+            {
+                GC.SuppressFinalize(this);
+            }
+        }
+
+
+        #endregion
 
         #region Observable implementation
 
@@ -214,54 +335,16 @@ namespace ExperimentDataModel
 
         #endregion
 
-
-        public IPointEnumerator GetEnumerator(DependencyObject context)
-        {
-            return new PointEnumerator(this);
-        }
+      
 
 
-        private class PointEnumerator : IPointEnumerator
-        {
-            private readonly ObservableMeasurementData<InfoT, DataT> dataSource;
-            private readonly DataT[] data;
+       
 
-            private int _currentIndex;
 
-            public PointEnumerator(ObservableMeasurementData<InfoT, DataT> dataSource)
-            {
-                this.dataSource = dataSource;
-                this.data = dataSource.CurrentDisplayWindow;
-                _currentIndex = -1;
-            }
-
-            public void ApplyMappings(DependencyObject target)
-            {
-                dataSource.ApplyMappings(target, data[_currentIndex]);
-            }
-
-            public void GetCurrent(ref Point p)
-            {
-                dataSource.FillPoint(data[_currentIndex], ref p);
-            }
-
-            public bool MoveNext()
-            {
-                if(++_currentIndex>=data.Length)
-                {
-                    return false;
-                }
-                return true;
-            }
-
-            public void Dispose()
-            {
-                GC.SuppressFinalize(this);
-            }
-        }
+   
 
 
 
-        
+
     }
 }
