@@ -126,6 +126,11 @@ namespace REGLO_Digital
             return StringFormat("{0}{1}{2}\r", PumpNumber, ')',ID);
         }
 
+        public string SpeedQueryCommand(byte PumpNumber)
+        {
+            return StringFormat(CommonCommandFormat, PumpNumber, 'S');
+        }
+
 
 
     }
