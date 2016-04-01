@@ -257,7 +257,7 @@ namespace ExperimentDataModel
 
         public IPointEnumerator GetEnumerator(DependencyObject context)
         {
-            _dataCollection.GetRange(0,0)
+            //_dataCollection.GetRange(0,0)
             throw new NotImplementedException();
             //   return new PointEnumerator(this);
         }
@@ -272,7 +272,7 @@ namespace ExperimentDataModel
             public PointEnumerator(ObservableMeasurementData<InfoT, DataT> dataSource)
             {
                 this.dataSource = dataSource;
-                this.data = dataSource.CurrentDisplayWindow;
+                //this.data = dataSource.CurrentDisplayWindow;
                 _currentIndex = -1;
             }
 
