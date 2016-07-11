@@ -17,7 +17,6 @@ namespace ExperimentDataModel
         public ObservableMeasurementData(InfoT info)
         {
             Info = info;
-            
         }
 
         private InfoT _info;
@@ -28,10 +27,7 @@ namespace ExperimentDataModel
             private set { _info = value; }
         }
 
-
         public event EventHandler DataChanged;
-
-
 
         public IDisposable Subscribe(IObserver<DataT[]> observer)
         {
