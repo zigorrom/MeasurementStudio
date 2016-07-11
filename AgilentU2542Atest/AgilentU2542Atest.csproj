@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F37C1293-015E-47EF-81FE-694857E4A303}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{305373DE-CC1A-444D-8172-DCD283929DDF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExperimentDataModel</RootNamespace>
-    <AssemblyName>ExperimentDataModel</AssemblyName>
+    <RootNamespace>AgilentU2542Atest</RootNamespace>
+    <AssemblyName>AgilentU2542Atest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -20,9 +21,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DynamicDataDisplay">
-      <HintPath>..\ThirdPartyLibs\DynamicDataDisplay\DynamicDataDisplay.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,29 +39,23 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exporter\DatabaseExporter\DataBaseMeasurementDataExporter.cs" />
-    <Compile Include="DataPropertyAttribute.cs" />
-    <Compile Include="Exporter\IMeasurementDataExporter.cs" />
-    <Compile Include="Exporter\StreamExporter\ContinuousStreamMeasurementDataExporter.cs" />
-    <Compile Include="IMeasuredDataObservable.cs" />
-    <Compile Include="IMeasuredDataObserver.cs" />
-    <Compile Include="IMeasurementInfo.cs" />
-    <Compile Include="MeasurementData.cs" />
-    <Compile Include="IMeasurementDataCollection.cs" />
-    <Compile Include="Exporter\OriginExporter\OriginMeasurementDataExporter.cs" />
-    <Compile Include="ObservableMeasurementData.cs" />
-    <Compile Include="ObserverOptions.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Exporter\StreamExporter\StreamMeasurementDataExporter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Importer\" />
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <ProjectReference Include="..\AgilentU2442A\AgilentU2442A.csproj">
+      <Project>{63c41453-1d5a-4c9d-ae0a-d4a08feefca3}</Project>
+      <Name>AgilentU2442A</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Instrument\Instruments.csproj">
+      <Project>{0b56f789-4a97-4cf6-81e7-da41a40a5761}</Project>
+      <Name>Instruments</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

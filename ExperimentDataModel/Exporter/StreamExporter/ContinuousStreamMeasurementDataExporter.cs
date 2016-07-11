@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ExperimentDataModel.Exporter.StreamExporter
 {
-    class ContinuousStreamMeasurementDataExporter<InfoT, DataT>: IObserver<DataT[]>
+    class ContinuousStreamMeasurementDataExporter<InfoT, DataT>:IMeasuredDataObserver<DataT>
         where InfoT : struct, IMeasurementInfo
         where DataT : struct
     {
@@ -139,14 +139,10 @@ namespace ExperimentDataModel.Exporter.StreamExporter
             Header = String.Join("\r\n", propertyNameRow, propertyUnitsRow, propertyCommentsRow);
         }
 
-        public void StartDataListening(MeasurementData<InfoT,DataT> measurementData)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void  StopDataListening()
+        public ObserverOptions Options
         {
-            throw new NotImplementedException();
+            get { throw new NotImplementedException(); }
         }
 
         public void OnCompleted()
@@ -159,7 +155,12 @@ namespace ExperimentDataModel.Exporter.StreamExporter
             throw new NotImplementedException();
         }
 
-        public void OnNext(DataT[] value)
+        public void OnNext(DataT value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnNextDataSet(DataT[] samples)
         {
             throw new NotImplementedException();
         }
