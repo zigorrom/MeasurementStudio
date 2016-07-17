@@ -125,6 +125,7 @@ namespace Instruments
             {
                // AssertSession();
                 m_session.Write(Command);
+                System.Diagnostics.Debug.WriteLine(Command);
             }
             catch (VisaException e)
             {
@@ -148,6 +149,7 @@ namespace Instruments
             {
                 //AssertSession();
                 responce = m_session.ReadString();
+                System.Diagnostics.Debug.WriteLine(responce);
             }
             catch (VisaException e)
             {
@@ -170,7 +172,9 @@ namespace Instruments
             var resp = "";
             try
             {
+                System.Diagnostics.Debug.WriteLine(Command);
                 resp = m_session.Query(Command);
+                System.Diagnostics.Debug.WriteLine(resp);
             }
             //catch (ArgumentNullException e)
             //{
