@@ -25,7 +25,7 @@ namespace AgilentU2542Atest
             ch1.StopAcquisition();
             //for (int i = 0; i < 0xFFFFFFFE; i++)
             //{
-
+            //ss
             //}
         }
         static long counter = 0;
