@@ -12,6 +12,8 @@ namespace AgilentU2542Atest
         static void Main(string[] args)
         {
             var agilent = new AgilentU2542A("asdasd", "", "ADC");
+
+            agilent.Reset();
             var ch1 = agilent.GetAnalogInputChannel(ChannelEnum.AI_CH101);
             //ch1.ChannelEnable = ChannelEnableEnum.Enabled;
            
@@ -20,8 +22,9 @@ namespace AgilentU2542Atest
             ch1.DataSetReady += ch1_DataSetReady;
             Console.WriteLine(agilent.Query(agilent.CommandSet.IDNQuery()));
             ch1.StartAcquisition();
-            System.Threading.Thread.Sleep(100000);
+            System.Threading.Thread.Sleep(5000);
             ch1.StopAcquisition();
+            
             //for (int i = 0; i < 0xFFFFFFFE; i++)
             //{
                 
