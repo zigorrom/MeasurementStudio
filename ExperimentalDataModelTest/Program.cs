@@ -128,6 +128,20 @@ namespace ExperimentalDataModelTest
         [STAThread]
         static void Main(string[] args)
         {
+            var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow("", 2, "", 1, DateTime.Now));
+            try
+            {
+                while (true)
+                    a.Add(new DrainSourceDataRow());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(a.Count);
+                Console.WriteLine();
+                
+                Console.WriteLine(e.Message);
+
+            }
             //FolderBrowserDialog sbd = new FolderBrowserDialog();
             //sbd.ShowDialog();
             //for (int i = 0; i < 10; i++)
