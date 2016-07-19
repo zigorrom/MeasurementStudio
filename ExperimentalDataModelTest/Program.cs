@@ -1,6 +1,7 @@
 ﻿using ExperimentDataModel;
-
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Forms;
@@ -128,15 +129,26 @@ namespace ExperimentalDataModelTest
         [STAThread]
         static void Main(string[] args)
         {
-            var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow("", 2, "", 1, DateTime.Now));
+            var q = new Queue<MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>>();
+            long count = 0;
+            //var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow("", 2, "", 1, DateTime.Now));
             try
             {
                 while (true)
-                    a.Add(new DrainSourceDataRow());
+                {
+                    Console.WriteLine(count++);
+                    var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow("", 2, "", 1, DateTime.Now));
+                    for (int i = 0; i < 50000; i++)
+                    {
+                        a.Add(new DrainSourceDataRow());
+                    }
+                    q.Enqueue(a);
+                }
+                    
             }
             catch (Exception e)
             {
-                Console.WriteLine(a.Count);
+                Console.WriteLine(q.Count);
                 Console.WriteLine();
                 
                 Console.WriteLine(e.Message);
