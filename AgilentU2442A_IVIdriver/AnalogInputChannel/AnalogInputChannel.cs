@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using AgilentU2442A;
+using AgilentU2442A_IVIdriver;
 using System.Collections;
 using System.Diagnostics;
 

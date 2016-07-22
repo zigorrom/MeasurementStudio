@@ -1,4 +1,5 @@
-﻿using Instruments;
+﻿using Agilent.AgilentU254x.Interop;
+using Instruments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,67 @@ namespace AgilentU2442A_IVIdriver
     [InstrumentAttribute("Agilent","U2542A")]
     public class AgilentU2542A:AbstractMessageBasedInstrument//,IDAQ
     {
+        public AgilentU2542A(string Name, string Alias, string ResourceName):base(Name,Alias,ResourceName)
+        {
+            Initialize();
+        }
+
+        private AgilentU254x _driver;
+        public override void AssertSession()
+        {
+            base.AssertSession();
+        }
+        public override void Dispose()
+        {
+            base.Dispose();
+        }
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+        public override string GetResponce()
+        {
+            return base.GetResponce();
+        }
+        public override bool InitializeDevice()
+        {
+            return base.InitializeDevice();
+        }
+        public override bool IsAlive(bool SendIDN)
+        {
+            return base.IsAlive(SendIDN);
+        }
+        public override string Query(string Command)
+        {
+            return base.Query(Command);
+        }
+        public override bool SendCommand(string Command)
+        {
+            return base.SendCommand(Command);
+        }
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private AgilentU2542ACommandBuilder m_commandSet;
         public AgilentU2542ACommandBuilder CommandSet
         {
@@ -23,11 +85,11 @@ namespace AgilentU2442A_IVIdriver
 
         private Dictionary<ChannelName, AbstractChannel> m_DeviceChannels;
 
-        public AgilentU2542A(string Name,string Alias,string ResourceName):base(Name,Alias,ResourceName)
-        {
-            Initialize();
+        //public AgilentU2542A(string Name,string Alias,string ResourceName):base(Name,Alias,ResourceName)
+        //{
+        //    Initialize();
             
-        }
+        //}
 
         public override void DetectInstrument(object data)
         {
