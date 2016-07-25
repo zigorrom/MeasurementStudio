@@ -1,6 +1,7 @@
 ﻿using ExperimentDataModel;
-
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Forms;
@@ -128,6 +129,31 @@ namespace ExperimentalDataModelTest
         [STAThread]
         static void Main(string[] args)
         {
+            var q = new Queue<MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>>();
+            long count = 0;
+            //var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow("", 2, "", 1, DateTime.Now));
+            try
+            {
+                while (true)
+                {
+                    Console.WriteLine(count++);
+                    var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow("", 2, "", 1, DateTime.Now));
+                    for (int i = 0; i < 50000; i++)
+                    {
+                        a.Add(new DrainSourceDataRow());
+                    }
+                    q.Enqueue(a);
+                }
+                    
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(q.Count);
+                Console.WriteLine();
+                
+                Console.WriteLine(e.Message);
+
+            }
             //FolderBrowserDialog sbd = new FolderBrowserDialog();
             //sbd.ShowDialog();
             //for (int i = 0; i < 10; i++)

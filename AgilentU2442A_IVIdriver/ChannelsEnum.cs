@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgilentU2542A
+namespace AgilentU2442A_IVIdriver
 {
-    public enum AgilentU2542AChannelEnum
+    public enum ChannelEnum
     {
         AI_CH101 = 101,
         AI_CH102,
@@ -14,9 +14,10 @@ namespace AgilentU2542A
         AI_CH104,
         AO_CH201 = 201,
         AO_CH202,
-        DIG_CH501 = 501,
+        DIG_CH501=501,
         DIG_CH502,
         DIG_CH503,
         DIG_CH504,
     }
+
 }
