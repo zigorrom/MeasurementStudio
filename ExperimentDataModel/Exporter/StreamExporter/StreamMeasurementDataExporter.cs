@@ -170,7 +170,7 @@ namespace ExperimentDataModel
 
         public void WriteMeasurement(MeasurementData<InfoT,DataT> data)
         {
-            if (_infoWriter == null && _dataWriter == null)
+            if (_infoWriter == null || _dataWriter == null)
                 throw new Exception("Writers were not initialized. Make sure you are calling NewExperiment and NewMeasurement methods before.");
             foreach (var p in data)
             {

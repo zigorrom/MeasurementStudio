@@ -18,8 +18,8 @@ namespace ExperimentAbstraction
         where DataT : struct
     {
         private string m_Name;
-        
-        private ConcurrentQueue<MeasurementData<InfoT, DataT>> _dataQueue= new ConcurrentQueue<MeasurementData<InfoT, DataT>>();
+
+        private ConcurrentQueue<KeyValuePair<bool, MeasurementData<InfoT, DataT>>> _dataQueue = new ConcurrentQueue<KeyValuePair<bool, MeasurementData<InfoT, DataT>>>();// new ConcurrentQueue<MeasurementData<InfoT, DataT>>();
         private StreamMeasurementDataExporter<InfoT, DataT> _dataWriter;
        
         private Thread _writerThread;
@@ -39,11 +39,14 @@ namespace ExperimentAbstraction
             _writerThread = new Thread(new ParameterizedThreadStart((o) =>
             {
                 var waitHandle = (WaitHandle)o;
-                MeasurementData<InfoT, DataT> data;
+                //MeasurementData<InfoT, DataT> data;
+                KeyValuePair<bool, MeasurementData<InfoT, DataT>> data;
                 while (!waitHandle.WaitOne(0, false))
                     while (_dataQueue.TryDequeue(out data))
                     {
-                        _dataWriter.WriteMeasurement(data);
+                        if (data.Key == true)
+                            _dataWriter.NewMeasurement(data.Value.Info);
+                        _dataWriter.WriteMeasurement(data.Value);
                         //_dataWriter.Write(data);
                     }
             }));
@@ -55,14 +58,19 @@ namespace ExperimentAbstraction
             _dataWriter.NewExperiment(ExperimentName);
         }
 
+        protected void NewMeasurement(InfoT measurementInfo)
+        {
+            _dataWriter.NewMeasurement(measurementInfo);
+        }
+
         //protected StreamMeasurementDataExporter<InfoT, DataT> GetStreamExporter(string WorkingDirectory)
         //{
         //    return new StreamMeasurementDataExporter<InfoT, DataT>(WorkingDirectory);
         //}
 
-        protected void EnqueueData(MeasurementData<InfoT, DataT> data)
+        protected void EnqueueData(MeasurementData<InfoT, DataT> data, bool NewMeasurement)
         {
-            _dataQueue.Enqueue(data);
+            _dataQueue.Enqueue(new KeyValuePair<bool,MeasurementData<InfoT, DataT>>(NewMeasurement,data));
         }
 
         public void Dispose()
