@@ -198,6 +198,7 @@ namespace ExperimentAbstraction
         public abstract void ReleaseInstruments();
         public virtual void FinalizeExperiment()
         {
+            _dataWriter.Close();
             ((AutoResetEvent)_experimentStopped).Set();
             _writerThread.Join();
         }
