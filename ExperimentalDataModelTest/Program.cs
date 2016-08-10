@@ -129,15 +129,14 @@ namespace ExperimentalDataModelTest
         [STAThread]
         static void Main(string[] args)
         {
-
             FolderBrowserDialog sbd = new FolderBrowserDialog();
             sbd.ShowDialog();
             using (var s = new StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(sbd.SelectedPath))
             {
-                for (int j = 0; j < 5; j++)
+                s.NewExperiment(String.Format("exp_{0}", 0));
+                for (int j = 0; j < 2; j++)
                 {
                     var info = new DrainSourceMeasurmentInfoRow(String.Concat("file_", j), j * 0.123, String.Concat("Comment_", j), j, DateTime.Now);
-                    s.NewExperiment(String.Format("exp_{0}", j));
                     s.NewMeasurement(info);
                     for (int i = 0; i < 4; i++)
                     {

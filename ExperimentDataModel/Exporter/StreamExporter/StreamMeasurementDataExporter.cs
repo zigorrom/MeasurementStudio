@@ -26,7 +26,14 @@ namespace ExperimentDataModel
 
         ~StreamMeasurementDataExporter()
         {
+            Close();
             Dispose();
+        }
+
+        public void Close()
+        {
+            _infoWriter.Close();
+            _dataWriter.Close();
         }
 
         //private string _workingDirectory;
@@ -151,6 +158,7 @@ namespace ExperimentDataModel
             if (_infoWriter == null)
                 throw new Exception("Writers were not initialized. Make sure you are calling NewExperiment methods before.");
             _infoWriter.WriteLine(_exportInfoFunction(measurementInfo));
+            _infoWriter.Flush();
             var datafn = String.Concat(WorkingDirectory, "\\", measurementInfo.Filename, ".txt");
             _dataWriter = new StreamWriter(new FileStream(datafn, FileMode.Append, FileAccess.Write, FileShare.Read));
             _dataWriter.WriteLine(_dataHeader);
@@ -168,10 +176,15 @@ namespace ExperimentDataModel
             {
                 _dataWriter.WriteLine(_exportDataFunction(p));
             }
+            _dataWriter.Flush();
         }
 
-      
+        public async Task WriteMeasurementAsync(MeasurementData<InfoT,DataT> data)
+        {
+            await Task.Factory.StartNew(() => WriteMeasurement(data));
+        }
 
+        [Obsolete("Thsi is obsolete method. Please use NewExperiment, NewMeasurement, WriteMeasurement methods.",true)]
         public void WriteInfo(InfoT info)
         {
             var infofn = String.Concat(WorkingDirectory, "\\", ExperimentName, ".txt");
@@ -187,7 +200,7 @@ namespace ExperimentDataModel
             }
         }
 
-
+        [Obsolete("Thsi is obsolete method. Please use NewExperiment, NewMeasurement, WriteMeasurement methods.", true)]
         public void Write(MeasurementData<InfoT, DataT> measurement)
         {
             var infofn = String.Concat(WorkingDirectory, "\\", ExperimentName, ".txt");
@@ -216,18 +229,23 @@ namespace ExperimentDataModel
                 }
             }
         }
-
-        public async Task  WriteAsync(MeasurementData<InfoT, DataT> measurement)
-        {
-            await Task.Factory.StartNew(()=>Write(measurement));
-        }
+        //[Obsolete("Thsi is obsolete method. Please use NewExperiment, NewMeasurement, WriteMeasurement methods.", true)]
+        //public async Task  WriteAsync(MeasurementData<InfoT, DataT> measurement)
+        //{
+        //    await Task.Factory.StartNew(()=>Write(measurement));
+        //}
 
         public void Dispose()
         {
             if (_infoWriter != null)
+            {
+                
                 _infoWriter.Dispose();
+            }
             if (_dataWriter != null)
+            {
                 _dataWriter.Dispose();
+            }
         }
     }
 }

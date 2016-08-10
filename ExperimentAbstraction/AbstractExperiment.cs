@@ -43,7 +43,8 @@ namespace ExperimentAbstraction
                 while (!waitHandle.WaitOne(0, false))
                     while (_dataQueue.TryDequeue(out data))
                     {
-                        _dataWriter.Write(data);
+                        _dataWriter.WriteMeasurement(data);
+                        //_dataWriter.Write(data);
                     }
             }));
         }
@@ -54,10 +55,10 @@ namespace ExperimentAbstraction
             _dataWriter.NewExperiment(ExperimentName);
         }
 
-        protected StreamMeasurementDataExporter<InfoT, DataT> GetStreamExporter(string WorkingDirectory)
-        {
-            return new StreamMeasurementDataExporter<InfoT, DataT>(WorkingDirectory);
-        }
+        //protected StreamMeasurementDataExporter<InfoT, DataT> GetStreamExporter(string WorkingDirectory)
+        //{
+        //    return new StreamMeasurementDataExporter<InfoT, DataT>(WorkingDirectory);
+        //}
 
         protected void EnqueueData(MeasurementData<InfoT, DataT> data)
         {
