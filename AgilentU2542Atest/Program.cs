@@ -11,24 +11,20 @@ namespace AgilentU2542Atest
     {
         static void Main(string[] args)
         {
-            //var md = new 
-            //var agilent = new AgilentU2542A("asdasd", "", "ADC");
-
-            ////agilent.Reset();
-            //var ch1 = agilent.GetAnalogInputChannel(ChannelEnum.AI_CH101);
-            ////ch1.ChannelEnable = ChannelEnableEnum.Enabled;
+            var agilent = new AgilentU2542A("asdasd", "", "ADC");
+            var ch1 = agilent.GetAnalogInputChannel(ChannelEnum.AI_CH101);
+            //ch1.ChannelEnable = ChannelEnableEnum.Enabled;
            
-            //ch1.SampleRate = 500000;
-            //ch1.PointsPerShot = 50000;
-            //ch1.DataSetReady += ch1_DataSetReady;
-            //Console.WriteLine(agilent.Query(agilent.CommandSet.IDNQuery()));
-            //ch1.StartAcquisition();
-            //System.Threading.Thread.Sleep(5000);
-            //ch1.StopAcquisition();
-            
+            ch1.SampleRate = 500000;
+            ch1.PointsPerShot = 50000;
+            ch1.DataSetReady += ch1_DataSetReady;
+            Console.WriteLine(agilent.Query(agilent.CommandSet.IDNQuery()));
+            ch1.StartAcquisition();
+            System.Threading.Thread.Sleep(100000);
+            ch1.StopAcquisition();
             //for (int i = 0; i < 0xFFFFFFFE; i++)
             //{
-                
+            //ss
             //}
         }
         static long counter = 0;
@@ -38,7 +34,7 @@ namespace AgilentU2542Atest
             double[] data;
             a.DequeueData(out data);
             counter++;
-            Console.WriteLine("b{0},d{1};",counter,data.Length);
+            Console.WriteLine("b{0},d{1};", counter, data.Length);
         }
     }
 }

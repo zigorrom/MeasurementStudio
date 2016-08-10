@@ -22,7 +22,7 @@ namespace ExperimentDataModel
             private set;
             get;
         }
-        
+
         private int blockSize;
         public int BlockSize
         {
@@ -30,13 +30,41 @@ namespace ExperimentDataModel
             set { blockSize = value; }
         }
 
-        Queue<MeasurementDataBlock> _dataQueue;
+        Queue<MeasurementDataBlock<DataT>> _dataQueue;
+
 
 
     }
 
-    class MeasurementDataBlock
+    struct MeasurementDataBlock<DataT>:IPointDataSource
     {
+        public MeasurementDataBlock(int blockNumber, DataT[] data)
+        {
+            BlockNumber = blockNumber;
+            Data = data;
+        }
 
+        private int _blockNumber;
+
+        public int BlockNumber
+        {
+            get { return _blockNumber; }
+            private set { _blockNumber = value; }
+        }
+
+        private DataT[] _data;
+        public DataT[] Data
+        {
+            get { return _data; }
+            private set { _data = value; }
+        }
+
+
+        public event EventHandler DataChanged;
+
+        public IPointEnumerator GetEnumerator(System.Windows.DependencyObject context)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
