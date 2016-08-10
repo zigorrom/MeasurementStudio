@@ -84,7 +84,7 @@ namespace IVCharacterization.Experiments
                 }
 
                 _vm.ExecuteInUIThread(() => mea.ResumeUpdate());
-                EnqueueData(mea);
+                EnqueueData(mea,true);
                 //_writer.Write(mea);
                 _vm.MeasurementCount++;
 
@@ -146,7 +146,7 @@ namespace IVCharacterization.Experiments
                 }
 
                 _vm.ExecuteInUIThread(() => mea.ResumeUpdate());
-                EnqueueData(mea);
+                EnqueueData(mea,true);
                 //_writer.Write(mea);
                 _vm.MeasurementCount++;
 

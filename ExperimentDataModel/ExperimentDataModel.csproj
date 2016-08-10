@@ -54,7 +54,6 @@
     <Compile Include="MeasurementData.cs" />
     <Compile Include="IMeasurementDataCollection.cs" />
     <Compile Include="Exporter\OriginExporter\OriginMeasurementDataExporter.cs" />
-    <Compile Include="MeasurementDataStream.cs" />
     <Compile Include="ObservableMeasurementData.cs" />
     <Compile Include="ObserverOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

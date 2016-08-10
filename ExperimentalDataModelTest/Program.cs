@@ -129,51 +129,29 @@ namespace ExperimentalDataModelTest
         [STAThread]
         static void Main(string[] args)
         {
-            var q = new Queue<MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>>();
-            long count = 0;
-            //var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow("", 2, "", 1, DateTime.Now));
-            try
+            FolderBrowserDialog sbd = new FolderBrowserDialog();
+            sbd.ShowDialog();
+            using (var s = new StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(sbd.SelectedPath))
             {
-                while (true)
+                s.NewExperiment(String.Format("exp_{0}", 0));
+                for (int j = 0; j < 2; j++)
                 {
-                    Console.WriteLine(count++);
-                    var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow("", 2, "", 1, DateTime.Now));
-                    for (int i = 0; i < 50000; i++)
+                    var info = new DrainSourceMeasurmentInfoRow(String.Concat("file_", j), j * 0.123, String.Concat("Comment_", j), j, DateTime.Now);
+                    s.NewMeasurement(info);
+                    for (int i = 0; i < 4; i++)
                     {
-                        a.Add(new DrainSourceDataRow());
+                        var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(info);
+                        var rnd = new Random();
+                        for (int k = 0; k < 1000; k++)
+                        {
+                            a.Add(new DrainSourceDataRow(rnd.NextDouble(), rnd.NextDouble() * 10, rnd.NextDouble() * 100));
+                        }
+                        s.WriteMeasurement(a);
                     }
-                    q.Enqueue(a);
                 }
-                    
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(q.Count);
-                Console.WriteLine();
                 
-                Console.WriteLine(e.Message);
-
             }
-            //FolderBrowserDialog sbd = new FolderBrowserDialog();
-            //sbd.ShowDialog();
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    var a = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(
-            //        new DrainSourceMeasurmentInfoRow(String.Concat("file_", i), i*0.123, String.Concat("Comment_", i), i, DateTime.Now),
-            //        new Func<DrainSourceDataRow, Point>((x) => new DataPoint(x.DrainSourceVoltage, x.DrainCurrent))
-            //       );
-            //    var rnd = new Random();
-            //    for (int j = 0; j < 10000; j++)
-            //    {
-            //        a.Add(new DrainSourceDataRow(rnd.NextDouble(), rnd.NextDouble() * 10, rnd.NextDouble() * 100));
-            //    }
-            //    using (var s = new StreamMeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(sbd.SelectedPath))
-            //    {
-            //        s.NewExperiment("Final");
-            //        s.Write(a);
-            //    }
-            //}
-            //MessageBox.Show("Done");
+            MessageBox.Show("Done");
             
 
            
