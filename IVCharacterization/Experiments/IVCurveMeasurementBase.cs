@@ -216,5 +216,43 @@ namespace IVCharacterization.Experiments
             //throw new NotImplementedException();
         }
 
+
+        ///
+        /// MOSFET simulation
+        ///
+
+        private const double mu = 0.02 ;
+        private const double eps = 3.9;
+        private const double eps0 = 8.8541e-12;
+        private const double d = 8e-9;
+        private const double W = 10e-6;
+        private const double L = 20e-6;
+        private const double Vth = 0.45;
+
+        protected double DrainCurrent(double GateVoltage, double DrainSourceVoltage)
+        {
+            if (GateVoltage > Vth)
+            {
+
+                if (DrainSourceVoltage < (GateVoltage - Vth))
+                {
+                    return mu * (eps * eps0 / d) * (W / L) * ((GateVoltage - Vth) * DrainSourceVoltage - DrainSourceVoltage * DrainSourceVoltage / 2);
+                }
+                else
+                {
+                    return mu * (eps * eps0 / 2 / d) * (W / L) * (GateVoltage - Vth) * (GateVoltage - Vth) * (1+0.01*(DrainSourceVoltage-GateVoltage+Vth));
+                }
+
+
+            }
+            else
+            {
+                return 0;
+            }
+
+
+
+        }
+
     }
 }

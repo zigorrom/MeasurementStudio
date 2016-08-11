@@ -118,6 +118,12 @@ namespace IVCharacterization.Experiments
             var rand = new Random();
             var gEnumerator = _secondRangeHandler.GetEnumerator();
 
+            ///
+            /// MOSFET simulation
+            ///
+            
+
+
             while (gEnumerator.MoveNext() && !StopExperiment)
             {
                 var mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("{0}_{1}", MeasurementName, MeasurementCount++), gEnumerator.Current, "", MeasurementCount));
@@ -143,8 +149,8 @@ namespace IVCharacterization.Experiments
                        });
                     }
                     var r = rand.NextDouble();
-
-                    mea.Add(new DrainSourceDataRow(dsEnumerator.Current, (r + gEnumerator.Current) * Math.Pow(dsEnumerator.Current, 2), 0));// * Math.Log(dsEnumerator.Current), 0)); //
+                    mea.Add(new DrainSourceDataRow(dsEnumerator.Current, DrainCurrent(gEnumerator.Current, dsEnumerator.Current), 0));
+                    //mea.Add(new DrainSourceDataRow(dsEnumerator.Current, (r + gEnumerator.Current) * Math.Pow(dsEnumerator.Current, 2), 0));// * Math.Log(dsEnumerator.Current), 0)); //
                     _vm.ExecuteInUIThread(() => bgw.ReportProgress(progressCalculator(counter++)));
                     System.Threading.Thread.Sleep(10);
                 }

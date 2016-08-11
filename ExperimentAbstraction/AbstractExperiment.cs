@@ -200,6 +200,7 @@ namespace ExperimentAbstraction
         {
             ((AutoResetEvent)_experimentStopped).Set();
             _writerThread.Join();
+            _dataWriter.Close();
         }
         //public abstract void ClearExperiment();
 

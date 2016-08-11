@@ -139,8 +139,8 @@ namespace IVCharacterization.Experiments
                         });
                     }
                     var r = rand.NextDouble();
-
-                    mea.Add(new GateSourceDataRow(gEnumerator.Current, (r + dsEnumerator.Current) * Math.Pow(gEnumerator.Current, 2), 0));// * Math.Log(dsEnumerator.Current), 0)); //
+                    mea.Add(new GateSourceDataRow(gEnumerator.Current, DrainCurrent(gEnumerator.Current,dsEnumerator.Current),0));
+                    //mea.Add(new GateSourceDataRow(gEnumerator.Current, (r + dsEnumerator.Current) * Math.Pow(gEnumerator.Current, 2), 0));// * Math.Log(dsEnumerator.Current), 0)); //
                     _vm.ExecuteInUIThread(() => bgw.ReportProgress(progressCalculator(counter++)));
                     System.Threading.Thread.Sleep(10);
                 }
