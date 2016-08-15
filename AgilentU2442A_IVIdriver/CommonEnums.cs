@@ -95,11 +95,11 @@ namespace AgilentU2442A_IVIdriver
         Internal
     }
 
-    public enum ChannelEnableEnum
-    {
-        Enabled,
-        Disabled
-    }
+    //public enum ChannelEnableEnum
+    //{
+    //    Enabled,
+    //    Disabled
+    //}
 
     public enum VoltageRangeEnum
     {

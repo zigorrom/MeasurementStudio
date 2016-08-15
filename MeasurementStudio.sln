@@ -105,6 +105,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgilentU2542Atest", "Agilen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgilentU2442A_IVIdriver", "AgilentU2442A_IVIdriver\AgilentU2442A_IVIdriver.csproj", "{9C89DE69-6EF6-4365-B339-0F86930667C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeasurementStudioWebApi", "MeasurementStudioWebApi\MeasurementStudioWebApi.csproj", "{77CC51BD-2A0C-48D4-93D6-9882C69E9F26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -611,6 +613,20 @@ Global
 		{9C89DE69-6EF6-4365-B339-0F86930667C4}.Release|Win32.ActiveCfg = Release|Any CPU
 		{9C89DE69-6EF6-4365-B339-0F86930667C4}.Release|x64.ActiveCfg = Release|Any CPU
 		{9C89DE69-6EF6-4365-B339-0F86930667C4}.Release|x86.ActiveCfg = Release|Any CPU
+		{77CC51BD-2A0C-48D4-93D6-9882C69E9F26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77CC51BD-2A0C-48D4-93D6-9882C69E9F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77CC51BD-2A0C-48D4-93D6-9882C69E9F26}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{77CC51BD-2A0C-48D4-93D6-9882C69E9F26}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{77CC51BD-2A0C-48D4-93D6-9882C69E9F26}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{77CC51BD-2A0C-48D4-93D6-9882C69E9F26}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{77CC51BD-2A0C-48D4-93D6-9882C69E9F26}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{77CC51BD-2A0C-48D4-93D6-9882C69E9F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77CC51BD-2A0C-48D4-93D6-9882C69E9F26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77CC51BD-2A0C-48D4-93D6-9882C69E9F26}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{77CC51BD-2A0C-48D4-93D6-9882C69E9F26}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{77CC51BD-2A0C-48D4-93D6-9882C69E9F26}.Release|Win32.ActiveCfg = Release|Any CPU
+		{77CC51BD-2A0C-48D4-93D6-9882C69E9F26}.Release|x64.ActiveCfg = Release|Any CPU
+		{77CC51BD-2A0C-48D4-93D6-9882C69E9F26}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

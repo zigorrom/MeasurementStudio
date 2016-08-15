@@ -27,16 +27,20 @@ namespace AgilentU2442A_IVIdriver
         public double Voltage
         {
             get {
-                var val = CommandSet.SOURceVOLTageQueryParse(QueryCommand(CommandSet.SOURceVOLTageQuery(ChannelName)));
-                m_voltage = val;
-                return m_voltage; 
+
+                throw new NotImplementedException();
+                //var val = CommandSet.SOURceVOLTageQueryParse(QueryCommand(CommandSet.SOURceVOLTageQuery(ChannelName)));
+                //m_voltage = val;
+                //return m_voltage; 
             }
             set {
-                if (m_voltage == value)
-                    return;
-                if(!SendCommand(CommandSet.SOURceVOLTage(value,ChannelName)))
-                    throw new MemberAccessException(MemberAccessExceptionMessage);
-                m_voltage = value; 
+
+                throw new NotImplementedException();
+                //if (m_voltage == value)
+                //    return;
+                //if(!SendCommand(CommandSet.SOURceVOLTage(value,ChannelName)))
+                //    throw new MemberAccessException(MemberAccessExceptionMessage);
+                //m_voltage = value; 
                 
             }
         }

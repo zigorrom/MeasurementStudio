@@ -10,9 +10,11 @@ namespace MeasurementStudio
     using CVCharacterization.ViewModels;
     using ExperimentDataModel;
     using IVCharacterization.ViewModels;
+    
     using Microsoft.TeamFoundation.MVVM;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
+    using System.Net.Http;
     using System.Windows.Controls;
     using System.Windows.Data;
     using System.Windows.Input;
@@ -88,7 +90,28 @@ namespace MeasurementStudio
         private void SwitchToExperiment(PagesEnum exp)
         {
             if (!_controls.ContainsKey(exp))
-                return;
+            {
+                switch (exp)
+                {
+                    case PagesEnum.Home:
+                        _controls.Add(PagesEnum.Home, new UserControl { Content = new HomeViewModel() });
+                        break;
+                    case PagesEnum.IVOutput:
+                        _controls.Add(PagesEnum.IVOutput, new UserControl { Content = new OutputIVViewModel() });
+                        break;
+                    case PagesEnum.IVTransfer:
+                        _controls.Add(PagesEnum.IVTransfer, new UserControl { Content = new TransfrerIVViewModel() });
+                        break;
+                    case PagesEnum.CVCharacteristics:
+                        _controls.Add(PagesEnum.CVCharacteristics, new UserControl { Content = new CVViewModel() });
+                        break;
+                    case PagesEnum.Timetrace:
+                        _controls.Add(PagesEnum.Timetrace, new UserControl { Content = new TimetraceMainViewModel() });
+                        break;
+                    default:
+                        return;
+                }
+            }
             _current = exp;
             var control = _controls[exp];
             View.ShowPage(control);
@@ -99,12 +122,17 @@ namespace MeasurementStudio
         {
             //Home = new HomeViewModel();
             _current = PagesEnum.Home;
-            _controls.Add(PagesEnum.Home, new UserControl { Content = new HomeViewModel() });
-            _controls.Add(PagesEnum.IVOutput, new UserControl { Content = new OutputIVViewModel() });
-            _controls.Add(PagesEnum.IVTransfer, new UserControl { Content = new TransfrerIVViewModel() });
-            _controls.Add(PagesEnum.CVCharacteristics, new UserControl { Content = new CVViewModel() });
-            _controls.Add(PagesEnum.Timetrace, new UserControl { Content = new TimetraceMainViewModel() });
-            
+            //_controls.Add(PagesEnum.Home, new UserControl { Content = new HomeViewModel() });
+            //_controls.Add(PagesEnum.IVOutput, new UserControl { Content = new OutputIVViewModel() });
+            //_controls.Add(PagesEnum.IVTransfer, new UserControl { Content = new TransfrerIVViewModel() });
+            //_controls.Add(PagesEnum.CVCharacteristics, new UserControl { Content = new CVViewModel() });
+            //_controls.Add(PagesEnum.Timetrace, new UserControl { Content = new TimetraceMainViewModel() });
+            //var baseAddr = "http://localhost:9000/";
+            //using(Microsoft.Owin.Hosting.WebApp.Start<Startup>(url: baseAddr))
+            //{
+            //    HttpClient client = new HttpClient();
+            //    var response = client.GetAsync(baseAddr + "api/values").Result;
+            //}
             //Initialize();
         }
 

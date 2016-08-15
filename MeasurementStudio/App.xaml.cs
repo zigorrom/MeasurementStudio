@@ -27,7 +27,7 @@ namespace MeasurementStudio
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-
+           
         }
 
         private void Application_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)

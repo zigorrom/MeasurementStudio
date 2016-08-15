@@ -48,9 +48,9 @@
   <ItemGroup>
     <Compile Include="AbstractChannel.cs" />
     <Compile Include="AgilentU2542A.cs" />
-    <Compile Include="AgilentU2542ACommandBuilder.cs" />
     <Compile Include="AnalogInputChannel\AnalogInputChannel.cs" />
     <Compile Include="AnalogInputChannel\AnalogInputChannels.cs" />
+    <Compile Include="AnalogInputChannel\AnalogInputDataRouter.cs" />
     <Compile Include="AnalogInputChannel\AquisitionState.cs" />
     <Compile Include="AnalogOutputChannel\AnalogOutputChannel.cs" />
     <Compile Include="AnalogOutputChannel\AnalogOutputChannels.cs" />
@@ -86,6 +86,9 @@
       <Project>{0b56f789-4a97-4cf6-81e7-da41a40a5761}</Project>
       <Name>Instruments</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Wrappers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

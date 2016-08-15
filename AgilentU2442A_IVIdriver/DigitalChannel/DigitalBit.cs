@@ -21,27 +21,27 @@ namespace AgilentU2442A_IVIdriver
 
         private bool m_value;
 
-        public bool Value
-        {
-            get { 
-                if(m_digitalChannel.DigitalDirection== DigitalDirectionEnum.Output)
-                    throw new Exception("Channel DigitalDirection is set to Output");
-                var val = m_ParentDevice.CommandSet.MEASureDIGitalBITQueryParse(m_ParentDevice.Query(m_ParentDevice.CommandSet.MEASureDIGitalBITQuery(m_BitNumber, m_digitalChannel.ChannelName)));
-                if (m_value != val)
-                    m_value = val;
-                return m_value;
-            }
-            private set {
-                if (m_value == value)
-                    return;
-                if(m_digitalChannel.DigitalDirection== DigitalDirectionEnum.Input)
-                    throw new Exception("Channel DigitalDirection is set to Input");
-                if(!m_ParentDevice.SendCommand(m_ParentDevice.CommandSet.SOURceDIGitalDATABIT(value, m_BitNumber,m_digitalChannel.ChannelName)))
-                    throw new MemberAccessException("Value was not set on the device. Please check connectivity");
-                //m_digitalChannel.DigitalWriteBit(value, m_BitNumber);
+        //public bool Value
+        //{
+        //    get { 
+        //        if(m_digitalChannel.DigitalDirection== DigitalDirectionEnum.Output)
+        //            throw new Exception("Channel DigitalDirection is set to Output");
+        //        var val = m_ParentDevice.CommandSet.MEASureDIGitalBITQueryParse(m_ParentDevice.Query(m_ParentDevice.CommandSet.MEASureDIGitalBITQuery(m_BitNumber, m_digitalChannel.ChannelName)));
+        //        if (m_value != val)
+        //            m_value = val;
+        //        return m_value;
+        //    }
+        //    private set {
+        //        if (m_value == value)
+        //            return;
+        //        if(m_digitalChannel.DigitalDirection== DigitalDirectionEnum.Input)
+        //            throw new Exception("Channel DigitalDirection is set to Input");
+        //        if(!m_ParentDevice.SendCommand(m_ParentDevice.CommandSet.SOURceDIGitalDATABIT(value, m_BitNumber,m_digitalChannel.ChannelName)))
+        //            throw new MemberAccessException("Value was not set on the device. Please check connectivity");
+        //        //m_digitalChannel.DigitalWriteBit(value, m_BitNumber);
                 
-            }
-        }
+        //    }
+        //}
 
         //public bool DigitalReadBit(int bit)
         //{
@@ -57,15 +57,15 @@ namespace AgilentU2442A_IVIdriver
         //   if (!SendCommand(CommandSet.SOURceDIGitalDATABIT(value, bit, ChannelName)))
         //       throw new MemberAccessException(MemberAccessExceptionMessage);
         //}
-        public void Set()
-        {
-            Value = true;
-        }
+        //public void Set()
+        //{
+        //    Value = true;
+        //}
 
-        public void Reset()
-        {
-            Value = false;
-        }
+        //public void Reset()
+        //{
+        //    Value = false;
+        //}
     
     }
 

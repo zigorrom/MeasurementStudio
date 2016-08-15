@@ -71,20 +71,24 @@ namespace AgilentU2442A_IVIdriver
         {
             get { return m_DigitalDirection; }
             set {
-                if (m_DigitalDirection == value)
-                    return;
-                if (!SendCommand(CommandSet.CONFigureDIGitalDIRection(value, ChannelName)))
-                    throw new MemberAccessException(MemberAccessExceptionMessage);
-                m_DigitalDirection = value;
-                OnPropertyChanged("DigitalDirection");
+
+                throw new NotImplementedException();
+                //if (m_DigitalDirection == value)
+                //    return;
+                //if (!SendCommand(CommandSet.CONFigureDIGitalDIRection(value, ChannelName)))
+                //    throw new MemberAccessException(MemberAccessExceptionMessage);
+                //m_DigitalDirection = value;
+                //OnPropertyChanged("DigitalDirection");
             }
         }
 
         protected override void InitializeChannel()
         {
-            m_DigitalDirection = CommandSet.CONFigureDIGitalDIRectionQueryParse(QueryCommand(CommandSet.CONFigureDIGitalDIRectionQuery(ChannelName)));
-            OnPropertyChanged("DigitalDirection");
-            Value = CommandSet.SOURceDIGitalDATAQueryParse(QueryCommand(CommandSet.SOURceDIGitalDATAQuery(ChannelName)));
+
+            throw new NotImplementedException();
+            //m_DigitalDirection = CommandSet.CONFigureDIGitalDIRectionQueryParse(QueryCommand(CommandSet.CONFigureDIGitalDIRectionQuery(ChannelName)));
+            //OnPropertyChanged("DigitalDirection");
+            //Value = CommandSet.SOURceDIGitalDATAQueryParse(QueryCommand(CommandSet.SOURceDIGitalDATAQuery(ChannelName)));
             //OnPropertyChanged("Value");
         }
 
@@ -92,37 +96,45 @@ namespace AgilentU2442A_IVIdriver
 
         public void DigitalWrite(int value)
         {
-            if (DigitalDirection == DigitalDirectionEnum.Input)
-                throw new Exception("DigitalDirection is set to input");
-            if (!SendCommand(CommandSet.SOURceDIGitalDATA(value, ChannelName)))
-                throw new MemberAccessException(MemberAccessExceptionMessage);
-            Value = value;
+
+            throw new NotImplementedException();
+            //if (DigitalDirection == DigitalDirectionEnum.Input)
+            //    throw new Exception("DigitalDirection is set to input");
+            //if (!SendCommand(CommandSet.SOURceDIGitalDATA(value, ChannelName)))
+            //    throw new MemberAccessException(MemberAccessExceptionMessage);
+            //Value = value;
         }
 
 
         public void DigitalWriteBit(bool value, int bit)
         {
-            if (DigitalDirection == DigitalDirectionEnum.Input)
-                throw new Exception("DigitalDirection is set to input");
-            if (!SendCommand(CommandSet.SOURceDIGitalDATABIT(value, bit, ChannelName)))
-                throw new MemberAccessException(MemberAccessExceptionMessage);
+
+            throw new NotImplementedException();
+            //if (DigitalDirection == DigitalDirectionEnum.Input)
+            //    throw new Exception("DigitalDirection is set to input");
+            //if (!SendCommand(CommandSet.SOURceDIGitalDATABIT(value, bit, ChannelName)))
+            //    throw new MemberAccessException(MemberAccessExceptionMessage);
         }
 
         public int DigitalRead()
         {
-            if (DigitalDirection == DigitalDirectionEnum.Output)
-                throw new Exception("DigitalDirection is set to output");
-            var val = CommandSet.MEASureDIGitalQueryParse(QueryCommand(CommandSet.MEASureDIGitalQuery(ChannelName)));
-            return val;
+
+            throw new NotImplementedException();
+            //if (DigitalDirection == DigitalDirectionEnum.Output)
+            //    throw new Exception("DigitalDirection is set to output");
+            //var val = CommandSet.MEASureDIGitalQueryParse(QueryCommand(CommandSet.MEASureDIGitalQuery(ChannelName)));
+            //return val;
             //if(QueryCommand(CommandSet.MEASureDIGitalQuery(ChannelName))
         }
 
         public bool DigitalReadBit(int bit)
         {
-            if (DigitalDirection == DigitalDirectionEnum.Output)
-                throw new Exception("DigitalDirection is set to output");
-            var val = CommandSet.MEASureDIGitalBITQueryParse(QueryCommand(CommandSet.MEASureDIGitalBITQuery(bit, ChannelName)));
-            return val;
+
+            throw new NotImplementedException();
+            //if (DigitalDirection == DigitalDirectionEnum.Output)
+            //    throw new Exception("DigitalDirection is set to output");
+            //var val = CommandSet.MEASureDIGitalBITQueryParse(QueryCommand(CommandSet.MEASureDIGitalBITQuery(bit, ChannelName)));
+            //return val;
         }
     }
 }

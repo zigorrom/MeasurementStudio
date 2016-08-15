@@ -100,6 +100,10 @@
       <Project>{0b56f789-4a97-4cf6-81e7-da41a40a5761}</Project>
       <Name>Instruments</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MeasurementStudioWebApi\MeasurementStudioWebApi.csproj">
+      <Project>{77cc51bd-2a0c-48d4-93d6-9882c69e9f26}</Project>
+      <Name>MeasurementStudioWebApi</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
