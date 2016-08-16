@@ -160,41 +160,24 @@ namespace MeasurementStudio
 
 
 
-        private readonly string[] pages = { "Home", "IVoutput", "IVtransfer", "CVcharacteristic" };
+        //private readonly string[] pages = { "Home", "IVoutput", "IVtransfer", "CVcharacteristic" };
         public string[] GetAvailablePages()
         {
-            return pages;
+            return Enum.GetNames(typeof(PagesEnum));
         }
 
         public bool SwitchToPage(string PageName)
         {
-            switch (PageName)
+            var names = Enum.GetNames(typeof(PagesEnum));
+            PagesEnum enumVal;
+            if (Enum.TryParse(PageName, true, out enumVal))
             {
-                case "HOME":
-                    {
-                        SwitchToExperiment(PagesEnum.Home);
-                        return true;
-                    }
-                case "IV_OUTPUT":
-                    {
-                        SwitchToExperiment(PagesEnum.IVOutput);
-                        return true;
-                    }
-                case "CV_CHARACTERISTIC":
-                    {
-                        SwitchToExperiment(PagesEnum.CVCharacteristics);
-                        return true;
-                    }
-                case "IV_TRANSFER":
-                    {
-                        SwitchToExperiment(PagesEnum.IVTransfer);
-                        return true;
-                    }
-
-                default:
-                    return false;
-
+                if (_current != enumVal)
+                    SwitchToExperiment(enumVal);
+                return true;
             }
+            return false;
+           
         }
 
         public void ShowMessage(string message)
