@@ -9,17 +9,21 @@ namespace MeasurementStudio
     using CurrentTimetrace.ViewModels;
     using CVCharacterization.ViewModels;
     using ExperimentDataModel;
+    using Helper.ViewModelInterface;
     using IVCharacterization.ViewModels;
-    
+    using MeasurementStudioWebApi;
     using Microsoft.TeamFoundation.MVVM;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Net.Http;
+    using System.ServiceModel;
+    using System.Threading;
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Data;
     using System.Windows.Input;
     
-    public class MainViewModel:INotifyPropertyChanged, IMainViewModel
+    public class MainViewModel:INotifyPropertyChanged, IMainViewModel,IMeasurementWebApi
     {
         #region PropertyEvents
 
@@ -39,9 +43,10 @@ namespace MeasurementStudio
                 handler(this, new PropertyChangedEventArgs(PropertyName));
         }
         #endregion
+
+
+        private ServiceHost _host;
         
-
-
         private PagesEnum _current;
 
         private ICommand _keyPressed;
@@ -122,6 +127,11 @@ namespace MeasurementStudio
         {
             //Home = new HomeViewModel();
             _current = PagesEnum.Home;
+
+
+            StartWebApiHost();
+
+
             //_controls.Add(PagesEnum.Home, new UserControl { Content = new HomeViewModel() });
             //_controls.Add(PagesEnum.IVOutput, new UserControl { Content = new OutputIVViewModel() });
             //_controls.Add(PagesEnum.IVTransfer, new UserControl { Content = new TransfrerIVViewModel() });
@@ -136,6 +146,67 @@ namespace MeasurementStudio
             //Initialize();
         }
 
+        private void StartWebApiHost()
+        {
+            try
+            {
+                _host = new MeasurementServiceHost(this, typeof(MeasurementWebApiService));
+                _host.Open();
+            }catch(Exception e)
+            {
+                ShowMessage("Failed to start api host");
+            }
+        }
+
+
+
+        private readonly string[] pages = { "Home", "IVoutput", "IVtransfer", "CVcharacteristic" };
+        public string[] GetAvailablePages()
+        {
+            return pages;
+        }
+
+        public bool SwitchToPage(string PageName)
+        {
+            switch (PageName)
+            {
+                case "HOME":
+                    {
+                        SwitchToExperiment(PagesEnum.Home);
+                        return true;
+                    }
+                case "IV_OUTPUT":
+                    {
+                        SwitchToExperiment(PagesEnum.IVOutput);
+                        return true;
+                    }
+                case "CV_CHARACTERISTIC":
+                    {
+                        SwitchToExperiment(PagesEnum.CVCharacteristics);
+                        return true;
+                    }
+                case "IV_TRANSFER":
+                    {
+                        SwitchToExperiment(PagesEnum.IVTransfer);
+                        return true;
+                    }
+
+                default:
+                    return false;
+
+            }
+        }
+
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message,"MainWindow");
+        }
+
+
+        public System.Threading.SynchronizationContext CurrentSynchronizationContext
+        {
+            get { return SynchronizationContext.Current; }
+        }
 
 
         //private async void Initialize()
@@ -158,7 +229,7 @@ namespace MeasurementStudio
         //}
 
 
-        public IPageTransitionView View
+        public IMeasurementView View
         {
             get;
             set;
@@ -173,6 +244,19 @@ namespace MeasurementStudio
         }
 
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
     }
 }

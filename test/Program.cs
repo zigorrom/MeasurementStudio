@@ -29,8 +29,8 @@ namespace test
             //    Console.WriteLine(i);
             //}
 
-            var _host = new ServiceHost(typeof(Service));
-            _host.Open();
+            //var _host = new ServiceHost(typeof(Service));
+            //_host.Open();
             Console.ReadLine();
             //var h = new Hioki3532("","","COM8", 9600, System.IO.Ports.Parity.None, 7, System.IO.Ports.StopBits.One, System.IO.Ports.Handshake.None, Delimiter.CR_LF);
 

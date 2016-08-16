@@ -25,36 +25,25 @@ namespace MeasurementStudio
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IPageTransitionView, IServiceWindow
+    public partial class MainWindow : Window,  IMeasurementView
     {
         private static MainWindow _currentInstance;
        
 
-        private SynchronizationContext _currentSynchronizationContext;
-        private ServiceHost _host;
+       
 
-        public SynchronizationContext CurrentSynchronizationContext
-        {
-            get { return _currentSynchronizationContext; }
-        }
-
-        public IServiceWindow CurrentInstance
-        {
-            get { return _currentInstance; }
-        }
+       
 
         public MainWindow()
         {
             InitializeComponent();
 
-            _currentInstance = this;
-            _currentSynchronizationContext = SynchronizationContext.Current;
+            
 
             //var instance = new Service();// new Service(this);
             //_host = new ServiceHost(typeof(Service));//instance);
 
-            _host = new MeasurementStudioServiceHost(this, typeof(Service));
-            _host.Open();
+            
 
 
             var dc = DataContext as IMainViewModel;
@@ -66,10 +55,10 @@ namespace MeasurementStudio
 
         }
 
-        public void ShowMessage(string message)
-        {
-            MessageBox.Show(message);
-        }
+        //public void ShowMessage(string message)
+        //{
+        //    MessageBox.Show(message);
+        //}
 
         //private void MenuItem_Click(object sender, RoutedEventArgs e)
         //{

@@ -91,7 +91,6 @@
       <DependentUpon>ControlButtonsPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="StartStopControl\ControlButtonsViewModel.cs" />
-    <Compile Include="ViewModelInterface\IServiceWindow.cs" />
     <Compile Include="ViewModelInterface\IUIThreadExecutableViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
