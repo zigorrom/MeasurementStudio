@@ -15,6 +15,10 @@ namespace MeasurementStudioWebApi
     public interface IService
     {
         [OperationContract]
-        void DisplayMessage(string Message);
+        string DisplayMessage(string Message);
+
+        [OperationContract]
+        string GetUserName();
+        
     }
 }

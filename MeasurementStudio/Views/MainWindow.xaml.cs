@@ -51,7 +51,9 @@ namespace MeasurementStudio
             _currentSynchronizationContext = SynchronizationContext.Current;
 
             //var instance = new Service();// new Service(this);
-            _host = new ServiceHost(typeof(Service));//instance);
+            //_host = new ServiceHost(typeof(Service));//instance);
+
+            _host = new MeasurementStudioServiceHost(this, typeof(Service));
             _host.Open();
 
 
