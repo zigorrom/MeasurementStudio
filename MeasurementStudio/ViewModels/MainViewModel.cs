@@ -125,7 +125,7 @@ namespace MeasurementStudio
 
         public MainViewModel()
         {
-            //Home = new HomeViewModel();
+            
             _current = PagesEnum.Home;
 
 

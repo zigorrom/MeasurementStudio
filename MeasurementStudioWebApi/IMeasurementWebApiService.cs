@@ -14,6 +14,11 @@ namespace MeasurementStudioWebApi
         string GetName();
 
         [OperationContract]
+        Task<string> GetUserNameAsync();
+        //[OperationContract(AsyncPattern=true)]
+        //IAsyncResult GetNameAsync();
+
+        [OperationContract]
         string ShowMessage(string Message);
 
         [OperationContract]
@@ -22,5 +27,6 @@ namespace MeasurementStudioWebApi
         [OperationContract]
         bool SwitchToPage(string PageName);
        
+
     }
 }

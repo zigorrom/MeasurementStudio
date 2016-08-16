@@ -117,5 +117,19 @@ namespace MeasurementStudioWebApi
         {
             return _instance.SwitchToPage(PageName);
         }
+        
+
+        public async Task<string> GetUserNameAsync()
+        {
+            try
+            {
+                var result = await Task.Run(() => GetName());
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw new FaultException(e.Message);
+            }
+        }
     }
 }
