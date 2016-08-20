@@ -50,7 +50,7 @@
     <Compile Include="AgilentU2542A.cs" />
     <Compile Include="AnalogInputChannel\AnalogInputChannel.cs" />
     <Compile Include="AnalogInputChannel\AnalogInputChannels.cs" />
-    <Compile Include="AnalogInputChannel\AnalogInputDataRouter.cs" />
+    <Compile Include="AnalogInputChannel\AnalogDataAquisitionController.cs" />
     <Compile Include="AnalogInputChannel\AquisitionState.cs" />
     <Compile Include="AnalogOutputChannel\AnalogOutputChannel.cs" />
     <Compile Include="AnalogOutputChannel\AnalogOutputChannels.cs" />

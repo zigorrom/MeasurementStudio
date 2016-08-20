@@ -14,7 +14,7 @@ using System.Diagnostics;
 
 namespace AgilentU2442A_IVIdriver
 {
-    public class AnalogInputChannel:AbstractChannel, IAnalogInputChannel
+    public class AnalogInputChannel:AbstractChannel, IAnalogInputChannel, IObserver<double[]>
     {
        
 
@@ -550,6 +550,21 @@ namespace AgilentU2442A_IVIdriver
 
 
         public double AnalogRead(int NumberOfAverages)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnCompleted()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnError(Exception error)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnNext(double[] value)
         {
             throw new NotImplementedException();
         }

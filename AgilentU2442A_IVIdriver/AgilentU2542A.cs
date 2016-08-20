@@ -16,7 +16,7 @@ namespace AgilentU2442A_IVIdriver
             Initialize();
         }
 
-
+        
         public string Name { get; private set; }
         public string Alias { get; private set; }
         public string ResourceName { get; private set; }
@@ -24,6 +24,9 @@ namespace AgilentU2442A_IVIdriver
         public AgilentU254x Driver { get; private set; }
        
         private Dictionary<ChannelName, AbstractChannel> m_DeviceChannels;
+
+        private AnalogDataAquisitionController _router;
+
 
         public void Initialize()
         {

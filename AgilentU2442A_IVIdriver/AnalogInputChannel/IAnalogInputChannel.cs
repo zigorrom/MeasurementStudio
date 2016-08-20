@@ -10,5 +10,7 @@ namespace AgilentU2442A_IVIdriver
         void SingleShotAquicition(out double[] data);
         void StartAcquisition();
         void StopAcquisition();
+
+
     }
 }

@@ -13,6 +13,7 @@ using Hioki3432;
 using Instruments;
 using System.ServiceModel;
 using MeasurementStudioWebApi;
+using System.Threading;
 
 namespace test
 {
@@ -23,6 +24,24 @@ namespace test
     {
         static void Main(string[] args)
         {
+            var cts = new CancellationTokenSource();
+
+            var ct = cts.Token;
+
+            var task = new Task(() =>
+            {
+                var i = 0;
+                while (!ct.IsCancellationRequested)
+                    Console.WriteLine(i++);
+                Console.WriteLine("Finished");
+            }, ct);
+            task.Start();
+            Console.WriteLine("Started");
+            
+            Thread.Sleep(5000);
+            Console.WriteLine("CancellationRequested");
+            cts.Cancel();
+            
            // Buffer.BlockCopy()
             //for (uint i = uint.MaxValue-2, a=0; a<5; i++,a++)
             //{
