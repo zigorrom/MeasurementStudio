@@ -26,7 +26,7 @@ namespace AgilentU2442A_IVIdriver
         Task _dataAcquisitionTask;
         Task _dataRoutingTask;
         ConcurrentQueue<double[]> _rawDataQueue;
-        int a;
+        
 
         
         public void StartAcquisition()
