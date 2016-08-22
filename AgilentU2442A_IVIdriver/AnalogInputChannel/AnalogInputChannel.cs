@@ -140,7 +140,8 @@ namespace AgilentU2442A_IVIdriver
 
         internal void EnqueueData(double[] channelIdata)
         {
-            count += channelIdata.Length;    
+            count += channelIdata.Length;
+            //Console.WriteLine(count);
         }
 
         

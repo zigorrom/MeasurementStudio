@@ -27,12 +27,15 @@ namespace test
         {
 
             AgilentU2542A a = new AgilentU2542A("agilent", "a", "USB0::0x0957::0x1718::TW52524501::INSTR");
-            var ch = a.GetAnalogInputChannel(ChannelEnum.AI_CH101);
-            ch.ChannelEnable = true;
-           
-            Thread.Sleep(1000);
+            var ch1 = a.GetAnalogInputChannel(ChannelEnum.AI_CH101);
+            var ch2 = a.GetAnalogInputChannel(ChannelEnum.AI_CH102);
+            ch1.ChannelEnable = true;
+            ch2.ChannelEnable = true;
+            a.StartAquisition();
+            Thread.Sleep(5000);
             a.StopAquisition();
-            Console.WriteLine(ch.count);
+            Console.WriteLine("Channel1: {0}",ch1.count);
+            Console.WriteLine("Channel2: {0}", ch2.count);
             //var cts = new CancellationTokenSource();
 
             //var ct = cts.Token;

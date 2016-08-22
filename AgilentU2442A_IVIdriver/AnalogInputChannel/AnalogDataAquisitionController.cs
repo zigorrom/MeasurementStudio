@@ -9,31 +9,30 @@ using AgilentU2442A_IVIdriver;
 
 namespace AgilentU2442A_IVIdriver
 {
+    
     internal class AnalogDataAquisitionController//IDataRouter
     {
         public AnalogDataAquisitionController(AgilentU2542A ParentDevice)
         {
             _parentDevice = ParentDevice;
             //_mappingFunction = MapFunction;
-            _cancellationTokenSource= new CancellationTokenSource();
-            _cancellationToken = _cancellationTokenSource.Token;
-            _dataAcquisitionTask = new Task(AquisitionMethod, _cancellationToken);
-            _dataRoutingTask = new Task(RouteData, _cancellationToken);
             _rawDataQueue = new ConcurrentQueue<double[]>();
+            _aquisitionThread = new Thread(new ParameterizedThreadStart(AquisitionMethod));
+            _routingThread = new Thread(new ParameterizedThreadStart(RouteData));
+            
         }
 
         private AgilentU2542A _parentDevice;
-        private CancellationTokenSource _cancellationTokenSource;
-        private CancellationToken _cancellationToken;
-        Task _dataAcquisitionTask;
-        Task _dataRoutingTask;
+       
         ConcurrentQueue<double[]> _rawDataQueue;
+
         //private Func<double, DataT> _mappingFunction;
         //public void SetMapping(Func<double,DataT> mapFunction)
         //{
         //    _mappingFunction = mapFunction;
         //}
-
+        Thread _aquisitionThread;
+        Thread _routingThread;
 
         private AnalogInputChannel[] _channels;
         private void PrepareChannels()
@@ -44,20 +43,25 @@ namespace AgilentU2442A_IVIdriver
 
         
         //private SortedList<ChannelEnum, IAnalogInputChannel> _enabledAIChannels;
-        
+        private AquisitionState _aquisitionState;
+
         public void StartAcquisition()
         {
             PrepareChannels();
             if (_channels == null || _channels.Length == 0)
                 throw new ArgumentException();
-            _dataAcquisitionTask.Start();
-            _dataRoutingTask.Start();
+            _aquisitionState = new AquisitionState();
+            _aquisitionThread.Start(_aquisitionState);
+            _routingThread.Start(_aquisitionState);
+            
         }
 
         public void StopAcquisition()
         {
-            _cancellationTokenSource.Cancel();
-            _dataAcquisitionTask.Wait();
+            _aquisitionState.AquisitionStopEvent.Set();
+            _aquisitionThread.Join();
+            _routingThread.Join();
+            
         }
 
         private int SampleRate
@@ -76,53 +80,80 @@ namespace AgilentU2442A_IVIdriver
             }
         }
 
-        private void AquisitionMethod()
+        private void AquisitionMethod(object StateObj)
         {
+            var state = StateObj as AquisitionState;
+
+            _parentDevice.Driver.AnalogIn.Acquisition.BufferSize = 50000;
+            _parentDevice.Driver.AnalogIn.MultiScan.SampleRate = 500000;
+            _parentDevice.Driver.AnalogIn.MultiScan.NumberOfScans = -1;
+            
             _parentDevice.Driver.AnalogIn.Acquisition.Start();
-            _parentDevice.Driver.AnalogIn.Acquisition.BufferSize = 10000;
-            while (!_cancellationToken.IsCancellationRequested)
+            
+            //while (!_cancellationToken.IsCancellationRequested)
+            while (!state.AquisitionStopEvent.WaitOne(0, false))
             {
                 ///
                 /// Aquire data from parent device
                 ///
-                if (_parentDevice.Driver.AnalogIn.Acquisition.BufferStatus == Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady)
+                double[] a = new double[1];
+                try
                 {
-                    double[] a = new double[1];
-                    _parentDevice.Driver.AnalogIn.Acquisition.FetchScale(ref a);
+                    while (_parentDevice.Driver.AnalogIn.Acquisition.BufferStatus != Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusEmpty)
+                    {
+                        if (_parentDevice.Driver.AnalogIn.Acquisition.BufferStatus == Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady)
+                        {
 
-                    //var rnd = new Random();
-                    //var a = new double[1000];
-                    //for (int i = 0; i < 1000; i++)
-                    //{
-                    //    a[i] = rnd.NextDouble() * 1000;
-                    //}
-                    _rawDataQueue.Enqueue(a);
+                            _parentDevice.Driver.AnalogIn.Acquisition.FetchScale(ref a);
+
+                            //var rnd = new Random();
+                            //var a = new double[1000];
+                            //for (int i = 0; i < 1000; i++)
+                            //{
+                            //    a[i] = rnd.NextDouble() * 1000;
+                            //}
+                            _rawDataQueue.Enqueue(a);
+                        }
+                    }
+                }catch
+                {
+                    int code =0;
+                    string message = String.Empty;
+                    _parentDevice.Driver.Utility.ErrorQuery(ref code, ref message);
+                    throw;
                 }
             }
+            state.ProcessingStopEvent.Set();
             _parentDevice.Driver.AnalogIn.Acquisition.Stop();
+            
         }
-        private void RouteData()
+        private void RouteData(object StateObj)
         {
+            var state = StateObj as AquisitionState;
+
             var nChannels = _channels.Length;
             double[] temp;
-            while(!(_cancellationToken.IsCancellationRequested&&(_rawDataQueue.Count==0)))
+            while (!state.ProcessingStopEvent.WaitOne(0, false))
             {
-                
-                if (_rawDataQueue.TryDequeue(out temp))
+                while (_rawDataQueue.Count > 0)
                 {
-                    
-                    for (int i = 0; i < nChannels; i++)
+                    if (_rawDataQueue.TryDequeue(out temp))
                     {
-                        double[] channelIdata = new double[temp.Length / nChannels];
-                        for (int j = i, k =0; j < temp.Length; j+=nChannels,k++)
+
+                        for (int i = 0; i < nChannels; i++)
                         {
-                            channelIdata[k] = temp[j];// _mappingFunction(temp[j]);
+                            double[] channelIdata = new double[temp.Length / nChannels];
+                            for (int j = i, k = 0; j < temp.Length; j += nChannels, k++)
+                            {
+                                channelIdata[k] = temp[j];// _mappingFunction(temp[j]);
+                            }
+                            _channels[i].EnqueueData(channelIdata);
                         }
-                        _channels[i].EnqueueData(channelIdata);
+
                     }
-                    
                 }
             }
+           
         }
 
 
