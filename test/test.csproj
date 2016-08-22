@@ -84,6 +84,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AgilentU2442A_IVIdriver\AgilentU2442A_IVIdriver.csproj">
+      <Project>{9c89de69-6ef6-4365-b339-0f86930667c4}</Project>
+      <Name>AgilentU2442A_IVIdriver</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ExperimentDataModel\ExperimentDataModel.csproj">
       <Project>{f37c1293-015e-47ef-81fe-694857e4a303}</Project>
       <Name>ExperimentDataModel</Name>

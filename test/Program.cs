@@ -14,6 +14,7 @@ using Instruments;
 using System.ServiceModel;
 using MeasurementStudioWebApi;
 using System.Threading;
+using AgilentU2442A_IVIdriver;
 
 namespace test
 {
@@ -24,23 +25,31 @@ namespace test
     {
         static void Main(string[] args)
         {
-            var cts = new CancellationTokenSource();
 
-            var ct = cts.Token;
+            AgilentU2542A a = new AgilentU2542A("agilent", "a", "USB0::0x0957::0x1718::TW52524501::INSTR");
+            var ch = a.GetAnalogInputChannel(ChannelEnum.AI_CH101);
+            ch.ChannelEnable = true;
+           
+            Thread.Sleep(1000);
+            a.StopAquisition();
+            Console.WriteLine(ch.count);
+            //var cts = new CancellationTokenSource();
 
-            var task = new Task(() =>
-            {
-                var i = 0;
-                while (!ct.IsCancellationRequested)
-                    Console.WriteLine(i++);
-                Console.WriteLine("Finished");
-            }, ct);
-            task.Start();
-            Console.WriteLine("Started");
+            //var ct = cts.Token;
+
+            //var task = new Task(() =>
+            //{
+            //    var i = 0;
+            //    while (!ct.IsCancellationRequested)
+            //        Console.WriteLine(i++);
+            //    Console.WriteLine("Finished");
+            //}, ct);
+            //task.Start();
+            //Console.WriteLine("Started");
             
-            Thread.Sleep(5000);
-            Console.WriteLine("CancellationRequested");
-            cts.Cancel();
+            //Thread.Sleep(5000);
+            //Console.WriteLine("CancellationRequested");
+            //cts.Cancel();
             
            // Buffer.BlockCopy()
             //for (uint i = uint.MaxValue-2, a=0; a<5; i++,a++)
@@ -50,7 +59,7 @@ namespace test
 
             //var _host = new ServiceHost(typeof(Service));
             //_host.Open();
-            Console.ReadLine();
+            //Console.ReadLine();
             //var h = new Hioki3532("","","COM8", 9600, System.IO.Ports.Parity.None, 7, System.IO.Ports.StopBits.One, System.IO.Ports.Handshake.None, Delimiter.CR_LF);
 
 
@@ -128,7 +137,6 @@ namespace test
             //{
             //    Console.WriteLine(type.IsAssignableFrom(typeof(InstrumentAbstractionModel.IInstrument)));
             //}
-
 
             Console.ReadKey();
         }

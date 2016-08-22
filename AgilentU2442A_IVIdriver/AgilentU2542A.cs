@@ -13,7 +13,11 @@ namespace AgilentU2442A_IVIdriver
     {
         public AgilentU2542A(string Name, string Alias, string ResourceName)//:base(Name,Alias,ResourceName)
         {
+            this.Name = Name;
+            this.Alias = Alias;
+            this.ResourceName = ResourceName;
             Initialize();
+
         }
 
         
@@ -27,7 +31,15 @@ namespace AgilentU2442A_IVIdriver
 
         private AnalogDataAquisitionController _router;
 
+        public void StartAquisition()
+        {
+            _router.StartAcquisition();
+        }
 
+        public void StopAquisition()
+        {
+            _router.StopAcquisition();
+        }
         public void Initialize()
         {
             Driver = new AgilentU254x();
@@ -36,6 +48,7 @@ namespace AgilentU2442A_IVIdriver
             if (!Driver.Initialized)//!IsAlive(true))
                 throw new SystemException("Device was not initialized.");
             //m_commandSet = new AgilentU2542ACommandBuilder();
+            _router = new AnalogDataAquisitionController(this);
             m_DeviceChannels = new Dictionary<ChannelName,AbstractChannel>();
             
             ///
@@ -50,17 +63,17 @@ namespace AgilentU2442A_IVIdriver
             ///Analog output channels
             ///
 
-            m_DeviceChannels.Add(ChannelEnum.AO_CH201, new AnalogOutputChannel(ChannelEnum.AO_CH201, this));
-            m_DeviceChannels.Add(ChannelEnum.AO_CH202, new AnalogOutputChannel(ChannelEnum.AO_CH202, this));
+            //m_DeviceChannels.Add(ChannelEnum.AO_CH201, new AnalogOutputChannel(ChannelEnum.AO_CH201, this));
+            //m_DeviceChannels.Add(ChannelEnum.AO_CH202, new AnalogOutputChannel(ChannelEnum.AO_CH202, this));
             
             
             ///
             ///Digital channels 
             ///
-            m_DeviceChannels.Add(ChannelEnum.DIG_CH501, new DigitalChannel(ChannelEnum.DIG_CH501, this));
-            m_DeviceChannels.Add(ChannelEnum.DIG_CH502, new DigitalChannel(ChannelEnum.DIG_CH502, this));
-            m_DeviceChannels.Add(ChannelEnum.DIG_CH503, new DigitalChannel(ChannelEnum.DIG_CH503, this));
-            m_DeviceChannels.Add(ChannelEnum.DIG_CH504, new DigitalChannel(ChannelEnum.DIG_CH504, this));
+            //m_DeviceChannels.Add(ChannelEnum.DIG_CH501, new DigitalChannel(ChannelEnum.DIG_CH501, this));
+            //m_DeviceChannels.Add(ChannelEnum.DIG_CH502, new DigitalChannel(ChannelEnum.DIG_CH502, this));
+            //m_DeviceChannels.Add(ChannelEnum.DIG_CH503, new DigitalChannel(ChannelEnum.DIG_CH503, this));
+            //m_DeviceChannels.Add(ChannelEnum.DIG_CH504, new DigitalChannel(ChannelEnum.DIG_CH504, this));
 
 
         }
@@ -79,6 +92,15 @@ namespace AgilentU2442A_IVIdriver
             if (ChannelIdentifier < ChannelEnum.AI_CH101 || ChannelIdentifier > ChannelEnum.AI_CH104)
                 throw new ArgumentException("Given channel identifier doesn`t correspond to AnalogIn channel set");
             return m_DeviceChannels[ChannelIdentifier] as AnalogInputChannel;
+        }
+
+        public AnalogInputChannel[] GetAnalogInputChannels()
+        {
+            return m_DeviceChannels
+                .Where(x => x.Key.ChannelIdentifier >= ChannelEnum.AI_CH101 && x.Key.ChannelIdentifier <= ChannelEnum.AI_CH104)
+                .Select(x => x.Value as AnalogInputChannel)
+                .ToArray();
+
         }
 
         public AnalogOutputChannel GetAnalogOutputChannel(ChannelEnum ChannelIdentifier)

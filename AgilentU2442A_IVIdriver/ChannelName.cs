@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AgilentU2442A_IVIdriver
 {
-    public class ChannelName : IChannelName, IEquatable<ChannelName>
+    public class ChannelName : IChannelName, IEquatable<ChannelName>,IComparable<ChannelName>
     {
         public ChannelName(string Name, ChannelEnum ChannelIdentifier)
         {
@@ -76,6 +76,12 @@ namespace AgilentU2442A_IVIdriver
         public override int GetHashCode()
         {
             return NativeName.GetHashCode();
+        }
+
+        public int CompareTo(ChannelName other)
+        {
+            if (other == null) return 1;
+            return this.ChannelIdentifier.CompareTo(other.ChannelIdentifier);
         }
     }
 }
