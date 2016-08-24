@@ -27,11 +27,6 @@ namespace AgilentU2442A_IVIdriver
        
         ConcurrentQueue<double[]> _rawDataQueue;
 
-        //private Func<double, DataT> _mappingFunction;
-        //public void SetMapping(Func<double,DataT> mapFunction)
-        //{
-        //    _mappingFunction = mapFunction;
-        //}
         Thread _aquisitionThread;
         Thread _routingThread;
 
@@ -41,9 +36,6 @@ namespace AgilentU2442A_IVIdriver
             _channels = _parentDevice.GetAnalogInputChannels().Where(x => x.ChannelEnable).OrderBy(x=>x.ChannelName).ToArray();
         }
         
-
-        
-        //private SortedList<ChannelEnum, IAnalogInputChannel> _enabledAIChannels;
         private AquisitionState _aquisitionState;
 
         public void StartAcquisition()
@@ -88,61 +80,65 @@ namespace AgilentU2442A_IVIdriver
             var ap = 250000;
             _parentDevice.Driver.AnalogIn.Acquisition.BufferSize = ap;
             _parentDevice.Driver.AnalogIn.MultiScan.SampleRate = sr;
-            var msToWait = 100*ap/ sr;
+            var msToWait = 100 * ap / sr;
             _parentDevice.Driver.AnalogIn.MultiScan.NumberOfScans = -1;
-            
+
             _parentDevice.Driver.AnalogIn.Acquisition.Start();
 
             //bool dataReady = false;
             bool cont = true;
             bool stopped = false;
+            int errorCount = 0;
+            const int ERROR_MAX_OCCUR = 5;
             //while (!_cancellationToken.IsCancellationRequested)
-             while (cont)
+            while (cont)
             {
-                 if(state.AquisitionStopEvent.WaitOne(0, false))
-                 {
-                     _parentDevice.Driver.AnalogIn.Acquisition.Stop();
-                     stopped = true;
-                 }
-                ///
-                /// Aquire data from parent device
-                ///
-                //short[] a = new short[1];
-                double[] a = new double[1];
-                //if (!dataReady)
-                //{
-                //    AgilentU254xBufferStatusEnum stat = AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusEmpty;
-                //    while ((stat=_parentDevice.Driver.AnalogIn.Acquisition.BufferStatus) != Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady)
-                //        Console.WriteLine(stat);
-                //    dataReady = true;
-                //}
-                switch (_parentDevice.Driver.AnalogIn.Acquisition.BufferStatus)
+                try
                 {
-                    case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady:
-                        {
-                            _parentDevice.Driver.AnalogIn.Acquisition.FetchScale(ref a);
-                            _rawDataQueue.Enqueue(a);
-                            Console.WriteLine("DataReady");
-                        }
-                        break;
-                    
-                    case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusFragment:
-                        Console.WriteLine("DataFragment");
-                        break;
-                    case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusOverRun:
-                        Console.WriteLine("Overrun");
-                        break;
-                    case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusEmpty:
-                        {
-                            Console.WriteLine("Empty");
-                            if (stopped)
-                                cont = false;
-                        }
-                        break;
-                }
-                Thread.Sleep(msToWait);
-                //while (_parentDevice.Driver.AnalogIn.Acquisition.BufferStatus == Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady)
-                //{
+                    if (state.AquisitionStopEvent.WaitOne(0, false))
+                    {
+                        _parentDevice.Driver.AnalogIn.Acquisition.Stop();
+                        stopped = true;
+                    }
+                    ///
+                    /// Aquire data from parent device
+                    ///
+                    //short[] a = new short[1];
+                    double[] a = new double[1];
+                    //if (!dataReady)
+                    //{
+                    //    AgilentU254xBufferStatusEnum stat = AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusEmpty;
+                    //    while ((stat=_parentDevice.Driver.AnalogIn.Acquisition.BufferStatus) != Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady)
+                    //        Console.WriteLine(stat);
+                    //    dataReady = true;
+                    //}
+                    switch (_parentDevice.Driver.AnalogIn.Acquisition.BufferStatus)
+                    {
+                        case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady:
+                            {
+                                _parentDevice.Driver.AnalogIn.Acquisition.FetchScale(ref a);
+                                _rawDataQueue.Enqueue(a);
+                                Console.WriteLine("DataReady");
+                            }
+                            break;
+
+                        case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusFragment:
+                            Console.WriteLine("DataFragment");
+                            break;
+                        case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusOverRun:
+                            Console.WriteLine("Overrun");
+                            break;
+                        case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusEmpty:
+                            {
+                                Console.WriteLine("Empty");
+                                if (stopped)
+                                    cont = false;
+                            }
+                            break;
+                    }
+                    Thread.Sleep(msToWait);
+                    //while (_parentDevice.Driver.AnalogIn.Acquisition.BufferStatus == Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady)
+                    //{
 
                     //_parentDevice.Driver.AnalogIn.Acquisition.Fetch(ref a);
                     //_parentDevice.Driver.AnalogIn.Acquisition.FetchScale(ref a);
@@ -154,13 +150,33 @@ namespace AgilentU2442A_IVIdriver
                     //    a[i] = rnd.NextDouble() * 1000;
                     //}
                     //_rawDataQueue.Enqueue(a);
-                //}
+                    //}
 
+                }
+                catch
+                {
+                    errorCount++;
+                    Console.WriteLine("{0} error occurance",errorCount);
+                    if (errorCount > ERROR_MAX_OCCUR)
+                    {
+                        try
+                        {
+                            _parentDevice.Driver.AnalogIn.Acquisition.Stop();
+                            
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Error occured more than {0} times.", ERROR_MAX_OCCUR);
+                            
+                        }
+                        stopped = true;
+                        cont = false;
+                    }
+                }
             }
+            state.ProcessingStopEvent.Set();
 
-             state.ProcessingStopEvent.Set();
-            
-            
+
         }
         private void RouteData(object StateObj)
         {
