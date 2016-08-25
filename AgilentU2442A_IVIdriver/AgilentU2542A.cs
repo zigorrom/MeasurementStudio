@@ -31,15 +31,9 @@ namespace AgilentU2442A_IVIdriver
 
         private AnalogDataAquisitionController _router;
 
-        public void StartAquisition()
-        {
-            _router.StartAcquisition();
-        }
+        public IDataAquisition Aquisition { get { return _router; } }
 
-        public void StopAquisition()
-        {
-            _router.StopAcquisition();
-        }
+       
         public void Initialize()
         {
             Driver = new AgilentU254x();

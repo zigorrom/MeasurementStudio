@@ -11,7 +11,7 @@ using Agilent.AgilentU254x.Interop;
 namespace AgilentU2442A_IVIdriver
 {
     
-    internal class AnalogDataAquisitionController//IDataRouter
+    internal class AnalogDataAquisitionController : IDataAquisition//IDataRouter
     {
         internal class AquisitionState
         {
@@ -60,6 +60,7 @@ namespace AgilentU2442A_IVIdriver
             _rawDataQueue = new ConcurrentQueue<double[]>();
             _aquisitionThread = new Thread(new ParameterizedThreadStart(AquisitionMethod));
             _routingThread = new Thread(new ParameterizedThreadStart(RouteData));   
+            
         }
 
         private AgilentU2542A _parentDevice;
@@ -78,49 +79,63 @@ namespace AgilentU2442A_IVIdriver
         
         private AquisitionState _aquisitionState;
 
+        private Task _aquisitionTask;
+        private Task _routingTask;
+
         public void StartAcquisition()
         {
             PrepareChannels();
             if (_channels == null || _channels.Length == 0)
                 throw new ArgumentException();
             _aquisitionState = new AquisitionState();
+
             _aquisitionThread.Start(_aquisitionState);
             _routingThread.Start(_aquisitionState);
-            
         }
 
         public void StopAcquisition()
         {
             _aquisitionState.AquisitionStopEvent.Set();
+
             _aquisitionThread.Join();
             _routingThread.Join();
             
         }
 
-        private int SampleRate
+        public int SampleRate
         {
             get
             {
-                throw new NotImplementedException();
+                return _driver.AnalogIn.MultiScan.SampleRate;
+            }
+            set
+            {
+                _driver.AnalogIn.MultiScan.SampleRate = value;
             }
         }
 
-        private int SamplesPerShot
+        public int SamplesPerShot
         {
             get
             {
-                throw new NotImplementedException();
+                return _driver.AnalogIn.Acquisition.BufferSize;
+            }
+            set
+            {
+                _driver.AnalogIn.Acquisition.BufferSize = value;
             }
         }
+
+
 
         private void AquisitionMethod(object StateObj)
         {
             var state = StateObj as AquisitionState;
-            var sr = 500000;
-            var ap = 250000;
-            _parentDevice.Driver.AnalogIn.Acquisition.BufferSize = ap;
-            _parentDevice.Driver.AnalogIn.MultiScan.SampleRate = sr;
-            var msToWait = 100 * ap / sr;
+            var sps = SamplesPerShot;
+            //var ap = 250000;
+            //SamplesPerShot = ap;
+            //SampleRate = sr;
+            var msToWait = 100 * SamplesPerShot / SampleRate;
             _parentDevice.Driver.AnalogIn.MultiScan.NumberOfScans = -1;
 
             _parentDevice.Driver.AnalogIn.Acquisition.Start();
@@ -129,7 +144,7 @@ namespace AgilentU2442A_IVIdriver
             bool cont = true;
             bool stopped = false;
             int errorCount = 0;
-            const int ERROR_MAX_OCCUR = 5;
+            const int ERROR_MAX_OCCUR = 2;
             //while (!_cancellationToken.IsCancellationRequested)
             while (cont)
             {
@@ -144,7 +159,7 @@ namespace AgilentU2442A_IVIdriver
                     /// Aquire data from parent device
                     ///
                     //short[] a = new short[1];
-                    double[] a = new double[1];
+                    double[] a = new double[sps];
                     //if (!dataReady)
                     //{
                     //    AgilentU254xBufferStatusEnum stat = AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusEmpty;
