@@ -158,15 +158,9 @@ namespace AgilentU2442A_IVIdriver
                     ///
                     /// Aquire data from parent device
                     ///
-                    //short[] a = new short[1];
+                    
                     double[] a = new double[sps];
-                    //if (!dataReady)
-                    //{
-                    //    AgilentU254xBufferStatusEnum stat = AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusEmpty;
-                    //    while ((stat=_parentDevice.Driver.AnalogIn.Acquisition.BufferStatus) != Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady)
-                    //        Console.WriteLine(stat);
-                    //    dataReady = true;
-                    //}
+                   
                     switch (_parentDevice.Driver.AnalogIn.Acquisition.BufferStatus)
                     {
                         case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady:
@@ -192,20 +186,7 @@ namespace AgilentU2442A_IVIdriver
                             break;
                     }
                     Thread.Sleep(msToWait);
-                    //while (_parentDevice.Driver.AnalogIn.Acquisition.BufferStatus == Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady)
-                    //{
-
-                    //_parentDevice.Driver.AnalogIn.Acquisition.Fetch(ref a);
-                    //_parentDevice.Driver.AnalogIn.Acquisition.FetchScale(ref a);
-
-                    //var rnd = new Random();
-                    //var a = new double[1000];
-                    //for (int i = 0; i < 1000; i++)
-                    //{
-                    //    a[i] = rnd.NextDouble() * 1000;
-                    //}
-                    //_rawDataQueue.Enqueue(a);
-                    //}
+                   
 
                 }
                 catch
