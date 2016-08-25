@@ -25,19 +25,25 @@ namespace test
     {
         static void Main(string[] args)
         {
-
+            
             AgilentU2542A a = new AgilentU2542A("agilent", "a", "USB0::0x0957::0x1718::TW52524501::INSTR");
             var ch1 = a.GetAnalogInputChannel(ChannelEnum.AI_CH101);
             var ch2 = a.GetAnalogInputChannel(ChannelEnum.AI_CH102);
+            var ch3 = a.GetAnalogInputChannel(ChannelEnum.AI_CH103);
+            var ch4 = a.GetAnalogInputChannel(ChannelEnum.AI_CH104);
             Console.WriteLine("Enter waiting time in ms");
             var time = int.Parse(Console.ReadLine());
             ch1.ChannelEnable = true;
-            ch2.ChannelEnable = true;
+            //ch2.ChannelEnable = true;
+            //ch3.ChannelEnable = true;
+            //ch4.ChannelEnable = true;
             a.StartAquisition();
             Thread.Sleep(time);
             a.StopAquisition();
             Console.WriteLine("Channel1: {0}",ch1.count);
             Console.WriteLine("Channel2: {0}", ch2.count);
+            Console.WriteLine("Channel3: {0}", ch3.count);
+            Console.WriteLine("Channel4: {0}", ch4.count);
             //var cts = new CancellationTokenSource();
 
             //var ct = cts.Token;

@@ -13,24 +13,64 @@ namespace AgilentU2442A_IVIdriver
     
     internal class AnalogDataAquisitionController//IDataRouter
     {
+        internal class AquisitionState
+        {
+            public AquisitionState()
+            {
+                //m_NewDataSetAquiredEvent = new AutoResetEvent(false);
+                m_AquisitionStopEvent = new ManualResetEvent(false);
+                m_ProcessingStopEvent = new ManualResetEvent(false);
+                m_AllEventsArray = new WaitHandle[2] { m_AquisitionStopEvent, m_ProcessingStopEvent };
+                m_ProcessingEventArray = new WaitHandle[1] { m_ProcessingStopEvent };
+            }
+
+            public EventWaitHandle AquisitionStopEvent
+            {
+                get { return m_AquisitionStopEvent; }
+            }
+
+
+            public EventWaitHandle ProcessingStopEvent
+            {
+                get { return m_ProcessingStopEvent; }
+            }
+
+            public WaitHandle[] EventArray
+            {
+                get { return m_AllEventsArray; }
+            }
+
+            public WaitHandle[] ProcessingEventArray
+            {
+                get { return m_ProcessingEventArray; }
+            }
+
+            private EventWaitHandle m_AquisitionStopEvent;
+            private EventWaitHandle m_ProcessingStopEvent;
+            private WaitHandle[] m_AllEventsArray;
+            private WaitHandle[] m_ProcessingEventArray;
+        }
+       
         public AnalogDataAquisitionController(AgilentU2542A ParentDevice)
         {
+           
             _parentDevice = ParentDevice;
+            _driver = _parentDevice.Driver;
             //_mappingFunction = MapFunction;
             _rawDataQueue = new ConcurrentQueue<double[]>();
             _aquisitionThread = new Thread(new ParameterizedThreadStart(AquisitionMethod));
-            _routingThread = new Thread(new ParameterizedThreadStart(RouteData));
-            
+            _routingThread = new Thread(new ParameterizedThreadStart(RouteData));   
         }
 
         private AgilentU2542A _parentDevice;
-       
+        private Agilent.AgilentU254x.Interop.AgilentU254x _driver;
+        
         ConcurrentQueue<double[]> _rawDataQueue;
-
         Thread _aquisitionThread;
         Thread _routingThread;
-
+        
         private AnalogInputChannel[] _channels;
+        
         private void PrepareChannels()
         {
             _channels = _parentDevice.GetAnalogInputChannels().Where(x => x.ChannelEnable).OrderBy(x=>x.ChannelName).ToArray();
