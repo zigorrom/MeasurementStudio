@@ -13,59 +13,102 @@ namespace AgilentU2442A_IVIdriver
     
     internal class AnalogDataAquisitionController : IDataAquisition//IDataRouter
     {
-        internal class AquisitionState
+        
+        internal enum States
         {
-            public AquisitionState()
+            Idle,
+            Start,
+            InProgress,
+            Pause,
+            Stop
+        }
+
+
+
+        internal class AquisitionControlObject
+        {
+            public AquisitionControlObject()
             {
+                AquisitionState = States.Idle;
+                ProcessingState = States.Idle;
                 //m_NewDataSetAquiredEvent = new AutoResetEvent(false);
-                m_AquisitionStopEvent = new ManualResetEvent(false);
-                m_ProcessingStopEvent = new ManualResetEvent(false);
-                m_AllEventsArray = new WaitHandle[2] { m_AquisitionStopEvent, m_ProcessingStopEvent };
-                m_ProcessingEventArray = new WaitHandle[1] { m_ProcessingStopEvent };
+                //m_AquisitionStopEvent = new ManualResetEvent(false);
+                //m_ProcessingStopEvent = new ManualResetEvent(false);
+                //m_AllEventsArray = new WaitHandle[2] { m_AquisitionStopEvent, m_ProcessingStopEvent };
+                //m_ProcessingEventArray = new WaitHandle[1] { m_ProcessingStopEvent };
             }
 
-            public EventWaitHandle AquisitionStopEvent
+            //private AquisitionState _aquisitionState;
+            public States AquisitionState { get; set; }
+
+            public States ProcessingState { get; set; }
+
+            public void StartAll()
             {
-                get { return m_AquisitionStopEvent; }
+                AquisitionState = States.Start;
+                ProcessingState = States.Start;
             }
 
-
-            public EventWaitHandle ProcessingStopEvent
+            public void StopAll()
             {
-                get { return m_ProcessingStopEvent; }
+                AquisitionState = States.Stop;
+                ProcessingState = States.Stop;
             }
+            
 
-            public WaitHandle[] EventArray
-            {
-                get { return m_AllEventsArray; }
-            }
+            
 
-            public WaitHandle[] ProcessingEventArray
-            {
-                get { return m_ProcessingEventArray; }
-            }
+            //public EventWaitHandle AquisitionStopEvent
+            //{
+            //    get { return m_AquisitionStopEvent; }
+            //}
 
-            private EventWaitHandle m_AquisitionStopEvent;
-            private EventWaitHandle m_ProcessingStopEvent;
-            private WaitHandle[] m_AllEventsArray;
-            private WaitHandle[] m_ProcessingEventArray;
+
+            //public EventWaitHandle ProcessingStopEvent
+            //{
+            //    get { return m_ProcessingStopEvent; }
+            //}
+
+            //public WaitHandle[] EventArray
+            //{
+            //    get { return m_AllEventsArray; }
+            //}
+
+            //public WaitHandle[] ProcessingEventArray
+            //{
+            //    get { return m_ProcessingEventArray; }
+            //}
+
+            //private EventWaitHandle m_AquisitionStopEvent;
+            //private EventWaitHandle m_ProcessingStopEvent;
+            //private WaitHandle[] m_AllEventsArray;
+            //private WaitHandle[] m_ProcessingEventArray;
         }
        
+
+
         public AnalogDataAquisitionController(AgilentU2542A ParentDevice)
         {
            
             _parentDevice = ParentDevice;
             _driver = _parentDevice.Driver;
             //_mappingFunction = MapFunction;
+
+            InitThreads();
+        }
+
+        private void InitThreads()
+        {
             _rawDataQueue = new ConcurrentQueue<double[]>();
+            _aquisitionState = new AquisitionControlObject();
             _aquisitionThread = new Thread(new ParameterizedThreadStart(AquisitionMethod));
-            _routingThread = new Thread(new ParameterizedThreadStart(RouteData));   
-            
+            _routingThread = new Thread(new ParameterizedThreadStart(RouteData));
+            _aquisitionThread.Start(_aquisitionState);
+            _routingThread.Start(_aquisitionState);
         }
 
         private AgilentU2542A _parentDevice;
         private Agilent.AgilentU254x.Interop.AgilentU254x _driver;
-        
         ConcurrentQueue<double[]> _rawDataQueue;
         Thread _aquisitionThread;
         Thread _routingThread;
@@ -77,7 +120,7 @@ namespace AgilentU2442A_IVIdriver
             _channels = _parentDevice.GetAnalogInputChannels().Where(x => x.ChannelEnable).OrderBy(x=>x.ChannelName).ToArray();
         }
         
-        private AquisitionState _aquisitionState;
+        private AquisitionControlObject _aquisitionState;
 
         private Task _aquisitionTask;
         private Task _routingTask;
@@ -87,18 +130,17 @@ namespace AgilentU2442A_IVIdriver
             PrepareChannels();
             if (_channels == null || _channels.Length == 0)
                 throw new ArgumentException();
-            _aquisitionState = new AquisitionState();
-
-            _aquisitionThread.Start(_aquisitionState);
-            _routingThread.Start(_aquisitionState);
+            _aquisitionState.StartAll();
+            //_aquisitionThread.Start(_aquisitionState);
+            //_routingThread.Start(_aquisitionState);
         }
 
         public void StopAcquisition()
         {
-            _aquisitionState.AquisitionStopEvent.Set();
-
-            _aquisitionThread.Join();
-            _routingThread.Join();
+            //_aquisitionState.AquisitionStopEvent.Set();
+            _aquisitionState.StopAll();
+            //_aquisitionThread.Join();
+            //_routingThread.Join();
             
         }
 
@@ -130,7 +172,27 @@ namespace AgilentU2442A_IVIdriver
 
         private void AquisitionMethod(object StateObj)
         {
-            var state = StateObj as AquisitionState;
+            var state = StateObj as AquisitionControlObject;
+            bool IsRunning = true;
+            while (IsRunning)
+            {
+                switch (state.AquisitionState)
+                {
+                    case States.Idle:
+                        break;
+                    case States.Start:
+                        break;
+                    case States.InProgress:
+                        break;
+                    case States.Pause:
+                        break;
+                    case States.Stop:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             var sps = SamplesPerShot;
             //var ap = 250000;
             //SamplesPerShot = ap;
@@ -150,7 +212,7 @@ namespace AgilentU2442A_IVIdriver
             {
                 try
                 {
-                    if (state.AquisitionStopEvent.WaitOne(0, false))
+                    if (true)//state.AquisitionStopEvent.WaitOne(0, false))
                     {
                         _parentDevice.Driver.AnalogIn.Acquisition.Stop();
                         stopped = true;
@@ -210,17 +272,17 @@ namespace AgilentU2442A_IVIdriver
                     }
                 }
             }
-            state.ProcessingStopEvent.Set();
+           // state.ProcessingStopEvent.Set();
 
 
         }
         private void RouteData(object StateObj)
         {
-            var state = StateObj as AquisitionState;
+            var state = StateObj as AquisitionControlObject;
 
             var nChannels = _channels.Length;
             double[] temp;
-            while (!state.ProcessingStopEvent.WaitOne(0, false))
+            while (true)//(!state.ProcessingStopEvent.WaitOne(0, false))
             {
                 while (_rawDataQueue.Count > 0)
                 {
