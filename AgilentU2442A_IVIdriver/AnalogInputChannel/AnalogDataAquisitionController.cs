@@ -20,7 +20,8 @@ namespace AgilentU2442A_IVIdriver
             Start,
             InProgress,
             Pause,
-            Stop
+            Stop,
+            Abort
         }
 
 
@@ -178,8 +179,6 @@ namespace AgilentU2442A_IVIdriver
             {
                 switch (state.AquisitionState)
                 {
-                    case States.Idle:
-                        break;
                     case States.Start:
                         break;
                     case States.InProgress:
@@ -188,6 +187,9 @@ namespace AgilentU2442A_IVIdriver
                         break;
                     case States.Stop:
                         break;
+                    case States.Abort:
+                        break;
+                    case States.Idle:
                     default:
                         break;
                 }
