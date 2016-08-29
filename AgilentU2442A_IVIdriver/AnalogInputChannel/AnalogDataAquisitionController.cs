@@ -180,17 +180,35 @@ namespace AgilentU2442A_IVIdriver
                 switch (state.AquisitionState)
                 {
                     case States.Start:
+                        {
+
+                        }
                         break;
                     case States.InProgress:
+                        {
+
+                        }
                         break;
                     case States.Pause:
+                        {
+
+                        }
                         break;
                     case States.Stop:
+                        {
+
+                        }
                         break;
                     case States.Abort:
+                        {
+
+                        }
                         break;
                     case States.Idle:
                     default:
+                        {
+
+                        }
                         break;
                 }
             }
