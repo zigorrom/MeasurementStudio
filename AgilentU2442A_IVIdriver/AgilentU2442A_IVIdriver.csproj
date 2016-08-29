@@ -53,6 +53,7 @@
     <Compile Include="AnalogInputChannel\AnalogDataAquisitionController.cs" />
     <Compile Include="AnalogInputChannel\IDataAquisition.cs" />
     <Compile Include="AnalogInputChannel\IDataRouter.cs" />
+    <Compile Include="AnalogInputChannel\IStateMachine.cs" />
     <Compile Include="AnalogOutputChannel\AnalogOutputChannel.cs" />
     <Compile Include="AnalogOutputChannel\AnalogOutputChannels.cs" />
     <Compile Include="ChannelName.cs" />

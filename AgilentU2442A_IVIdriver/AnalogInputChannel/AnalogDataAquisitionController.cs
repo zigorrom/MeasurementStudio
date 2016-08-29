@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using AgilentU2442A_IVIdriver;
 using Agilent.AgilentU254x.Interop;
 
+
 namespace AgilentU2442A_IVIdriver
 {
     
@@ -25,6 +26,29 @@ namespace AgilentU2442A_IVIdriver
         }
 
 
+        internal class StateMachine:IStateMachine
+        {
+
+            public void Start()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Stop()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Pause()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Abort()
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         internal class AquisitionControlObject
         {
@@ -252,7 +276,7 @@ namespace AgilentU2442A_IVIdriver
                             catch (Exception)
                             {
 
-                                throw;
+                                
                             }
                         }
                         break;
@@ -270,8 +294,8 @@ namespace AgilentU2442A_IVIdriver
                 }
             }
 
-            
 
+            #region Olddata
             //bool dataReady = false;
             //bool cont = true;
             //bool stopped = false;
@@ -342,8 +366,8 @@ namespace AgilentU2442A_IVIdriver
             //        }
             //    }
             //}
-           // state.ProcessingStopEvent.Set();
-
+            // state.ProcessingStopEvent.Set();
+            #endregion
 
         }
         private void RouteData(object StateObj)
