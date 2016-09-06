@@ -198,175 +198,175 @@ namespace AgilentU2442A_IVIdriver
         private void AquisitionMethod(object StateObj)
         {
             var state = StateObj as AquisitionControlObject;
-            bool IsRunning = true;
-
+            //bool IsRunning = true;
+            
             double[] buffer = new double[1];
-            int msToWait = 0;
-            int ErrorCount = 0;
-            const int MAX_ERROR = 3;
+            //int msToWait = 0;
+            //int ErrorCount = 0;
+            //const int MAX_ERROR = 3;
 
-            while (IsRunning)
-            {
-                switch (state.AquisitionState)
-                {
-                    case States.Start:
-                        {
-                            buffer = new double[SamplesPerShot];
-                            msToWait = 100 * SamplesPerShot / SampleRate;
-                            _parentDevice.Driver.AnalogIn.MultiScan.NumberOfScans = -1;
-                            _parentDevice.Driver.AnalogIn.Acquisition.Start();
-                            state.AquisitionState = States.InProgress;
-                        }
-                        break;
-                    case States.InProgress:
-                        {
+            //while (IsRunning)
+            //{
+            //    switch (state.AquisitionState)
+            //    {
+            //        case States.Start:
+            //            {
+            //                buffer = new double[SamplesPerShot];
+            //                msToWait = 100 * SamplesPerShot / SampleRate;
+            //                _parentDevice.Driver.AnalogIn.MultiScan.NumberOfScans = -1;
+            //                _parentDevice.Driver.AnalogIn.Acquisition.Start();
+            //                state.AquisitionState = States.InProgress;
+            //            }
+            //            break;
+            //        case States.InProgress:
+            //            {
                             
-                            if(ErrorCount < MAX_ERROR)
-                            {
-                                try
-                                {
-                                    switch (_parentDevice.Driver.AnalogIn.Acquisition.BufferStatus)
-                                    {
-                                        case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady:
-                                            {
-                                                _parentDevice.Driver.AnalogIn.Acquisition.FetchScale(ref buffer);
-                                                _rawDataQueue.Enqueue(buffer);
-                                                Console.WriteLine("DataReady");
-                                            }
-                                            break;
+            //                if(ErrorCount < MAX_ERROR)
+            //                {
+            //                    try
+            //                    {
+            //                        switch (_parentDevice.Driver.AnalogIn.Acquisition.BufferStatus)
+            //                        {
+            //                            case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady:
+            //                                {
+            //                                    _parentDevice.Driver.AnalogIn.Acquisition.FetchScale(ref buffer);
+            //                                    _rawDataQueue.Enqueue(buffer);
+            //                                    Console.WriteLine("DataReady");
+            //                                }
+            //                                break;
 
-                                        case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusFragment:
-                                            Console.WriteLine("DataFragment");
-                                            break;
-                                        case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusOverRun:
-                                            Console.WriteLine("Overrun");
-                                            break;
-                                        case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusEmpty:
-                                            {
-                                                Console.WriteLine("Empty");
-                                                state.AquisitionState = States.Stop;
-                                            }
-                                            break;
-                                    }
-                                    Thread.Sleep(msToWait);
-                                }
-                                catch (Exception e)
-                                {
-                                    ErrorCount++;
+            //                            case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusFragment:
+            //                                Console.WriteLine("DataFragment");
+            //                                break;
+            //                            case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusOverRun:
+            //                                Console.WriteLine("Overrun");
+            //                                break;
+            //                            case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusEmpty:
+            //                                {
+            //                                    Console.WriteLine("Empty");
+            //                                    state.AquisitionState = States.Stop;
+            //                                }
+            //                                break;
+            //                        }
+            //                        Thread.Sleep(msToWait);
+            //                    }
+            //                    catch (Exception e)
+            //                    {
+            //                        ErrorCount++;
 
-                                }
-                            }
-                            else
-                            {
-                                state.AquisitionState = States.Stop;
-                            }
-                        }
-                        break;
-                    case States.Pause:
-                        {
+            //                    }
+            //                }
+            //                else
+            //                {
+            //                    state.AquisitionState = States.Stop;
+            //                }
+            //            }
+            //            break;
+            //        case States.Pause:
+            //            {
 
-                        }
-                        break;
-                    case States.Stop:
-                        {
-                            try
-                            {
-                                _parentDevice.Driver.AnalogIn.Acquisition.Stop();
-                            }
-                            catch (Exception)
-                            {
+            //            }
+            //            break;
+            //        case States.Stop:
+            //            {
+            //                try
+            //                {
+            //                    _parentDevice.Driver.AnalogIn.Acquisition.Stop();
+            //                }
+            //                catch (Exception)
+            //                {
 
                                 
-                            }
-                        }
-                        break;
-                    case States.Abort:
-                        {
+            //                }
+            //            }
+            //            break;
+            //        case States.Abort:
+            //            {
 
-                        }
-                        break;
-                    case States.Idle:
-                    default:
-                        {
+            //            }
+            //            break;
+            //        case States.Idle:
+            //        default:
+            //            {
 
-                        }
-                        break;
-                }
-            }
+            //            }
+            //            break;
+            //    }
+            //}
 
 
             #region Olddata
-            //bool dataReady = false;
-            //bool cont = true;
-            //bool stopped = false;
-            //int errorCount = 0;
-            //const int ERROR_MAX_OCCUR = 2;
-            ////while (!_cancellationToken.IsCancellationRequested)
-            //while (cont)
-            //{
-            //    try
-            //    {
-            //        if (true)//state.AquisitionStopEvent.WaitOne(0, false))
-            //        {
-            //            _parentDevice.Driver.AnalogIn.Acquisition.Stop();
-            //            stopped = true;
-            //        }
-            //        ///
-            //        /// Aquire data from parent device
-            //        ///
-                    
-            //        //double[] a = new double[sps];
-                   
-            //        switch (_parentDevice.Driver.AnalogIn.Acquisition.BufferStatus)
-            //        {
-            //            case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady:
-            //                {
-            //                    _parentDevice.Driver.AnalogIn.Acquisition.FetchScale(ref buffer);
-            //                    _rawDataQueue.Enqueue(buffer);
-            //                    Console.WriteLine("DataReady");
-            //                }
-            //                break;
+            bool dataReady = false;
+            bool cont = true;
+            bool stopped = false;
+            int errorCount = 0;
+            const int ERROR_MAX_OCCUR = 2;
+            //while (!_cancellationToken.IsCancellationRequested)
+            while (cont)
+            {
+                try
+                {
+                    if (true)//state.AquisitionStopEvent.WaitOne(0, false))
+                    {
+                        _parentDevice.Driver.AnalogIn.Acquisition.Stop();
+                        stopped = true;
+                    }
+                    ///
+                    /// Aquire data from parent device
+                    ///
 
-            //            case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusFragment:
-            //                Console.WriteLine("DataFragment");
-            //                break;
-            //            case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusOverRun:
-            //                Console.WriteLine("Overrun");
-            //                break;
-            //            case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusEmpty:
-            //                {
-            //                    Console.WriteLine("Empty");
-            //                    if (stopped)
-            //                        cont = false;
-            //                }
-            //                break;
-            //        }
-            //       // Thread.Sleep(msToWait);
-                   
+                    //double[] a = new double[sps];
 
-            //    }
-            //    catch
-            //    {
-            //        errorCount++;
-            //        Console.WriteLine("{0} error occurance",errorCount);
-            //        if (errorCount > ERROR_MAX_OCCUR)
-            //        {
-            //            try
-            //            {
-            //                _parentDevice.Driver.AnalogIn.Acquisition.Stop();
-                            
-            //            }
-            //            catch
-            //            {
-            //                Console.WriteLine("Error occured more than {0} times.", ERROR_MAX_OCCUR);
-                            
-            //            }
-            //            stopped = true;
-            //            cont = false;
-            //        }
-            //    }
-            //}
-            // state.ProcessingStopEvent.Set();
+                    switch (_parentDevice.Driver.AnalogIn.Acquisition.BufferStatus)
+                    {
+                        case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady:
+                            {
+                                _parentDevice.Driver.AnalogIn.Acquisition.FetchScale(ref buffer);
+                                _rawDataQueue.Enqueue(buffer);
+                                Console.WriteLine("DataReady");
+                            }
+                            break;
+
+                        case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusFragment:
+                            Console.WriteLine("DataFragment");
+                            break;
+                        case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusOverRun:
+                            Console.WriteLine("Overrun");
+                            break;
+                        case AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusEmpty:
+                            {
+                                Console.WriteLine("Empty");
+                                if (stopped)
+                                    cont = false;
+                            }
+                            break;
+                    }
+                    // Thread.Sleep(msToWait);
+
+
+                }
+                catch
+                {
+                    errorCount++;
+                    Console.WriteLine("{0} error occurance", errorCount);
+                    if (errorCount > ERROR_MAX_OCCUR)
+                    {
+                        try
+                        {
+                            _parentDevice.Driver.AnalogIn.Acquisition.Stop();
+
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Error occured more than {0} times.", ERROR_MAX_OCCUR);
+
+                        }
+                        stopped = true;
+                        cont = false;
+                    }
+                }
+            }
+            state.ProcessingStopEvent.Set();
             #endregion
 
         }
