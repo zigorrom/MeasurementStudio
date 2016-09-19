@@ -9,7 +9,7 @@ namespace MeasurementStudio
 {
     public interface IMainViewModel
     {
-        IPageTransitionView View { get; set; }
+        IMeasurementView View { get; set; }
         void DataContextIsSet();
 
         ICommand KeyPressed { get; }

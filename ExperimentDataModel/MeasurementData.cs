@@ -25,8 +25,7 @@ namespace ExperimentDataModel
         where InfoT : struct, IMeasurementInfo
         where DataT : struct
     {
-
-
+        
         public event EventHandler DataChanged;
 
         private bool _collectionChanged = false;
@@ -44,9 +43,13 @@ namespace ExperimentDataModel
         private Func<DataT, Point> xyMapping;
         private Func<DataT, double> xMapping;
         private Func<DataT, double> yMapping;
+
+
+
         //private readonly List<Mapping<DataT>> mappings = new List<Mapping<DataT>>();
 
         //private readonly LinkedList<DataT> _measurementCollection = new LinkedList<DataT>();
+
         private readonly ObservableCollection<DataT> _measurementCollection = new ObservableCollection<DataT>();
         private object SyncRoot = new object();
 
@@ -78,6 +81,13 @@ namespace ExperimentDataModel
 
         private void RaiseDataChanged()
         {
+
+            ///
+            /// Implement rising event on every few samples
+            ///
+
+
+
             var handler = DataChanged;
             if (handler != null)
             {

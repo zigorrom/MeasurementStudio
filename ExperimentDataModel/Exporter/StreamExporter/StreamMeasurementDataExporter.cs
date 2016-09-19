@@ -14,6 +14,7 @@ namespace ExperimentDataModel
         where InfoT : struct, IMeasurementInfo
         where DataT : struct
     {
+
         public StreamMeasurementDataExporter(string workingDirectory)
         {
             WorkingDirectory = workingDirectory;
@@ -22,9 +23,17 @@ namespace ExperimentDataModel
             PrepareHeader<InfoT>(out _infoHeader);
             PrepareHeader<DataT>(out _dataHeader);
         }
+
         ~StreamMeasurementDataExporter()
         {
+            Close();
             Dispose();
+        }
+
+        public void Close()
+        {
+            _infoWriter.Close();
+            _dataWriter.Close();
         }
 
         //private string _workingDirectory;
@@ -33,21 +42,6 @@ namespace ExperimentDataModel
             get;
             set;
         }
-
-        public void NewExperiment(string experimentName)
-        {
-            ExperimentName = experimentName;
-            
-        }
-       
-        private Func<InfoT, string> _exportInfoFunction;
-        private Func<DataT, string> _exportDataFunction;
-
-        private string _infoHeader;
-        private string _dataHeader;
-
-        //private StreamWriter _InfoWriter;
-        public string ExperimentName { get; private set; }
 
         private void PrepareExportFunction<T>(out Func<T, string> exportFunction)
         {
@@ -100,7 +94,7 @@ namespace ExperimentDataModel
 
             var provider = new CSharpCodeProvider();
             var parameters = new CompilerParameters();
-            
+
             var interfaces = t.GetInterfaces();
             parameters.ReferencedAssemblies.Add(t.Assembly.Location);
             parameters.ReferencedAssemblies.Add("System.Globalization.dll");
@@ -130,7 +124,7 @@ namespace ExperimentDataModel
             var attributes = properties
                 .Where(x => x.GetCustomAttributes(attrType, false).Length == 1)
                 .Select(x => (DataPropertyAttribute)x.GetCustomAttribute(attrType, false))
-                .OrderByDescending(x=>x.PropertyOrderPriority)
+                .OrderByDescending(x => x.PropertyOrderPriority)
                 ;
             //.ToArray<DataPropertyAttribute>();
 
@@ -140,6 +134,73 @@ namespace ExperimentDataModel
             Header = String.Join("\r\n", propertyNameRow, propertyUnitsRow, propertyCommentsRow);
         }
 
+        private Func<InfoT, string> _exportInfoFunction;
+        private Func<DataT, string> _exportDataFunction;
+
+        private string _infoHeader;
+        private string _dataHeader;
+
+        private StreamWriter _infoWriter;
+        private StreamWriter _dataWriter;
+
+        public string ExperimentName { get; private set; }
+
+        public void NewExperiment(string experimentName)
+        {
+            ExperimentName = experimentName;
+            var infofn = String.Concat(WorkingDirectory, "\\", ExperimentName, ".txt");
+            _infoWriter = new StreamWriter(new FileStream(infofn, FileMode.Append, FileAccess.Write, FileShare.Read));
+            _infoWriter.WriteLine(_infoHeader);
+        }
+
+        public void NewMeasurement(InfoT measurementInfo)
+        {
+            if (_infoWriter == null)
+                throw new Exception("Writers were not initialized. Make sure you are calling NewExperiment methods before.");
+            _infoWriter.WriteLine(_exportInfoFunction(measurementInfo));
+            _infoWriter.Flush();
+            var datafn = String.Concat(WorkingDirectory, "\\", measurementInfo.Filename, ".txt");
+            _dataWriter = new StreamWriter(new FileStream(datafn, FileMode.Append, FileAccess.Write, FileShare.Read));
+            _dataWriter.WriteLine(_dataHeader);
+        }
+
+        
+
+        //private StreamWriter _InfoWriter;
+
+        public void WriteMeasurement(MeasurementData<InfoT,DataT> data)
+        {
+            if (_infoWriter == null || _dataWriter == null)
+                throw new Exception("Writers were not initialized. Make sure you are calling NewExperiment and NewMeasurement methods before.");
+            foreach (var p in data)
+            {
+                _dataWriter.WriteLine(_exportDataFunction(p));
+            }
+            _dataWriter.Flush();
+        }
+
+        public async Task WriteMeasurementAsync(MeasurementData<InfoT,DataT> data)
+        {
+            await Task.Factory.StartNew(() => WriteMeasurement(data));
+        }
+
+        [Obsolete("Thsi is obsolete method. Please use NewExperiment, NewMeasurement, WriteMeasurement methods.",true)]
+        public void WriteInfo(InfoT info)
+        {
+            var infofn = String.Concat(WorkingDirectory, "\\", ExperimentName, ".txt");
+            var WriteInfoHeader = true;
+            if (File.Exists(infofn))
+                WriteInfoHeader = false;
+            using (StreamWriter InfoSW = new StreamWriter(new FileStream(infofn, FileMode.Append, FileAccess.Write, FileShare.Read)))
+            {
+                if (WriteInfoHeader)
+                    InfoSW.WriteLine(_infoHeader);
+
+                InfoSW.WriteLine(_exportInfoFunction(info));
+            }
+        }
+
+        [Obsolete("Thsi is obsolete method. Please use NewExperiment, NewMeasurement, WriteMeasurement methods.", true)]
         public void Write(MeasurementData<InfoT, DataT> measurement)
         {
             var infofn = String.Concat(WorkingDirectory, "\\", ExperimentName, ".txt");
@@ -168,16 +229,23 @@ namespace ExperimentDataModel
                 }
             }
         }
-
-        public async Task  WriteAsync(MeasurementData<InfoT, DataT> measurement)
-        {
-            await Task.Factory.StartNew(()=>Write(measurement));
-        }
+        //[Obsolete("Thsi is obsolete method. Please use NewExperiment, NewMeasurement, WriteMeasurement methods.", true)]
+        //public async Task  WriteAsync(MeasurementData<InfoT, DataT> measurement)
+        //{
+        //    await Task.Factory.StartNew(()=>Write(measurement));
+        //}
 
         public void Dispose()
         {
-            //if (_InfoWriter != null)
-            //    _InfoWriter.Dispose();
+            if (_infoWriter != null)
+            {
+                
+                _infoWriter.Dispose();
+            }
+            if (_dataWriter != null)
+            {
+                _dataWriter.Dispose();
+            }
         }
     }
 }

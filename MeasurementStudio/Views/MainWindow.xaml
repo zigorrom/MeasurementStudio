@@ -8,6 +8,8 @@
         xmlns:ivv="clr-namespace:IVCharacterization;assembly=IVCharacterization"
         xmlns:cvvm="clr-namespace:CVCharacterization.ViewModels;assembly=CVCharacterization"
         xmlns:cvv ="clr-namespace:CVCharacterization.Views;assembly=CVCharacterization"
+        xmlns:cttvm ="clr-namespace:CurrentTimetrace.ViewModels;assembly=CurrentTimetrace"
+        xmlns:cttv ="clr-namespace:CurrentTimetrace.Views;assembly=CurrentTimetrace"
         x:Class="MeasurementStudio.MainWindow"
          
         Title="MainWindow" WindowState="Maximized">
@@ -35,6 +37,10 @@
         <DataTemplate DataType="{x:Type iv:TransfrerIVViewModel}">
             <ivv:IVMainView/>
         </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type cttvm:TimetraceMainViewModel}">
+            <cttv:TimetraceMainView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -48,6 +54,7 @@
                 <MenuItem Header="IV-TransferCurve" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.IVTransfer}" />
                 <MenuItem Header="CV-Characterization" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.CVCharacteristics}"/>
                 <MenuItem Header="Noise Measurement"/>
+                <MenuItem Header="Timetrace" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.Timetrace}"/>
             </MenuItem>
         </Menu>
         

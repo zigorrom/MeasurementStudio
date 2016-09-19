@@ -1,10 +1,14 @@
-﻿using IVCharacterization.Experiments;
+﻿using Helper.ViewModelInterface;
+using IVCharacterization.Experiments;
 using IVCharacterization.ViewModels;
+using MeasurementStudioWebApi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Speech.Recognition;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,17 +25,40 @@ namespace MeasurementStudio
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IPageTransitionView
+    public partial class MainWindow : Window,  IMeasurementView
     {
+        private static MainWindow _currentInstance;
+       
+
+       
+
+       
+
         public MainWindow()
         {
             InitializeComponent();
+
+            
+
+            //var instance = new Service();// new Service(this);
+            //_host = new ServiceHost(typeof(Service));//instance);
+
+            
+
+
             var dc = DataContext as IMainViewModel;
             if (dc == null)
                 return;
             dc.View = this;
             dc.DataContextIsSet();
+
+
         }
+
+        //public void ShowMessage(string message)
+        //{
+        //    MessageBox.Show(message);
+        //}
 
         //private void MenuItem_Click(object sender, RoutedEventArgs e)
         //{
@@ -59,6 +86,9 @@ namespace MeasurementStudio
         //    dc.View = this;
         //    dc.DataContextIsSet();
         //}
+
+
+        
     }
 
 }

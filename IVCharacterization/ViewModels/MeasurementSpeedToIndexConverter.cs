@@ -1,4 +1,4 @@
-﻿using Keithley24xxNamespace;
+﻿//using Keithley24xxNamespace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +8,15 @@ using System.Windows.Data;
 
 namespace IVCharacterization.ViewModels
 {
+    public enum MeasurementSpeed
+    {
+        Slow,
+        Middle,
+        Fast
+    }
+
     [ValueConversion(typeof(int), typeof(MeasurementSpeed))]
-    internal class MeasurementSpeedToIndexConverter:IValueConverter
+    internal class MeasurementSpeedToIndexConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {

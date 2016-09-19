@@ -1,12 +1,10 @@
-﻿//using DeviceIO;
+﻿using DeviceIO;
 using ExperimentAbstraction;
 using ExperimentDataModel;
 using Helper.Ranges.RangeHandlers;
 using Instruments;
 using IVCharacterization.ViewModels;
-
-//using Keithley2430Namespace;
-using Keithley24xxNamespace;
+using Keithley24xx;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,12 +31,12 @@ namespace IVCharacterization.Experiments
         protected AbstractDoubleRangeHandler _firstRangeHandler;
         protected AbstractDoubleRangeHandler _secondRangeHandler;
 
-        protected Keithley24xx _drainKeithley;
+        
 
-        protected Keithley24xx _gate_Keithley;
+        //protected Keithley24xx _gate_Keithley;
 
-        //protected ISourceMeterUnit _drainKeithley;
-        //protected ISourceMeterUnit _gateKeithley;
+        protected ISourceMeterUnit _drainKeithley;
+        protected ISourceMeterUnit _gateKeithley;
 
 
         protected IVexpSettingsViewModel _settings;
@@ -85,19 +83,74 @@ namespace IVCharacterization.Experiments
 
         public override void InitializeInstruments()
         {
-            throw new Exception();
+
             //var k1 = new Keithley2430(_drainIntrumentResource.Resource);
             //_drainKeithley = k1.SMU_Channel;
 
             //var k2 = new Keithley2430(_gateInstrumentResource.Resource);
             //_gateKeithley = k2.SMU_Channel;
+            var drainIO = new VisaDevice(_drainIntrumentResource.Resource);
+            var draink = new Keithley24xx<Keithley2430>(drainIO);
 
-            ////_drainKeithley = new Keithley2430Channel(new VisaDevice(_drainIntrumentResource.Resource));
-            ////_gateKeithley = new Keithley2430Channel(new VisaDevice(_gateInstrumentResource.Resource));
+            _drainKeithley = draink.Channel;
+            _drainKeithley.Initialize(drainIO);
 
-            //_drainKeithley.SMU_SourceMode = SourceMode.Voltage;
-            //_gateKeithley.SMU_SourceMode = SourceMode.Voltage;
-            ////_drainKeithley = new Keithley24xx(_drainIntrumentResource.Name, _drainIntrumentResource.Alias, _drainIntrumentResource.Resource);
+            var gateIO = new VisaDevice(_gateInstrumentResource.Resource);
+            var gatek = new Keithley24xx<Keithley2400>(gateIO);
+
+            _gateKeithley = gatek.Channel;
+            _gateKeithley.Initialize(gateIO);
+
+            //_drainKeithley = new Keithley2430Channel(new VisaDevice(_drainIntrumentResource.Resource));
+            //_gateKeithley = new Keithley2430Channel(new VisaDevice(_gateInstrumentResource.Resource));
+
+            _drainKeithley.SMU_SourceMode = SourceMode.Voltage;
+            _gateKeithley.SMU_SourceMode = SourceMode.Voltage;
+
+            _drainKeithley.SetCompliance(SourceMode.Voltage, _settings.CurrentCompliance);
+            _gateKeithley.SetCompliance(SourceMode.Voltage, _settings.CurrentCompliance);
+            
+            var npls = 0.0;
+            switch (_settings.MeasurementSpeed)
+            {
+                case MeasurementSpeed.Slow:
+                    npls = 0.01;
+                    break;
+                case MeasurementSpeed.Middle:
+                    npls = 1;
+                    break;
+                case MeasurementSpeed.Fast:
+                    npls = 10;
+                    break;
+                default:
+                    throw new ArgumentException("NPLC not set");
+            }
+
+            _drainKeithley.SetNPLC(npls);
+            _gateKeithley.SetNPLC(npls);
+
+
+            _drainKeithley.SetAveraging(_settings.DeviceAveraging);
+            _gateKeithley.SetAveraging(_settings.DeviceAveraging);
+
+            if(_settings.PulseMode)
+            {
+                _drainKeithley.SMU_ShapeMode = ShapeMode.Pulse;
+                _drainKeithley.PulseWidth = _settings.PulseWidth;
+                _drainKeithley.PulseDelay = _settings.PulseDelay;
+            }
+            else
+            {
+                _drainKeithley.SMU_ShapeMode = ShapeMode.DC;
+            }
+
+            _drainKeithley.SetCompliance(SourceMode.Voltage, _settings.CurrentCompliance);
+            _gateKeithley.SetCompliance(SourceMode.Voltage, _settings.CurrentCompliance);
+
+
+            //_drainKeithley.SetNPLC()
+
+            //_drainKeithley = new Keithley24xx(_drainIntrumentResource.Name, _drainIntrumentResource.Alias, _drainIntrumentResource.Resource);
             //if (!_drainKeithley.IsAlive(true))
             //    throw new ArgumentException("Drain Keithley doesnt respond");
 
@@ -138,11 +191,11 @@ namespace IVCharacterization.Experiments
                 throw new ArgumentNullException("Range is not set");
             if (!SimulateExperiment)
             {
-                //if (_drainIntrument == null)
-                //    throw new ArgumentNullException("Drain instrument resource was not set");
+                if (_drainIntrumentResource == null)
+                    throw new ArgumentNullException("Drain instrument resource was not set");
 
-                //if (_gateKeithley == null)
-                //    throw new ArgumentNullException("Gate instrument resource was not set");
+                if (_gateKeithley == null)
+                    throw new ArgumentNullException("Gate instrument resource was not set");
             }
         }
 
@@ -161,6 +214,44 @@ namespace IVCharacterization.Experiments
         {
             _vm.MessageHandler(Message);
             //throw new NotImplementedException();
+        }
+
+
+        ///
+        /// MOSFET simulation
+        ///
+
+        private const double mu = 0.02 ;
+        private const double eps = 3.9;
+        private const double eps0 = 8.8541e-12;
+        private const double d = 8e-9;
+        private const double W = 10e-6;
+        private const double L = 20e-6;
+        private const double Vth = 0.45;
+
+        protected double DrainCurrent(double GateVoltage, double DrainSourceVoltage)
+        {
+            if (GateVoltage > Vth)
+            {
+
+                if (DrainSourceVoltage < (GateVoltage - Vth))
+                {
+                    return mu * (eps * eps0 / d) * (W / L) * ((GateVoltage - Vth) * DrainSourceVoltage - DrainSourceVoltage * DrainSourceVoltage / 2);
+                }
+                else
+                {
+                    return mu * (eps * eps0 / 2 / d) * (W / L) * (GateVoltage - Vth) * (GateVoltage - Vth) * (1+0.01*(DrainSourceVoltage-GateVoltage+Vth));
+                }
+
+
+            }
+            else
+            {
+                return 0;
+            }
+
+
+
         }
 
     }

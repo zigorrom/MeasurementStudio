@@ -6,17 +6,24 @@ using System.Threading.Tasks;
 
 namespace MeasurementStudio
 {
+    using CurrentTimetrace.ViewModels;
     using CVCharacterization.ViewModels;
-using ExperimentDataModel;
-using IVCharacterization.ViewModels;
-using Microsoft.TeamFoundation.MVVM;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Input;
+    using ExperimentDataModel;
+    using Helper.ViewModelInterface;
+    using IVCharacterization.ViewModels;
+    using MeasurementStudioWebApi;
+    using Microsoft.TeamFoundation.MVVM;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Net.Http;
+    using System.ServiceModel;
+    using System.Threading;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Input;
     
-    public class MainViewModel:INotifyPropertyChanged, IMainViewModel
+    public class MainViewModel:INotifyPropertyChanged, IMainViewModel,IMeasurementWebApi
     {
         #region PropertyEvents
 
@@ -36,9 +43,10 @@ using System.Windows.Input;
                 handler(this, new PropertyChangedEventArgs(PropertyName));
         }
         #endregion
+
+
+        private ServiceHost _host;
         
-
-
         private PagesEnum _current;
 
         private ICommand _keyPressed;
@@ -87,7 +95,28 @@ using System.Windows.Input;
         private void SwitchToExperiment(PagesEnum exp)
         {
             if (!_controls.ContainsKey(exp))
-                return;
+            {
+                switch (exp)
+                {
+                    case PagesEnum.Home:
+                        _controls.Add(PagesEnum.Home, new UserControl { Content = new HomeViewModel() });
+                        break;
+                    case PagesEnum.IVOutput:
+                        _controls.Add(PagesEnum.IVOutput, new UserControl { Content = new OutputIVViewModel() });
+                        break;
+                    case PagesEnum.IVTransfer:
+                        _controls.Add(PagesEnum.IVTransfer, new UserControl { Content = new TransfrerIVViewModel() });
+                        break;
+                    case PagesEnum.CVCharacteristics:
+                        _controls.Add(PagesEnum.CVCharacteristics, new UserControl { Content = new CVViewModel() });
+                        break;
+                    case PagesEnum.Timetrace:
+                        _controls.Add(PagesEnum.Timetrace, new UserControl { Content = new TimetraceMainViewModel() });
+                        break;
+                    default:
+                        return;
+                }
+            }
             _current = exp;
             var control = _controls[exp];
             View.ShowPage(control);
@@ -96,16 +125,94 @@ using System.Windows.Input;
 
         public MainViewModel()
         {
-            //Home = new HomeViewModel();
-            _current = PagesEnum.Home;
-            _controls.Add(PagesEnum.Home, new UserControl { Content = new HomeViewModel()});
-            _controls.Add(PagesEnum.IVOutput, new UserControl { Content = new OutputIVViewModel() });
-            _controls.Add(PagesEnum.IVTransfer, new UserControl { Content = new TransfrerIVViewModel() });
-            _controls.Add(PagesEnum.CVCharacteristics, new UserControl { Content = new CVViewModel() });
             
+            _current = PagesEnum.Home;
+
+
+            StartWebApiHost();
+
+
+            //_controls.Add(PagesEnum.Home, new UserControl { Content = new HomeViewModel() });
+            //_controls.Add(PagesEnum.IVOutput, new UserControl { Content = new OutputIVViewModel() });
+            //_controls.Add(PagesEnum.IVTransfer, new UserControl { Content = new TransfrerIVViewModel() });
+            //_controls.Add(PagesEnum.CVCharacteristics, new UserControl { Content = new CVViewModel() });
+            //_controls.Add(PagesEnum.Timetrace, new UserControl { Content = new TimetraceMainViewModel() });
+            //var baseAddr = "http://localhost:9000/";
+            //using(Microsoft.Owin.Hosting.WebApp.Start<Startup>(url: baseAddr))
+            //{
+            //    HttpClient client = new HttpClient();
+            //    var response = client.GetAsync(baseAddr + "api/values").Result;
+            //}
+            //Initialize();
         }
 
-        public IPageTransitionView View
+        private void StartWebApiHost()
+        {
+            try
+            {
+                _host = new MeasurementServiceHost(this, typeof(MeasurementWebApiService));
+                _host.Open();
+            }catch(Exception e)
+            {
+                ShowMessage("Failed to start api host");
+            }
+        }
+
+
+
+        //private readonly string[] pages = { "Home", "IVoutput", "IVtransfer", "CVcharacteristic" };
+        public string[] GetAvailablePages()
+        {
+            return Enum.GetNames(typeof(PagesEnum));
+        }
+
+        public bool SwitchToPage(string PageName)
+        {
+            var names = Enum.GetNames(typeof(PagesEnum));
+            PagesEnum enumVal;
+            if (Enum.TryParse(PageName, true, out enumVal))
+            {
+                if (_current != enumVal)
+                    SwitchToExperiment(enumVal);
+                return true;
+            }
+            return false;
+           
+        }
+
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message,"MainWindow");
+        }
+
+
+        public System.Threading.SynchronizationContext CurrentSynchronizationContext
+        {
+            get { return SynchronizationContext.Current; }
+        }
+
+
+        //private async void Initialize()
+        //{
+        //    await Task.Factory.StartNew(() =>
+        //    {
+                
+        //    });
+        //    //await InitializeViews();
+        //}
+
+        //private async Task InitializeViews()
+        //{
+        //    var t1 = Task.Factory.StartNew(() => { _controls.Add(PagesEnum.IVOutput, new UserControl { Content = new OutputIVViewModel() }); });
+        //    var t2 = Task.Factory.StartNew(() => { _controls.Add(PagesEnum.IVTransfer, new UserControl { Content = new TransfrerIVViewModel() }); });
+        //    var t3 = Task.Factory.StartNew(() => { _controls.Add(PagesEnum.CVCharacteristics, new UserControl { Content = new CVViewModel() }); });
+        //    await t1;
+        //    await t2;
+        //    await t3;
+        //}
+
+
+        public IMeasurementView View
         {
             get;
             set;
@@ -120,6 +227,19 @@ using System.Windows.Input;
         }
 
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
     }
 }
