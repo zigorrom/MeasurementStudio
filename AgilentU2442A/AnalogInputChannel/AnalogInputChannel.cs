@@ -351,6 +351,8 @@ namespace AgilentU2442A
         {
             var len = ParseLengthAndRemoveHeader(ref StrArr)/2;
             Debug.WriteLine("parse length expected {0}, real{1}", len, StrArr.Length);
+            
+            
             data = new double[len];
             if (len == 0)
                 return;
