@@ -33,8 +33,8 @@ namespace IVCharacterization.Experiments
             //_drainKeithley.SwitchOn();
             //_gateKeithley.SwitchOn();
 
-            _drainKeithley.SwitchON();
-            _gateKeithley.SwitchON();
+            //_drainKeithley.SwitchON();
+            //_gateKeithley.SwitchON();
 
             var dsEnumerator = _secondRangeHandler.GetEnumerator();
             while (dsEnumerator.MoveNext() && !StopExperiment)
@@ -65,20 +65,20 @@ namespace IVCharacterization.Experiments
                         });
                     }
                     
-                    _gateKeithley.SetSourceVoltage(gsEnumerator.Current);
+                    //_gateKeithley.SetSourceVoltage(gsEnumerator.Current);
 
                     //double drainVolt, drainCurr, drainRes;
-                    var drainVolt = _drainKeithley.MeasureVoltage();
-                    var drainCurr = _drainKeithley.MeasureCurrent();
+                    //var drainVolt = _drainKeithley.MeasureVoltage();
+                    //var drainCurr = _drainKeithley.MeasureCurrent();
                     //var drainRes = _drainKeithley.
                     //_drainKeithley.MeasureAll(out drainVolt, out drainCurr, out drainRes);
                     //double gateVolt, gateCurr, gateRes;
 
-                    var gateVolt = _gateKeithley.MeasureVoltage();
-                    var gateCurr = _gateKeithley.MeasureCurrent();
+                    //var gateVolt = _gateKeithley.MeasureVoltage();
+                    //var gateCurr = _gateKeithley.MeasureCurrent();
                     //_gateKeithley.MeasureAll(out gateVolt, out gateCurr, out gateRes);
 
-                    mea.Add(new GateSourceDataRow(gateVolt, drainCurr, gateCurr));// * Math.Log(dsEnumerator.Current), 0)); //);
+                    //mea.Add(new GateSourceDataRow(gateVolt, drainCurr, gateCurr));// * Math.Log(dsEnumerator.Current), 0)); //);
                     _vm.ExecuteInUIThread(() => bgw.ReportProgress(progressCalc(counter++)));
                     System.Threading.Thread.Sleep(10);
                 }
@@ -90,8 +90,8 @@ namespace IVCharacterization.Experiments
 
             }
 
-            _drainKeithley.SwitchOFF();
-            _gateKeithley.SwitchOFF();
+            //_drainKeithley.SwitchOFF();
+            //_gateKeithley.SwitchOFF();
 
             //_drainKeithley.SwitchOff();
             //_gateKeithley.SwitchOff();

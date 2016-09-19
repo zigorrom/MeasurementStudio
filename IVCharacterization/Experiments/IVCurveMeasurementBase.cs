@@ -1,11 +1,11 @@
-﻿using DeviceIO;
+﻿//using DeviceIO;
 using ExperimentAbstraction;
 using ExperimentDataModel;
 using Helper.Ranges.RangeHandlers;
 using Instruments;
 using IVCharacterization.ViewModels;
 
-using Keithley2430Namespace;
+//using Keithley2430Namespace;
 using Keithley24xxNamespace;
 using System;
 using System.Collections.Generic;
@@ -33,12 +33,12 @@ namespace IVCharacterization.Experiments
         protected AbstractDoubleRangeHandler _firstRangeHandler;
         protected AbstractDoubleRangeHandler _secondRangeHandler;
 
-        //protected Keithley24xx _drainKeithley;
+        protected Keithley24xx _drainKeithley;
 
-        //protected Keithley24xx _gate_Keithley;
+        protected Keithley24xx _gate_Keithley;
 
-        protected ISourceMeterUnit _drainKeithley;
-        protected ISourceMeterUnit _gateKeithley;
+        //protected ISourceMeterUnit _drainKeithley;
+        //protected ISourceMeterUnit _gateKeithley;
 
 
         protected IVexpSettingsViewModel _settings;
@@ -85,19 +85,19 @@ namespace IVCharacterization.Experiments
 
         public override void InitializeInstruments()
         {
+            throw new Exception();
+            //var k1 = new Keithley2430(_drainIntrumentResource.Resource);
+            //_drainKeithley = k1.SMU_Channel;
 
-            var k1 = new Keithley2430(_drainIntrumentResource.Resource);
-            _drainKeithley = k1.SMU_Channel;
+            //var k2 = new Keithley2430(_gateInstrumentResource.Resource);
+            //_gateKeithley = k2.SMU_Channel;
 
-            var k2 = new Keithley2430(_gateInstrumentResource.Resource);
-            _gateKeithley = k2.SMU_Channel;
+            ////_drainKeithley = new Keithley2430Channel(new VisaDevice(_drainIntrumentResource.Resource));
+            ////_gateKeithley = new Keithley2430Channel(new VisaDevice(_gateInstrumentResource.Resource));
 
-            //_drainKeithley = new Keithley2430Channel(new VisaDevice(_drainIntrumentResource.Resource));
-            //_gateKeithley = new Keithley2430Channel(new VisaDevice(_gateInstrumentResource.Resource));
-
-            _drainKeithley.SMU_SourceMode = SourceMode.Voltage;
-            _gateKeithley.SMU_SourceMode = SourceMode.Voltage;
-            //_drainKeithley = new Keithley24xx(_drainIntrumentResource.Name, _drainIntrumentResource.Alias, _drainIntrumentResource.Resource);
+            //_drainKeithley.SMU_SourceMode = SourceMode.Voltage;
+            //_gateKeithley.SMU_SourceMode = SourceMode.Voltage;
+            ////_drainKeithley = new Keithley24xx(_drainIntrumentResource.Name, _drainIntrumentResource.Alias, _drainIntrumentResource.Resource);
             //if (!_drainKeithley.IsAlive(true))
             //    throw new ArgumentException("Drain Keithley doesnt respond");
 
@@ -138,11 +138,11 @@ namespace IVCharacterization.Experiments
                 throw new ArgumentNullException("Range is not set");
             if (!SimulateExperiment)
             {
-                if (_drainIntrumentResource == null)
-                    throw new ArgumentNullException("Drain instrument resource was not set");
+                //if (_drainIntrument == null)
+                //    throw new ArgumentNullException("Drain instrument resource was not set");
 
-                if (_gateKeithley == null)
-                    throw new ArgumentNullException("Gate instrument resource was not set");
+                //if (_gateKeithley == null)
+                //    throw new ArgumentNullException("Gate instrument resource was not set");
             }
         }
 
