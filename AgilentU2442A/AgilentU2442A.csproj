@@ -44,6 +44,7 @@
     <Compile Include="AbstractChannel.cs" />
     <Compile Include="AgilentU2542A.cs" />
     <Compile Include="AgilentU2542ACommandBuilder.cs" />
+    <Compile Include="AnalogInputChannel\AcquisitionController.cs" />
     <Compile Include="AnalogInputChannel\AnalogInputChannel.cs" />
     <Compile Include="AnalogInputChannel\AnalogInputChannels.cs" />
     <Compile Include="AnalogInputChannel\AquisitionState.cs" />
