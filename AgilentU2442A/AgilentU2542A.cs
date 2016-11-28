@@ -62,6 +62,22 @@ namespace AgilentU2442A
             }
         }
 
+        public string IDN()
+        {
+            return Query(CommandSet.IDNQuery());
+        }
+
+       
+        public void Run()
+        {
+            SendCommand(CommandSet.RUN());
+        }
+
+        public void Stop()
+        {
+            SendCommand(CommandSet.STOP());
+        }
+
         public AnalogInputChannel GetAnalogInputChannel(ChannelEnum ChannelIdentifier)
         {
             if (ChannelIdentifier < ChannelEnum.AI_CH101 || ChannelIdentifier > ChannelEnum.AI_CH104)

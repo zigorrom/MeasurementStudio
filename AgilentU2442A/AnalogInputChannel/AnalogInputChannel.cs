@@ -356,20 +356,28 @@ namespace AgilentU2442A
             data = new double[len];
             if (len == 0)
                 return;
-            //var bytes = Encoding.Default.GetBytes(StrArr);
-            int IntValue = 0;
-            int LSByte = 0;
-            int MSByte = 0;
-            int temp = 0;
-            //char is 2 byte value
+
             for (int i = 0; i < len; i++)
             {
-                temp = (int)StrArr[i];
-                LSByte =  0xff&temp>> 8;
-                MSByte = temp<< 8;
-                IntValue = ( MSByte| LSByte);
-                data[i] = PolarityRangeDependentTransformFunction(IntValue);
+                var bytes = BitConverter.GetBytes(StrArr[i]);
+                if (bytes.Length == 2)
+                    data[i] = PolarityRangeDependentTransformFunction(((bytes[1] << 8) | bytes[0]));
             }
+            
+            //var bytes = Encoding.Default.GetBytes(StrArr);
+            //int IntValue = 0;
+            //int LSByte = 0;
+            //int MSByte = 0;
+            //int temp = 0;
+            ////char is 2 byte value
+            //for (int i = 0; i < len; i++)
+            //{
+            //    temp = (int)StrArr[i];
+            //    LSByte =  0xff&temp>> 8;
+            //    MSByte = temp<< 8;
+            //    IntValue = ( MSByte| LSByte);
+            //    data[i] = PolarityRangeDependentTransformFunction(IntValue);
+            //}
         }
 
         private double InitRangeValue()

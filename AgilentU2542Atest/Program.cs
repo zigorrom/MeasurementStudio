@@ -14,7 +14,7 @@ namespace AgilentU2542Atest
 
             var agilent = new AgilentU2542A("asdasd", "", "ADC");
             var ch1 = agilent.GetAnalogInputChannel(ChannelEnum.AI_CH101);
-            //ch1.ChannelEnable = ChannelEnableEnum.Enabled;
+            ch1.ChannelEnable = ChannelEnableEnum.Enabled;
 
             ch1.SampleRate = 500000;
             ch1.PointsPerShot = 50000;
