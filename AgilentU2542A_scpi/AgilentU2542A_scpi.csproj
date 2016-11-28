@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="AgilentU2542A.cs" />
     <Compile Include="AgilentU2542ACommandBuilder.cs" />
+    <Compile Include="AnalogInput\AcquisitionController.cs" />
+    <Compile Include="AnalogInput\AnalogInputChannel.cs" />
     <Compile Include="CommonEnums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

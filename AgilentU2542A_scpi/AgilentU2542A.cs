@@ -15,7 +15,7 @@ namespace AgilentU2542A_scpi
             Initialize();
         }
 
-        private AgilentU2542ACommandBuilder 
+        private AgilentU2542ACommandBuilder _commandBuilder;
 
         private void Initialize()
         {
@@ -26,7 +26,7 @@ namespace AgilentU2542A_scpi
         {
             get
             {
-                Query()
+                throw new NotImplementedException();
             }
             
         }
