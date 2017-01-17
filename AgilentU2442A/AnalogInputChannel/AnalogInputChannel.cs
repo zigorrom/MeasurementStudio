@@ -353,16 +353,16 @@ namespace AgilentU2442A
             Debug.WriteLine("parse length expected {0}, real{1}", len, StrArr.Length);
             
             
-            data = new double[len];
-            if (len == 0)
-                return;
+            //data = new double[len];
+            //if (len == 0)
+            //    return;
 
-            for (int i = 0; i < len; i++)
-            {
-                var bytes = BitConverter.GetBytes(StrArr[i]);
-                if (bytes.Length == 2)
-                    data[i] = PolarityRangeDependentTransformFunction(((bytes[1] << 8) | bytes[0]));
-            }
+            //for (int i = 0; i < len; i++)
+            //{
+            //    var bytes = BitConverter.GetBytes(StrArr[i]);
+            //    if (bytes.Length == 2)
+            //        data[i] = PolarityRangeDependentTransformFunction(((bytes[1] << 8) | bytes[0]));
+            //}
             
             //var bytes = Encoding.Default.GetBytes(StrArr);
             //int IntValue = 0;

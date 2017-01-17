@@ -28,7 +28,7 @@ namespace AgilentU2442A
 
         private AnalogInputChannel[] enabledChannels;
 
-        private 
+        //private 
 
         public void Configure(AcquisitionConfiguration config)
         {
