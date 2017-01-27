@@ -349,10 +349,10 @@ namespace AgilentU2442A
 
         private void ParseStringToDoubleArray(ref string StrArr, out double[] data, Func<int,double> PolarityRangeDependentTransformFunction)
         {
-            var len = ParseLengthAndRemoveHeader(ref StrArr)/2;
+            var len = ParseLengthAndRemoveHeader(ref StrArr) / 2;
             Debug.WriteLine("parse length expected {0}, real{1}", len, StrArr.Length);
-            
-            
+
+
             //data = new double[len];
             //if (len == 0)
             //    return;
@@ -363,7 +363,7 @@ namespace AgilentU2442A
             //    if (bytes.Length == 2)
             //        data[i] = PolarityRangeDependentTransformFunction(((bytes[1] << 8) | bytes[0]));
             //}
-            
+
             //var bytes = Encoding.Default.GetBytes(StrArr);
             //int IntValue = 0;
             //int LSByte = 0;
@@ -373,9 +373,9 @@ namespace AgilentU2442A
             //for (int i = 0; i < len; i++)
             //{
             //    temp = (int)StrArr[i];
-            //    LSByte =  0xff&temp>> 8;
-            //    MSByte = temp<< 8;
-            //    IntValue = ( MSByte| LSByte);
+            //    LSByte = 0xff & temp >> 8;
+            //    MSByte = temp << 8;
+            //    IntValue = (MSByte | LSByte);
             //    data[i] = PolarityRangeDependentTransformFunction(IntValue);
             //}
         }
