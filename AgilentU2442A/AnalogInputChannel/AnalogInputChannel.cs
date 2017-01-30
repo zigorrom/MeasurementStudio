@@ -347,10 +347,21 @@ namespace AgilentU2442A
             return len;
         }
 
+        private int 
+
         private void ParseStringToDoubleArray(ref string StrArr, out double[] data, Func<int,double> PolarityRangeDependentTransformFunction)
         {
             var len = ParseLengthAndRemoveHeader(ref StrArr) / 2;
             Debug.WriteLine("parse length expected {0}, real{1}", len, StrArr.Length);
+            if (len != StrArr.Length)
+            {
+                throw new Exception();
+            }
+            data = new double[StrArr.Length];
+            for (int i = 0; i < StrArr.Length; i++)
+            {
+
+            }
 
 
             //data = new double[len];
