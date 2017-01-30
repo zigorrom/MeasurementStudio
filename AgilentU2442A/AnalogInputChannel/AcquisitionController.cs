@@ -92,7 +92,10 @@ namespace AgilentU2442A
             return parent.Query(parent.CommandSet.WAVeformDATAQuery());
         }
 
-        
+        private void ParseRawData(string rawData)
+        {
+            ASCIIEncoding.ASCII.GetBytes(rawData)
+        }
 
     }
 }

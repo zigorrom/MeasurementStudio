@@ -347,7 +347,7 @@ namespace AgilentU2442A
             return len;
         }
 
-        private int 
+        //private int 
 
         private void ParseStringToDoubleArray(ref string StrArr, out double[] data, Func<int,double> PolarityRangeDependentTransformFunction)
         {
