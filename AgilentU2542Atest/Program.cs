@@ -13,41 +13,57 @@ namespace AgilentU2542Atest
         static void Main(string[] args)
         {
             MessageBasedSession session = new MessageBasedSession("ADC");
-            int bufferSize = 400100;
-            session.DefaultBufferSize = bufferSize;
-            session.TerminationCharacterEnabled = true;
-            session.TerminationCharacter = 0xA;
-            
+            var sample_rate = 500000;
+            var points_per_sample = 50000;
+            var nchan = 4;
+            int bufferSize = points_per_sample*nchan+10;
+            //session.DefaultBufferSize = bufferSize;
+            //session.TerminationCharacterEnabled = true;
+            //session.TerminationCharacter = (byte)'\n';
+            //BinaryEncoding.RawLittleEndia
             session.Write("*RST");
             session.Write("ROUT:ENAB ON,(@101:104)");
-            session.Write("ACQ:SRAT 500000");
-            session.Write("ACQ:POIN 50000");
-            session.Write("WAV:POIN 50000");
+            session.Write(String.Format("ACQ:SRAT {0}",sample_rate));
+            session.Write(String.Format("ACQ:POIN {0}",points_per_sample));
+            session.Write(String.Format("WAV:POIN {0}",points_per_sample));
 
             session.Write("RUN");
             int counter = 0;
-            int cycles = 10000;
+            int cycles = 1000;
             string status = string.Empty;
-            string data = string.Empty;
-            byte[] result = null;
-            ushort[] array = new ushort[bufferSize];
-            byte[] data_query = ASCIIEncoding.ASCII.GetBytes("WAV:DATA?"); //BinaryEncoding.RawLittleEndian
-            while(counter<cycles)
+            //string data = string.Empty;
+            //byte[] result = null;
+            ushort[] array = null;
+            //byte[] data_query = ASCIIEncoding.ASCII.GetBytes("WAV:DATA?"); //BinaryEncoding.RawLittleEndian
+
+            var reader = new MessageBasedSessionReader(session);
+            reader.BinaryEncoding = BinaryEncoding.RawLittleEndian;
+
+            const int SAMPLE_NUMER = 50000*4;
+            string dataQuery = "WAV:DATA?";
+            while(counter++<cycles)
             {
                 session.Write("WAV:STAT?");
                 status = session.ReadString();
+
                 if (status == "DATA\n")
                 {
-                    result = session.Query(data_query);
-
-                    Console.WriteLine("data length {0}", data.Length);
+                    //data = session.Query(dataQuery);
+                    session.Write(dataQuery);
+                    array = reader.ReadUInt16s(SAMPLE_NUMER);
+                    Console.WriteLine("data length {0}", array.Length);
+                    Console.WriteLine(status);
+                }
+                else if(status == "OVER\n")
+                {
+                    Console.WriteLine(status);
+                    break;
 
                 }
-                Console.WriteLine(status);
-                
 
-                counter++;
+                Console.WriteLine(counter);
             }
+            Console.WriteLine("Done");
             session.Write("STOP");
             Console.ReadKey();
             //var agilent = new AgilentU2542A("asdasd", "", "ADC");
