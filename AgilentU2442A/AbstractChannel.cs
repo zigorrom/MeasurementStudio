@@ -80,6 +80,14 @@ namespace AgilentU2442A
             }
         }
 
+        protected byte[] GetByteResponse()
+        {
+            lock(lockObj)
+            {
+                return m_ParentDevice.GetBytes();
+            }
+        }
+
         protected string GetResponce()
         {
             lock (lockObj)

@@ -114,7 +114,7 @@ namespace AgilentU2442A
                 if (!(SendCommand(CommandSet.ACQuirePOINts(value))&&SendCommand(CommandSet.WAVeformPOINts(value))))
                     throw new MemberAccessException(MemberAccessExceptionMessage);
                 m_PointsPerShot = value;
-                ParentDevice.SetBufferSize(m_PointsPerShot + 1000); // including 10 starting characters and \n in the end;
+                ParentDevice.SetBufferSize(102400);//m_PointsPerShot + 1000); // including 10 starting characters and \n in the end;
                 OnPropertyChanged("PointsPerShot");
             }
         }
@@ -276,8 +276,12 @@ namespace AgilentU2442A
             {
                 SendCommand(CommandSet.WAVeformDATAQuery());
                 //var data = QueryCommand(CommandSet.WAVeformDATAQuery());
-                var data = GetResponce();
-                m_AquiredDataQueue.Enqueue(data);
+                //var data = GetResponce();
+                var data = GetByteResponse();
+                Debug.WriteLine("byte array length {0}",data.Length);
+
+                //m_AquiredDataQueue.Enqueue(data);
+                m_AquiredDataQueue.Enqueue("");
             }
         }
 
@@ -336,6 +340,7 @@ namespace AgilentU2442A
             if (StrArr.Length < HeaderLength)
                 return 0;
             var header = StrArr.Substring(0, HeaderLength);
+            Debug.WriteLine("header :{0}", header);
             StrArr = StrArr.Substring(HeaderLength);
             if (!header.StartsWith("#8"))
                 return 0;
@@ -353,15 +358,16 @@ namespace AgilentU2442A
         {
             var len = ParseLengthAndRemoveHeader(ref StrArr) / 2;
             Debug.WriteLine("parse length expected {0}, real{1}", len, StrArr.Length);
-            if (len != StrArr.Length)
-            {
-                throw new Exception();
-            }
-            data = new double[StrArr.Length];
-            for (int i = 0; i < StrArr.Length; i++)
-            {
+            //if (len != StrArr.Length)
+            //{
+            //    throw new Exception();
+            //}
 
-            }
+            data = new double[StrArr.Length];
+            //for (int i = 0; i < StrArr.Length; i++)
+            //{
+
+            //}
 
 
             //data = new double[len];

@@ -94,7 +94,24 @@ namespace AgilentU2442A
 
         private void ParseRawData(string rawData)
         {
-            ASCIIEncoding.ASCII.GetBytes(rawData)
+                
+        }
+
+        private const int HeaderLength = 10;
+        private int ParseLengthAndRemoveHeader(ref string StrArr)
+        {
+            if (StrArr.Length < HeaderLength)
+                return 0;
+            var header = StrArr.Substring(0, HeaderLength);
+            StrArr = StrArr.Substring(HeaderLength);
+            if (!header.StartsWith("#8"))
+                return 0;
+            var len = 0;
+            if (!int.TryParse(header.Substring(2), out len))
+                return 0;
+            if (len % 2 != 0)
+                return 0;
+            return len;
         }
 
     }

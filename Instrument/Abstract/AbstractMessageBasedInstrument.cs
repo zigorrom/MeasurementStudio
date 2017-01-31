@@ -142,6 +142,28 @@ namespace Instruments
             return true;
         }
 
+        public virtual byte[] GetBytes()
+        {
+            try
+            {
+                byte[] response = m_session.ReadByteArray();
+                return response;
+            }
+            catch (VisaException e)
+            {
+                OnVisaException(e);
+                return null;
+            }
+            catch (ArgumentNullException e)
+            {
+                return null;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
         public virtual string GetResponce()
         {
             var responce = "";
@@ -149,6 +171,7 @@ namespace Instruments
             {
                 //AssertSession();
                 responce = m_session.ReadString();
+                
                 System.Diagnostics.Debug.WriteLine(responce);
             }
             catch (VisaException e)
