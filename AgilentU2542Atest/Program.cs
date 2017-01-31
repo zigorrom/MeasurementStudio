@@ -13,9 +13,11 @@ namespace AgilentU2542Atest
         static void Main(string[] args)
         {
             MessageBasedSession session = new MessageBasedSession("ADC");
+            int bufferSize = 400100;
+            session.DefaultBufferSize = bufferSize;
             session.TerminationCharacterEnabled = true;
             session.TerminationCharacter = 0xA;
-            session.DefaultBufferSize = 400100;
+            
             session.Write("*RST");
             session.Write("ROUT:ENAB ON,(@101:104)");
             session.Write("ACQ:SRAT 500000");
@@ -27,14 +29,19 @@ namespace AgilentU2542Atest
             int cycles = 10000;
             string status = string.Empty;
             string data = string.Empty;
+            byte[] result = null;
+            ushort[] array = new ushort[bufferSize];
+            byte[] data_query = ASCIIEncoding.ASCII.GetBytes("WAV:DATA?"); //BinaryEncoding.RawLittleEndian
             while(counter<cycles)
             {
                 session.Write("WAV:STAT?");
                 status = session.ReadString();
                 if (status == "DATA\n")
                 {
-                    data = session.Query("WAV:DATA?");
+                    result = session.Query(data_query);
+
                     Console.WriteLine("data length {0}", data.Length);
+
                 }
                 Console.WriteLine(status);
                 
