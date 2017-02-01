@@ -29,7 +29,7 @@ namespace AgilentU2542Atest
             int cycles = 10000;
             string status = string.Empty;
             string data = string.Empty;
-            byte[] result = null;
+            
             ushort[] array = new ushort[bufferSize];
             byte[] data_query = ASCIIEncoding.ASCII.GetBytes("WAV:DATA?"); //BinaryEncoding.RawLittleEndian
             while(counter<cycles)
@@ -38,14 +38,10 @@ namespace AgilentU2542Atest
                 status = session.ReadString();
                 if (status == "DATA\n")
                 {
-                    result = session.Query(data_query);
-
+                    data = session.Query("WAV:DATA?");
                     Console.WriteLine("data length {0}", data.Length);
-
                 }
                 Console.WriteLine(status);
-                
-
                 counter++;
             }
             session.Write("STOP");
