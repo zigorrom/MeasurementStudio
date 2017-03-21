@@ -46,6 +46,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ThirdPartyLibs\Instruments\Keithley24xx.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Controls, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -107,6 +108,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChannelSwitchHelper\ChannelSwitchHelper.csproj">
+      <Project>{5e0567ca-d01a-417b-816f-54f9f46f84f6}</Project>
+      <Name>ChannelSwitchHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataVisualization\DataVisualization.csproj">
       <Project>{E058E277-4F95-4AC3-B2BF-AA8BCB2E3E84}</Project>
       <Name>DataVisualization</Name>
