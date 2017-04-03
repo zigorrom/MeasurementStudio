@@ -173,6 +173,16 @@ namespace IVCharacterization.Experiments
 
         }
 
+        protected override void DoMeasurement(object sender, DoWorkEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void SimulateMeasurement(object sender, DoWorkEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void OwnInstruments()
         {
             

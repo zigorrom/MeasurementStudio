@@ -1,5 +1,7 @@
-﻿using InstrumentHandlerNamespace;
+﻿using ChannelSwitchHelper;
+using InstrumentHandlerNamespace;
 using Instruments;
+using Microsoft.TeamFoundation.MVVM;
 //using Keithley24xxNamespace;
 using System;
 using System.Collections.Generic;
@@ -8,6 +10,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace IVCharacterization.ViewModels
 {
@@ -36,8 +41,42 @@ namespace IVCharacterization.ViewModels
         public IVexpSettingsViewModel()
         {
             _instrumentHandler = InstrumentHandler.Instance;
-            
+            _scenarioView = new MeasurementScenarioView();
+            _scenarioViewModel = new MeasurementScenarioModel();
+            _scenarioView.DataContext = _scenarioViewModel;
+
+            //_scenarioWindow = new Window();
+            //_scenarioWindow.Content = _scenarioView;
+
+           
         }
+
+        private Window _scenarioWindow;
+        private MeasurementScenarioView _scenarioView;
+
+
+        private MeasurementScenarioModel _scenarioViewModel;
+
+        public MeasurementScenarioModel ScenarioViewModel
+        {
+            get { return _scenarioViewModel; }
+            set { _scenarioViewModel = value; }
+        }
+
+        private ICommand _openScenarioCommand;
+        public ICommand OpenScenarioCommand
+        {
+            get
+            {
+                return _openScenarioCommand ?? (_openScenarioCommand = new RelayCommand((b) =>
+                {
+                    _scenarioWindow = new Window();
+                    _scenarioWindow.Content = _scenarioView;
+                    _scenarioWindow.ShowDialog();
+                }));//new RoutedUICommand("keyInput", "keyPressed", typeof(IMainViewModel)));
+            }
+        }
+
 
         private InstrumentHandler _instrumentHandler;
 
@@ -154,6 +193,7 @@ namespace IVCharacterization.ViewModels
             set { SetField(ref _waitForValueSet, value, "WaitForValueSet"); }
         }
 
+        
 
     }
 }

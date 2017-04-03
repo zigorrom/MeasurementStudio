@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace AgilentU2542Atest
 {
+    
     class Program
     {
         static void Main(string[] args)
@@ -17,9 +18,9 @@ namespace AgilentU2542Atest
             var points_per_sample = 50000;
             var nchan = 4;
             int bufferSize = points_per_sample*nchan+10;
-            //session.DefaultBufferSize = bufferSize;
-            //session.TerminationCharacterEnabled = true;
-            //session.TerminationCharacter = (byte)'\n';
+            session.DefaultBufferSize = bufferSize;
+            session.TerminationCharacterEnabled = true;
+            session.TerminationCharacter = (byte)'\n';
             //BinaryEncoding.RawLittleEndia
             session.Write("*RST");
             session.Write("ROUT:ENAB ON,(@101:104)");
@@ -29,7 +30,7 @@ namespace AgilentU2542Atest
 
             session.Write("RUN");
             int counter = 0;
-            int cycles = 1000;
+            int cycles = 10000;
             string status = string.Empty;
             //string data = string.Empty;
             //byte[] result = null;
@@ -51,8 +52,9 @@ namespace AgilentU2542Atest
                     //data = session.Query(dataQuery);
                     session.Write(dataQuery);
                     array = reader.ReadUInt16s(SAMPLE_NUMER);
-                    Console.WriteLine("data length {0}", array.Length);
-                    Console.WriteLine(status);
+
+                    //Console.WriteLine("data length {0}", array.Length);
+                    //Console.WriteLine(status);
                 }
                 else if(status == "OVER\n")
                 {
