@@ -31,7 +31,6 @@ namespace ExperimentAbstraction
         {
             get;
             set;
-          
         }
 
         protected void InitializeWriterThread()
@@ -58,10 +57,18 @@ namespace ExperimentAbstraction
             _dataWriter.NewExperiment(ExperimentName);
         }
 
+        protected IMeasurementDataExporter<InfoT,DataT> MeasurementWriter
+        {
+            get { return this._dataWriter; }
+            //private set { this._dataWriter = value; }
+        }
+
+
         protected void NewMeasurement(InfoT measurementInfo)
         {
             _dataWriter.NewMeasurement(measurementInfo);
         }
+
 
         //protected StreamMeasurementDataExporter<InfoT, DataT> GetStreamExporter(string WorkingDirectory)
         //{

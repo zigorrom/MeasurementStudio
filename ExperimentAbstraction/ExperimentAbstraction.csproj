@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractExperiment.cs" />
+    <Compile Include="AbstractExperimentScenario.cs" />
     <Compile Include="AbstractExperimentViewModel.cs" />
     <Compile Include="IExperiment.cs" />
     <Compile Include="ObservableExperiment.cs" />

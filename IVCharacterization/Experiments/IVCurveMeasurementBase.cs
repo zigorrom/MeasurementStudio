@@ -1,4 +1,5 @@
-﻿using DeviceIO;
+﻿using ChannelSwitchHelper;
+using DeviceIO;
 using ExperimentAbstraction;
 using ExperimentDataModel;
 using Helper.Ranges.RangeHandlers;
@@ -31,7 +32,7 @@ namespace IVCharacterization.Experiments
         protected AbstractDoubleRangeHandler _firstRangeHandler;
         protected AbstractDoubleRangeHandler _secondRangeHandler;
 
-        
+       
 
         //protected Keithley24xx _gate_Keithley;
 
@@ -40,6 +41,7 @@ namespace IVCharacterization.Experiments
 
 
         protected IVexpSettingsViewModel _settings;
+        //protected MeasurementScenarioModel _measurementScenario;
 
         protected string GetGraphLineDescription(string Name, double Value, string  Units)
         {
@@ -66,6 +68,7 @@ namespace IVCharacterization.Experiments
             _secondRangeHandler = _vm.SecondRangeViewModel.RangeHandler;
 
             _settings = _vm.IVSettingsViewModel;
+            //_measurementScenario = _settings.ScenarioViewModel;
 
             _drainIntrumentResource = _settings.DrainInstrumentResource;
             _gateInstrumentResource = _settings.GateInstrumentResource;

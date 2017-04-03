@@ -48,6 +48,7 @@
     <Compile Include="DataPropertyAttribute.cs" />
     <Compile Include="Exporter\IMeasurementDataExporter.cs" />
     <Compile Include="Exporter\StreamExporter\ContinuousStreamMeasurementDataExporter.cs" />
+    <Compile Include="Exporter\StreamExporter\MeasurementDataExporter.cs" />
     <Compile Include="IMeasuredDataObservable.cs" />
     <Compile Include="IMeasuredDataObserver.cs" />
     <Compile Include="IMeasurementInfo.cs" />
