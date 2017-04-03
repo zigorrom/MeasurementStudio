@@ -17,17 +17,6 @@ namespace ExperimentAbstraction
 
         private List<IScenarioAction> _scenarioExecutionList;
 
-        public void AddScenarioAction(IScenarioAction newScenarioAction)
-        {
-            _scenarioExecutionList.Add(newScenarioAction);
-        }
-
-
-
-
-
-
-
 
         public void InitializeExperiment()
         {
