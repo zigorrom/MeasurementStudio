@@ -13,7 +13,7 @@ using System.Windows.Controls;
 
 namespace ExperimentAbstraction
 {
-    public abstract class AbstractExperiment<InfoT, DataT> : ObservableExperiment<DataT>, IExperiment, IDisposable
+    public abstract class AbstractExperiment<InfoT, DataT> : ObservableExperiment<DataT>, IExperiment, IDisposable, IScenarioAction
         where InfoT : struct,IMeasurementInfo
         where DataT : struct
     {
@@ -131,6 +131,7 @@ namespace ExperimentAbstraction
             _worker.ProgressChanged += ProgressChanged;
             _worker.RunWorkerCompleted += RunWorkerCompleted;
             SimulateExperiment = false;
+            InirializeScenarioAction();
         }
 
 
@@ -300,6 +301,51 @@ namespace ExperimentAbstraction
                 handler(sender, e);
         }
         #endregion
+
+        #region Implementation of IScenarioAction interface
+
        
+
+        void IScenarioAction.Abort()
+        {
+            this.Abort();
+        }
+
+        void IScenarioAction.Pause()
+        {
+            this.Pause();
+        }
+
+        void IScenarioAction.Execute()
+        {
+            this.Start();
+        }
+
+        bool IScenarioAction.IsExecuting
+        {
+            get { return IsRunning; }
+        }
+
+        void InirializeScenarioAction()
+        {
+            ScenarioActionStarted += ExperimentStarted;
+            ScenarioActionAborted += ExperimentStopped;
+            ScenarioActionPaused += ExperimentPaused;
+            ScenarioActionFinished += ExperimentFinished;
+            ScenarioActionProgressChanged += ExperimentProgressChanged;
+        }
+
+        public event EventHandler ScenarioActionAborted;
+
+        public event EventHandler ScenarioActionFinished;
+
+        public event EventHandler ScenarioActionPaused;
+
+        public event ProgressChangedEventHandler ScenarioActionProgressChanged;
+
+        public event EventHandler ScenarioActionStarted;
+
+
+        #endregion
     }
 }

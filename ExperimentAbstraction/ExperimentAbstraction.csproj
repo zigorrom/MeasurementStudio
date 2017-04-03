@@ -52,6 +52,8 @@
     <Compile Include="AbstractExperiment.cs" />
     <Compile Include="AbstractExperimentViewModel.cs" />
     <Compile Include="IExperiment.cs" />
+    <Compile Include="IScenarioAction.cs" />
+    <Compile Include="MeasurementScenario.cs" />
     <Compile Include="ObservableExperiment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
