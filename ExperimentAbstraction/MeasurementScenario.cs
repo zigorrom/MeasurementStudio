@@ -13,11 +13,30 @@ namespace ExperimentAbstraction
         public MeasurementScenario()
         {
             _scenarioExecutionList = new List<IScenarioAction>();
+            _executionQueue = new Queue<IScenarioAction>();
+            _scenarioExecutor = new BackgroundWorker();
+            _scenarioExecutor.WorkerSupportsCancellation = true;
+            _scenarioExecutor.WorkerReportsProgress = true;
+            _scenarioExecutor.DoWork += ScenarioExecution;
+            _scenarioExecutor.RunWorkerCompleted += ActionExecutionCompleted;
+            SimulateMeasurementScenario = true;
+            
         }
 
+       
+
+        
+
         private List<IScenarioAction> _scenarioExecutionList;
+        private BackgroundWorker _scenarioExecutor;
+        private Queue<IScenarioAction> _executionQueue;
 
-
+        public bool SimulateMeasurementScenario
+        {
+            get;
+            set;
+        }
+        
         public void InitializeExperiment()
         {
             throw new NotImplementedException();
@@ -45,7 +64,13 @@ namespace ExperimentAbstraction
 
         public void Start()
         {
-            throw new NotImplementedException();
+            _scenarioExecutor.RunWorkerAsync();
+            
+        }
+
+        private void EnqueueActionList()
+        {
+
         }
 
         public bool IsRunning
@@ -59,6 +84,16 @@ namespace ExperimentAbstraction
         }
 
         public void Abort()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ScenarioExecution(object sender, DoWorkEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ActionExecutionCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             throw new NotImplementedException();
         }
@@ -83,7 +118,7 @@ namespace ExperimentAbstraction
             throw new NotImplementedException();
         }
 
-
+        #region IList interface implementation
 
         public int IndexOf(IScenarioAction item)
         {
@@ -156,5 +191,7 @@ namespace ExperimentAbstraction
         {
             return this.GetEnumerator();
         }
+
+        #endregion
     }
 }

@@ -138,7 +138,7 @@ namespace ExperimentAbstraction
             _worker.ProgressChanged += ProgressChanged;
             _worker.RunWorkerCompleted += RunWorkerCompleted;
             SimulateExperiment = false;
-            InirializeScenarioAction();
+            InitializeScenarioAction();
         }
 
 
@@ -333,7 +333,12 @@ namespace ExperimentAbstraction
             get { return IsRunning; }
         }
 
-        void InirializeScenarioAction()
+        public ScenarioAcrionStatus Status
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        void InitializeScenarioAction()
         {
             ScenarioActionStarted += ExperimentStarted;
             ScenarioActionAborted += ExperimentStopped;
@@ -354,5 +359,8 @@ namespace ExperimentAbstraction
 
 
         #endregion
+
+
+        
     }
 }
