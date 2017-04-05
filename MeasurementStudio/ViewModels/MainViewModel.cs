@@ -127,7 +127,7 @@ namespace MeasurementStudio
         {
             
             _current = PagesEnum.Home;
-
+            //SwitchToExperiment(_current);
 
             StartWebApiHost();
 

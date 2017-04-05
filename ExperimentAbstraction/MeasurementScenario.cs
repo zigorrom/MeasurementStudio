@@ -13,14 +13,13 @@ namespace ExperimentAbstraction
         public MeasurementScenario()
         {
             _scenarioExecutionList = new List<IScenarioAction>();
-            _executionQueue = new Queue<IScenarioAction>();
             _scenarioExecutor = new BackgroundWorker();
             _scenarioExecutor.WorkerSupportsCancellation = true;
             _scenarioExecutor.WorkerReportsProgress = true;
             _scenarioExecutor.DoWork += ScenarioExecution;
             _scenarioExecutor.RunWorkerCompleted += ActionExecutionCompleted;
             SimulateMeasurementScenario = true;
-            
+            _currentScenarioAction = null;
         }
 
        
@@ -29,14 +28,25 @@ namespace ExperimentAbstraction
 
         private List<IScenarioAction> _scenarioExecutionList;
         private BackgroundWorker _scenarioExecutor;
-        private Queue<IScenarioAction> _executionQueue;
+        //private Queue<IScenarioAction> _executionQueue;
+        private IScenarioAction _currentScenarioAction;
 
         public bool SimulateMeasurementScenario
         {
             get;
             set;
         }
-        
+
+        private void ScenarioExecution(object sender, DoWorkEventArgs e)
+        {
+            
+        }
+
+        private void ActionExecutionCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         public void InitializeExperiment()
         {
             throw new NotImplementedException();
@@ -88,15 +98,7 @@ namespace ExperimentAbstraction
             throw new NotImplementedException();
         }
 
-        private void ScenarioExecution(object sender, DoWorkEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ActionExecutionCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public event EventHandler ExperimentStarted;
 

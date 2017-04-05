@@ -10,6 +10,9 @@ using System.IO;
 
 namespace ExperimentDataModel
 {
+
+    
+
     public class StreamMeasurementDataExporter<InfoT, DataT> : IMeasurementDataExporter<InfoT, DataT>
         where InfoT : struct, IMeasurementInfo
         where DataT : struct
@@ -145,7 +148,7 @@ namespace ExperimentDataModel
 
         public string ExperimentName { get; private set; }
 
-        public void NewExperiment(string experimentName)
+        public virtual void NewExperiment(string experimentName)
         {
             ExperimentName = experimentName;
             var infofn = String.Concat(WorkingDirectory, "\\", ExperimentName, ".txt");
@@ -153,7 +156,7 @@ namespace ExperimentDataModel
             _infoWriter.WriteLine(_infoHeader);
         }
 
-        public void NewMeasurement(InfoT measurementInfo)
+        public virtual void NewMeasurement(InfoT measurementInfo)
         {
             if (_infoWriter == null)
                 throw new Exception("Writers were not initialized. Make sure you are calling NewExperiment methods before.");
@@ -168,7 +171,7 @@ namespace ExperimentDataModel
 
         //private StreamWriter _InfoWriter;
 
-        public void WriteMeasurement(MeasurementData<InfoT,DataT> data)
+        public virtual void WriteMeasurement(MeasurementData<InfoT,DataT> data)
         {
             if (_infoWriter == null || _dataWriter == null)
                 throw new Exception("Writers were not initialized. Make sure you are calling NewExperiment and NewMeasurement methods before.");
@@ -179,7 +182,9 @@ namespace ExperimentDataModel
             _dataWriter.Flush();
         }
 
-        public async Task WriteMeasurementAsync(MeasurementData<InfoT,DataT> data)
+
+
+        public virtual async Task WriteMeasurementAsync(MeasurementData<InfoT,DataT> data)
         {
             await Task.Factory.StartNew(() => WriteMeasurement(data));
         }
@@ -235,7 +240,7 @@ namespace ExperimentDataModel
         //    await Task.Factory.StartNew(()=>Write(measurement));
         //}
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             if (_infoWriter != null)
             {
@@ -248,4 +253,36 @@ namespace ExperimentDataModel
             }
         }
     }
+
+    public class QueuedStreamMeasurementdataExporter<InfoT,DataT>:StreamMeasurementDataExporter<InfoT,DataT>
+        where InfoT : struct, IMeasurementInfo
+        where DataT : struct
+    {
+        public QueuedStreamMeasurementdataExporter(string WorkingDirectory):base(WorkingDirectory)
+        {
+            _dataQueue = new Queue<MeasurementData<InfoT, DataT>>();
+        }
+
+        private Queue<MeasurementData<InfoT, DataT>> _dataQueue;
+
+        private void EnqueueData(MeasurementData<InfoT,DataT> data)
+        {
+            _dataQueue.Enqueue(data);
+        }
+
+
+
+        public override void WriteMeasurement(MeasurementData<InfoT, DataT> data)
+        {
+            //base.WriteMeasurement(data);
+        }
+
+        public override async Task WriteMeasurementAsync(MeasurementData<InfoT, DataT> data)
+        {
+            throw new NotImplementedException();
+            //return base.WriteMeasurementAsync(data);
+        }
+
+    }
+
 }
