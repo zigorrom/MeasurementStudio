@@ -47,6 +47,35 @@ namespace ExperimentAbstraction
             }
         }
 
+        private bool m_executeMeasurementScenario;
+
+        public bool ExecuteMeasurementScenario
+        {
+            get { return m_executeMeasurementScenario; }
+            set {
+                SetField(ref m_executeMeasurementScenario, value, "ExecuteMeasurementScenario");
+            }
+        }
+
+        public ICommand _showScenarioBuilder;
+
+        public ICommand ShowScenarioBuilder
+        {
+            get
+            {
+                return _showScenarioBuilder ?? (_showScenarioBuilder = new RelayCommand(
+                    () =>
+                    {
+                        ShowScenarioBuilderWindow();
+                    }
+                    ));
+            }
+        }
+        private void ShowScenarioBuilderWindow()
+        {
+
+        }
+
         private IExperiment _experiment;
         public virtual IExperiment Experiment
         {
@@ -101,6 +130,9 @@ namespace ExperimentAbstraction
         }
 
         private const string MeasurementName_MeasurementCount_Separator = "_";
+
+        
+
 
         private ICommand _createNewExperiment;
         
