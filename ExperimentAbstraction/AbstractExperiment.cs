@@ -166,8 +166,7 @@ namespace ExperimentAbstraction
         void RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             FinalizeExperiment();
-            OnExperimentFinished(sender, e);
-            
+           
             if (e.Cancelled)
             {
                 HandleMessage("Measurement was aborted");
@@ -184,6 +183,8 @@ namespace ExperimentAbstraction
                 ReleaseInstruments();
             
             HandleMessage("Measurement completed");
+
+            OnExperimentFinished(sender, e);
         }
 
         void ProgressChanged(object sender, ProgressChangedEventArgs e)

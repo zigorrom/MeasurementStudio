@@ -13,6 +13,22 @@ using System.Threading.Tasks;
 namespace IVCharacterization.ViewModels
 {
    
+    //public sealed class IVMeasurementsViewModel:IVMainViewModel
+    //{
+    //    public IVMeasurementsViewModel():base()
+    //    {
+
+    //    }
+
+    //    protected override void InitExperiment(out IExperiment experiment)
+    //    {
+
+
+    //        throw new NotImplementedException();
+    //    }
+
+    //}
+
     public sealed class OutputIVViewModel:IVMainViewModel
     {
         public OutputIVViewModel():base()
@@ -21,7 +37,14 @@ namespace IVCharacterization.ViewModels
         }
         protected override void InitExperiment(out IExperiment experiment)
         {
+            //if (IVSettingsViewModel.UseSampleSelector)
+            //{
+            //    experiment = new MeasurementScenario();
+            //}
+            //else
+            //{
             experiment = new OutputCurveMeasurement(this);
+            //}
         }
 
         protected override void SetVisualization(out DataVisualization.D3DataVisualization.D3VisualizationViewModel visualVM)

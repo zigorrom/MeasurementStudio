@@ -14,6 +14,7 @@ using Instruments;
 using System.ServiceModel;
 using MeasurementStudioWebApi;
 using System.Threading;
+using ExperimentAbstraction;
 
 
 namespace test
@@ -135,11 +136,14 @@ namespace test
     //    }
     //}
 
+   
 
     class Program
     {
         static void Main(string[] args)
         {
+            
+
 
             //AgilentU2542A a = new AgilentU2542A("agilent", "a", "USB0::0x0957::0x1718::TW52524501::INSTR");
             //var ch1 = a.GetAnalogInputChannel(ChannelEnum.AI_CH101);
