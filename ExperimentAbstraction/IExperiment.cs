@@ -11,6 +11,9 @@ namespace ExperimentAbstraction
 {
     public interface IExperiment:IInstrumentOwner
     {
+        /// <summary>
+        /// new approach for experiment execution
+        /// </summary>
         void InitializeExperiment();
         void InitializeInstruments();
         void OwnInstruments();
