@@ -13,6 +13,9 @@ using System.Windows.Controls;
 
 namespace ExperimentAbstraction
 {
+
+   
+
     public abstract class AbstractExperiment<InfoT, DataT> : ObservableExperiment<DataT>, IExperiment, IDisposable, IScenarioAction
         where InfoT : struct,IMeasurementInfo
         where DataT : struct

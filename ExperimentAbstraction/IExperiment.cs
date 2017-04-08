@@ -9,11 +9,58 @@ using System.Windows.Controls;
 
 namespace ExperimentAbstraction
 {
+
+    public enum ExecutionStatus
+    {
+        Queued,
+        Running,
+        Done,
+        Failed,
+        Aborted
+        
+    }
+
+    public class ExecutionReport
+    {
+        public int ExperimentProgress { get; set; }
+        public ExecutionStatus ExperimentExecutionStatus { get; set; }
+        public string ExperimentProgressMessage { get; set; }
+
+
+    }
+
+    public interface IExecutable
+    {
+        void Execute();
+        void Execute(object ExperimentStartObject, DoWorkEventArgs e);
+        void Execute(IProgress<ExecutionReport> progress);
+        void Abort();
+        bool IsRunning { get; }
+        ExecutionStatus Status { get; }
+
+        event EventHandler<ExecutionStatus> StatusChanged;
+        event EventHandler ExecutionStarted;
+        event EventHandler ExecutionAborted;
+        event ProgressChangedEventHandler ProgressChanged;
+        event EventHandler ExecutionFinished;
+    }
+
+    public interface INewExperiment:IInstrumentOwner, IExecutable
+    {
+        void InitializeExperiment();
+        void InitializeInstruments();
+        void OwnInstruments();
+        void ReleaseInstruments();
+        void FinalizeExperiment();
+
+        bool SimulateExperiment { get; set; }
+
+    }
+
+
     public interface IExperiment:IInstrumentOwner
     {
-        /// <summary>
-        /// new approach for experiment execution
-        /// </summary>
+
         void InitializeExperiment();
         void InitializeInstruments();
         void OwnInstruments();
