@@ -52,11 +52,13 @@
     <Compile Include="AbstractExperiment.cs" />
     <Compile Include="AbstractExperimentScenario.cs" />
     <Compile Include="AbstractExperimentViewModel.cs" />
+    <Compile Include="ExecutionManager.cs" />
     <Compile Include="IExperiment.cs" />
     <Compile Include="IScenarioAction.cs" />
     <Compile Include="MeasurementScenario.cs" />
     <Compile Include="NewAbstractExperiment.cs" />
     <Compile Include="ObservableExperiment.cs" />
+    <Compile Include="PauseTokenSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

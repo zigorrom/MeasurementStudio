@@ -35,6 +35,9 @@ namespace ExperimentAbstraction
         void Execute(object ExperimentStartObject, DoWorkEventArgs e);
         void Execute(IProgress<ExecutionReport> progress);
         void Abort();
+        void Pause();
+        void Resume();
+
         bool IsRunning { get; }
         ExecutionStatus Status { get; }
 
@@ -55,6 +58,7 @@ namespace ExperimentAbstraction
 
         bool SimulateExperiment { get; set; }
 
+        object ViewModel { get; }
     }
 
 

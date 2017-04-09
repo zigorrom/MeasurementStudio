@@ -140,9 +140,27 @@ namespace test
 
     class Program
     {
+        public static async Task SomeMethodAsync(PauseToken pause)
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                Console.WriteLine(i);
+                await Task.Delay(100);
+                await pause.WaitWhilePausedAsync();
+            }
+        } 
         static void Main(string[] args)
         {
-            
+            var pts = new PauseTokenSource();
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    Console.ReadLine();
+                    pts.IsPaused = !pts.IsPaused;
+                }
+            });
+            SomeMethodAsync(pts.Token).Wait(); 
 
 
             //AgilentU2542A a = new AgilentU2542A("agilent", "a", "USB0::0x0957::0x1718::TW52524501::INSTR");
