@@ -20,12 +20,12 @@ namespace ExperimentAbstraction
             this.Name = ExperimentName;
             this.ExperimentName = ExperimentName;
             this.SimulateExperiment = false;
-            this._cancellationSourceToken = new CancellationTokenSource();
-            this._pauseSourceToken = new PauseTokenSource();
+            //this._cancellationSourceToken = new CancellationTokenSource();
+            //this._pauseSourceToken = new PauseTokenSource();
         }
 
-        private CancellationTokenSource _cancellationSourceToken;
-        private PauseTokenSource _pauseSourceToken;
+        //private CancellationTokenSource _cancellationSourceToken;
+        //private PauseTokenSource _pauseSourceToken;
         private StreamMeasurementDataExporter<InfoT, DataT> _dataWriter;
 
         protected abstract void InitializeWriter();
@@ -87,12 +87,14 @@ namespace ExperimentAbstraction
 
         public void Pause()
         {
-            _pauseSourceToken.IsPaused = true;
+            throw new NotImplementedException();
+            //_pauseSourceToken.IsPaused = true;
         }
 
         public void Resume()
         {
-            _pauseSourceToken.IsPaused = false;
+            throw new NotImplementedException();
+            //_pauseSourceToken.IsPaused = false;
         }
 
         [Obsolete("Use Execute method with IProgress<ExecutionReport> progress parameter")]
@@ -118,8 +120,9 @@ namespace ExperimentAbstraction
             }
         }
 
-        public void Execute(IProgress<ExecutionReport> progress)
+        public ExecutionReport Execute(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken)
         {
+            ExecutionReport report = ExecutionReport.Empty;
             InitializeExperiment();
             AssertParams();
             OnExecutionStarted(this, new EventArgs());
@@ -130,13 +133,13 @@ namespace ExperimentAbstraction
             {
                 if (SimulateExperiment)
                 {
-                    PerformSimulatedExperiment(progress, _cancellationSourceToken.Token,_pauseSourceToken.Token);
+                    report = PerformSimulatedExperiment(progress, cancellationToken,pauseToken);
                 }
                 else
                 {
                     InitializeInstruments();
                     OwnInstruments();
-                    PerformExperiment(progress, _cancellationSourceToken.Token, _pauseSourceToken.Token);
+                    report = PerformExperiment(progress, cancellationToken, pauseToken);
                 }
             }catch(OperationCanceledException e)
             {
@@ -148,7 +151,6 @@ namespace ExperimentAbstraction
             {
                 Status = ExecutionStatus.Failed;
                 HandleError(e);
-                
             }
             finally
             {
@@ -156,17 +158,19 @@ namespace ExperimentAbstraction
                 OnStatusChanged(this,Status);
                 OnExecutionFinished(this, new EventArgs());
             }
+            return report;
         }
 
-        protected abstract void PerformExperiment(object ExperimentStartObject, DoWorkEventArgs e);
-        protected abstract void PerformExperiment(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken);
-        protected abstract void PerformSimulatedExperiment(object ExperimentStartObject, DoWorkEventArgs e);
-        protected abstract void PerformSimulatedExperiment(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken);
+        protected abstract ExecutionReport PerformExperiment(object ExperimentStartObject, DoWorkEventArgs e);
+        protected abstract ExecutionReport PerformExperiment(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken);
+        protected abstract ExecutionReport PerformSimulatedExperiment(object ExperimentStartObject, DoWorkEventArgs e);
+        protected abstract ExecutionReport PerformSimulatedExperiment(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken);
               
         public void Abort()
         {
-            if (_cancellationSourceToken != null)
-                _cancellationSourceToken.Cancel();
+            throw new NotImplementedException();
+            //if (_cancellationSourceToken != null)
+            //    _cancellationSourceToken.Cancel();
         }
 
         public bool IsRunning

@@ -140,60 +140,130 @@ namespace test
 
     class Program
     {
-        public static async Task SomeMethodAsync(PauseToken pause)
+        class testAction: IExecutable
         {
-            for (int i = 0; i < 100; i++)
+            public testAction(string name)
             {
-                Console.WriteLine(i);
-                await Task.Delay(100);
-                await pause.WaitWhilePausedAsync();
+                this.name = name;
             }
-        } 
+            private string name;
+
+            public void Execute()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Execute(object ExperimentStartObject, System.ComponentModel.DoWorkEventArgs e)
+            {
+                throw new NotImplementedException();
+            }
+
+            public ExecutionReport Execute(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken)
+            {
+                ExecutionReport report = ExecutionReport.Empty;
+                for (int i = 0; i < 100; i++)
+                {
+                    pauseToken.WaitWhilePausedAsync().Wait();
+                    cancellationToken.ThrowIfCancellationRequested();
+                    report = new ExecutionReport { ExperimentExecutionStatus = ExecutionStatus.Running, ExperimentProgress = i, ExperimentProgressMessage = String.Format("{0} running normally...", name) };
+                    progress.Report(report);
+                    Thread.Sleep(100);
+                }
+                return report;
+            }
+
+            public void Abort()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Pause()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Resume()
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool IsRunning
+            {
+                get { throw new NotImplementedException(); }
+            }
+
+            public ExecutionStatus Status
+            {
+                get { throw new NotImplementedException(); }
+            }
+
+            public event EventHandler<ExecutionStatus> StatusChanged;
+
+            public event EventHandler ExecutionStarted;
+
+            public event EventHandler ExecutionAborted;
+
+            public event System.ComponentModel.ProgressChangedEventHandler ProgressChanged;
+
+            public event EventHandler ExecutionFinished;
+        }
+
+        //public static async Task SomeMethodAsync(PauseToken pause)
+        //{
+        //    for (int i = 0; i < 100; i++)
+        //    {
+        //        Console.WriteLine(i);
+        //        await Task.Delay(100);
+        //        await pause.WaitWhilePausedAsync();
+        //    }
+        //} 
+
+        static void em_executionProgressChanged(object sender, ExecutionReport e)
+        {
+            Console.WriteLine("******************");
+            Console.WriteLine(e.ExperimentProgress);
+            Console.WriteLine(e.ExperimentExecutionStatus);
+            Console.WriteLine(e.ExperimentProgressMessage);
+            Console.WriteLine("******************");
+        }
         static void Main(string[] args)
         {
-            var pts = new PauseTokenSource();
-            Task.Run(() =>
+            var em = new ExecutionManager();
+            em.executionProgressChanged += em_executionProgressChanged;
+            var task = new testAction("test1");
+            var task2 = new testAction("test2");
+            bool paused = false;
+            em.Add(task);
+            em.Add(task2);
+            em.Start();
+            for (int i = 0, total = 0; i < 100000; i++)
             {
-                while (true)
+                if (i % 10 == 1)
                 {
-                    Console.ReadLine();
-                    pts.IsPaused = !pts.IsPaused;
+                    if (paused)
+                    {
+                        Console.WriteLine("Resume");
+                        paused = false;
+                        em.Resume();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Pause");
+                        paused = true;
+                        em.Pause();
+                    }
                 }
-            });
-            SomeMethodAsync(pts.Token).Wait(); 
+                Thread.Sleep(10);
+            }
 
+            em.Abort();
+            Console.WriteLine("Aborted");
 
-            //AgilentU2542A a = new AgilentU2542A("agilent", "a", "USB0::0x0957::0x1718::TW52524501::INSTR");
-            //var ch1 = a.GetAnalogInputChannel(ChannelEnum.AI_CH101);
-            //var ch2 = a.GetAnalogInputChannel(ChannelEnum.AI_CH102);
-            //var ch3 = a.GetAnalogInputChannel(ChannelEnum.AI_CH103);
-            //var ch4 = a.GetAnalogInputChannel(ChannelEnum.AI_CH104);
-            //Console.WriteLine("Enter waiting time in ms");
-            //var time = int.Parse(Console.ReadLine());
-            //a.Aquisition.SampleRate = 500000;
-            //a.Aquisition.SamplesPerShot = 100000;
-            //ch1.ChannelEnable = true;
-            //ch2.ChannelEnable = true;
-            //ch3.ChannelEnable = true;
-            //ch4.ChannelEnable = true;
+            Console.ReadLine();
 
-            ////for (int i = 0; i < 10; i++)
-            ////{
-            //Console.WriteLine("Cycle {0} starts!");
-            //a.Aquisition.StartAcquisition();
-            //Thread.Sleep(time);
-            //a.Aquisition.StopAcquisition();
-           
-            ////}
-            ////a.Aquisition.Dispose();
-            //Console.WriteLine("Aquisition finished -> ");
-            //Console.WriteLine("Channel1: {0}", ch1.count);
-            //Console.WriteLine("Channel2: {0}", ch2.count);
-            //Console.WriteLine("Channel3: {0}", ch3.count);
-            //Console.WriteLine("Channel4: {0}", ch4.count);
-            //a.Dispose();
-            Console.ReadKey();
         }
+
+        
 
     }
 }

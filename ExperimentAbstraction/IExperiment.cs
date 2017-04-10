@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -12,6 +13,7 @@ namespace ExperimentAbstraction
 
     public enum ExecutionStatus
     {
+        None,
         Queued,
         Running,
         Done,
@@ -25,7 +27,13 @@ namespace ExperimentAbstraction
         public int ExperimentProgress { get; set; }
         public ExecutionStatus ExperimentExecutionStatus { get; set; }
         public string ExperimentProgressMessage { get; set; }
-
+        public static ExecutionReport Empty
+        {
+            get
+            {
+                return new ExecutionReport { ExperimentExecutionStatus = ExecutionStatus.None, ExperimentProgress = 0, ExperimentProgressMessage = String.Empty };
+            }
+        }
 
     }
 
@@ -33,7 +41,8 @@ namespace ExperimentAbstraction
     {
         void Execute();
         void Execute(object ExperimentStartObject, DoWorkEventArgs e);
-        void Execute(IProgress<ExecutionReport> progress);
+        //void Execute(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken);
+        ExecutionReport Execute(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken);
         void Abort();
         void Pause();
         void Resume();
