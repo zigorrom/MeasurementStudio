@@ -47,6 +47,7 @@ namespace ExperimentAbstraction
             get;
             set;
         }
+
         public string Name { get; private set; }
         protected string WorkingDirectory { get; set; }
         protected string ExperimentName { get; set; }
@@ -56,7 +57,6 @@ namespace ExperimentAbstraction
         {
             get { throw new NotImplementedException(); }
         }
-
 
         protected virtual void AssertParams()
         {
@@ -85,44 +85,34 @@ namespace ExperimentAbstraction
             return Name.GetHashCode();
         }
 
-        public void Pause()
-        {
-            throw new NotImplementedException();
-            //_pauseSourceToken.IsPaused = true;
-        }
+        #region Obsolete
+        //[Obsolete("Use Execute method with IProgress<ExecutionReport> progress parameter",true)]
+        //public void Execute()
+        //{
+        //    throw new NotImplementedException();
+        //}
+        //[Obsolete("Use Execute method with IProgress<ExecutionReport> progress parameter",true)]
+        //public void Execute(object ExperimentStartObject, DoWorkEventArgs e)
+        //{
+        //    InitializeExperiment();
+        //    if (SimulateExperiment)
+        //    {
+        //        AssertParams();
+        //        //PerformSimulatedExperiment(ExperimentStartObject, e);
+        //    }
+        //    else
+        //    {
+        //        InitializeInstruments();
+        //        OwnInstruments();
+        //        AssertParams();
+        //        //PerformExperiment(ExperimentStartObject, e);
+        //    }
+        //}
+        #endregion
 
-        public void Resume()
+        public void Execute(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken)
         {
-            throw new NotImplementedException();
-            //_pauseSourceToken.IsPaused = false;
-        }
-
-        [Obsolete("Use Execute method with IProgress<ExecutionReport> progress parameter")]
-        public void Execute()
-        {
-            throw new NotImplementedException();
-        }
-        [Obsolete("Use Execute method with IProgress<ExecutionReport> progress parameter")]
-        public void Execute(object ExperimentStartObject, DoWorkEventArgs e)
-        {
-            InitializeExperiment();
-            if (SimulateExperiment)
-            {
-                AssertParams();
-                PerformSimulatedExperiment(ExperimentStartObject, e);
-            }
-            else
-            {
-                InitializeInstruments();
-                OwnInstruments();
-                AssertParams();
-                PerformExperiment(ExperimentStartObject, e);
-            }
-        }
-
-        public ExecutionReport Execute(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken)
-        {
-            ExecutionReport report = ExecutionReport.Empty;
+            //ExecutionReport report = ExecutionReport.Empty;
             InitializeExperiment();
             AssertParams();
             OnExecutionStarted(this, new EventArgs());
@@ -133,13 +123,13 @@ namespace ExperimentAbstraction
             {
                 if (SimulateExperiment)
                 {
-                    report = PerformSimulatedExperiment(progress, cancellationToken,pauseToken);
+                    PerformSimulatedExperiment(progress, cancellationToken, pauseToken);
                 }
                 else
                 {
                     InitializeInstruments();
                     OwnInstruments();
-                    report = PerformExperiment(progress, cancellationToken, pauseToken);
+                    PerformExperiment(progress, cancellationToken, pauseToken);
                 }
             }catch(OperationCanceledException e)
             {
@@ -158,21 +148,11 @@ namespace ExperimentAbstraction
                 OnStatusChanged(this,Status);
                 OnExecutionFinished(this, new EventArgs());
             }
-            return report;
         }
 
-        protected abstract ExecutionReport PerformExperiment(object ExperimentStartObject, DoWorkEventArgs e);
-        protected abstract ExecutionReport PerformExperiment(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken);
-        protected abstract ExecutionReport PerformSimulatedExperiment(object ExperimentStartObject, DoWorkEventArgs e);
-        protected abstract ExecutionReport PerformSimulatedExperiment(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken);
-              
-        public void Abort()
-        {
-            throw new NotImplementedException();
-            //if (_cancellationSourceToken != null)
-            //    _cancellationSourceToken.Cancel();
-        }
-
+        protected abstract void PerformExperiment(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken);
+        protected abstract void PerformSimulatedExperiment(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken);
+       
         public bool IsRunning
         {
             get;
@@ -241,10 +221,5 @@ namespace ExperimentAbstraction
         }
         #endregion
 
-
-
-
-
-       
     }
 }

@@ -60,6 +60,9 @@
     <Compile Include="ObservableExperiment.cs" />
     <Compile Include="PauseTokenSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ExperimentViewContainer.xaml.cs">
+      <DependentUpon>ExperimentViewContainer.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ExperimentDataModel\ExperimentDataModel.csproj">
@@ -74,6 +77,12 @@
       <Project>{0b56f789-4a97-4cf6-81e7-da41a40a5761}</Project>
       <Name>Instruments</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\ExperimentViewContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

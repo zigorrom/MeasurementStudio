@@ -34,29 +34,44 @@ namespace ExperimentAbstraction
         }
         #endregion
 
-
-        public ControlButtonsViewModel ExperimentControlButtons { get;private set; }
-
-        private bool m_globalIsEnabled;
-        public bool GlobalIsEnabled
+        #region Constructor
+        public AbstractExperimentViewModel()
         {
-            get { return m_globalIsEnabled; }
-            set
-            {
-                SetField(ref m_globalIsEnabled, value, "GlobalIsEnabled");
-            }
+            InitExperiment(out _experiment);
+
+            ExperimentControlButtons = new ControlButtonsViewModel();
+
+            ExperimentControlButtons.PauseCommandRaised += ExperimentControlButtons_PauseCommandRaised;
+            ExperimentControlButtons.StartCommandRaised += ExperimentControlButtons_StartCommandRaised;
+            ExperimentControlButtons.StopCommandRaised += ExperimentControlButtons_StopCommandRaised;
+
+            InitEventHandlers();
+            GlobalIsEnabled = true;
+            ExperimentIsRunning = false;
+
+            ExperimentExecutionManager = new ExecutionManager();
+
+
+        }
+        #endregion
+
+        #region Methods
+        protected abstract void InitExperiment(out IExperiment experiment);
+
+        private void InitEventHandlers()
+        {
+            if (Experiment == null)
+                throw new ArgumentNullException("Experiment not defined");
+            Experiment.ExperimentStarted += ExperimentStartedHandler;
+            Experiment.ExperimentPaused += ExperimentPausedHandler;
+            Experiment.ExperimentStopped += ExperimentStoppedHandler;
+            Experiment.ExperimentFinished += ExperimentFinishedHandler;
+            Experiment.ExperimentProgressChanged += ExperimentProgressChangedHandler;
         }
 
-        private bool m_executeMeasurementScenario;
+        #endregion
 
-        public bool ExecuteMeasurementScenario
-        {
-            get { return m_executeMeasurementScenario; }
-            set {
-                SetField(ref m_executeMeasurementScenario, value, "ExecuteMeasurementScenario");
-            }
-        }
-
+        #region Scenario execution region
         public ICommand _showScenarioBuilder;
 
         public ICommand ShowScenarioBuilder
@@ -76,6 +91,43 @@ namespace ExperimentAbstraction
 
         }
 
+        private bool _useScenario;
+
+        public bool UseScenario
+        {
+            get { return _useScenario; }
+            set
+            {
+                SetField(ref _useScenario, value, "UseScenario");
+            }
+        }
+
+        private ExecutionManager _executionManager;
+        public ExecutionManager ExperimentExecutionManager
+        {
+            get { return _executionManager; }
+            private set { _executionManager = value; }
+        }
+
+
+        #endregion 
+
+
+
+        public ControlButtonsViewModel ExperimentControlButtons { get; private set; }
+
+        private bool m_globalIsEnabled;
+        public bool GlobalIsEnabled
+        {
+            get { return m_globalIsEnabled; }
+            set
+            {
+                SetField(ref m_globalIsEnabled, value, "GlobalIsEnabled");
+            }
+        }
+
+
+
         private IExperiment _experiment;
         public virtual IExperiment Experiment
         {
@@ -90,7 +142,7 @@ namespace ExperimentAbstraction
         }
 
         
-
+#region properties
         private bool _ExperimentIsRunning;
         public bool ExperimentIsRunning
         {
@@ -131,9 +183,19 @@ namespace ExperimentAbstraction
 
         private const string MeasurementName_MeasurementCount_Separator = "_";
 
-        
+        private int _currentProgress;
+        public int CurrentProgress
+        {
+            get { return _currentProgress; }
+            set
+            {
+                SetField(ref _currentProgress, value, "CurrentProgress");
+            }
+        }
 
+#endregion
 
+        #region Commands
         private ICommand _createNewExperiment;
         
         public ICommand CreateNewExperiment
@@ -150,18 +212,6 @@ namespace ExperimentAbstraction
                 return d.ExperimentName;
             return String.Empty;
         }
-
-
-        private int _currentProgress;
-        public int CurrentProgress
-        {
-            get { return _currentProgress; }
-            set
-            {
-                SetField(ref _currentProgress, value, "CurrentProgress");
-            }
-        }
-
 
         private System.Windows.Forms.FolderBrowserDialog fbd = new System.Windows.Forms.FolderBrowserDialog();
         private ICommand _selectWorkingDirectory;
@@ -203,26 +253,15 @@ namespace ExperimentAbstraction
             }
         }
 
+        #endregion
 
-        public AbstractExperimentViewModel()
-        {
-            InitExperiment(out _experiment);
-            
-            ExperimentControlButtons = new ControlButtonsViewModel();
-
-            ExperimentControlButtons.PauseCommandRaised += ExperimentControlButtons_PauseCommandRaised;
-            ExperimentControlButtons.StartCommandRaised += ExperimentControlButtons_StartCommandRaised;
-            ExperimentControlButtons.StopCommandRaised += ExperimentControlButtons_StopCommandRaised;
-            
-            InitEventHandlers();
-            GlobalIsEnabled = true;
-            ExperimentIsRunning = false;
-        }
 
         void ExperimentControlButtons_StopCommandRaised(object sender, EventArgs e)
         {
             ExecuteInUIThread(() => GlobalIsEnabled = true);
             Experiment.Abort();
+
+            ExperimentExecutionManager.Abort();
         }
 
         void ExperimentControlButtons_StartCommandRaised(object sender, EventArgs e)
@@ -233,6 +272,8 @@ namespace ExperimentAbstraction
                 ExperimentIsRunning = true;
                 ExecuteInUIThread(() => GlobalIsEnabled = false);
                 Experiment.Start();
+
+                ExperimentExecutionManager.Start();
             }
             else
             {
@@ -246,21 +287,12 @@ namespace ExperimentAbstraction
         {
             ExecuteInUIThread(() => GlobalIsEnabled = true);
             Experiment.Pause();
+
+            ExperimentExecutionManager.Pause();
             //System.Diagnostics.Debug.WriteLine("Pause button press not handled");
             //throw new NotImplementedException();
         }
-        protected abstract void InitExperiment( out IExperiment experiment);
-
-        private void InitEventHandlers()
-        {
-            if (Experiment == null)
-                throw new ArgumentNullException("Experiment not defined");
-            Experiment.ExperimentStarted += ExperimentStartedHandler;
-            Experiment.ExperimentPaused += ExperimentPausedHandler;
-            Experiment.ExperimentStopped += ExperimentStoppedHandler;
-            Experiment.ExperimentFinished += ExperimentFinishedHandler;
-            Experiment.ExperimentProgressChanged += ExperimentProgressChangedHandler;
-        }
+        
 
         protected bool CheckParametersBeforeStart(out string Message)
         {
@@ -307,7 +339,6 @@ namespace ExperimentAbstraction
 
         protected virtual void ExperimentFinishedHandler(object sender, EventArgs e)
         {
-
             ExperimentIsRunning = false;
             ExecuteInUIThread(() => GlobalIsEnabled = true);
             ExecuteInUIThread(() => ExperimentControlButtons.Reset());

@@ -24,22 +24,20 @@ namespace ExperimentAbstraction
 
         void OnExecutionProgressChanged(object sender, ExecutionReport e)
         {
-            var handler = executionProgressChanged;
+            var handler = ExecutionProgressChanged;
             if( handler != null)
             {
                 handler(sender, e);
             }
         }
 
-        
-
-        public event EventHandler<ExecutionReport> executionProgressChanged;
+        public event EventHandler<ExecutionReport> ExecutionProgressChanged;
 
         private List<IExecutable> _executionList;
         private Progress<ExecutionReport> _executionProgress;
         private CancellationTokenSource _cancellationSource;
         private PauseTokenSource _pauseTokenSource;
-        private IExecutable _currentExecutable;
+        
         private Task _executionLoopTask;
 
         public void Start()
@@ -51,29 +49,32 @@ namespace ExperimentAbstraction
             //Task.Factory.StartNew(() => ExecutionLoop(cancellationToken, pauseToken), cancellationToken);
         }
 
-        private async void ExecutionLoop(IProgress<ExecutionReport> progress , CancellationToken cancellationToken, PauseToken pauseToken)
+        private void ExecutionLoop(IProgress<ExecutionReport> progress , CancellationToken cancellationToken, PauseToken pauseToken)
         {
-            var initialTask = Task.FromResult(ExecutionReport.Empty);
-                       
-            await pauseToken.WaitWhilePausedAsync();
+            Task initialTask = null;
+            pauseToken.WaitWhilePausedAsync().Wait();
             cancellationToken.ThrowIfCancellationRequested();
-            
+
+            #region another version - not working
+            //var executionEnumerator = _executionList.GetEnumerator();
+            //if (!executionEnumerator.MoveNext())
+            //    return;
+
+            //initialTask = Task.Factory.StartNew(() => executionEnumerator.Current.Execute(progress, cancellationToken, pauseToken));
+            //while (executionEnumerator.MoveNext())
+            //{
+            //    initialTask = initialTask.ContinueWith((t) => executionEnumerator.Current.Execute(progress, cancellationToken, pauseToken));
+            //}
+            #endregion
+
             foreach (var task in _executionList)
             {
                 var localItem = task;
-                initialTask = initialTask.ContinueWith(prevRes => localItem.Execute(progress, cancellationToken, pauseToken));
+                if (initialTask == null)
+                    initialTask = Task.Factory.StartNew(() => localItem.Execute(progress, cancellationToken, pauseToken));
+                else
+                    initialTask = initialTask.ContinueWith((t) => localItem.Execute(progress, cancellationToken, pauseToken));
             }
-
-
-            //var tcs = new TaskCompletionSource<bool>();
-            //tcs.SetResult(true);
-            //Task<bool> ret = tcs.Task;
-
-            //foreach (var executable in _executionList)
-            //{
-            //    var localItem = executable;
-            //    ret = ret.ContinueWith(t => executable.Execute( ).Unwrap();
-            //}
         }
 
         public void Abort()
@@ -102,42 +103,42 @@ namespace ExperimentAbstraction
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            _executionList.Clear();
         }
 
         public bool Contains(IExecutable item)
         {
-            throw new NotImplementedException();
+            return _executionList.Contains(item);
         }
 
         public void CopyTo(IExecutable[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            _executionList.CopyTo(array, arrayIndex);
         }
 
         public int Count
         {
-            get { throw new NotImplementedException(); }
+            get { return _executionList.Count; }
         }
 
         public bool IsReadOnly
         {
-            get { throw new NotImplementedException(); }
+            get { return true; }
         }
 
         public bool Remove(IExecutable item)
         {
-            throw new NotImplementedException();
+            return _executionList.Remove(item);
         }
 
         public IEnumerator<IExecutable> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return _executionList.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
 }

@@ -16,10 +16,10 @@ namespace ExperimentAbstraction
         None,
         Queued,
         Running,
+        Paused,
         Done,
         Failed,
         Aborted
-        
     }
 
     public class ExecutionReport
@@ -39,13 +39,13 @@ namespace ExperimentAbstraction
 
     public interface IExecutable
     {
-        void Execute();
-        void Execute(object ExperimentStartObject, DoWorkEventArgs e);
-        //void Execute(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken);
-        ExecutionReport Execute(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken);
-        void Abort();
-        void Pause();
-        void Resume();
+        //void Execute();
+        //void Execute(object ExperimentStartObject, DoWorkEventArgs e);
+        void Execute(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken);
+        //ExecutionReport Execute(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken);
+        //void Abort();
+        //void Pause();
+        //void Resume();
 
         bool IsRunning { get; }
         ExecutionStatus Status { get; }

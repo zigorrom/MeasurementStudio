@@ -158,7 +158,7 @@ namespace test
                 throw new NotImplementedException();
             }
 
-            public ExecutionReport Execute(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken)
+            public void Execute(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken)
             {
                 ExecutionReport report = ExecutionReport.Empty;
                 for (int i = 0; i < 100; i++)
@@ -169,7 +169,7 @@ namespace test
                     progress.Report(report);
                     Thread.Sleep(100);
                 }
-                return report;
+                //return report;
             }
 
             public void Abort()
@@ -229,7 +229,7 @@ namespace test
         static void Main(string[] args)
         {
             var em = new ExecutionManager();
-            em.executionProgressChanged += em_executionProgressChanged;
+            em.ExecutionProgressChanged += em_executionProgressChanged;
             var task = new testAction("test1");
             var task2 = new testAction("test2");
             bool paused = false;
@@ -253,6 +253,8 @@ namespace test
                         em.Pause();
                     }
                 }
+                if (paused)
+                    Thread.Sleep(20);
                 Thread.Sleep(10);
             }
 
