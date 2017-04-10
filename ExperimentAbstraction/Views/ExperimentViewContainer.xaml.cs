@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExperimentAbstraction.Views
+namespace ExperimentAbstraction
 {
     /// <summary>
     /// Interaction logic for ExperimentViewContainer.xaml

@@ -167,8 +167,12 @@ namespace test
                     cancellationToken.ThrowIfCancellationRequested();
                     report = new ExecutionReport { ExperimentExecutionStatus = ExecutionStatus.Running, ExperimentProgress = i, ExperimentProgressMessage = String.Format("{0} running normally...", name) };
                     progress.Report(report);
-                    Thread.Sleep(100);
+                    Thread.Sleep(10);
                 }
+                //}catch(OperationCanceledException e)
+                //{
+                //    progress.Report(new ExecutionReport { ExperimentExecutionStatus = ExecutionStatus.Aborted, ExperimentProgress = 0, ExperimentProgressMessage = "aborted" });
+                //}
                 //return report;
             }
 
@@ -220,23 +224,32 @@ namespace test
 
         static void em_executionProgressChanged(object sender, ExecutionReport e)
         {
-            Console.WriteLine("******************");
-            Console.WriteLine(e.ExperimentProgress);
-            Console.WriteLine(e.ExperimentExecutionStatus);
-            Console.WriteLine(e.ExperimentProgressMessage);
-            Console.WriteLine("******************");
+            Console.WriteLine("******************\r\n{0}\r\n{1}\r\n{2}\r\n******************", e.ExperimentProgress, e.ExperimentExecutionStatus, e.ExperimentProgressMessage);
+            
+            //Console.WriteLine("******************");
+            //Console.WriteLine(e.ExperimentProgress);
+            //Console.WriteLine(e.ExperimentExecutionStatus);
+            //Console.WriteLine(e.ExperimentProgressMessage);
+            //Console.WriteLine("******************");
+        }
+        static void em_NewExecutionStarted(object sender, IExecutable e)
+        {
+            Console.WriteLine(e.GetType());
+            
         }
         static void Main(string[] args)
         {
             var em = new ExecutionManager();
             em.ExecutionProgressChanged += em_executionProgressChanged;
+            em.NewExecutableStarted += em_NewExecutionStarted;
             var task = new testAction("test1");
             var task2 = new testAction("test2");
             bool paused = false;
             em.Add(task);
             em.Add(task2);
             em.Start();
-            for (int i = 0, total = 0; i < 100000; i++)
+         
+            for (int i = 0; i < 100000000; i++)
             {
                 if (i % 10 == 1)
                 {
@@ -256,7 +269,7 @@ namespace test
                 if (paused)
                     Thread.Sleep(20);
                 Thread.Sleep(10);
-            }
+            } 
 
             em.Abort();
             Console.WriteLine("Aborted");
@@ -264,6 +277,8 @@ namespace test
             Console.ReadLine();
 
         }
+
+        
 
         
 

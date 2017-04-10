@@ -12,6 +12,7 @@ namespace MeasurementStudio
         IVOutput,
         IVTransfer,
         CVCharacteristics,
-        Timetrace
+        Timetrace,
+        Experiment,
     }
 }

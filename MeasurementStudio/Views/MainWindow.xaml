@@ -10,6 +10,7 @@
         xmlns:cvv ="clr-namespace:CVCharacterization.Views;assembly=CVCharacterization"
         xmlns:cttvm ="clr-namespace:CurrentTimetrace.ViewModels;assembly=CurrentTimetrace"
         xmlns:cttv ="clr-namespace:CurrentTimetrace.Views;assembly=CurrentTimetrace"
+        xmlns:aexp ="clr-namespace:ExperimentAbstraction;assembly=ExperimentAbstraction"
         x:Class="MeasurementStudio.MainWindow"
          
         Title="MainWindow" WindowState="Maximized">
@@ -25,6 +26,10 @@
     <Window.Resources>
         <DataTemplate DataType="{x:Type local:HomeViewModel}">
             <local:HomeView/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type aexp:ExecutionViewModel}">
+            <aexp:ExperimentViewContainer/>
         </DataTemplate>
         
         <DataTemplate DataType="{x:Type iv:OutputIVViewModel}">
@@ -55,6 +60,7 @@
                 <MenuItem Header="CV-Characterization" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.CVCharacteristics}"/>
                 <MenuItem Header="Noise Measurement"/>
                 <MenuItem Header="Timetrace" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.Timetrace}"/>
+                <MenuItem Header="Experiment" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.Experiment}"/>
             </MenuItem>
         </Menu>
         

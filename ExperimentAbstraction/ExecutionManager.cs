@@ -20,6 +20,7 @@ namespace ExperimentAbstraction
             _pauseTokenSource = new PauseTokenSource();
             _executionProgress = new Progress<ExecutionReport>();
             _executionProgress.ProgressChanged += OnExecutionProgressChanged;
+            IsRunning = false;
         }
 
         void OnExecutionProgressChanged(object sender, ExecutionReport e)
@@ -31,14 +32,51 @@ namespace ExperimentAbstraction
             }
         }
 
+        void OnNewExecutionStarted(object sender, IExecutable e)
+        {
+            var handler = NewExecutableStarted;
+            if(handler != null)
+            {
+                handler(sender, e);
+            }
+        }
+
+        void OnExecutionLoopStarted(object sender, EventArgs e)
+        {
+            var handler = ExecutionLoopStarted;
+            if(handler!=null)
+            {
+                handler(sender, e);
+            }
+        }
+
+        void OnExecutionLoopFinished(object sender, EventArgs e)
+        {
+            var handler = ExecutionLoopFinished;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
+
+
+
+
         public event EventHandler<ExecutionReport> ExecutionProgressChanged;
+        public event EventHandler<IExecutable> NewExecutableStarted;
+        public event EventHandler ExecutionLoopStarted;
+        public event EventHandler ExecutionLoopFinished;
+
+
+
 
         private List<IExecutable> _executionList;
         private Progress<ExecutionReport> _executionProgress;
         private CancellationTokenSource _cancellationSource;
         private PauseTokenSource _pauseTokenSource;
-        
         private Task _executionLoopTask;
+        public bool IsRunning { get; private set; }
+
 
         public void Start()
         {
@@ -51,7 +89,13 @@ namespace ExperimentAbstraction
 
         private void ExecutionLoop(IProgress<ExecutionReport> progress , CancellationToken cancellationToken, PauseToken pauseToken)
         {
+            IsRunning = true;
             Task initialTask = null;
+            var action = new Action<object, IExecutable>((o, e) =>
+            {
+                OnNewExecutionStarted(o, e);
+                e.Execute(progress, cancellationToken, pauseToken);
+            });
             pauseToken.WaitWhilePausedAsync().Wait();
             cancellationToken.ThrowIfCancellationRequested();
 
@@ -67,14 +111,41 @@ namespace ExperimentAbstraction
             //}
             #endregion
 
+            initialTask = Task.Factory.StartNew(()=>OnExecutionLoopStarted(this, EventArgs.Empty), cancellationToken);
+            //OnExecutionLoopStarted(this, EventArgs.Empty);
+            
             foreach (var task in _executionList)
             {
-                var localItem = task;
-                if (initialTask == null)
-                    initialTask = Task.Factory.StartNew(() => localItem.Execute(progress, cancellationToken, pauseToken));
-                else
-                    initialTask = initialTask.ContinueWith((t) => localItem.Execute(progress, cancellationToken, pauseToken));
+                try
+                {
+
+
+                    var localItem = task;
+                    initialTask = initialTask.ContinueWith((t) => action(this, localItem), cancellationToken);
+                    //if (initialTask == null)
+                    //    initialTask = Task.Factory.StartNew(() => action(this, localItem), cancellationToken);
+                    ////() =>
+                    ////{
+                    ////    OnNewExecutionStarted(this, localItem);
+                    ////    localItem.Execute(progress, cancellationToken, pauseToken);
+                    ////});
+                    //else
+                    //    initialTask = initialTask.ContinueWith((t) => action(this, localItem), cancellationToken);
+                    //    =>
+                    //{
+                    //    OnNewExecutionStarted(this, localItem);
+                    //    localItem.Execute(progress, cancellationToken, pauseToken);
+                    //});
+                }catch(OperationCanceledException e)
+                {
+                    
+                }
             }
+
+            IsRunning = false;
+            initialTask = initialTask.ContinueWith((t) => OnExecutionLoopFinished(this, EventArgs.Empty), cancellationToken);
+            //OnExecutionLoopFinished(this, EventArgs.Empty);
+            
         }
 
         public void Abort()
