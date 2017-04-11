@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HelperExecutables.TimeDelay
+namespace ExperimentAbstraction.HelperExecutables.TimeDelay
 {
     /// <summary>
     /// Interaction logic for TimeDelayView.xaml

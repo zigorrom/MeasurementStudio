@@ -84,10 +84,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <CodeAnalysisDictionary Include="HelperExecutables\TimeDelay\TimeDelayView.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="HelperExecutables\TimeDelay\TimeDelayView.xaml">
       <SubType>Designer</SubType>
-    </CodeAnalysisDictionary>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ExperimentViewContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HelperExecutables.TimeDelay
+namespace ExperimentAbstraction.HelperExecutables.TimeDelay
 {
     public class TimeDelayExecutable:INewExperiment
     {
-        public TimeDelayExecutable()
+        public TimeDelayExecutable(TimeDelayExecutableViewModel viewModel)
         {
             StopwatchObj = new Stopwatch();
+            ViewModel = viewModel;
         }
 
         public void Execute(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
@@ -96,6 +97,18 @@ namespace HelperExecutables.TimeDelay
             if (handler != null)
                 handler(sender, e);
         }
+
+        public event EventHandler<TimeSpan> TimeElapsed;
+        protected virtual void OnTimeElapsed(object sender, TimeSpan t)
+        {
+            var handler = TimeElapsed;
+            if(handler!= null)
+            {
+                handler(sender, t);
+            }
+        }
+
+
         #endregion
 
         #region Not supported methods
@@ -134,7 +147,8 @@ namespace HelperExecutables.TimeDelay
 
         public object ViewModel
         {
-            get { throw new NotImplementedException(); }
+            get;
+            private set;
         }
 
         public string Name

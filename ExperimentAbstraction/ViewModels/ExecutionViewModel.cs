@@ -1,4 +1,5 @@
-﻿using Helper.StartStopControl;
+﻿using ExperimentAbstraction.HelperExecutables.TimeDelay;
+using Helper.StartStopControl;
 using Helper.ViewModelInterface;
 using System;
 using System.Collections.Generic;
@@ -312,8 +313,11 @@ namespace ExperimentAbstraction
 
         public ExecutionViewModel()
         {
+
             ExperimentExecutionManager = new ExecutionManager();
             ExperimentExecutionManager.Add(new testAction("test1"));
+            var td = new TimeDelayExecutableViewModel();
+            
             ExperimentExecutionManager.Add(new TestTimeDelayExecutable() { TimeDelay = 10000 });
             ExperimentExecutionManager.Add(new testAction("test2"));
             

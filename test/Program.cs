@@ -15,7 +15,7 @@ using System.ServiceModel;
 using MeasurementStudioWebApi;
 using System.Threading;
 using ExperimentAbstraction;
-using HelperExecutables.TimeDelay;
+//using HelperExecutables.TimeDelay;
 
 
 namespace test
@@ -246,7 +246,7 @@ namespace test
             
             //em.NewExecutableStarted += em_NewExecutionStarted;
             var task = new testAction("test1");
-            var waitTask = new TimeDelayExecutable() { TimeDelay = 10000 };
+            //var waitTask = new TimeDelayExecutable() { TimeDelay = 10000 };
 
             var task2 = new testAction("test2");
 
@@ -254,7 +254,7 @@ namespace test
 
             bool paused = false;
             em.Add(task);
-            em.Add(waitTask);
+            //em.Add(waitTask);
             em.Add(task2);
             em.Start();
          
