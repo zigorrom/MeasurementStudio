@@ -114,9 +114,9 @@ namespace MeasurementStudio
                     case PagesEnum.Timetrace:
                         _controls.Add(PagesEnum.Timetrace, new UserControl { Content = new TimetraceMainViewModel() });
                         break;
-                    case PagesEnum.Experiment:
-                        _controls.Add(PagesEnum.Experiment, new UserControl { Content = new ExecutionViewModel()});
-                        break;
+                    //case PagesEnum.Experiment:
+                    //    _controls.Add(PagesEnum.Experiment, new UserControl { Content = new ExecutionViewModel()});
+                    //    break;
                     default:
                         return;
                 }

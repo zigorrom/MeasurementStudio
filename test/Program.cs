@@ -15,6 +15,7 @@ using System.ServiceModel;
 using MeasurementStudioWebApi;
 using System.Threading;
 using ExperimentAbstraction;
+using HelperExecutables.TimeDelay;
 
 
 namespace test
@@ -235,17 +236,25 @@ namespace test
         static void em_NewExecutionStarted(object sender, IExecutable e)
         {
             Console.WriteLine(e.GetType());
-            
+
         }
+       
         static void Main(string[] args)
         {
             var em = new ExecutionManager();
             em.ExecutionProgressChanged += em_executionProgressChanged;
-            em.NewExecutableStarted += em_NewExecutionStarted;
+            
+            //em.NewExecutableStarted += em_NewExecutionStarted;
             var task = new testAction("test1");
+            var waitTask = new TimeDelayExecutable() { TimeDelay = 10000 };
+
             var task2 = new testAction("test2");
+
+
+
             bool paused = false;
             em.Add(task);
+            em.Add(waitTask);
             em.Add(task2);
             em.Start();
          
@@ -277,6 +286,8 @@ namespace test
             Console.ReadLine();
 
         }
+
+       
 
         
 

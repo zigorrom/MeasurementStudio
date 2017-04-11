@@ -107,6 +107,10 @@
       <Project>{f9ff4a13-f344-4422-8908-99292fae27ee}</Project>
       <Name>ExperimentAbstraction</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Instrument\Instruments.csproj">
+      <Project>{0b56f789-4a97-4cf6-81e7-da41a40a5761}</Project>
+      <Name>Instruments</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
