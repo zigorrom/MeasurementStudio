@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExperimentAbstraction.HelperExecutables.TimeDelay
+namespace ScenarioBuilder
 {
     /// <summary>
-    /// Interaction logic for TimeDelayView.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class TimeDelayView : UserControl
+    public partial class MainWindow : Window
     {
-        public TimeDelayView()
+        public MainWindow()
         {
             InitializeComponent();
         }

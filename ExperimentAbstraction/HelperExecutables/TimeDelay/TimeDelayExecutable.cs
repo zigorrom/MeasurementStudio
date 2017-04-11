@@ -15,23 +15,29 @@ namespace ExperimentAbstraction.HelperExecutables.TimeDelay
         {
             StopwatchObj = new Stopwatch();
             ViewModel = viewModel;
+            TimeDelay = (int)viewModel.Delay.TotalMilliseconds;
         }
-
+        private const int ProgressRefreshTime = 5;
         public void Execute(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
         {
+
             OnExecutionStarted(this, EventArgs.Empty);
             StopwatchObj.Start();
-            
+            var progressStep = TimeDelay / 100;
             var CurrentTimeSpan = TimeSpan.Zero;
-            var TempTimespan = TimeSpan.Zero;
+            var LastTimespan = TimeSpan.Zero;
             do
             {
                 pauseToken.WaitWhilePausedAsync().Wait();
                 cancellationToken.ThrowIfCancellationRequested();
-                TempTimespan= StopwatchObj.Elapsed;
-                if ((TempTimespan - CurrentTimeSpan).TotalMilliseconds > 1)
-                    progress.Report(new ExecutionReport { ExperimentExecutionStatus = ExecutionStatus.Running, ExperimentProgress = CurrentTimeSpan.Milliseconds, ExperimentProgressMessage = "Waiting..." });
-                CurrentTimeSpan = TempTimespan;
+                CurrentTimeSpan = StopwatchObj.Elapsed;
+                OnTimeElapsed(this, CurrentTimeSpan);
+                if ((CurrentTimeSpan - LastTimespan).TotalMilliseconds > ProgressRefreshTime)
+                {
+                    progress.Report(new ExecutionReport { ExperimentExecutionStatus = ExecutionStatus.Running, ExperimentProgress = (int)Math.Floor(CurrentTimeSpan.TotalMilliseconds/progressStep), ExperimentProgressMessage = "Waiting..." });
+                    LastTimespan = CurrentTimeSpan;
+                }
+                //CurrentTimeSpan = LastTimespan;
             } while (CurrentTimeSpan.TotalMilliseconds < TimeDelay);
             progress.Report(new ExecutionReport { ExperimentExecutionStatus = ExecutionStatus.Done, ExperimentProgress = CurrentTimeSpan.Milliseconds, ExperimentProgressMessage = "Ready!" });
             StopwatchObj.Reset();

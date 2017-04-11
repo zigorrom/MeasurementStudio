@@ -50,11 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractExperiment.cs" />
+    <Compile Include="HelperExecutables\TimeDelay\DelayView.xaml.cs">
+      <DependentUpon>DelayView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HelperExecutables\TimeDelay\TimeDelayExecutable.cs" />
     <Compile Include="HelperExecutables\TimeDelay\TimeDelayExecutableViewModel.cs" />
-    <Compile Include="HelperExecutables\TimeDelay\TimeDelayView.xaml.cs">
-      <DependentUpon>TimeDelayView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\AbstractExperimentViewModel.cs" />
     <Compile Include="ExecutionManager.cs" />
     <Compile Include="ViewModels\ExecutionViewModel.cs" />
@@ -82,9 +82,13 @@
       <Project>{0b56f789-4a97-4cf6-81e7-da41a40a5761}</Project>
       <Name>Instruments</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ScenarioBuilder\ScenarioBuilder.csproj">
+      <Project>{1555d951-9bff-4c69-b11e-a97942d358a6}</Project>
+      <Name>ScenarioBuilder</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="HelperExecutables\TimeDelay\TimeDelayView.xaml">
+    <Page Include="HelperExecutables\TimeDelay\DelayView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

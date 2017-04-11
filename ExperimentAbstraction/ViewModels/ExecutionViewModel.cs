@@ -138,147 +138,7 @@ namespace ExperimentAbstraction
             throw new NotImplementedException();
         }
     }
-    public class TestTimeDelayExecutable : INewExperiment
-    {
-        public TestTimeDelayExecutable()
-        {
-            StopwatchObj = new Stopwatch();
-        }
-
-        public void Execute(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
-        {
-            OnExecutionStarted(this, EventArgs.Empty);
-            StopwatchObj.Start();
-
-            var CurrentTimeSpan = TimeSpan.Zero;
-            var LastTimespan = TimeSpan.Zero;
-            do
-            {
-                pauseToken.WaitWhilePausedAsync().Wait();
-                cancellationToken.ThrowIfCancellationRequested();
-                CurrentTimeSpan = StopwatchObj.Elapsed;
-                if ((CurrentTimeSpan - LastTimespan).TotalMilliseconds > 1)
-                {
-                    progress.Report(new ExecutionReport { ExperimentExecutionStatus = ExecutionStatus.Running, ExperimentProgress = CurrentTimeSpan.Milliseconds, ExperimentProgressMessage = "Waiting..." });
-                    LastTimespan = CurrentTimeSpan;
-                }
-                //CurrentTimeSpan = LastTimespan;
-            } while (CurrentTimeSpan.TotalMilliseconds < TimeDelay);
-            progress.Report(new ExecutionReport { ExperimentExecutionStatus = ExecutionStatus.Done, ExperimentProgress = CurrentTimeSpan.Milliseconds, ExperimentProgressMessage = "Ready!" });
-            StopwatchObj.Reset();
-            OnExecutionFinished(this, EventArgs.Empty);
-
-        }
-
-        public int TimeDelay { get; set; }
-
-        private System.Diagnostics.Stopwatch StopwatchObj { get; set; }
-
-        public bool IsRunning
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public ExecutionStatus Status
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        #region events
-        public event EventHandler<ExecutionStatus> StatusChanged;
-        private void OnStatusChanged(object sender, ExecutionStatus status)
-        {
-            var handler = StatusChanged;
-            if (handler != null)
-            {
-                handler(sender, status);
-            }
-        }
-
-        public event EventHandler ExecutionStarted;
-
-        protected virtual void OnExecutionStarted(object sender, EventArgs e)
-        {
-            var handler = ExecutionStarted;
-            if (handler != null)
-                handler(sender, e);
-        }
-
-        public event EventHandler ExecutionAborted;
-        protected virtual void OnExecutionAborted(object sender, EventArgs e)
-        {
-            var handler = ExecutionAborted;
-            if (handler != null)
-                handler(sender, e);
-        }
-
-
-        public event ProgressChangedEventHandler ProgressChanged;
-        protected virtual void OnProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            var handler = ProgressChanged;
-            if (handler != null)
-                handler(sender, e);
-        }
-
-        public event EventHandler ExecutionFinished;
-        protected virtual void OnExecutionFinished(object sender, EventArgs e)
-        {
-            var handler = ExecutionFinished;
-            if (handler != null)
-                handler(sender, e);
-        }
-        #endregion
-
-        #region Not supported methods
-        public void InitializeExperiment()
-        {
-            throw new NotSupportedException();
-        }
-
-        public void InitializeInstruments()
-        {
-            throw new NotSupportedException();
-        }
-
-        public void OwnInstruments()
-        {
-            throw new NotSupportedException();
-        }
-
-        public void ReleaseInstruments()
-        {
-            throw new NotSupportedException();
-        }
-
-        public void FinalizeExperiment()
-        {
-            throw new NotSupportedException();
-        }
-
-        #endregion
-
-        public bool SimulateExperiment
-        {
-            get;
-            set;
-        }
-
-        public object ViewModel
-        {
-            get { return new object(); }
-        }
-
-        public string Name
-        {
-            get { return "TimeDelay"; }
-        }
-
-        public bool Equals(Instruments.IInstrumentOwner other)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    
     public class ExecutionViewModel : INotifyPropertyChanged, IUIThreadExecutableViewModel
     {
         #region PropertyEvents
@@ -317,10 +177,15 @@ namespace ExperimentAbstraction
             ExperimentExecutionManager = new ExecutionManager();
             ExperimentExecutionManager.Add(new testAction("test1"));
             var td = new TimeDelayExecutableViewModel();
+            td.Delay = TimeSpan.FromMilliseconds(10000);
             
-            ExperimentExecutionManager.Add(new TestTimeDelayExecutable() { TimeDelay = 10000 });
+            ExperimentExecutionManager.Add(td.DelayExecutable);
             ExperimentExecutionManager.Add(new testAction("test2"));
-            
+            ExperimentExecutionManager.Add(td.DelayExecutable);
+            ExperimentExecutionManager.Add(new testAction("test3"));
+
+            var a = new ScenarioBuilder.MainWindow();
+            a.ShowDialog();
 
             ExperimentControlButtons = new ControlButtonsViewModel();
             ExperimentControlButtons.PauseCommandRaised += ExperimentControlButtons_PauseCommandRaised;
@@ -349,7 +214,7 @@ namespace ExperimentAbstraction
             //MessageHandler("New executable started");
             if (e is INewExperiment)
             {
-                CurrentExperimentViewModel = ((INewExperiment)e).ViewModel;
+                ExecuteInUIThread(()=> CurrentExperimentViewModel = ((INewExperiment)e).ViewModel);
             }
         }
 
@@ -365,11 +230,12 @@ namespace ExperimentAbstraction
             ExperimentControlButtons.Reset();
             CurrentProgress = 0;
             CurrentStatus = String.Empty;
+            ExperimentIsRunning = false;
         }
 
         void ExperimentExecutionManager_ExecutionLoopStarted(object sender, EventArgs e)
         {
-            
+            ExperimentIsRunning = true;   
         }
 
         public ExecutionManager ExperimentExecutionManager { get; private set; }
