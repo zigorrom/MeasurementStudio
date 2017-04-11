@@ -50,9 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractExperiment.cs" />
-    <Compile Include="AbstractExperimentViewModel.cs" />
+    <Compile Include="HelperExecutables\TimeDelay\TimeDelayExecutable.cs" />
+    <Compile Include="HelperExecutables\TimeDelay\TimeDelayExecutableViewModel.cs" />
+    <Compile Include="HelperExecutables\TimeDelay\TimeDelayView.xaml.cs">
+      <DependentUpon>TimeDelayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AbstractExperimentViewModel.cs" />
     <Compile Include="ExecutionManager.cs" />
-    <Compile Include="ExecutionViewModel.cs" />
+    <Compile Include="ViewModels\ExecutionViewModel.cs" />
     <Compile Include="IExperiment.cs" />
     <Compile Include="IScenarioAction.cs" />
     <Compile Include="MeasurementScenario.cs" />
@@ -79,6 +84,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <CodeAnalysisDictionary Include="HelperExecutables\TimeDelay\TimeDelayView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </CodeAnalysisDictionary>
     <Page Include="Views\ExperimentViewContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

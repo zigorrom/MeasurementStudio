@@ -92,10 +92,6 @@
       <Project>{f37c1293-015e-47ef-81fe-694857e4a303}</Project>
       <Name>ExperimentDataModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HelperExecutables\HelperExecutables.csproj">
-      <Project>{057a9b6c-9e4a-457e-96af-3568b2ce01ca}</Project>
-      <Name>HelperExecutables</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Helper\Helper.csproj">
       <Project>{5216ba05-f05d-447a-965f-b1357dcb4990}</Project>
       <Name>Helper</Name>

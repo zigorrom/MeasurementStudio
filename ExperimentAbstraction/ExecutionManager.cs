@@ -23,6 +23,11 @@ namespace ExperimentAbstraction
             IsRunning = false;
         }
 
+        private void ResetControlTokens()
+        {
+            _cancellationSource = new CancellationTokenSource();
+        }
+
         void OnExecutionProgressChanged(object sender, ExecutionReport e)
         {
             var handler = ExecutionProgressChanged;
@@ -110,14 +115,15 @@ namespace ExperimentAbstraction
             //    initialTask = initialTask.ContinueWith((t) => executionEnumerator.Current.Execute(progress, cancellationToken, pauseToken));
             //}
             #endregion
-
-            initialTask = Task.Factory.StartNew(()=>OnExecutionLoopStarted(this, EventArgs.Empty), cancellationToken);
-            //OnExecutionLoopStarted(this, EventArgs.Empty);
-            
-            foreach (var task in _executionList)
+            try
             {
-                try
+                initialTask = Task.Factory.StartNew(() => OnExecutionLoopStarted(this, EventArgs.Empty), cancellationToken);
+                //OnExecutionLoopStarted(this, EventArgs.Empty);
+
+                foreach (var task in _executionList)
                 {
+                    //try
+                    //{
 
 
                     var localItem = task;
@@ -136,23 +142,37 @@ namespace ExperimentAbstraction
                     //    OnNewExecutionStarted(this, localItem);
                     //    localItem.Execute(progress, cancellationToken, pauseToken);
                     //});
-                }catch(OperationCanceledException e)
-                {
-                    
-                }
-            }
+                    //}catch(OperationCanceledException e)
+                    //{
 
-            IsRunning = false;
-            initialTask = initialTask.ContinueWith((t) => OnExecutionLoopFinished(this, EventArgs.Empty), cancellationToken);
-            //OnExecutionLoopFinished(this, EventArgs.Empty);
-            
+                    //}
+                }
+
+                IsRunning = false;
+                initialTask = initialTask.ContinueWith((t) => OnExecutionLoopFinished(this, EventArgs.Empty), cancellationToken);
+                //OnExecutionLoopFinished(this, EventArgs.Empty);
+            }catch (AggregateException e)
+            {
+
+            }
+            finally
+            {
+                
+            }
         }
 
         public void Abort()
         {
-            _pauseTokenSource.IsPaused = false;
-            _cancellationSource.Cancel();
-            _executionLoopTask.Wait();
+            try
+            {
+                _pauseTokenSource.IsPaused = false;
+                _cancellationSource.Cancel();
+                _executionLoopTask.Wait();
+                ResetControlTokens();
+            }catch(AggregateException e)
+            {
+
+            }
         }
 
         public void Pause()

@@ -150,15 +150,18 @@ namespace ExperimentAbstraction
             StopwatchObj.Start();
 
             var CurrentTimeSpan = TimeSpan.Zero;
-            var TempTimespan = TimeSpan.Zero;
+            var LastTimespan = TimeSpan.Zero;
             do
             {
                 pauseToken.WaitWhilePausedAsync().Wait();
                 cancellationToken.ThrowIfCancellationRequested();
-                TempTimespan = StopwatchObj.Elapsed;
-                if ((TempTimespan - CurrentTimeSpan).TotalMilliseconds > 1)
+                CurrentTimeSpan = StopwatchObj.Elapsed;
+                if ((CurrentTimeSpan - LastTimespan).TotalMilliseconds > 1)
+                {
                     progress.Report(new ExecutionReport { ExperimentExecutionStatus = ExecutionStatus.Running, ExperimentProgress = CurrentTimeSpan.Milliseconds, ExperimentProgressMessage = "Waiting..." });
-                CurrentTimeSpan = TempTimespan;
+                    LastTimespan = CurrentTimeSpan;
+                }
+                //CurrentTimeSpan = LastTimespan;
             } while (CurrentTimeSpan.TotalMilliseconds < TimeDelay);
             progress.Report(new ExecutionReport { ExperimentExecutionStatus = ExecutionStatus.Done, ExperimentProgress = CurrentTimeSpan.Milliseconds, ExperimentProgressMessage = "Ready!" });
             StopwatchObj.Reset();
@@ -339,7 +342,7 @@ namespace ExperimentAbstraction
 
         void ExperimentExecutionManager_NewExecutableStarted(object sender, IExecutable e)
         {
-            MessageHandler("New executable started");
+            //MessageHandler("New executable started");
             if (e is INewExperiment)
             {
                 CurrentExperimentViewModel = ((INewExperiment)e).ViewModel;
@@ -459,6 +462,7 @@ namespace ExperimentAbstraction
             ExecuteInUIThread(() => GlobalIsEnabled = true);
             //Experiment.Abort();
             ExperimentExecutionManager.Abort();
+            ExperimentControlButtons.Reset();
             ExperimentIsRunning = false;
             ExperimentIsPaused = false;
         }

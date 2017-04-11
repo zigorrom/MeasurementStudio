@@ -110,7 +110,7 @@ namespace Helper.StartStopControl
 
         private void PauseCommandExecute()
         {
-            SetCanExecute(true, true, false);
+            SetCanExecute(false, true, true);
             var handler = PauseCommandRaised;
             if (handler != null)
             {
