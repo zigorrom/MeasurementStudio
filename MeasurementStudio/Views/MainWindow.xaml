@@ -28,9 +28,9 @@
             <local:HomeView/>
         </DataTemplate>
         
-        <!--<DataTemplate DataType="{x:Type aexp:ExecutionViewModel}">
+        <DataTemplate DataType="{x:Type aexp:ExecutionViewModel}">
             <aexp:ExperimentViewContainer/>
-        </DataTemplate>-->
+        </DataTemplate>
         
         <DataTemplate DataType="{x:Type iv:OutputIVViewModel}">
                     <ivv:IVMainView/>
