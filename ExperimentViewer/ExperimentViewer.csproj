@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{04116E70-4D6F-4EB7-965B-097A0B43934A}</ProjectGuid>
+    <ProjectGuid>{837A4928-E2C5-4E9E-80A4-1A002C310F9A}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IVexperiment</RootNamespace>
-    <AssemblyName>IVexperiment</AssemblyName>
+    <RootNamespace>ExperimentViewer</RootNamespace>
+    <AssemblyName>ExperimentViewer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -32,17 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DeviceIO">
-      <HintPath>..\ThirdPartyLibs\Instruments\DeviceIO.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamicDataDisplay">
-      <HintPath>..\ThirdPartyLibs\DynamicDataDisplay\DynamicDataDisplay.dll</HintPath>
-    </Reference>
-    <Reference Include="Keithley24xx">
-      <HintPath>..\ThirdPartyLibs\Instruments\Keithley24xx.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.TeamFoundation.Controls, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -58,35 +47,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ViewModels\IVexpSettingsViewModel.cs" />
-    <Compile Include="ViewModels\IVMainViewModel.cs" />
-    <Compile Include="ViewModels\MeasurementSpeedToIndexConverter.cs" />
-    <Compile Include="ViewModels\OutputIVViewModel.cs" />
-    <Compile Include="ViewModels\SelectedIndexToDeviceAveragingConverter.cs" />
-    <Compile Include="ViewModels\TransfrerIVViewModel.cs" />
-    <Compile Include="Views\IVexpSettings.xaml.cs">
-      <DependentUpon>IVexpSettings.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\IVMainView.xaml.cs">
-      <DependentUpon>IVMainView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DataModel\DrainSourceDataRow.cs" />
-    <Compile Include="DataModel\DrainSourceMeasurmentInfoRow.cs" />
-    <Compile Include="DataModel\GateSourceDataRow.cs" />
-    <Compile Include="DataModel\GateSourceMeasurementInfoRow.cs" />
-    <Compile Include="Experiments\IVCurveMeasurementBase.cs" />
-    <Compile Include="Experiments\OutputCurveMeasurement.cs" />
-    <Compile Include="Experiments\TransferCurveMeasurement.cs" />
-    <Page Include="Views\IVexpSettings.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\IVMainView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -100,6 +60,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModels\ExecutionViewModel.cs" />
+    <Compile Include="Views\ExperimentViewContainer.xaml.cs">
+      <DependentUpon>ExperimentViewContainer.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -111,28 +75,16 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="DataModel\ReadMe.txt" />
+    <Page Include="Views\ExperimentViewContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\ChannelSwitchHelper\ChannelSwitchHelper.csproj">
-      <Project>{5e0567ca-d01a-417b-816f-54f9f46f84f6}</Project>
-      <Name>ChannelSwitchHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataVisualization\DataVisualization.csproj">
-      <Project>{e058e277-4f95-4ac3-b2bf-aa8bcb2e3e84}</Project>
-      <Name>DataVisualization</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ExperimentAbstraction\ExperimentAbstraction.csproj">
       <Project>{f9ff4a13-f344-4422-8908-99292fae27ee}</Project>
       <Name>ExperimentAbstraction</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ExperimentalDataModelTest\ExperimentalDataModelTest.csproj">
-      <Project>{a7ddfec9-618b-4abe-9b1f-5376db0a282d}</Project>
-      <Name>ExperimentalDataModelTest</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ExperimentDataModel\ExperimentDataModel.csproj">
-      <Project>{f37c1293-015e-47ef-81fe-694857e4a303}</Project>
-      <Name>ExperimentDataModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\Helper\Helper.csproj">
       <Project>{5216ba05-f05d-447a-965f-b1357dcb4990}</Project>
@@ -145,6 +97,10 @@
     <ProjectReference Include="..\Instrument\Instruments.csproj">
       <Project>{0b56f789-4a97-4cf6-81e7-da41a40a5761}</Project>
       <Name>Instruments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ScenarioBuilder\ScenarioBuilder.csproj">
+      <Project>{1555d951-9bff-4c69-b11e-a97942d358a6}</Project>
+      <Name>ScenarioBuilder</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

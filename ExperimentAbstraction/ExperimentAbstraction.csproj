@@ -57,7 +57,6 @@
     <Compile Include="HelperExecutables\TimeDelay\TimeDelayExecutableViewModel.cs" />
     <Compile Include="ViewModels\AbstractExperimentViewModel.cs" />
     <Compile Include="ExecutionManager.cs" />
-    <Compile Include="ViewModels\ExecutionViewModel.cs" />
     <Compile Include="IExperiment.cs" />
     <Compile Include="IScenarioAction.cs" />
     <Compile Include="MeasurementScenario.cs" />
@@ -65,9 +64,6 @@
     <Compile Include="ObservableExperiment.cs" />
     <Compile Include="PauseTokenSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\ExperimentViewContainer.xaml.cs">
-      <DependentUpon>ExperimentViewContainer.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ExperimentDataModel\ExperimentDataModel.csproj">
@@ -89,10 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="HelperExecutables\TimeDelay\DelayView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ExperimentViewContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

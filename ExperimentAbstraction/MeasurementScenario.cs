@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ExperimentAbstraction
+namespace ExperimentViewer
 {
 
     public class MeasurementScenario : IList<IScenarioAction>, IExperiment

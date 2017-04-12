@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace ExperimentAbstraction
+namespace ExperimentViewer
 {
 
     public enum ExecutionStatus

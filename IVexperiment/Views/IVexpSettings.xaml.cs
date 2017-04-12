@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExperimentAbstraction
+namespace IVexperiment.Views
 {
     /// <summary>
-    /// Interaction logic for ExperimentViewContainer.xaml
+    /// Interaction logic for IVexpSettings.xaml
     /// </summary>
-    public partial class ExperimentViewContainer : UserControl
+    public partial class IVexpSettings : UserControl
     {
-        public ExperimentViewContainer()
+        public IVexpSettings()
         {
             InitializeComponent();
         }

@@ -1,4 +1,4 @@
-﻿using ExperimentAbstraction.HelperExecutables.TimeDelay;
+﻿using ExperimentViewer.HelperExecutables.TimeDelay;
 using Helper.StartStopControl;
 using Helper.ViewModelInterface;
 using System;
@@ -11,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace ExperimentAbstraction
+namespace ExperimentViewer.ViewModels
 {
     class testAction : INewExperiment
     {

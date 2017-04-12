@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace ExperimentAbstraction
+namespace ExperimentViewer
 {
     //http://stackoverflow.com/questions/20422026/run-sequence-of-tasks-one-after-the-other
     // Pause pattern

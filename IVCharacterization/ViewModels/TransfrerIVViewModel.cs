@@ -23,7 +23,7 @@ namespace IVCharacterization.ViewModels
         }
 
 
-        protected override void InitExperiment(out ExperimentAbstraction.IExperiment experiment)
+        protected override void InitExperiment(out ExperimentViewer.IExperiment experiment)
         {
             experiment = new TransferCurveMeasurement(this);
         }

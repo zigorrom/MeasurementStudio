@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ExperimentAbstraction
+namespace ExperimentViewer
 {
     public abstract class NewAbstractExperiment<InfoT, DataT> : ObservableExperiment<DataT>, INewExperiment, IDisposable
         where InfoT : struct,IMeasurementInfo

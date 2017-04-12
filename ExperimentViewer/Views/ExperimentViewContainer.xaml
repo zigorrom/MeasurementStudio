@@ -1,21 +1,21 @@
-﻿<UserControl x:Class="ExperimentAbstraction.ExperimentViewContainer"
+﻿<UserControl x:Class="ExperimentViewer.Views.ExperimentViewContainer"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:timeDelay="clr-namespace:ExperimentAbstraction.HelperExecutables.TimeDelay"
-             xmlns:StartStopControl="clr-namespace:Helper.StartStopControl;assembly=Helper"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
+             xmlns:timeDelay="clr-namespace:ExperimentViewer.HelperExecutables.TimeDelay;assembly=ExperimentAbstraction"
+             xmlns:StartStopControl="clr-namespace:Helper.StartStopControl;assembly=Helper"
              d:DesignHeight="444" d:DesignWidth="1089.6">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type StartStopControl:ControlButtonsViewModel}">
             <StartStopControl:ControlButtonsPanel x:Name="ControlButtons"/>
         </DataTemplate>
-        
+
         <DataTemplate DataType="{x:Type timeDelay:TimeDelayExecutableViewModel}">
             <timeDelay:DelayView/>
         </DataTemplate>
-        
+
         <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
         <GridLength x:Key="StatusStripHeight">40</GridLength>
         <GridLength x:Key="CurrentStatusTextBoxWidth">200</GridLength>

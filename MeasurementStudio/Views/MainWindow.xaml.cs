@@ -1,6 +1,6 @@
 ﻿using Helper.ViewModelInterface;
-using IVCharacterization.Experiments;
-using IVCharacterization.ViewModels;
+using IVexperiment.Experiments;
+using IVexperiment.ViewModels;
 using MeasurementStudioWebApi;
 using System;
 using System.Collections.Generic;

@@ -14,7 +14,7 @@ using Instruments;
 using System.ServiceModel;
 using MeasurementStudioWebApi;
 using System.Threading;
-using ExperimentAbstraction;
+using ExperimentViewer;
 //using HelperExecutables.TimeDelay;
 
 

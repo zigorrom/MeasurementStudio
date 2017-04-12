@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExperimentAbstraction.HelperExecutables.TimeDelay
+namespace ExperimentViewer.HelperExecutables.TimeDelay
 {
     public class TimeDelayExecutableViewModel:INotifyPropertyChanged
     {

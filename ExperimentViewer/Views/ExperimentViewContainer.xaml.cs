@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExperimentViewer.HelperExecutables.TimeDelay
+namespace ExperimentViewer.Views
 {
     /// <summary>
-    /// Interaction logic for DelayView.xaml
+    /// Interaction logic for ExperimentViewContainer.xaml
     /// </summary>
-    public partial class DelayView : UserControl
+    public partial class ExperimentViewContainer : UserControl
     {
-        public DelayView()
+        public ExperimentViewContainer()
         {
             InitializeComponent();
         }

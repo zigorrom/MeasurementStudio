@@ -8,10 +8,10 @@ namespace MeasurementStudio
 {
     
     using CVCharacterization.ViewModels;
-    using ExperimentAbstraction;
+    using ExperimentViewer;
     using ExperimentDataModel;
     using Helper.ViewModelInterface;
-    using IVCharacterization.ViewModels;
+    using IVexperiment.ViewModels;
     using MeasurementStudioWebApi;
     using Microsoft.TeamFoundation.MVVM;
     using System.Collections.ObjectModel;
@@ -23,6 +23,7 @@ namespace MeasurementStudio
     using System.Windows.Controls;
     using System.Windows.Data;
     using System.Windows.Input;
+    using ExperimentViewer.ViewModels;
     
     public class MainViewModel:INotifyPropertyChanged, IMainViewModel,IMeasurementWebApi
     {
@@ -103,6 +104,7 @@ namespace MeasurementStudio
                         _controls.Add(PagesEnum.Home, new UserControl { Content = new HomeViewModel() });
                         break;
                     case PagesEnum.IVOutput:
+                        
                         _controls.Add(PagesEnum.IVOutput, new UserControl { Content = new OutputIVViewModel() });
                         break;
                     case PagesEnum.IVTransfer:

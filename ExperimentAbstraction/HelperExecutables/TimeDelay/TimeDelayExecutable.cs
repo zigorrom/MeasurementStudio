@@ -1,4 +1,4 @@
-﻿using ExperimentAbstraction;
+﻿using ExperimentViewer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExperimentAbstraction.HelperExecutables.TimeDelay
+namespace ExperimentViewer.HelperExecutables.TimeDelay
 {
     public class TimeDelayExecutable:INewExperiment
     {

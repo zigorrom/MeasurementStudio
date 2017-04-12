@@ -16,7 +16,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578">
     <!--<UserControl.InputBindings>
-        --><!--<KeyBinding Command="{SelectWorkingDirectory" Modifiers="Control" Gesture="W+D"/>--><!--
+        -->
+    <!--<KeyBinding Command="{SelectWorkingDirectory" Modifiers="Control" Gesture="W+D"/>-->
+    <!--
     </UserControl.InputBindings>-->
     <UserControl.InputBindings>
         <KeyBinding Command="{Binding SelectWorkingDirectory}" Modifiers="Control" Key="W"/>
@@ -31,7 +33,7 @@
         <System:Double x:Key="RangeHandlerSelectorHeight">40</System:Double>
 
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
-        
+
         <DataTemplate DataType="{x:Type D3DataVisualization:D3VisualizationViewModel}">
             <D3DataVisualization:D3DataVisualizationControl x:Name="Plotter"/>
         </DataTemplate>
@@ -39,25 +41,20 @@
         <DataTemplate DataType="{x:Type StartStopControl:ControlButtonsViewModel}">
             <StartStopControl:ControlButtonsPanel x:Name="ControlButtons"/>
         </DataTemplate>
-        
+
         <DataTemplate DataType="{x:Type vm:IVexpSettingsViewModel}">
             <v:IVexpSettings/>
         </DataTemplate>
-        
+
     </UserControl.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="617*"/>
-
-            <RowDefinition Height="60"/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        
+
         <ContentControl Content="{Binding Visualization}" />
         <Expander Grid.Column="1" ExpandDirection="Left" IsExpanded="True" MinHeight="400">
             <Expander.Header>
@@ -71,9 +68,12 @@
                 </TextBlock>
             </Expander.Header>
             <Grid IsEnabled="{Binding GlobalIsEnabled}">
+                
+               
                 <TabControl Width="300">
                     <TabItem Header="Range setup">
-                        <Grid> <!--Background="#FFE5E5E5"-->
+                        <Grid>
+                            <!--Background="#FFE5E5E5"-->
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -82,12 +82,13 @@
 
                             <GroupBox Header="{Binding RangeName}" DataContext="{Binding FirstRangeViewModel}" Grid.Row="0" Margin="0">
                                 <StackPanel>
-                                    <Ranges:RangeControl DataContext="{Binding}" Grid.ColumnSpan="2" /> <!--DataContext="{Binding DSRangeViewModel}"-->
+                                    <Ranges:RangeControl DataContext="{Binding}" Grid.ColumnSpan="2" />
+                                    <!--DataContext="{Binding DSRangeViewModel}"-->
                                 </StackPanel>
                             </GroupBox>
 
                             <GroupBox Header="{Binding RangeName}" DataContext="{Binding SecondRangeViewModel}" Grid.Row="1" Margin="0" >
-                                <StackPanel> 
+                                <StackPanel>
                                     <Ranges:RangeControl DataContext="{Binding}" Grid.ColumnSpan="2"/>
                                 </StackPanel>
                             </GroupBox>
@@ -104,14 +105,14 @@
 
             </Grid>
         </Expander>
-        <Grid Margin="0,0.4,-0.4,-0.4" Grid.Row="1" Grid.ColumnSpan="2">
+        <!--<Grid Margin="0,0.4,-0.4,-0.4" Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="346.4"/>
             </Grid.ColumnDefinitions>
-            <ProgressBar  Value="{Binding CurrentProgress}"  Margin="10" Visibility="{Binding ExperimentIsRunning, Converter={StaticResource BoolToVis}}"/>
-            <TextBlock Visibility="{Binding ExperimentIsRunning, Converter={StaticResource BoolToVis}}" Text="{Binding CurrentProgress, StringFormat='Progress: {0}%'}" HorizontalAlignment="Center" VerticalAlignment="Center"/> 
-            <ContentControl Grid.Column="1" Content="{Binding ExperimentControlButtons}" />
-        </Grid>
+            --><!--<ProgressBar  Value="{Binding CurrentProgress}"  Margin="10" Visibility="{Binding ExperimentIsRunning, Converter={StaticResource BoolToVis}}"/>
+            <TextBlock Visibility="{Binding ExperimentIsRunning, Converter={StaticResource BoolToVis}}" Text="{Binding CurrentProgress, StringFormat='Progress: {0}%'}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+            <!--<ContentControl Grid.Column="1" Content="{Binding ExperimentControlButtons}" />--><!--
+        </Grid>-->
     </Grid>
 </UserControl>
