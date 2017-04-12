@@ -10,11 +10,12 @@ using Helper.StartStopControl;
 using Helper.NewExperimentWindow;
 using ExperimentAbstraction.ViewModels;
 using ExperimentAbstraction;
+using Helper.ViewModelInterface;
 
 
 namespace IVexperiment
 {
-    public interface ICurrentVoltageMeasurementViewModel
+    public interface ICurrentVoltageMeasurementViewModel:IUIThreadExecutableViewModel
     {
         void AddSeries(IPointDataSource Points, string Description);
         RangeViewModel DrainSourceRangeViewModel { get; set; }

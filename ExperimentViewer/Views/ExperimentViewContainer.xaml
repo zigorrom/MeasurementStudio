@@ -6,6 +6,8 @@
              mc:Ignorable="d" 
              xmlns:timeDelay="clr-namespace:ExperimentViewer.HelperExecutables.TimeDelay;assembly=ExperimentAbstraction"
              xmlns:StartStopControl="clr-namespace:Helper.StartStopControl;assembly=Helper"
+             xmlns:ivvm ="clr-namespace:IVexperiment.ViewModels;assembly=IVexperiment"
+             xmlns:ivv ="clr-namespace:IVexperiment.Views;assembly=IVexperiment"
              d:DesignHeight="444" d:DesignWidth="1089.6">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type StartStopControl:ControlButtonsViewModel}">
@@ -15,7 +17,15 @@
         <DataTemplate DataType="{x:Type timeDelay:TimeDelayExecutableViewModel}">
             <timeDelay:DelayView/>
         </DataTemplate>
-
+        
+        <DataTemplate DataType="{x:Type ivvm:TransfrerIVViewModel}">
+            <ivv:IVMainView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ivvm:OutputIVViewModel}">
+            <ivv:IVMainView/>
+        </DataTemplate>
+        
+        
         <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
         <GridLength x:Key="StatusStripHeight">40</GridLength>
         <GridLength x:Key="CurrentStatusTextBoxWidth">200</GridLength>

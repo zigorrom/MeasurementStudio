@@ -259,6 +259,26 @@ namespace IVexperiment.Experiments
         }
 
 
-       
+
+
+        protected override void InitializeWriter()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override object ViewModel
+        {
+            get { return _vm; }
+        }
+
+        protected override void PerformExperiment(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void PerformSimulatedExperiment(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

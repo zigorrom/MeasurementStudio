@@ -7,7 +7,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <StackPanel VerticalAlignment="Center">
-
+            <TextBlock Text="Time Delay:" FontSize="42" FontWeight="Bold" HorizontalAlignment="Center"/>
             <TextBlock Text="{Binding Delay,StringFormat={}{0:hh':'mm':'ss'.'fff},
                                       TargetNullValue=' --- '}" FontSize="36" FontWeight="Bold" HorizontalAlignment="Center"/>
             <TextBlock Text="{Binding CurrentTimeSpan,StringFormat={}{0:hh':'mm':'ss'.'fff},

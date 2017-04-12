@@ -53,10 +53,8 @@ namespace ExperimentAbstraction
         protected string ExperimentName { get; set; }
         protected string MeasurementName { get; set; }
         protected int MeasurementCount { get; set; }
-        public object ViewModel
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public abstract object ViewModel { get; }
+        
 
         protected virtual void AssertParams()
         {

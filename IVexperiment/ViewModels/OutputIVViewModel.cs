@@ -38,6 +38,18 @@ namespace IVexperiment.ViewModels
         protected override void InitExperiment(out OutputCurveMeasurement experiment)
         {
             experiment = new OutputCurveMeasurement(this);
+            //Experiment.ExecutionStarted += Experiment_ExecutionStarted;
+            //Experiment.ExecutionFinished += Experiment_ExecutionFinished;
+        }
+
+        void Experiment_ExecutionFinished(object sender, EventArgs e)
+        {
+            MessageHandler("Finished");
+        }
+
+        void Experiment_ExecutionStarted(object sender, EventArgs e)
+        {
+            MessageHandler("Started");
         }
         //protected override void InitExperiment(out IExperiment experiment)
         //{

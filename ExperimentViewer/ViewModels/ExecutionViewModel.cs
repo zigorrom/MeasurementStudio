@@ -42,7 +42,7 @@ namespace ExperimentViewer.ViewModels
                 cancellationToken.ThrowIfCancellationRequested();
                 report = new ExecutionReport { ExperimentExecutionStatus = ExecutionStatus.Running, ExperimentProgress = i, ExperimentProgressMessage = String.Format("{0} running normally...", Name) };
                 progress.Report(report);
-                Thread.Sleep(100);
+                Thread.Sleep(20);
             }
             //}catch(OperationCanceledException e)
             //{
@@ -177,18 +177,34 @@ namespace ExperimentViewer.ViewModels
         {
 
             ExperimentExecutionManager = new ExecutionManager();
-            ExperimentExecutionManager.Add(new testAction("test1"));
+            //ExperimentExecutionManager.Add(new testAction("test1"));
             
             var td = new TimeDelayExecutableViewModel();
             td.Delay = TimeSpan.FromMilliseconds(10000);
             
             ExperimentExecutionManager.Add(td.DelayExecutable);
-            ExperimentExecutionManager.Add(new testAction("test2"));
-            ExperimentExecutionManager.Add(td.DelayExecutable);
-            ExperimentExecutionManager.Add(new testAction("test3"));
+            //ExperimentExecutionManager.Add(new testAction("test2"));
+            //ExperimentExecutionManager.Add(td.DelayExecutable);
+            //ExperimentExecutionManager.Add(new testAction("test3"));
 
-            var transfet_iv = new TransfrerIVViewModel();
-            
+            var transfet_iv = new TransfrerIVViewModel ();
+            transfet_iv.IVSettingsViewModel.SimulationMode = true;
+            transfet_iv.DrainSourceRangeViewModel.Start.NumericValue = 0 ;
+            transfet_iv.DrainSourceRangeViewModel.End.NumericValue = 10;
+            transfet_iv.DrainSourceRangeViewModel.PointsCount.PointsCount = 101;
+
+            transfet_iv.GateSourceRangeViewModel.Start.NumericValue = 0;
+            transfet_iv.GateSourceRangeViewModel.End.NumericValue = 10;
+            transfet_iv.GateSourceRangeViewModel.PointsCount.PointsCount = 21;
+
+            transfet_iv.SelectWorkingDirectory.Execute(new object());
+            transfet_iv.MeasurementName= "test_fajhsfjkahflfs";
+            transfet_iv.ExperimentName = "test";
+
+            ExperimentExecutionManager.Add(transfet_iv.IExperiment);
+            ExperimentExecutionManager.Add(td.DelayExecutable);
+            ExperimentExecutionManager.Add(transfet_iv.IExperiment);
+
 
             
             var a = new ScenarioBuilder.MainWindow();

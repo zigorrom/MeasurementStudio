@@ -12,7 +12,7 @@
              xmlns:StartStopControl="clr-namespace:Helper.StartStopControl;assembly=Helper"
              xmlns:ranges ="clr-namespace:Helper.Ranges.RangeHandlers;assembly=Helper"
              xmlns:sf ="clr-namespace:Helper.ExperimentWorkingDirectory;assembly=Helper"
-             x:Class="IVexperiment.IVMainView"
+             x:Class="IVexperiment.Views.IVMainView"
              mc:Ignorable="d" 
              d:DesignHeight="709.698" d:DesignWidth="946" MinHeight="578" MinWidth="578">
     <!--<UserControl.InputBindings>
