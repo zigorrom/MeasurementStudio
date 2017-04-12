@@ -47,13 +47,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DragAdorner.cs" />
-    <Compile Include="ListViewDragDropManager.cs" />
     <Compile Include="MeasurementScenarioModel.cs" />
     <Compile Include="MeasurementScenarioView.xaml.cs">
       <DependentUpon>MeasurementScenarioView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MouseUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +58,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Helper\Helper.csproj">
+      <Project>{5216ba05-f05d-447a-965f-b1357dcb4990}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

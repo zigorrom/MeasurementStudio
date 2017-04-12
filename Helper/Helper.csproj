@@ -54,6 +54,9 @@
     <Compile Include="ExperimentWorkingDirectory\SaveControl.xaml.cs">
       <DependentUpon>SaveControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ListViewDragDrop\DragAdorner.cs" />
+    <Compile Include="ListViewDragDrop\ListViewDragDropManager.cs" />
+    <Compile Include="ListViewDragDrop\MouseUtilities.cs" />
     <Compile Include="NewExperimentWindow\NewExperimentControl.xaml.cs">
       <DependentUpon>NewExperimentControl.xaml</DependentUpon>
     </Compile>

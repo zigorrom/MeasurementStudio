@@ -29,6 +29,21 @@
             </Grid.RowDefinitions>
             <Button Content="Add" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
+        <ListView Grid.RowSpan="3" Margin="3">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView Grid.Column="2" Grid.RowSpan="3" Margin="3">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
 
     </Grid>
 </Window>
