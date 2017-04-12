@@ -25,7 +25,8 @@ namespace IVexperiment.ViewModels
 
         protected override void InitExperiment(out ExperimentViewer.IExperiment experiment)
         {
-            experiment = new TransferCurveMeasurement(this);
+            experiment = null;
+            //experiment = new TransferCurveMeasurement(this);
         }
 
         protected override void SetRangeViewModels(out RangeViewModel vm1, out RangeViewModel vm2)

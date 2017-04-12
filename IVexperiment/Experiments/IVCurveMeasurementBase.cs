@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace IVexperiment.Experiments
 {
-    public abstract class IVCurveMeasurementBase<InfoT, DataT> : AbstractExperiment<InfoT, DataT>
+    public abstract class IVCurveMeasurementBase<InfoT, DataT> : NewAbstractExperiment<InfoT, DataT>
         where InfoT : struct,IMeasurementInfo
         where DataT : struct
     {
@@ -38,7 +38,6 @@ namespace IVexperiment.Experiments
 
         protected ISourceMeterUnit _drainKeithley;
         protected ISourceMeterUnit _gateKeithley;
-
 
         protected IVexpSettingsViewModel _settings;
         //protected MeasurementScenarioModel _measurementScenario;
@@ -75,7 +74,7 @@ namespace IVexperiment.Experiments
 
             SimulateExperiment = _settings.SimulationMode;
             //AssertParams();
-            InitializeWriter(WorkingDirectory, ExperimentName);
+            //InitializeWriter(WorkingDirectory, ExperimentName);
 
             //}
             //catch (Exception ex)
@@ -176,15 +175,7 @@ namespace IVexperiment.Experiments
 
         }
 
-        protected override void DoMeasurement(object sender, DoWorkEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void SimulateMeasurement(object sender, DoWorkEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public override void OwnInstruments()
         {
@@ -267,5 +258,20 @@ namespace IVexperiment.Experiments
 
         }
 
+
+        protected override void InitializeWriter()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void PerformExperiment(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void PerformSimulatedExperiment(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

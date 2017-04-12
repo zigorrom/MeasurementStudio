@@ -17,14 +17,14 @@ namespace ExperimentViewer
    
 
     public abstract class AbstractExperiment<InfoT, DataT> : ObservableExperiment<DataT>, IExperiment, IDisposable, IScenarioAction
-        where InfoT : struct,IMeasurementInfo
+        where InfoT : struct, IMeasurementInfo
         where DataT : struct
     {
         private string m_Name;
 
         private ConcurrentQueue<KeyValuePair<bool, MeasurementData<InfoT, DataT>>> _dataQueue = new ConcurrentQueue<KeyValuePair<bool, MeasurementData<InfoT, DataT>>>();// new ConcurrentQueue<MeasurementData<InfoT, DataT>>();
         private StreamMeasurementDataExporter<InfoT, DataT> _dataWriter;
-       
+
         private Thread _writerThread;
         private WaitHandle _experimentStopped = new AutoResetEvent(false);
         private BackgroundWorker _worker;

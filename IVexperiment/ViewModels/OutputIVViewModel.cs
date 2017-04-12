@@ -37,13 +37,14 @@ namespace IVexperiment.ViewModels
         }
         protected override void InitExperiment(out IExperiment experiment)
         {
+            experiment = null;
             //if (IVSettingsViewModel.UseSampleSelector)
             //{
             //    experiment = new MeasurementScenario();
             //}
             //else
             //{
-            experiment = new OutputCurveMeasurement(this);
+            //experiment = new OutputCurveMeasurement(this);
             //}
         }
 
