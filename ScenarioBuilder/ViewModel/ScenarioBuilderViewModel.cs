@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CurrentTimetrace.ViewModels
+namespace ScenarioBuilder.ViewModel
 {
-    class TimetraceSettingsViewModel
+    public class ScenarioBuilderViewModel
     {
+
     }
 }

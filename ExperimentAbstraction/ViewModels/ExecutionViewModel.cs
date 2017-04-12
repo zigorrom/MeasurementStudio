@@ -184,6 +184,7 @@ namespace ExperimentAbstraction
             ExperimentExecutionManager.Add(td.DelayExecutable);
             ExperimentExecutionManager.Add(new testAction("test3"));
 
+            
             var a = new ScenarioBuilder.MainWindow();
             a.ShowDialog();
 
@@ -368,8 +369,7 @@ namespace ExperimentAbstraction
             {
                 ExperimentIsPaused = true;
                 ExperimentExecutionManager.Pause();
-            }
-           
+            } 
         }
 
 

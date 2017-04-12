@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MeasurementStudio
 {
-    using CurrentTimetrace.ViewModels;
+    
     using CVCharacterization.ViewModels;
     using ExperimentAbstraction;
     using ExperimentDataModel;
@@ -111,9 +111,9 @@ namespace MeasurementStudio
                     case PagesEnum.CVCharacteristics:
                         _controls.Add(PagesEnum.CVCharacteristics, new UserControl { Content = new CVViewModel() });
                         break;
-                    case PagesEnum.Timetrace:
-                        _controls.Add(PagesEnum.Timetrace, new UserControl { Content = new TimetraceMainViewModel() });
-                        break;
+                    //case PagesEnum.Timetrace:
+                    //    _controls.Add(PagesEnum.Timetrace, new UserControl { Content = new TimetraceMainViewModel() });
+                    //    break;
                     case PagesEnum.Experiment:
                         _controls.Add(PagesEnum.Experiment, new UserControl { Content = new ExecutionViewModel() });
                         break;

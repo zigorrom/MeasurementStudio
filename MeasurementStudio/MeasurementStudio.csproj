@@ -142,10 +142,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CurrentTimetrace\CurrentTimetrace.csproj">
-      <Project>{bff9b1b6-f9b4-4334-87ad-1def846db5e0}</Project>
-      <Name>CurrentTimetrace</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CVCharacterization\CVCharacterization.csproj">
       <Project>{42cd634d-510b-465d-9255-2eb0b4c08c3b}</Project>
       <Name>CVCharacterization</Name>
