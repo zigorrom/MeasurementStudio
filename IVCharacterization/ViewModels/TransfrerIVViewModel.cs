@@ -1,4 +1,5 @@
 ﻿using DataVisualization.D3DataVisualization;
+using ExperimentAbstraction;
 using Helper.Ranges.DoubleRange;
 using Helper.Ranges.SimpleRangeControl;
 using IVCharacterization.Experiments;
@@ -23,7 +24,7 @@ namespace IVCharacterization.ViewModels
         }
 
 
-        protected override void InitExperiment(out ExperimentViewer.IExperiment experiment)
+        protected override void InitExperiment(out IExperiment experiment)
         {
             experiment = new TransferCurveMeasurement(this);
         }

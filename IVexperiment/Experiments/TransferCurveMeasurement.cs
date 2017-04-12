@@ -1,5 +1,4 @@
-﻿using ExperimentViewer;
-using ExperimentDataModel;
+﻿using ExperimentDataModel;
 using IVexperiment.DataModel;
 using System;
 using System.Collections.Generic;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using ExperimentAbstraction;
 
 namespace IVexperiment.Experiments
 {
@@ -15,10 +15,15 @@ namespace IVexperiment.Experiments
     public class TransferCurveMeasurement:IVCurveMeasurementBase<GateSourceMeasurementInfoRow,GateSourceDataRow>
     {
 
-        public TransferCurveMeasurement(IVMainViewModel viewModel)
+        public TransferCurveMeasurement(ICurrentVoltageMeasurementViewModel viewModel)
             : base(viewModel,"Transfer characteristic measurement")
         {
 
+        }
+
+        protected override void InitializeWriter()
+        {
+           
         }
 
         protected override void PerformExperiment(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
@@ -154,6 +159,8 @@ namespace IVexperiment.Experiments
 
             //}
         }
+
+        
     }
 
 #region OldVersion

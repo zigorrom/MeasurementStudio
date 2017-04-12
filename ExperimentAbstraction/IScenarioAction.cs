@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ExperimentViewer
+namespace ExperimentAbstraction
 {
     public enum ScenarioAcrionStatus
     {

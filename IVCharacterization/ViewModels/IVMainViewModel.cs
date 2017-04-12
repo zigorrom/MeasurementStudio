@@ -1,5 +1,4 @@
 ﻿using DataVisualization.D3DataVisualization;
-using ExperimentViewer;
 using Helper.Ranges.DoubleRange;
 using Helper.Ranges.SimpleRangeControl;
 using System;
@@ -9,6 +8,7 @@ using IVCharacterization.ViewModels;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using Helper.StartStopControl;
 using Helper.NewExperimentWindow;
+using ExperimentAbstraction.ViewModels;
 
 
 namespace IVCharacterization

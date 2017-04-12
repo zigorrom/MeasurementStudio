@@ -34,10 +34,11 @@
         
         <DataTemplate DataType="{x:Type iv:OutputIVViewModel}">
                     <ivv:IVMainView/>
-                </DataTemplate>
-        <DataTemplate DataType="{x:Type cvvm:CVViewModel}">
+            </DataTemplate>
+        
+        <!--<DataTemplate DataType="{x:Type cvvm:CVViewModel}">
             <cvv:CVMainView/>
-        </DataTemplate>
+        </DataTemplate>-->
         
         <DataTemplate DataType="{x:Type iv:TransfrerIVViewModel}">
             <ivv:IVMainView/>

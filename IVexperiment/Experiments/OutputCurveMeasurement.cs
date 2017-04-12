@@ -1,5 +1,4 @@
-﻿using ExperimentViewer;
-using ExperimentDataModel;
+﻿using ExperimentDataModel;
 using Helper.Ranges.RangeHandlers;
 using IVexperiment.DataModel;
 using IVexperiment.ViewModels;
@@ -12,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using ExperimentAbstraction;
 
 namespace IVexperiment.Experiments
 {
@@ -19,10 +19,10 @@ namespace IVexperiment.Experiments
     public class OutputCurveMeasurement : IVCurveMeasurementBase<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>
     {
 
-        public OutputCurveMeasurement(IVMainViewModel viewModel)
+        public OutputCurveMeasurement(ICurrentVoltageMeasurementViewModel viewModel)
             : base(viewModel, "Output characteristic measurement")
         {
-
+            
         }
 
         protected override void PerformExperiment(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
@@ -161,6 +161,11 @@ namespace IVexperiment.Experiments
             //    _vm.MeasurementCount++;
 
             //}
+        }
+
+        protected override void InitializeWriter()
+        {
+            
         }
     }
 

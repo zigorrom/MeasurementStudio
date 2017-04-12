@@ -1,6 +1,6 @@
 ﻿using CVCharacterization.Experiments;
 using DataVisualization.D3DataVisualization;
-using ExperimentViewer;
+using ExperimentAbstraction.ViewModels;
 using Helper.NewExperimentWindow;
 using Helper.Ranges.DoubleRange;
 using Helper.Ranges.SimpleRangeControl;

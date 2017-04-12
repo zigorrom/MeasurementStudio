@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExperimentViewer
+namespace ExperimentAbstraction
 {
     public abstract class ObservableExperiment<T>:IObservable<T>
     {

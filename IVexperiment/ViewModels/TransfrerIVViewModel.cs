@@ -1,4 +1,5 @@
 ﻿using DataVisualization.D3DataVisualization;
+using ExperimentAbstraction;
 using Helper.Ranges.DoubleRange;
 using Helper.Ranges.SimpleRangeControl;
 using IVexperiment.Experiments;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace IVexperiment.ViewModels
 {
-    public sealed class TransfrerIVViewModel:IVMainViewModel
+    public sealed class TransfrerIVViewModel:IVMainViewModel<TransferCurveMeasurement>
     {
         public TransfrerIVViewModel()
         {
@@ -22,17 +23,15 @@ namespace IVexperiment.ViewModels
             //SecondRangeViewModel = new RangeViewModel("Drain-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
         }
 
-
-        protected override void InitExperiment(out ExperimentViewer.IExperiment experiment)
+        protected override void InitExperiment(out TransferCurveMeasurement experiment)
         {
-            experiment = null;
-            //experiment = new TransferCurveMeasurement(this);
+            experiment = new TransferCurveMeasurement(this);
         }
-
-        protected override void SetRangeViewModels(out RangeViewModel vm1, out RangeViewModel vm2)
+       
+        protected override void SetRangeViewModels(out RangeViewModel DrainSourceRangeViewModel, out RangeViewModel GateSourceRangeViewModel)
         {
-            vm1 = new RangeViewModel("Gate-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
-            vm2 = new RangeViewModel("Drain-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
+            DrainSourceRangeViewModel = new RangeViewModel("Gate-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
+            GateSourceRangeViewModel = new RangeViewModel("Drain-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
         }
 
         protected override void SetVisualization(out DataVisualization.D3DataVisualization.D3VisualizationViewModel visualVM)

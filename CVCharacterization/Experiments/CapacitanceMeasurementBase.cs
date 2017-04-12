@@ -1,5 +1,4 @@
 ﻿using CVCharacterization.ViewModels;
-using ExperimentViewer;
 using ExperimentDataModel;
 using Helper.Ranges.RangeHandlers;
 using Instruments;
@@ -8,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExperimentAbstraction;
 
 namespace CVCharacterization.Experiments
 {

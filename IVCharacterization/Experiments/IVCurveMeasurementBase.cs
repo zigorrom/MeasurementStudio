@@ -1,6 +1,5 @@
 ﻿using ChannelSwitchHelper;
 using DeviceIO;
-using ExperimentViewer;
 using ExperimentDataModel;
 using Helper.Ranges.RangeHandlers;
 using Instruments;
@@ -12,6 +11,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExperimentAbstraction;
 
 namespace IVCharacterization.Experiments
 {

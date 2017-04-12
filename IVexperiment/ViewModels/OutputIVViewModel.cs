@@ -1,5 +1,5 @@
 ﻿using DataVisualization.D3DataVisualization;
-using ExperimentViewer;
+using ExperimentAbstraction;
 using Helper.Ranges.DoubleRange;
 using Helper.Ranges.SimpleRangeControl;
 using IVexperiment.Experiments;
@@ -29,24 +29,28 @@ namespace IVexperiment.ViewModels
 
     //}
 
-    public sealed class OutputIVViewModel:IVMainViewModel
+    public sealed class OutputIVViewModel:IVMainViewModel<OutputCurveMeasurement>
     {
         public OutputIVViewModel():base()
         {
           
         }
-        protected override void InitExperiment(out IExperiment experiment)
+        protected override void InitExperiment(out OutputCurveMeasurement experiment)
         {
-            experiment = null;
-            //if (IVSettingsViewModel.UseSampleSelector)
-            //{
-            //    experiment = new MeasurementScenario();
-            //}
-            //else
-            //{
-            //experiment = new OutputCurveMeasurement(this);
-            //}
+            experiment = new OutputCurveMeasurement(this);
         }
+        //protected override void InitExperiment(out IExperiment experiment)
+        //{
+        //    experiment = null;
+        //    //if (IVSettingsViewModel.UseSampleSelector)
+        //    //{
+        //    //    experiment = new MeasurementScenario();
+        //    //}
+        //    //else
+        //    //{
+        //    //experiment = new OutputCurveMeasurement(this);
+        //    //}
+        //}
 
         protected override void SetVisualization(out DataVisualization.D3DataVisualization.D3VisualizationViewModel visualVM)
         {
@@ -58,11 +62,10 @@ namespace IVexperiment.ViewModels
                 StrokeThickness = 10
             };
         }
-
-        protected override void SetRangeViewModels(out RangeViewModel vm1, out RangeViewModel vm2)
+        protected override void SetRangeViewModels(out RangeViewModel DrainSourceRangeViewModel, out RangeViewModel GateSourceRangeViewModel)
         {
-            vm1 = new RangeViewModel("Drain-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
-            vm2 = new RangeViewModel("Gate-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
+            DrainSourceRangeViewModel = new RangeViewModel("Drain-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
+            GateSourceRangeViewModel = new RangeViewModel("Gate-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
         }
 
        

@@ -1,4 +1,5 @@
 ﻿using CVCharacterization.Experiments;
+using ExperimentAbstraction;
 using Helper.Ranges.DoubleRange;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace CVCharacterization.ViewModels
             
         }
 
-        protected override void InitExperiment(out ExperimentViewer.IExperiment experiment)
+        protected override void InitExperiment(out IExperiment experiment)
         {
             experiment = new CapacitanceVoltageMeasurement(this);
         }

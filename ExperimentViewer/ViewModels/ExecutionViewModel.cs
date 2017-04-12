@@ -1,6 +1,8 @@
-﻿using ExperimentViewer.HelperExecutables.TimeDelay;
+﻿using ExperimentAbstraction;
+using ExperimentViewer.HelperExecutables.TimeDelay;
 using Helper.StartStopControl;
 using Helper.ViewModelInterface;
+using IVexperiment.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -176,6 +178,7 @@ namespace ExperimentViewer.ViewModels
 
             ExperimentExecutionManager = new ExecutionManager();
             ExperimentExecutionManager.Add(new testAction("test1"));
+            
             var td = new TimeDelayExecutableViewModel();
             td.Delay = TimeSpan.FromMilliseconds(10000);
             
@@ -183,6 +186,9 @@ namespace ExperimentViewer.ViewModels
             ExperimentExecutionManager.Add(new testAction("test2"));
             ExperimentExecutionManager.Add(td.DelayExecutable);
             ExperimentExecutionManager.Add(new testAction("test3"));
+
+            var transfet_iv = new TransfrerIVViewModel();
+            
 
             
             var a = new ScenarioBuilder.MainWindow();

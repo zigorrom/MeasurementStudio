@@ -1,6 +1,5 @@
 ﻿using ChannelSwitchHelper;
 using DeviceIO;
-using ExperimentViewer;
 using ExperimentDataModel;
 using Helper.Ranges.RangeHandlers;
 using Instruments;
@@ -12,6 +11,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExperimentAbstraction;
 
 namespace IVexperiment.Experiments
 {
@@ -19,7 +19,7 @@ namespace IVexperiment.Experiments
         where InfoT : struct,IMeasurementInfo
         where DataT : struct
     {
-        protected IVMainViewModel _vm;
+        protected ICurrentVoltageMeasurementViewModel _vm;
 
         //protected string _workingDirectory;
         //protected string _experimentName;
@@ -29,8 +29,8 @@ namespace IVexperiment.Experiments
         protected IInstrumentResourceItem _gateInstrumentResource;
 
 
-        protected AbstractDoubleRangeHandler _firstRangeHandler;
-        protected AbstractDoubleRangeHandler _secondRangeHandler;
+        protected AbstractDoubleRangeHandler _drainSourceRangeHandler;
+        protected AbstractDoubleRangeHandler _gateSourceRangeHandler;
 
        
 
@@ -47,12 +47,12 @@ namespace IVexperiment.Experiments
             return String.Format("{0} = {1:f4} {2}", Name, Value, Units);
         }
 
-        public IVCurveMeasurementBase(IVMainViewModel viewModel, string Name)
+        public IVCurveMeasurementBase(ICurrentVoltageMeasurementViewModel viewModel, string Name)
             : base(Name)
         {
             _vm = viewModel;
         }
-
+        
         public override void InitializeExperiment()
         {
             //try { 
@@ -63,8 +63,8 @@ namespace IVexperiment.Experiments
             MeasurementName = _vm.MeasurementName;
             MeasurementCount = _vm.MeasurementCount;
 
-            _firstRangeHandler = _vm.FirstRangeViewModel.RangeHandler;
-            _secondRangeHandler = _vm.SecondRangeViewModel.RangeHandler;
+            _drainSourceRangeHandler = _vm.DrainSourceRangeViewModel.RangeHandler;
+            _gateSourceRangeHandler = _vm.GateSourceRangeViewModel.RangeHandler;
 
             _settings = _vm.IVSettingsViewModel;
             //_measurementScenario = _settings.ScenarioViewModel;
@@ -188,11 +188,11 @@ namespace IVexperiment.Experiments
         {
             base.AssertParams();
 
-            if (_firstRangeHandler == null)
-                throw new ArgumentNullException("Range is not set");
+            if (_drainSourceRangeHandler == null)
+                throw new ArgumentNullException("Drain source range is not set");
 
-            if (_secondRangeHandler == null)
-                throw new ArgumentNullException("Range is not set");
+            if (_gateSourceRangeHandler == null)
+                throw new ArgumentNullException("Gate source range is not set");
             if (!SimulateExperiment)
             {
                 if (_drainIntrumentResource == null)
@@ -259,19 +259,6 @@ namespace IVexperiment.Experiments
         }
 
 
-        protected override void InitializeWriter()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void PerformExperiment(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void PerformSimulatedExperiment(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

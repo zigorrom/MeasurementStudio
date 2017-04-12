@@ -170,6 +170,10 @@
       <Project>{3c57f76b-be47-4de4-8466-3fd0b124d134}</Project>
       <Name>InstrumentHandler</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Instrument\Instruments.csproj">
+      <Project>{0b56f789-4a97-4cf6-81e7-da41a40a5761}</Project>
+      <Name>Instruments</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IVexperiment\IVexperiment.csproj">
       <Project>{04116e70-4d6f-4eb7-965b-097a0b43934a}</Project>
       <Name>IVexperiment</Name>
