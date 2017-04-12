@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Helper.Ranges;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,19 @@ using System.Windows.Shapes;
 namespace IVexperiment
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for IVMainView.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class IVMainView : UserControl
     {
-        public UserControl1()
+        public IVMainView()
         {
+            
             InitializeComponent();
+           
+            
         }
+
+
+        
     }
 }
