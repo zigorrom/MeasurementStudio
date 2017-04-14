@@ -60,6 +60,15 @@
                 <MenuItem Header="Noise Measurement"/>
                 <MenuItem Header="Timetrace" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.Timetrace}"/>
                 <MenuItem Header="Experiment" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.Experiment}"/>
+                <MenuItem Header="Test" IsCheckable="True"/>
+            </MenuItem>
+            <MenuItem Header="Experiment"  ItemsSource="{Binding Path = CurrentPageViewModel.ExperimentList}">
+                <MenuItem.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="MenuItem.Header" Value="{Binding ExperimentName}"/>
+                        <Setter Property= "MenuItem.Command" Value="{Binding OpenExperiment}"/>
+                    </Style>
+                </MenuItem.ItemContainerStyle>
             </MenuItem>
         </Menu>
         

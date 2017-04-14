@@ -175,6 +175,10 @@ namespace ExperimentViewer.ViewModels
 
         public ExecutionViewModel()
         {
+            _experimentList = new List<ExperimentMenuItemViewModel>();
+            _experimentList.Add(new ExperimentMenuItemViewModel("Output I-V", this));
+            _experimentList.Add(new ExperimentMenuItemViewModel("Transfer I-V", this));
+
 
             ExperimentExecutionManager = new ExecutionManager();
             //ExperimentExecutionManager.Add(new testAction("test1"));
@@ -187,7 +191,7 @@ namespace ExperimentViewer.ViewModels
             //ExperimentExecutionManager.Add(td.DelayExecutable);
             //ExperimentExecutionManager.Add(new testAction("test3"));
 
-            var transfet_iv = new TransfrerIVViewModel ();
+            var transfet_iv = new OutputIVViewModel ();
             transfet_iv.IVSettingsViewModel.SimulationMode = true;
             transfet_iv.DrainSourceRangeViewModel.Start.NumericValue = 0 ;
             transfet_iv.DrainSourceRangeViewModel.End.NumericValue = 10;
@@ -231,6 +235,19 @@ namespace ExperimentViewer.ViewModels
             ExperimentExecutionManager.NewExecutableStarted += ExperimentExecutionManager_NewExecutableStarted;
            
         }
+
+        //https://www.codeproject.com/Articles/37848/WPF-Data-Bound-Menus
+        private List<ExperimentMenuItemViewModel> _experimentList;
+        public IEnumerable<ExperimentMenuItemViewModel> ExperimentList
+        {
+            get { return _experimentList; }
+        }
+
+        public void OpenExperiment(string ExperimentName)
+        {
+
+        }
+
 
         void ExperimentExecutionManager_NewExecutableStarted(object sender, IExecutable e)
         {

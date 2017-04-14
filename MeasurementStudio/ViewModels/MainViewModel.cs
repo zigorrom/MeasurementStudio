@@ -93,6 +93,16 @@ namespace MeasurementStudio
         }
 
 
+        private object _currentPageViewModel;
+        public object CurrentPageViewModel
+        {
+            get
+            {
+                return _currentPageViewModel;
+            }
+            private set { SetField(ref _currentPageViewModel, value, "CurrentPageViewModel"); }
+        }
+
         private Dictionary<PagesEnum, UserControl> _controls = new Dictionary<PagesEnum, UserControl>();
         private void SwitchToExperiment(PagesEnum exp)
         {
@@ -104,7 +114,7 @@ namespace MeasurementStudio
                         _controls.Add(PagesEnum.Home, new UserControl { Content = new HomeViewModel() });
                         break;
                     case PagesEnum.IVOutput:
-                        
+
                         _controls.Add(PagesEnum.IVOutput, new UserControl { Content = new OutputIVViewModel() });
                         break;
                     case PagesEnum.IVTransfer:
@@ -125,6 +135,7 @@ namespace MeasurementStudio
             }
             _current = exp;
             var control = _controls[exp];
+            CurrentPageViewModel = control.Content;
             View.ShowPage(control);
         }
         //public ObservableCollection<Lazy<UserControl>> _Controls
