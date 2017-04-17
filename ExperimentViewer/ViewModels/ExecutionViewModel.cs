@@ -245,7 +245,7 @@ namespace ExperimentViewer.ViewModels
 
         public void OpenExperiment(string ExperimentName)
         {
-
+            this.MessageHandler(ExperimentName);
         }
 
 
