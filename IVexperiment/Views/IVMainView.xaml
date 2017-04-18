@@ -10,7 +10,7 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:D3DataVisualization="clr-namespace:DataVisualization.D3DataVisualization;assembly=DataVisualization"
              xmlns:StartStopControl="clr-namespace:Helper.StartStopControl;assembly=Helper"
-             xmlns:ranges ="clr-namespace:Helper.Ranges.RangeHandlers;assembly=Helper"
+             
              xmlns:sf ="clr-namespace:Helper.ExperimentWorkingDirectory;assembly=Helper"
              x:Class="IVexperiment.Views.IVMainView"
              mc:Ignorable="d" 

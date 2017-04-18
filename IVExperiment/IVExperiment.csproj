@@ -77,6 +77,9 @@
     <Compile Include="Experiments\IVCurveMeasurementBase.cs" />
     <Compile Include="Experiments\OutputCurveMeasurement.cs" />
     <Compile Include="Experiments\TransferCurveMeasurement.cs" />
+    <Compile Include="Views\ScenarioIVSettingsView.xaml.cs">
+      <DependentUpon>ScenarioIVSettingsView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\IVexpSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -84,6 +87,10 @@
     <Page Include="Views\IVMainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ScenarioIVSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

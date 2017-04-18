@@ -8,6 +8,12 @@ namespace ScenarioBuilder.ViewModel
 {
     public class ScenarioBuilderViewModel
     {
+        public ScenarioBuilderViewModel()
+        {
+
+        }
+
+        
 
     }
 }
