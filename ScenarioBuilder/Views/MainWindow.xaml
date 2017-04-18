@@ -3,10 +3,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" 
         mc:Ignorable="d"
         x:Class="ScenarioBuilder.MainWindow"
         Title="MainWindow" Height="350" Width="525">
 	<Window.Resources>
+		
+		<ControlTemplate x:Key="ExperimentItemViewTemplate" TargetType="{x:Type ListBoxItem}">
+			<Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True" Margin="3" BorderThickness="1" CornerRadius="2">
+				<ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+			</Border>
+			<ControlTemplate.Triggers>
+				<Trigger Property="IsSelected" Value="True">
+					<Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+					<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+				</Trigger>
+				<MultiTrigger>
+					<MultiTrigger.Conditions>
+						<Condition Property="IsSelected" Value="True"/>
+						<Condition Property="Selector.IsSelectionActive" Value="False"/>
+					</MultiTrigger.Conditions>
+					<Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+					<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}}"/>
+				</MultiTrigger>
+				<Trigger Property="IsEnabled" Value="False">
+					<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+				</Trigger>
+			</ControlTemplate.Triggers>
+		</ControlTemplate>
+		<DataTemplate x:Key="ExperimentItemView">
+			<Border BorderThickness="1" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" CornerRadius="2" d:DesignWidth="52.73" d:DesignHeight="34.333" Padding="3,0" Height="35" Width="Auto" BorderBrush="Black"/>
+		</DataTemplate>
+		
+		
 		
 	</Window.Resources>
 	<Grid>
@@ -36,7 +65,7 @@
 			</Grid.RowDefinitions>
 			<Button Content="Add" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 		</Grid>
-		<ListView Grid.RowSpan="3" Margin="3">
+		<ListView Grid.RowSpan="3" Margin="3" ItemTemplate="{DynamicResource ExperimentItemView}" >
 			<ListView.View>
 				<GridView>
 					<GridViewColumn/>
