@@ -15,7 +15,7 @@ namespace ExperimentAbstraction.ViewModels
     using Microsoft.TeamFoundation.MVVM;
     using System.Windows;
     using System.Windows.Input;
-    public abstract class NewAbstractExperimentViewModel<ExperimentType> : INotifyPropertyChanged, IUIThreadExecutableViewModel
+    public abstract class NewAbstractExperimentViewModel<ExperimentType> : INotifyPropertyChanged, IUIThreadExecutableViewModel, IEnableControllableViewModel
         where ExperimentType: INewExperiment
     {
         #region PropertyEvents

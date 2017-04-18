@@ -172,48 +172,51 @@ namespace ExperimentViewer.ViewModels
             Application.Current.Dispatcher.Invoke(action);
         }
         #endregion 
+#region ExperimentNames
+        private const string OUTPUT_IV = "Output I-V";
+        private const string TRANSFER_IV = "Transfer I-V";
+        private const string SCENARIO_EXPERIMENT= "Experiment scenario";
+
+#endregion
 
         public ExecutionViewModel()
         {
             _experimentList = new List<ExperimentMenuItemViewModel>();
-            _experimentList.Add(new ExperimentMenuItemViewModel("Output I-V", this));
-            _experimentList.Add(new ExperimentMenuItemViewModel("Transfer I-V", this));
-            _experimentList.Add(new ExperimentMenuItemViewModel("I-V timetrace", this));
-            _experimentList.Add(new ExperimentMenuItemViewModel("Experiment scenario", this));
+            _experimentList.Add(new ExperimentMenuItemViewModel(OUTPUT_IV, this));
+            _experimentList.Add(new ExperimentMenuItemViewModel(TRANSFER_IV, this));
+            _experimentList.Add(new ExperimentMenuItemViewModel(SCENARIO_EXPERIMENT, this));
 
-            ExperimentExecutionManager = new SequentialTaskExecutionManager();
-            //ExperimentExecutionManager.Add(new testAction("test1"));
+            //ExperimentExecutionManager = new SequentialTaskExecutionManager();
+            ////ExperimentExecutionManager.Add(new testAction("test1"));
             
-            var td = new TimeDelayExecutableViewModel();
-            td.Delay = TimeSpan.FromMilliseconds(2000);
+            //var td = new TimeDelayExecutableViewModel();
+            //td.Delay = TimeSpan.FromMilliseconds(2000);
             
-            ExperimentExecutionManager.Add(td.DelayExecutable);
-            //ExperimentExecutionManager.Add(new testAction("test2"));
             //ExperimentExecutionManager.Add(td.DelayExecutable);
-            //ExperimentExecutionManager.Add(new testAction("test3"));
+            ////ExperimentExecutionManager.Add(new testAction("test2"));
+            ////ExperimentExecutionManager.Add(td.DelayExecutable);
+            ////ExperimentExecutionManager.Add(new testAction("test3"));
 
-            var transfet_iv = new OutputIVViewModel ();
-            transfet_iv.IVSettingsViewModel.SimulationMode = true;
-            transfet_iv.DrainSourceRangeViewModel.Start.NumericValue = 0 ;
-            transfet_iv.DrainSourceRangeViewModel.End.NumericValue = 10;
-            transfet_iv.DrainSourceRangeViewModel.PointsCount.PointsCount = 201;
+            //var transfet_iv = new OutputIVViewModel ();
+            //transfet_iv.IVSettingsViewModel.SimulationMode = true;
+            //transfet_iv.DrainSourceRangeViewModel.Start.NumericValue = 0 ;
+            //transfet_iv.DrainSourceRangeViewModel.End.NumericValue = 10;
+            //transfet_iv.DrainSourceRangeViewModel.PointsCount.PointsCount = 201;
 
-            transfet_iv.GateSourceRangeViewModel.Start.NumericValue = 0;
-            transfet_iv.GateSourceRangeViewModel.End.NumericValue = 10;
-            transfet_iv.GateSourceRangeViewModel.PointsCount.PointsCount = 21;
+            //transfet_iv.GateSourceRangeViewModel.Start.NumericValue = 0;
+            //transfet_iv.GateSourceRangeViewModel.End.NumericValue = 10;
+            //transfet_iv.GateSourceRangeViewModel.PointsCount.PointsCount = 21;
 
-            transfet_iv.SelectWorkingDirectory.Execute(new object());
-            transfet_iv.MeasurementName= "test_fajhsfjkahflfs";
-            transfet_iv.ExperimentName = "test";
+            //transfet_iv.SelectWorkingDirectory.Execute(new object());
+            //transfet_iv.MeasurementName= "test_fajhsfjkahflfs";
+            //transfet_iv.ExperimentName = "test";
 
-            ExperimentExecutionManager.Add(transfet_iv.IExperiment);
-            ExperimentExecutionManager.Add(td.DelayExecutable);
-            ExperimentExecutionManager.Add(transfet_iv.IExperiment);
+            //ExperimentExecutionManager.Add(transfet_iv.IExperiment);
+            //ExperimentExecutionManager.Add(td.DelayExecutable);
+            //ExperimentExecutionManager.Add(transfet_iv.IExperiment);
 
-
-            
-            var a = new ScenarioBuilder.MainWindow();
-            a.ShowDialog();
+            //var a = new ScenarioBuilder.MainWindow();
+            //a.ShowDialog();
 
             ExperimentControlButtons = new ControlButtonsViewModel();
             ExperimentControlButtons.PauseCommandRaised += ExperimentControlButtons_PauseCommandRaised;
@@ -223,7 +226,7 @@ namespace ExperimentViewer.ViewModels
             ExperimentIsRunning = false;
             ExperimentIsPaused = false;
 
-            InitEventHandlers();
+            //InitEventHandlers();
         }
 
         private void InitEventHandlers()
@@ -237,9 +240,55 @@ namespace ExperimentViewer.ViewModels
            
         }
 
-        private void InitSingleTaskExecution()
+        private void InitExecutionManagerEventHandlers(IExecutionManager manager)
         {
+            manager.ExecutionLoopStarted += ExperimentExecutionManager_ExecutionLoopStarted;
+            manager.ExecutionLoopFinished += ExperimentExecutionManager_ExecutionLoopFinished;
+            manager.ExecutionProgressChanged += ExperimentExecutionManager_ExecutionProgressChanged;
+            manager.NewExecutableStarted += ExperimentExecutionManager_NewExecutableStarted;
+        }
 
+        public void OpenExperiment(string ExperimentName)
+        {
+            this.MessageHandler(ExperimentName);
+            if(SCENARIO_EXPERIMENT!=ExperimentName)
+            {
+                InitSingleTaskExecution(ExperimentName);
+            }
+            else
+            {
+                InitSequencialTaskExecution();
+            }
+        }
+
+        private void InitSingleTaskExecution(string ExperimentName)
+        {
+            switch (ExperimentName)
+            {
+                case OUTPUT_IV:
+                    {
+                        var experimentVM = new OutputIVViewModel();
+                        experimentVM.GlobalIsEnabled = true;
+                        var executionManager = new SingleTaskExecutionManager();
+                        InitExecutionManagerEventHandlers(executionManager);
+                        executionManager.CurrentExecutable = experimentVM.IExperiment;
+                        ExecuteInUIThread(() => CurrentExperimentViewModel = experimentVM);
+                        ExperimentExecutionManager = executionManager;
+                    }break;
+                case TRANSFER_IV:
+                    {
+                        var experimentVM = new TransfrerIVViewModel();
+                        experimentVM.GlobalIsEnabled = true;
+                        var executionManager = new SingleTaskExecutionManager();
+                        InitExecutionManagerEventHandlers(executionManager);
+                        executionManager.CurrentExecutable = experimentVM.IExperiment;
+                        ExecuteInUIThread(() => CurrentExperimentViewModel = experimentVM);
+                        ExperimentExecutionManager = executionManager;
+                    }break;
+                default:
+                    break;
+                    
+            }
         }
 
         private void InitSequencialTaskExecution()
@@ -254,10 +303,7 @@ namespace ExperimentViewer.ViewModels
             get { return _experimentList; }
         }
 
-        public void OpenExperiment(string ExperimentName)
-        {
-            this.MessageHandler(ExperimentName);
-        }
+       
 
 
         void ExperimentExecutionManager_NewExecutableStarted(object sender, IExecutable e)
@@ -266,6 +312,7 @@ namespace ExperimentViewer.ViewModels
             if (e is INewExperiment)
             {
                 ExecuteInUIThread(()=> CurrentExperimentViewModel = ((INewExperiment)e).ViewModel);
+                
             }
         }
 
@@ -289,7 +336,11 @@ namespace ExperimentViewer.ViewModels
             ExperimentIsRunning = true;   
         }
 
-        public SequentialTaskExecutionManager ExperimentExecutionManager { get; private set; }
+        public IExecutionManager ExperimentExecutionManager { get; private set; }
+        
+        public SingleTaskExecutionManager SingleExperimentExecutionManager { get; private set; }
+        public SequentialTaskExecutionManager SequencialExperimentExecutionManager { get; private set; }
+        
         public ControlButtonsViewModel ExperimentControlButtons { get; private set; }
         
         /// <summary>

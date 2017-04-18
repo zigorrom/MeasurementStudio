@@ -15,7 +15,7 @@ using Helper.ViewModelInterface;
 
 namespace IVexperiment
 {
-    public interface ICurrentVoltageMeasurementViewModel:IUIThreadExecutableViewModel
+    public interface ICurrentVoltageMeasurementViewModel:IUIThreadExecutableViewModel,IEnableControllableViewModel
     {
         void AddSeries(IPointDataSource Points, string Description);
         RangeViewModel DrainSourceRangeViewModel { get; set; }
@@ -90,13 +90,7 @@ namespace IVexperiment
         {
             ExecuteInUIThread(() => Visualization.Clear());
         }
-        //protected override string GetExperimentName()
-        //{
-        //    var d = new NewExperimentControl(ExperimentName);
-        //    if (d.ShowDialog().Value)
-        //        return d.ExperimentName;
-        //    return String.Empty;
-        //}
+        
        
     }
 }

@@ -66,6 +66,7 @@
     <Compile Include="ObservableExperiment.cs" />
     <Compile Include="PauseTokenSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\IEnableControllableViewModel.cs" />
     <Compile Include="ViewModels\NewAbstractExperimentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

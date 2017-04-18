@@ -105,7 +105,7 @@ namespace IVexperiment.Experiments
 
         protected override void PerformSimulatedExperiment(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
         {
-
+            //((IEnableControllableViewModel)ViewModel).GlobalIsEnabled = false;
             //OnExecutionStarted(this, EventArgs.Empty);
 
             int exp = 10;//_dsRangeHandler.Range.PointsCount / 100 ;
