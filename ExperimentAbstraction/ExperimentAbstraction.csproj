@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="HelperExecutables\TimeDelay\TimeDelayExecutable.cs" />
     <Compile Include="HelperExecutables\TimeDelay\TimeDelayExecutableViewModel.cs" />
+    <Compile Include="IExecutionManager.cs" />
     <Compile Include="ViewModels\AbstractExperimentViewModel.cs" />
     <Compile Include="ExecutionManager.cs" />
     <Compile Include="IExperiment.cs" />

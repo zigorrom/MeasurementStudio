@@ -11,9 +11,9 @@ namespace ExperimentAbstraction
     //http://stackoverflow.com/questions/20422026/run-sequence-of-tasks-one-after-the-other
     // Pause pattern
     // https://blogs.msdn.microsoft.com/pfxteam/2013/01/13/cooperatively-pausing-async-methods/
-    public class ExecutionManager:ICollection<IExecutable> 
+    public class SequentialTaskExecutionManager:ICollection<IExecutable>, IExecutionManager 
     {
-        public ExecutionManager()
+        public SequentialTaskExecutionManager()
         {
             _executionList = new List<IExecutable>();
             _cancellationSource = new CancellationTokenSource();

@@ -242,7 +242,7 @@ namespace test
        
         static void Main(string[] args)
         {
-            var em = new ExecutionManager();
+            var em = new SequentialTaskExecutionManager();
             em.ExecutionProgressChanged += em_executionProgressChanged;
             
             //em.NewExecutableStarted += em_NewExecutionStarted;

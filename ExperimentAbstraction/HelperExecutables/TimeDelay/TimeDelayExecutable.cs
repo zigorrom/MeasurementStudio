@@ -19,6 +19,7 @@ namespace ExperimentViewer.HelperExecutables.TimeDelay
             TimeDelay = (int)viewModel.Delay.TotalMilliseconds;
         }
         private const int ProgressRefreshTime = 5;
+        
         public void Execute(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
         {
 
@@ -29,7 +30,11 @@ namespace ExperimentViewer.HelperExecutables.TimeDelay
             var LastTimespan = TimeSpan.Zero;
             do
             {
+                if (pauseToken.IsPaused)
+                    StopwatchObj.Stop();
                 pauseToken.WaitWhilePausedAsync().Wait();
+                if (!pauseToken.IsPaused)
+                    StopwatchObj.Start();
                 cancellationToken.ThrowIfCancellationRequested();
                 CurrentTimeSpan = StopwatchObj.Elapsed;
                 OnTimeElapsed(this, CurrentTimeSpan);

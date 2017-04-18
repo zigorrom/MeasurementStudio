@@ -49,7 +49,7 @@ namespace ExperimentAbstraction.ViewModels
             GlobalIsEnabled = true;
             ExperimentIsRunning = false;
 
-            ExperimentExecutionManager = new ExecutionManager();
+            ExperimentExecutionManager = new SequentialTaskExecutionManager();
 
 
         }
@@ -102,8 +102,8 @@ namespace ExperimentAbstraction.ViewModels
             }
         }
 
-        private ExecutionManager _executionManager;
-        public ExecutionManager ExperimentExecutionManager
+        private SequentialTaskExecutionManager _executionManager;
+        public SequentialTaskExecutionManager ExperimentExecutionManager
         {
             get { return _executionManager; }
             private set { _executionManager = value; }

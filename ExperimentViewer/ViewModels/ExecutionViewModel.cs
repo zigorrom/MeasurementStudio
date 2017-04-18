@@ -180,7 +180,7 @@ namespace ExperimentViewer.ViewModels
             _experimentList.Add(new ExperimentMenuItemViewModel("Transfer I-V", this));
 
 
-            ExperimentExecutionManager = new ExecutionManager();
+            ExperimentExecutionManager = new SequentialTaskExecutionManager();
             //ExperimentExecutionManager.Add(new testAction("test1"));
             
             var td = new TimeDelayExecutableViewModel();
@@ -228,7 +228,7 @@ namespace ExperimentViewer.ViewModels
         private void InitEventHandlers()
         {
             if (ExperimentExecutionManager == null)
-                ExperimentExecutionManager = new ExecutionManager();
+                ExperimentExecutionManager = new SequentialTaskExecutionManager();
             ExperimentExecutionManager.ExecutionLoopStarted += ExperimentExecutionManager_ExecutionLoopStarted;
             ExperimentExecutionManager.ExecutionLoopFinished += ExperimentExecutionManager_ExecutionLoopFinished;
             ExperimentExecutionManager.ExecutionProgressChanged += ExperimentExecutionManager_ExecutionProgressChanged;
@@ -278,7 +278,7 @@ namespace ExperimentViewer.ViewModels
             ExperimentIsRunning = true;   
         }
 
-        public ExecutionManager ExperimentExecutionManager { get; private set; }
+        public SequentialTaskExecutionManager ExperimentExecutionManager { get; private set; }
         public ControlButtonsViewModel ExperimentControlButtons { get; private set; }
         
         /// <summary>
