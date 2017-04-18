@@ -178,13 +178,14 @@ namespace ExperimentViewer.ViewModels
             _experimentList = new List<ExperimentMenuItemViewModel>();
             _experimentList.Add(new ExperimentMenuItemViewModel("Output I-V", this));
             _experimentList.Add(new ExperimentMenuItemViewModel("Transfer I-V", this));
-
+            _experimentList.Add(new ExperimentMenuItemViewModel("I-V timetrace", this));
+            _experimentList.Add(new ExperimentMenuItemViewModel("Experiment scenario", this));
 
             ExperimentExecutionManager = new SequentialTaskExecutionManager();
             //ExperimentExecutionManager.Add(new testAction("test1"));
             
             var td = new TimeDelayExecutableViewModel();
-            td.Delay = TimeSpan.FromMilliseconds(10000);
+            td.Delay = TimeSpan.FromMilliseconds(2000);
             
             ExperimentExecutionManager.Add(td.DelayExecutable);
             //ExperimentExecutionManager.Add(new testAction("test2"));
@@ -195,7 +196,7 @@ namespace ExperimentViewer.ViewModels
             transfet_iv.IVSettingsViewModel.SimulationMode = true;
             transfet_iv.DrainSourceRangeViewModel.Start.NumericValue = 0 ;
             transfet_iv.DrainSourceRangeViewModel.End.NumericValue = 10;
-            transfet_iv.DrainSourceRangeViewModel.PointsCount.PointsCount = 101;
+            transfet_iv.DrainSourceRangeViewModel.PointsCount.PointsCount = 201;
 
             transfet_iv.GateSourceRangeViewModel.Start.NumericValue = 0;
             transfet_iv.GateSourceRangeViewModel.End.NumericValue = 10;
@@ -234,6 +235,16 @@ namespace ExperimentViewer.ViewModels
             ExperimentExecutionManager.ExecutionProgressChanged += ExperimentExecutionManager_ExecutionProgressChanged;
             ExperimentExecutionManager.NewExecutableStarted += ExperimentExecutionManager_NewExecutableStarted;
            
+        }
+
+        private void InitSingleTaskExecution()
+        {
+
+        }
+
+        private void InitSequencialTaskExecution()
+        {
+
         }
 
         //https://www.codeproject.com/Articles/37848/WPF-Data-Bound-Menus

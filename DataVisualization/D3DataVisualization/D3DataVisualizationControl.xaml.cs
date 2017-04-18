@@ -28,7 +28,7 @@ namespace DataVisualization.D3DataVisualization
         public D3DataVisualizationControl()
         {
             InitializeComponent();
-
+            this.plotter.NewLegend.MaxHeight = 200;
             //var dc = DataContext as D3VisualizationViewModel;
             //if (dc == null)
             //    throw new NullReferenceException();
@@ -110,12 +110,18 @@ namespace DataVisualization.D3DataVisualization
             
         }
 
-
+        public void AddSeries(IPointDataSource data, string Description, double Thickness)
+        {
+            plotter.AddLineGraph(data, Thickness, Description);
+        }
 
 
         public void Clear()
         {
            plotter.Children.RemoveAll(typeof(LineGraph));
         }
+
+
+       
     }
 }

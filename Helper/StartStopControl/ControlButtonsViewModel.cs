@@ -118,6 +118,8 @@ namespace Helper.StartStopControl
             }
         }
 
+        
+
         private ICommand _stopClickCommand;
         public ICommand StopClickCommand
         {

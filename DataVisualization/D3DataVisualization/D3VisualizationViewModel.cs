@@ -117,6 +117,10 @@ namespace DataVisualization.D3DataVisualization
             View.AddSeries(data, Description);
         }
 
+        public void AddLineGraph(IPointDataSource data, string Description, double Thickness)
+        {
+            View.AddSeries(data, Description, Thickness);
+        }
         //public async Task ExecuteInUIThread(Action action)
         //{
         //    await Application.Current.Dispatcher.BeginInvoke(action, null);
@@ -133,5 +137,8 @@ namespace DataVisualization.D3DataVisualization
         {
             View.Clear();
         }
+
+
+       
     }
 }

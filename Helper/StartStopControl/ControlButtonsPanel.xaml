@@ -18,7 +18,7 @@
             <ColumnDefinition Width="{DynamicResource HalfGridWidth}"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="StartButton" Visibility="{Binding Path=CanStartCommandExecute,Converter={StaticResource BoolToVis}}" Content="Start" Command="{Binding StartClickCommand}" Margin="3" Grid.ColumnSpan="2"/>
-        <Button x:Name="PauseButton" Visibility="{Binding Path=CanPauseCommandExecute,Converter={StaticResource BoolToVis}}" Content="Pause" Command="{Binding PauseClickCommand}" Margin="3" />
+        <Button x:Name="PauseButton" Visibility="{Binding Path=CanPauseCommandExecute,Converter={StaticResource BoolToVis}}" Content="Pause" Command="{Binding PauseClickCommand}" Margin="3" Click="PauseButton_Click" />
         <Button x:Name="StopButton" Visibility="{Binding Path=CanStopCommandExecute,Converter={StaticResource BoolToVis}}" Content="Stop" Command="{Binding StopClickCommand}" Grid.Column="1" Margin="3"/>
     </Grid>
 </UserControl>

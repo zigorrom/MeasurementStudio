@@ -15,6 +15,8 @@ namespace DataVisualization.D3DataVisualization
 
         void AddSeries(IPointDataSource data, string Description);
 
+        void AddSeries(IPointDataSource data, string Description, double Thickness);
+
         void Clear();
     }
 }

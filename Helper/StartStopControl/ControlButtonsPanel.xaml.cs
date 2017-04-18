@@ -24,6 +24,20 @@ namespace Helper.StartStopControl
         {
             InitializeComponent();
         }
+        private const string pauseText = "Pause";
+        private const string resumeText = "Resume";
+
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(PauseButton.Content.ToString() == pauseText)
+            {
+                PauseButton.Content = resumeText;
+            }
+            else
+            {
+                PauseButton.Content = pauseText;
+            }
+        }
 
        
     }
