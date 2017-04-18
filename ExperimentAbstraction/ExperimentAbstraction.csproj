@@ -82,10 +82,6 @@
       <Project>{0b56f789-4a97-4cf6-81e7-da41a40a5761}</Project>
       <Name>Instruments</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ScenarioBuilder\ScenarioBuilder.csproj">
-      <Project>{1555d951-9bff-4c69-b11e-a97942d358a6}</Project>
-      <Name>ScenarioBuilder</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="HelperExecutables\TimeDelay\DelayView.xaml">
