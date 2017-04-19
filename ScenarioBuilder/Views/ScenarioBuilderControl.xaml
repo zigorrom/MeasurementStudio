@@ -52,7 +52,7 @@
                 <RowDefinition Height="39*"/>
                 <RowDefinition Height="41*"/>
             </Grid.RowDefinitions>
-            <Button Content="Add" Command="{Binding AddExperimentToScenarioCommand}" CommandParameter="{Binding ElementName=AvailableExperimentList, Path=SelectedItems}"/>
+            <Button Content="Add" Command="{Binding AddExperimentToScenarioCommand}" CommandParameter="{Binding ElementName=AvailableExperimentList, Path=SelectedItems}" Margin="3"/>
         </Grid>
         <ListView x:Name="AvailableExperimentList" Grid.RowSpan="3"  ItemsSource="{Binding AvailableExperiments}" SelectionMode="Extended">
             <!--Margin="3"-->
