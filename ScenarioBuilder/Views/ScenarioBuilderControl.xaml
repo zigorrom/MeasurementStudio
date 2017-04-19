@@ -29,10 +29,10 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="90*"/>
+            <RowDefinition Height="14*"/>
             <RowDefinition Height="80"/>
-            <RowDefinition Height="110*"/>
-            <RowDefinition Height="36*"/>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="248*"/>

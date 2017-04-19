@@ -450,11 +450,11 @@ namespace ExperimentViewer.ViewModels
                         expExecutor.Add(((IExecutableViewModel)item.ViewModel).Executable);
                 }
             }
-            else
-            {
-                Message = "Error with serial executor or scenario builder";
-                return false;
-            }
+            //else
+            //{
+            //    //Message = "Error with serial executor or scenario builder";
+                
+            //}
             return true;
         }
 
