@@ -5,8 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Ranges ="clr-namespace:Helper.Ranges.SimpleRangeControl;assembly=Helper"
              xmlns:sf ="clr-namespace:Helper.ExperimentWorkingDirectory;assembly=Helper"
+             xmlns:localvm ="clr-namespace:IVexperiment.ViewModels"
+             xmlns:localv ="clr-namespace:IVexperiment.Views"
              mc:Ignorable="d" 
              d:DesignHeight="709" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type localvm:IVexpSettingsViewModel}">
+            <localv:IVexpSettings/>
+        </DataTemplate>
+    </UserControl.Resources>
     <StackPanel>
         <TabControl Width="300">
             <TabItem Header="Range setup">

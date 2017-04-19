@@ -1,6 +1,8 @@
-﻿using IVexperiment.ViewModels;
+﻿using ExperimentViewer.HelperExecutables.TimeDelay;
+using IVexperiment.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,77 +13,88 @@ namespace ScenarioBuilder.ViewModel
     {
         string Name { get; }
         object GenerateViewModel();
+        object Data { get; }
     }
 
-    public class ExperimentItem:IExperimentItem
+    public abstract class ExperimentItem:IExperimentItem
     {
-        public ExperimentItem()
+        public ExperimentItem(Type experimentType)
         {
-            expType = null;
+            expType = experimentType;
+            Name = expType.Name;
+            expData = GenerateViewModel();
         }
         Type expType;
-
-        public void SetExperiment<T>()
-        {
-            expType = typeof(T);
-            Name = expType.Name;
-        }
+        object expData;
 
         public string Name
         {
             get;
-            private set;
+            protected set;
         }
-        public object GenerateViewModel()
+
+        public object Data
+        {
+            get { return expData; }
+        }
+
+        public virtual object GenerateViewModel()
         {
             return Activator.CreateInstance(expType);
         }
     }
-    public class ExperimentItem<ExperimentType>:IExperimentItem
+    public class ExperimentItem<ExperimentType>:ExperimentItem
         where ExperimentType:class, new()
     {
-        public ExperimentItem()
+        public ExperimentItem():base(typeof(ExperimentType))
         {
-            var t = typeof(ExperimentType);
-            Name = "afasgfashf"+t.Name;
-
+            
         }
 
-        public string Name
-        {
-            get;
-            private set;
-        }
-        public object GenerateViewModel()
-        {
-            return new ExperimentType();
-        }
-
-        public override string ToString()
-        {
-            return Name;
-        }
     }
 
-    public class ScenarioBuilderViewModel
+    public class ScenarioBuilderViewModel:INotifyPropertyChanged
     {
+        #region PropertyEvents
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected bool SetField<ST>(ref ST field, ST value, string propertyName)
+        {
+            if (EqualityComparer<ST>.Default.Equals(field, value))
+                return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+        private void OnPropertyChanged(string PropertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(PropertyName));
+        }
+        #endregion
+
         public ScenarioBuilderViewModel()
         {
             AvailableExperiments = new List<IExperimentItem>();
+            ScenarioExperimentsList = new List<IExperimentItem>();
             InitializeAvailableExperiments();    
         }
 
         private void InitializeAvailableExperiments()
         {
-            var item = new ExperimentItem();
-            item.SetExperiment<OutputIVViewModel>();
-            AvailableExperiments.Add(item);
-            //AvailableExperiments.Add(new ExperimentItem<OutputIVViewModel>());
-            //AvailableExperiments.Add(new ExperimentItem<TransfrerIVViewModel>());
+            AvailableExperiments.Add(new ExperimentItem<OutputIVViewModel>());
+            AvailableExperiments.Add(new ExperimentItem<TransfrerIVViewModel>());
+            AvailableExperiments.Add(new ExperimentItem<TimeDelayExecutableViewModel>());
+
+            ScenarioExperimentsList.Add(new ExperimentItem<OutputIVViewModel>());
+            ScenarioExperimentsList.Add(new ExperimentItem<TransfrerIVViewModel>());
+            ScenarioExperimentsList.Add(new ExperimentItem<TimeDelayExecutableViewModel>());
+
         }
 
         public List<IExperimentItem> AvailableExperiments { get; private set; }
-        
+        public List<IExperimentItem> ScenarioExperimentsList { get; private set; }
 
     }
 }

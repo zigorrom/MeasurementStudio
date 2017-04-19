@@ -5,14 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" 
         xmlns:localvm ="clr-namespace:ScenarioBuilder.ViewModel"
+        xmlns:ivexpvm="clr-namespace:IVexperiment.ViewModels;assembly=IVexperiment"
+        xmlns:ivexpv ="clr-namespace:IVexperiment.Views;assembly=IVexperiment"
         mc:Ignorable="d"
         x:Class="ScenarioBuilder.MainWindow"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="700">
     <Window.DataContext>
         <localvm:ScenarioBuilderViewModel/>
         
     </Window.DataContext>
-    
+    <Window.Resources>
+        
+        <DataTemplate DataType="{x:Type ivexpvm:OutputIVViewModel}">
+            <ivexpv:ScenarioIVSettingsView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ivexpvm:TransfrerIVViewModel}">
+            <ivexpv:ScenarioIVSettingsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type localvm:ExperimentItem}">
+            <StackPanel>
+                <Label Content="{Binding Path=Name}"/>
+            </StackPanel>
+        </DataTemplate>
+        
+     
+
+    </Window.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="90*"/>
@@ -40,8 +59,8 @@
 			</Grid.RowDefinitions>
 			<Button Content="Add" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 		</Grid>
-		<ListView x:Name="AvailableExperimentList" Grid.RowSpan="3" Margin="3" ItemsSource="{Binding AvailableExperiments}">
-			<ListView.ItemContainerStyle>
+        <ListView x:Name="AvailableExperimentList" Grid.RowSpan="3" Margin="3" ItemsSource="{Binding AvailableExperiments}">
+            <ListView.ItemContainerStyle>
 				<Style TargetType="{x:Type ListViewItem}">
 					<Setter Property="Template">
 						<Setter.Value>
@@ -54,13 +73,8 @@
 					</Setter>
 				</Style>
 			</ListView.ItemContainerStyle>
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<Grid>
-						<Label Content="{Binding Name, Mode=OneWay}"/>
-                    </Grid>
-				</DataTemplate>
-			</ListView.ItemTemplate>
+			
+            
 			<ListView.View>
 				<GridView>
 					<GridViewColumn/>
@@ -68,14 +82,13 @@
 			</ListView.View>
 			
 		</ListView>
-        <ListView  x:Name="ScenarioList" Grid.Column="2" Grid.RowSpan="3" Margin="3" ItemContainerStyle="{DynamicResource ExpandableExperimentView}" ItemTemplate="{DynamicResource ExpandableItemDataTemplate}">
+        <ListView  x:Name="ScenarioList" Grid.Column="2" Grid.RowSpan="3" Margin="3" ItemsSource="{Binding ScenarioExperimentsList}" ItemContainerStyle="{DynamicResource ExpandableExperimentView}">
             <ListView.Resources>
-
                 <Style x:Key="ExpandableExperimentView" TargetType="{x:Type ListViewItem}">
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                <Expander Header="Expander" Style="{DynamicResource ExpanderHeaderTemplate}">
+                                <Expander Header="{Binding Name, Mode=OneWay}" Style="{DynamicResource ExpanderHeaderTemplate}">
                                     <Expander.Resources>
                                         <SolidColorBrush x:Key="Expander.MouseOver.Circle.Stroke" Color="#FF5593FF"/>
                                         <SolidColorBrush x:Key="Expander.MouseOver.Circle.Fill" Color="#FFF3F9FF"/>
@@ -337,18 +350,16 @@
                                             </Setter>
                                         </Style>
                                     </Expander.Resources>
-                                    <Grid Background="#FFE5E5E5"/>
+                                    <ContentControl Content="{Binding Data}" />
+                                    <!--<Grid Background="#FFE5E5E5" Height="500" /> --><!--DataContext="{Binding Data, Mode=OneWay}"-->
                                 </Expander>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                 </Style>
-                <DataTemplate x:Key="ExpandableItemDataTemplate">
-                    <Grid d:DesignWidth="308.533" d:DesignHeight="80.8"/>
-                </DataTemplate>
 
             </ListView.Resources>
-            <ListView.View>
+        	<ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
