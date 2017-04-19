@@ -10,6 +10,7 @@
    
     <UserControl.Resources>
         <local:VisibilityToCheckedConverter x:Key="VisibilityToCheckedConverter"/>
+        <local:FormattedTextValueConverter x:Key="StringToFormattedTextConverter"/>
     </UserControl.Resources>
     <Grid>
         <d3:ChartPlotter x:Name="plotter" NewLegendVisible="True" LegendVisibility="Collapsed"  >
