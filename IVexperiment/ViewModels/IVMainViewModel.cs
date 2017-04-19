@@ -15,22 +15,7 @@ using Helper.ViewModelInterface;
 
 namespace IVexperiment
 {
-    public interface ICurrentVoltageMeasurementViewModel:IUIThreadExecutableViewModel,IEnableControllableViewModel
-    {
-        void AddSeries(IPointDataSource Points, string Description);
-        RangeViewModel DrainSourceRangeViewModel { get; set; }
-        IVexpSettingsViewModel IVSettingsViewModel { get; set; }
-        RangeViewModel GateSourceRangeViewModel { get; set; }
-        D3VisualizationViewModel Visualization { get; }
-        string ExperimentName { get; set; }
-        int MeasurementCount { get; set; }
-        string MeasurementName { get; set; }
-        string WorkingDirectory { get; set; }
-        void ErrorHandler(Exception e);
-        void MessageHandler(string e);
-    }
     
-
     public abstract class IVMainViewModel<ExperimentType> : NewAbstractExperimentViewModel<ExperimentType>, ICurrentVoltageMeasurementViewModel
         where ExperimentType:INewExperiment
     {

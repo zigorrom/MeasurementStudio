@@ -23,20 +23,26 @@ namespace ScenarioBuilder
     public partial class MainWindow : Window
     {
 
-        ListViewDragDropManager<IExperimentItem> dragMgr;
+        ListViewDragDropManager<IAvailableExperimentItem> dragMgr;
         ListViewDragDropManager<IExperimentItem> dragMgr2;
         public MainWindow()
         {
             InitializeComponent();
+            this.Loaded += MainWindow_Loaded;
+           
+        }
 
-            this.dragMgr = new ListViewDragDropManager<IExperimentItem>(this.AvailableExperimentList);
-            this.dragMgr2 = new ListViewDragDropManager<IExperimentItem>(this.ScenarioList);
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.dragMgr = new ListViewDragDropManager<IAvailableExperimentItem>(this.AvailableExperimentList);
+            //this.dragMgr2 = new ListViewDragDropManager<IExperimentItem>(this.ScenarioList);
+            this.dragMgr.ProcessDrop += dragMgr_ProcessDrop;
             this.AvailableExperimentList.Drop += OnListDrop;
             this.AvailableExperimentList.DragEnter += OnListDragEnter;
-            this.ScenarioList.Drop += OnListDrop;
-            this.ScenarioList.DragEnter += OnListDragEnter;
-            this.dragMgr.ProcessDrop += dragMgr_ProcessDrop;
-            this.dragMgr2.ProcessDrop += dragMgr_ProcessDrop;
+            //this.ScenarioList.Drop += OnListDrop;
+            //this.ScenarioList.DragEnter += OnListDragEnter;
+            
+            
         }
 
         private void OnListDragEnter(object sender, DragEventArgs e)
@@ -44,7 +50,7 @@ namespace ScenarioBuilder
             e.Effects = DragDropEffects.Move;
         }
 
-        void dragMgr_ProcessDrop(object sender, ProcessDropEventArgs<IExperimentItem> e)
+        void dragMgr_ProcessDrop(object sender, ProcessDropEventArgs<IAvailableExperimentItem> e)
         {
             // This shows how to customize the behavior of a drop.
             // Here we perform a swap, instead of just moving the dropped item.
@@ -83,7 +89,7 @@ namespace ScenarioBuilder
             if (e.Effects == DragDropEffects.None)
                 return;
 
-            var experimentItem = e.Data.GetData(typeof(IExperimentItem)) as IExperimentItem;
+            //var experimentItem = e.Data.GetData(typeof(IAvailableExperimentItem)) as IAvailableExperimentItem;
             //if (sender == this.AvailableExperimentList)
             //{
             //    if (this.dragMgr.IsDragInProgress)

@@ -58,6 +58,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ViewModels\ICurrentVoltageMeasurementViewModel.cs" />
     <Compile Include="ViewModels\IVexpSettingsViewModel.cs" />
     <Compile Include="ViewModels\IVMainViewModel.cs" />
     <Compile Include="ViewModels\MeasurementSpeedToIndexConverter.cs" />

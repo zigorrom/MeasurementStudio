@@ -23,7 +23,7 @@
         <DataTemplate DataType="{x:Type ivexpvm:TransfrerIVViewModel}">
             <ivexpv:ScenarioIVSettingsView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type localvm:ExperimentItem}">
+        <DataTemplate DataType="{x:Type localvm:AvailableExperimentItem}">
             <StackPanel>
                 <Label Content="{Binding Path=Name}"/>
             </StackPanel>
@@ -59,7 +59,7 @@
 			</Grid.RowDefinitions>
 			<Button Content="Add" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 		</Grid>
-        <ListView x:Name="AvailableExperimentList" Grid.RowSpan="3" Margin="3" ItemsSource="{Binding AvailableExperiments}">
+        <ListView x:Name="AvailableExperimentList" Grid.RowSpan="3" Margin="3" ItemsSource="{Binding AvailableExperiments, Mode=TwoWay}">
             <ListView.ItemContainerStyle>
 				<Style TargetType="{x:Type ListViewItem}">
 					<Setter Property="Template">
@@ -82,7 +82,7 @@
 			</ListView.View>
 			
 		</ListView>
-        <ListView  x:Name="ScenarioList" Grid.Column="2" Grid.RowSpan="3" Margin="3" ItemsSource="{Binding ScenarioExperimentsList}" ItemContainerStyle="{DynamicResource ExpandableExperimentView}">
+        <ListView  x:Name="ScenarioList" Grid.Column="2" Grid.RowSpan="3" Margin="3" ItemsSource="{Binding ScenarioExperimentsList, Mode=TwoWay}" ItemContainerStyle="{DynamicResource ExpandableExperimentView}">
             <ListView.Resources>
                 <Style x:Key="ExpandableExperimentView" TargetType="{x:Type ListViewItem}">
                     <Setter Property="Template">
@@ -350,7 +350,7 @@
                                             </Setter>
                                         </Style>
                                     </Expander.Resources>
-                                    <ContentControl Content="{Binding Data}" />
+                                    <ContentControl Content="{Binding ViewModel}" />
                                     <!--<Grid Background="#FFE5E5E5" Height="500" /> --><!--DataContext="{Binding Data, Mode=OneWay}"-->
                                 </Expander>
                             </ControlTemplate>

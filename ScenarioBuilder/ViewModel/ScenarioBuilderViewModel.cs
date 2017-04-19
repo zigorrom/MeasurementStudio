@@ -2,6 +2,7 @@
 using IVexperiment.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -9,49 +10,73 @@ using System.Threading.Tasks;
 
 namespace ScenarioBuilder.ViewModel
 {
+    public interface IAvailableExperimentItem
+    {
+        string Name { get; }
+        IExperimentItem GenerateExperimentItem();
+    }
+
     public interface IExperimentItem
     {
         string Name { get; }
-        object GenerateViewModel();
-        object Data { get; }
+        object ViewModel { get; }
     }
 
-    public abstract class ExperimentItem:IExperimentItem
+    public abstract class AvailableExperimentItem:IAvailableExperimentItem
     {
-        public ExperimentItem(Type experimentType)
+        internal class ExperimentItem:IExperimentItem
+        {
+            public ExperimentItem()
+            {
+
+            }
+
+            public string Name
+            {
+                get;
+                internal set;
+            }
+
+            public object ViewModel
+            {
+                get;
+                internal set;
+            }
+        }
+
+        public AvailableExperimentItem(Type experimentType)
         {
             expType = experimentType;
             Name = expType.Name;
-            expData = GenerateViewModel();
         }
         Type expType;
-        object expData;
-
+        
         public string Name
         {
             get;
             protected set;
         }
 
-        public object Data
+        public virtual IExperimentItem GenerateExperimentItem()
         {
-            get { return expData; }
+            return new ExperimentItem { Name = this.Name, ViewModel = Activator.CreateInstance(expType) };
+            //return  Activator.CreateInstance(expType);
         }
 
-        public virtual object GenerateViewModel()
-        {
-            return Activator.CreateInstance(expType);
-        }
     }
-    public class ExperimentItem<ExperimentType>:ExperimentItem
+    public class AvailableExperimentItem<ExperimentType>:AvailableExperimentItem
         where ExperimentType:class, new()
     {
-        public ExperimentItem():base(typeof(ExperimentType))
+        public AvailableExperimentItem():base(typeof(ExperimentType))
         {
             
         }
 
     }
+
+    
+
+
 
     public class ScenarioBuilderViewModel:INotifyPropertyChanged
     {
@@ -76,25 +101,23 @@ namespace ScenarioBuilder.ViewModel
 
         public ScenarioBuilderViewModel()
         {
-            AvailableExperiments = new List<IExperimentItem>();
-            ScenarioExperimentsList = new List<IExperimentItem>();
+            AvailableExperiments = new ObservableCollection<IAvailableExperimentItem>();
+            ScenarioExperimentsList = new ObservableCollection<IExperimentItem>();
             InitializeAvailableExperiments();    
         }
 
         private void InitializeAvailableExperiments()
         {
-            AvailableExperiments.Add(new ExperimentItem<OutputIVViewModel>());
-            AvailableExperiments.Add(new ExperimentItem<TransfrerIVViewModel>());
-            AvailableExperiments.Add(new ExperimentItem<TimeDelayExecutableViewModel>());
-
-            ScenarioExperimentsList.Add(new ExperimentItem<OutputIVViewModel>());
-            ScenarioExperimentsList.Add(new ExperimentItem<TransfrerIVViewModel>());
-            ScenarioExperimentsList.Add(new ExperimentItem<TimeDelayExecutableViewModel>());
+            var item = new AvailableExperimentItem<OutputIVViewModel>();
+            AvailableExperiments.Add(item);
+            ScenarioExperimentsList.Add(item.GenerateExperimentItem());
+            AvailableExperiments.Add(new AvailableExperimentItem<TransfrerIVViewModel>());
+            AvailableExperiments.Add(new AvailableExperimentItem<TimeDelayExecutableViewModel>());
 
         }
 
-        public List<IExperimentItem> AvailableExperiments { get; private set; }
-        public List<IExperimentItem> ScenarioExperimentsList { get; private set; }
+        public ObservableCollection<IAvailableExperimentItem> AvailableExperiments { get; private set; }
+        public ObservableCollection<IExperimentItem> ScenarioExperimentsList { get; private set; }
 
     }
 }
