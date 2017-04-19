@@ -46,9 +46,17 @@ namespace ScenarioBuilder.ViewModel
 
         public AvailableExperimentItem(Type experimentType)
         {
-            expType = experimentType;
-            Name = expType.Name;
+            this.expType = experimentType;
+            this.Name = expType.Name;
         }
+
+        public AvailableExperimentItem(Type experimentType, string Name)
+        {
+            this.expType = experimentType;
+            this.Name = Name;
+        }
+
+
         Type expType;
         
         public string Name
@@ -75,9 +83,6 @@ namespace ScenarioBuilder.ViewModel
     }
 
     
-
-
-
     public class ScenarioBuilderViewModel:INotifyPropertyChanged
     {
         #region PropertyEvents

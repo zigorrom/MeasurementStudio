@@ -61,7 +61,7 @@ namespace ChannelSwitchHelper
 
         public ObservableCollection<MeasurementChannelController> SelectedMeasurementChannels { get; set; }
 
-      
+        
         
 
 

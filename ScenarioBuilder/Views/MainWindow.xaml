@@ -12,7 +12,6 @@
         Title="MainWindow" Height="350" Width="700">
     <Window.DataContext>
         <localvm:ScenarioBuilderViewModel/>
-        
     </Window.DataContext>
     <Window.Resources>
         
@@ -23,11 +22,11 @@
         <DataTemplate DataType="{x:Type ivexpvm:TransfrerIVViewModel}">
             <ivexpv:ScenarioIVSettingsView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type localvm:AvailableExperimentItem}">
+        <!--<DataTemplate DataType="{x:Type localvm:AvailableExperimentItem}">
             <StackPanel>
                 <Label Content="{Binding Path=Name}"/>
             </StackPanel>
-        </DataTemplate>
+        </DataTemplate>-->
         
      
 
@@ -59,8 +58,9 @@
 			</Grid.RowDefinitions>
 			<Button Content="Add" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 		</Grid>
-        <ListView x:Name="AvailableExperimentList" Grid.RowSpan="3" Margin="3" ItemsSource="{Binding AvailableExperiments, Mode=TwoWay}">
-            <ListView.ItemContainerStyle>
+        <ListView x:Name="AvailableExperimentList" Grid.RowSpan="3"  ItemsSource="{Binding AvailableExperiments}" > <!--Margin="3"-->
+
+            <!--<ListView.ItemContainerStyle>
 				<Style TargetType="{x:Type ListViewItem}">
 					<Setter Property="Template">
 						<Setter.Value>
@@ -72,17 +72,23 @@
 						</Setter.Value>
 					</Setter>
 				</Style>
-			</ListView.ItemContainerStyle>
-			
+			</ListView.ItemContainerStyle>-->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Label Content="{Binding Name}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
             
-			<ListView.View>
+			<!--<ListView.View>
 				<GridView>
-					<GridViewColumn/>
-				</GridView>
-			</ListView.View>
+                    <GridViewColumn/>
+                </GridView>
+			</ListView.View>-->
 			
 		</ListView>
-        <ListView  x:Name="ScenarioList" Grid.Column="2" Grid.RowSpan="3" Margin="3" ItemsSource="{Binding ScenarioExperimentsList, Mode=TwoWay}" ItemContainerStyle="{DynamicResource ExpandableExperimentView}">
+        <ListView  x:Name="ScenarioList" Grid.Column="2" Grid.RowSpan="3" Margin="3" ItemsSource="{Binding ScenarioExperimentsList}" ItemContainerStyle="{DynamicResource ExpandableExperimentView}">
             <ListView.Resources>
                 <Style x:Key="ExpandableExperimentView" TargetType="{x:Type ListViewItem}">
                     <Setter Property="Template">

@@ -24,26 +24,27 @@ namespace ScenarioBuilder
     {
 
         ListViewDragDropManager<IAvailableExperimentItem> dragMgr;
-        ListViewDragDropManager<IExperimentItem> dragMgr2;
+        //ListViewDragDropManager<IExperimentItem> dragMgr2;
         public MainWindow()
         {
             InitializeComponent();
-            this.Loaded += MainWindow_Loaded;
+            this.dragMgr = new ListViewDragDropManager<IAvailableExperimentItem>(this.AvailableExperimentList);
+            
            
         }
 
-        void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.dragMgr = new ListViewDragDropManager<IAvailableExperimentItem>(this.AvailableExperimentList);
+        //void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        //{
+            
             //this.dragMgr2 = new ListViewDragDropManager<IExperimentItem>(this.ScenarioList);
-            this.dragMgr.ProcessDrop += dragMgr_ProcessDrop;
-            this.AvailableExperimentList.Drop += OnListDrop;
-            this.AvailableExperimentList.DragEnter += OnListDragEnter;
-            //this.ScenarioList.Drop += OnListDrop;
-            //this.ScenarioList.DragEnter += OnListDragEnter;
+            //this.dragMgr.ProcessDrop += dragMgr_ProcessDrop;
+            //this.AvailableExperimentList.Drop += OnListDrop;
+            //this.AvailableExperimentList.DragEnter += OnListDragEnter;
+            ////this.ScenarioList.Drop += OnListDrop;
+            ////this.ScenarioList.DragEnter += OnListDragEnter;
             
             
-        }
+        //}
 
         private void OnListDragEnter(object sender, DragEventArgs e)
         {

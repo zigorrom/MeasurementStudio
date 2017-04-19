@@ -133,7 +133,5 @@
             <Button Content="SelectAll" Margin="3" Command="{Binding AddAllItemsPressed}"/>
             <Button Content="RemoveAll" Margin="3" Command="{Binding RemoveAllItemsPressed}" Grid.Column="1"/>
         </Grid>
-
-
     </Grid>
 </UserControl>
