@@ -178,6 +178,13 @@ namespace ExperimentViewer.ViewModels
         private const string TRANSFER_IV = "Transfer I-V";
         private const string SCENARIO_EXPERIMENT= "Experiment scenario";
 
+        private enum EXPERIMENT_NAME_ENUM
+        {
+            OUTPUT_IV,
+            TRANSFER_IV,
+            SCENARIO_EXPERIMENT
+        }
+
 #endregion
 
         public ExecutionViewModel()
@@ -343,8 +350,8 @@ namespace ExperimentViewer.ViewModels
 
         public IExecutionManager ExperimentExecutionManager { get; private set; }
         
-        public SingleTaskExecutionManager SingleExperimentExecutionManager { get; private set; }
-        public SequentialTaskExecutionManager SequencialExperimentExecutionManager { get; private set; }
+        //public SingleTaskExecutionManager SingleExperimentExecutionManager { get; private set; }
+        //public SequentialTaskExecutionManager SequencialExperimentExecutionManager { get; private set; }
         
         public ControlButtonsViewModel ExperimentControlButtons { get; private set; }
         
@@ -411,6 +418,7 @@ namespace ExperimentViewer.ViewModels
             set { SetField(ref _currentExperimentViewModel, value, "CurrentExperimentViewModel"); }
         }
 
+        
 
         protected bool CheckParametersBeforeStart(out string Message)
         {
@@ -431,6 +439,22 @@ namespace ExperimentViewer.ViewModels
             //    Message = "Fill in the measurement name";
             //    return false;
             //}
+            var expExecutor = ExperimentExecutionManager as SequentialTaskExecutionManager;
+            var scenarioBuilderViewModel = CurrentExperimentViewModel as ScenarioBuilderViewModel;
+            if(expExecutor != null && scenarioBuilderViewModel!=null)
+            {
+                expExecutor.Clear();
+                foreach (var item in scenarioBuilderViewModel.ScenarioExperimentsList)
+                {
+                    if (item.ViewModel is IExecutableViewModel)
+                        expExecutor.Add(((IExecutableViewModel)item.ViewModel).Executable);
+                }
+            }
+            else
+            {
+                Message = "Error with serial executor or scenario builder";
+                return false;
+            }
             return true;
         }
 

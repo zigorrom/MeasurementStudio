@@ -69,7 +69,7 @@ namespace IVexperiment.ViewModels
             visualVM = new D3VisualizationViewModel
             {
                 HorizontalAxisTitle = "Drain - Source Voltage, V_{DS}(V)",
-                VerticalAxisTitle = "Drain Current, I_{D}(A)",
+                VerticalAxisTitle = "Drain Current, I<sub>D</sub>(A)",
                 Title = "Output I-V Characterization",
                 StrokeThickness = 10
             };

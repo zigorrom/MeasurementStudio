@@ -135,7 +135,8 @@ namespace DataVisualization.D3DataVisualization
 
         public void Clear()
         {
-            View.Clear();
+            if (View != null)
+                View.Clear();
         }
 
 

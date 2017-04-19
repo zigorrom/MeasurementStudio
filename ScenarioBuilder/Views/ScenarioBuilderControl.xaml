@@ -44,7 +44,7 @@
                 <ColumnDefinition Width="50*"/>
                 <ColumnDefinition Width="50*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Remove" Margin="3"/>
+            <Button Content="Remove" Margin="3" Command="{Binding RemoveFromScenarioCommand}" CommandParameter="{Binding ElementName=ScenarioList, Path=SelectedItems}"/>
             <Button Content="RemoveAll" Grid.Column="1" Margin="3" Command="{Binding RemoveAllFromScenarioCommand}"/>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="1">

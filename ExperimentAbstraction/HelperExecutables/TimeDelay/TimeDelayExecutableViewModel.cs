@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ExperimentAbstraction.HelperExecutables.TimeDelay
 {
-    public class TimeDelayExecutableViewModel:INotifyPropertyChanged
+    public class TimeDelayExecutableViewModel : INotifyPropertyChanged, IExecutableViewModel
     {
 
         #region PropertyEvents
@@ -77,8 +77,9 @@ namespace ExperimentAbstraction.HelperExecutables.TimeDelay
             private set;
         }
 
-
-
-        
+        public IExecutable Executable
+        {
+            get { return DelayExecutable; }
+        }
     }
 }

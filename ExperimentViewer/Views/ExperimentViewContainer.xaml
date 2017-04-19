@@ -20,9 +20,9 @@
             <ScenarioView:ScenarioBuilderControl/>
         </DataTemplate>
         
-        <!--<DataTemplate DataType="{x:Type timeDelay:TimeDelayExecutableViewModel}">
+        <DataTemplate DataType="{x:Type timeDelay:TimeDelayExecutableViewModel}">
             <timeDelay:DelayView/>
-        </DataTemplate>-->
+        </DataTemplate>
         
         <DataTemplate DataType="{x:Type ivvm:TransfrerIVViewModel}">
             <ivv:IVMainView/>

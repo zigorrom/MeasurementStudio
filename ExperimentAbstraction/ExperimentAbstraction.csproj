@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="HelperExecutables\TimeDelay\TimeDelayExecutable.cs" />
     <Compile Include="HelperExecutables\TimeDelay\TimeDelayExecutableViewModel.cs" />
+    <Compile Include="IExecutableViewModel.cs" />
     <Compile Include="IExecutionManager.cs" />
     <Compile Include="IExperimentViewModel.cs" />
     <Compile Include="SingleTaskExecutionManager.cs" />

@@ -157,7 +157,23 @@ namespace ScenarioBuilder.ViewModel
             get { return _removeAllFromScenatioCommand ?? (_removeAllFromScenatioCommand = new RelayCommand(() => ScenarioExperimentsList.Clear())); }
         }
 
+        private ICommand _removeFromScenarioCommand;
 
+        public ICommand RemoveFromScenarioCommand
+        {
+            get { return _removeFromScenarioCommand ?? (_removeFromScenarioCommand = new RelayCommand((SelectedList) => RemoveExperimentFromScenario(SelectedList))); }
+        }
+
+        private void RemoveExperimentFromScenario(object SelectedList)
+        {
+            System.Diagnostics.Debug.WriteLine(SelectedList.GetType());
+            var list = ((IList)SelectedList).Cast<IExperimentItem>();
+            foreach (var item in list)
+            {
+                ScenarioExperimentsList.Remove(item);
+            }
+
+        }
 
 
     }

@@ -15,7 +15,7 @@ namespace ExperimentAbstraction.ViewModels
     using Microsoft.TeamFoundation.MVVM;
     using System.Windows;
     using System.Windows.Input;
-    public abstract class NewAbstractExperimentViewModel<ExperimentType> : INotifyPropertyChanged, IUIThreadExecutableViewModel, IEnableControllableViewModel
+    public abstract class NewAbstractExperimentViewModel<ExperimentType> : INotifyPropertyChanged, IUIThreadExecutableViewModel, IEnableControllableViewModel, IExperimentViewModel, IExecutableViewModel
         where ExperimentType: INewExperiment
     {
         #region PropertyEvents
@@ -51,6 +51,12 @@ namespace ExperimentAbstraction.ViewModels
         }
 
         public INewExperiment IExperiment
+        {
+            get { return _experiment; }
+        }
+
+
+        public IExecutable Executable
         {
             get { return _experiment; }
         }
@@ -210,5 +216,9 @@ namespace ExperimentAbstraction.ViewModels
             MessageBox.Show(e, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+
+
+
+        
     }
 }
