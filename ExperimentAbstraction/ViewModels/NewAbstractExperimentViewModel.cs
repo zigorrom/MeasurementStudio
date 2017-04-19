@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ExperimentAbstraction.ViewModels
 {
     using ExperimentAbstraction;
-    using ExperimentViewer;
+    
     using Helper.NewExperimentWindow;
     using Microsoft.TeamFoundation.MVVM;
     using System.Windows;

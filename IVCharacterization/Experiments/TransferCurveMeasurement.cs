@@ -1,5 +1,4 @@
-﻿using ExperimentViewer;
-using ExperimentDataModel;
+﻿using ExperimentDataModel;
 using IVCharacterization.DataModel;
 using System;
 using System.Collections.Generic;

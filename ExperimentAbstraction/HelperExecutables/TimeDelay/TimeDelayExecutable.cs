@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExperimentViewer.HelperExecutables.TimeDelay
+namespace ExperimentAbstraction.HelperExecutables.TimeDelay
 {
     public class TimeDelayExecutable:INewExperiment
     {

@@ -53,6 +53,9 @@
     <Compile Include="HelperExecutables\TimeDelay\DelayView.xaml.cs">
       <DependentUpon>DelayView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HelperExecutables\TimeDelay\ScenarioDelaySettingsView.xaml.cs">
+      <DependentUpon>ScenarioDelaySettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HelperExecutables\TimeDelay\TimeDelayExecutable.cs" />
     <Compile Include="HelperExecutables\TimeDelay\TimeDelayExecutableViewModel.cs" />
     <Compile Include="IExecutionManager.cs" />
@@ -86,6 +89,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="HelperExecutables\TimeDelay\DelayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HelperExecutables\TimeDelay\ScenarioDelaySettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

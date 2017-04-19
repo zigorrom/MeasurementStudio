@@ -4,19 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             xmlns:timeDelay="clr-namespace:ExperimentViewer.HelperExecutables.TimeDelay;assembly=ExperimentAbstraction"
+             xmlns:timeDelay="clr-namespace:ExperimentAbstraction.HelperExecutables.TimeDelay;assembly=ExperimentAbstraction"
              xmlns:StartStopControl="clr-namespace:Helper.StartStopControl;assembly=Helper"
              xmlns:ivvm ="clr-namespace:IVexperiment.ViewModels;assembly=IVexperiment"
              xmlns:ivv ="clr-namespace:IVexperiment.Views;assembly=IVexperiment"
+             xmlns:ScenarioView ="clr-namespace:ScenarioBuilder.Views;assembly=ScenarioBuilder"
+             xmlns:ScenarioViewModel="clr-namespace:ScenarioBuilder.ViewModel;assembly=ScenarioBuilder"
              d:DesignHeight="444" d:DesignWidth="1089.6">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type StartStopControl:ControlButtonsViewModel}">
             <StartStopControl:ControlButtonsPanel x:Name="ControlButtons"/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type timeDelay:TimeDelayExecutableViewModel}">
-            <timeDelay:DelayView/>
+        <DataTemplate DataType="{x:Type ScenarioViewModel:ScenarioBuilderViewModel}">
+            <ScenarioView:ScenarioBuilderControl/>
         </DataTemplate>
+        
+        <!--<DataTemplate DataType="{x:Type timeDelay:TimeDelayExecutableViewModel}">
+            <timeDelay:DelayView/>
+        </DataTemplate>-->
         
         <DataTemplate DataType="{x:Type ivvm:TransfrerIVViewModel}">
             <ivv:IVMainView/>

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ExperimentAbstraction.HelperExecutables.TimeDelay
 {
     /// <summary>
-    /// Interaction logic for DelayView.xaml
+    /// Interaction logic for ScenarioDelaySettingsView.xaml
     /// </summary>
-    public partial class DelayView : UserControl
+    public partial class ScenarioDelaySettingsView : UserControl
     {
-        public DelayView()
+        public ScenarioDelaySettingsView()
         {
             InitializeComponent();
         }

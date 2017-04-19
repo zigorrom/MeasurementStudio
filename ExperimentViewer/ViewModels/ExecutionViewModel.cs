@@ -1,8 +1,9 @@
 ﻿using ExperimentAbstraction;
-using ExperimentViewer.HelperExecutables.TimeDelay;
+using ExperimentAbstraction.HelperExecutables.TimeDelay;
 using Helper.StartStopControl;
 using Helper.ViewModelInterface;
 using IVexperiment.ViewModels;
+using ScenarioBuilder.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -293,7 +294,11 @@ namespace ExperimentViewer.ViewModels
 
         private void InitSequencialTaskExecution()
         {
-
+            var scenarioBuilderVM = new ScenarioBuilderViewModel();
+            var executionManager = new SequentialTaskExecutionManager();
+            InitExecutionManagerEventHandlers(executionManager);
+            ExecuteInUIThread(()=>CurrentExperimentViewModel = scenarioBuilderVM);
+            ExperimentExecutionManager = executionManager;
         }
 
         //https://www.codeproject.com/Articles/37848/WPF-Data-Bound-Menus
