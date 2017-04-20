@@ -15,10 +15,10 @@ namespace ExperimentAbstraction
         where DataT : struct
     {
 
-        public NewAbstractExperiment(string ExperimentName)
+        public NewAbstractExperiment(string GeneralExperimentName)
         {
-            this.Name = ExperimentName;
-            this.ExperimentName = ExperimentName;
+            this.Name = GeneralExperimentName;
+            //this.ExperimentName = ExperimentName;
             this.SimulateExperiment = false;
             //this._cancellationSourceToken = new CancellationTokenSource();
             //this._pauseSourceToken = new PauseTokenSource();
@@ -26,9 +26,9 @@ namespace ExperimentAbstraction
 
         //private CancellationTokenSource _cancellationSourceToken;
         //private PauseTokenSource _pauseSourceToken;
-        private StreamMeasurementDataExporter<InfoT, DataT> _dataWriter;
+        //private StreamMeasurementDataExporter<InfoT, DataT> _dataWriter;
 
-        protected abstract void InitializeWriter();
+        //protected abstract void InitializeWriter();
         public virtual void InitializeExperiment()
         {
             
@@ -49,10 +49,10 @@ namespace ExperimentAbstraction
         }
 
         public string Name { get; private set; }
-        protected string WorkingDirectory { get; set; }
-        protected string ExperimentName { get; set; }
-        protected string MeasurementName { get; set; }
-        protected int MeasurementCount { get; set; }
+        protected abstract string WorkingDirectory { get; set; }
+        protected abstract string ExperimentName { get; set; }
+        protected abstract string MeasurementName { get; set; }
+        protected abstract int MeasurementCount { get; set; }
         public abstract object ViewModel { get; }
         
 

@@ -261,14 +261,84 @@ namespace IVexperiment.Experiments
 
 
 
-        protected override void InitializeWriter()
-        {
-            throw new NotImplementedException();
-        }
+        //protected override void InitializeWriter()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public override object ViewModel
         {
             get { return _vm; }
+        }
+
+        //protected override void PerformExperiment(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //protected override void PerformSimulatedExperiment(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //protected override string WorkingDirectory
+        //{
+        //    get
+        //    {
+        //        throw new NotImplementedException();
+        //    }
+        //    set
+        //    {
+        //        throw new NotImplementedException();
+        //    }
+        //}
+
+        protected override string WorkingDirectory
+        {
+            get
+            {
+                return _vm.WorkingDirectory;
+            }
+            set
+            {
+                _vm.WorkingDirectory = value;
+            }
+        }
+
+        protected override string ExperimentName
+        {
+            get
+            {
+                return _vm.ExperimentName;
+            }
+            set
+            {
+                _vm.ExperimentName = value;
+            }
+        }
+
+        protected override string MeasurementName
+        {
+            get
+            {
+                return _vm.MeasurementName;
+            }
+            set
+            {
+                _vm.MeasurementName = value;
+            }
+        }
+
+        protected override int MeasurementCount
+        {
+            get
+            {
+                return _vm.MeasurementCount;
+            }
+            set
+            {
+                _vm.MeasurementCount = value;
+            }
         }
 
         protected override void PerformExperiment(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)

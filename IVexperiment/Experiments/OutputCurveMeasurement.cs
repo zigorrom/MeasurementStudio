@@ -115,52 +115,63 @@ namespace IVexperiment.Experiments
             var progressCalculator = new Func<int, int>((c) => (int)Math.Floor(step*c));
 
             var rand = new Random();
-
-            /////
-            ///// MOSFET simulation
-            /////
-            foreach (var GateVoltage in _gateSourceRangeHandler)
+            //MeasurementDataExporter
+            using (var ExperimentWriter = new MeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(WorkingDirectory))
             {
-                pauseToken.WaitWhilePausedAsync().Wait();
-                cancellationToken.ThrowIfCancellationRequested();
-
-                var mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("{0}_{1}", MeasurementName, MeasurementCount++), GateVoltage, "", MeasurementCount));
-                mea.SuspendUpdate();
-                mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
-                _vm.AddSeries(mea, GetGraphLineDescription("Vg", GateVoltage, "V"));
-                foreach (var DrainSourceVoltage in _drainSourceRangeHandler)
+                ExperimentWriter.OpenExperiment(ExperimentName);
+                
+                /////
+                ///// MOSFET simulation
+                /////
+                foreach (var GateVoltage in _gateSourceRangeHandler)
                 {
                     pauseToken.WaitWhilePausedAsync().Wait();
                     cancellationToken.ThrowIfCancellationRequested();
-                    if (count++ % exp == 0)
-                    {
-                        _vm.ExecuteInUIThread(() =>
-                        {
-                            mea.ResumeUpdate();
-                            mea.SuspendUpdate();
-                        });
-                    }
-                    var r = rand.NextDouble();
-                    mea.Add(new DrainSourceDataRow(DrainSourceVoltage, DrainCurrent(GateVoltage, DrainSourceVoltage), 0));
-                    //mea.Add(new DrainSourceDataRow(dsEnumerator.Current, (r + gEnumerator.Current) * Math.Pow(dsEnumerator.Current, 2), 0));// * Math.Log(dsEnumerator.Current), 0)); //
-                    progress.Report(new ExecutionReport { ExperimentExecutionStatus = ExecutionStatus.Running, ExperimentProgress = progressCalculator(counter++), ExperimentProgressMessage = "Experiment is running" });
 
-                    //_vm.ExecuteInUIThread(() => bgw.ReportProgress(progressCalculator(counter++)));
-                    System.Threading.Thread.Sleep(10);
+                    ExperimentWriter.OpenMeasurement(String.Format("{0}_{1}",MeasurementName,MeasurementCount));
+
+                    var mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("{0}_{1}", MeasurementName, MeasurementCount), GateVoltage, "", MeasurementCount));
+                    mea.SuspendUpdate();
+                    mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
+                    _vm.AddSeries(mea, GetGraphLineDescription("Vg", GateVoltage, "V"));
+                    foreach (var DrainSourceVoltage in _drainSourceRangeHandler)
+                    {
+                        pauseToken.WaitWhilePausedAsync().Wait();
+                        cancellationToken.ThrowIfCancellationRequested();
+                        if (count++ % exp == 0)
+                        {
+                            _vm.ExecuteInUIThread(() =>
+                            {
+                                mea.ResumeUpdate();
+                                mea.SuspendUpdate();
+                            });
+                        }
+                        var r = rand.NextDouble();
+                        mea.Add(new DrainSourceDataRow(DrainSourceVoltage, DrainCurrent(GateVoltage, DrainSourceVoltage), 0));
+                        //mea.Add(new DrainSourceDataRow(dsEnumerator.Current, (r + gEnumerator.Current) * Math.Pow(dsEnumerator.Current, 2), 0));// * Math.Log(dsEnumerator.Current), 0)); //
+                        progress.Report(new ExecutionReport { ExperimentExecutionStatus = ExecutionStatus.Running, ExperimentProgress = progressCalculator(counter++), ExperimentProgressMessage = "Experiment is running" });
+
+                        //_vm.ExecuteInUIThread(() => bgw.ReportProgress(progressCalculator(counter++)));
+                        System.Threading.Thread.Sleep(10);
+                    }
+                    _vm.ExecuteInUIThread(() => mea.ResumeUpdate());
+                    ExperimentWriter.WriteMeasurement(mea);
+                    //EnqueueData(mea, true);
+                    //_writer.Write(mea);
+                    MeasurementCount++;
                 }
-                _vm.ExecuteInUIThread(() => mea.ResumeUpdate());
-                //EnqueueData(mea, true);
-                //_writer.Write(mea);
-                _vm.MeasurementCount++;
+
+
+
             }
            
             
         }
 
-        protected override void InitializeWriter()
-        {
+        //protected override void InitializeWriter()
+        //{
             
-        }
+        //}
     }
 
 
