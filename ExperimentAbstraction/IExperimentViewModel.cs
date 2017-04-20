@@ -1,7 +1,7 @@
 ﻿using System;
 namespace ExperimentAbstraction
 {
-    public interface IExperimentViewModel
+    public interface IExperimentViewModel : IEnableControllableViewModel
     {
         //void AddSeries(Microsoft.Research.DynamicDataDisplay.DataSources.IPointDataSource Points, string Description);
         

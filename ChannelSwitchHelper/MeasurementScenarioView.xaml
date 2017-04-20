@@ -12,6 +12,8 @@
     <UserControl.Resources>
         <GridLength x:Key="GridHeight">20*</GridLength>
         <GridLength x:Key="GridColumnWidth">20*</GridLength>
+        
+        
         <Style TargetType="{x:Type Button}" x:Key="WindowButtonStyle">
             <Setter Property="Template">
                 <Setter.Value>

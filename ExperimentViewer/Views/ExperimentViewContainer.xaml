@@ -41,7 +41,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{DynamicResource CurrentStatusTextBoxWidth}"/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="{DynamicResource ControlButtonsPanelWidth}"/>
+            <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
