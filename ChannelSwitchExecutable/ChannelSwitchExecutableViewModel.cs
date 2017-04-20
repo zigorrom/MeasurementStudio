@@ -1,7 +1,10 @@
 ﻿using ExperimentAbstraction;
+using InstrumentHandlerNamespace;
+using Instruments;
 using Microsoft.TeamFoundation.MVVM;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -32,6 +35,12 @@ namespace ChannelSwitchExecutable
         }
         #endregion
 
+        
+        public ChannelSwitchExecutableViewModel()
+        {
+            _instrumentHandler = InstrumentHandler.Instance;
+        }
+
         public IExecutable Executable
         {
             get { throw new NotImplementedException(); }
@@ -54,7 +63,29 @@ namespace ChannelSwitchExecutable
                     //System.Windows.MessageBox.Show(String.Format("Button pressed {0}",button.Content));
                 }));//new RoutedUICommand("keyInput", "keyPressed", typeof(IMainViewModel)));
             }
-        } 
+        }
+
+        private InstrumentHandler _instrumentHandler;
+
+        public ObservableCollection<IInstrumentResourceItem> Resources
+        {
+            get
+            {
+                if (_instrumentHandler != null)
+                {
+                    return _instrumentHandler.Resources;
+                }
+                return null;
+            }
+        }
+
+        private IInstrumentResourceItem _drainInstrumentResource;
+
+        public IInstrumentResourceItem DrainInstrumentResource
+        {
+            get { return _drainInstrumentResource; }
+            set { SetField(ref _drainInstrumentResource, value, "DrainInstrumentResource"); }
+        }
 
     }
 }
