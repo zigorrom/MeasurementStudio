@@ -46,6 +46,8 @@ namespace ChannelSwitchExecutable
                 {
                     var button = (Button)b;
                     var channelNumber = int.Parse(button.Content.ToString());
+
+                    
                     //var task = new MeasurementChannelController(channelNumber);
                     //this.SelectedMeasurementChannels.Add(task);
 
