@@ -105,6 +105,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChannelSwitchExecutable\ChannelSwitchExecutable.csproj">
+      <Project>{aacc3712-0b48-4c2c-bb5a-8e60a940cf1f}</Project>
+      <Name>ChannelSwitchExecutable</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ExperimentAbstraction\ExperimentAbstraction.csproj">
       <Project>{f9ff4a13-f344-4422-8908-99292fae27ee}</Project>
       <Name>ExperimentAbstraction</Name>

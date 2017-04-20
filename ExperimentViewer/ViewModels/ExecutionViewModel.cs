@@ -1,4 +1,5 @@
-﻿using ExperimentAbstraction;
+﻿using ChannelSwitchExecutable;
+using ExperimentAbstraction;
 using ExperimentAbstraction.HelperExecutables.TimeDelay;
 using Helper.StartStopControl;
 using Helper.ViewModelInterface;
@@ -178,10 +179,12 @@ namespace ExperimentViewer.ViewModels
             Application.Current.Dispatcher.Invoke(action);
         }
         #endregion 
-#region ExperimentNames
+        
+        #region ExperimentNames
         private const string OUTPUT_IV = "Output I-V";
         private const string TRANSFER_IV = "Transfer I-V";
         private const string SCENARIO_EXPERIMENT= "Experiment scenario";
+        private const string CHANNEL_SWITCH = "Channel switch";
 
         private enum EXPERIMENT_NAME_ENUM
         {
@@ -190,7 +193,7 @@ namespace ExperimentViewer.ViewModels
             SCENARIO_EXPERIMENT
         }
 
-#endregion
+        #endregion
 
         public ExecutionViewModel()
         {
@@ -200,10 +203,10 @@ namespace ExperimentViewer.ViewModels
             _experimentList.Add(new ExperimentMenuItemViewModel(OUTPUT_IV, this));
             _experimentList.Add(new ExperimentMenuItemViewModel(TRANSFER_IV, this));
             _experimentList.Add(new ExperimentMenuItemViewModel(SCENARIO_EXPERIMENT, this));
-
+            _experimentList.Add(new ExperimentMenuItemViewModel(CHANNEL_SWITCH, this));
 
             experimentViewModels = new Dictionary<string, IExperimentViewModel>();
-
+            scenarioBuilderVM = new ScenarioBuilderViewModel();
             #region test manager
             //ExperimentExecutionManager = new SequentialTaskExecutionManager();
             ////ExperimentExecutionManager.Add(new testAction("test1"));
@@ -250,7 +253,7 @@ namespace ExperimentViewer.ViewModels
         }
 
         private Dictionary<string, IExperimentViewModel> experimentViewModels;
-
+        private ScenarioBuilderViewModel scenarioBuilderVM;
 
         private void InitEventHandlers()
         {
@@ -296,6 +299,11 @@ namespace ExperimentViewer.ViewModels
                 case TRANSFER_IV:
                     experimentVM = new TransfrerIVViewModel();
                     break;
+
+                case CHANNEL_SWITCH:
+                    experimentVM = new ChannelSwitchExecutableViewModel();
+                    break;
+
                 default:
                     experimentVM = null;
                     break;
@@ -309,35 +317,7 @@ namespace ExperimentViewer.ViewModels
             if (!experimentViewModels.TryGetValue(ExperimentName, out experimentVM))
                 experimentVM = GenerateViewModelFromExperimentname(ExperimentName);
             experimentViewModels[ExperimentName] = experimentVM;
-            //switch (ExperimentName)
-            //{
-            //    case OUTPUT_IV:
-            //        {
-            //            if (!experimentViewModels.TryGetValue(ExperimentName, out experimentVM))
-            //                experimentVM = new OutputIVViewModel();
-
-            //            //experimentVM = experimentViewModels.TryGetValue(ExperimentName, out experimentVM) ? experimentVM : new OutputIVViewModel();
-            //            //experimentVM = new OutputIVViewModel();
-            //            //experimentVM.GlobalIsEnabled = true;
-            //            //var executionManager = new SingleTaskExecutionManager();
-            //            //InitExecutionManagerEventHandlers(executionManager);
-            //            //executionManager.CurrentExecutable = experimentVM.IExperiment;
-            //            //ExecuteInUIThread(() => CurrentExperimentViewModel = experimentVM);
-            //            //ExperimentExecutionManager = executionManager;
-            //        }break;
-            //    case TRANSFER_IV:
-            //        {
-            //            experimentVM = new TransfrerIVViewModel();
-            //            //experimentVM.GlobalIsEnabled = true;
-            //            //var executionManager = new SingleTaskExecutionManager();
-            //            //InitExecutionManagerEventHandlers(executionManager);
-            //            //executionManager.CurrentExecutable = experimentVM.IExperiment;
-            //            //ExecuteInUIThread(() => CurrentExperimentViewModel = experimentVM);
-            //            //ExperimentExecutionManager = executionManager;
-            //        }break;
-            //    default:
-            //        return;    
-            //}
+            
             experimentVM.GlobalIsEnabled = true;
             var executionManager = new SingleTaskExecutionManager();
             InitExecutionManagerEventHandlers(executionManager);
@@ -349,7 +329,7 @@ namespace ExperimentViewer.ViewModels
 
         private void InitSequencialTaskExecution()
         {
-            var scenarioBuilderVM = new ScenarioBuilderViewModel();
+            //var scenarioBuilderVM = new ScenarioBuilderViewModel();
             var executionManager = new SequentialTaskExecutionManager();
             InitExecutionManagerEventHandlers(executionManager);
             ExecuteInUIThread(()=>CurrentExperimentViewModel = scenarioBuilderVM);
@@ -386,6 +366,7 @@ namespace ExperimentViewer.ViewModels
         {
             MessageHandler("ExperimentCompleted");
             ExperimentControlButtons.Reset();
+            ExecuteInUIThread(() => CurrentExperimentViewModel = scenarioBuilderVM);
             CurrentProgress = 0;
             CurrentStatus = String.Empty;
             ExperimentIsRunning = false;

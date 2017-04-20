@@ -50,6 +50,9 @@
       <DependentUpon>ChannelSwitchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScenarioChannelSwitchView.xaml.cs">
+      <DependentUpon>ScenarioChannelSwitchView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ExperimentAbstraction\ExperimentAbstraction.csproj">
@@ -67,6 +70,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="ChannelSwitchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScenarioChannelSwitchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

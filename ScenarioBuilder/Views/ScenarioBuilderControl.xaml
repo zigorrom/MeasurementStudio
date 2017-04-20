@@ -8,6 +8,7 @@
              xmlns:ivexpvm="clr-namespace:IVexperiment.ViewModels;assembly=IVexperiment"
              xmlns:ivexpv ="clr-namespace:IVexperiment.Views;assembly=IVexperiment"
              xmlns:TimeDelayVM="clr-namespace:ExperimentAbstraction.HelperExecutables.TimeDelay;assembly=ExperimentAbstraction"
+             xmlns:ChannelSwitchExecutable="clr-namespace:ChannelSwitchExecutable;assembly=ChannelSwitchExecutable"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type TimeDelayVM:TimeDelayExecutableViewModel}">
@@ -20,6 +21,10 @@
 
         <DataTemplate DataType="{x:Type ivexpvm:TransfrerIVViewModel}">
             <ivexpv:ScenarioIVSettingsView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ChannelSwitchExecutable:ChannelSwitchExecutableViewModel}">
+            <ChannelSwitchExecutable:ScenarioChannelSwitchView/>
         </DataTemplate>
         <!--<DataTemplate DataType="{x:Type localvm:AvailableExperimentItem}">
             <StackPanel>

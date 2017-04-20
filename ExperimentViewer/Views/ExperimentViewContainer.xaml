@@ -10,6 +10,7 @@
              xmlns:ivv ="clr-namespace:IVexperiment.Views;assembly=IVexperiment"
              xmlns:ScenarioView ="clr-namespace:ScenarioBuilder.Views;assembly=ScenarioBuilder"
              xmlns:ScenarioViewModel="clr-namespace:ScenarioBuilder.ViewModel;assembly=ScenarioBuilder"
+             xmlns:ChannelSwitchExecutable="clr-namespace:ChannelSwitchExecutable;assembly=ChannelSwitchExecutable"
              d:DesignHeight="444" d:DesignWidth="1089.6">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type StartStopControl:ControlButtonsViewModel}">
@@ -31,6 +32,11 @@
             <ivv:IVMainView/>
         </DataTemplate>
         
+        <DataTemplate DataType="{x:Type ChannelSwitchExecutable:ChannelSwitchExecutableViewModel}">
+            <ChannelSwitchExecutable:ChannelSwitchView/>
+        </DataTemplate>
+        
+       
         
         <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
         <GridLength x:Key="StatusStripHeight">40</GridLength>

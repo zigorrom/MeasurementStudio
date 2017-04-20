@@ -1,8 +1,11 @@
 ﻿using ExperimentAbstraction;
+using Instruments;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ChannelSwitchExecutable
@@ -11,84 +14,165 @@ namespace ChannelSwitchExecutable
     {
         public ChannelSwitchExecutable(ChannelSwitchExecutableViewModel viewModel)
         {
-
+            ChannelSwitchViewModel= viewModel;
+            Name = "Channel Switch executable";
         }
 
-        public void InitializeExperiment()
-        {
-            throw new NotImplementedException();
-        }
+        private ChannelSwitchExecutableViewModel ChannelSwitchViewModel { get; set; }
 
-        public void InitializeInstruments()
+        public void Execute(IProgress<ExecutionReport> progress, CancellationToken cancellationToken, PauseToken pauseToken)
         {
-            throw new NotImplementedException();
-        }
-
-        public void OwnInstruments()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ReleaseInstruments()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void FinalizeExperiment()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool SimulateExperiment
-        {
-            get
+            //ExecutionReport report = ExecutionReport.Empty;
+            InitializeExperiment();
+            
+            OnExecutionStarted(this, new EventArgs());
+            IsRunning = true;
+            Status = ExecutionStatus.Running;
+            OnStatusChanged(this, Status);
+            try
             {
-                throw new NotImplementedException();
+                HandleMessage(String.Format("Changing transistor from {0} to {1}", ChannelSwitchViewModel.PreviousChannel, ChannelSwitchViewModel.SelectedChannel));
+                //perform here hardware channel switch
             }
-            set
+            catch (OperationCanceledException e)
             {
-                throw new NotImplementedException();
+                Status = ExecutionStatus.Aborted;
+                HandleError(e);
+                OnExecutionAborted(this, new EventArgs());
+            }
+            catch (Exception e)
+            {
+                Status = ExecutionStatus.Failed;
+                HandleError(e);
+            }
+            finally
+            {
+                IsRunning = false;
+                OnStatusChanged(this, Status);
+                OnExecutionFinished(this, new EventArgs());
             }
         }
 
-        public object ViewModel
+        protected void HandleError(Exception e)
         {
-            get { throw new NotImplementedException(); }
+            ChannelSwitchViewModel.ErrorHandler(e);
+        }
+        protected void HandleMessage(string Message)
+        {
+            ChannelSwitchViewModel.MessageHandler(Message);
         }
 
-        public void Execute(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
+       public bool IsRunning
         {
-            throw new NotImplementedException();
-        }
-
-        public bool IsRunning
-        {
-            get { throw new NotImplementedException(); }
+            get;
+            private set;
         }
 
         public ExecutionStatus Status
         {
-            get { throw new NotImplementedException(); }
+            get;
+            private set;
         }
 
+        #region events
         public event EventHandler<ExecutionStatus> StatusChanged;
+        private void OnStatusChanged(object sender, ExecutionStatus status)
+        {
+            var handler = StatusChanged;
+            if (handler != null)
+            {
+                handler(sender, status);
+            }
+        }
 
         public event EventHandler ExecutionStarted;
 
-        public event EventHandler ExecutionAborted;
+        protected virtual void OnExecutionStarted(object sender, EventArgs e)
+        {
+            var handler = ExecutionStarted;
+            if (handler != null)
+                handler(sender, e);
+        }
 
-        public event System.ComponentModel.ProgressChangedEventHandler ProgressChanged;
+        public event EventHandler ExecutionAborted;
+        protected virtual void OnExecutionAborted(object sender, EventArgs e)
+        {
+            var handler = ExecutionAborted;
+            if (handler != null)
+                handler(sender, e);
+        }
+
+
+        public event ProgressChangedEventHandler ProgressChanged;
+        protected virtual void OnProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            var handler = ProgressChanged;
+            if (handler != null)
+                handler(sender, e);
+        }
 
         public event EventHandler ExecutionFinished;
+        protected virtual void OnExecutionFinished(object sender, EventArgs e)
+        {
+            var handler = ExecutionFinished;
+            if (handler != null)
+                handler(sender, e);
+        }
+        #endregion
+
+        public void InitializeExperiment()
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void InitializeInstruments()
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void OwnInstruments()
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void ReleaseInstruments()
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void FinalizeExperiment()
+        {
+            //throw new NotImplementedException();
+        }
+
+        public bool SimulateExperiment
+        {
+            get;
+            set;
+        }
+
+        public object ViewModel
+        {
+            get { return ChannelSwitchViewModel; }
+        }
 
         public string Name
         {
-            get { throw new NotImplementedException(); }
+            get;
+            private set;
+        }
+        public bool Equals(IInstrumentOwner other)
+        {
+            if (other.Name == Name)
+                if (Object.ReferenceEquals(this, other))
+                    return true;
+            return false;
+        }
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
         }
 
-        public bool Equals(Instruments.IInstrumentOwner other)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

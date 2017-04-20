@@ -1,4 +1,5 @@
-﻿using ExperimentAbstraction.HelperExecutables.TimeDelay;
+﻿using ChannelSwitchExecutable;
+using ExperimentAbstraction.HelperExecutables.TimeDelay;
 using IVexperiment.ViewModels;
 using Microsoft.TeamFoundation.MVVM;
 using System;
@@ -118,13 +119,13 @@ namespace ScenarioBuilder.ViewModel
 
         private void InitializeAvailableExperiments()
         {
-            var item = new AvailableExperimentItem<OutputIVViewModel>();
-            AvailableExperiments.Add(item);
-            ScenarioExperimentsList.Add(item.GenerateExperimentItem());
-            var item2 = new AvailableExperimentItem<TransfrerIVViewModel>();
-            AvailableExperiments.Add(item2);
-            ScenarioExperimentsList.Add(item2.GenerateExperimentItem());
+            AvailableExperiments.Add(new AvailableExperimentItem<OutputIVViewModel>());
+            //ScenarioExperimentsList.Add(item.GenerateExperimentItem());
+            AvailableExperiments.Add(new AvailableExperimentItem<TransfrerIVViewModel>());
+            //ScenarioExperimentsList.Add(item2.GenerateExperimentItem());
             AvailableExperiments.Add(new AvailableExperimentItem<TimeDelayExecutableViewModel>());
+
+            AvailableExperiments.Add(new AvailableExperimentItem<ChannelSwitchExecutableViewModel>());
 
         }
 
