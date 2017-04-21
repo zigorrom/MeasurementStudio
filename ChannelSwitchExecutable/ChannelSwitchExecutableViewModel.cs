@@ -95,11 +95,11 @@ namespace ChannelSwitchExecutable
             set { SetField(ref _previousChannel, value, "PreviousChannel"); }
         }
 
-        private Button PreviousButton
-        {
-            get;
-            set;
-        }
+        //private Button PreviousButton
+        //{
+        //    get;
+        //    set;
+        //}
 
         private void SwitchToChannel(int channel)
         {
@@ -120,7 +120,7 @@ namespace ChannelSwitchExecutable
                     var button = (Button)b;
                     var channelNumber = int.Parse(button.Content.ToString());
                     SwitchToChannel(channelNumber);
-                    MessageHandler(String.Format("{0}-->{1}", PreviousChannel, SelectedChannel));
+                    MessageHandler(String.Format("Switching to channel: {0}", SelectedChannel));
                 }));
             }
         }
