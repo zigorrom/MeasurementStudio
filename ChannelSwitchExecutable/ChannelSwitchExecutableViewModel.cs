@@ -21,6 +21,18 @@ namespace ChannelSwitchExecutable
         Pending,
         Done
     }
+    
+    public class ChannelSwitchEventArgs:EventArgs
+    {
+        public ChannelSwitchEventArgs(Button button, int channel)
+        {
+            PressedButton = button;
+            SelectedChannel = channel;
+        }
+        public Button PressedButton { get; private set; }
+        public int SelectedChannel { get; private set; }
+    }
+
     public class ChannelSwitchExecutableViewModel: INotifyPropertyChanged, IExecutableViewModel, IExperimentViewModel
     {
         #region PropertyEvents
@@ -45,7 +57,7 @@ namespace ChannelSwitchExecutable
         
         public ChannelSwitchExecutableViewModel()
         {
-            _instrumentHandler = InstrumentHandler.Instance;
+            //_instrumentHandler = InstrumentHandler.Instance;
             SelectedChannel = 1;
             PreviousChannel = 1;
             ChannelSwitchExperiment = new ChannelSwitchExecutable(this);
@@ -54,6 +66,18 @@ namespace ChannelSwitchExecutable
             //_defaultBrush = (SolidColorBrush)Resources["DefaultBrush"];
             //_OnBrush = Brushes.Green;
         }
+
+
+        public event EventHandler<ChannelSwitchEventArgs> ChannelSwitched;
+        public void OnChannelSwitched(object sender, ChannelSwitchEventArgs channel)
+        {
+            var handler = ChannelSwitched;
+            if(handler != null)
+            {
+                handler(sender, channel);
+            }
+        }
+
         internal ChannelExchangeStatusEnum ChannelExchangeStatus
         {
             get;
@@ -101,11 +125,16 @@ namespace ChannelSwitchExecutable
         //    set;
         //}
 
-        private void SwitchToChannel(int channel)
+        private void SwitchToChannel(Button pressedButton)
         {
+            var button = (Button)pressedButton;
+            var channelNumber = int.Parse(button.Content.ToString());
+
             PreviousChannel = SelectedChannel;
-            SelectedChannel = channel;
+            SelectedChannel = channelNumber;
             ChannelExchangeStatus = ChannelExchangeStatusEnum.Pending;
+            OnChannelSwitched(this, new ChannelSwitchEventArgs(button, channelNumber));
+
         }
 
         // when this command is called - means button was pressed and need to execute the channel switch experiment.
@@ -118,9 +147,7 @@ namespace ChannelSwitchExecutable
                 return _buttonPressed ?? (_buttonPressed = new RelayCommand((b) =>
                 {
                     var button = (Button)b;
-                    var channelNumber = int.Parse(button.Content.ToString());
-                    SwitchToChannel(channelNumber);
-                    MessageHandler(String.Format("Switching to channel: {0}", SelectedChannel));
+                    SwitchToChannel(button);
                 }));
             }
         }

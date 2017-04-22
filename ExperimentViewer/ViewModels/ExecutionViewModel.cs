@@ -276,7 +276,7 @@ namespace ExperimentViewer.ViewModels
 
         public void OpenExperiment(string ExperimentName)
         {
-            this.MessageHandler(ExperimentName);
+            //this.MessageHandler(ExperimentName);
             if(SCENARIO_EXPERIMENT!=ExperimentName)
             {
                 InitSingleTaskExecution(ExperimentName);

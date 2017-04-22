@@ -25,37 +25,29 @@ namespace ChannelSwitchExecutable
             InitializeComponent();
             _defaultBrush = (SolidColorBrush)Resources["DefaultBrush"];
             _OnBrush = Brushes.Green;
+            DataContextChanged += ChannelSwitchView_DataContextChanged;
         }
-
         private Button _currentButton;
         private SolidColorBrush _defaultBrush;
         private SolidColorBrush _OnBrush;
         private const int MAX_CHANNELS = 32;
         private object syncRoot = new object();
 
+        void ChannelSwitchView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var newDataContext = e.NewValue as ChannelSwitchExecutableViewModel;
+            if(newDataContext!= null)
+            {
+                newDataContext.ChannelSwitched += ChannelSwitched;
+            }
+        }
 
-        private void SwitchOnBackground(Button sender)
+        private void ChannelSwitched(object sender, ChannelSwitchEventArgs e)
         {
-            sender.Background = _OnBrush;
-        }
-        private void SwitchOffBackground(Button sender)
-        {
-            sender.Background = _defaultBrush;
-        }
-        private int ParseChannelNumber(Button sender)
-        {
-            var c = sender.Content.ToString();
-            var n = int.Parse(c);
-            if (n > MAX_CHANNELS || n < 0)
-                throw new Exception("Wrong channel number");
-            return n;
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var button = sender as Button;
+            var button = e.PressedButton as Button;
             if (button == null)
                 throw new Exception("Refferenced object is not button");
-            var N = ParseChannelNumber(button);
+            var N = e.SelectedChannel;
 
             lock (syncRoot)
             {
@@ -74,8 +66,19 @@ namespace ChannelSwitchExecutable
                     SwitchOnBackground(_currentButton);
                 }
             }
-
+            System.Threading.Thread.Sleep(1000);
         }
+
+        private void SwitchOnBackground(Button sender)
+        {
+            sender.Background = _OnBrush;
+        }
+        private void SwitchOffBackground(Button sender)
+        {
+            sender.Background = _defaultBrush;
+        }
+      
+  
 
     }
 }
