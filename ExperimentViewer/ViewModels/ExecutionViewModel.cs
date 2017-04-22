@@ -248,7 +248,7 @@ namespace ExperimentViewer.ViewModels
             GlobalIsEnabled = true;
             ExperimentIsRunning = false;
             ExperimentIsPaused = false;
-
+            OpenExperiment(SCENARIO_EXPERIMENT);
             //InitEventHandlers();
         }
 
