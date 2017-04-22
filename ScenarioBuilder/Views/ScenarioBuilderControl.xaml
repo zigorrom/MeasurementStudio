@@ -26,6 +26,26 @@
         <DataTemplate DataType="{x:Type ChannelSwitchExecutable:ChannelSwitchExecutableViewModel}">
             <ChannelSwitchExecutable:ScenarioChannelSwitchView/>
         </DataTemplate>
+        
+        <Style x:Key="ScenarioExperimentView" TargetType="{x:Type ListViewItem}">
+        	<Setter Property="Template">
+        		<Setter.Value>
+        			<ControlTemplate TargetType="{x:Type ListViewItem}">
+        				<Grid d:DesignWidth="313.8" Width="Auto">
+        					<Grid.ColumnDefinitions>
+        						<ColumnDefinition Width="*"/>
+        						<ColumnDefinition Width="Auto"/>
+        						<ColumnDefinition Width="Auto" MinWidth="17.077"/>
+        					</Grid.ColumnDefinitions>
+        					<Button Content="Edit" Grid.Column="1" VerticalAlignment="Stretch" Margin="3,3,1.69,3"/>
+                            <!--<Button Style="{StaticResource WindowButtonStyle}" Content="r" Grid.Column="1" Command="{Binding DataContext.RemoveItemPressed, ElementName=MeasurementChannelView}" CommandParameter="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}}" />-->
+        					<TextBlock HorizontalAlignment="Stretch" Height="Auto" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Center" Margin="3,9.52"/>
+                            <Button Content="X" Grid.Column="2" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Margin="3" />
+                        </Grid>
+        			</ControlTemplate>
+        		</Setter.Value>
+        	</Setter>
+        </Style>
         <!--<DataTemplate DataType="{x:Type localvm:AvailableExperimentItem}">
             <StackPanel>
                 <Label Content="{Binding Path=Name}"/>
@@ -44,20 +64,15 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="249*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="2" Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50*"/>
-                <ColumnDefinition Width="50*"/>
-            </Grid.ColumnDefinitions>
-            <Button Content="Remove" Margin="3" Command="{Binding RemoveFromScenarioCommand}" CommandParameter="{Binding ElementName=ScenarioList, Path=SelectedItems}"/>
-            <Button Content="RemoveAll" Grid.Column="1" Margin="3" Command="{Binding RemoveAllFromScenarioCommand}"/>
-        </Grid>
+        
+        <Button Grid.Row="3" Content="RemoveAll" Grid.Column="2" Margin="3" Command="{Binding RemoveAllFromScenarioCommand}" HorizontalAlignment="Left"/>
         <Grid Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="39*"/>
                 <RowDefinition Height="41*"/>
             </Grid.RowDefinitions>
             <Button Content="Add" Command="{Binding AddExperimentToScenarioCommand}" CommandParameter="{Binding ElementName=AvailableExperimentList, Path=SelectedItems}" Margin="3"/>
+            <Button Content="Remove" Command="{Binding RemoveFromScenarioCommand}" CommandParameter="{Binding SelectedItems, ElementName=ScenarioList}" Grid.Row="1" Margin="3"/>
         </Grid>
         <ListView x:Name="AvailableExperimentList" Grid.RowSpan="3"  ItemsSource="{Binding AvailableExperiments}" SelectionMode="Extended">
             <!--Margin="3"-->
@@ -90,7 +105,7 @@
 			</ListView.View>-->
 
         </ListView>
-        <ListView  x:Name="ScenarioList" Grid.Column="2" Grid.RowSpan="3" Margin="3" ItemsSource="{Binding ScenarioExperimentsList}" ItemContainerStyle="{DynamicResource ExpandableExperimentView}">
+        <ListView  x:Name="ScenarioList" Grid.Column="2" Grid.RowSpan="3" Margin="3" ItemsSource="{Binding ScenarioExperimentsList}" ItemContainerStyle="{DynamicResource ScenarioExperimentView}">
             <ListView.Resources>
                 <Style x:Key="ExpandableExperimentView" TargetType="{x:Type ListViewItem}">
                     <Setter Property="Template">
