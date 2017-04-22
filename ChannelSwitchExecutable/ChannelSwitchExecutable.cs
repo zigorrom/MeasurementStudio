@@ -31,7 +31,9 @@ namespace ChannelSwitchExecutable
             OnStatusChanged(this, Status);
             try
             {
-                HandleMessage(String.Format("Changing transistor from {0} to {1}", ChannelSwitchViewModel.PreviousChannel, ChannelSwitchViewModel.SelectedChannel));
+                //HandleMessage(String.Format("Changing transistor to {0}", ChannelSwitchViewModel.SelectedChannel));
+                ChannelSwitchViewModel.SwitchToChannel(ChannelSwitchViewModel.SelectedChannel);
+                Thread.Sleep(200);
                 //perform here hardware channel switch
             }
             catch (OperationCanceledException e)

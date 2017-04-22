@@ -1,4 +1,5 @@
 ﻿using ExperimentAbstraction;
+using Helper.ViewModelInterface;
 using InstrumentHandlerNamespace;
 using Instruments;
 using Microsoft.TeamFoundation.MVVM;
@@ -33,7 +34,7 @@ namespace ChannelSwitchExecutable
         public int SelectedChannel { get; private set; }
     }
 
-    public class ChannelSwitchExecutableViewModel: INotifyPropertyChanged, IExecutableViewModel, IExperimentViewModel
+    public class ChannelSwitchExecutableViewModel : INotifyPropertyChanged, IExecutableViewModel, IExperimentViewModel, IUIThreadExecutableViewModel
     {
         #region PropertyEvents
 
@@ -124,6 +125,13 @@ namespace ChannelSwitchExecutable
         //    get;
         //    set;
         //}
+        public void SwitchToChannel(int channel)
+        {
+            PreviousChannel = SelectedChannel;
+            SelectedChannel = channel;
+            ChannelExchangeStatus = ChannelExchangeStatusEnum.Pending;
+            ExecuteInUIThread(()=>OnChannelSwitched(this, new ChannelSwitchEventArgs(null, SelectedChannel)));
+        }
 
         private void SwitchToChannel(Button pressedButton)
         {
@@ -133,7 +141,7 @@ namespace ChannelSwitchExecutable
             PreviousChannel = SelectedChannel;
             SelectedChannel = channelNumber;
             ChannelExchangeStatus = ChannelExchangeStatusEnum.Pending;
-            OnChannelSwitched(this, new ChannelSwitchEventArgs(button, channelNumber));
+            ExecuteInUIThread(()=>OnChannelSwitched(this, new ChannelSwitchEventArgs(button, channelNumber)));
 
         }
 
@@ -254,6 +262,16 @@ namespace ChannelSwitchExecutable
         {
             get;
             set;
+        }
+
+        public void ExecuteInUIThread(Action action)
+        {
+            Application.Current.Dispatcher.Invoke(action);
+        }
+
+        public async Task ExecuteInUIThreadAsync(Action action)
+        {
+            await Application.Current.Dispatcher.BeginInvoke(action, null);
         }
     }
 }
