@@ -2,6 +2,7 @@
 using ExperimentAbstraction.HelperExecutables.TimeDelay;
 using IVexperiment.ViewModels;
 using Microsoft.TeamFoundation.MVVM;
+using ScenarioBuilder.Views;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -204,7 +205,7 @@ namespace ScenarioBuilder.ViewModel
 
         private void EditScenarioItem(object item)
         {
-            var wnd = new Window() { DataContext = item };
+            var wnd = new EditDialogWindow() { Content = item };
             wnd.Show();
             //EditItemWindow.ShowDialog();
         }

@@ -1,0 +1,30 @@
+﻿<Window x:Class="ScenarioBuilder.Views.EditDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ivexpvm="clr-namespace:IVexperiment.ViewModels;assembly=IVexperiment"
+        xmlns:ivexpv ="clr-namespace:IVexperiment.Views;assembly=IVexperiment"
+        xmlns:TimeDelayVM="clr-namespace:ExperimentAbstraction.HelperExecutables.TimeDelay;assembly=ExperimentAbstraction"
+        xmlns:ChannelSwitchExecutable="clr-namespace:ChannelSwitchExecutable;assembly=ChannelSwitchExecutable"
+        Title="EditDialogWindow" Height="300" Width="300">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type TimeDelayVM:TimeDelayExecutableViewModel}">
+            <TimeDelayVM:ScenarioDelaySettingsView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ivexpvm:OutputIVViewModel}">
+            <ivexpv:ScenarioIVSettingsView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ivexpvm:TransfrerIVViewModel}">
+            <ivexpv:ScenarioIVSettingsView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ChannelSwitchExecutable:ChannelSwitchExecutableViewModel}">
+            <ChannelSwitchExecutable:ScenarioChannelSwitchView/>
+        </DataTemplate>
+
+    </Window.Resources>
+    <Grid>
+        
+    </Grid>
+</Window>
