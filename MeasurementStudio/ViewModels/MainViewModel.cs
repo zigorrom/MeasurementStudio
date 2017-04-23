@@ -144,6 +144,7 @@ namespace MeasurementStudio
         {
             
             _current = PagesEnum.Home;
+            var handler = InstrumentHandlerNamespace.InstrumentHandler.Instance;
             //SwitchToExperiment(_current);
 
             //StartWebApiHost();
