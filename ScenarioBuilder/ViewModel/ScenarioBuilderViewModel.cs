@@ -205,7 +205,8 @@ namespace ScenarioBuilder.ViewModel
 
         private void EditScenarioItem(object item)
         {
-            var wnd = new EditDialogWindow() { Content = item };
+            var vm = ((IExperimentItem)item).ViewModel;
+            var wnd = new EditDialogWindow() { Content = vm};
             wnd.Show();
             //EditItemWindow.ShowDialog();
         }
