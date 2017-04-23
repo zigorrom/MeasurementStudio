@@ -5,7 +5,7 @@
         xmlns:ivexpv ="clr-namespace:IVexperiment.Views;assembly=IVexperiment"
         xmlns:TimeDelayVM="clr-namespace:ExperimentAbstraction.HelperExecutables.TimeDelay;assembly=ExperimentAbstraction"
         xmlns:ChannelSwitchExecutable="clr-namespace:ChannelSwitchExecutable;assembly=ChannelSwitchExecutable"
-        Title="EditDialogWindow" Height="300" Width="300">
+        Title="EditDialogWindow" SizeToContent="WidthAndHeight" MinWidth="200" MinHeight="100">
     <Window.Resources>
         <DataTemplate DataType="{x:Type TimeDelayVM:TimeDelayExecutableViewModel}">
             <TimeDelayVM:ScenarioDelaySettingsView/>
