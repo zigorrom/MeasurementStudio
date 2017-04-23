@@ -373,9 +373,10 @@
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="Auto" MinWidth="17.077"/>
                                     </Grid.ColumnDefinitions>
-                                    <Button Content="Edit" Grid.Column="1" VerticalAlignment="Stretch" Margin="3,3,1.69,3"/>
+                                    
                                     <!--<Button Style="{StaticResource WindowButtonStyle}" Content="r" Grid.Column="1" Command="{Binding DataContext.RemoveItemPressed, ElementName=MeasurementChannelView}" CommandParameter="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}}" />-->
                                     <TextBlock HorizontalAlignment="Stretch" Height="Auto" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Center" Margin="3,9.52"/>
+                                    <Button Content="Edit" Grid.Column="1" VerticalAlignment="Stretch" Margin="3,3,1.69,3" Command="{Binding DataContext.EditScenarioItemCommand, ElementName=ScenarioList}" CommandParameter="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}}"/>
                                     <Button Content="X" Grid.Column="2" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Margin="3" Command="{Binding DataContext.RemoveItemFromScenario, ElementName=ScenarioList}" CommandParameter="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}}" />
                                 </Grid>
                             </ControlTemplate>

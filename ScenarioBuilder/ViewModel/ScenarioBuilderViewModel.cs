@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ScenarioBuilder.ViewModel
@@ -114,8 +115,11 @@ namespace ScenarioBuilder.ViewModel
         {
             AvailableExperiments = new ObservableCollection<AvailableExperimentItem>();
             ScenarioExperimentsList = new ObservableCollection<IExperimentItem>();
+            //EditItemWindow = new Window();
             InitializeAvailableExperiments();    
         }
+
+        //private Window EditItemWindow { get; set; }
 
         private void InitializeAvailableExperiments()
         {
@@ -191,8 +195,19 @@ namespace ScenarioBuilder.ViewModel
 
         }
 
+        private ICommand _editScenarioItemCommand;
 
+        public ICommand EditScenarioItemCommand
+        {
+            get { return _editScenarioItemCommand ?? (_editScenarioItemCommand = new RelayCommand((i) => EditScenarioItem(i))); }
+        }
 
+        private void EditScenarioItem(object item)
+        {
+            var wnd = new Window() { DataContext = item };
+            wnd.Show();
+            //EditItemWindow.ShowDialog();
+        }
 
     }
 }
