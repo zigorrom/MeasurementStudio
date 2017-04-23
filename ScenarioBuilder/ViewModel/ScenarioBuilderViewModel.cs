@@ -2,6 +2,7 @@
 using ExperimentAbstraction.HelperExecutables.TimeDelay;
 using IVexperiment.ViewModels;
 using Microsoft.TeamFoundation.MVVM;
+using Microsoft.Win32;
 using ScenarioBuilder.Views;
 using System;
 using System.Collections;
@@ -209,6 +210,26 @@ namespace ScenarioBuilder.ViewModel
             var wnd = new EditDialogWindow() { Content = vm};
             wnd.Show();
             //EditItemWindow.ShowDialog();
+        }
+
+        private ICommand _saveCommand;
+        public ICommand SaveCommand
+        {
+            get { return _saveCommand??(_saveCommand = new RelayCommand(()=>SaveScenario()));}
+        }
+
+        private void SaveScenario()
+        {
+            var sfd = new SaveFileDialog();
+            var result = sfd.ShowDialog();
+            if (!result.HasValue)
+                return;
+            if ((bool)result)
+            {
+                MessageBox.Show("Saving");
+            }
+
+
         }
 
     }

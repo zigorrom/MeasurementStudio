@@ -52,6 +52,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Menu HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Open" Command="{Binding Path=CurrentPageViewModel.OpenCommand}"/>
+                <MenuItem Header="Save" Command="{Binding Path=CurrentPageViewModel.SaveCommand}"/>
+            </MenuItem>
             <MenuItem Header="View">
                 <MenuItem Header="Home Page" Command="{Binding SelectExperiment}" CommandParameter ="{x:Static local:PagesEnum.Home}"/>
                 <MenuItem Header="IV-OutputCurve" Command="{Binding SelectExperiment}" CommandParameter="{x:Static local:PagesEnum.IVOutput}"/>
