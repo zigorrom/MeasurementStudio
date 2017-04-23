@@ -176,6 +176,21 @@ namespace ScenarioBuilder.ViewModel
 
         }
 
+        private ICommand _removeItemFromScenarioCommand;
+
+        public ICommand RemoveItemFromScenario
+        {
+            get { return _removeItemFromScenarioCommand ?? (_removeItemFromScenarioCommand = new RelayCommand((i) => RemoveItemFromScenarioList(i))); }
+        }
+
+        private void RemoveItemFromScenarioList(object SelectedItem)
+        {
+            var item = SelectedItem as IExperimentItem;
+            if (item != null)
+                ScenarioExperimentsList.Remove(item);
+
+        }
+
 
     }
 }
