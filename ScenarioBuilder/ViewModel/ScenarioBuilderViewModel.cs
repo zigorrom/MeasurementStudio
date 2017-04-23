@@ -168,7 +168,7 @@ namespace ScenarioBuilder.ViewModel
         private void RemoveExperimentFromScenario(object SelectedList)
         {
             System.Diagnostics.Debug.WriteLine(SelectedList.GetType());
-            var list = ((IList)SelectedList).Cast<IExperimentItem>();
+            var list = ((IList)SelectedList).Cast<IExperimentItem>().ToList();
             foreach (var item in list)
             {
                 ScenarioExperimentsList.Remove(item);
