@@ -30,6 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ChannelSwitchLibrary">
+      <HintPath>..\ThirdPartyLibs\MeasurementChannelSwitch\ChannelSwitchLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="CommandMessenger">
+      <HintPath>..\ThirdPartyLibs\MeasurementChannelSwitch\CommandMessenger.dll</HintPath>
+    </Reference>
+    <Reference Include="CommandMessenger.Transport.Serial">
+      <HintPath>..\ThirdPartyLibs\MeasurementChannelSwitch\CommandMessenger.Transport.Serial.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.TeamFoundation.Controls, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
