@@ -27,7 +27,74 @@ namespace IVexperiment.Experiments
 
         protected override void PerformExperiment(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
         {
-            
+            int exp = 10;//_dsRangeHandler.Range.PointsCount / 100 ;
+            //exp = exp > 0 ? exp : 1;
+            var count = 0;
+
+            var maxCount = _gateSourceRangeHandler.TotalPoints * _drainSourceRangeHandler.TotalPoints;
+            var step = 100.0 / maxCount;
+            var counter = 0;
+
+            var progressCalculator = new Func<int, int>((c) => (int)Math.Floor(step * c));
+
+            var rand = new Random();
+            //MeasurementDataExporter
+            using (var ExperimentWriter = new MeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(WorkingDirectory))
+            {
+                ExperimentWriter.OpenExperiment(ExperimentName);
+
+                _drainKeithley.SwitchOn();
+                _gateKeithley.SwitchOn();
+
+                /////
+                ///// MOSFET simulation
+                /////
+                foreach (var GateVoltage in _gateSourceRangeHandler)
+                {
+                    pauseToken.WaitWhilePausedAsync().Wait();
+                    cancellationToken.ThrowIfCancellationRequested();
+                    ExperimentWriter.OpenMeasurement(String.Format("{0}_{1}", MeasurementName, MeasurementCount));
+                    
+                    _gateKeithley.SetSourceVoltage(GateVoltage);
+                    var mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("{0}_{1}", MeasurementName, MeasurementCount), GateVoltage, "", MeasurementCount));
+                    mea.SuspendUpdate();
+                    mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
+                    _vm.AddSeries(mea, GetGraphLineDescription("Vg", GateVoltage, "V"));
+                    foreach (var DrainSourceVoltage in _drainSourceRangeHandler)
+                    {
+                        pauseToken.WaitWhilePausedAsync().Wait();
+                        cancellationToken.ThrowIfCancellationRequested();
+                        _drainKeithley.SetSourceVoltage(DrainSourceVoltage);
+
+                        if (count++ % exp == 0)
+                        {
+                            _vm.ExecuteInUIThread(() =>
+                            {
+                                mea.ResumeUpdate();
+                                mea.SuspendUpdate();
+                            });
+                        }
+                        //var r = rand.NextDouble();
+                        //var drainSourceValues = _drainKeithley
+                        //mea.Add(new DrainSourceDataRow())
+                        //mea.Add(new DrainSourceDataRow(DrainSourceVoltage, DrainCurrent(GateVoltage, DrainSourceVoltage), 0));
+                        //mea.Add(new DrainSourceDataRow(dsEnumerator.Current, (r + gEnumerator.Current) * Math.Pow(dsEnumerator.Current, 2), 0));// * Math.Log(dsEnumerator.Current), 0)); //
+                        progress.Report(new ExecutionReport { ExperimentExecutionStatus = ExecutionStatus.Running, ExperimentProgress = progressCalculator(counter++), ExperimentProgressMessage = "Experiment is running" });
+
+                        //_vm.ExecuteInUIThread(() => bgw.ReportProgress(progressCalculator(counter++)));
+                        System.Threading.Thread.Sleep(10);
+                    }
+                    _vm.ExecuteInUIThread(() => mea.ResumeUpdate());
+                    ExperimentWriter.WriteMeasurement(mea);
+                    //EnqueueData(mea, true);
+                    //_writer.Write(mea);
+                    MeasurementCount++;
+                }
+
+                _drainKeithley.SwitchOff();
+                _gateKeithley.SwitchOff();
+
+            }
             //bool StopExperiment = false;
             //int refreshEvery = 10;
             //var count = 0;

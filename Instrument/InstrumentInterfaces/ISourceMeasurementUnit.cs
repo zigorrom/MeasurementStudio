@@ -20,5 +20,6 @@ namespace InstrumentAbstraction.InstrumentInterfaces
         double MeasureCurrent(int NumberOfAverages, double TimeDelay);
         double MeasureResistance(double valueThroughTheStrusture, int NumberOfAverages, double TimeDelay, SourceMode sourceMode);
         double MeasurePower(double valueThroughTheStrusture, int NumberOfAverages, double TimeDelay, SourceMode sourceMode);
+        bool MeasureAll(out double voltage, out double current, out double resistance);
     }
 }
