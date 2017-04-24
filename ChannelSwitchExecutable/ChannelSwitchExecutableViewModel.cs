@@ -58,7 +58,7 @@ namespace ChannelSwitchExecutable
         
         public ChannelSwitchExecutableViewModel()
         {
-            //_instrumentHandler = InstrumentHandler.Instance;
+            _instrumentHandler = InstrumentHandler.Instance;
             SelectedChannel = 1;
             PreviousChannel = 1;
             ChannelSwitchExperiment = new ChannelSwitchExecutable(this);
