@@ -137,14 +137,13 @@
     <None Include="Resources\layout2.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="NewFolder1\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\ChannelSwitchLibrary\ChannelSwitchLibrary.csproj">
       <Project>{30206ed1-530d-4eae-9895-7d6e2f49c79f}</Project>
       <Name>ChannelSwitchLibrary</Name>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
