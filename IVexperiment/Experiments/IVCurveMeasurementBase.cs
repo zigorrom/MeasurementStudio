@@ -26,7 +26,7 @@ namespace IVexperiment.Experiments
         //protected string _experimentName;
         //protected string _measurementName;
         //protected int _measurementCount;
-        protected IInstrumentResourceItem _drainIntrumentResource;
+        protected IInstrumentResourceItem _drainInstrumentResource;
         protected IInstrumentResourceItem _gateInstrumentResource;
 
 
@@ -70,7 +70,7 @@ namespace IVexperiment.Experiments
             _settings = _vm.IVSettingsViewModel;
             //_measurementScenario = _settings.ScenarioViewModel;
 
-            _drainIntrumentResource = _settings.DrainInstrumentResource;
+            _drainInstrumentResource = _settings.DrainInstrumentResource;
             _gateInstrumentResource = _settings.GateInstrumentResource;
 
             SimulateExperiment = _settings.SimulationMode;
@@ -105,7 +105,7 @@ namespace IVexperiment.Experiments
             //_gateKeithley = gatek.Channel;
             //_gateKeithley.Initialize(gateIO);
             
-            _drainKeithley = new Keithley24xx("Keithley 2400", "drainKeithley", _drainIntrumentResource.Resource);
+            _drainKeithley = new Keithley24xx("Keithley 2400", "drainKeithley", _drainInstrumentResource.Resource);
             _gateKeithley = new Keithley24xx("Keithley 2400", "gateKeithley", _gateInstrumentResource.Resource);
             ////_drainKeithley = new Keithley2430Channel(new VisaDevice(_drainIntrumentResource.Resource));
             ////_gateKeithley = new Keithley2430Channel(new VisaDevice(_gateInstrumentResource.Resource));
@@ -207,10 +207,10 @@ namespace IVexperiment.Experiments
                 throw new ArgumentNullException("Gate source range is not set");
             if (!SimulateExperiment)
             {
-                if (_drainIntrumentResource == null)
+                if (_drainInstrumentResource == null)
                     throw new ArgumentNullException("Drain instrument resource was not set");
 
-                if (_gateKeithley == null)
+                if (_gateInstrumentResource == null)
                     throw new ArgumentNullException("Gate instrument resource was not set");
             }
         }

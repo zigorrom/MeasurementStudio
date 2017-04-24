@@ -138,7 +138,7 @@ namespace Keithley24xxNamespace
             switch (speed)
             {
                 case MeasurementSpeed.Fast:
-                    return StringFormat(CommandFormat, func, "MIN0");
+                    return StringFormat(CommandFormat, func, "MIN");
                 case MeasurementSpeed.Middle:
                     return StringFormat(CommandFormat, func, "DEF");
                 case MeasurementSpeed.Slow:
