@@ -38,6 +38,8 @@ namespace IVexperiment.Experiments
             var progressCalculator = new Func<int, int>((c) => (int)Math.Floor(step * c));
 
             var rand = new Random();
+
+            double measGateVoltage=0, measGateCurrent=0, measDrainVoltage=0, measDrainCurrent =0, resistance =0;
             //MeasurementDataExporter
             using (var ExperimentWriter = new MeasurementDataExporter<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(WorkingDirectory))
             {
@@ -56,6 +58,7 @@ namespace IVexperiment.Experiments
                     ExperimentWriter.OpenMeasurement(String.Format("{0}_{1}", MeasurementName, MeasurementCount));
                     
                     _gateKeithley.SetSourceVoltage(GateVoltage);
+
                     var mea = new MeasurementData<DrainSourceMeasurmentInfoRow, DrainSourceDataRow>(new DrainSourceMeasurmentInfoRow(String.Format("{0}_{1}", MeasurementName, MeasurementCount), GateVoltage, "", MeasurementCount));
                     mea.SuspendUpdate();
                     mea.SetXYMapping(x => new Point(x.DrainSourceVoltage, x.DrainCurrent));
@@ -77,7 +80,10 @@ namespace IVexperiment.Experiments
                         //var r = rand.NextDouble();
                         //var drainSourceValues = _drainKeithley
                         //mea.Add(new DrainSourceDataRow())
-                        //mea.Add(new DrainSourceDataRow(DrainSourceVoltage, DrainCurrent(GateVoltage, DrainSourceVoltage), 0));
+                        _gateKeithley.MeasureAll(out measGateVoltage, out measGateCurrent, out resistance);
+                        _drainKeithley.MeasureAll(out measDrainVoltage, out measDrainCurrent, out resistance);
+
+                        mea.Add(new DrainSourceDataRow(measDrainVoltage, measDrainCurrent, measGateCurrent));
                         //mea.Add(new DrainSourceDataRow(dsEnumerator.Current, (r + gEnumerator.Current) * Math.Pow(dsEnumerator.Current, 2), 0));// * Math.Log(dsEnumerator.Current), 0)); //
                         progress.Report(new ExecutionReport { ExperimentExecutionStatus = ExecutionStatus.Running, ExperimentProgress = progressCalculator(counter++), ExperimentProgressMessage = "Experiment is running" });
 
