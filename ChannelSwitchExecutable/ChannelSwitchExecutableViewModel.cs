@@ -62,12 +62,15 @@ namespace ChannelSwitchExecutable
             SelectedChannel = 1;
             PreviousChannel = 1;
             ChannelSwitchExperiment = new ChannelSwitchExecutable(this);
+            _executionManager = new SingleTaskExecutionManager();
+            _executionManager.CurrentExecutable = ChannelSwitchExperiment;
             ChannelExchangeStatus = ChannelExchangeStatusEnum.Done;
 
             //_defaultBrush = (SolidColorBrush)Resources["DefaultBrush"];
             //_OnBrush = Brushes.Green;
         }
 
+        SingleTaskExecutionManager _executionManager;
 
         public event EventHandler<ChannelSwitchEventArgs> ChannelSwitched;
         public void OnChannelSwitched(object sender, ChannelSwitchEventArgs channel)
@@ -156,6 +159,7 @@ namespace ChannelSwitchExecutable
                 {
                     var button = (Button)b;
                     SwitchToChannel(button);
+                    _executionManager.Start();
                 }));
             }
         }

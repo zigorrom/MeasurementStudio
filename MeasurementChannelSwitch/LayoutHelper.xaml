@@ -1,0 +1,10 @@
+﻿<Window x:Class="MeasurementChannelSwitch.LayoutHelper"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="LayoutHelper" Height="300" Width="300">
+    <Grid>
+        <Grid.OpacityMask>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/layout1.PNG"/>
+        </Grid.OpacityMask>
+    </Grid>
+</Window>

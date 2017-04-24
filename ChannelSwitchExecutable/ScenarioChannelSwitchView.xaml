@@ -5,8 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <ComboBox x:Name="ChannelSelectorComboBox" SelectedItem="{Binding SelectedChannel}" VerticalAlignment="Center"/>
+    <UserControl.Resources>
+        <DataTemplate x:Key="ResourceTemplate">
+            <TextBlock Text="{Binding Resource}"/>
+        </DataTemplate>
+    </UserControl.Resources>
+    <StackPanel>
+        <ComboBox x:Name="InstrumentResource" Margin="3" ItemTemplate="{StaticResource ResourceTemplate}" ItemsSource="{Binding Resources}"  SelectedItem="{Binding InstrumentResource}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <ComboBox x:Name="ChannelSelectorComboBox" Margin="3" SelectedItem="{Binding SelectedChannel}" VerticalAlignment="Center"/>
 
-    </Grid>
+    </StackPanel>
 </UserControl>
