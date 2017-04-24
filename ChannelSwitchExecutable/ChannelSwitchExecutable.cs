@@ -42,6 +42,7 @@ namespace ChannelSwitchExecutable
                     {
                         sw.Switch(i, false);
                     }
+
                     sw.Switch((short)ChannelSwitchViewModel.SelectedChannel, true);
                 }
                 Thread.Sleep(200);
