@@ -35,10 +35,6 @@
     <Reference Include="DynamicDataDisplay">
       <HintPath>..\ThirdPartyLibs\DynamicDataDisplay\DynamicDataDisplay.dll</HintPath>
     </Reference>
-    <Reference Include="Keithley24xx, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Instrument\Components\Keithley24xx.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.TeamFoundation.Controls, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
@@ -151,6 +147,10 @@
     <ProjectReference Include="..\Instrument\Instruments.csproj">
       <Project>{0b56f789-4a97-4cf6-81e7-da41a40a5761}</Project>
       <Name>Instruments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Keithley24xx\Keithley24xx.csproj">
+      <Project>{79334cce-6c21-489f-8762-ae357fec3991}</Project>
+      <Name>Keithley24xx</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -37,8 +37,8 @@ namespace IVexperiment.Experiments
 
         //protected Keithley24xx _gate_Keithley;
 
-        protected ISourceMeasurementUnit _drainKeithley;
-        protected ISourceMeasurementUnit _gateKeithley;
+        protected Keithley24xx _drainKeithley;
+        protected Keithley24xx _gateKeithley;
 
         protected IVexpSettingsViewModel _settings;
         //protected MeasurementScenarioModel _measurementScenario;
@@ -134,13 +134,17 @@ namespace IVexperiment.Experiments
             //    default:
             //        throw new ArgumentException("NPLC not set");
             //}
+            var speed = (Keithley24xxNamespace.MeasurementSpeed)_settings.MeasurementSpeed;
 
+            _drainKeithley.SetSpeed(speed);
+            _gateKeithley.SetSpeed(speed);
             //_drainKeithley.SetNPLC(npls);
             //_gateKeithley.SetNPLC(npls);
 
 
             //_drainKeithley.SetAveraging(_settings.DeviceAveraging);
             //_gateKeithley.SetAveraging(_settings.DeviceAveraging);
+            
 
             //if(_settings.PulseMode)
             //{
@@ -152,7 +156,8 @@ namespace IVexperiment.Experiments
             //{
             //    _drainKeithley.SMU_ShapeMode = ShapeMode.DC;
             //}
-
+            _drainKeithley.SetCurrentLimit(_settings.CurrentCompliance);
+            _gateKeithley.SetCurrentLimit(_settings.CurrentCompliance);
             //_drainKeithley.SetCompliance(SourceMode.Voltage, _settings.CurrentCompliance);
             //_gateKeithley.SetCompliance(SourceMode.Voltage, _settings.CurrentCompliance);
 

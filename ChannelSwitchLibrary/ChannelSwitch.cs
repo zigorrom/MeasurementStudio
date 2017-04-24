@@ -121,7 +121,7 @@ namespace ChannelSwitchLibrary
             if (String.IsNullOrEmpty(PortName))
                 _transport = new SerialTransport { CurrentSerialSettings = { DtrEnable = false } };
             else
-                _transport = new SerialTransport { CurrentSerialSettings = { PortName = PortName } };
+                _transport = new SerialTransport { CurrentSerialSettings = { PortName = PortName  } };
 
             _cmdMessenger = new CmdMessenger(_transport, BoardType.Bit16) { PrintLfCr = false };
             _cmdMessenger.NewLineReceived += _cmdMessenger_NewLineReceived;

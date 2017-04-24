@@ -7,8 +7,8 @@ namespace Keithley24xxNamespace
 {
     public enum MeasurementSpeed
     {
-        Fast,
-        Middle,
-        Slow
+        Fast=2,
+        Middle=1,
+        Slow=0
     }
 }
