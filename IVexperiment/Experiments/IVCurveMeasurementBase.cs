@@ -33,7 +33,7 @@ namespace IVexperiment.Experiments
         protected AbstractDoubleRangeHandler _drainSourceRangeHandler;
         protected AbstractDoubleRangeHandler _gateSourceRangeHandler;
 
-       
+        protected int RefreshPoints { get; set; } 
 
         //protected Keithley24xx _gate_Keithley;
 
@@ -52,6 +52,7 @@ namespace IVexperiment.Experiments
             : base(Name)
         {
             _vm = viewModel;
+            RefreshPoints = 2;
         }
         
         public override void InitializeExperiment()

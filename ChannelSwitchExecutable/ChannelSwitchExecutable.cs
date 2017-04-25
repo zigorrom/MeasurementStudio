@@ -1,4 +1,5 @@
-﻿using ExperimentAbstraction;
+﻿using ChannelSwitchLibrary;
+using ExperimentAbstraction;
 using Instruments;
 using System;
 using System.Collections.Generic;
@@ -32,19 +33,29 @@ namespace ChannelSwitchExecutable
             try
             {
                 //HandleMessage(String.Format("Changing transistor to {0}", ChannelSwitchViewModel.SelectedChannel));
-                ChannelSwitchViewModel.SwitchToChannel(ChannelSwitchViewModel.SelectedChannel);
-                ChannelSwitchLibrary.ChannelSwitch sw = new ChannelSwitchLibrary.ChannelSwitch();
-                sw.Initialize(ChannelSwitchViewModel.InstrumentResource.Resource);
-                if(sw.Initialized)
-                {
-                    //need to implement the memory of state
-                    for (short i = 0; i < 32; i++)
-                    {
-                        sw.Switch(i, false);
-                    }
+                //ChannelSwitchViewModel.SwitchToChannel(ChannelSwitchViewModel.SelectedChannel);
+                var channelSwitch = new SyncronousChannelSwitch();
+                channelSwitch.Setup();//ChannelSwitchViewModel.InstrumentResource.Resource);
 
-                    sw.Switch((short)ChannelSwitchViewModel.SelectedChannel, true);
+                for (short i = 0; i < 32; i++)
+                {
+                    while (channelSwitch.RunLoop) channelSwitch.SwitchToChannel(i, false);
                 }
+
+                while (channelSwitch.RunLoop) channelSwitch.SwitchToChannel((short)ChannelSwitchViewModel.SelectedChannel, true);
+                channelSwitch.Exit();
+                //ChannelSwitchLibrary.ChannelSwitch sw = new ChannelSwitchLibrary.ChannelSwitch();
+                //sw.Initialize(ChannelSwitchViewModel.InstrumentResource.Resource);
+                //if(sw.Initialized)
+                //{
+                //    //need to implement the memory of state
+                //    for (short i = 0; i < 32; i++)
+                //    {
+                //        sw.Switch(i, false);
+                //    }
+
+                //    sw.Switch((short)ChannelSwitchViewModel.SelectedChannel, true);
+                //}
                 Thread.Sleep(200);
                 //perform here hardware channel switch
             }

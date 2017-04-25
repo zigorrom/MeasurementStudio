@@ -32,7 +32,7 @@ namespace IVexperiment.Experiments
             //((IEnableControllableViewModel)ViewModel).GlobalIsEnabled = false;
             //OnExecutionStarted(this, EventArgs.Empty);
 
-            int exp = 10;//_dsRangeHandler.Range.PointsCount / 100 ;
+            int exp = RefreshPoints;//_dsRangeHandler.Range.PointsCount / 100 ;
             //exp = exp > 0 ? exp : 1;
             var count = 0;
 

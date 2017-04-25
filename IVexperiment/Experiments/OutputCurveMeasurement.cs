@@ -27,7 +27,7 @@ namespace IVexperiment.Experiments
 
         protected override void PerformExperiment(IProgress<ExecutionReport> progress, System.Threading.CancellationToken cancellationToken, PauseToken pauseToken)
         {
-            int exp = 10;//_dsRangeHandler.Range.PointsCount / 100 ;
+            int exp = RefreshPoints;//_dsRangeHandler.Range.PointsCount / 100 ;
             //exp = exp > 0 ? exp : 1;
             var count = 0;
 
