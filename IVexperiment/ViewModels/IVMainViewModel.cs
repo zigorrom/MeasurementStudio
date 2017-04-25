@@ -53,23 +53,23 @@ namespace IVexperiment
             
         }
 
-        private RangeViewModel _drainSourceRangeViewModel;
-        public RangeViewModel DrainSourceRangeViewModel
+        private VoltageRangeViewModel _drainSourceRangeViewModel;
+        public VoltageRangeViewModel DrainSourceRangeViewModel
         {
             get { return _drainSourceRangeViewModel; }
             set { _drainSourceRangeViewModel = value; }
         }
 
-        private RangeViewModel _gateSourceRangeViewModel;
+        private VoltageRangeViewModel _gateSourceRangeViewModel;
 
-        public RangeViewModel GateSourceRangeViewModel
+        public VoltageRangeViewModel GateSourceRangeViewModel
         {
             get { return _gateSourceRangeViewModel; }
             set { _gateSourceRangeViewModel = value; }
         }
 
         public IVexpSettingsViewModel IVSettingsViewModel { get; set; }
-        protected abstract void SetRangeViewModels(out RangeViewModel DrainSourceRangeViewModel, out RangeViewModel GateSourceRangeViewModel);
+        protected abstract void SetRangeViewModels(out VoltageRangeViewModel DrainSourceRangeViewModel, out VoltageRangeViewModel GateSourceRangeViewModel);
         protected abstract void SetVisualization(out D3VisualizationViewModel visualVM);
         
         

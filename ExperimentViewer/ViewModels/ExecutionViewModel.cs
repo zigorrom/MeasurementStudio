@@ -298,14 +298,24 @@ namespace ExperimentViewer.ViewModels
 
         private void SerializeUsedViewModelsToFile()
         {
-            foreach (var item in experimentViewModels)
+            ExecuteInUIThread(() =>
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(item.Value.GetType());
-                using (var writer = new StreamWriter(String.Format(LastUsedFileSerializationFormat, item.Key)))
+                foreach (var item in experimentViewModels)
                 {
-                    xmlSerializer.Serialize(writer, item.Value);
+                    try
+                    {
+                        XmlSerializer xmlSerializer = new XmlSerializer(item.Value.GetType());
+                        using (var writer = new StreamWriter(String.Format(LastUsedFileSerializationFormat, item.Key)))
+                        {
+                            xmlSerializer.Serialize(writer, item.Value);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
                 }
-            }
+            });
         }
 
         private const string LastUsedFileSerializationFormat = "vm_{0}.xml";
@@ -348,7 +358,7 @@ namespace ExperimentViewer.ViewModels
                 }
             }catch(Exception e)
             {
-                
+                return false;   
             }
             return true ;
         }

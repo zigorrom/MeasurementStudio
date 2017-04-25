@@ -15,9 +15,9 @@ namespace IVexperiment
     public interface ICurrentVoltageMeasurementViewModel : IUIThreadExecutableViewModel, IEnableControllableViewModel//, IExperimentViewModel
     {
         void AddSeries(IPointDataSource Points, string Description);
-        RangeViewModel DrainSourceRangeViewModel { get; set; }
+        VoltageRangeViewModel DrainSourceRangeViewModel { get; set; }
         IVexpSettingsViewModel IVSettingsViewModel { get; set; }
-        RangeViewModel GateSourceRangeViewModel { get; set; }
+        VoltageRangeViewModel GateSourceRangeViewModel { get; set; }
         D3VisualizationViewModel Visualization { get; }
         string ExperimentName { get; set; }
         int MeasurementCount { get; set; }

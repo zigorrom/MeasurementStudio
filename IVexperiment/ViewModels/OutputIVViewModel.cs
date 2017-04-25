@@ -74,10 +74,12 @@ namespace IVexperiment.ViewModels
                 StrokeThickness = 10
             };
         }
-        protected override void SetRangeViewModels(out RangeViewModel DrainSourceRangeViewModel, out RangeViewModel GateSourceRangeViewModel)
+        protected override void SetRangeViewModels(out VoltageRangeViewModel DrainSourceRangeViewModel, out VoltageRangeViewModel GateSourceRangeViewModel)
         {
-            DrainSourceRangeViewModel = new RangeViewModel("Drain-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
-            GateSourceRangeViewModel = new RangeViewModel("Gate-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
+            DrainSourceRangeViewModel = new VoltageRangeViewModel() { RangeName = "Drain-Source Voltage Range" };
+            GateSourceRangeViewModel = new VoltageRangeViewModel() { RangeName = "Gate-Source Voltage Range" };
+            //DrainSourceRangeViewModel = new RangeViewModel("Drain-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
+            //GateSourceRangeViewModel = new RangeViewModel("Gate-Source Voltage Range", new Voltage(), new Voltage(), new Voltage());
         }
 
        

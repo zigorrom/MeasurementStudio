@@ -9,6 +9,7 @@ using System.Windows;
 
 namespace Helper.Ranges.DoubleRange
 {
+    
     public abstract class DoubleUnitValueDependencyObject : DependencyObject//, INotifyPropertyChanged
     {
         private string m_UnitName;

@@ -11,6 +11,7 @@ using System.Windows.Data;
 
 namespace Helper.Ranges.SimpleRangeControl
 {
+    [Serializable]
     public class RangeViewModel:INotifyPropertyChanged
     {
         private DoubleUnitValueDependencyObject m_Start;
@@ -137,7 +138,7 @@ namespace Helper.Ranges.SimpleRangeControl
         public DoubleUnitValueDependencyObject Start
         {
             get { return m_Start; }
-            private set
+            private set //public 
             {
                 SetField(ref m_Start, value, StartName);
                 //if (m_Start == value)
@@ -150,7 +151,7 @@ namespace Helper.Ranges.SimpleRangeControl
         public DoubleUnitValueDependencyObject End
         {
             get { return m_End; }
-            private set
+            private set//private 
             {
                 SetField(ref m_End, value, EndName);
                 //if (m_End == value)
@@ -163,7 +164,7 @@ namespace Helper.Ranges.SimpleRangeControl
         public DoubleUnitValueDependencyObject Step
         {
             get { return m_Step; }
-            private set
+            private set //private 
             {
                 //if (m_Step== value)
                 //    return;

@@ -143,6 +143,10 @@ namespace Helper.Ranges.RangeHandlers
 
         public abstract IEnumerator<double> GetEnumerator();
         
+        public void Add(object val)
+        {
+            // blank method, used for serialization
+        }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {

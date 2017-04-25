@@ -13,9 +13,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Xml.Serialization;
 
 namespace IVexperiment.ViewModels
 {
+    [Serializable]
     public class IVexpSettingsViewModel:INotifyPropertyChanged
     {
         #region PropertyEvents
@@ -41,9 +43,9 @@ namespace IVexperiment.ViewModels
         public IVexpSettingsViewModel()
         {
             _instrumentHandler = InstrumentHandler.Instance;
-            _scenarioView = new MeasurementScenarioView();
-            _scenarioViewModel = new MeasurementScenarioModel();
-            _scenarioView.DataContext = _scenarioViewModel;
+            //_scenarioView = new MeasurementScenarioView();
+            //_scenarioViewModel = new MeasurementScenarioModel();
+            //_scenarioView.DataContext = _scenarioViewModel;
 
             //_scenarioWindow = new Window();
             //_scenarioWindow.Content = _scenarioView;
@@ -51,35 +53,36 @@ namespace IVexperiment.ViewModels
            
         }
 
-        private Window _scenarioWindow;
-        private MeasurementScenarioView _scenarioView;
+        //private Window _scenarioWindow;
+        //private MeasurementScenarioView _scenarioView;
 
 
-        private MeasurementScenarioModel _scenarioViewModel;
+        //private MeasurementScenarioModel _scenarioViewModel;
 
-        public MeasurementScenarioModel ScenarioViewModel
-        {
-            get { return _scenarioViewModel; }
-            set { _scenarioViewModel = value; }
-        }
+        //public MeasurementScenarioModel ScenarioViewModel
+        //{
+        //    get { return _scenarioViewModel; }
+        //    set { _scenarioViewModel = value; }
+        //}
 
-        private ICommand _openScenarioCommand;
-        public ICommand OpenScenarioCommand
-        {
-            get
-            {
-                return _openScenarioCommand ?? (_openScenarioCommand = new RelayCommand((b) =>
-                {
-                    _scenarioWindow = new Window();
-                    _scenarioWindow.Content = _scenarioView;
-                    _scenarioWindow.ShowDialog();
-                }));//new RoutedUICommand("keyInput", "keyPressed", typeof(IMainViewModel)));
-            }
-        }
+        //private ICommand _openScenarioCommand;
+        //public ICommand OpenScenarioCommand
+        //{
+        //    get
+        //    {
+        //        return _openScenarioCommand ?? (_openScenarioCommand = new RelayCommand((b) =>
+        //        {
+        //            _scenarioWindow = new Window();
+        //            _scenarioWindow.Content = _scenarioView;
+        //            _scenarioWindow.ShowDialog();
+        //        }));//new RoutedUICommand("keyInput", "keyPressed", typeof(IMainViewModel)));
+        //    }
+        //}
 
 
         private InstrumentHandler _instrumentHandler;
 
+        [XmlIgnoreAttribute]
         public ObservableCollection<IInstrumentResourceItem> Resources
         {
             get
@@ -93,7 +96,7 @@ namespace IVexperiment.ViewModels
         }
 
         private IInstrumentResourceItem _drainInstrumentResource;
-
+        [XmlIgnoreAttribute]
         public IInstrumentResourceItem DrainInstrumentResource
         {
             get { return _drainInstrumentResource; }
@@ -101,7 +104,7 @@ namespace IVexperiment.ViewModels
         }
 
         private IInstrumentResourceItem _gateInstrumentResource;
-
+        [XmlIgnoreAttribute]
         public IInstrumentResourceItem GateInstrumentResource
         {
             get { return _gateInstrumentResource; }

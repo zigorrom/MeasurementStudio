@@ -87,6 +87,7 @@
       <DependentUpon>SimpleValueRow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ranges\SimpleRangeControl\RangeViewModel.cs" />
+    <Compile Include="Ranges\SimpleRangeControl\VoltageRangeViewModel.cs" />
     <Compile Include="Ranges\Units\AbstractUnitConverter.cs" />
     <Compile Include="Ranges\Units\UnitPrefixes.cs" />
     <Compile Include="Ranges\Units\VoltageUnitConverter.cs" />
