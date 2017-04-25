@@ -15,6 +15,9 @@ namespace ExperimentAbstraction.ViewModels
     using Microsoft.TeamFoundation.MVVM;
     using System.Windows;
     using System.Windows.Input;
+    using System.Xml.Serialization;
+    
+    [Serializable()]
     public abstract class NewAbstractExperimentViewModel<ExperimentType> : INotifyPropertyChanged, IUIThreadExecutableViewModel, IEnableControllableViewModel, IExperimentViewModel, IExecutableViewModel
         where ExperimentType: INewExperiment
     {
@@ -44,6 +47,7 @@ namespace ExperimentAbstraction.ViewModels
 
         private ExperimentType _experiment;
 
+         [XmlIgnoreAttribute]
         public ExperimentType Experiment
         {
             get { return _experiment; }

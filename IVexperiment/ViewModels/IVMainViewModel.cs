@@ -11,11 +11,12 @@ using Helper.NewExperimentWindow;
 using ExperimentAbstraction.ViewModels;
 using ExperimentAbstraction;
 using Helper.ViewModelInterface;
+using System.Xml.Serialization;
 
 
 namespace IVexperiment
 {
-    
+    [Serializable()]
     public abstract class IVMainViewModel<ExperimentType> : NewAbstractExperimentViewModel<ExperimentType>, ICurrentVoltageMeasurementViewModel
         where ExperimentType:INewExperiment
     {
@@ -30,6 +31,7 @@ namespace IVexperiment
 
 
         private D3VisualizationViewModel m_Visualization;
+        [XmlIgnoreAttribute]
         public D3VisualizationViewModel Visualization
         {
             get { return m_Visualization; }

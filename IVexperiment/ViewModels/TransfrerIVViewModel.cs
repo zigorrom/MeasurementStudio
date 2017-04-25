@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace IVexperiment.ViewModels
 {
+    [Serializable()]
     public sealed class TransfrerIVViewModel:IVMainViewModel<TransferCurveMeasurement>
     {
         public TransfrerIVViewModel()

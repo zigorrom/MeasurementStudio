@@ -19,7 +19,7 @@ namespace MeasurementStudio
         {
             System.Diagnostics.Debug.WriteLine(e.Exception.Message);
             MessageBox.Show("Ooooops... Something went wrong", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
+         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {

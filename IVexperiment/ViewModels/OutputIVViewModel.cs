@@ -28,7 +28,7 @@ namespace IVexperiment.ViewModels
     //    }
 
     //}
-
+    [Serializable()]
     public sealed class OutputIVViewModel:IVMainViewModel<OutputCurveMeasurement>
     {
         public OutputIVViewModel():base()

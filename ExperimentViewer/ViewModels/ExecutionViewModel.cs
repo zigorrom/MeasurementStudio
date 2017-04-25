@@ -9,11 +9,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Xml.Serialization;
 
 namespace ExperimentViewer.ViewModels
 {
@@ -249,11 +251,17 @@ namespace ExperimentViewer.ViewModels
             ExperimentIsRunning = false;
             ExperimentIsPaused = false;
             OpenExperiment(SCENARIO_EXPERIMENT);
+
             //InitEventHandlers();
+        }
+        ~ExecutionViewModel()
+        {
+            SerializeUsedViewModelsToFile();
         }
 
         private Dictionary<string, IExperimentViewModel> experimentViewModels;
         private ScenarioBuilderViewModel scenarioBuilderVM;
+        private string PreviousExperiment { get; set; }
 
         private void InitEventHandlers()
         {
@@ -277,6 +285,7 @@ namespace ExperimentViewer.ViewModels
         public void OpenExperiment(string ExperimentName)
         {
             //this.MessageHandler(ExperimentName);
+            PreviousExperiment = ExperimentName;
             if(SCENARIO_EXPERIMENT!=ExperimentName)
             {
                 InitSingleTaskExecution(ExperimentName);
@@ -287,27 +296,93 @@ namespace ExperimentViewer.ViewModels
             }
         }
 
-        private IExperimentViewModel GenerateViewModelFromExperimentname(string ExperimentName)
+        private void SerializeUsedViewModelsToFile()
         {
-            IExperimentViewModel experimentVM;
+            foreach (var item in experimentViewModels)
+            {
+                XmlSerializer xmlSerializer = new XmlSerializer(item.Value.GetType());
+                using (var writer = new StreamWriter(String.Format(LastUsedFileSerializationFormat, item.Key)))
+                {
+                    xmlSerializer.Serialize(writer, item.Value);
+                }
+            }
+        }
+
+        private const string LastUsedFileSerializationFormat = "vm_{0}.xml";
+
+        private bool GetViewModelTypeFromExperimentName(out Type experimentType, string ExperimentName)
+        {
             switch (ExperimentName)
             {
                 case OUTPUT_IV:
-                    experimentVM = new OutputIVViewModel();
+                    experimentType = typeof(OutputIVViewModel);
                     break;
 
                 case TRANSFER_IV:
-                    experimentVM = new TransfrerIVViewModel();
+                    experimentType = typeof(TransfrerIVViewModel);
                     break;
 
                 case CHANNEL_SWITCH:
-                    experimentVM = new ChannelSwitchExecutableViewModel();
+                    experimentType = typeof(ChannelSwitchExecutableViewModel);
                     break;
 
                 default:
-                    experimentVM = null;
-                    break;
+                    experimentType = null;
+                    return false;
             }
+            return true;
+        }
+
+        private bool TryGetLastViewModelFromFile(out IExperimentViewModel experimentVM, string ExperimentName)
+        {
+            experimentVM = null;
+            Type experimentType = null;
+            if (!GetViewModelTypeFromExperimentName(out experimentType, ExperimentName))
+                return false;
+            try
+            {
+                XmlSerializer xmlSerializer = new XmlSerializer(experimentType);
+                using (var reader = new StreamReader(String.Format(LastUsedFileSerializationFormat, ExperimentName)))
+                {
+                    experimentVM = (IExperimentViewModel)xmlSerializer.Deserialize(reader);
+                }
+            }catch(Exception e)
+            {
+                
+            }
+            return true ;
+        }
+
+        private IExperimentViewModel GenerateViewModelFromExperimentname(string ExperimentName)
+        {
+            IExperimentViewModel experimentVM;
+            if (TryGetLastViewModelFromFile(out experimentVM, ExperimentName))
+                return experimentVM;
+
+            Type experimentType = null;
+            if (GetViewModelTypeFromExperimentName(out experimentType, ExperimentName))
+                return (IExperimentViewModel)Activator.CreateInstance(experimentType);
+
+            //if (GetViewModelTypeFromExperimentName()) 
+
+            //switch (ExperimentName)
+            //{
+            //    case OUTPUT_IV:
+            //        experimentVM = new OutputIVViewModel();
+            //        break;
+
+            //    case TRANSFER_IV:
+            //        experimentVM = new TransfrerIVViewModel();
+            //        break;
+
+            //    case CHANNEL_SWITCH:
+            //        experimentVM = new ChannelSwitchExecutableViewModel();
+            //        break;
+
+            //    default:
+            //        experimentVM = null;
+            //        break;
+            //}
             return experimentVM;
         }
 
@@ -366,7 +441,12 @@ namespace ExperimentViewer.ViewModels
         {
             MessageHandler("ExperimentCompleted");
             ExperimentControlButtons.Reset();
-            ExecuteInUIThread(() => CurrentExperimentViewModel = scenarioBuilderVM);
+
+            IExperimentViewModel experimentVM;
+            if (experimentViewModels.TryGetValue(PreviousExperiment, out experimentVM))
+                ExecuteInUIThread(() => CurrentExperimentViewModel = experimentVM);    
+
+            
             CurrentProgress = 0;
             CurrentStatus = String.Empty;
             ExperimentIsRunning = false;
