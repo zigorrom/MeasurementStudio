@@ -144,8 +144,9 @@ namespace ExperimentAbstraction
             {
                 IsRunning = false;
                 OnStatusChanged(this,Status);
-                ReleaseInstruments();
                 FinalizeExperiment();
+                ReleaseInstruments();
+                
                 OnExecutionFinished(this, new EventArgs());
             }
         }

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ChannelSwitch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SyncronousChannelSwitch.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommandMessenger.Transport.Serial\CommandMessenger.Transport.Serial.csproj">

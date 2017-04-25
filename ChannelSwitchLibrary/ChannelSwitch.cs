@@ -36,6 +36,8 @@ namespace ChannelSwitchLibrary
         }
     }
 
+
+
     public class ChannelSwitch
     {
         public event EventHandler ConnectionEstablished;
@@ -121,7 +123,7 @@ namespace ChannelSwitchLibrary
             if (String.IsNullOrEmpty(PortName))
                 _transport = new SerialTransport { CurrentSerialSettings = { DtrEnable = false } };
             else
-                _transport = new SerialTransport { CurrentSerialSettings = { PortName = PortName  } };
+                _transport = new SerialTransport { CurrentSerialSettings = { PortName = PortName , BaudRate=115200 ,  DtrEnable = false } };
 
             _cmdMessenger = new CmdMessenger(_transport, BoardType.Bit16) { PrintLfCr = false };
             _cmdMessenger.NewLineReceived += _cmdMessenger_NewLineReceived;

@@ -187,7 +187,12 @@ namespace IVexperiment.Experiments
 
         }
 
-        
+        public override void FinalizeExperiment()
+        {
+            base.FinalizeExperiment();
+            _drainKeithley.SwitchOff();
+            _gateKeithley.SwitchOff();
+        }
 
         public override void OwnInstruments()
         {
