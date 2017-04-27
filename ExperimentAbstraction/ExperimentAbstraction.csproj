@@ -60,6 +60,7 @@
     <Compile Include="HelperExecutables\TimeDelay\TimeDelayExecutableViewModel.cs" />
     <Compile Include="IExecutableViewModel.cs" />
     <Compile Include="IExecutionManager.cs" />
+    <Compile Include="IExperimentDataContext.cs" />
     <Compile Include="IExperimentViewModel.cs" />
     <Compile Include="SingleTaskExecutionManager.cs" />
     <Compile Include="ViewModels\AbstractExperimentViewModel.cs" />

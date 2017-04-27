@@ -277,5 +277,21 @@ namespace ChannelSwitchExecutable
         {
             await Application.Current.Dispatcher.BeginInvoke(action, null);
         }
+
+
+        public ICommand CreateNewExperiment
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public ICommand SelectWorkingDirectory
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public ICommand OpenWorkingDirectory
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

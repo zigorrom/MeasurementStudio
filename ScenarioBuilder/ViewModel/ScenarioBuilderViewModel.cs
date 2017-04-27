@@ -1,4 +1,5 @@
 ﻿using ChannelSwitchExecutable;
+using ExperimentAbstraction;
 using ExperimentAbstraction.HelperExecutables.TimeDelay;
 using IVexperiment.ViewModels;
 using Microsoft.TeamFoundation.MVVM;
@@ -80,15 +81,15 @@ namespace ScenarioBuilder.ViewModel
             //return  Activator.CreateInstance(expType);
         }
 
+
+
     }
     public class AvailableExperimentItem<ExperimentType>:AvailableExperimentItem
         where ExperimentType:class, new()
     {
-        public AvailableExperimentItem():base(typeof(ExperimentType))
-        {
-            
-        }
+        public AvailableExperimentItem() : base(typeof(ExperimentType)) { }
 
+        public AvailableExperimentItem(string Name) : base(typeof(ExperimentType), Name) { }
     }
 
     
@@ -117,6 +118,7 @@ namespace ScenarioBuilder.ViewModel
         {
             AvailableExperiments = new ObservableCollection<AvailableExperimentItem>();
             ScenarioExperimentsList = new ObservableCollection<IExperimentItem>();
+            ExperimentDataContext = new ScenarioExperimentDataContext();
             //EditItemWindow = new Window();
             InitializeAvailableExperiments();    
         }
@@ -125,19 +127,19 @@ namespace ScenarioBuilder.ViewModel
 
         private void InitializeAvailableExperiments()
         {
-            AvailableExperiments.Add(new AvailableExperimentItem<OutputIVViewModel>());
+            AvailableExperiments.Add(new AvailableExperimentItem<OutputIVViewModel>("Output characteristic"));
             //ScenarioExperimentsList.Add(item.GenerateExperimentItem());
-            AvailableExperiments.Add(new AvailableExperimentItem<TransfrerIVViewModel>());
+            AvailableExperiments.Add(new AvailableExperimentItem<TransfrerIVViewModel>("Transfer characteristic"));
             //ScenarioExperimentsList.Add(item2.GenerateExperimentItem());
-            AvailableExperiments.Add(new AvailableExperimentItem<TimeDelayExecutableViewModel>());
+            AvailableExperiments.Add(new AvailableExperimentItem<TimeDelayExecutableViewModel>("Time delay"));
 
-            AvailableExperiments.Add(new AvailableExperimentItem<ChannelSwitchExecutableViewModel>());
+            AvailableExperiments.Add(new AvailableExperimentItem<ChannelSwitchExecutableViewModel>("Channel switch"));
 
         }
 
         public ObservableCollection<AvailableExperimentItem> AvailableExperiments { get; private set; }
         public ObservableCollection<IExperimentItem> ScenarioExperimentsList { get; private set; }
-
+        public ScenarioExperimentDataContext ExperimentDataContext { get; private set; }
 
         private ICommand _addExperimentToScenario;
 
@@ -152,7 +154,13 @@ namespace ScenarioBuilder.ViewModel
             var list = ((IList)SelectedList).Cast<IAvailableExperimentItem>();
             foreach (var item in list)
             {
-                ScenarioExperimentsList.Add(item.GenerateExperimentItem());
+                var experimentItem = item.GenerateExperimentItem();
+                var experimentVM = experimentItem as IExperimentDataContextAcceptor;
+                if(null!=experimentVM)
+                {
+                    experimentVM.ExperimentDataContext = this.ExperimentDataContext;
+                }
+                ScenarioExperimentsList.Add(experimentItem);
             }
 
         }

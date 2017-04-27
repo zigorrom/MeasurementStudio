@@ -103,7 +103,7 @@
             </Grid.RowDefinitions>
 
             <Grid  VerticalAlignment="Top">
-               <ExperimentWorkingDirectory:SaveControl Grid.Column="1"/>
+                <ExperimentWorkingDirectory:SaveControl DataContext="{Binding ExperimentDataContext}" Grid.Column="1"/>
             </Grid>
             <ListView Grid.Row="1" x:Name="AvailableExperimentList"  ItemsSource="{Binding AvailableExperiments}" SelectionMode="Extended">
                 <!--Margin="3"-->

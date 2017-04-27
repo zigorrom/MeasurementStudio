@@ -10,34 +10,34 @@ using System.Threading.Tasks;
 namespace ExperimentAbstraction.ViewModels
 {
     using ExperimentAbstraction;
-    
+    using Helper.AbstractPropertyChangedClass;
     using Helper.NewExperimentWindow;
     using Microsoft.TeamFoundation.MVVM;
     using System.Windows;
     using System.Windows.Input;
     using System.Xml.Serialization;
-    
-    [Serializable()]
-    public abstract class NewAbstractExperimentViewModel<ExperimentType> : INotifyPropertyChanged, IUIThreadExecutableViewModel, IEnableControllableViewModel, IExperimentViewModel, IExecutableViewModel
-        where ExperimentType: INewExperiment
-    {
-        #region PropertyEvents
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected bool SetField<ST>(ref ST field, ST value, string propertyName)
-        {
-            if (EqualityComparer<ST>.Default.Equals(field, value))
-                return false;
-            field = value;
-            OnPropertyChanged(propertyName);
-            return true;
-        }
-        private void OnPropertyChanged(string PropertyName)
-        {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(PropertyName));
-        }
+    [Serializable()]
+    public abstract class NewAbstractExperimentViewModel<ExperimentType> : AbstractNotifyPropertyChangedClass, INotifyPropertyChanged, IUIThreadExecutableViewModel, IEnableControllableViewModel, IExperimentViewModel, IExecutableViewModel, IExperimentDataContextAcceptor
+        where ExperimentType : INewExperiment
+    {
+        #region PropertyEvents Inherited from AbstractNotifyPropertyChangedClass
+        // Inherited from AbstractNotifyPropertyChangedClass
+        //public event PropertyChangedEventHandler PropertyChanged;
+        //protected bool SetField<ST>(ref ST field, ST value, string propertyName)
+        //{
+        //    if (EqualityComparer<ST>.Default.Equals(field, value))
+        //        return false;
+        //    field = value;
+        //    OnPropertyChanged(propertyName);
+        //    return true;
+        //}
+        //private void OnPropertyChanged(string PropertyName)
+        //{   
+        //    var handler = PropertyChanged;
+        //    if (handler != null)
+        //        handler(this, new PropertyChangedEventArgs(PropertyName));
+        //}
         #endregion
 
         public NewAbstractExperimentViewModel()
@@ -45,9 +45,11 @@ namespace ExperimentAbstraction.ViewModels
             InitExperiment(out _experiment);
         }
 
+        // Maybe use the ExperimentDataContext event in order to define actions which sould be used 
+
         private ExperimentType _experiment;
 
-         [XmlIgnoreAttribute]
+        [XmlIgnoreAttribute]
         public ExperimentType Experiment
         {
             get { return _experiment; }
@@ -85,32 +87,118 @@ namespace ExperimentAbstraction.ViewModels
             }
         }
 
+        private bool SetExperimentDataContextProperty(object value, object target, string PropertyName)
+        {
+            if (UseExperimentDataContext)
+            {
+                try
+                {
+                    if (target != null)
+                    {
+                        var prop = target.GetType().GetProperty(PropertyName);
+                        prop.SetValue(target, value);
+                        return true;
+                    }
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        private bool GetExperimentDataContextProperty<T>(object target, out T value, string PropertyName)
+        {
+            value = default(T);
+            if (UseExperimentDataContext)
+                if (target != null)
+                {
+                    try
+                    {
+                        var prop = target.GetType().GetProperty(PropertyName);
+                        value = (T)prop.GetValue(target);
+                        return true;
+                    }
+                    catch (Exception e)
+                    {
+                        return false;
+                    }
+                }
+            return false;
+
+        }
+
         private string _experimentName;
+        private const string ExperimentNamePropertyName = "ExperimentName";
         public string ExperimentName
         {
-            get { return _experimentName; }
-            set { SetField(ref _experimentName, value, "ExperimentName"); }
+            get
+            {
+                string temp;
+                if (GetExperimentDataContextProperty<string>(ExperimentDataContext, out temp, ExperimentNamePropertyName))
+                    return temp;
+                return _experimentName;
+            }
+            set
+            {
+                if (!SetExperimentDataContextProperty(value, ExperimentDataContext, ExperimentNamePropertyName))
+                    SetField(ref _experimentName, value, ExperimentNamePropertyName);
+            }
         }
 
         private string _measurementName;
+        private const string MeasurementNamePropertyName = "MeasurementName";
         public string MeasurementName
         {
-            get { return _measurementName; }
-            set { SetField(ref _measurementName, value, "MeasurementName"); }
+            get
+            {
+                string temp;
+                if (GetExperimentDataContextProperty<string>(ExperimentDataContext, out temp, MeasurementNamePropertyName))
+                    return temp;
+                return _measurementName;
+            }
+            set
+            {
+                if (!SetExperimentDataContextProperty(value, ExperimentDataContext, MeasurementNamePropertyName))
+                    SetField(ref _measurementName, value, MeasurementNamePropertyName);
+            }
         }
 
         private string _workingDirectory;
+        private const string WorkingDirectoryPropertyName = "WorkingDirectory";
         public string WorkingDirectory
         {
-            get { return _workingDirectory; }
-            set { SetField(ref _workingDirectory, value, "WorkingDirectory"); }
+            get
+            {
+                string temp;
+                if (GetExperimentDataContextProperty<string>(ExperimentDataContext, out temp, WorkingDirectoryPropertyName))
+                    return temp;
+                return _workingDirectory;
+            }
+            set
+            {
+                if (!SetExperimentDataContextProperty(value, ExperimentDataContext, WorkingDirectoryPropertyName))
+                    SetField(ref _workingDirectory, value, WorkingDirectoryPropertyName);
+            }
         }
 
         private int _measurementCount;
+        private const string MeasurementCountPropertyName = "MeasurementCount";
         public int MeasurementCount
         {
-            get { return _measurementCount; }
-            set { SetField(ref _measurementCount, value, "MeasurementCount"); }
+            get
+            {
+                int temp;
+                if (GetExperimentDataContextProperty(ExperimentDataContext, out temp, MeasurementCountPropertyName))
+                    return temp;
+                return _measurementCount;
+            }
+            set
+            {
+                if (!SetExperimentDataContextProperty(value, ExperimentDataContext, MeasurementCountPropertyName))
+                    SetField(ref _measurementCount, value, MeasurementCountPropertyName); ;
+            }
         }
 
         private const string MeasurementName_MeasurementCount_Separator = "_";
@@ -223,6 +311,39 @@ namespace ExperimentAbstraction.ViewModels
 
 
 
-        
+
+        private bool _useExperimentDataContext;
+        public bool UseExperimentDataContext
+        {
+            get { return _useExperimentDataContext; }
+            set { SetField(ref _useExperimentDataContext, value, "UseExperimentDataContext"); }
+        }
+
+        private IExperimentDataContext _experimentDataContext;
+        public IExperimentDataContext ExperimentDataContext
+        {
+            get { return _experimentDataContext; }
+            set
+            {
+                var previousDataContext = ExperimentDataContext;
+                if (SetField(ref _experimentDataContext, value, "ExperimentDataContext"))
+                {
+                    OnExperimentDataContextChanged(this, new ExperimentDataContextChangedEventArgs() { OldExperimentDataContext = previousDataContext, NewExperimentDataContext = ExperimentDataContext });
+                    //refresh all bindings
+                    OnPropertyChanged(String.Empty);
+                }
+            }
+        }
+
+        public event EventHandler<ExperimentDataContextChangedEventArgs> ExperimentDataContextChanged;
+        private void OnExperimentDataContextChanged(object sender, ExperimentDataContextChangedEventArgs e)
+        {
+            var handler = ExperimentDataContextChanged;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
+
     }
 }

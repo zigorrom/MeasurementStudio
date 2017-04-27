@@ -51,6 +51,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractPropertyChangedClass\AbstractNotifyPropertyChangedClass.cs" />
     <Compile Include="ExperimentWorkingDirectory\SaveControl.xaml.cs">
       <DependentUpon>SaveControl.xaml</DependentUpon>
     </Compile>
