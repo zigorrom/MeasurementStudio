@@ -87,26 +87,26 @@ namespace ExperimentAbstraction.ViewModels
             }
         }
 
-        private bool SetExperimentDataContextProperty(object value, object target, string PropertyName)
-        {
-            if (UseExperimentDataContext)
-            {
-                try
-                {
-                    if (target != null)
-                    {
-                        var prop = target.GetType().GetProperty(PropertyName);
-                        prop.SetValue(target, value);
-                        return true;
-                    }
-                }
-                catch (Exception e)
-                {
-                    return false;
-                }
-            }
-            return false;
-        }
+        //private bool SetExperimentDataContextProperty(object value, object target, string PropertyName)
+        //{
+        //    if (UseExperimentDataContext)
+        //    {
+        //        try
+        //        {
+        //            if (target != null)
+        //            {
+        //                var prop = target.GetType().GetProperty(PropertyName);
+        //                prop.SetValue(target, value);
+        //                return true;
+        //            }
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    return false;
+        //}
 
         private bool GetExperimentDataContextProperty<T>(object target, out T value, string PropertyName)
         {
@@ -142,8 +142,8 @@ namespace ExperimentAbstraction.ViewModels
             }
             set
             {
-                if (!SetExperimentDataContextProperty(value, ExperimentDataContext, ExperimentNamePropertyName))
-                    SetField(ref _experimentName, value, ExperimentNamePropertyName);
+                //if (!SetExperimentDataContextProperty(value, ExperimentDataContext, ExperimentNamePropertyName))
+                SetField(ref _experimentName, value, ExperimentNamePropertyName);
             }
         }
 
@@ -160,8 +160,8 @@ namespace ExperimentAbstraction.ViewModels
             }
             set
             {
-                if (!SetExperimentDataContextProperty(value, ExperimentDataContext, MeasurementNamePropertyName))
-                    SetField(ref _measurementName, value, MeasurementNamePropertyName);
+                //if (!SetExperimentDataContextProperty(value, ExperimentDataContext, MeasurementNamePropertyName))
+                SetField(ref _measurementName, value, MeasurementNamePropertyName);
             }
         }
 
@@ -178,8 +178,8 @@ namespace ExperimentAbstraction.ViewModels
             }
             set
             {
-                if (!SetExperimentDataContextProperty(value, ExperimentDataContext, WorkingDirectoryPropertyName))
-                    SetField(ref _workingDirectory, value, WorkingDirectoryPropertyName);
+                //if (!SetExperimentDataContextProperty(value, ExperimentDataContext, WorkingDirectoryPropertyName))
+                SetField(ref _workingDirectory, value, WorkingDirectoryPropertyName);
             }
         }
 
@@ -196,8 +196,8 @@ namespace ExperimentAbstraction.ViewModels
             }
             set
             {
-                if (!SetExperimentDataContextProperty(value, ExperimentDataContext, MeasurementCountPropertyName))
-                    SetField(ref _measurementCount, value, MeasurementCountPropertyName); ;
+                //if (!SetExperimentDataContextProperty(value, ExperimentDataContext, MeasurementCountPropertyName))
+                SetField(ref _measurementCount, value, MeasurementCountPropertyName);
             }
         }
 
