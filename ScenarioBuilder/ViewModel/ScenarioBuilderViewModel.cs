@@ -155,9 +155,11 @@ namespace ScenarioBuilder.ViewModel
             foreach (var item in list)
             {
                 var experimentItem = item.GenerateExperimentItem();
-                var experimentVM = experimentItem as IExperimentDataContextAcceptor;
+                var experimentVM = experimentItem.ViewModel as IExperimentDataContextAcceptor;
+                
                 if(null!=experimentVM)
                 {
+                    experimentVM.UseExperimentDataContext = true;
                     experimentVM.ExperimentDataContext = this.ExperimentDataContext;
                 }
                 ScenarioExperimentsList.Add(experimentItem);

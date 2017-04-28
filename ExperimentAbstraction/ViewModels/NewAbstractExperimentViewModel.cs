@@ -329,11 +329,14 @@ namespace ExperimentAbstraction.ViewModels
                 if (SetField(ref _experimentDataContext, value, "ExperimentDataContext"))
                 {
                     OnExperimentDataContextChanged(this, new ExperimentDataContextChangedEventArgs() { OldExperimentDataContext = previousDataContext, NewExperimentDataContext = ExperimentDataContext });
+                    ExperimentDataContext.PropertyChanged += OnPropertyChanged;
                     //refresh all bindings
-                    OnPropertyChanged(String.Empty);
+                    //OnPropertyChanged(String.Empty);
                 }
             }
         }
+
+       
 
         public event EventHandler<ExperimentDataContextChangedEventArgs> ExperimentDataContextChanged;
         private void OnExperimentDataContextChanged(object sender, ExperimentDataContextChangedEventArgs e)

@@ -26,6 +26,13 @@ namespace Helper.AbstractPropertyChangedClass
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(PropertyName));
         }
+
+        protected virtual void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+                handler(sender, e);
+        }
         #endregion
     }
 }
