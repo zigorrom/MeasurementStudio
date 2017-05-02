@@ -23,6 +23,7 @@ namespace ChannelSwitchTest
         public MainWindow()
         {
             InitializeComponent();
+            ChannelSwitchLibrary.ArduinoChannelSwitch sw = new ChannelSwitchLibrary.ArduinoChannelSwitch();
         }
     }
 }
