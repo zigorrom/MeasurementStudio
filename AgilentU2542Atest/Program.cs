@@ -13,7 +13,9 @@ namespace AgilentU2542Atest
     {
         static void Main(string[] args)
         {
-            MessageBasedSession session = new MessageBasedSession("ADC");
+            //MessageBasedSession session = new MessageBasedSession("ADC");
+            var session = (MessageBasedSession)ResourceManager.GetLocalManager().Open("ADC");
+            
             var sample_rate = 500000;
             var points_per_sample = 50000;
             var nchan = 4;
@@ -34,9 +36,9 @@ namespace AgilentU2542Atest
             string status = string.Empty;
             //string data = string.Empty;
             //byte[] result = null;
-            ushort[] array = null;
+            //ushort[] array = null;
             //byte[] data_query = ASCIIEncoding.ASCII.GetBytes("WAV:DATA?"); //BinaryEncoding.RawLittleEndian
-
+            byte[] array = null;
             var reader = new MessageBasedSessionReader(session);
             reader.BinaryEncoding = BinaryEncoding.RawLittleEndian;
 
@@ -51,8 +53,9 @@ namespace AgilentU2542Atest
                 {
                     //data = session.Query(dataQuery);
                     session.Write(dataQuery);
-                    array = reader.ReadUInt16s(SAMPLE_NUMER);
-
+                    array = session.BeginRead()
+                    //array = reader.ReadUInt16s(SAMPLE_NUMER);
+                    array = reader.ReadBytes(bufferSize);
                     //Console.WriteLine("data length {0}", array.Length);
                     //Console.WriteLine(status);
                 }
@@ -84,14 +87,14 @@ namespace AgilentU2542Atest
             //ss
             //}
         }
-        static long counter = 0;
-        static void ch1_DataSetReady(object sender, EventArgs e)
-        {
-            var a = (AgilentU2442A.AnalogInputChannel)sender;
-            double[] data;
-            a.DequeueData(out data);
-            counter++;
-            Console.WriteLine("b{0},d{1};", counter, data.Length);
-        }
+        //static long counter = 0;
+        //static void ch1_DataSetReady(object sender, EventArgs e)
+        //{
+        //    var a = (AgilentU2442A.AnalogInputChannel)sender;
+        //    double[] data;
+        //    a.DequeueData(out data);
+        //    counter++;
+        //    Console.WriteLine("b{0},d{1};", counter, data.Length);
+        //}
     }
 }
