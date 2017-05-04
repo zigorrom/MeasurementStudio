@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MeasurementStudio
 {
     
-    using CVCharacterization.ViewModels;
+    
     using ExperimentViewer;
     using ExperimentDataModel;
     using Helper.ViewModelInterface;
@@ -121,7 +121,7 @@ namespace MeasurementStudio
                         _controls.Add(PagesEnum.IVTransfer, new UserControl { Content = new TransfrerIVViewModel() });
                         break;
                     case PagesEnum.CVCharacteristics:
-                        _controls.Add(PagesEnum.CVCharacteristics, new UserControl { Content = new CVViewModel() });
+                        //_controls.Add(PagesEnum.CVCharacteristics, new UserControl { Content = new CVViewModel() });
                         break;
                     //case PagesEnum.Timetrace:
                     //    _controls.Add(PagesEnum.Timetrace, new UserControl { Content = new TimetraceMainViewModel() });

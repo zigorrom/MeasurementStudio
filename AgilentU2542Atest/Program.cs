@@ -53,7 +53,7 @@ namespace AgilentU2542Atest
                 {
                     //data = session.Query(dataQuery);
                     session.Write(dataQuery);
-                    array = session.BeginRead()
+                    //array = session.BeginRead()
                     //array = reader.ReadUInt16s(SAMPLE_NUMER);
                     array = reader.ReadBytes(bufferSize);
                     //Console.WriteLine("data length {0}", array.Length);

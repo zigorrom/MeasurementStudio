@@ -1,4 +1,4 @@
-﻿using ChannelSwitchLibrary;
+﻿//using ChannelSwitchLibrary;
 using ExperimentAbstraction;
 using Instruments;
 using System;
@@ -34,16 +34,16 @@ namespace ChannelSwitchExecutable
             {
                 //HandleMessage(String.Format("Changing transistor to {0}", ChannelSwitchViewModel.SelectedChannel));
                 //ChannelSwitchViewModel.SwitchToChannel(ChannelSwitchViewModel.SelectedChannel);
-                var channelSwitch = new SyncronousChannelSwitch();
-                channelSwitch.Setup();//ChannelSwitchViewModel.InstrumentResource.Resource);
+                //var channelSwitch = new SyncronousChannelSwitch();
+                //channelSwitch.Setup();//ChannelSwitchViewModel.InstrumentResource.Resource);
 
-                for (short i = 0; i < 32; i++)
-                {
-                    while (channelSwitch.RunLoop) channelSwitch.SwitchToChannel(i, false);
-                }
+                //for (short i = 0; i < 32; i++)
+                //{
+                //    while (channelSwitch.RunLoop) channelSwitch.SwitchToChannel(i, false);
+                //}
 
-                while (channelSwitch.RunLoop) channelSwitch.SwitchToChannel((short)ChannelSwitchViewModel.SelectedChannel, true);
-                channelSwitch.Exit();
+                //while (channelSwitch.RunLoop) channelSwitch.SwitchToChannel((short)ChannelSwitchViewModel.SelectedChannel, true);
+                //channelSwitch.Exit();
                 //ChannelSwitchLibrary.ChannelSwitch sw = new ChannelSwitchLibrary.ChannelSwitch();
                 //sw.Initialize(ChannelSwitchViewModel.InstrumentResource.Resource);
                 //if(sw.Initialized)

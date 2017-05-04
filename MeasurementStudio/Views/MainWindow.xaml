@@ -6,8 +6,6 @@
         xmlns:D3DataVisualization="clr-namespace:DataVisualization.D3DataVisualization;assembly=DataVisualization"
         xmlns:iv ="clr-namespace:IVexperiment.ViewModels;assembly=IVexperiment"
         xmlns:ivv="clr-namespace:IVexperiment.Views;assembly=IVexperiment"
-        xmlns:cvvm="clr-namespace:CVCharacterization.ViewModels;assembly=CVCharacterization"
-        xmlns:cvv ="clr-namespace:CVCharacterization.Views;assembly=CVCharacterization"
         xmlns:expveiw ="clr-namespace:ExperimentViewer.Views;assembly=ExperimentViewer"
         xmlns:expvm ="clr-namespace:ExperimentViewer.ViewModels;assembly=ExperimentViewer"
         

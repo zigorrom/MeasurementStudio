@@ -117,8 +117,14 @@ namespace Keithley2602A
             
         }
 
-        
 
-        
+
+
+
+
+        public bool MeasureAll(out double voltage, out double current, out double resistance)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
