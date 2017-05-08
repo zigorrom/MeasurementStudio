@@ -90,6 +90,12 @@ namespace Instruments
                 m_session.DefaultBufferSize = Size;
         }
         private MessageBasedSession m_session;
+        protected MessageBasedSession Session
+        {
+            get { return m_session; }
+            set { m_session = value; }
+        }
+
         public virtual bool InitializeDevice()
         {
             try
@@ -215,7 +221,7 @@ namespace Instruments
             return resp;
         }
 
-        private void OnVisaException(VisaException e)
+        protected virtual void OnVisaException(VisaException e)
         {
             //this.Dispose();
             throw new Exception("Device doesn`t respond");

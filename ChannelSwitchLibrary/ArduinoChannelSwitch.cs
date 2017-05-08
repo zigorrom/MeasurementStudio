@@ -1,4 +1,5 @@
 ﻿using Instruments;
+using NationalInstruments.VisaNS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +34,30 @@ namespace ChannelSwitchLibrary
 
         public override bool InitializeDevice()
         {
-            return base.InitializeDevice();
 
+            try
+            {
+                var serialSession = new SerialSession(ResourceName, AccessModes.ExclusiveLock, 10000, false);
+                serialSession.BaudRate = 115200;
+                serialSession.Timeout = 10000;
+                serialSession.TerminationCharacter = (byte)';';
+                serialSession.TerminationCharacterEnabled = true;
+                Session = (MessageBasedSession)serialSession;
+                //m_session = new MessageBasedSession(m_resourceName, AccessModes.ExclusiveLock, 10000);
 
+            }
+            catch (VisaException e)
+            {
+                OnVisaException(e);
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+
+            
+            
         }
 
         public override bool IsAlive(bool SendIDN)
@@ -51,12 +73,17 @@ namespace ChannelSwitchLibrary
         /// <param name="state">state: true/false</param>
         public void SwitchChannel(short Channel, bool state)
         {
-            var numState = state?1:0;
-            var command = String.Format("{0}{3}{1}{3}{2}{3}{4}", Command.SwitchChannel, Channel, numState, CommandParamSeparationChar, CommandEndChar);
-            var response = Query(command);
+            var numState = state ? 1 : 0;
+            var command = String.Format("{0}{3}{1}{3}{2}{4}", (short)Command.SwitchChannel, Channel, numState, CommandParamSeparationChar, CommandEndChar);
+            var response = SendCommand(command); //Query(command);
+            var val = GetResponce();
+
         }
 
+        private void parseResponse()
+        {
 
+        }
 
 
 

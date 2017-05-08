@@ -23,7 +23,14 @@ namespace ChannelSwitchTest
         public MainWindow()
         {
             InitializeComponent();
-            ChannelSwitchLibrary.ArduinoChannelSwitch sw = new ChannelSwitchLibrary.ArduinoChannelSwitch();
+            sw = new ChannelSwitchLibrary.ArduinoChannelSwitch("ArduinoChannelSwitch", "ACS", "COM26");
+
+            for (short i = 1; i < 33; i++)
+            {
+                sw.SwitchChannel(i, true);
+            }
+
         }
+        ChannelSwitchLibrary.ArduinoChannelSwitch sw;
     }
 }
