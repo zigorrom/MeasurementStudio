@@ -123,11 +123,7 @@ namespace ChannelSwitchExecutable
             set { SetField(ref _previousChannel, value, "PreviousChannel"); }
         }
 
-        //private Button PreviousButton
-        //{
-        //    get;
-        //    set;
-        //}
+        
         public void SwitchToChannel(short channel)
         {
             PreviousChannel = SelectedChannel;
@@ -160,6 +156,7 @@ namespace ChannelSwitchExecutable
                     var button = (Button)b;
                     SwitchToChannel(button);
                     _executionManager.Start();
+                    _executionManager.Wait();
                 }));
             }
         }

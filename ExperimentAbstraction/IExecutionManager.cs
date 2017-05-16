@@ -13,5 +13,6 @@ namespace ExperimentAbstraction
         void Pause();
         void Resume();
         void Abort();
+        void Wait();
     }
 }

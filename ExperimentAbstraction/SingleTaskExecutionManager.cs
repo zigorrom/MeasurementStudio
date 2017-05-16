@@ -146,6 +146,13 @@ namespace ExperimentAbstraction
         }
 
 
+
+
+        public virtual void Wait()
+        {
+            if (_executionLoopTask != null)
+                _executionLoopTask.Wait();
+        }
     }
 }
 

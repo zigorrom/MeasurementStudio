@@ -24,7 +24,6 @@ namespace ChannelSwitchLibrary
         private const char CommandEndChar = ';';
         private const char CommandParamSeparationChar = ',';
         
-
         private enum Command
         {
             Watchdog,
@@ -33,9 +32,6 @@ namespace ChannelSwitchLibrary
             Error,
             MotorCommand,
         }
-
-
-       
 
         
         /// <summary>
