@@ -28,7 +28,7 @@ namespace InstrumentHandlerNamespace
         private static object syncRoot = new object();
         
         private const string SerializationFileName = "Devices.seri";
-        private const string ResourceFilter = "(GPIB)|(USB)|(COM)?*INSTR";//"?*INSTR";
+        private const string ResourceFilter = "(GPIB)|(USB)?*INSTR";//"?*INSTR"; |(COM)
         private const string AllResourceFilter = "?*";
 
         [ImportMany]
@@ -90,7 +90,7 @@ namespace InstrumentHandlerNamespace
 
         private static InstrumentHandler DeserializeOrNew()
         {
-           var ihandler = new InstrumentHandler();
+            var ihandler = new InstrumentHandler();
             ihandler.InitializeHandler();
             return ihandler;
         }
@@ -162,6 +162,10 @@ namespace InstrumentHandlerNamespace
                     {
                     }
                     Resources.Add(new InstrumentResourceItem(resource, idn));
+                }
+                foreach (var comResource in System.IO.Ports.SerialPort.GetPortNames())
+                {
+                    Resources.Add(new InstrumentResourceItem(comResource, ""));//|(COM)
                 }
             }
             catch (Exception ex)
