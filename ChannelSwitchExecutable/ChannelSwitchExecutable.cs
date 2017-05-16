@@ -34,7 +34,7 @@ namespace ChannelSwitchExecutable
             try
             {
                 var chSwitch = new ArduinoChannelSwitch("ChannelSwitch", "ACS", "COM26");
-                chSwitch.SwitchChannel((short)ChannelSwitchViewModel.SelectedChannel, true);
+                chSwitch.SwitchChannel((short)ChannelSwitchViewModel.SelectedChannel, ChannelSwitchViewModel.SelectedChannelState);
                 chSwitch.Dispose();
                 //HandleMessage(String.Format("Changing transistor to {0}", ChannelSwitchViewModel.SelectedChannel));
                 //ChannelSwitchViewModel.SwitchToChannel(ChannelSwitchViewModel.SelectedChannel);

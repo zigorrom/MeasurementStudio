@@ -25,13 +25,15 @@ namespace ChannelSwitchExecutable
     
     public class ChannelSwitchEventArgs:EventArgs
     {
-        public ChannelSwitchEventArgs(Button button, int channel)
+        public ChannelSwitchEventArgs(Button button, int channel)//, bool state)
         {
             PressedButton = button;
             SelectedChannel = channel;
+            //State = state;
         }
         public Button PressedButton { get; private set; }
         public int SelectedChannel { get; private set; }
+        //public bool State { get; private set; }
     }
 
     public class ChannelSwitchExecutableViewModel : INotifyPropertyChanged, IExecutableViewModel, IExperimentViewModel, IUIThreadExecutableViewModel
@@ -59,6 +61,7 @@ namespace ChannelSwitchExecutable
         public ChannelSwitchExecutableViewModel()
         {
             _instrumentHandler = InstrumentHandler.Instance;
+            SelectedChannelState = false;
             SelectedChannel = 1;
             PreviousChannel = 1;
             ChannelSwitchExperiment = new ChannelSwitchExecutable(this);
@@ -115,6 +118,15 @@ namespace ChannelSwitchExecutable
             set { SetField(ref _selectedChannel, value, "SelectedChannel"); }
         }
 
+        private bool _selectedChannelState;
+
+        public bool SelectedChannelState
+        {
+            get { return _selectedChannelState; }
+            set { _selectedChannelState = value; }
+        }
+
+
         private int _previousChannel;
 
         public int PreviousChannel
@@ -123,11 +135,20 @@ namespace ChannelSwitchExecutable
             set { SetField(ref _previousChannel, value, "PreviousChannel"); }
         }
 
-        
+        private bool EstimateState(int PreviousChannel, int NextChannel)
+        {
+            if (PreviousChannel != NextChannel)
+                return true;
+            else
+                return !SelectedChannelState;
+        }
+
         public void SwitchToChannel(short channel)
         {
+            
             PreviousChannel = SelectedChannel;
             SelectedChannel = channel;
+            SelectedChannelState = EstimateState(PreviousChannel, SelectedChannel);
             ChannelExchangeStatus = ChannelExchangeStatusEnum.Pending;
             ExecuteInUIThread(()=>OnChannelSwitched(this, new ChannelSwitchEventArgs(null, SelectedChannel)));
         }
@@ -139,8 +160,9 @@ namespace ChannelSwitchExecutable
 
             PreviousChannel = SelectedChannel;
             SelectedChannel = channelNumber;
+            SelectedChannelState = EstimateState(PreviousChannel, SelectedChannel);
             ChannelExchangeStatus = ChannelExchangeStatusEnum.Pending;
-            ExecuteInUIThread(()=>OnChannelSwitched(this, new ChannelSwitchEventArgs(button, channelNumber)));
+            ExecuteInUIThread(() => OnChannelSwitched(this, new ChannelSwitchEventArgs(button, SelectedChannel)));
 
         }
 
