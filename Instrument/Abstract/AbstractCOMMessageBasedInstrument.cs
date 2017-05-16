@@ -7,68 +7,71 @@ using System.Threading.Tasks;
 
 namespace Instruments
 {
-    
-    public enum Delimiter
-    {
-        CR_LF,
-        CR
-    }
 
-    public abstract class AbstractCOMMessageBasedInstrument:IInstrument,IMessageBasedInstrument,IDisposable
+
+    public abstract class AbstractCOMMessageBasedInstrument : IInstrument, IMessageBasedInstrument, IDisposable
     {
 
         private SerialPort _comPort;
-        private string _delimiter;
+        
 
-        public AbstractCOMMessageBasedInstrument(string Name, string Alias, string COMResource, int BaudRate, Parity parity, int DataBits, StopBits stopBits, Handshake handshake, Delimiter delimiter)
-            
+        public AbstractCOMMessageBasedInstrument(string Name, string Alias, string COMResource, int BaudRate = 9600)
+        {
+            InitBase(Name, Alias);
+            _comPort = new SerialPort(COMResource, BaudRate);
+            //InitializeDevice();
+        }
+
+        public AbstractCOMMessageBasedInstrument(string Name, string Alias, string COMResource, int BaudRate, Parity parity)
+        {
+            InitBase(Name, Alias);
+            _comPort = new SerialPort(COMResource, BaudRate, parity);
+            //InitializeDevice();
+        }
+
+        public AbstractCOMMessageBasedInstrument(string Name, string Alias, string COMResource, int BaudRate, Parity parity, int DataBits)
+        {
+            InitBase(Name, Alias);
+            _comPort = new SerialPort(COMResource, BaudRate, parity, DataBits);
+            //InitializeDevice();
+        }
+
+        public AbstractCOMMessageBasedInstrument(string Name, string Alias, string COMResource, int BaudRate, Parity parity, int DataBits, StopBits stopBits)
+        {
+            InitBase(Name, Alias);
+            _comPort = new SerialPort(COMResource, BaudRate, parity, DataBits, stopBits);
+            //InitializeDevice();
+        }
+
+        public AbstractCOMMessageBasedInstrument(string Name, string Alias, string COMResource, int BaudRate, Parity parity, int DataBits, StopBits stopBits, Handshake handshake)
+        {
+            InitBase(Name, Alias);
+            _comPort = new SerialPort(COMResource, BaudRate, parity, DataBits, stopBits) { Handshake = handshake };
+            //InitializeDevice();
+
+        }
+
+        public AbstractCOMMessageBasedInstrument(string Name, string Alias, string COMResource, int BaudRate, Parity parity, int DataBits, StopBits stopBits, Handshake handshake, string delimiter)
+        {
+            InitBase(Name, Alias);
+            _comPort = new SerialPort(COMResource, BaudRate, parity, DataBits, stopBits) { Handshake = handshake };
+            PortDelimeter = delimiter;
+            //InitializeDevice();
+        }
+
+
+
+        private void InitBase(string Name, string Alias)
         {
             this.Name = Name;
             this.Alias = Alias;
-            this.ResourceName = COMResource;
             this.InstrumentOwner = null;
             this.State = InstrumentState.Idle;
-
-
-            PortDelimeter = delimiter;
-            switch (PortDelimeter)
-            {
-                case Delimiter.CR:
-                    _delimiter = "\r";
-                    break;
-                case Delimiter.CR_LF:
-                default:
-                    _delimiter = "\r\n";
-                    break;
-            }
-
-            PortBaudRate = BaudRate;
-            PortParity = parity;
-            PortDataBits = DataBits;
-            PortStopBits = stopBits;
-            PortHandshake = handshake;
-
-            InitializeDevice();
+            this.IDNqueryString = "*IDN?";
+            this.PortDelimeter = "\n\r";
         }
 
-        //public AbstractCOMMessageBasedInstrument(string Name, string Alias, string COMResource)
-        //{
-        //    this.Name = Name;
-        //    this.Alias = Alias;
-        //    this.ResourceName = COMResource;
-        //    this.InstrumentOwner = null;
-        //    this.State = InstrumentState.Idle;
-        //    InitializeDevice();
-        //    //_comPort.BaudRate
-        //    //_comPort.Handshake = Handshake.
-        //    //_comPort.Parity
-        //    //_comPort.PortName
-        //    //_comPort.StopBits
-            
-        //}
 
-       
-        //private string _name;
         public string Name
         {
             get;
@@ -83,8 +86,19 @@ namespace Instruments
 
         public string ResourceName
         {
+            get { return _comPort.PortName; }
+        }
+
+        protected bool SendIDNrequestOnAliveCheck
+        {
             get;
-            private set;
+            set;
+        }
+
+        protected string IDNqueryString
+        {
+            get;
+            set;
         }
 
         public IInstrumentOwner InstrumentOwner
@@ -106,15 +120,15 @@ namespace Instruments
                 return false;
             if (!_comPort.IsOpen)
                 return false;
-            if(SendIDN)
+            if (SendIDN)
             {
-                if (String.IsNullOrEmpty(Query("*IDN?")))
+                if (String.IsNullOrEmpty(Query(IDNqueryString)))
                     return false;
             }
             return true;
         }
 
-        public void Reset()
+        public virtual void Reset()
         {
             throw new NotImplementedException();
         }
@@ -138,61 +152,65 @@ namespace Instruments
         }
 
 
-        public int PortBaudRate { get; set; }
-        public Parity PortParity { get; set; }
-        public int PortDataBits { get; set; }
-        public StopBits PortStopBits { get; set; }
-        public Handshake PortHandshake { get; set; }
-        public Delimiter PortDelimeter { get; set; }
+        public int PortBaudRate
+        {
+            get { return _comPort.BaudRate; }
+            set { _comPort.BaudRate = value; }
+        }
+        public Parity PortParity
+        {
+            get { return _comPort.Parity; }
+            set { _comPort.Parity = value; }
+        }
+        public int PortDataBits
+        {
+            get { return _comPort.DataBits; }
+            set { _comPort.DataBits = value; }
+        }
+        public StopBits PortStopBits
+        {
+            get { return _comPort.StopBits; }
+            set { _comPort.StopBits = value; }
+        }
+        public Handshake PortHandshake
+        {
+            get { return _comPort.Handshake; }
+            set { _comPort.Handshake = value; }
+        }
+        public string PortDelimeter { get; set; }
 
         public bool InitializeDevice()
         {
             try
             {
-                _comPort = new SerialPort(ResourceName);
+                //_comPort = new SerialPort(ResourceName);
                 _comPort.ReadTimeout = 1000;
                 _comPort.WriteTimeout = 1000;
-                _comPort.BaudRate = PortBaudRate;
-                _comPort.Parity = PortParity;
-                _comPort.DataBits = PortDataBits;
-                _comPort.StopBits = PortStopBits;
-                _comPort.Handshake = PortHandshake;
+                //_comPort.BaudRate = PortBaudRate;
+                //_comPort.Parity = PortParity;
+                //_comPort.DataBits = PortDataBits;
+                //_comPort.StopBits = PortStopBits;
+                //_comPort.Handshake = PortHandshake;
                 _comPort.Open();
             }
             catch (Exception e)
             {
                 return false;
             }
-            if (!IsAlive(true))
+            if (!IsAlive(SendIDNrequestOnAliveCheck))
                 return false;
             return true;
         }
 
         public bool SendCommand(string Command)
         {
-            try
-            {
-                _comPort.Write(Command);
-            }
-            catch(Exception e)
-            {
-                return false;
-            }
+            _comPort.Write(Command);
             return true;
         }
 
         public string GetResponce()
         {
-            try
-            {
-                return _comPort.ReadTo(_delimiter);
-            }
-            catch (Exception ex)
-            {
-                return String.Empty;
-            }
-            //throw new NotImplementedException();
-            //_comPort.rea
+            return _comPort.ReadTo(PortDelimeter);
         }
 
         public string Query(string Command)
