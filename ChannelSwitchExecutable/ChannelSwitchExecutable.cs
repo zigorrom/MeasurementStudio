@@ -1,4 +1,5 @@
-﻿//using ChannelSwitchLibrary;
+﻿using ChannelSwitchLibrary;
+//using ChannelSwitchLibrary;
 using ExperimentAbstraction;
 using Instruments;
 using System;
@@ -32,6 +33,9 @@ namespace ChannelSwitchExecutable
             OnStatusChanged(this, Status);
             try
             {
+                var chSwitch = new ArduinoChannelSwitch("ChannelSwitch", "ACS", "COM26");
+                chSwitch.SwitchChannel((short)ChannelSwitchViewModel.SelectedChannel, true);
+                chSwitch.Dispose();
                 //HandleMessage(String.Format("Changing transistor to {0}", ChannelSwitchViewModel.SelectedChannel));
                 //ChannelSwitchViewModel.SwitchToChannel(ChannelSwitchViewModel.SelectedChannel);
                 //var channelSwitch = new SyncronousChannelSwitch();

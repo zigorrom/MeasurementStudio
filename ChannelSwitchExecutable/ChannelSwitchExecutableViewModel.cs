@@ -128,7 +128,7 @@ namespace ChannelSwitchExecutable
         //    get;
         //    set;
         //}
-        public void SwitchToChannel(int channel)
+        public void SwitchToChannel(short channel)
         {
             PreviousChannel = SelectedChannel;
             SelectedChannel = channel;

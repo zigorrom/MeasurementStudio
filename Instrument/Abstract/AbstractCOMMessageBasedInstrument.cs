@@ -181,22 +181,22 @@ namespace Instruments
 
         public bool InitializeDevice()
         {
-            try
-            {
-                //_comPort = new SerialPort(ResourceName);
-                _comPort.ReadTimeout = 1000;
-                _comPort.WriteTimeout = 1000;
-                //_comPort.BaudRate = PortBaudRate;
-                //_comPort.Parity = PortParity;
-                //_comPort.DataBits = PortDataBits;
-                //_comPort.StopBits = PortStopBits;
-                //_comPort.Handshake = PortHandshake;
-                _comPort.Open();
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            //try
+            //{
+            //_comPort = new SerialPort(ResourceName);
+            _comPort.ReadTimeout = 1000;
+            _comPort.WriteTimeout = 1000;
+            //_comPort.BaudRate = PortBaudRate;
+            //_comPort.Parity = PortParity;
+            //_comPort.DataBits = PortDataBits;
+            //_comPort.StopBits = PortStopBits;
+            //_comPort.Handshake = PortHandshake;
+            _comPort.Open();
+            //}
+            //catch (Exception e)
+            //{
+            //    return false;
+            //}
             if (!IsAlive(SendIDNrequestOnAliveCheck))
                 return false;
             return true;
@@ -227,7 +227,8 @@ namespace Instruments
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _comPort.Close();
+            _comPort.Dispose();
         }
     }
 }

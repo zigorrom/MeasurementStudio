@@ -47,17 +47,22 @@ namespace ChannelSwitchLibrary
         {
             var numState = state ? 1 : 0;
             var command = String.Format("{0}{3}{1}{3}{2}{4}", (short)Command.SwitchChannel, Channel, numState, CommandParamSeparationChar, CommandEndChar);
-            var response = SendCommand(command); //Query(command);
-            var val = GetResponce();
+            var response = Query(command);//SendCommand(command); //Query(command);
+            //var val = GetResponce();
+            parseResponse(response);
 
         }
 
-        private void parseResponse()
+        private void parseResponse(string responseToParse)
         {
+            var vals = responseToParse.TrimEnd(CommandEndChar).Split(CommandParamSeparationChar);
+            var cmd = (Command)Convert.ToInt16(vals[0]);
+            System.Diagnostics.Debug.WriteLine(responseToParse);
+            if (cmd == Command.Error)
+                throw new Exception(vals[1]);
+            System.Threading.Thread.Sleep(500);
 
         }
-
-
 
 
         public override void DetectInstrument(object data)
