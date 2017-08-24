@@ -28,18 +28,18 @@ namespace AgilentU2542Atest
             ///Critical section: the device buffer should fit the arriving data!!!
 
             session.DefaultBufferSize = bufferSize;
-            session.Timeout = 100;
+            session.Timeout = 10000;
             //session.TerminationCharacterEnabled = true;
             //session.TerminationCharacter = (byte)'\n';
             //BinaryEncoding.RawLittleEndia
-            session.Write("*RST");
-            session.Write("*CLS");
-            session.Write("ROUT:ENAB ON,(@101:104)");
-            session.Write(String.Format("ACQ:SRAT {0}",sample_rate));
-            session.Write(String.Format("ACQ:POIN {0}",points_per_sample));
-            session.Write(String.Format("WAV:POIN {0}",points_per_sample));
+            session.Write("*RST\n");
+            session.Write("*CLS\n");
+            session.Write("ROUT:ENAB ON,(@101:104)\n");
+            session.Write(String.Format("ACQ:SRAT {0}\n",sample_rate));
+            session.Write(String.Format("ACQ:POIN {0}\n",points_per_sample));
+            session.Write(String.Format("WAV:POIN {0}\n",points_per_sample));
 
-            session.Write("RUN");
+            session.Write("RUN\n");
             int counter = 0;
             int minute = 60;
 
@@ -58,10 +58,10 @@ namespace AgilentU2542Atest
                 using (StreamWriter fs = new StreamWriter(new FileStream("temp_file.txt", FileMode.Create, FileAccess.Write, FileShare.Read)))
                 {
                     const int SAMPLE_NUMER = 50000 * 4;
-                    string dataQuery = "WAV:DATA?";
+                    string dataQuery = "WAV:DATA?\n";
                     while (counter++ < cycles)
                     {
-                        session.Write("WAV:STAT?");
+                        session.Write("WAV:STAT?\n");
                         status = session.ReadString();
                         //Console.WriteLine(session.ReadStatusByte());
 
@@ -85,7 +85,7 @@ namespace AgilentU2542Atest
 
                         }
 
-                        Console.WriteLine("status {0}, counter {1}, length {2}\n data:{3}", status.TrimEnd('\n'), counter, data.Length, data.Substring(0,header_size));
+                        Console.WriteLine("status {0}, counter {1}, length {2}\n ", status.TrimEnd('\n'), counter, data.Length);//, data.Substring(0,header_size));
                     }
                 }
             }catch(Exception e)
@@ -97,7 +97,7 @@ namespace AgilentU2542Atest
 
 
             Console.WriteLine("Done");
-            session.Write("STOP");
+            session.Write("STOP\n");
             Console.ReadKey();
         
             //var agilent = new AgilentU2542A("asdasd", "", "ADC");
