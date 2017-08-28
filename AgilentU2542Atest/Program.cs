@@ -51,7 +51,7 @@ namespace AgilentU2542Atest
             //GC.AddMemoryPressure( sizeof(short) * sample_rate);
             //short[] data = new short[points];
             var data = new double[points];
-
+            var d = new double[points];
             try
             {
                 acqusition.Start();
@@ -67,7 +67,9 @@ namespace AgilentU2542Atest
                                 acqusition.FetchScale(ref data);
                                 i++;
                                 Console.WriteLine("i={0}",i);
+                                
                                 data = null;
+                               
                                 //GC.Collect();
                                    
                             }
