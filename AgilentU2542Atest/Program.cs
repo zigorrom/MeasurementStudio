@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-
 using agilent = Agilent.AgilentU254x.Interop;
 
 namespace AgilentU2542Atest
@@ -14,14 +14,14 @@ namespace AgilentU2542Atest
     
     class Program
     {
-        
-
-
         static void Main(string[] args)
         {
-            var dev = new agilent.AgilentU254x();
+            var dev = new agilent.AgilentU254xClass();
+            string options = "Simulate=false, Cache=false, QueryInstrStatus=true";
+            dev.Initialize("ADC", true, true, options);
+
             
-            dev.Initialize("ADC", true, true);
+
             //var status = dev.Status;
             var analogIn = dev.AnalogIn;
             var acqusition = dev.AnalogIn.Acquisition;
@@ -30,19 +30,19 @@ namespace AgilentU2542Atest
             Console.WriteLine("Data alignment {0}, resolution {1}, type {2}", analogIn.DataAlignment, analogIn.DataResolution, analogIn.DataType);
 
             for (int i = 1; i <= analogIn.Channels.Count; i++)
-			{
+            {
                 var name = channels.get_Name(i);
-                Console.WriteLine("channel {0}, name {1}", i,name);
+                Console.WriteLine("channel {0}, name {1}", i, name);
                 var channel = channels.get_Item(name);
                 channel.Configure(agilent.AgilentU254xAnalogPolarityEnum.AgilentU254xAnalogPolarityBipolar, 10.0, true);
-                
+
             }
 
             var sample_rate = 500000;
             var points = 50000;
 
             analogIn.MultiScan.Configure(sample_rate, -1);
-            
+
             Console.WriteLine(analogIn.MultiScan.TimePerScan);
             Console.WriteLine(acqusition.BufferSize);
 
@@ -50,28 +50,49 @@ namespace AgilentU2542Atest
             Console.WriteLine(acqusition.BufferSize);
             //GC.AddMemoryPressure( sizeof(short) * sample_rate);
             //short[] data = new short[points];
-            var data = new double[points];
-            var d = new double[points];
+            //var data = new double[points];
+            var nBytes = points * sizeof(double);
+
+            //var d = new double[points];
+            //[MarshalByRefObject]
+            //double[] data = {0.0};
+            double[] data = new double[points];
+
             try
             {
                 acqusition.Start();
                 for (int i = 0; i < 10000; )
                 {
-                    
+
                     var status = acqusition.BufferStatus;
                     switch (status)
                     {
                         case Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady:
                             {
+                                #region test structures commented
+                                //https://stackoverflow.com/questions/537573/how-to-get-intptr-from-byte-in-c-sharp
+                                //https://stackoverflow.com/questions/31854195/how-to-convert-the-intptr-to-an-array
                                 //acqusition.Fetch(ref data);
+                                //array[0] = (demo)System.Runtime.InteropServices.Marshal.PtrToStructure(PPtr, typeof(demo));
+                                //IntPtr unmanagedPtr = Marshal.AllocHGlobal(nBytes);
+                                //data = (double[])System.Runtime.InteropServices.Marshal.PtrToStructure(unmanagedPtr, typeof(double[]));
+                                #endregion
+
+
+
                                 acqusition.FetchScale(ref data);
+                                //dev.DirectIO
+                                //Marshal.FreeHGlobal(unmanagedPtr);
+
+                                //System.Runtime.InteropServices.Marshal.Release(data);
+                                //dev.Clear();
                                 i++;
-                                Console.WriteLine("i={0}",i);
-                                
-                                data = null;
-                               
+                                Console.WriteLine("i={0}", i);
+
+                                //data = null;
+
                                 //GC.Collect();
-                                   
+
                             }
                             break;
                         case Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusEmpty:
@@ -83,31 +104,132 @@ namespace AgilentU2542Atest
                         default:
                             break;
                     }
-                    
+
                     Console.WriteLine(status);
+                    
                 }
             }
             catch (Exception e)
             {
+                acqusition.Stop();
                 Console.WriteLine(e);
+                Console.WriteLine("extracting error...");
+                int errCode = 999;
+                string errMsg = null;
+                while (errCode != 0)
+                {
+                    dev.Utility.ErrorQuery(ref errCode, ref errMsg);
+                    Console.WriteLine("ErrorQuery: {0}, {1}", errCode, errMsg);
+                }
+
             }
             finally
             {
                 acqusition.Stop();
             }
 
-            
 
-            Console.CancelKeyPress += Console_CancelKeyPress;
+
+            //Console.CancelKeyPress += Console_CancelKeyPress;
             System.Threading.Thread.Sleep(10000);
         }
 
+
+        //static void Main(string[] args)
+        //{
+        //    var dev = new agilent.AgilentU254x();
+            
+        //    dev.Initialize("ADC", true, true);
+        //    //var status = dev.Status;
+        //    var analogIn = dev.AnalogIn;
+        //    var acqusition = dev.AnalogIn.Acquisition;
+        //    var channels = analogIn.Channels;
+
+        //    Console.WriteLine("Data alignment {0}, resolution {1}, type {2}", analogIn.DataAlignment, analogIn.DataResolution, analogIn.DataType);
+
+        //    for (int i = 1; i <= analogIn.Channels.Count; i++)
+        //    {
+        //        var name = channels.get_Name(i);
+        //        Console.WriteLine("channel {0}, name {1}", i,name);
+        //        var channel = channels.get_Item(name);
+        //        channel.Configure(agilent.AgilentU254xAnalogPolarityEnum.AgilentU254xAnalogPolarityBipolar, 10.0, true);
+                
+        //    }
+
+        //    var sample_rate = 500000;
+        //    var points = 50000;
+
+        //    analogIn.MultiScan.Configure(sample_rate, -1);
+            
+        //    Console.WriteLine(analogIn.MultiScan.TimePerScan);
+        //    Console.WriteLine(acqusition.BufferSize);
+
+        //    acqusition.BufferSize = points;
+        //    Console.WriteLine(acqusition.BufferSize);
+        //    //GC.AddMemoryPressure( sizeof(short) * sample_rate);
+        //    //short[] data = new short[points];
+        //    var data = new double[points];
+        //    var d = new double[points];
+            
+        //    dev.DriverOperation.Cache = false;
+        //    dev.DriverOperation.Simulate = true;
+
+        //    try
+        //    {
+        //        acqusition.Start();
+        //        for (int i = 0; i < 10000; )
+        //        {
+                    
+        //            var status = acqusition.BufferStatus;
+        //            switch (status)
+        //            {
+        //                case Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady:
+        //                    {
+        //                        //acqusition.Fetch(ref data);
+        //                        acqusition.FetchScale(ref data);
+        //                        i++;
+        //                        Console.WriteLine("i={0}",i);
+                                
+        //                        //data = null;
+                               
+        //                        //GC.Collect();
+                                   
+        //                    }
+        //                    break;
+        //                case Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusEmpty:
+        //                    break;
+        //                case Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusFragment:
+        //                    break;
+        //                case Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusOverRun:
+        //                    break;
+        //                default:
+        //                    break;
+        //            }
+                    
+        //            Console.WriteLine(status);
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e);
+        //    }
+        //    finally
+        //    {
+        //        acqusition.Stop();
+        //    }
+
+            
+
+        //    Console.CancelKeyPress += Console_CancelKeyPress;
+        //    System.Threading.Thread.Sleep(10000);
+        //}
+
        
 
-        static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         //static void Main(string[] args)
         //{
@@ -133,9 +255,9 @@ namespace AgilentU2542Atest
         //    session.Write("*RST\n");
         //    session.Write("*CLS\n");
         //    session.Write("ROUT:ENAB ON,(@101:104)\n");
-        //    session.Write(String.Format("ACQ:SRAT {0}\n",sample_rate));
-        //    session.Write(String.Format("ACQ:POIN {0}\n",points_per_sample));
-        //    session.Write(String.Format("WAV:POIN {0}\n",points_per_sample));
+        //    session.Write(String.Format("ACQ:SRAT {0}\n", sample_rate));
+        //    session.Write(String.Format("ACQ:POIN {0}\n", points_per_sample));
+        //    session.Write(String.Format("WAV:POIN {0}\n", points_per_sample));
 
         //    session.Write("RUN\n");
         //    int counter = 0;
@@ -145,6 +267,7 @@ namespace AgilentU2542Atest
         //    int cycles = sample_rate * 30 * minute;
         //    string status = string.Empty;
         //    string data = string.Empty;
+        //    string header = string.Empty;
         //    //byte[] result = null;
         //    //ushort[] array = null;
         //    //byte[] data_query = ASCIIEncoding.ASCII.GetBytes("WAV:DATA?"); //BinaryEncoding.RawLittleEndian
@@ -153,9 +276,9 @@ namespace AgilentU2542Atest
         //    //reader.BinaryEncoding = BinaryEncoding.RawLittleEndian;
         //    try
         //    {
-        //        using (StreamWriter fs = new StreamWriter(new FileStream("temp_file.txt", FileMode.Create, FileAccess.Write, FileShare.Read)))
-        //        {
-        //            const int SAMPLE_NUMER = 50000 * 4;
+        //        //using (StreamWriter fs = new StreamWriter(new FileStream("temp_file.txt", FileMode.Create, FileAccess.Write, FileShare.Read)))
+        //        //{
+                    
         //            string dataQuery = "WAV:DATA?\n";
         //            while (counter++ < cycles)
         //            {
@@ -168,7 +291,7 @@ namespace AgilentU2542Atest
         //                    //data = session.Query(dataQuery);
         //                    session.Write(dataQuery);
         //                    data = session.ReadString();
-                            
+        //                    header = data.Substring(0, header_size);
         //                    //fs.Write(data);
         //                    //array = session.ReadByteArray();
         //                    //array = reader.ReadUInt16s(SAMPLE_NUMER);
@@ -183,10 +306,11 @@ namespace AgilentU2542Atest
 
         //                }
 
-        //                Console.WriteLine("status {0}, counter {1}, length {2}\n ", status.TrimEnd('\n'), counter, data.Length);//, data.Substring(0,header_size));
-        //            }
+        //                Console.WriteLine("status {0}, counter {1}, length {2}, header {3}\n ", status.TrimEnd('\n'), counter, data.Length, header);//, data.Substring(0,header_size));
+        //            //}
         //        }
-        //    }catch(Exception e)
+        //    }
+        //    catch (Exception e)
         //    {
         //        session.Write("STOP\n");
         //        Console.WriteLine(e.ToString());
@@ -197,8 +321,8 @@ namespace AgilentU2542Atest
         //    Console.WriteLine("Done");
         //    session.Write("STOP\n");
         //    Console.ReadKey();
-        
-            
+
+
         //}
 
         //static void Main(string[] args)
