@@ -270,7 +270,7 @@ namespace AgilentU2542Atest
             session.DefaultBufferSize = ByteBufferSize;
             session.TerminationCharacter = 0x0A;
             session.TerminationCharacterEnabled = true;
-            session.Timeout = 10000;
+            session.Timeout = -1;
 
             string ResetCommand = FormatCommand("*RST");
             string ClearStatusCommand = FormatCommand("*CLS");
