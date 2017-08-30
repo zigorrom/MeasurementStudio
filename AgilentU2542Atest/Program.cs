@@ -259,8 +259,8 @@ namespace AgilentU2542Atest
             session.Clear();
             session.LockResource();
 
-            var sample_rate = 5000;
-            var points_per_sample = 500;
+            var sample_rate = 500000;
+            var points_per_sample = 50000;
             var nchan = 4;
 
             const int header_size = 10;
