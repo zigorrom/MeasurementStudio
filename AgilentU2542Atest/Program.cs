@@ -14,125 +14,132 @@ namespace AgilentU2542Atest
     
     class Program
     {
-        static void Main(string[] args)
-        {
-            var dev = new agilent.AgilentU254xClass();
-            string options = "Simulate=false, Cache=false, QueryInstrStatus=true";
-            dev.Initialize("ADC", true, true, options);
+        //static void Main(string[] args)
+        //{
+        //    var dev = new agilent.AgilentU254xClass();
+        //    string options = "Simulate=false, Cache=false, QueryInstrStatus=true";
+        //    dev.Initialize("ADC", true, true, options);
 
             
 
-            //var status = dev.Status;
-            var analogIn = dev.AnalogIn;
-            var acqusition = dev.AnalogIn.Acquisition;
-            var channels = analogIn.Channels;
+        //    //var status = dev.Status;
+        //    var analogIn = dev.AnalogIn;
+        //    var acqusition = dev.AnalogIn.Acquisition;
+        //    var channels = analogIn.Channels;
 
-            Console.WriteLine("Data alignment {0}, resolution {1}, type {2}", analogIn.DataAlignment, analogIn.DataResolution, analogIn.DataType);
+        //    Console.WriteLine("Data alignment {0}, resolution {1}, type {2}", analogIn.DataAlignment, analogIn.DataResolution, analogIn.DataType);
 
-            for (int i = 1; i <= analogIn.Channels.Count; i++)
-            {
-                var name = channels.get_Name(i);
-                Console.WriteLine("channel {0}, name {1}", i, name);
-                var channel = channels.get_Item(name);
-                channel.Configure(agilent.AgilentU254xAnalogPolarityEnum.AgilentU254xAnalogPolarityBipolar, 10.0, true);
+        //    for (int i = 1; i <= analogIn.Channels.Count; i++)
+        //    {
+        //        var name = channels.get_Name(i);
+        //        Console.WriteLine("channel {0}, name {1}", i, name);
+        //        var channel = channels.get_Item(name);
+        //        channel.Configure(agilent.AgilentU254xAnalogPolarityEnum.AgilentU254xAnalogPolarityBipolar, 10.0, true);
 
-            }
+        //    }
 
-            var sample_rate = 500000;
-            var points = 50000;
+        //    var sample_rate = 500000;
+        //    var points = 50000;
 
-            analogIn.MultiScan.Configure(sample_rate, -1);
+        //    analogIn.MultiScan.Configure(sample_rate, -1);
 
-            Console.WriteLine(analogIn.MultiScan.TimePerScan);
-            Console.WriteLine(acqusition.BufferSize);
+        //    Console.WriteLine(analogIn.MultiScan.TimePerScan);
+        //    Console.WriteLine(acqusition.BufferSize);
 
-            acqusition.BufferSize = points;
-            Console.WriteLine(acqusition.BufferSize);
-            //GC.AddMemoryPressure( sizeof(short) * sample_rate);
-            //short[] data = new short[points];
-            //var data = new double[points];
-            var nBytes = points * sizeof(double);
+        //    acqusition.BufferSize = points;
+        //    Console.WriteLine(acqusition.BufferSize);
+        //    //GC.AddMemoryPressure( sizeof(short) * sample_rate);
+        //    //short[] data = new short[points];
+        //    //var data = new double[points];
+        //    var nBytes = points * sizeof(double);
 
-            //var d = new double[points];
-            //[MarshalByRefObject]
-            //double[] data = {0.0};
-            double[] data = new double[points];
+        //    //var d = new double[points];
+        //    //[MarshalByRefObject]
+        //    //double[] data = {0.0};
+        //    double[] data = new double[points];
 
-            try
-            {
-                acqusition.Start();
-                for (int i = 0; i < 10000; )
-                {
+        //    try
+        //    {
+        //        acqusition.Start();
+        //        for (int i = 0; i < 10000; )
+        //        {
 
-                    var status = acqusition.BufferStatus;
-                    switch (status)
-                    {
-                        case Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady:
-                            {
-                                #region test structures commented
-                                //https://stackoverflow.com/questions/537573/how-to-get-intptr-from-byte-in-c-sharp
-                                //https://stackoverflow.com/questions/31854195/how-to-convert-the-intptr-to-an-array
-                                //acqusition.Fetch(ref data);
-                                //array[0] = (demo)System.Runtime.InteropServices.Marshal.PtrToStructure(PPtr, typeof(demo));
-                                //IntPtr unmanagedPtr = Marshal.AllocHGlobal(nBytes);
-                                //data = (double[])System.Runtime.InteropServices.Marshal.PtrToStructure(unmanagedPtr, typeof(double[]));
-                                #endregion
+        //            var status = acqusition.BufferStatus;
+        //            switch (status)
+        //            {
+        //                case Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusDataReady:
+        //                    {
+        //                        #region test structures commented
+        //                        //https://stackoverflow.com/questions/537573/how-to-get-intptr-from-byte-in-c-sharp
+        //                        //https://stackoverflow.com/questions/31854195/how-to-convert-the-intptr-to-an-array
+        //                        //acqusition.Fetch(ref data);
+        //                        //array[0] = (demo)System.Runtime.InteropServices.Marshal.PtrToStructure(PPtr, typeof(demo));
+        //                        //IntPtr unmanagedPtr = Marshal.AllocHGlobal(nBytes);
+        //                        //data = (double[])System.Runtime.InteropServices.Marshal.PtrToStructure(unmanagedPtr, typeof(double[]));
+        //                        #endregion
+
+        //                        try
+        //                        {
+        //                            acqusition.FetchScale(data);
+        //                        }
+        //                        catch(Exception e)
+        //                        {
+        //                            GC.Collect();
+        //                        }
 
 
+        //                        //dev.DirectIO
+        //                        //Marshal.FreeHGlobal(unmanagedPtr);
 
-                                acqusition.FetchScale(ref data);
-                                //dev.DirectIO
-                                //Marshal.FreeHGlobal(unmanagedPtr);
+        //                        //System.Runtime.InteropServices.Marshal.Release(data);
+        //                        //dev.Clear();
+        //                        i++;
+        //                        Console.WriteLine("i={0}", i);
 
-                                //System.Runtime.InteropServices.Marshal.Release(data);
-                                //dev.Clear();
-                                i++;
-                                Console.WriteLine("i={0}", i);
+        //                        //data = null;
 
-                                //data = null;
+        //                        //GC.Collect();
 
-                                //GC.Collect();
+        //                    }
+        //                    break;
+        //                case Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusEmpty:
+        //                    break;
+        //                case Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusFragment:
+        //                    break;
+        //                case Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusOverRun:
+        //                    break;
+        //                default:
+        //                    break;
+        //            }
 
-                            }
-                            break;
-                        case Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusEmpty:
-                            break;
-                        case Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusFragment:
-                            break;
-                        case Agilent.AgilentU254x.Interop.AgilentU254xBufferStatusEnum.AgilentU254xBufferStatusOverRun:
-                            break;
-                        default:
-                            break;
-                    }
-
-                    Console.WriteLine(status);
+        //            Console.WriteLine(status);
                     
-                }
-            }
-            catch (Exception e)
-            {
-                acqusition.Stop();
-                Console.WriteLine(e);
-                Console.WriteLine("extracting error...");
-                int errCode = 999;
-                string errMsg = null;
-                while (errCode != 0)
-                {
-                    dev.Utility.ErrorQuery(ref errCode, ref errMsg);
-                    Console.WriteLine("ErrorQuery: {0}, {1}", errCode, errMsg);
-                }
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        acqusition.Stop();
+        //        Console.WriteLine(e);
+        //        Console.WriteLine("extracting error...");
+        //        int errCode = 999;
+        //        string errMsg = null;
+        //        while (errCode != 0)
+        //        {
+        //            dev.Utility.ErrorQuery(ref errCode, ref errMsg);
+        //            Console.WriteLine("ErrorQuery: {0}, {1}", errCode, errMsg);
+        //        }
 
-            }
-            finally
-            {
-                acqusition.Stop();
-            }
+        //    }
+        //    finally
+        //    {
+        //        acqusition.Stop();
+        //    }
 
 
 
-            //Console.CancelKeyPress += Console_CancelKeyPress;
-            System.Threading.Thread.Sleep(10000);
-        }
+        //    //Console.CancelKeyPress += Console_CancelKeyPress;
+        //    System.Threading.Thread.Sleep(10000);
+        //}
 
 
         //static void Main(string[] args)
@@ -231,127 +238,108 @@ namespace AgilentU2542Atest
         //    throw new NotImplementedException();
         //}
 
-        //static void Main(string[] args)
-        //{
-        //    //MessageBasedSession session = new MessageBasedSession("ADC");
-        //    var session = (MessageBasedSession)ResourceManager.GetLocalManager().Open("ADC");
-        //    session.Clear();
-        //    var sample_rate = 500000;
-        //    var points_per_sample = 50000;
-        //    var nchan = 4;
+        static void Main(string[] args)
+        {
+            //MessageBasedSession session = new MessageBasedSession("ADC");
+            var session = (MessageBasedSession)ResourceManager.GetLocalManager().Open("ADC");
+            session.Clear();
+            var sample_rate = 500000;
+            var points_per_sample = 50000;
+            var nchan = 4;
 
-        //    const int header_size = 20;
+            const int header_size = 10;
 
-        //    int bufferSize = (points_per_sample + header_size) * nchan;
-
-        //    ///Critical section: the device buffer should fit the arriving data!!!
-
-        //    session.DefaultBufferSize = bufferSize;
-        //    session.Timeout = 10000;
-        //    //session.TerminationCharacterEnabled = true;
-        //    //session.TerminationCharacter = (byte)'\n';
-
-        //    //BinaryEncoding.RawLittleEndia
-        //    session.Write("*RST\n");
-        //    session.Write("*CLS\n");
-        //    session.Write("ROUT:ENAB ON,(@101:104)\n");
-        //    session.Write(String.Format("ACQ:SRAT {0}\n", sample_rate));
-        //    session.Write(String.Format("ACQ:POIN {0}\n", points_per_sample));
-        //    session.Write(String.Format("WAV:POIN {0}\n", points_per_sample));
-
-        //    session.Write("RUN\n");
-        //    int counter = 0;
-        //    int minute = 60;
+            int bufferSize = (points_per_sample + header_size) * nchan;
+            int ByteBufferSize = points_per_sample * 2 * nchan + header_size;
 
 
-        //    int cycles = sample_rate * 30 * minute;
-        //    string status = string.Empty;
-        //    string data = string.Empty;
-        //    string header = string.Empty;
-        //    //byte[] result = null;
-        //    //ushort[] array = null;
-        //    //byte[] data_query = ASCIIEncoding.ASCII.GetBytes("WAV:DATA?"); //BinaryEncoding.RawLittleEndian
-        //    byte[] array = null;
-        //    //var reader = new MessageBasedSessionReader(session);
-        //    //reader.BinaryEncoding = BinaryEncoding.RawLittleEndian;
-        //    try
-        //    {
-        //        //using (StreamWriter fs = new StreamWriter(new FileStream("temp_file.txt", FileMode.Create, FileAccess.Write, FileShare.Read)))
-        //        //{
-                    
-        //            string dataQuery = "WAV:DATA?\n";
-        //            while (counter++ < cycles)
-        //            {
-        //                session.Write("WAV:STAT?\n");
-        //                status = session.ReadString();
-        //                //Console.WriteLine(session.ReadStatusByte());
+            ///Critical section: the device buffer should fit the arriving data!!!
+            session.DefaultBufferSize = ByteBufferSize;
+            //session.DefaultBufferSize = bufferSize;
+            session.Timeout = 10000;
+            //session.TerminationCharacterEnabled = true;
+            //session.TerminationCharacter = (byte)'\n';
 
-        //                if (status == "DATA\n")
-        //                {
-        //                    //data = session.Query(dataQuery);
-        //                    session.Write(dataQuery);
-        //                    data = session.ReadString();
-        //                    header = data.Substring(0, header_size);
-        //                    //fs.Write(data);
-        //                    //array = session.ReadByteArray();
-        //                    //array = reader.ReadUInt16s(SAMPLE_NUMER);
-        //                    //array = reader.ReadBytes(bufferSize);
-        //                    //Console.WriteLine("data length {0}", array.Length);
-        //                    //Console.WriteLine(status);
-        //                }
-        //                else if (status == "OVER\n")
-        //                {
-        //                    Console.WriteLine(status);
-        //                    break;
+            //BinaryEncoding.RawLittleEndia
+            session.Write("*RST\n");
+            session.Write("*CLS\n");
+            session.Write("ROUT:ENAB ON,(@101:104)\n");
+            session.Write(String.Format("ACQ:SRAT {0}\n", sample_rate));
+            session.Write(String.Format("ACQ:POIN {0}\n", points_per_sample));
+            session.Write(String.Format("WAV:POIN {0}\n", points_per_sample));
 
-        //                }
-
-        //                Console.WriteLine("status {0}, counter {1}, length {2}, header {3}\n ", status.TrimEnd('\n'), counter, data.Length, header);//, data.Substring(0,header_size));
-        //            //}
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        session.Write("STOP\n");
-        //        Console.WriteLine(e.ToString());
-
-        //    }
+            session.Write("RUN\n");
+            int counter = 0;
+            int minute = 60;
 
 
-        //    Console.WriteLine("Done");
-        //    session.Write("STOP\n");
-        //    Console.ReadKey();
+            int cycles = sample_rate * 30 * minute;
+            string status = string.Empty;
+            string data = string.Empty;
+            string header = string.Empty;
+            //byte[] result = null;
+            //ushort[] array = null;
+            //byte[] data_query = ASCIIEncoding.ASCII.GetBytes("WAV:DATA?"); //BinaryEncoding.RawLittleEndian
+            byte[] array = null;
+            //var reader = new MessageBasedSessionReader(session);
+            //reader.BinaryEncoding = BinaryEncoding.RawLittleEndian;
+            try
+            {
+                //using (StreamWriter fs = new StreamWriter(new FileStream("temp_file.txt", FileMode.Create, FileAccess.Write, FileShare.Read)))
+                //{
+
+                string dataQuery = "WAV:DATA?\n";
+                while (counter++ < cycles)
+                {
+                    session.Write("WAV:STAT?\n");
+                    status = session.ReadString();
+                    //Console.WriteLine(session.ReadStatusByte());
+
+                    if (status == "DATA\n")
+                    {
+                        //data = session.Query(dataQuery);
+                        session.Write(dataQuery);
+                        //data = session.ReadString();
+
+                        //header = data.Substring(0, header_size);
+
+                        array = session.ReadByteArray(ByteBufferSize);
 
 
-        //}
 
-        //static void Main(string[] args)
-        //{
-        //    var agilent = new AgilentU2542A("asdasd", "", "ADC");
-        //    var ch1 = agilent.GetAnalogInputChannel(ChannelEnum.AI_CH101);
-        //    ch1.ChannelEnable = ChannelEnableEnum.Enabled;
+                        //fs.Write(data);
+                        //array = session.ReadByteArray();
+                        //array = reader.ReadUInt16s(SAMPLE_NUMER);
+                        //array = reader.ReadBytes(bufferSize);
+                        //Console.WriteLine("data length {0}", array.Length);
+                        //Console.WriteLine(status);
+                    }
+                    else if (status == "OVER\n")
+                    {
+                        Console.WriteLine(status);
+                        break;
 
-        //    ch1.SampleRate = 500000;
-        //    ch1.PointsPerShot = 50000;
-        //    ch1.DataSetReady += ch1_DataSetReady;
-        //    Console.WriteLine(agilent.Query(agilent.CommandSet.IDNQuery()));
-        //    ch1.StartAcquisition();
-        //    System.Threading.Thread.Sleep(100000);
-        //    ch1.StopAcquisition();
-        //    //for (int i = 0; i < 0xFFFFFFFE; i++)
-        //    //{
-        //    //ss
-        //    //}
-        //}
+                    }
 
-        //static long counter = 0;
-        //static void ch1_DataSetReady(object sender, EventArgs e)
-        //{
-        //    var a = (AgilentU2442A.AnalogInputChannel)sender;
-        //    double[] data;
-        //    a.DequeueData(out data);
-        //    counter++;
-        //    Console.WriteLine("b{0},d{1};", counter, data.Length);
-        //}
+                    Console.WriteLine("status {0}, counter {1}, length {2}, header {3}\n ", status.TrimEnd('\n'), counter, data.Length, header);//, data.Substring(0,header_size));
+                    //}
+                }
+            }
+            catch (Exception e)
+            {
+                session.Write("STOP\n");
+                Console.WriteLine(e.ToString());
+
+            }
+
+
+            Console.WriteLine("Done");
+            session.Write("STOP\n");
+            Console.ReadKey();
+
+
+        }
+
+     
     }
 }
