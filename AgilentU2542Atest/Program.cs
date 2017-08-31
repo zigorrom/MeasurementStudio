@@ -263,9 +263,8 @@ namespace AgilentU2542Atest
             var currentInfo = CultureInfo.CreateSpecificCulture("en-US");
             currentInfo.NumberFormat = new NumberFormatInfo() { NumberDecimalSeparator = ".", NumberGroupSeparator = "" };
             var session = (MessageBasedSession)ResourceManager.GetLocalManager().Open("ADC", AccessModes.ExclusiveLock, 1000);
-            var srq = MessageBasedSessionEventType.ServiceRequest;
-            session.EnableEvent(srq, EventMechanism.Queue);
-
+         
+            
             //UsbSession s = (UsbSession)session;
 
 
@@ -322,7 +321,7 @@ namespace AgilentU2542Atest
 
 
             int cycles = sample_rate * 30 * minute;
-            byte[] byte_status = new byte[status_response_len];
+            //byte[] byte_status = new byte[status_response_len];
             string status = string.Empty;
             byte[] data = new byte[ByteBufferSize];
             //string data = string.Empty;
@@ -334,14 +333,20 @@ namespace AgilentU2542Atest
 
             int footer_start = ByteBufferSize - footer_size;
 
+
+            MessageBasedSessionReader reader = new MessageBasedSessionReader(session);
+            reader.DefaultStringSize = ByteBufferSize;
             try
             {
+                
+                
+
                 session.Write(RunCommand);
                 while (counter++ < cycles)
                 {
                     session.Write(QueryStatusCommand);
-                    byte_status = session.ReadByteArray(status_response_len);
-                    status = Encoding.ASCII.GetString(byte_status);
+                    status = reader.ReadLine();
+                    
                     //Console.WriteLine(status);
 
                     switch (status)
@@ -349,14 +354,16 @@ namespace AgilentU2542Atest
                         case DataArrivedStatus:
                             {
                                 session.Write(QueryDataCommand);
-                                data = session.ReadByteArray(ByteBufferSize);
-                                //data = session.ReadByteArray();
+                                //data = reader.ReadBytes(ByteBufferSize);
+                                data = session.ReadByteArray();
                                 //array = session.ReadByteArray();
                                 //header = Encoding.ASCII.GetString(array, 0, header_size);
 
+
                                 //header = data.Substring(0, header_size);
+                                //footer = data.Substring(footer_start, footer_size);
                                 header = Encoding.ASCII.GetString(data, 0, header_size);
-                                footer = Encoding.ASCII.GetString(data, footer_start,footer_size);
+                                //footer = Encoding.ASCII.GetString(data, footer_start,footer_size);
                                 //Console.WriteLine(counter);
                                 Console.WriteLine("status {0}, counter {1}, length {2}, header {3}, footer {4} ", status.TrimEnd('\n'), counter, data.Length, header,footer);//, data.Substring(0,header_size));
 
