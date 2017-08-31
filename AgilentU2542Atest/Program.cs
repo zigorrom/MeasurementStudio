@@ -8,13 +8,16 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using agilent = Agilent.AgilentU254x.Interop;
+//using agilent = Agilent.AgilentU254x.Interop;
+//using Ivi.Visa.Interop;
+
 
 namespace AgilentU2542Atest
 {
     
     class Program
     {
+        #region
         //static void Main(string[] args)
         //{
         //    var dev = new agilent.AgilentU254xClass();
@@ -232,9 +235,11 @@ namespace AgilentU2542Atest
         //    System.Threading.Thread.Sleep(10000);
         //}
 
-       
+        #endregion
 
-       
+
+
+
         static string FormatCommand(string command)
         {
             return FormatCommand(command, CultureInfo.CurrentCulture);
@@ -245,17 +250,27 @@ namespace AgilentU2542Atest
             return String.Format(info, "{0}\n", command.TrimEnd('\n'));
         }
 
+        /// <summary>
+        /// GPIB implementation; reading bytes only
+        /// </summary>
+        /// <param name="args"></param>
+        /// 
+
 
         static void Main(string[] args)
         {
+
             var currentInfo = CultureInfo.CreateSpecificCulture("en-US");
             currentInfo.NumberFormat = new NumberFormatInfo() { NumberDecimalSeparator = ".", NumberGroupSeparator = "" };
-            var session = (MessageBasedSession)ResourceManager.GetLocalManager().Open("ADC", AccessModes.ExclusiveLock,1000);
+            var session = (MessageBasedSession)ResourceManager.GetLocalManager().Open("ADC", AccessModes.ExclusiveLock, 1000);
+            var srq = MessageBasedSessionEventType.ServiceRequest;
+            session.EnableEvent(srq, EventMechanism.Queue);
+
             //UsbSession s = (UsbSession)session;
 
 
             //session.IOProtocol = IOProtocol.HS488;
-            
+
             session.Clear();
             session.LockResource();
 
@@ -264,13 +279,17 @@ namespace AgilentU2542Atest
             var nchan = 4;
 
             const int header_size = 10;
+            const int footer_size = 10;
+            const int status_response_len = 5;
+
             int ByteBufferSize = points_per_sample * 2 * nchan + header_size;
 
             ///Critical section: the device buffer should fit the arriving data!!!
             session.DefaultBufferSize = ByteBufferSize;
             session.TerminationCharacter = 0x0A;
             session.TerminationCharacterEnabled = true;
-            session.Timeout = -1;
+            //session.TerminationCharacterEnabled = false;
+            session.Timeout = 1000;
 
             string ResetCommand = FormatCommand("*RST");
             string ClearStatusCommand = FormatCommand("*CLS");
@@ -297,20 +316,23 @@ namespace AgilentU2542Atest
             session.Write(SetSingleShotPoints);
             session.Write(SetContinuosAcqusitionPoints);
 
-            
+
             int counter = 0;
             int minute = 60;
 
 
             int cycles = sample_rate * 30 * minute;
+            byte[] byte_status = new byte[status_response_len];
             string status = string.Empty;
-            //byte[] data;
-            string data = string.Empty;
+            byte[] data = new byte[ByteBufferSize];
+            //string data = string.Empty;
             string header = string.Empty;
+            string footer = string.Empty;
+
             //byte[] array = null;
 
 
-
+            int footer_start = ByteBufferSize - footer_size;
 
             try
             {
@@ -318,7 +340,8 @@ namespace AgilentU2542Atest
                 while (counter++ < cycles)
                 {
                     session.Write(QueryStatusCommand);
-                    status = session.ReadString();
+                    byte_status = session.ReadByteArray(status_response_len);
+                    status = Encoding.ASCII.GetString(byte_status);
                     //Console.WriteLine(status);
 
                     switch (status)
@@ -326,19 +349,21 @@ namespace AgilentU2542Atest
                         case DataArrivedStatus:
                             {
                                 session.Write(QueryDataCommand);
-                                data = session.ReadString();
+                                data = session.ReadByteArray(ByteBufferSize);
                                 //data = session.ReadByteArray();
                                 //array = session.ReadByteArray();
                                 //header = Encoding.ASCII.GetString(array, 0, header_size);
 
-                                header = data.Substring(0, header_size);
-                                //header = Encoding.ASCII.GetString(data, 0, header_size);
+                                //header = data.Substring(0, header_size);
+                                header = Encoding.ASCII.GetString(data, 0, header_size);
+                                footer = Encoding.ASCII.GetString(data, footer_start,footer_size);
                                 //Console.WriteLine(counter);
-                                Console.WriteLine("status {0}, counter {1}, length {2}, header {3}\n ", status.TrimEnd('\n'), counter, data.Length, header);//, data.Substring(0,header_size));
+                                Console.WriteLine("status {0}, counter {1}, length {2}, header {3}, footer {4} ", status.TrimEnd('\n'), counter, data.Length, header,footer);//, data.Substring(0,header_size));
 
                             } break;
                         case DataOverloadStatus:
                             {
+
                                 throw new OutOfMemoryException("buffer overload on the device side");
                             }
 
@@ -348,6 +373,9 @@ namespace AgilentU2542Atest
             catch (Exception e)
             {
                 Console.WriteLine(e);
+
+                Console.WriteLine();
+                Console.WriteLine("status before exception: {0}", status);
                 session.Write(StopCommand);
             }
             finally
@@ -355,55 +383,376 @@ namespace AgilentU2542Atest
                 session.UnlockResource();
                 session.Dispose();
             }
+
+            //Console.ReadKey();
+
         }
 
-                    //if (status == "DATA\n")
-                    //{
-                    //    //data = session.Query(dataQuery);
-                    //    session.Write(dataQuery);
-                    //    //data = session.ReadString();
+        /// <summary>
+        /// GPIB implementation
+        /// </summary>
+        /// <param name="args"></param>
+        //static void Main(string[] args)
+        //{
+        //    var currentInfo = CultureInfo.CreateSpecificCulture("en-US");
+        //    currentInfo.NumberFormat = new NumberFormatInfo() { NumberDecimalSeparator = ".", NumberGroupSeparator = "" };
+        //    var session = (MessageBasedSession)ResourceManager.GetLocalManager().Open("ADC", AccessModes.ExclusiveLock, 1000);
+        //    var srq = MessageBasedSessionEventType.ServiceRequest;
+        //    session.EnableEvent(srq, EventMechanism.Queue);
 
-                    //    //header = data.Substring(0, header_size);
+        //    //UsbSession s = (UsbSession)session;
 
-                    //    array = session.ReadByteArray(ByteBufferSize);
-                    //    header = Encoding.ASCII.GetString(array, 0, header_size);
-                    //    Console.WriteLine(array.Length);
-                    //    Console.WriteLine("status {0}, counter {1}, length {2}, header {3}\n ", status.TrimEnd('\n'), counter, array.Length, header);//, data.Substring(0,header_size));
 
-                    //    //fs.Write(data);
-                    //    //array = session.ReadByteArray();
-                    //    //array = reader.ReadUInt16s(SAMPLE_NUMER);
-                    //    //array = reader.ReadBytes(bufferSize);
-                    //    //Console.WriteLine("data length {0}", array.Length);
-                    //    //Console.WriteLine(status);
-                    //}
-                    //else if (status == "OVER\n")
-                    //{
-                    //    Console.WriteLine(status);
-                    //    break;
+        //    //session.IOProtocol = IOProtocol.HS488;
 
-                    //}
+        //    session.Clear();
+        //    session.LockResource();
 
-                    //Console.WriteLine("status {0}, counter {1}, length {2}, header {3}\n ", status.TrimEnd('\n'), counter, data.Length, header);//, data.Substring(0,header_size));
-                    //}
+        //    var sample_rate = 500000;
+        //    var points_per_sample = 50000;
+        //    var nchan = 4;
+
+        //    const int header_size = 10;
+        //    int ByteBufferSize = points_per_sample * 2 * nchan + header_size;
+
+        //    ///Critical section: the device buffer should fit the arriving data!!!
+        //    session.DefaultBufferSize = ByteBufferSize;
+        //    session.TerminationCharacter = 0x0A;
+        //    session.TerminationCharacterEnabled = true;
+        //    //session.TerminationCharacterEnabled = false;
+        //    session.Timeout = 1000;
+
+        //    string ResetCommand = FormatCommand("*RST");
+        //    string ClearStatusCommand = FormatCommand("*CLS");
+        //    string EnableAllChannels = FormatCommand("ROUT:ENAB ON, (@101:104)");
+        //    string SetSampleRateCommand = FormatCommand(String.Format("ACQ:SRAT {0}", sample_rate));
+        //    string SetSingleShotPoints = FormatCommand(String.Format("ACQ:POIN {0}", points_per_sample));
+        //    string SetContinuosAcqusitionPoints = FormatCommand(String.Format("WAV:POIN {0}", points_per_sample));
+
+        //    string RunCommand = FormatCommand("RUN");
+        //    string StopCommand = FormatCommand("STOP");
+
+        //    string QueryStatusCommand = FormatCommand("WAV:STAT?");
+        //    string QueryDataCommand = FormatCommand("WAV:DATA?");
+
+        //    const string DataArrivedStatus = "DATA\n";
+        //    const string DataOverloadStatus = "OVER\n";
+
+
+
+        //    session.Write(ResetCommand);
+        //    session.Write(ClearStatusCommand);
+        //    session.Write(EnableAllChannels);
+        //    session.Write(SetSampleRateCommand);
+        //    session.Write(SetSingleShotPoints);
+        //    session.Write(SetContinuosAcqusitionPoints);
+
+
+        //    int counter = 0;
+        //    int minute = 60;
+
+
+        //    int cycles = sample_rate * 30 * minute;
+        //    string status = string.Empty;
+        //    //byte[] data;
+        //    string data = string.Empty;
+        //    string header = string.Empty;
+        //    //byte[] array = null;
+
+
+
+
+        //    try
+        //    {
+        //        session.Write(RunCommand);
+        //        while (counter++ < cycles)
+        //        {
+        //            session.Write(QueryStatusCommand);
+        //            status = session.ReadString();
+        //            //Console.WriteLine(status);
+
+        //            switch (status)
+        //            {
+        //                case DataArrivedStatus:
+        //                    {
+        //                        session.Write(QueryDataCommand);
+        //                        data = session.ReadString();
+        //                        //data = session.ReadByteArray();
+        //                        //array = session.ReadByteArray();
+        //                        //header = Encoding.ASCII.GetString(array, 0, header_size);
+
+        //                        header = data.Substring(0, header_size);
+        //                        //header = Encoding.ASCII.GetString(data, 0, header_size);
+        //                        //Console.WriteLine(counter);
+        //                        Console.WriteLine("status {0}, counter {1}, length {2}, header {3}\n ", status.TrimEnd('\n'), counter, data.Length, header);//, data.Substring(0,header_size));
+
+        //                    } break;
+        //                case DataOverloadStatus:
+        //                    {
+                                
+        //                        throw new OutOfMemoryException("buffer overload on the device side");
+        //                    }
+
+        //            }
         //        }
         //    }
         //    catch (Exception e)
         //    {
-        //        session.Write("STOP\n");
-        //        Console.WriteLine(e.ToString());
+        //        Console.WriteLine(e);
 
+        //        Console.WriteLine();
+        //        Console.WriteLine("status before exception: {0}",status);
+        //        session.Write(StopCommand);
+        //    }
+        //    finally
+        //    {
+        //        session.UnlockResource();
+        //        session.Dispose();
         //    }
 
-
-        //    Console.WriteLine("Done");
-        //    session.Write("STOP\n");
         //    Console.ReadKey();
-
-
         //}
 
-     
+
+        /// <summary>
+        /// IVI implementation
+        /// </summary>
+        /// <param name="args"></param>
+        //static void Main(string[] args)
+        //{
+        //    var currentInfo = CultureInfo.CreateSpecificCulture("en-US");
+        //    currentInfo.NumberFormat = new NumberFormatInfo() { NumberDecimalSeparator = ".", NumberGroupSeparator = "" };
+        //    var resMgr = new ResourceManager();
+        //    var session = (IMessage)resMgr.Open("ADC", AccessMode.EXCLUSIVE_LOCK);
+
+        //    var ioobj = new FormattedIO488();
+        //    ioobj.IO = session;
+        //    ioobj.FlushRead();
+        //    //var session = (MessageBasedSession)ResourceManager.GetLocalManager().Open("ADC", AccessModes.ExclusiveLock, 1000);
+        //    //UsbSession s = (UsbSession)session;
+
+
+        //    //session.IOProtocol = IOProtocol.HS488;
+        //    //ioobj.FlushWrite();
+        //    //ioobj.FlushRead();
+
+        //    //session.Clear();
+        //    //session.LockResource();
+
+        //    var sample_rate = 500000;
+        //    var points_per_sample = 50000;
+        //    var nchan = 4;
+
+        //    const int header_size = 10;
+        //    int ByteBufferSize = points_per_sample * 2 * nchan + header_size;
+
+        //    ioobj.SetBufferSize(BufferMask.IO_IN_BUF, ByteBufferSize);
+
+
+        //    ///Critical section: the device buffer should fit the arriving data!!!
+        //    //session.DefaultBufferSize = ByteBufferSize;
+        //    //session.TerminationCharacter = 0x0A;
+        //    //session.TerminationCharacterEnabled = true;
+        //    //session.Timeout = -1;
+
+        //    string ResetCommand = FormatCommand("*RST");
+        //    string ClearStatusCommand = FormatCommand("*CLS");
+        //    string EnableAllChannels = FormatCommand("ROUT:ENAB ON, (@101:104)");
+        //    string SetSampleRateCommand = FormatCommand(String.Format("ACQ:SRAT {0}", sample_rate));
+        //    string SetSingleShotPoints = FormatCommand(String.Format("ACQ:POIN {0}", points_per_sample));
+        //    string SetContinuosAcqusitionPoints = FormatCommand(String.Format("WAV:POIN {0}", points_per_sample));
+
+        //    string RunCommand = FormatCommand("RUN");
+        //    string StopCommand = FormatCommand("STOP");
+
+        //    string QueryStatusCommand = FormatCommand("WAV:STAT?");
+        //    string QueryDataCommand = FormatCommand("WAV:DATA?");
+
+        //    const string DataArrivedStatus = "DATA\n";
+        //    const string DataOverloadStatus = "OVER\n";
+
+
+        //    ioobj.WriteString(ResetCommand);
+        //    ioobj.WriteString(ClearStatusCommand);
+        //    ioobj.WriteString(EnableAllChannels);
+        //    ioobj.WriteString(SetSampleRateCommand);
+        //    ioobj.WriteString(SetSingleShotPoints);
+        //    ioobj.WriteString(SetContinuosAcqusitionPoints);
+
+
+        //    int counter = 0;
+        //    int minute = 60;
+
+
+        //    int cycles = sample_rate * 30 * minute;
+        //    string status = string.Empty;
+        //    //byte[] data;
+        //    string data = string.Empty;
+        //    string header = string.Empty;
+        //    //byte[] array = null;
+
+
+
+
+        //    try
+        //    {
+        //        ioobj.WriteString(RunCommand);
+
+        //        while (counter++ < cycles)
+        //        {
+        //            ioobj.WriteString(QueryStatusCommand);
+        //            status = ioobj.ReadString();
+
+
+        //            switch (status)
+        //            {
+        //                case DataArrivedStatus:
+        //                    {
+        //                        ioobj.WriteString(QueryDataCommand);
+        //                        data = ioobj.ReadString();
+        //                        //data = session.ReadString();
+        //                        //data = session.ReadByteArray();
+        //                        //array = session.ReadByteArray();
+        //                        //header = Encoding.ASCII.GetString(array, 0, header_size);
+
+        //                        header = data.Substring(0, header_size);
+        //                        //header = Encoding.ASCII.GetString(data, 0, header_size);
+        //                        //Console.WriteLine(counter);
+        //                        Console.WriteLine("status {0}, counter {1}, length {2}, header {3}\n ", status.TrimEnd('\n'), counter, data.Length, header);//, data.Substring(0,header_size));
+
+        //                    } break;
+        //                case DataOverloadStatus:
+        //                    {
+        //                        throw new OutOfMemoryException("buffer overload on the device side");
+        //                    }
+
+        //            }
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e);
+        //        ioobj.WriteString(StopCommand);
+        //        //session.Write(StopCommand);
+        //    }
+        //    finally
+        //    {
+        //        session.Close();
+        //        //session.UnlockResource();
+        //        //session.Dispose();
+        //    }
+        //}
+
+
+
+
+        /// <summary>
+        /// IVI base implementation
+        /// </summary>
+        /// <param name="args"></param>
+        //static void Main(string[] args)
+        //{
+        //    var currentInfo = CultureInfo.CreateSpecificCulture("en-US");
+        //    currentInfo.NumberFormat = new NumberFormatInfo() { NumberDecimalSeparator = ".", NumberGroupSeparator = "" };
+        //    //var resMgr = new ResourceManager();
+        //    //var session = (IMessage)resMgr.Open("ADC", AccessMode.EXCLUSIVE_LOCK);
+        //    int session;
+        //    int result = 0;
+
+        //    result = visa32.viOpenDefaultRM(out session);
+
+        //    if (result == visa32.VI_SUCCESS)
+        //    {
+        //        int wg;
+                
+        //        int resWG = visa32.viOpen(session, "ADC", visa32.VI_NULL, visa32.VI_NULL, out wg);
+
+        //        if(resWG == visa32.VI_SUCCESS)
+        //        {
+        //            Console.WriteLine("success");
+        //            string str = string.Empty;
+        //            visa32.viPrintf(wg, "*IDN?\n");
+        //            visa32.viRead(wg, out str, 200);
+        //            Console.WriteLine("IDN: {0}", str);
+
+        //        }
+
+        //        if (resWG == visa32.VI_SUCCESS)
+        //        {
+        //            visa32.viClose(resWG);
+        //        }
+        //    }
+
+        //    return;
+
+
+        //    //var ioobj = new FormattedIO488();
+        //    //ioobj.IO = session;
+        //    //ioobj.FlushRead();
+        //    //var session = (MessageBasedSession)ResourceManager.GetLocalManager().Open("ADC", AccessModes.ExclusiveLock, 1000);
+        //    //UsbSession s = (UsbSession)session;
+
+
+        //    //session.IOProtocol = IOProtocol.HS488;
+        //    //ioobj.FlushWrite();
+        //    //ioobj.FlushRead();
+
+        //    //session.Clear();
+        //    //session.LockResource();
+
+        //    var sample_rate = 500000;
+        //    var points_per_sample = 50000;
+        //    var nchan = 4;
+
+        //    const int header_size = 10;
+        //    int ByteBufferSize = points_per_sample * 2 * nchan + header_size;
+
+        //    //ioobj.SetBufferSize(BufferMask.IO_IN_BUF, ByteBufferSize);
+
+
+        //    ///Critical section: the device buffer should fit the arriving data!!!
+        //    //session.DefaultBufferSize = ByteBufferSize;
+        //    //session.TerminationCharacter = 0x0A;
+        //    //session.TerminationCharacterEnabled = true;
+        //    //session.Timeout = -1;
+
+        //    string ResetCommand = FormatCommand("*RST");
+        //    string ClearStatusCommand = FormatCommand("*CLS");
+        //    string EnableAllChannels = FormatCommand("ROUT:ENAB ON, (@101:104)");
+        //    string SetSampleRateCommand = FormatCommand(String.Format("ACQ:SRAT {0}", sample_rate));
+        //    string SetSingleShotPoints = FormatCommand(String.Format("ACQ:POIN {0}", points_per_sample));
+        //    string SetContinuosAcqusitionPoints = FormatCommand(String.Format("WAV:POIN {0}", points_per_sample));
+
+        //    string RunCommand = FormatCommand("RUN");
+        //    string StopCommand = FormatCommand("STOP");
+
+        //    string QueryStatusCommand = FormatCommand("WAV:STAT?");
+        //    string QueryDataCommand = FormatCommand("WAV:DATA?");
+
+        //    const string DataArrivedStatus = "DATA\n";
+        //    const string DataOverloadStatus = "OVER\n";
+
+
+           
+
+
+        //    int counter = 0;
+        //    int minute = 60;
+
+
+        //    int cycles = sample_rate * 30 * minute;
+        //    //string status = string.Empty;
+        //    //byte[] data;
+        //    string data = string.Empty;
+        //    string header = string.Empty;
+        //    //byte[] array = null;
+
+
+
+
+            
+        //}
+
     }
 }
     
